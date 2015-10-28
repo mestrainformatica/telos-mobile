@@ -1,0 +1,643 @@
+/* APLICA ESSAS PROPRIEDADES A TODOS OS ELEMENTOS DAS PÁGINAS */
+*{
+	margin: 0px;
+	padding: 0px;
+	font: 11px Verdana, Arial, sans-serif;
+}
+/* MENU DOS BOTÕES DE AÇÕES */
+td.menu_acoes{
+	text-align: right;
+	height: 33px;
+	padding: 0 0 3px 0;
+}
+/* APLICA PROPRIEDADES ESPECÍFICAS AOS BOTÕES DO MENU DE AÇOES */
+table.menu_acoes #botao_menu,table.menu_acoes #botao_menu2{
+	height: 24px;
+}
+/* LINK */
+a{
+	text-decoration: none;
+}
+/* TAB FOLDER */
+table.tabs ul li.ativada{
+	position: relative;
+	top: 1px;
+	z-index: 1;
+}
+table.tabs{
+	margin: 10px 0 0 0;
+}
+table.tabs ul{
+	margin: 0 0 0 10px;
+}
+table.tabs ul li{
+	float: left;
+	display: block;
+	margin: 0 1px 0 0;
+	display: block;
+	float: left;
+}
+table.tabs ul li,table.tabs ul li.ativada{	
+	background-image: url(../midia/aba_esq.gif);
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+table.tabs ul li.ativada a, table.tabs ul li a{
+	padding: 0 7px;
+	height: 25px;
+	display: block;
+	float: left;
+	line-height: 25px;
+	font-weight: bold;	
+	background-image: url(../midia/aba_dir.gif);
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+/* COMPORTAMENTO QUANDO PASSA O MOUSE SOBRE A TAB ATIVADA (SIMULANDO NÃO HAVER UM LINK) */
+table.tabs ul li.ativada a,table.tabs ul li.ativada a:hover{
+	cursor: text;
+}
+/* COMPORTA TODO O CONTEÚDO QUE ESTÁ VISUALMENTE ATIVADO NA TAB-FOLDER */
+td.corpoTabFolder{
+	padding: 10px;
+}
+/* FIM TAB-FOLDER */
+/* RODAPÉ DA APLICAÇÃO 
+td.rodape{
+	text-align: center;
+	height: 60px;
+	font-size: 10px;
+	border-width: 1px;
+	border-style: solid;
+}
+*/
+
+td.rodape{color:#3D4F57;
+border-top:1px solid #EFF6FA;
+border-left:1px solid #EFF6FA;
+border-bottom:1px solid #A1C7DD;
+border-right:1px solid #A1C7DD;
+background:#C8DEEC}
+
+/* USADO PARA TÍTULO */
+h2 {
+ font-size:24px;
+}
+/* USADO PARA TÍTULO */
+.t2{
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 28px;
+}
+/* BOTÕES ESTILO QUIOSQUE NA ENTRADA DA APLICAÇÃO */
+#botaoQuiosque,#botaoQuiosque2{
+	border-width: 4px;
+	border-style: solid;
+	width: 350px;
+	padding: 5px 5px 5px 43px;
+	margin: 0 0 3px 0;
+	font: bold 23px Arial, Tahoma, sans-serif;
+	text-decoration: none;
+	display: block;
+}
+/* TOPO DA APLICAÇÃO */
+div.topo{
+	font-size: 1px;
+	background-repeat: repeat-x;
+}
+/* NOME DA EMPRESA NO DIV.TOPO */
+div.nomeEmpresa{
+	position: absolute;
+	top: 0;
+	left: 10;
+	width: 180px;
+	height: 30px;
+	overflow: hidden;
+	font: bold 20px/28px Arial, Verdana,sans-serif;
+}
+/* TITULO DA PÁGINA NO DIV.TOPO */
+div.tituloPagina{
+	position: absolute;
+	top: 0px;
+	left: 190px;
+	width: 400px;
+	height: 30px;
+	text-align: center;
+	overflow: hidden;
+	font-weight: bold;
+	line-height: 28px;
+}
+/* NOME DA APLICAÇÃO NO DIV.TOPO */
+div.nomeAplicacao{
+	position: absolute;
+	top: 0px;
+	left: 610px;
+	width: 180px;
+	height: 30px;
+	text-align: left;
+	overflow: hidden;
+	font: bold 20px/28px arial, verdana;
+}
+/* CONTAINER QUE COMPORTA O MENU DO SISTEMA */
+div.portaMenuSistema{
+	font-size: 1px;
+	height: 19px;
+	width: 100%;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	margin: 0 0 3px 0;
+}
+/* FIREFOX */
+html>body div.portaMenuSistema{
+	height: 18px;
+}
+/* DELIMITADOR DE SECOES */
+table.delimitador{
+	margin: 4px 0 2px 0;
+	border-width: 1px;
+	border-style: solid;
+}
+/* CABEÇALHO PADRÃO PARA TABLE DELIMITADOR */
+td.secao{
+	height: 25px;
+	font-weight: bold;
+	padding: 4px 10px 4px 4px;
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+}
+/* SUBSECAO (VISUALMENTE DE SEGUNDO NÍVEL DEPOIS DO TD.SECAO) */
+td.subsecao{
+	font-size: 10px;
+	font-weight: bold;
+	height: 17px;
+	padding: 0 4px;
+}
+/* CELULA ONDE ESTÃO OS LABELS (TITULOS) DOS CAMPOS */
+td.titulo,td.subtitulo{
+	padding: 8px 10px 0px 4px;
+}
+/* CELULAR PARA SUBTÍTULOS */
+td.subtitulo{
+	font-weight: bold;
+	font-size: 10px;
+}
+/* CELULA QUE CONTÉM OS CAMPOS */
+td.campo,td.normal{	
+	padding: 2px 10px 4px 4px;
+	vertical-align: top;
+}
+/* IMAGEM DO ASSISTENTE DE AJUDA */
+img.assistente{
+	z-index: 2;
+	position: relative;
+	float: left;
+	display: block;
+	margin: 10px 0 0 2px;
+}
+/* BALÃO DE AJUDA: A COR NÃO PODE MUDAR EM NENHUMA PELE */
+div.balao{
+	z-index: 1;
+	padding: 10px;
+	margin: 6px 10px 3px 64px;
+	color: #000000;
+	background: #FFF6A7;
+	border: 1px solid #796300;
+}
+/* USADO PARA INFORMAR SOBRE O PRODUTO (NO MENU AJUDA) */
+td.sobre{
+	font-size: 10px;
+	text-align: left;
+	padding: 10px 5px;
+	border-width: 1px;
+	border-style: solid;
+}
+/* MENU DE AJUDA: NÃO MUDA A FORMATAÇÃO */
+div#ajuda{
+	text-align: left;
+	float: none;
+	position: absolute;
+	top: 83px;
+	right: 0;
+	width: 300px;
+	background: #F8D1CB;
+	border: 2px solid #DC3823;
+	z-index: 5;
+}
+/* TÍTULO DA AJUDA */
+div#ajuda h1{
+	text-transform: uppercase;
+	height: 30px;
+	color: #FFF;
+	background: #DC3823;
+	font: bold 18px/30px Tahoma, Arial, sans-serif;
+	padding: 0 10px;
+}
+/* BOTAO DE FECHAR DA AJUDA */
+div#ajuda h1 span{
+	height: 26px;
+	width: 29px;
+	text-align: center;
+	font: bold 19px/26px Arial, sans-serif;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	cursor: pointer;
+	color: #FFF;
+	background: #CA230D;
+	border-top: 1px solid #F37361;
+	border-right: 1px solid #781308;
+	border-bottom: 1px solid #781308;
+	border-left: 1px solid #F37361;
+}
+/* SUBTITULO DA AJUDA */
+div#ajuda h2{
+	text-transform: uppercase;
+	height: 28px;
+	font: bold 17px/28px Tahoma, Arial, Verdana, sans-serif;
+	padding: 0 20px;
+	color: #DC3823;
+	background: #FBE7E4;
+}
+/* TEXTO DA AJUDA */
+div#ajuda p{
+	font: 11px/14px Verdana, Tahoma, Arial, sans-serif;
+	color: #DC3823;
+	margin: 5px 10px 10px 20px;
+}
+/* BOTÃO PARA SOLICITAR AJUDA */
+div#ajuda input{
+	height: 22px;
+	font: bold 11px/17px Verdana, Tahoma, Arial, sans-serif;
+	margin: 0 0 10px 20px;
+	cursor: pointer;
+	color: #FFF;
+	background: #CA230D;
+	border-top: 1px solid #F37361;
+	border-right: 1px solid #781308;
+	border-bottom: 1px solid #781308;
+	border-left: 1px solid #F37361;
+}
+/* HACK PARA IE */
+html>body div#ajuda input{
+	margin: 0 0 10px 20px;
+}
+.destaque1{
+	font-weight: bold;
+}
+/* TABELA DE LISTAGEM DE RESULTADOS DE PESQUISA*/
+table.lista{
+	margin: 4px 0 2px 0;
+	border-width: 1px 0 1px 1px;
+	border-style: solid;
+}
+/* CABEÇALHO DA TABLE.LISTA */
+td.cabecalho{
+	font-weight: bold;
+	padding: 2px;
+	vertical-align: top;
+	text-align: left;
+	height: 25px;
+	border-width: 1px;
+	border-style: solid;
+}
+/* LINHAS DE RESULTADO DA PESQUISA */
+td.linha{
+	text-align: left;
+	vertical-align: middle;
+	padding: 2px;
+	border-top: 1px solid;
+	border-right: 1px solid;
+}
+/* LINHA (TR) PAR E LINHA IMPAR */
+tr.linhaimpar,tr.linhapar{
+	padding: 2px 10px 2px 4px;
+	vertical-align: middle
+}
+/* COMPONENTE RETRÁTIL */
+/* CÉLULA QUE CONTÉM O BOTAO_MAIS E O BOTAO_MENOS */
+td.col_hierarq{
+	width: 17px;
+	vertical-align: middle;
+	text-align: center;
+}
+/* APENAS O CABEÇALHO QUE FICA À DIREITA DOS BOTÕES MAIS E MENOS */
+table.componenteRetratil{
+	margin: 4px 0 0 0;
+	border-width: 1px 1px 0 1px;
+	border-style: solid;
+}
+/* CONTÉM TODO O CONTEÚDO DO ELEMENTO COMPONENTE RETRÁTIL */
+table.conteudoComponenteRetratil{
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
+	margin: 0 0 2px 0;
+}
+
+/* COLUNA DO MENU DO LAYOUT PORTAL CLÁSSICO*/
+.layout_col_menu{
+	width: 18%
+}
+/* COLUNA PRINCIPAL DO LAYOUT PORTAL CLÁSSICO */
+.layout_col_principal{
+	width: 82%;
+	padding: 0 0 0 5px;
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+/* CABEÇALHO DO MENU DO LAYOUT PORTAL CLÁSSICO */
+td.menu_titulo{
+	height: 20px;
+	padding: 2px;
+	border-width: 1px;
+	border-style: solid;
+}
+/* MENU DO LAYOUT PORTAL CLÁSSICO */
+table.menu{
+	margin: 0 0 10px 0;
+	border-width: 1px;
+	border-style: solid;
+}
+/* ITEM DO MENU DO LAYOUT PORTAL CLÁSSICO */
+td.menu_item{
+	padding: 2px 2px 2px 4px;
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
+}
+/* TITULO DE SEGUNDO NÍVEL DO MENU DO LAYOUT PORTAL CLÁSSICO */
+td.submenu_titulo{
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
+	padding: 2px 2px 2px 4px;
+	text-align: left;
+}
+td.menu_item,td.submenu_titulo,td.submenu_item{
+	height: 15px;
+}
+/* ITEM DE SEGUNDO NÍVEL DO MENU DO LAYOUT PORTAL CLÁSSICO */
+td.submenu_item{	
+	padding: 2px 2px 2px 20px;
+	border-width: 0 1px 1px 1px;
+	border-style: solid;	
+}
+td.menu_titulo,td.menu_item,td.submenu_titulo,td.submenu_item{
+	font-size: 10px;
+	vertical-align: middle;
+	text-align: left;
+}
+/* LINHA DE UM ELEMENTO TREEVIEW */
+td.linha_treeview,linha_treeview_selecionada{
+	vertical-align: middle;
+	padding: 2px 0;
+	white-space: nowrap;
+}
+/* LINHA SELECIONADA DE UM ELEMENTO TREEVIEW */
+td.linha_treeview_selecionada a{
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Limpados no PlcPele.css */
+
+/* ELEMENTOS DE FORMULÁRIO */
+input{
+	height: 17px;
+	vertical-align: middle;
+}
+input.texto,
+input.texto_obrigatorio,
+input.texto_desabilitado,
+input.false,
+input.true,
+textarea,
+textarea.obrigatorio,
+textarea.desabilitado,
+#botao_secao,
+
+#botao_secao2,
+#botao_fieldset,
+.botao,
+.bt,
+.bt_secao_texto,
+.bt_secao_icone,
+.botao_mais,
+.botao_menos,
+.botao_subdetalhe{
+	border-width: 0px;
+	border-style: solid;
+}
+#botao_menu,
+#botao_menu2
+{
+	border-width: 0px;
+	font-size:0;
+	border:0;
+}
+/* CAMPOS DE ENTRADA DE DADOS */
+input.texto,
+input.texto_obrigatorio,
+input.texto_desabilitado,
+input.false,
+input.true,
+textarea,
+textarea.obrigatorio,
+textarea.desabilitado{
+	padding: 0 0 0 3px;
+}
+/* BOTÕES */
+#botao_menu,
+#botao_menu2,
+#botao_secao,
+#botao_secao2,
+.botao,
+.bt,
+.bt_secao_texto,
+.bt_secao_icone,
+.botao_mais,
+.botao_menos,
+.botao_subdetalhe,
+#botao_fieldset,
+#botao_menu_aprova,
+#botao_menu_reprova,
+#botao_menu_aprova2,
+#botao_menu_reprova2{	
+	height: 17px;
+	text-align: center;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+/* SPAN QUE SIMULA UM INPUT SEMELHANTE AO BOTAO_MENU */
+span#botao_menu,span#botao_menu2,span.botao,.bt{
+	padding: 0 6px;
+	vertical-align: middle;
+}
+/* BOTÃO QUE CONTÉM ÍCONES */
+.bt_secao_texto{
+	font-size: 10px;
+	line-height: 14px;
+	float: left;
+	padding: 1px 5px 0 5px;
+}
+/* BOTÕES QUADRADOS DE FUNÇÕES */
+.botao_mais,.botao_menos,.botao_subdetalhe{
+	cursor: pointer;
+	height: 11px;
+	width: 11px;
+	font-size: 0px;
+}
+/* BOTÃO FORMATADO PELA APLICAÇÃO, AS CORES NÃO SÃO FORMATADAS NO CSS */
+/*#botao_menu_aprova,#botao_menu_reprova,#botao_menu_aprova2,#botao_menu_reprova2{
+	border-width: 0;
+}*/
+/* FIM ELEMENTOS DE FORMULÁRIO */
+
+
+/* ESTILO DAS DIV DAS TABFOLDER AGIL (VISÍVEL/OCULTA)*/
+div.tabOculta{
+ display:none;
+}
+div.tabVisivel{
+ display:inline;
+}
+span.preFormato{
+	white-space: pre;	
+}
+.legend.padrao{
+	margin: 3px 1px 2px 1px;
+	color: #000;
+}
+hr{
+	height: 1px;
+	line-height: 5px;
+	line-break: normal;
+}
+pre{
+	font: 12px "Courier New", Courier, monospace;
+}
+pre.preFormato{
+	font: 11px verdana, Arial, sans-serif;
+}
+
+/* PEDIR ALVIM PARA ENCONTRAR */
+/* Definição da janelinha de Mensagens */
+.janela_msg{
+	z-index: 11;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	border-width: 1px;
+	border-style: solid;
+}
+.janela_msg_tit{
+	text-align: left;
+	height: 20px;
+	vertical-align: middle;
+	padding: 2px;
+	font: normal bold 11px verdana;
+	border-style: solid;
+	border-width: 1px 0 1px 1px;
+}
+.janela_msg_sub_tit{
+	text-align: left;
+	height: 15px;
+	vertical-align: middle;
+	padding: 2px;
+	font: normal normal 11px verdana;
+	border-bottom: 1px solid;
+}
+.janela_msg_conteudo{
+	text-align: left;
+	vertical-align: top;
+	padding: 2px;
+	font: normal normal 10px verdana;
+}
+.botao_tabfolder{
+	background: transparent;
+	border: hidden;
+	font-weight: bold;
+	height: 12px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: hand;
+	cursor: pointer;
+	border-bottom: 0px;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+}
+td.porta_portlet{
+	text-align: left;
+	width: 185px;
+	height: 20px;
+	vertical-align: middle;
+	border-width: 1px 0 1px 1px;
+	border-style: solid;
+}
+.linha_ajuda{
+	text-align: left;
+	vertical-align: top;
+	padding: 4px;
+	padding-bottom: 15px;
+	font: normal 11px verdana;
+}
+
+#clDivPaleta{
+	display:none;
+	width: 180px;
+	position: absolute;
+	z-index: 1;
+	border:1px solid black;
+	background-color: #f0f0f0;
+}
+.clDivPaleta{
+	display:none;
+	width: 180px;
+	position: absolute;
+	z-index: 1;
+	border:1px solid black;
+	background-color: #f0f0f0;
+}
+table.tbCor{
+	border:1px solid;
+	border-width:thin;
+	border-color:#000000;
+	
+}
+
+#tbDivPaleta td{
+	height: 2px;
+}

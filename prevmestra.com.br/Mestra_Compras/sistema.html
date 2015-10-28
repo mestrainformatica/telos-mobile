@@ -1,0 +1,3534 @@
+
+<!-- saved from url=(0092)http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="Shortcut Icon" href="http://www.prevmestra.com.br/Mestra_Compras/plc/midia/mestra/favicon.ico">
+    
+  	 	
+    
+
+
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,100,300,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,600,700' rel='stylesheet' type='text/css'>
+
+
+<script src="javascript/AppGeral.js" type="text/javascript"></script>
+<script src="javascript/MestraAjax.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/PlcGeral.css" type="text/css">
+<link rel="stylesheet" href="css/PlcPele.css" type="text/css">
+<script src="javascript/menuExpandable.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="css/global.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css/menuExpandable.css">
+ 
+<!-- Scripts e dependencias para o seletor de cores -->
+<script type="text/javascript" src="javascript/utilities.js"></script> 
+<script type="text/javascript" src="javascript/slider-min.js"></script> 
+ 
+<link rel="stylesheet" type="text/css" href="css/colorpicker.css"> 
+<script type="text/javascript" src="javascript/colorpicker-min.js"></script>
+
+<script type="text/javascript" src="javascript/dhtmlwindow.js"></script><script type="text/javascript" src="chrome-extension://aadgmnobpdmgmigaicncghmmoeflnamj/ng-inspector.js"></script></head><body onload="iniciarPagina();initializeMenus();" onkeydown="return executarAcaoFuncoes(event);" bgcolor="#ffffff" text="#000000" link="#023264" alink="#023264" vlink="#023264" onresize="redimensionaMenu();"><div id="dhtmlwindowholder"><span style="display:none">.</span></div>
+<link rel="stylesheet" type="text/css" href="css/dhtmlwindow.css">
+<link rel="stylesheet" href="modernidade/css/custom.formulario.css">
+<link rel="stylesheet" href="modernidade/css/fix30.css"> 
+
+
+<script type="text/javascript" src="javascript/ddcolorpicker.js"></script>
+<!-- Scripts e dependencias para o seletor de cores -->
+
+
+<script src="javascript/PlcGeral.js" type="text/javascript"></script><style type="text/css">.expandeRetraiPlc{display:none;}</style>
+<script src="javascript/jquery-1.3.1.js" type="text/javascript"></script>
+
+<script src="javascript/jquery.tablesorter.min.js" type="text/javascript"></script>
+<script src="javascript/jquery.tablesorter.pager.js" type="text/javascript"></script>
+<script src="javascript/tablesorter_filter.js" type="text/javascript"></script>
+
+<script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
+ 
+
+
+
+
+<title>
+
+
+
+
+
+</title>
+    
+	<!-- Inicio: Script que trata o abre e fecha do menu -->
+	<script>
+			function redimensionaMenu(){
+				var tabelaMenu = document.getElementById('tabelaMenu');
+				if (tabelaMenu) {
+					var telaWidth = window.innerWidth;
+					tabelaMenu.style.width = telaWidth / 4.8;
+				}
+			}
+	
+			function menuFlex(estadoMenu){	
+				var tabelaMenu = document.getElementById('tabelaMenu');
+					if (tabelaMenu) {
+					if (estadoMenu == "aberto"){
+						setNamedCookie('controleMenuFlex','aberto','');
+						document.getElementById('tabelaMenu').style.display = "none";
+						document.getElementById('tabelaMenu').style.widthantes = document.getElementById('tabelaMenu').style.width;
+						document.getElementById('botao1').style.display = "none";	
+						document.getElementById('botao2').style.display = "";
+					}else{
+						setNamedCookie('controleMenuFlex','fechado','');
+						document.getElementById('tabelaMenu').style.display = "";
+						document.getElementById('tabelaMenu').style.width = document.getElementById('tabelaMenu').style.widthantes;
+						document.getElementById('botao1').style.display = "";	
+						document.getElementById('botao2').style.display = "none";
+					}
+				}
+			}
+			
+	</script>
+	
+  
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" height="100%">
+
+
+
+   
+   
+   
+   
+
+
+
+	
+<tbody><tr height="12%">
+	<td colspan="3" bgcolor="#beccdf">	
+		<table id="localTesteiraTable" bgcolor="#beccdf" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="z-index:500;">
+			<tbody><tr>
+                <td class="header-modernidade">
+					<embed id="localTesteira" border="0" width="100%" height="101%" bgcolor="#beccdf" style="border-color: rgb(135, 158, 189); z-index: 1; height: 71.9186px; background-color: rgb(135, 158, 189);" cellpadding="0" cellspacing="0" fullscreen="no" src="/Mestra_Compras/plc/midia/testeira_compras.swf" wmode="opaque">
+                    <div class="logo-div">
+                        <img class="logo" src="modernidade/img/logo-provisoria.png">
+                    </div>
+                    <div class="inner">
+                        <div class="navbar-left">
+                            <h1><span class="glyphicon glyphicon-pencil">Módulo Contabilidade</h1>
+                        </div>
+                        <div class="navbar-right">
+                            <p>Conectado como Luiz Cláudio. &nbsp; <a href="#">Desconectar <img src="modernidade/img/off.png"></a></p>
+                        </div>
+                    </div>
+				</td>
+			</tr>
+		</tbody></table>		
+	</td>
+</tr>
+<script>
+
+	function 	Mestra() { 
+	Mestra.Cookie = {
+		date: new Date(),
+		set: function(name, content, days) {
+			var expires = "";
+			if(days) {
+				this.date.setTime(this.date.getTime()+(days*24*60*60*1000));
+				expires = this.date.toGMTString() + "; ";
+			}
+			document.cookie = name + "=" + content + "; " + expires + "path=/";
+			return true;
+		},
+		
+		get: function( name ) {
+			var nameE = name + "=";
+			var cookies = document.cookie.split(";");
+			for(var i = 0, Cookie; Cookie = cookies[i]; i++) {
+				while(Cookie.charAt(0) == " ") {
+					Cookie = Cookie.substring(1,Cookie.length);
+				}
+				if(Cookie.indexOf(nameE) == 0) {
+					return Cookie.substring(nameE.length,Cookie.length);
+				}
+			}
+			return false;
+		},
+		
+		unset: function( name ) {
+			this.set(name, "", -1);
+			return true;
+		}
+	}
+	}
+	
+	new Mestra();
+	redimencionaTesteira();
+	
+	function redimencionaTesteira(){
+	
+		var obj = document.getElementById("localTesteira");
+		var objTable = document.getElementById("localTesteiraTable");
+			
+		if(!Mestra.Cookie.get('alturaTesteira')){
+
+			if(obj) {
+				var telaHeight = 0;
+				var telaWidth = 0;
+				if (window.addEventListener) {
+					telaHeight = window.innerHeight; 
+					telaWidth = window.innerWidth; 
+					obj.style.height = telaWidth / 17.2;
+					Mestra.Cookie.set('alturaTesteira',obj.style.height, 1);
+				} else { 
+					telaHeight = document.body.offsetHeight; 
+					telaWidth = document.body.offsetWidth; 
+					objTable.style.height = telaWidth / 17;
+				}
+			}
+		}else{
+			if (window.addEventListener) {
+					obj.style.height = Mestra.Cookie.get('alturaTesteira');
+				} else { 
+					objTable.style.height = Mestra.Cookie.get('alturaTesteira');
+				}
+		}
+		
+	}
+
+	if (window.addEventListener) {
+		window.addEventListener("load", redimencionaTesteira, false);
+		window.addEventListener("resize", redimencionaTesteira, false);
+	} else {
+		window.attachEvent("onload", redimencionaTesteira);
+		window.attachEvent("onresize", redimencionaTesteira);
+	}
+</script>
+
+
+<tr height="100%">
+
+
+   
+   
+   
+   
+
+
+
+
+
+
+
+
+	
+	
+		<td class="" valign="center" height="100%" width="10%" id="menuFlex">		
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table height="100%" border="0" cellpadding="0" cellspacing="0" style="background-color:#e4ecf7">
+	<tbody><tr><td valign="top" height="100%" width="215px" style="background-image:url(&#39;/Mestra_Compras/plc/midia/fundoDegradeMenu.jpg&#39;);background-repeat:repeat-x">
+		<!-- Início MENU -->
+		<!-- <div id="MenuNormal" class="menu"> -->
+		<table cellpadding="0" cellspacing="0" border="0" width="215px" height="100%">
+			<tbody><tr valign="top">
+				<td width="215px" height="100%" id=menuDiv>
+				
+				 
+					<ul class="menuList">
+
+
+						
+							
+								       	<li class="menu-title">Menu</li>      
+					        	<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/minus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2882???Actuator" title="Tabelas" class="actuator">Tabelas</a>
+		<ul id="???pt_BR.2882???Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/grupoman.do?evento=x&idRotina=2883" title="Grupo" id="2883ItemMenu">Grupo</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/unidademedidaman.do?evento=x&idRotina=2885" title="Unidade de Medida" id="2885ItemMenu">Unidade de Medida</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/contabilizacaoeventosman.do?evento=x&idRotina=2886" title="Contabilização de Evento" id="2886ItemMenu">Contabilização de Evento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/produtoman.do?evento=x&idRotina=2887" title="Produto" id="2887ItemMenu">Produto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/parametrossistemaman.do?evento=x&idRotina=2958" title="Parâmetros do Sistema" id="2958ItemMenu">Parâmetros do Sistema</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/saldoprodutoman.do?evento=x&idRotina=2956" title="Saldo de Produtos" id="2956ItemMenu">Saldo de Produtos</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/usuariocentrocustoman.do?evento=x&idRotina=3150" title="Usuário Centro Custo" id="3150ItemMenu">Usuário Centro Custo</a></li>
+</ul>
+	</li>
+
+
+						
+							
+								       	      
+					        	<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/minus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2888???Actuator" title="Solicitações" class="actuator">Solicitações</a>
+		<ul id="???pt_BR.2888???Menu" class="menu" style="display: block;">
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/minus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2889???Actuator" title="Produtos" class="actuator">Produtos</a>
+		<ul id="???pt_BR.2889???Menu" class="submenu" style="display: block;">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/solicitacaoprodutoman.do?evento=x&idRotina=2890" title="Lançamentos" id="2890ItemMenu">Lançamentos</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/lancamentominimoman.do?evento=x&idRotina=2976" title="Lançamento Qtd. Minima" id="2976ItemMenu">Lançamento Qtd. Minima</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/solicitacaoprodutopendentesel.do?evento=F9-Pesquisar" title="Cancelamento" id="2891ItemMenu">Cancelamento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/autorizacaosolicitacoesman.do?evento=x&idRotina=2892" title="Autorização" id="2892ItemMenu">Autorização</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/movimentacaoprodutossel.do?evento=x&idRotina=2893" title="Movimentação de Produtos" id="2893ItemMenu">Movimentação de Produtos</a></li>
+		</ul>
+	</li>
+
+</ul>
+	</li>
+
+
+						
+							
+								       	      
+					        	<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2898???Actuator" title="Processos" class="actuator">Processos</a>
+		<ul id="???pt_BR.2898???Menu" class="menu">
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2899???Actuator" title="Produto" class="actuator">Produto</a>
+		<ul id="???pt_BR.2899???Menu" class="submenu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/processocomprasman.do?evento=x&idRotina=2900" title="Lançamento" id="2900ItemMenu">Lançamento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/cancelamentoprocessocomprassel.do?evento=F9-Pesquisar&idRotina=2901" title="Cancelamento" id="2901ItemMenu">Cancelamento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/autorizacaoprocessosman.do?evento=x&idRotina=2902" title="Autorização" id="2902ItemMenu">Autorização</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/baixaprodutoman.do?evento=x&idRotina=2912" title="Baixa do Produto" id="2912ItemMenu">Baixa do Produto</a></li>
+		</ul>
+	</li>
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2903???Actuator" title="Serviços" class="actuator">Serviços</a>
+		<ul id="???pt_BR.2903???Menu" class="submenu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/processocontratacaoservicosman.do?evento=x&idRotina=2904" title="Lançamento" id="2904ItemMenu">Lançamento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/cancelamentoprocessocontratacaosel.do?evento=x&idRotina=2905" title="Cancelamento" id="2905ItemMenu">Cancelamento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/autorizacaoprocessosservicosman.do?evento=x&idRotina=2906" title="Autorização" id="2906ItemMenu">Autorização</a></li>
+		</ul>
+	</li>
+
+</ul>
+	</li>
+
+
+						
+							
+								       	      
+					        	<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/minus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2907???Actuator" title="Realização" class="actuator">Realização</a>
+		<ul id="???pt_BR.2907???Menu" class="menu" style="display: block;">
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/minus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2908???Actuator" title="Produtos" class="actuator">Produtos</a>
+		<ul id="???pt_BR.2908???Menu" class="submenu" style="display: block;">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/realizacaoprocessocomprasman.do?evento=x&idRotina=2909" title="Realização do Processo de Compra" id="2909ItemMenu">Realização do Processo de Compra</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/entregaprodutoman.do?evento=x&idRotina=2913" title="Entrega de Produto" id="2913ItemMenu">Entrega de Produto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/parcelasprodutosel.do?evento=x&idRotina=3060" title="Geração de Parcelas" id="3060ItemMenu">Geração de Parcelas</a></li>
+		</ul>
+	</li>
+
+	<li><a href="./avaliacaofornecedorman.do_files/avaliacaofornecedorman.do.html" title="Avaliação de Fornecedor" id="3175ItemMenu" class=" highlight">Avaliação de Fornecedor</a></li>
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2914???Actuator" title="Serviços" class="actuator">Serviços</a>
+		<ul id="???pt_BR.2914???Menu" class="submenu">
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.3038???Actuator" title="Contratos" class="actuator">Contratos</a>
+		<ul id="???pt_BR.3038???Menu" class="submenu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/cadastrocontratoman.do?evento=x&idRotina=3039" title="Cadastro" id="3039ItemMenu">Cadastro</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/geracaoparcelascontratoman.do?evento=x&idRotina=3040" title="Geração de Parcelas" id="3040ItemMenu">Geração de Parcelas</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/manutencaosituacaocontratoman.do?evento=x&idRotina=3188" title="Manutenção" id="3216ItemMenu">Manutenção</a></li>
+		</ul>
+	</li>
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.3155???Actuator" title="Despesa" class="actuator">Despesa</a>
+		<ul id="???pt_BR.3155???Menu" class="submenu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/definicaocontroledesenvolvimentoman.do?evento=x&idRotina=3156" title="Cadastro" id="3156ItemMenu">Cadastro</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/geracaoparceladespesaman.do?evento=x&idRotina=3157" title="Geração de Parcelas" id="3157ItemMenu">Geração de Parcelas</a></li>
+		</ul>
+	</li>
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/pagamentoavulsoman.do?evento=x&idRotina=3187" title="Pagamento Extra" id="3217ItemMenu">Pagamento Extra</a></li>
+		</ul>
+	</li>
+
+</ul>
+	</li>
+
+
+						
+							
+								       	      
+					        	<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2918???Actuator" title="Relatórios" class="actuator">Relatórios</a>
+		<ul id="???pt_BR.2918???Menu" class="menu">
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2919???Actuator" title="Produto" class="actuator">Produto</a>
+		<ul id="???pt_BR.2919???Menu" class="submenu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relprodutoman.do?evento=x&idRotina=2920" title="Produto" id="2920ItemMenu">Produto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relfornecedorprodutoman.do?evento=x&idRotina=2921" title="Fornecedor por Produto" id="2921ItemMenu">Fornecedor por Produto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relfornecedorman.do?evento=x&idRotina=2922" title="Fornecedor" id="2922ItemMenu">Fornecedor</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relconsumoprodutosman.do?evento=x&idRotina=2923" title="Consumo de Produtos" id="2923ItemMenu">Consumo de Produtos</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relsolicitacaoprodutoman.do?evento=x&idRotina=2924" title="Solicitação de Produtos" id="2924ItemMenu">Solicitação de Produtos</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relrealizacaocompraprodutoman.do?evento=x&idRotina=2925" title="Realização da Compra de Produto" id="2925ItemMenu">Realização da Compra de Produto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relprocessocompraprodutoman.do?evento=x&idRotina=2926" title="Processo da Compra de Produto" id="2926ItemMenu">Processo da Compra de Produto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relmovimentacaoprodutosman.do?evento=x&idRotina=2929" title="Movimentação de Produtos" id="2929ItemMenu">Movimentação de Produtos</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relentregaprodutoman.do?evento=x&idRotina=2930" title="Entrega de Produto" id="2930ItemMenu">Entrega de Produto</a></li>
+		</ul>
+	</li>
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2931???Actuator" title="Serviços" class="actuator">Serviços</a>
+		<ul id="???pt_BR.2931???Menu" class="submenu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relsolicitacaoservicosman.do?evento=x&idRotina=2932" title="Solicitação de Serviços" id="2932ItemMenu">Solicitação de Serviços</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relprocessocontratacaoservicosman.do?evento=x&idRotina=2933" title="Processo de Contratação de Serviços" id="2933ItemMenu">Processo de Contratação de Serviços</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relrealizacaocontratacaoservicosman.do?evento=x&idRotina=2934" title="Realização da Contratação de Serviços" id="2934ItemMenu">Realização da Contratação de Serviços</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relatoriocontratosman.do?evento=x&idRotina=3161" title="Contratos" id="3161ItemMenu">Contratos</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relatoriodespesasman.do?evento=x&idRotina=3162" title="Despesas" id="3162ItemMenu">Despesas</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relatoriopagamentosman.do?evento=x&idRotina=3160" title="Pagamentos" id="3160ItemMenu">Pagamentos</a></li>
+		</ul>
+	</li>
+
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2935???Actuator" title="Estoque" class="actuator">Estoque</a>
+		<ul id="???pt_BR.2935???Menu" class="submenu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relquantidademinimaestoqueman.do?evento=x&idRotina=2936" title="Quantidade Mínima" id="2936ItemMenu">Quantidade Mínima</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relestoqueatualman.do?evento=x&idRotina=2937" title="Saldo Atual" id="2937ItemMenu">Saldo Atual</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relsaldominimaestoqueman.do?evento=x&idRotina=2938" title="Saldo Mínimo" id="2938ItemMenu">Saldo Mínimo</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relcontageminventarioman.do?evento=x&idRotina=2939" title="Contagem do Inventário" id="2939ItemMenu">Contagem do Inventário</a></li>
+		</ul>
+	</li>
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relavaliacaofornecedorman.do?evento=x&idRotina=2941" title="Avaliação de Fornecedor" id="2941ItemMenu">Avaliação de Fornecedor</a></li>
+</ul>
+	</li>
+
+
+						
+							
+								       	      
+					        	<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Compras/plc/midia/plus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="???pt_BR.2959???Actuator" title="Integração" class="actuator">Integração</a>
+		<ul id="???pt_BR.2959???Menu" class="menu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relintegracaocblman.do?evento=x&idRotina=2960" title="Contabilidade" id="2960ItemMenu">Contabilidade</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Compras/relintegracaofinman.do?evento=x&idRotina=2961" title="Orçamento x Tesouraria" id="2961ItemMenu">Orçamento x Tesouraria</a></li>
+</ul>
+	</li>
+
+
+						
+					</ul>
+						
+					<!-- início backup de segurança menu fixo -->
+					
+						<!-- fim backup de segurança menu fixo -->
+										
+				</td>
+				
+			</tr>
+		</tbody></table>
+		<!-- </div> -->
+		<!-- Fim MENU -->
+	</td>
+</tr></tbody></table>
+	
+		</td>
+	
+
+
+
+<!-- Inicio: Botões abre e fecha do menu -->
+<td class="" valign="top" height="100%" align="left">
+	<table border="0" cellspacing="0" cellpadding="0" align="left" width="99%" height="100%">
+		<tbody><tr>
+			
+			<td id="botao1" style="height:136px;width:6px;position:absolute;top:50%" align="left">
+				<img src="midia/anteriorMenu.gif" onclick="javascript:menuFlex(&#39;aberto&#39;)" style="cursor:hand">
+			</td>
+			<td id="botao2" style="height:136px;display:none;position:absolute;top:50%" align="left">
+				<img src="midia/proximoMenu.gif" onclick="javascript:menuFlex(&#39;fechado&#39;)" style="cursor:hand">
+			</td>
+			<!-- Fim: Botões abre e fecha do menu -->
+			
+			<td class="" valign="top" height="100%" width="100%"><!--  -->
+				
+				
+				   
+				   
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if(typeof barraProgressoAjax == "undefined" && plcAjax.ajaxUsaBarraProgresso){
+	barraProgressoAjax = createBar(320,15,'lightyellow',1,'black','green',50,7,9999,'','');
+	barraProgressoAjax.hideBar();
+}
+</script><div id="fundoBar" style="background-color:lavender; z-index:200; display:none; position:absolute; top:0; left:0; width:1547px; height:809px;-Moz-opacity:0.5"></div><div id="barraProgresso" style="visibility:visible; z-index:300; position:absolute; top:300; left:300;"><div id="_xpbar0" style="display:none; position:relative; overflow:hidden; width:320px; height:15px; background-color:lightyellow; border-color:black; border-width:1px; border-style:solid; font-size:1px;"><span id="blocks0" style="left:-31px; position:absolute; font-size:1px"><span style="background-color:green; left:-0px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:1"></span><span style="background-color:green; left:-16px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.8571428571428571"></span><span style="background-color:green; left:-32px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.7142857142857143"></span><span style="background-color:green; left:-48px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.5714285714285714"></span><span style="background-color:green; left:-64px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.42857142857142855"></span><span style="background-color:green; left:-80px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.2857142857142857"></span><span style="background-color:green; left:-96px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.14285714285714277"></span></span><span style="font: 10px Verdana; width:320px; height:15px;text-align:&#39;center&#39;;"><center><b></b></center></span></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span id="AJAX">
+<ajax>
+
+
+
+
+
+<form name="avaliacaofornecedorForm" method="post" action="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do" enctype="text/html" onsubmit="return executarAcaoFuncoes(event)">
+
+
+
+
+<input type="hidden" name="lookupCorrentePlc" value="">
+
+
+<script>
+function configuraDestaqueCampos(){
+	setUpOnEventoTag ('INPUT', 'onfocus', 'destacaCampoFocado');
+	setUpOnEventoTag ('INPUT', 'onblur', 'reverteDestaqueCampoFocado');
+	setUpOnEventoTag ('TEXTAREA', 'onfocus', 'destacaCampoFocado');
+	setUpOnEventoTag ('TEXTAREA', 'onblur', 'reverteDestaqueCampoFocado');
+//	setUpOnEventoTag ('SELECT', 'onfocus', 'destacaCampoFocado');
+//	setUpOnEventoTag ('SELECT', 'onblur', 'reverteDestaqueCampoFocado');
+}
+setFuncaoOnLoad("configuraDestaqueCampos()");
+</script>
+
+
+<script avaliar="S">
+setFuncaoOnLoad("setFocoDetalhe()")	
+//CONFIGURAÇÕES GERAIS JCOMPANY
+plcGeral.contextPath = "/Mestra_Compras";
+</script>
+<input type="text" style="position:absolute; top:-100px;" id="navSetaFocoPlc" name="navSetaFocoPlc" inibefoco="S" title="ATENCAO - Campo utilizado em logica de navegacao do menu de sistema via setas. Nao retirar.">
+
+
+
+<style>
+.skin0{
+	position:absolute;
+	width:220px;
+	border:1px solid black;
+	background-color:menu;
+	font-family:Verdana;
+	line-height:20px;
+	cursor:default;
+	font-size:12px;
+	z-index:100;
+	visibility:hidden;
+	text-align:right;
+}
+.menuitems{
+	width:220px;
+	//padding-left:10px;
+	//padding-right:20px;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+</style>
+<script>
+var menuImp = false;
+var element = "";
+function gerarMenuImpressao(evt){
+	if(ExpYes){
+		evt = event;
+		element = evt.srcElement;
+	}else{
+		if(element == "")
+			element = evt.target;
+	}
+//	if(!menuImp && element.value && element.value.toLowerCase().indexOf("imprimir") > -1 && 
+//		(capturaMouseDown(evt) == '2' || capturaMouseDown(evt) == '3')){
+	if(!menuImp && element.value && element.value.toLowerCase().indexOf("imprimir") > -1){
+		showMenuImpressao(evt);
+	}
+	if(menuImp)
+		return false;
+}
+
+function imprimirDireto(){
+	window.print(document);
+}
+
+function imprimirDiretoIntel(){
+	gerarImpressaoInteligente(); 
+	window.print(document);
+}
+</script>
+<div id="menuImpressaoDiv" class="skin0" onmouseover="highlightMenuImpressao(event)" onmouseout="lowlightMenuImpressao(event)" onclick="jumptoMenuImpressao(event)" display:none="" style="visibility: hidden;">
+	<div class="menuitems" funcao="chamarImpressao(&#39;/Mestra_Compras/plc/impressaoPlc.do?evento=F12-Imprimir&amp;impIntel=N&#39;,document.title,&#39;impressao&#39;);">Visualizando Modo Formulário</div>
+	<div class="menuitems" funcao="chamarImpressao(&#39;/Mestra_Compras/plc/impressaoPlc.do?evento=F12-Imprimir&amp;impIntel=S&#39;,document.title,&#39;impressao&#39;);">Visualizando Modo Texto</div>
+	<div class="menuitems" funcao="imprimirDireto();">Diretamente Modo Formulário</div>
+	
+	<hr>
+	<div class="menuitems" funcao="hideMenuImpressao(event);">Cancelar</div>
+</div>
+<script src="javascript/PlcTooltip.js" type="text/javascript"></script>
+
+
+
+	
+
+
+
+
+<input type="hidden" name="modoPlc" value="">
+
+<input type="hidden" name="detCorrPlc" value="itensPlc">
+
+
+
+
+<input type="hidden" name="indExcDetPlc" value="">
+
+
+
+
+
+
+	
+
+
+
+
+
+
+ 
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+td.msgVermelho{background:#FFDBDB;color:#AB3838;font:normal bold 11px Verdana;height:auto}
+td.msgAzul{background:#D8E5ED;color:#144888;font:normal bold 11px Verdana;height:auto}
+td.msgAmarelo{background:#FFFEAF;color:#413A01;font:normal bold 11px Verdana;height:auto}
+td.msgVerde{background:#89B39C;color:#FFFFFF;font:normal bold 11px Verdana;height:auto}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- TABELA DE MENSAGENS JAVASCRIPT-->
+<table id="VALIDACAO_TABELA_JAVASCRIPT" style="display:none;" width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr><td width="40" valign="top"><img alt="Mensagem de Erro" src="midia/ico.gif"></td>
+<td width="100%">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr><td width="7" height="7"><img height="7" hspace="0" src="midia/supesq.gif" vspace="0" width="7"></td>
+<td height="7" background="midia/sup.gif"></td><td width="7" height="7">
+<img height="7" src="midia/supdir.gif" width="7"></td></tr>
+<tr><td width="7" background="midia/esq.gif"></td>
+<td class="msgVermelho">
+<!-- INICIO MENSAGENS -->
+<span id="VALIDACAO_ERROS_JAVASCRIPT"></span>
+<!-- FIM MENSAGENS --></td><td width="7" background="midia/dir.gif"></td></tr>
+<tr><td width="7" height="7">
+<img height="7" src="midia/infesq.gif" width="7"></td><td height="7" background="midia/inf.gif">
+</td><td width="7" height="7">
+<img height="7" src="midia/infdir.gif" width="7"></td></tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<!-- FIM TABELA DE MENSAGENS JAVASCRIPT-->
+<script>
+		function econderMgsExibida() {
+			var obj = window.document.getElementById("DIV_MENSAGEM_FLUTUANTE");
+			var objFrame = window.document.getElementById("FRAME_MENSAGEM_FLUTUANTE");
+			obj.style.visibility = "hidden";
+			objFrame.style.visibility = "hidden";
+		}
+</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="menu_acoes" border="0" cellspacing="0" cellpadding="0" width="100%" style="">
+
+<tbody><tr>
+
+
+
+
+
+
+
+
+<td class="menu_acoes">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Comentado 18/10/2006 - by Rodrigo Magno -->
+<!-- Aguardando lÃ³gica de Aprovar Todos (jCompany 3.5). -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+<!-- Mostra botao? -->
+
+
+
+
+
+<input type="button" name="evento" value="F7-Novo" onclick="if(confirm(&#39;Deseja incluir um novo registro ?&#39;)){setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;));redirect(&#39;/Mestra_Compras/avaliacaofornecedorman.do?evento=x&#39;);}" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="try{animar(event, &#39;&#39;)}catch(e){}" id="botao_menu" style="text-align:center;background: url(/Mestra_Compras/plc/midia/mestra/evt_incluir.gif); background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; text-align: right; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: &#39;0%&#39;;border:0px;color:#FFFFFF;" title="Novo">
+
+
+<script>
+	regBotaoEvento('F7-Novo','INCLUIR');
+
+
+</script>	
+<!-- /Mostra botao? -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script avaliar="S">
+regBotaoEvento('Visualizar Documento','VIS_DOCUMENTO');
+regBotaoEvento('Editar Documento','EDT_DOCUMENTO');
+</script>
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="button" name="evento" value="F10-Gravar" onclick="plcAjax.ajaxSubmit(&#39;POST&#39;,getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="try{animar(event, &#39;&#39;)}catch(e){}" id="botao_menu" style="background: url(/Mestra_Compras/plc/midia/mestra/evt_gravar.gif); background-position: &#39;left center&#39;; height: 28px; width: 28px; margin-right:5px;	background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: &#39;0%&#39;;border:0px;color:#FFFFFF;" title="Atualizar">
+
+
+
+<script>
+	
+	
+	regBotaoEvento('F10-Gravar','GRAVAR');
+
+
+</script>	
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+     
+
+
+
+
+
+
+
+
+<!-- Mostra botao? -->
+
+
+
+<input type="button" name="evento" value="F8-Abrir" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Compras/avaliacaofornecedorsel.do?evento=Limpar&#39;);" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="try{animar(event, &#39;&#39;)}catch(e){}" id="botao_menu" style="text-align:center;background: url(/Mestra_Compras/plc/midia/mestra/evt_abrir.gif); background-position: &#39;left center&#39;; height: 28px; width: 28px; margin-right:5px;  background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: &#39;0%&#39;; border:0px;color:#FFFFFF;" title="Abrir">
+
+
+<script>
+regBotaoEvento('F8-Abrir','ABRIR');
+
+
+</script>	
+<!-- /Mostra botao? -->
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- /Mostra botao? -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</td>
+
+
+
+</tr></tbody></table>
+<script>
+msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
+</script>
+
+
+
+<!-- INI -->
+
+
+
+
+
+	<div id="divVBoxManSel" style="margin-left:5px;width:99.9%;height:100%;overflow-x:hidden;overflow-y:hidden">
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+<table class="delimitador" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr> 
+		<td class="secao">
+			Avaliação de Fornecedor
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+			<table class="" border="0" cellspacing="0" cellpadding="0">
+			
+	
+
+<tbody><tr>
+	
+
+
+
+
+</tr><tr style="">
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="titulo" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Nº do Contrato
+			
+			*
+		
+	
+	
+
+</td>
+		<td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	</td><td class="titulo" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Data Prevista da Avaliação
+			
+			
+		
+	
+	
+
+</td>
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="titulo" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Data de Avaliação
+			
+			
+		
+	
+	
+
+</td>
+	
+
+
+
+
+</tr><tr style="">
+
+		
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jCompany 2.5.3. Codigo auxiliar para testes de aceitacao automatizados -->
+
+
+
+
+	<input type="hidden" name="flagValor" value="" id="flagValor">
+
+		
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jCompany 2.5.3. Codigo auxiliar para testes de aceitacao automatizados -->
+
+
+
+
+	<input type="hidden" name="identificadorContrato" value="" id="identificadorContrato">
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+		
+
+
+	
+	
+
+
+
+
+
+
+
+
+<td class="campo" align="left">
+
+
+
+
+
+
+	
+
+
+
+
+
+
+	
+
+
+
+
+
+
+	
+		<input type="text" name="numeroContrato" maxlength="25" size="25" value="" onkeyup="autoskip(event, this); " onkeypress="" onchange="disparaAcaoBotao(&#39;recuperarDadosAvaliacao&#39;);" onblur="converteMaiuscula(event, this); " onfocus="skip(this);" readonly="readonly" id="numeroContrato" style="text-align:left;" class="texto_obrigatorio" title="">
+	
+	
+
+
+</td>
+
+
+	
+
+
+		<td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+	
+
+
+
+
+	
+
+
+	
+
+
+
+
+	
+	
+		
+	
+
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+	
+		
+	
+	
+
+
+
+	
+
+
+
+
+	
+	
+	
+	
+	
+		
+	
+
+<a href="http://www.prevmestra.com.br/Mestra_Compras/avaliacaofornecedorman.do?evento=x&idRotina=3175#" id="" tabindex="32001" inibealertaalteracao="S" onclick="selecaoPopup(&quot;/Mestra_Compras/popupcontrato.do?evento=F8-Abrir&amp;modoJanelaPlc=popup&quot;,&quot;identificadorContrato#identificadorContrato,numeroContrato#numeroContrato&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;popupcontrato&quot;); return false;"><span class="bt">...</span></a>
+</td>
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+		
+
+
+	
+	
+
+
+
+
+
+
+
+
+<td class="campo" align="left">
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+		<input type="text" name="dataAvaliacaoFormaPrevistaFormatado" maxlength="" size="10" value="" onkeyup="autoskip(event, this); " onkeypress="" onchange="" onblur="converteMaiuscula(event, this); " onfocus="skip(this);" readonly="readonly" id="dataAvaliacaoFormaPrevistaFormatado" style="text-align:left;" class="texto_obrigatorio" title="Informe a Data Prevista da Avaliação.">
+	
+	
+
+
+</td>
+
+
+	
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+		
+
+
+	
+	
+
+
+
+
+
+
+
+
+<td class="campo" align="left">
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+		<input type="text" name="dataAvaliacaoRealFormatado" maxlength="" size="10" value="" onkeyup="autoskip(event, this); " onkeypress="" onchange="" onblur="converteMaiuscula(event, this); " onfocus="skip(this);" readonly="readonly" id="dataAvaliacaoRealFormatado" style="text-align:left;" class="texto_obrigatorio" title="Informe a Data de Avaliação.">
+	
+	
+
+
+</td>
+
+
+	
+
+
+
+
+</tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+			<table class="" border="0" cellspacing="0" cellpadding="0">
+			
+	
+
+<tbody><tr>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="titulo" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Fornecedor
+			
+			
+		
+	
+	
+
+</td>
+
+
+
+
+
+</tr><tr style="">
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+		
+
+
+	
+	
+
+
+
+
+
+
+
+
+<td class="campo" align="left">
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+		<input type="text" name="codigoFavorecidoDevedor" maxlength="" size="10" value="" onkeyup="autoskip(event, this); " onkeypress="" onchange="" onblur="converteMaiuscula(event, this); " onfocus="skip(this);" readonly="readonly" id="codigoFavorecidoDevedor" style="text-align:left;" class="texto_obrigatorio" title="Informe o Fornecedor">
+	
+	
+
+
+</td>
+
+
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+		
+
+
+	
+	
+
+
+
+
+
+
+
+
+<td class="campo" align="left">
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+		<input type="text" name="descricaoFavorecidoDevedor" maxlength="" size="50" value="" onkeyup="autoskip(event, this); " onkeypress="" onchange="" onblur="converteMaiuscula(event, this); " onfocus="skip(this);" readonly="readonly" id="descricaoFavorecidoDevedor" style="text-align:left;" class="texto_obrigatorio" title="Informe o Fornecedor">
+	
+	
+
+
+</td>
+
+
+	
+
+
+	<td>
+		<input type="hidden" name="identificadorFavorecidoDevedor" value="" id="identificadorFavorecidoDevedor">
+		<input type="hidden" name="tipoFavorecidoDevedor" value="" id="tipoFavorecidoDevedor">
+	</td>
+
+
+</tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+<table class="lista" border="0" cellspacing="0" cellpadding="0" width="100%" style="">
+
+<tbody><tr>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Situação
+			
+			
+		
+	
+	
+
+</td>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Nota
+			
+			
+		
+	
+	
+
+</td>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Avaliação
+			
+			
+		
+	
+	
+
+</td>
+
+	</tr><tr>
+		<td class="linha">Ótimo</td>
+		<td style="text-align: center" class="linha">4</td>
+		<td class="linha">Em conformidade - Atende Plenamente</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Bom</td>
+		<td style="text-align: center" class="linha">3</td>
+		<td class="linha">Possui pequenos problemas que não influenciam na qualidade e na sua aplicabilidade - Atende com restrinção</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Regular</td>
+		<td style="text-align: center" class="linha">2</td>
+		<td class="linha">Situação intermediária que não atende aos interesses da Mestra - Não atende</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Ruim</td>
+		<td style="text-align: center" class="linha">1</td>
+		<td class="linha">Apresenta não - conformidade - Não atende</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Péssimo</td>
+		<td style="text-align: center" class="linha">0</td>
+		<td class="linha">Apresenta não - conformidades séries - Não atende</td>
+	</tr>
+	
+
+
+</tbody></table>
+
+<script>
+function abrePopUpFavorecidoDevedor(parametros){
+	selecaoPopup("/Mestra_Compras/popupfavorecidodevedorsel.do?evento=F8-Abrir&modoJanelaPlc=popup",parametros,"","","","","");
+}
+</script>
+<input type="submit" name="evento" value="recuperarDadosAvaliacao" id="recuperarDadosAvaliacao" style="visibility:hidden;width:0;height:0">
+
+<input type="submit" name="evento" value="recuperaRequisitosAvaliacao" id="recuperaRequisitosAvaliacao" style="visibility:hidden;width:0;height:0">
+	
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+<span id="componenteVisual" style="margin-right: 20px">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<script>
+	var ancora 	= "";
+	var pos 		= -1;
+</script>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="">
+
+	<tbody><tr>
+
+
+		
+		<td class="col_hierarq">
+			<!-- Botao de + - -->
+			
+				<script>
+					ancora	= "";
+					if(ancora != ""){
+						setTimeout("setAncora('#"+ancora+"')", 10);
+					}	
+				</script>
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="submit" name="evento" tabindex="30000" value="-" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;pIdPlc=requisitosAvaliacao&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#requisitosAvaliacao&#39;);" class="botao_menos">
+
+
+
+<script>regBotaoEvento('-','PORTLET_RETRAI');</script>
+<script>regBotaoEvento('+','PORTLET_EXPANDE');</script>
+
+			
+			<!-- Fim botao + - -->
+		</td>
+		
+			<script>
+				var idPortlet 	= "requisitosAvaliacao";
+				var campoFoco 	= "";
+				if(ancora != "" && ancora == idPortlet){
+					setVarGlobal("idPortlet", idPortlet);
+					
+				}
+			</script>
+		<td>
+		<!-- Barra de funções do navegador -->
+		
+			
+			  <table class="componenteRetratil" width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tbody><tr>
+					<td class="secao">
+						<!-- Título - Sempre Aparece -->
+						
+						Requisitos&nbsp;
+						
+						
+						
+						<!-- Fim titulo -->
+					</td>
+					<!-- Função ... -->
+					<!-- Controles do topo -->
+					
+					<td class="secao">
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="button" name="evento" value="Novo" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;requisitosAvaliacao&#39;);plcAjax.ajaxEscondeBarraProgresso();plcAjax.ajaxSubmit(&#39;POST&#39;,getBotaoArray(&#39;INCLUIR_DET&#39;));" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="try{animar(event, &#39;&#39;)}catch(e){}" id="botao_secao" style="text-align:center;background-image: &#39;url(/Mestra_Compras/plc/midia/mestra/evt_incluir_det.gif)&#39;; background-position: &#39;left center&#39;; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;8px&#39;;">
+
+
+
+<script>regBotaoEvento('Novo','INCLUIR_DET');</script>
+
+
+					
+					
+					
+					
+					
+					
+					
+					</td>
+				    
+					
+					 
+					
+					
+					
+					
+					<!-- Fim Controles do topo -->
+				</tr>
+			</tbody></table>
+			
+
+</td>
+</tr>
+</tbody></table>
+
+
+
+
+
+
+
+ 
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="">
+	<tbody><tr>
+	
+	
+		<td class="col_hierarq">&nbsp;</td>
+	
+	
+		<td>
+
+			<table class="conteudoComponenteRetratil" width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody><tr>
+					<td>
+
+
+
+
+
+						
+						
+						
+						
+						
+
+
+
+
+
+
+
+
+<table border="0">
+	
+		
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+			</table><table class="lista" border="0" cellspacing="0" cellpadding="0">
+			
+	
+
+<tbody><tr> 
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			
+			
+			
+		
+	
+	
+
+</td> 
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			
+			
+			
+		
+	
+	
+
+</td> 
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Ótimo
+			
+			
+		
+	
+	
+
+</td>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Bom
+			
+			
+		
+	
+	
+
+</td>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Regular
+			
+			
+		
+	
+	
+
+</td>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Ruim
+			
+			
+		
+	
+	
+
+</td>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Péssimo
+			
+			
+		
+	
+	
+
+</td>
+		
+
+
+
+
+</tr><tr style="">
+
+		
+			</tr><tr>
+				<td class="linha" width="30px">
+					1
+					
+				</td>
+
+					<td class="linha">
+						<select name="itensPlc[0].identificadorAvaliacao" class="texto"><option value="">[Selecione...]</option></select>
+					</td>
+
+					<td class="linha" style="text-align: center">
+						<input type="radio" name="itensPlc[0].numeroNotaAvaliacao" value="4" onclick="calcularAvaliacao()" class="texto">
+					</td>
+
+					<td class="linha" style="text-align: center">
+						<input type="radio" name="itensPlc[0].numeroNotaAvaliacao" value="3" onclick="calcularAvaliacao()">
+					</td>
+
+					<td class="linha" style="text-align: center">
+						<input type="radio" name="itensPlc[0].numeroNotaAvaliacao" value="2" onclick="calcularAvaliacao()">
+					</td>
+
+					<td class="linha" style="text-align: center">
+						<input type="radio" name="itensPlc[0].numeroNotaAvaliacao" value="1" onclick="calcularAvaliacao()">
+					</td>
+
+					<td class="linha" style="text-align: center">
+						<input type="radio" name="itensPlc[0].numeroNotaAvaliacao" value="0" onclick="calcularAvaliacao()">
+					</td>
+			</tr>
+		
+	
+</tbody></table>
+<script>
+$(document).ready(function() {
+	calcularAvaliacao();
+});
+
+if (window.addEventListener) {
+	window.addEventListener("load", iniciarCalculo, false);
+} else if (window.attachEvent) {
+	window.attachEvent("onload", iniciarCalculo);
+} else if (document.getElementById) {
+	window.onload=iniciarCalculo;
+}
+
+function iniciarCalculo() {
+	preparaRetornoAjax();
+	PlcAjax.cacheFunctionAntesAjax[PlcAjax.cacheFunctionAntesAjax.length] = "calcularAvaliacao()"; 
+}
+
+function calcularAvaliacao() {
+	cont = 0;
+	var nota = 0;
+	while (document.getElementsByName('itensPlc[' + cont + '].numeroNotaAvaliacao').length > 0) {
+		var arr = document.getElementsByName('itensPlc[' + cont + '].numeroNotaAvaliacao');
+		for (x = 0; x < arr.length; x++) {
+			if (arr[x].checked) {
+				nota += parseInt(arr[x].value);
+			}
+		}
+		cont++;
+	}
+	document.getElementById('numeroNotaFinal').value = nota;
+}
+
+function destacaCampoFocado(evt){
+
+	if(ExpYes){
+
+		evt = window.event;
+
+		obj = evt.srcElement;
+
+	}
+
+	else{	
+
+		obj = evt.target;
+
+		if(obj.type == 'checkbox' ) //|| obj.type == 'radio'
+
+			obj = obj.parentNode;
+
+	}	
+
+	with (obj){
+
+		try	{
+
+			if(evt.type == 'focus' || typeof oldClassName == "undefined" || oldClassName == null){
+
+				if(className != "adicionaBorda"){
+
+					oldClassName = className;
+
+					if(obj.type && type.indexOf("select") > -1)
+
+						className = "adicionaFundo";
+
+					else 	
+
+						className = "adicionaBorda"
+
+				}	
+
+			}else {
+
+				className = oldClassName;
+
+				oldClassName = null;
+
+			}
+
+		}catch(e){}
+
+	}
+
+	if(	evt.type == 'focus')
+
+		eventoTrataonfocus(evt, obj);
+
+	else if(	evt.type == 'blur')
+
+		eventoTrataonblur(evt, obj);
+
+}
+
+
+</script>
+						
+
+					</td>
+				</tr>
+			</tbody></table>
+
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+</span>
+
+ 
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+			<table class="" border="0" cellspacing="0" cellpadding="0">
+			
+	
+
+<tbody><tr>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+	
+	<td class="titulo" style="text-align:right">
+	
+
+
+
+	
+	
+	
+		
+		
+			Nota Final
+			
+			
+		
+	
+	
+
+</td>
+	
+
+
+
+
+</tr><tr style="">
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+		
+
+
+	
+	
+
+
+
+
+
+
+
+
+<td class="campo" align="left">
+
+
+
+
+
+
+	
+
+
+
+
+
+
+	
+
+
+
+
+
+
+	
+		<input type="text" name="numeroNotaFinal" maxlength="5" size="5" value="" onkeyup="autoskip(event, this); " onkeypress="" onchange="" onblur="converteMaiuscula(event, this); " onfocus="skip(this);" readonly="readonly" id="numeroNotaFinal" style="text-align:right;" class="texto_obrigatorio" title="">
+	
+	
+
+
+</td>
+
+
+	
+
+
+
+
+</tr></tbody></table>
+
+
+
+
+
+
+
+
+
+
+<table class="lista" border="0" cellspacing="0" cellpadding="0" width="100%" style="">
+
+<tbody><tr>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			Requisito
+			
+			
+		
+	
+	
+
+</td>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<td class="cabecalho" style="text-align:left">
+	
+
+
+
+	
+	
+	
+		
+		
+			
+			
+			
+		
+	
+	
+
+</td> 
+
+
+	</tr><tr>
+		<td class="linha">Qualidade</td>
+		<td class="linha" style="color: red;">Qualidade na prestação de serviço ou na entrega do produto</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Atendimento</td>
+		<td class="linha" style="color: red;">Presteza, rapidez, cordialidade no atendimento</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Prazos</td>
+		<td class="linha" style="color: red;">Atendimento dos prazos estabelecidos e rapidez no atendimento às demandas</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Experiência</td>
+		<td class="linha" style="color: red;">Experiência e expertise na prestação de serviço ou no conhecimento do produto</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Responsabilidade</td>
+		<td class="linha" style="color: red;">Responsabilidade frente ao comprimento do contrato</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Credibilidade</td>
+		<td class="linha" style="color: red;">Confiança e credibilidade nas ações e negociações</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Proatividade</td>
+		<td class="linha" style="color: red;">Antecipar-se na melhoria dos trabalhos ou na solução de problemas</td>
+	</tr>
+	
+	<tr>
+		<td class="linha">Suporte Técnico</td>
+		<td class="linha" style="color: red;">Suporte no pós-venda ou após a entrega de algum produto ou serviço</td>
+	</tr>
+	
+
+
+</tbody></table>
+
+		
+	</div>
+	<script>
+		Width = window.screen.width;
+		var browser = navigator.appName;
+		var MSIE = window.navigator.userAgent; // recupera o navegador
+		var posIE = MSIE.indexOf ( "MSIE " ); // recupera a posicao dentro do navegador antes do numero da versao
+		var isIE = true;
+		var versaoIE = 0;
+		if (browser.indexOf("Internet Explorer") == -1) {
+			isIE = false;
+		} else {
+			versaoIE = parseInt (MSIE.substring (posIE+5, MSIE.indexOf (".", posIE ))); // recupera o numero correspondente a versao do IE
+		}
+		/*
+		if( Width > 1024) {
+			if(isIE) {
+				if(versaoIE < 7) {
+				   document.getElementById('divVBoxManSel').style.height = '715px';
+				} else {
+				   document.getElementById('divVBoxManSel').style.height = '730px';
+				}
+			}else{
+				document.getElementById('divVBoxManSel').style.height = '740px';
+			}
+		}
+		if (Width == 1024) {
+		    if (isIE) {
+			   //document.getElementById('divVBoxManSel').style.height = '460px';
+				if(versaoIE < 7) {
+				   document.getElementById('divVBoxManSel').style.height = '460px';
+				} else {
+				   document.getElementById('divVBoxManSel').style.height = '490px';
+				}
+			} else {
+			   document.getElementById('divVBoxManSel').style.height = '490px';
+			}
+		}
+		if (Width == 800) {
+			document.getElementById('divVBoxManSel').style.height = '251px';
+			document.getElementById('divVBoxManSel').style.overflowX = 'scroll';
+		}
+		*/
+	</script>
+<!-- FIM -->
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ajax>
+</span>
+
+
+
+
+
+
+
+<script>
+	window.temdivrolagem = true;
+
+	function ajustardivrolagem() {
+		if (window.temdivrolagem) {
+			var tam = document.body.clientHeight;
+			var larg = document.body.clientWidth;
+			var objdiv = window.document.getElementById("divrolagem");
+			if (objdiv) {
+				objdiv.style.overflow = "auto";
+				objdiv.style.height = (tam / 100) * window.tamPercent;
+				objdiv.style.width = larg-255;
+			}
+		}
+	}
+
+    function atualizarRespostaAjax(){
+		if(PlcAjax.cacheFunctionAntesAjax != null)
+		{
+			for(i = 0; i < PlcAjax.cacheFunctionAntesAjax.length; i++){
+				try{
+					plcAjax.setFuncaoAposAjax(PlcAjax.cacheFunctionAntesAjax[i]);
+				}catch(e){
+					plcLog.debug("Erro ao executar funcao apos Ajax. Funcao "+PlcAjax.cacheFunctionAntesAjax[i]+" nao declarada.")
+				}	
+			}	
+		}
+    }
+
+	function preparaRetornoAjax()
+	{
+		PlcAjax.prototype.antesAjaxSubmit = function (){ atualizarRespostaAjax(); return true;}
+	    if (PlcAjax.cacheFunctionAntesAjax == null) 
+	    	PlcAjax.cacheFunctionAntesAjax = new Array();
+	}
+
+	function ajustesDivRolagemTela()
+	{
+		//ajustardivrolagem();
+		// Prepara ajax para retorno
+		preparaRetornoAjax();
+    	PlcAjax.cacheFunctionAntesAjax[PlcAjax.cacheFunctionAntesAjax.length] = "ajustardivrolagem()";    	
+	}
+	
+	if (window.addEventListener) {
+   		window.tamPercent = 70;
+		window.addEventListener("load", ajustesDivRolagemTela, false);
+	} else if (window.attachEvent) {
+	   	window.tamPercent = 75;
+		window.attachEvent("onload", ajustesDivRolagemTela);
+	} else if (document.getElementById) {
+	   	window.tamPercent = 75;
+		window.onload=ajustesDivRolagemTela;
+	}
+	
+</script>
+
+
+
+			</td>
+		</tr>
+	</tbody></table>	
+</td>
+</tr>
+
+
+ 
+   
+   
+
+
+
+
+
+<tr height="1%">
+    <td colspan="2">
+	
+		
+	
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr height="10px">     
+		<td align="center" class="rodape" colspan="3">	
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr>
+					<td align="left" width="20%" colspan="3">&nbsp;
+						
+						
+						<a href="http://www.prevmestra.com.br/Mestra_Compras/plc/desconectaPlc.do?evento=Desconectar" style="cursor:hand;" onclick="return executarEventoAplicacao(getBotaoArray(&#39;DESCONECTAR&#39;));">
+							<span id="botao_secao" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="animar(event, &#39;&#39;)">
+								Desconectar
+							</span>
+						</a>
+						
+					</td>
+					<td width="75%" align="right" style="color: #FFFFFF;">
+						Versão 1.1.58/P - Copyright Mestra Informática 2008&nbsp;&nbsp;
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+<script>
+regBotaoEvento('Desconectar','DESCONECTAR');
+regEvento('Desconectar','MENSAGEM','');
+regMensagem('Desconectar','CONFIRMACAO','Tem certeza que deseja desconectar?');
+</script>
+	</td>
+</tr>
+
+</tbody></table>
+
+
+
+
+</body></html>

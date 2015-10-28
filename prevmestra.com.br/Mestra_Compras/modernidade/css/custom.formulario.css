@@ -1,0 +1,613 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body
+{
+    min-width: 1260px;
+}
+
+body *
+{
+	font-family: 'Open Sans', helvetica, arial, sans-serif;
+}
+
+table, td
+{
+    text-align: left;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+}
+
+body #botao1
+{
+    visibility: hidden;
+}
+
+body .header-modernidade
+{
+    height: 80px;
+    background-color: #1F4F8D;
+}
+
+body .header-modernidade embed
+{
+    display: none;
+}
+
+body iframe
+{
+    display: none;
+}
+
+/* Inicio das correcoes de 08/10/2015 */
+
+body textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 23px;
+    /* max-height: 180px; */
+    margin-right: .5em;
+}
+body fieldset {
+    border: solid 1px #e0e0e0;
+    padding: 1em;
+    margin: .5em 0;
+}
+
+body fieldset label {
+    border: solid 1px #e0e0e0;
+    padding: 1em;
+}
+table.calendarioStyle td {
+    border: solid 1px #d0d0d0;
+}
+table.calendarioStyle {
+    border: solid 1px #d0d0d0;
+    margin-right: 1em;
+}
+body table td {
+    text-align: left;
+    font-size: 13px;
+}
+body tr.linhapar {
+    background: #f0f0f0;
+    color: #303030;
+}
+body tr.linhaimpar {
+    background: #e4e4e4;
+    color: #303030;
+}
+body table.lista {
+    border-color: #e0e0e0;
+}
+
+
+
+/* Fim das correcoes */
+
+
+body .header-modernidade .logo-div
+{
+    background-color: #2A5894;
+    /*Provisorio por causa da cor da logo conflitando no MAC*/
+    background-color: #254E89;
+    width: 242px;
+    height: 80px;
+    float: left;
+}
+
+body .header-modernidade .logo-div .logo
+{
+    width: 100%;
+}
+
+body .header-modernidade .navbar-left
+{
+    float: left;
+}
+
+body .header-modernidade .navbar-right
+{
+    float: right;
+}
+
+body .header-modernidade .inner h1
+{
+    color: #fff;
+    font-size: 23px;
+    margin-bottom: 0;
+    margin-top: 30px;
+    margin-left: 39px;
+    font-weight: 300;
+}
+
+body .header-modernidade .inner p
+{
+    color: #A5B6D7;
+    font-size: 17px;
+    margin-top: 35px;
+    margin-right: 39px;
+}
+
+body .header-modernidade .inner a
+{
+    color: #A5B6D7;
+}
+
+body .header-modernidade .inner a:hover, body .header-modernidade .inner a:active
+{
+    text-decoration: underline;
+}
+
+body .header-modernidade .inner p img
+{
+    width: 19px;
+    height: 19px;
+    margin-bottom: -3px;
+}
+
+body #layout_col_principal
+{
+    padding-left: 20px;
+    padding-right: 39px;
+    padding-bottom: 7em;
+}
+
+body #layout_col_principal .titulo.first
+{
+    width: 10px;
+    color: #337ab7 !important;
+    padding-top: 20px;
+}
+
+body #layout_col_principal .titulo.first strong
+{
+    font-weight: 100;
+}
+
+body #layout_col_principal .titulo.first strong font
+{
+    color: #337ab7;
+    font-size: 21px;
+}
+
+body #layout_col_principal fieldset
+{
+    border: 1px solid #e0e0e0;
+    padding: 1em;
+    margin: 1em 0;
+}
+
+body #layout_col_principal .menu_acoes
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+body #layout_col_principal .menu_acoes #botao_menu:first-child
+{
+    background-image: url(../img/inbox.png) !important;
+}
+
+body #layout_col_principal .menu_acoes #botao_menu
+{
+    padding: 3px;
+    width: 35px !important;
+    height: 35px !important;
+    background-image: url(../img/save.png) !important;
+    background-size: 30px 30px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+body #layout_col_principal .menu_acoes #botao_menu:nth-child(5)
+{
+    background-image: url(../img/folder.png) !important;
+}
+
+body #layout_col_principal .menu_acoes #botao_menu2:first-child
+{
+    background-image: url(../img/inbox-hover.png) !important;
+}
+
+body #layout_col_principal .menu_acoes #botao_menu2
+{
+    padding: 0;
+    width: 35px !important;
+    height: 35px!important;
+    background-color: #1F4F8D !important;
+    background-image: url(../img/save-hover.png) !important;
+    background-size: 30px 30px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+body #layout_col_principal .menu_acoes #botao_menu2:nth-child(5)
+{
+    background-image: url(../img/folder-hover.png) !important;
+}
+
+body #layout_col_principal .menu_acoes a
+{
+    width: 35px;
+    height: 35px;
+    background-image: url(../img/help.png);
+    background-size: 30px 30px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #F0F0F0;
+    display: inline-block;
+    margin-bottom: -15px;
+}
+
+body #layout_col_principal .menu_acoes a:hover, body #layout_col_principal .menu_acoes a:active
+{
+    background-color: #1F4F8D;
+    background-image: url(../img/help-hover.png);
+}
+
+body #layout_col_principal .menu_acoes a img
+{
+    display: none;
+}
+
+body .delimitador
+{
+	border: none !important;
+}
+
+body .delimitador .secao
+{
+	background-color: transparent;
+	border: none;
+	font-weight: 300;
+	font-size: 18px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1.5em;
+    padding-top: 3em;
+}
+
+body .secao
+{
+	background-color: transparent !important;
+	border: none !important;
+	font-weight: 300;
+	font-size: 17px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+body .componenteRetratil
+{
+    margin-top: 20px;
+}
+
+body .componenteRetratil, body .conteudoComponenteRetratil
+{
+    border: 1px solid #e0e0e0 !important;
+}
+
+body .componenteRetratil
+{
+    border-bottom: 0 !important;
+}
+
+body input, body textarea, body select
+{
+	background-color: #f4f5f6 !important;
+	border-color: #e5e6e5 !important;
+	height: 23px;
+}
+
+body .bt_secao_texto, body .bt_secao_icone, body #botao_menu, body #botao_menu2, body #botao_secao, body #botao_secao2, body .botao, body .bt
+{
+	background-color: #f0f0f0;
+	border-color: #e5e6e5;
+	height: 23px;/*!important*/
+}
+
+body .bt
+{
+	padding: 4px 5px 4px 5px;
+}
+
+body .titulo
+{
+    font-weight: 400;
+    font-size: 12px;
+    padding: .75em .75em .25em .25em;
+}
+
+body .conteudoComponenteRetratil .titulo
+{
+    font-weight: 400;
+    font-size: 12px;
+    padding: .75em .75em 0.25em .75em;
+}
+body .conteudoComponenteRetratil .campo {
+    padding-left: .75em;
+}
+
+
+/*
+	Inicio CSS Menu
+*/
+
+
+body #tabelaMenu
+{
+	padding: 0 !important;
+    background-color: #F0F0F0;
+    vertical-align: top;
+}
+
+body #menuDiv
+{
+	margin: 0 !important;
+	width: 100%;
+    /*max-width: 249px;*/
+}
+
+body #menuList
+{
+	padding: 0 !important;
+}
+
+body #menuDiv .menu-title
+{
+    color: #c8c8c8;
+    border-bottom: 1px solid #dfdfdf;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 10px 15px;
+}
+
+
+
+/*
+	Menu Nível 1
+*/
+
+
+body #menuDiv ul li a
+{
+	padding: 0;
+    display: block;
+    color: #337ab7;
+    padding: 11px 15px;
+    padding-right: 28px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: top 14px right 15px;
+    background-size: 12px 12px;
+    font-weight: 300;
+    background-color: #F0F0F0;
+}
+
+body #menuDiv ul li a.actuator
+{
+    background-image: url(../img/chevron-down.png);
+}
+
+body #menuDiv ul li a.active
+{
+    background-image: url(../img/chevron-up.png);
+}
+
+body #menuDiv ul li a.sem-submenu
+{
+    background-image: none;
+}
+
+body #menuDiv ul li a:hover, body #menuDiv ul li a:active
+{
+    text-decoration: none;
+    background-color: #DFDFDF;
+}
+
+body #menuDiv ul li a.highlight
+{
+    color: #215193;
+    font-weight: normal;
+    font-weight: 300;
+}
+
+
+/*
+	Sub-Menu
+*/
+
+
+body #menuDiv ul li ul
+{
+	margin: 0;
+}
+
+body #menuDiv ul li ul li a
+{
+    background-color: #fff;
+    font-size: 14px;
+    color: #5a5a5a;
+    border-color: #f5f5f5;
+    border-right: 2px solid #F0F0F0;
+    background-position: top 14px right 13px;
+
+}
+
+body #menuDiv ul li ul li a:hover, body #menuDiv ul li ul li a:active
+{
+    background-color: #34619A;
+    color: #fff !important;
+}
+
+body #menuDiv ul li ul li a.active
+{
+    background-color: #34619A;
+    color: #fff !important;
+}
+
+
+/*
+	Sub-Menu Nivel 2
+*/
+
+
+body #menuDiv ul li ul li ul
+{
+	margin: 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+body #menuDiv ul li ul li ul li a
+{
+    background-color: #fff;
+    color: #aaa !important;
+    /*border-right: 4px solid #F0F0F0;*/
+    font-size: 13px;
+    border-bottom: 0;
+    padding-top: 7px;
+    padding-left: 35px;
+    padding-bottom: 7px;
+    background-position: top 8px left 17px;
+    /* comentar após icones */
+    background-image: none;
+}
+
+body #menuDiv ul li ul li ul li a.active
+{
+    background-color: #DFDFDF;
+    color: #333 !important;
+}
+
+body #menuDiv ul li ul li ul li a:hover, body #menuDiv ul li ul li ul li a:active
+{
+    background-color: #DFDFDF;
+    color: #333 !important;
+}
+
+/*
+	Sub-Menu Nivel 3
+*/
+
+body #menuDiv ul li ul li ul li ul li a
+{
+    background-color: #fff;
+    color: #666 !important;
+    background-image: none;
+    /* border-right: 4px solid #F0F0F0; */
+    font-size: 12px;
+    border-bottom: 0;
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+body #menuDiv ul li ul li ul li a:hover, body #menuDiv ul li ul li ul li a:active
+{
+    background-color: #DFDFDF;
+    color: #333 !important;
+}
+
+body .rodape, body #rodape
+{
+    background-color: #1F4F8D !important;
+    padding: 20px;
+    border: none !important;
+}
+
+body .rodape td, body #rodape span
+{
+    color: #fff !important;
+    font-family: 'Open Sans', helvetica, arial, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 300 !important;
+}
+
+body .rodape td:last-child, body #rodape td:last-child
+{
+    text-align: right;
+}
+
+/*@media (min-width: 1398px)
+{
+    body .header-modernidade .logo-div .logo
+    {
+        height: 100%;
+        width: auto;
+        margin: auto;
+        display: block;
+    }
+}
+
+
+@media (max-width: 1300px)
+{
+    body .header-modernidade .logo-div .logo
+    {
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 1200px)
+{
+    body .header-modernidade .logo-div .logo
+    {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 1100px)
+{
+    body .header-modernidade .logo-div .logo
+    {
+        margin-top: 25px;
+    }
+}*/

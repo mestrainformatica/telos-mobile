@@ -1,0 +1,160 @@
+body #menuDiv
+{
+    vertical-align: top;
+}
+
+body #menuFlex
+{
+    vertical-align: top;
+}
+
+body #menuFlex > table
+{
+    background-color: #F0F0F0 !important;
+}
+
+body .menuList
+{
+    width: 245px;
+}
+
+body .menu-title
+{
+    background-color: #F0F0F0;
+}
+
+body td.menu_acoes
+{
+    padding-right: 24px;
+    padding-top: 30px;
+}
+
+body .menu_acoes input:first-child
+{
+    background-image: url(../img/inbox.png) !important;
+}
+
+body .menu_acoes input
+{
+    padding: 3px;
+    width: 35px !important;
+    height: 35px !important;
+    background-image: url(../img/save.png) !important;
+    background-size: 30px 30px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+body .menu_acoes input:nth-child(6)
+{
+    background-image: url(../img/folder.png) !important;
+}
+
+body .menu_acoes input:hover:first-child
+{
+    background-image: url(../img/inbox-hover.png) !important;
+}
+
+body .menu_acoes input:hover
+{
+    padding: 0;
+    width: 35px !important;
+    height: 35px!important;
+    background-color: #1F4F8D !important;
+    background-image: url(../img/save-hover.png) !important;
+    background-size: 30px 30px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+body .menu_acoes input:hover:nth-child(6)
+{
+    background-image: url(../img/folder-hover.png) !important;
+}
+
+body #menuImpressaoDiv
+{
+    width: 80%;
+}
+
+body #menuImpressaoDiv div
+{
+    display: none;
+}
+
+body #menuImpressaoDiv p
+{
+    visibility: visible;
+    text-align: left;
+    padding-left: 38px;
+    color: #337ab7;
+    font-size: 21px;
+    font-weight: 300;
+    padding-top: 44px;
+    width: 80%;
+}
+
+body #divVBoxManSel
+{
+    margin-left: 35px !Important;
+    width: 94.3% !important;
+    border-top: 1px solid rgb(224, 224, 224);
+    margin-top: 27px;
+}
+
+body .bt
+{
+    margin-top: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    /*display: block;*/
+    display: inline-block;
+    height: 21px;
+}
+
+body .lista
+{
+    margin-top: 15px;
+    margin-left: 4px;
+    width: 99.7%;
+}
+
+body .cabecalho
+{
+    font-weight: 300;
+    font-size: 17px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid #e0e0e0 !important;
+    background-color: #fff;
+}
+
+body .lista .linha
+{
+    font-weight: 300;
+    font-size: 13px;
+
+    border: 1px solid #e0e0e0 !important;
+    background-color: #fff;
+}
+
+body .rodape a
+{
+    display: none;
+}
+
+@media (min-width: 1450px)
+{
+    body #divVBoxManSel
+    {
+        width: 95.5% !important;
+    }
+}
+
+@media (min-width: 1800px)
+{
+    body #divVBoxManSel
+    {
+        width: 96% !important;
+    }
+}

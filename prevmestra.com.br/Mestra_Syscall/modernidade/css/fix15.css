@@ -1,0 +1,164 @@
+body select 
+{
+    height: 23px !important;
+}
+
+body .header-modernidade .inner a 
+{
+    color: #A5B6D7;
+    font-size: 17px;
+    font-family: 'Open Sans', helvetica, arial, sans-serif;
+}
+
+body #tabelaMenu
+{
+    width: 245px;
+    height: auto !important;
+}
+
+body #menuDiv ul li a:hover, body #menuDiv ul li a:active 
+{
+    font-family: 'Open Sans', helvetica, arial, sans-serif;
+}
+
+body #acoes
+{
+    padding-top: 22px;
+    display: inline-block;
+    float: right;
+    margin-right: 0;
+}
+
+body #acoes input:nth-child(2)
+{
+    background-image: url(../img/inbox.png) !important;
+}
+
+body #acoes input
+{
+    padding: 3px;
+    width: 35px !important;
+    height: 35px !important;
+    background-image: url(../img/save.png) !important;
+    background-size: 30px 30px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+body #acoes input:hover:nth-child(2)
+{
+    background-image: url(../img/inbox-hover.png) !important;
+}
+
+body #acoes input:hover
+{
+    padding: 0;
+    width: 35px !important;
+    height: 35px!important;
+    background-color: #1F4F8D !important;
+    background-image: url(../img/save-hover.png) !important;
+    background-size: 30px 30px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+body #mainForm
+{
+    padding-left: 36px;
+    padding-right: 0;
+    height: auto;
+    width: 77%;
+    float: left;
+}
+
+body #mainForm p
+{
+    display: inline-block;
+    float: left;
+    color: #337ab7;
+    font-size: 21px;
+    font-weight: 300;
+    padding-top: 44px;
+    padding-left: 2px;
+}
+
+body #mainForm .secao
+{
+    font-family: 'Open Sans', helvetica, arial, sans-serif;
+}
+
+body #mainForm #corpo
+{
+    height: auto !important;
+    overflow: visible;
+    overflow-x: visible;
+    border-top: 1px solid rgb(224, 224, 224);
+    margin-top: 96px;
+}
+
+body #rodape
+{
+    height: 12px;
+}
+
+body #rodape span
+{
+    padding: 0 !important;
+    height: auto;
+}
+
+body #rodape span:last-child
+{
+    float: right;
+    margin-left: 50px;
+}
+
+body #rodape div
+{
+    display: none;
+}
+
+body #rodape a
+{
+    display: none;
+}
+
+@media (max-width: 1370px)
+{
+    body #mainForm
+    {
+        width: 76.3%;
+    }
+}
+
+@media (min-width: 1440px)
+{
+    body #mainForm
+    {
+        width: 78.3%;
+    }
+}
+
+@media (min-width: 1550px)
+{
+    body #mainForm
+    {
+        width: 79.3%;
+    }
+}
+
+@media (min-width: 1640px)
+{
+    body #mainForm
+    {
+        width: 81%;
+    }
+}
+
+@media (min-width: 1820px)
+{
+    body #mainForm
+    {
+        width: 82.3%;
+    }
+}

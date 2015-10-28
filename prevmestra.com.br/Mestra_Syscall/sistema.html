@@ -1,0 +1,1136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0089)http://www.prevmestra.com.br/Mestra_Syscall/atendimento/agendaman.do?evento=x&idRotina=73 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script>
+		    var path = '/Mestra_Syscall';
+			
+			var botaoAcionado = 'sim';
+			// função para criar arvore de diretorio usado em seguranca
+
+			function controlaBotaoGravar(){
+				if(botaoAcionado == 'nao'){		
+					botaoAcionado = 'sim';		
+					return true;		
+				}	
+				alert("Aguarde a execução completa do procedimento selecionado.");
+				return true;
+			}
+			
+			function menuFlex(estadoMenu){	
+				if (estadoMenu == "aberto"){
+					document.getElementById('tabelaMenu').style.display = "none";
+					document.getElementById('tabelaMenu').style.widthantes = document.getElementById('tabelaMenu').style.width;
+					$('#botao1').css('display', 'none');
+					$('#botao2').css('display', '');
+					$('#mainForm').css('width','98%');
+				}else{
+					document.getElementById('tabelaMenu').style.display = "";
+					document.getElementById('tabelaMenu').style.width = document.getElementById('tabelaMenu').style.widthantes;
+					$('#botao1').css('display', '');
+					$('#botao2').css('display', 'none');
+					$('#mainForm').css('width','80%');
+				}
+			}
+		</script>
+		
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,100,300,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,600,700' rel='stylesheet' type='text/css'>
+		
+		
+		<link rel="stylesheet" href="css/PlcPele.css" type="text/css">
+		<link rel="stylesheet" href="css/AppPele.css" type="text/css">
+		<link rel="stylesheet" href="css/nucleosestilo.css" type="text/css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/global.css">  
+	    <link rel="stylesheet" type="text/css" media="screen" href="css/menuExpandable.css">
+	    <link rel="stylesheet" type="text/css" media="screen" href="css/colorbox.css">
+	    <link rel="stylesheet" type="text/css" media="screen" href="css/loading.css">
+	    
+	    <link rel="stylesheet" type="text/css" media="screen" href="css/ui.theme.css">
+	    <link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="modernidade/css/fix15.css"> 
+	    <link rel="stylesheet" href="modernidade/css/custom.formulario.css"> 
+
+
+		<script src="javascript/PlcGeral.js" type="text/javascript"></script>
+		<script src="javascript/AppGeral.js" type="text/javascript"></script>
+		<script src="javascript/PlcGeral.js" type="text/javascript"></script>
+		<script src="javascript/MestraAjax.js" type="text/javascript"></script>
+		<script src="javascript/jquery-1.7.2.min.js" type="text/javascript"></script>
+		<script src="javascript/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
+	    <script src="javascript/util.js" type="text/javascript"></script>
+	    <script src="javascript/map.js" type="text/javascript"></script>
+	    <script src="javascript/pushlet.js" type="text/javascript"></script>
+		<script src="javascript/menuExpandable.js" type="text/javascript"></script>
+		<script src="javascript/jquery.colorbox.js" type="text/javascript"></script>
+		<script src="javascript/loading.js" type="text/javascript"></script>
+		<script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
+		
+		<title>
+			Sysprev Web
+		</title>
+
+		<script>
+			var preparaMenus = initializeMenus;
+			if (window.addEventListener)
+				window.addEventListener("load", preparaMenus, false)
+			else if (window.attachEvent)
+				window.attachEvent("onload", preparaMenus)
+				
+			hostdogifanimado_AnimaAjax = path+'/plc/midia/indicator.gif';
+			
+			function marcaObrigatorio(){
+				$('.obrigatorio').append('<font color="red">&nbsp;*</font>');
+			}
+
+			if (window.addEventListener)
+				window.addEventListener("load", marcaObrigatorio, false);
+			else if (window.attachEvent)
+				window.attachEvent("onload", marcaObrigatorio);
+			
+		</script>
+		
+	<script type="text/javascript" src="chrome-extension://aadgmnobpdmgmigaicncghmmoeflnamj/ng-inspector.js"></script></head>
+
+	
+
+	<body onkeydown="return executarAcaoFuncoes(event);"><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="padding-bottom: 57px; padding-right: 28px; display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" class="" style="width: 0px; height: 0px; overflow: hidden;"></div><div id="cboxLoadingOverlay" class=""></div><div id="cboxLoadingGraphic" class=""></div><div id="cboxTitle" class=""></div><div id="cboxCurrent" class=""></div><div id="cboxNext" class=""></div><div id="cboxPrevious" class=""></div><div id="cboxSlideshow" class=""></div><div id="cboxClose" class=""></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div>
+		<span id="conteudo">
+			
+				
+				
+					
+				
+
+
+
+
+<fmt:setbundle basename="jCompanyResources" var="jCompanyResources">
+<fmt:setbundle basename="ApplicationResources" var="ApplicationResources_pt_BR">
+
+
+
+<table onresize="redimencionaTesteira()" id="localTesteiraTable" bgcolor="#beccdf" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="z-index:500;">
+	<tbody><tr>
+		<td class="header-modernidade">
+			<embed onresize="redimencionaTesteira()" id="localTesteira" border="0" width="100%" height="101%" bgcolor="#beccdf" style="border-color: rgb(135, 158, 189); z-index: 1; height: 92.1765px; background-color: rgb(135, 158, 189);" cellpadding="0" cellspacing="0" fullscreen="no" src="/Mestra_Syscall/plc/midia/testeira_callcenter.swf" wmode="opaque">
+			<div class="logo-div">
+                   <img class="logo" src="modernidade/img/logo-provisoria.png">
+               </div>
+               <div class="inner">
+                   <div class="navbar-left">
+                       <h1>Módulo Contabilidade</h1>
+                   </div>
+                   <div class="navbar-right">
+                       <p>Conectado como Luiz Cláudio. &nbsp; <a href="#">Desconectar <img src="modernidade/img/off.png"></a></p>
+                   </div>
+               </div>
+		</td>
+	</tr>
+</tbody></table>		
+
+<script>
+
+	redimencionaTesteira();
+	
+	function redimencionaTesteira(){
+		telaWidth = $(window).width();
+		$('#localTesteira').css('height',telaWidth / 17);
+	}
+	
+	function escondeTopo(){
+		$('#localTesteiraTable').css('display','none');
+		$('#localTesteira').css('display','none');
+	}
+
+</script>
+			
+			
+			<span id="tabelaMenu" style="height: 750px;">
+											
+					<div id="menuDiv"><ul id="menuList">
+
+			            
+						
+							
+							 <li class="menu-title">Menu</li>
+								<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Syscall/plc/midia/menuExpandable_images/minus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/agendaman.do?evento=x&idRotina=73#" id="EstruturaOrganizacionalActuator" class="actuator">Estrutura Organizacional</a>
+		<ul id="EstruturaOrganizacionalMenu" class="menu" style="display: block;">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/area.do?pagina=atendimento&evento=Incluir&idRotina=54" title="Áreas">Áreas</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/colaboradores.do?pagina=atendimento&evento=Incluir&idRotina=46" title="Colaboradores">Colaboradores</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/retaguarda.do?pagina=atendimento&evento=Incluir&idRotina=50" title="Retaguardas">Retaguardas</a></li>
+<li style="background-image: url(http://www.prevmestra.com.br/Mestra_Syscall/plc/midia/menuExpandable_images/minus.gif);">
+	<a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/agendaman.do?evento=x&idRotina=73#" id="ParâmetrosdeAtendimentoActuator" class="actuator">Parâmetros de Atendimento</a>
+		<ul id="ParâmetrosdeAtendimentoMenu" class="submenu" style="display: block;">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/subgrupo.do?pagina=atendimento&evento=Incluir&idRotina=49" title="Assunto">Assunto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/formaAtendimento.do?pagina=atendimento&evento=Incluir&idRotina=48" title="Formas de Atendimento">Formas de Atendimento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/tipoAtendimento.do?pagina=atendimento&evento=Incluir&idRotina=51" title="Tipos de Atendimento">Tipos de Atendimento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/situacao.do?pagina=atendimento&pagina=atendimento&evento=Incluir&idRotina=47" title="Situações">Situações</a></li>
+		</ul>
+	</li>
+
+
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/atendimentonav.do?pagina=atendimento&evento=Abrir&idRotina=52&tpsis=1&acessoRotina=atendimento" title="Atendimento" class="standalone">Atendimento</a>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/atendimentonav.do?pagina=atendimento&evento=Abrir&idRotina=3384&tpsis=2" title="Atendimento Instituídos" class="standalone">Atendimento Instituídos</a>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Syscall/plc/midia/menuExpandable_images/minus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/agendaman.do?evento=x&idRotina=73#" id="Consultas/RelatóriosActuator" class="actuator">Consultas / Relatórios</a>
+		<ul id="Consultas/RelatóriosMenu" class="menu" style="display: block;">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/atendimentosDoPeriodorel.do?evento=Incluir&idRotina=56" title="Atendimentos do Período">Atendimentos do Período</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/analiseTipoSolicitacaorel.do?evento=Incluir&idRotina=57" title="Analise Tipos de Solicitação">Analise Tipos de Solicitação</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/pendenciasDiasAtrasorel.do?evento=Pesquisar&idRotina=58" title="Pendências por Dias de Atraso">Pendências por Dias de Atraso</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/pendenciasPorAtendenterel.do?evento=Incluir&idRotina=59" title="Pendências por Atendente">Pendências por Atendente</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/pendenciasPorRetaguardarel.do?evento=Incluir&idRotina=60" title="Pendências por Retaguarda">Pendências por Retaguarda</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/atendimentosDoPeriodorelDetalhado.do?evento=Incluir&idRotina=3148" title="Solicitações do Período Detalhado">Solicitações do Período Detalhado</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Syscall/plc/midia/menuExpandable_images/minus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/agendaman.do?evento=x&idRotina=73#" id="AgendaActuator" class="actuator">Agenda</a>
+		<ul id="AgendaMenu" class="menu" style="display: block;">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/parametrosagendamento.do?evento=x&idRotina=72" title="Parâmetros de Agendamento">Parâmetros de Agendamento</a></li>
+	<li><a href="./Sysprev Web_files/Sysprev Web.html" title="Agendamento" class=" highlight">Agendamento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/bloqueioagenda.do?evento=x&idRotina=74" title="Bloqueio de Agenda">Bloqueio de Agenda</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Syscall/plc/midia/menuExpandable_images/minus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/agendaman.do?evento=x&idRotina=73#" id="EstatísticasActuator" class="actuator">Estatísticas</a>
+		<ul id="EstatísticasMenu" class="menu" style="display: block;">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relEstatisticaAtendimentoAtivoPassivo.do?evento=Incluir&idRotina=62" title="Atendimento Ativo x Receptivo">Atendimento Ativo x Receptivo</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relEstatisticaAtendimentoPorAssunto.do?evento=Incluir&idRotina=63" title="Atendimento por Assunto">Atendimento por Assunto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relEstatisticaControleSolicitacaoAtendimento.do?evento=Incluir&idRotina=64" title="Controle Solicitação Atendimento">Controle Solicitação Atendimento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relEstatisticaTipoSolicitacao.do?evento=Incluir&idRotina=66" title="Tipos de Solicitação">Tipos de Solicitação</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relEstatisticaTipoSolicitacaoAssunto.do?evento=Incluir&idRotina=67" title="Tipo Solicitação x Assunto">Tipo Solicitação x Assunto</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relEstatisticaTotalAtSolAtendente.do?evento=Incluir&idRotina=68" title="Atend./Solicit. por Atendente">Atend./Solicit. por Atendente</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relPesquisaSatisfacao.do?evento=Incluir&idRotina=3169" title="Relatórios Pesquisa Satisfação">Relatórios Pesquisa Satisfação</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relEstatisticaTotalFormaAtendimento.do?evento=Incluir&idRotina=69" title="Forma de Atendimento">Forma de Atendimento</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relEstatisticaTotalSituacaoAtendimento.do?evento=Incluir&idRotina=70" title="Situação da Solicitação ">Situação da Solicitação </a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/relcriticasparecer.do?evento=x&idRotina=3166" title="Relatório de Críticas X Parecer">Relatório de Críticas X Parecer</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Syscall/plc/midia/menuExpandable_images/plus.gif);">
+
+	<a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/agendaman.do?evento=x&idRotina=73#" id="PesquisadeSatisfaçãoActuator" class="actuator">Pesquisa de Satisfação</a>
+		<ul id="PesquisadeSatisfaçãoMenu" class="menu">
+
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/pesquisasatisfacao.do?evento=x&idRotina=3170" title="Gerar Pesquisa">Gerar Pesquisa</a></li>
+	<li><a href="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/pesquisasatisfacaoconsultanav.do?evento=x&idRotina=3168" title="Consultar">Consultar</a></li>
+</ul>
+	</li>
+
+
+						                  
+					</ul></div>
+				
+			</span>
+			
+			<span id="botao1" class="botaoOcultaMenu" onclick="javascript:menuFlex(&#39;aberto&#39;)" style="top: 307px;">
+				<img class="imagemBotao" src="midia/anteriorMenu.gif">
+			</span>
+			<span id="botao2" style="display: none; top: 307px;" class="botaoOcultaMenu" onclick="javascript:menuFlex(&#39;fechado&#39;)">
+				<img class="imagemBotao" src="midia/proximoMenu.gif">
+			</span>
+			
+			<form name="agendaForm" method="post" action="http://www.prevmestra.com.br/Mestra_Syscall/atendimento/agendaman.do" enctype="multipart/form-data" onsubmit="return executarAcaoFuncoes(event)" id="mainForm" style="height: 750px;">
+
+				
+					<div id="acoes">
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- INÍCIO ANIMAÇÃO LOADING -->
+
+
+<table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr>
+	<td></td>
+</tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="submit" name="evento" value="Incluir" id="botao_incluir" title="Novo">
+<script>
+				regBotaoEvento('Incluir','INCLUIR');
+				</script>
+
+
+
+<input type="submit" name="evento" value="Gravar" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" id="botao_gravar" title="Gravar">
+<script>
+				setBotaoAcaoEnter('Gravar');
+				regBotaoEvento('Gravar','GRAVAR');
+				</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+				
+				
+					<div id="corpo" style="height: 715px;">
+						
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="hidden" name="modoPlc" value="inclusaoPlc">
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+	td.msg_confirma{background:#D8E5ED;color:#144888;font:bold 11px Verdana;}
+	td.msg_erro{background:#FFDBDB;color:#AB3838;font:normal bold 11px Verdana;height:auto;}
+	td.msg_erro_ver{background:#89B39C;color:#FFFFFF;font:normal bold 11px Verdana;height:auto;}
+	td.msg_erro_am{background:#FFFEAF;color:#413A01;font:normal bold 11px Verdana;height:auto;}
+</style>
+<div id="DIV_MENSAGEM_FLUTUANTE" style="width:700px;height:1;position:absolute;top:82px;z-index:800;filter:alpha(opacity=70); -moz-opacity:0.7;opacity:0.7">
+	
+
+
+</div>
+<script>
+		function econderMgsExibida() {
+			var obj = window.document.getElementById("DIV_MENSAGEM_FLUTUANTE");
+			obj.style.visibility = "hidden";
+		}
+</script>
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="delimitador" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr> 
+		<td class="secao">Agendamento</td>
+	</tr>
+</tbody></table>
+
+
+
+
+
+
+
+<input type="hidden" name="diasMes" value="">
+<input type="hidden" name="statusDiaSelecionado" value="">
+<input type="hidden" name="identificadorAgenda" value="">
+
+<table>
+	<tbody><tr><td style="width:10px"></td>
+	<td>
+	
+		</td></tr><tr>
+		<td class="titulo obrigatorio" colspan="2">Área<font color="red">&nbsp;*</font></td>
+	</tr>
+	<tr>
+		<td class="campo" colspan="2">
+			<select name="codigoArea" onchange="document.getElementById(&#39;recuperaRetagar&#39;).click();" class="texto" id="codigoArea"><option value="" selected="selected">[Selecione...]</option>
+				<option value="6">6 - RETAGUARDA                                        </option>
+<option value="7">7 - JURIDICO                                          </option>
+<option value="8">8 - COMUNICAÇÃO                                       </option></select>
+		</td>
+	</tr>
+	<input type="hidden" name="nomeColaborador" value="">
+	<input type="hidden" name="identificadorRetaguarda" value="">
+	
+	<tr>
+		<td class="titulo obrigatorio" width="80px">Retaguarda<font color="red">&nbsp;*</font></td>
+	</tr>
+	<tr>
+		<td class="campo" colspan="2">
+			<select name="numeroMatricula" onchange="document.getElementById(&#39;recuperaDadosRetagar&#39;).click();if(this.options[this.selectedIndex].text != &#39;[Selecione...]&#39;){document.forms[0].nomeColaborador.value=this.options[this.selectedIndex].text}else{document.forms[0].nomeColaborador.value = &#39;&#39;}" class="texto" id="numeroMatricula"><option value="" selected="selected">[Selecione...]</option></select>
+		</td>
+	</tr>
+	   <!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="titulo obrigatorio" colspan="2">Área</td>
+	</tr>
+	<tr>
+		<td class="campo" colspan="2">
+			<select name="codigoArea" onchange="desfazerPesquisaColaboradorF('numeroMatricula')" class="texto" id="codigoArea"><option value="" selected="selected">[Selecione...]</option>
+				<option value="6">6 - RETAGUARDA                                        </option>
+<option value="7">7 - JURIDICO                                          </option>
+<option value="8">8 - COMUNICAÇÃO                                       </option></select>
+		</td>
+	</tr>
+
+	<tr>
+        <td class="titulo">Matrícula</td>
+        <td class="titulo obrigatorio">Nome</td>
+    </tr>
+    <tr>
+        <td class="campo">
+            <input type="text" name="numeroMatricula" maxlength="10" size="13" value="" onkeydown="concatena(event,this,10)" onkeypress="return sonumero(event)" onblur="recuperarColaborador(this)" class="texto" id="numeroMatricula" title="Informe o Número de Matrícula">
+        </td>
+        <td class="campo">
+            <input type="text" name="nomeColaborador" maxlength="60" size="60" value="" readonly="readonly" class="texto_obrigatorio" id="nomeColaborador" title="Informe o Nome">
+            <input type="hidden" name="identificadorRetaguarda" value="">
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+function recuperarColaborador(campo) {
+
+	if (campo.value != '') {
+		ajustaZerosEsquerda(campo, 10);
+		if (document.getElementById('codigoArea').value != '') {
+			iniciaAjax(campo,'pesquisaColaborador', 'trataResultaAjaxPesquisaColaborador');
+		} else {
+			alert('Selecione uma área');
+		}
+	} else {
+		desfazerPesquisaColaboradorF(campo.name);
+	}
+
+
+}
+
+executarAjaxColaboradorArea = function(id) {
+	if (id == 'pesquisaColaborador'){
+		recuperaParametros('pesquisaColaborador',
+					          document.forms[0].action,
+                         'recuperaDadosColaborador',
+                         '&numeroMatricula='+ document.getElementById('numeroMatricula').value
+                         + '&codigoArea='+ document.getElementById('codigoArea').value );
+	}
+}
+
+adicionaFuncaoRecuperaParametros("executarAjaxColaboradorArea");
+
+function trataResultaAjaxPesquisaColaborador(resultado) {
+	var arr = resultado.split('#');
+	if (arr && arr[0]) {
+		var aux = arr[0].split(',');
+
+		if (aux && aux[0] && aux[1]) {
+			if (aux[0] == 'MSG') {
+				alert(aux[1]);
+				desfazerPesquisaColaboradorF('numeroMatricula');
+			} else {
+				document.getElementById('nomeColaborador').value = aux[0];
+				document.forms[0].identificadorRetaguarda.value = aux[1];
+			}
+		}
+
+		aposTrataResultaAjaxPesquisaColaborador(resultado);
+	}
+}
+
+aposTrataResultaAjaxPesquisaColaborador = function(resultado) { }
+
+desfazerPesquisaColaboradorF = function(nomeCampo) { 
+	if (nomeCampo == 'numeroMatricula'){
+		document.getElementById('numeroMatricula').value = '';
+		document.getElementById('nomeColaborador').value = '';
+		document.forms[0].identificadorRetaguarda.value = '';
+	}
+	
+	aposDesfazerPesquisaColaboradorF(nomeCampo);
+}
+
+adicionaFuncaoCampoDependente("desfazerPesquisaColaboradorF");
+
+
+aposDesfazerPesquisaColaboradorF = function(resultado) { }
+
+</script>  --> 
+		
+		</tbody></table><table border="0" cellspacing="0" cellpadding="0">
+			<tbody><tr>
+		        <td class="titulo obrigatorio">Mês / Ano<font color="red">&nbsp;*</font></td>
+		    </tr>
+		    <tr>
+		        <td class="campo">
+					<input type="text" name="dataMesAnoFormatado" maxlength="7" size="7" value="" onkeypress="return mascComp(this, event)" onblur="recuperarCalendario(this)" class="texto" id="dataMesAnoFormatado" title="Informe o mês de referência">
+		            <input type="hidden" name="diaSelecionado" value="">
+		        </td>
+		    </tr>
+		    <tr>
+		    	<td id="calendario"></td>
+		    </tr>
+		    <tr>
+		    	<td>
+					<table border="0">
+						<tbody><tr>
+							<td colspan="8" style="height:10px"></td>
+						</tr>
+						<tr>
+						  <td style="border: 1px solid #888; width: 24px;height: 24px;background-color: #E87171; display: block; margin-right: 5px;">&nbsp;</td>
+						  <td style="width:130px;">Bloqueado&nbsp;</td>
+						  <td style="border: 1px solid #888; width: 24px;height: 24px;background-color: #9FE28F; display: block; margin-right: 5px;">&nbsp;</td>
+						  <td style="width:130px;">Livre&nbsp;</td>
+						  <td style="border: 1px solid #888; width: 24px;height: 24px;background-color: #FFFC89; display: block; margin-right: 5px;">&nbsp;</td>
+						  <td style="width:130px;">Com Disponibilidade&nbsp;</td>
+						  <td style="border: 1px solid #888; width: 24px;height: 24px;background-color: #73BFFF; display: block; margin-right: 5px;">&nbsp;</td>
+						  <td style="width:130px;">Completo&nbsp;</td>
+						</tr>
+					</tbody></table>
+		    	</td>
+		    </tr>
+		</tbody></table>
+		<br><br><br>
+		<table>
+			<tbody><tr>
+				<td class="titulo">Data Atendimento</td>
+				<td class="campo"><input type="text" name="dataAgendamentoFormatado" maxlength="10" size="13" value="" readonly="readonly" class="texto" id="dataAgendamentoFormatado"></td>
+			</tr>
+		</tbody></table>
+		<input type="hidden" name="identificadorParametro" value="">
+		<table border="0">
+			<tbody><tr>
+				<td class="titulo" style="width:150px">Horário de Atendimento</td>
+				<td class="titulo">De:</td>
+				<td class="campo"><input type="text" name="horaInicioAgendamentoFormatado" maxlength="5" size="7" value="" readonly="readonly" class="texto" id="horaInicioAgendamentoFormatado"></td>
+				<td class="titulo"></td>
+				<td class="titulo">Intervalo</td>
+				<td class="titulo">De:</td>
+				<td class="campo"><input type="text" name="horaInicioIntervaloFormatado" maxlength="5" size="7" value="" readonly="readonly" class="texto" id="horaInicioIntervaloFormatado"></td>
+				<td class="titulo"></td>
+				<td class="titulo" style="width:230px">Tempo de duração do Atendimento</td>
+				<td class="campo"><input type="text" name="numeroDuracaoAtendimento" maxlength="5" size="7" value="" readonly="readonly" class="texto" id="numeroDuracaoAtendimento"></td>
+			</tr>
+			<tr>
+				<td class="titulo"></td>
+				<td class="titulo">Até:</td>
+				<td class="campo"><input type="text" name="horaFimAgendamentoFormatado" maxlength="5" size="7" value="" readonly="readonly" class="texto" id="horaFimAgendamentoFormatado"></td>
+				<td class="titulo" colspan="2"></td>
+				<td class="titulo">Até:</td>
+				<td class="campo"><input type="text" name="horaFimIntervaloFormatado" maxlength="5" size="7" value="" readonly="readonly" class="texto" id="horaFimIntervaloFormatado"></td>
+				<td class="titulo" colspan="3"></td>
+			</tr>
+		</tbody></table>
+		
+		
+
+
+<input type="submit" name="evento" value="eventoRecuperarCompromissos" style="visibility:hidden;width:0;height:0" id="botaoRecuperarCompromissos">
+
+<script type="text/javascript">
+
+var cores = new Array('#FF0000', '#FFFF00', '#63B8FF', '#FFFFFF');
+var status = new Array('BLOQUEADO', 'DISPONIVEL', 'COMPLETO', 'LIVRE');
+
+aposDesfazerPesquisaColaboradorF = function(nomeCampo) { 
+	if (nomeCampo == 'numeroMatricula'){
+		with (document.forms[0]) {
+			identificadorParametro.value = '';
+			horaInicioAgendamentoFormatado.value = '';
+			horaFimAgendamentoFormatado.value = '';
+			horaInicioIntervaloFormatado.value = '';
+			horaFimIntervaloFormatado.value = '';
+			numeroDuracaoAtendimento.value = '';
+		}
+	}
+
+}
+
+function recuperarCalendario(campo) {
+	var identificadorRetaguarda = document.forms[0].identificadorRetaguarda.value;
+	if (!validComp(campo)) {
+		desfazerAjaxF(campo.name);
+	} else if (identificadorRetaguarda == '') {
+		alert('Informe um Colaborador da Retaguarda');
+		campo.value = '';
+		desfazerAjaxF(campo.name);
+	} else {
+		iniciaAjax(campo,'montarCalendario','trataResultaAjaxMontagemCalendario');
+	}
+}
+
+function verificarDisponibilidade(dia) {
+
+	var obj = document.forms[0].diaSelecionado;
+	obj.value = dia;
+	iniciaAjax(obj,'avaliarData','trataResultaAjaxVerificarDisponibilidade');
+
+}
+
+function trataResultaAjaxVerificarDisponibilidade(resultado) {
+	var arr = resultado.split('#');
+	if (arr && arr[0]) {
+		var aux = arr[0].split(',');
+
+		if (aux && aux[0] && aux[1]) {
+			document.forms[0].statusDiaSelecionado.value = aux[0];
+			if (aux[0] == 'CPT') {
+				alert(aux[1]);
+				document.getElementById('dataAgendamentoFormatado').value = aux[2];
+				document.getElementById('botaoRecuperarCompromissos').click();
+			} else if (aux[0] == 'OK') {
+				document.getElementById('dataAgendamentoFormatado').value = aux[1];
+				document.getElementById('botaoRecuperarCompromissos').click();
+			} else if (aux[0] == 'BLQ') {
+				alert(aux[1]);
+			}
+		}
+	}
+}
+
+function validarHoraInicial(campo) {
+	iniciaAjax(campo, campo.id,'trataResultaAjaxValidacaoHora');
+}
+
+function trataResultaAjaxValidacaoHora(resultado) {
+	if (resultado.indexOf('SYSERRO') > -1) {
+		var oux = resultado.slipt('|');
+		alert(oux[1]);
+		document.forms[0].horaInicioFormatado.value = '';
+		document.forms[0].horaFinalFormatado.value = '';
+	} else {
+		var arr = resultado.split('#');
+		if (arr && arr[0]) {
+			var aux = arr[0].split(',');
+	
+			if (aux && aux[0]) {
+				if (aux[0] == 'ERR') {
+					alert(aux[1]);
+					document.forms[0].horaInicioFormatado.value = '';
+				} else if (aux[0] == 'CFM') {
+					if (confirm(aux[1])) {
+						document.forms[0].horaFinalFormatado.value = aux[2];
+					} else {
+						document.forms[0].horaInicioFormatado.value = '';
+						document.forms[0].horaFinalFormatado.value = '';
+					}
+				} else {
+					 document.forms[0].horaFinalFormatado.value = aux[0];
+				}
+			}
+		}
+	
+		document.forms[0].horaFinalFormatado.focus();
+	}
+
+}
+
+executarAjaxAgenda = function(id) {
+	if (id == 'montarCalendario'){
+		recuperaParametros('montarCalendario',
+					          document.forms[0].action,
+                         'eventoMontarCalendario',
+                         '&dataMesAnoFormatado='+ document.getElementById('dataMesAnoFormatado').value
+                         + '&identificadorRetaguarda=' + document.forms[0].identificadorRetaguarda.value);
+	} else if (id == 'avaliarData'){
+		recuperaParametros('avaliarData',
+					          document.forms[0].action,
+                         'eventoAvaliarData',
+                         '&dataMesAnoFormatado='+ document.getElementById('dataMesAnoFormatado').value
+                         + '&identificadorRetaguarda=' + document.forms[0].identificadorRetaguarda.value
+                         + '&diaSelecionado=' + document.forms[0].diaSelecionado.value);
+	} else if (id.indexOf('horaInic') > -1){
+		recuperaParametros('horaInicioFormatado',
+					          document.forms[0].action,
+                         'eventoValidaHoraInicial',
+                         '&identificadorRetaguarda=' + document.forms[0].identificadorRetaguarda.value
+                         + '&dataAgendamentoFormatado=' + document.forms[0].dataAgendamentoFormatado.value
+                         + '&horaInicioAgendamentoFormatado=' + document.forms[0].horaInicioAgendamentoFormatado.value
+                         + '&horaFimAgendamentoFormatado=' + document.forms[0].horaFimAgendamentoFormatado.value
+                         + '&horaInicioIntervaloFormatado=' + document.forms[0].horaInicioIntervaloFormatado.value
+                         + '&horaFimIntervaloFormatado=' + document.forms[0].horaFimIntervaloFormatado.value
+                         + '&numeroDuracaoAtendimento=' + document.forms[0].numeroDuracaoAtendimento.value
+                         + '&horaInicioFormatado=' + document.forms[0].horaInicioFormatado.value);
+	}
+}
+
+adicionaFuncaoRecuperaParametros("executarAjaxAgenda");
+
+function trataResultaAjaxMontagemCalendario(resultado) {
+	if (resultado.indexOf('SYSERRO') > -1) {
+		var erro = resultado.split('|');
+		alert('Erro inesperado:' + erro[1]);
+	} else {
+		document.forms[0].diasMes.value = resultado;
+		criarCalendario();
+	}
+
+}
+
+function trataResultaAjaxAvaliacaoData(resultado) {
+	var arr = resultado.split('#');
+	if (arr && arr[1]) {
+		var aux = arr[1].split(',');
+
+		if (aux && aux[0] && aux[1]) {
+			if (aux[0] == 'MSG') {
+				alert(aux[1]);
+				desfazerPesquisaColaboradorF('numeroMatricula');
+			} else {
+				with(document.forms[0]) {
+					identificadorParametro.value = aux[0];
+					horaInicioAgendamentoFormatado.value = aux[1];
+					horaFimAgendamentoFormatado.value = aux[2];
+					horaInicioIntervaloFormatado.value = aux[3];
+					horaFimIntervaloFormatado.value = aux[4];
+					numeroDuracaoAtendimento.value = aux[5];
+				}
+			}
+		}
+
+	}
+}
+desfazerAjaxF = function(nomeCampo) { 
+	if (nomeCampo == 'dataMesAnoFormatado') {
+		document.getElementById("calendario").innerHTML = '&nbsp;';
+		document.getElementById("dataAgendamentoFormatado").value = '';
+	} else if (nomeCampo == 'horaInicioFormatado') {
+		document.getElementById("horaFinalFormatado").value = '';
+	}
+}
+
+adicionaFuncaoCampoDependente("desfazerAjaxF");
+
+function criarCalendario() {
+var day_of_week = new Array('Dom','Seg','Ter','Qua','Qui','Sex','Sab');
+var month_of_year = new Array('Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
+
+var Calendar = new Date();
+
+var year = Calendar.getYear();       // Retorna o ano
+if(!validateBrowser()){
+	year=year+1900;
+}	
+var month = Calendar.getMonth();    // Retorna mes (0-11)
+var today = Calendar.getDate();     // Retorna dias (1-31)
+var weekday = Calendar.getDay();   // Retorna dias (1-31)
+
+var arr = document.getElementById("dataMesAnoFormatado").value.split("/");
+if (arr && arr[0] && arr[1]) {
+	year = arr[1];
+	month = parseFloat(arr[0]) - 1;
+}
+
+var DAYS_OF_WEEK = 7;    // "constant" para o numero de dias na semana
+var DAYS_OF_MONTH = 31;    // "constant" para o numero de dias no mes
+var cal;    // Usado para imprimir na tela
+
+Calendar.setDate(1);    // Comecar o calendario no dia '1'
+Calendar.setMonth(month);    // Comecar o calendario com o mes atual
+
+var TR_start = '<tr class="linha3">';
+var TR_end = '</tr>';
+var highlight_start = '<td WIDTH="30"><TABLE CELLSPACING=0 BORDER=1 BGCOLOR=DEDEFF BORDERCOLOR=CCCCCC><TR><TD WIDTH=20><B><CENTER>';
+var highlight_end   = '</CENTER></TD></TR></TABLE></B>';
+var TD_start = '<td class="linha3">';
+var TD_end = '</td>';
+
+cal =  '<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=0 BORDERCOLOR=BBBBBB><TR><TD>';
+cal += '<TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2>' + TR_start;
+cal += '<td colspan="' + DAYS_OF_WEEK + '" class="secao"><CENTER><B>';
+cal += month_of_year[month]  + '   ' + year + '</B>' + TD_end + TR_end;
+cal += TR_start;
+
+for(index=0; index < DAYS_OF_WEEK; index++)
+{
+
+if(weekday == index)
+cal += TD_start + '<B>' + day_of_week[index] + '</B>' + TD_end;
+else
+cal += TD_start + day_of_week[index] + TD_end;
+}
+
+cal += TD_end + TR_end;
+cal += TR_start;
+
+for(index=0; index < Calendar.getDay(); index++)
+cal += '<td class="linha3">' + ' &nbsp; ' + TD_end;
+
+for(index=0; index < DAYS_OF_MONTH; index++) {
+	if( Calendar.getDate() > index ) {
+  		week_day =Calendar.getDay();
+		if(week_day == 0){
+			  cal += TR_start;
+		}
+  		if(week_day != DAYS_OF_WEEK) {
+			  var dia  = Calendar.getDate();
+			  cal += '<td class="linha3" id="dia_'+dia+'" onclick="verificarDisponibilidade(' + dia + ')" style="cursor:pointer">' + dia + TD_end;
+		} 
+	    if(week_day == DAYS_OF_WEEK){
+		      cal += TR_end;
+	  	}
+    }
+    
+    Calendar.setDate(Calendar.getDate()+1);
+}
+
+for (var i = week_day + 1; i < DAYS_OF_WEEK; i++){
+	cal += '<td class="linha3">' + ' &nbsp; ' + TD_end;
+}
+
+cal += '</td></tr></table></table>';
+
+//  MOSTRAR CALENDARIO
+document.getElementById("calendario").innerHTML = cal;
+
+
+pintarCalendario();
+}
+
+function pintarCalendario() {
+	var arrAux;
+	var compl = '';
+	
+	var arr = document.forms[0].diasMes.value.split(';');
+
+	if (arr) {
+
+		for (j = 0; j < 4; j++) {
+			if (arr[j]) {
+				arr[j] = arr[j].replace(' ','');
+				arrAux = arr[j].split(',');
+	
+				for (i = 0; i < arrAux.length; i++) {
+					var obj = document.getElementById('dia_'+ arrAux[i]);
+					if (obj) {
+						obj.style.background = cores[j];
+					}
+				}
+			}
+		}
+	}
+}
+
+function validateBrowser() {
+	var IE = true;
+	if(window.ActiveXObject){
+		IE = true;
+	} else {
+		IE = false;
+	}
+ 
+	return IE;
+}
+
+if (document.getElementById("dataMesAnoFormatado").value != '') {
+	criarCalendario();
+}
+
+
+</script>
+
+
+<style>
+<!--
+td.linha3{
+	text-align: center;
+	vertical-align: middle;
+	padding: 1px;
+	width: 30px;
+	
+}
+-->
+</style>
+<script>
+function validahoras(valorHr, tipo){
+	var hora = valorHr.value;
+	if(hora.length == 2){
+			hora = hora + ":";
+	}	
+
+	if(tipo == 'hi'){
+		document.getElementById("horaInicioFormatado").value = hora;
+	}
+	if(tipo == "hf"){
+		document.getElementById("horaFinalFormatado").value = hora;
+	}	
+}
+function validaHora(valorHr, tipo){
+	var hora = valorHr.value;
+	var array = hora.split(":");
+
+	var h = new Number(array[0]);
+	var m = new Number(array[1]);
+
+	if(h > 24 || m > 60 || hora.length != 5){
+
+		if(tipo == 'hi'){
+			document.getElementById("horaInicioFormatado").value = "";
+		}
+		if(tipo == "hf"){
+			document.getElementById("horaFinalFormatado").value = "";
+		}
+	}	
+}
+</script>
+
+<input type="submit" name="evento" value="recuperaRetaguarda" style="visibility:hidden;width:0;height:0" id="recuperaRetagar">
+<input type="submit" name="evento" value="recuperaDadosRetagar" style="visibility:hidden;width:0;height:0" id="recuperaDadosRetagar">
+
+
+					</div>
+				
+			<script src="javascript/ConnectPrevMestra.js"></script>
+			</form>
+		</fmt:setbundle></fmt:setbundle></span>
+		<div style="clear:both">
+	
+		
+
+
+
+
+
+
+
+
+
+<div id="rodape">
+<div> &nbsp; </div>
+	
+	
+		<a style="cursor:hand;float:left" href="http://www.prevmestra.com.br/Mestra_Syscall/plc/desconectaPlc.do?evento=Desconectar" onclick="return executarEventoAplicacao(getBotaoArray(&#39;DESCONECTAR&#39;));">
+			<span id="botao_secao">
+				Desconectar
+			</span>
+		</a>
+	
+
+<span>
+	<span style="text-align:center;padding-left:37%;">
+			Seja bem-vindo,&nbsp;administrador.
+	</span>
+	<span style="text-align:right;padding-left:18%;">
+		v1.0.29/P - Copyright Mestra Informática e Tecnologia Ltda. 2010
+	</span>
+</span>
+		
+
+</div>
+
+<script>
+	regBotaoEvento('Desconectar','DESCONECTAR');
+	regEvento('Desconectar','MENSAGEM','');
+	regMensagem('Desconectar','CONFIRMACAO','Tem certeza que deseja desconectar?');
+</script>
+
+
+		
+		<script>
+			regBotaoEvento('Desconectar','DESCONECTAR');
+			regEvento('Desconectar','MENSAGEM','');
+			regMensagem('Desconectar','CONFIRMACAO','Tem certeza que deseja desconectar?');
+			
+			function redimensionaCorpo(){
+				telaHeight = $(window).height();
+				topoHeight = $('#localTesteira').height();
+				rodapeHeight = $('#rodape').height();
+				acoesHeight = $('#acoes').height();
+				
+				corpoHeight = telaHeight - topoHeight - rodapeHeight;
+				spanCorpoHeight = corpoHeight - acoesHeight;
+				
+				$('#tabelaMenu').css('height',corpoHeight + 'px');
+				$('#mainForm').css('height',corpoHeight + 'px');
+				$('#corpo').css('height',(spanCorpoHeight - 10) + 'px');
+			}
+			
+			function posicionaBotaoOculta(){
+				var heightMainForm = $('#mainForm').height();
+				var heightImagemBotao = $('.imagemBotao').height(); //136
+
+				$('.botaoOcultaMenu').css('top',((heightMainForm - 136) / 2) + 'px');
+				
+			}
+			
+			function redimensiona(){
+				redimensionaCorpo();
+				redimencionaTesteira();
+				posicionaBotaoOculta();
+			}
+			
+			
+			redimensionaCorpo();
+			posicionaBotaoOculta();
+			
+			$(window).resize(function(){
+				redimensiona()
+			});
+			
+			$(window).mousemove(function(){
+				//redimensiona()
+			});
+		</script>
+		
+		<!-- INÍCIO ANIMAÇÃO LOADING -->
+			
+				<div id="carregador_geral" style="display: none; visibility: hidden;"></div>
+					<div id="carregador_pai" style="display: none; visibility: hidden;">
+						<div id="carregador">
+						<div id="titulo_loading" align="center">Aguarde carregando ...</div>
+						<div id="carregador_fundo"><div id="barra_progresso"> </div></div>
+					</div>
+				</div>
+				<script>
+						iniciaEventos(document.forms[0]);
+				</script>
+				
+			
+		<!-- FIM ANIMAÇÃO LOADING //Felipe Reis -->
+	
+
+</div></body></html>
