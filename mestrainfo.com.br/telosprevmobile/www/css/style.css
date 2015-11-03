@@ -131,6 +131,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 .list.dadosInfo p {
 	font-size: 12px;
 	font-weight: 400;
+	white-space: normal;
 }
 .scroll-content {
 	background-color: #ececec;
@@ -431,7 +432,7 @@ h4.title_label {
 }
 .headerInfo .right-icon {
 	float: right;
-	margin-top: -2em;
+	margin-top: -37px;
 	margin-right: .6em;
 	color: #224450;
 }
