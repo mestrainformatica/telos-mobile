@@ -13,6 +13,14 @@
   ])
   .run(function($ionicPlatform, $state, $timeout) {
     
+    $ionicPlatform.onHardwareBackButton(function () {
+        if ($state.is('signin')) { // here to check whether the home page, if yes, exit the application
+          navigator.app.exitApp();
+        } else {
+          return;
+        }
+    })
+
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
