@@ -11,10 +11,10 @@
       <p>Preencha seus dados pessoais para entrar</p>
       <label class="item item-input">
        
-        <input type="tel" placeholder="CPF" ng-model="formData.cpf" mask="99999999999" mask-restrict='reject'>
+        <input type="tel" placeholder="CPF" class="cpfField" ng-change="cpfControl(this)" ng-model="formData.cpf" mask="99999999999" mask-restrict='reject'>
       </label>
       <label class="item item-input">
-        <input type="password" placeholder="Senha" mask="99999999999999999999" mask-restrict='reject' ng-model="formData.sen">
+        <input type="password" placeholder="Senha" mask="99999999999999999999" mask-restrict='reject' ng-model="formData.sen" id="passwordField">
       </label> 
  
       <!-- <input type="hidden" ng-model="formData.acao" ng-init="formData.acao = 'logar'"> -->

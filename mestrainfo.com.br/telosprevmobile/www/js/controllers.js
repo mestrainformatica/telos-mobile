@@ -158,7 +158,34 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
   $scope.formData = {};
   
-  
+  $scope.cpfControl = function(e){
+      if (e.formData.cpf.length == 11){
+         document.getElementById('passwordField').focus();
+      }
+  }
+  //   if ($scope.formData.cpf.length > 11){
+  //     // http://stackoverflow.com/questions/26080630/cant-trigger-focus-on-a-textbox-in-angular-and-ionic
+  //   }
+  // }
+
+  // var container = document.getElementsByClassName("cpfField")[0];
+  // container.onkeyup = function(e) {
+  //     var target = e.srcElement;
+  //     var maxLength = parseInt(target.attributes["maxlength"].value, 10);
+  //     var myLength = target.value.length;
+  //     if (myLength >= maxLength) {
+  //         var next = target;
+  //         while (next = next.nextElementSibling) {
+  //             if (next == null)
+  //                 break;
+  //             if (next.tagName.toLowerCase() == "input") {
+  //                 next.focus();
+  //                 break;
+  //             }
+  //         }
+  //     }
+  // }
+
   $scope.submit = function(){
     stageMap = {}
     logged = false;
