@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/jquery-ui.theme.css" type="text/css">
 <link rel="stylesheet" href="modernidade/css/custom.formulario.css"> 
 <link rel="stylesheet" href="modernidade/css/custom.bootstrap.fix.css"> 
-<link rel="stylesheet" href="modernidade/lib/jquery-ui/jquery-ui.min.css"> 
+<link rel="stylesheet" href="modernidade/lib/jquery-ui/jquery-ui.css"> 
 <link rel="stylesheet" href="modernidade/lib/chosen/chosen.min.css"> 
 
 
@@ -29,6 +29,7 @@
 <script src="javascript/DateMask.js" type="text/javascript"></script>
 <script src="javascript/jquery.qtip-1.0.0-rc3.min.js" type="text/javascript"></script>
 <script src="modernidade/lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="modernidade/lib/emodal/emodal.min.js" type="text/javascript"></script>
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
 
@@ -1389,6 +1390,84 @@ function janelaAjudaHtml() {
 		<input type="text" class="form-control" name="nomeParticipante" maxlength="60" value="" class="texto" title="Informe o Nome" >
 	</div>
 </div>
+
+
+
+
+
+<h3 class="secao">Exemplo de Modal</h3>
+
+<!-- Primeiro adiciona o HTML que vai chamar o modal -->
+<div class="row">
+
+	<div class="col-sm-6 form-group">
+		<label>Botão que vai chamar o modal&nbsp; <span class="text-warning">*</span></label>
+		<div class="col-sm-6">
+			<button type="button" class="btn btn-primary btn-lg col-sm-12" data-toggle="modal" data-target="#modal-da-mestra">
+			  Abrir modal 1
+		</button>
+		</div>
+		<div class="col-sm-6">
+			<button type="button" id="abrirIframe" class="btn btn-primary btn-lg col-sm-12" data-toggle="modal" data-target="#modal-iframe">
+			  Abrir modal com iframe
+		</button>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<!-- Depois adiciona o código referente ao conteúdo do modal -->
+
+<div class="modal fade" id="modal-da-mestra">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Título do Modal</h4>
+      </div>
+      <div class="modal-body">
+
+		<div class="row">
+			<div class="col-sm-12">Conteúdo do modal pode ser um texto como esse</div>
+      	</div>
+		<div class="row">
+			
+			<div class="col-sm-12 form-group">
+				<p>Ou um campo de formulário, como abaixo</p>
+			</div>
+			<div class="col-sm-12 form-group">
+				<label>Nome&nbsp; <span class="text-warning">*</span></label>
+				<input type="text" class="form-control" name="nomeParticipante" maxlength="60" value="" class="texto" title="Informe o Nome" >
+			</div>
+		</div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar alterações</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!-- Exemplo de modal com iFRAME -->
+
+<script type="text/javascript">
+
+$(function(){
+	$('#abrirIframe').on('click', function(){
+		eModal.iframe('http://www.mestrainfo.com.br', 'Título do iFrame');
+		// Documentação do eModal em https://github.com/saribe/eModal
+		// Também da pra fazer requisições ajax com eModal.ajax();
+	})
+});
+
+</script>
+
 
 
 
