@@ -163,7 +163,14 @@
 	</div>
 </div>
 
-	<table width="100%" border="0" bordercolor="#beccdf" style="border-width:0mm" cellpadding="0" cellspacing="0" height="100%">
+<div id="conteudo">
+	<div class="left-column" style="width:200px;">
+		<?php include("includes/menu.php"); ?>	
+	</div>
+	
+</div>
+
+	<table width="100%" border="" bordercolor="#beccdf" style="border-width:0mm;" cellpadding="0" cellspacing="0" height="100%">
 		<tbody>
 
 			<tr height="11%" bordercolor="#BECCDF" bgcolor="#879EBD">
@@ -174,7 +181,8 @@
 					<!-- @flag -->
 					<table onresize="redimencionaTesteira()" id="localTesteiraTable" bgcolor="#beccdf" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="z-index:500;">
 						<tbody><tr>
-							<td class="header-modernidade">
+							<!-- <td class="header-modernidade"> -->
+							<td>
 								 <embed onresize="redimencionaTesteira()" id="localTesteira" border="0" width="100%" height="101%" bgcolor="#beccdf" style="border-color: rgb(135, 158, 189); z-index: 1; height: 71.9186046511628px; background-color: rgb(135, 158, 189);" cellpadding="0" cellspacing="0" fullscreen="no" src="/Mestra_Previdenciario/plc/midia/testeira_previdenciario.swf" wmode="opaque"> <!-- @flag -->
 
 									
@@ -265,9 +273,6 @@
 			</tr>
 
 			<tr>
-
-
-				<?php include("includes/menu.php"); ?>
 
 
 

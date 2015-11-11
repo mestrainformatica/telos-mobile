@@ -1,5 +1,5 @@
 <!-- INICIO MENU -->
-  <td id="tabelaMenu" valign="top" class="layout_col_menu" style="padding-left:5px;background-image:url(&#39;/Mestra_Previdenciario/midia/fundoDegradeMenu.jpg&#39;);background-repeat:repeat-x" bgcolor="#e4ecf7">
+  <!-- <td id="tabelaMenu" valign="top" class="layout_col_menu" style="padding-left:5px;background-image:url(&#39;/Mestra_Previdenciario/midia/fundoDegradeMenu.jpg&#39;);background-repeat:repeat-x" bgcolor="#e4ecf7"> -->
 
                   
 
@@ -725,12 +725,13 @@
                         
     </ul></div>
     
-  </td>
+  <!-- </td> -->
   <!-- FIM MENU -->
-
+<table>
   <td id="botao1" style="top:50%;" align="left">
       <img src="midia/anteriorMenu.gif" onclick="javascript:menuFlex(&#39;aberto&#39;)" style="cursor:hand">
     </td>
     <td id="botao2" style="display:none;top:50%" align="left">
       <img src="midia/proximoMenu.gif" onclick="javascript:menuFlex(&#39;fechado&#39;)" style="cursor:hand">
     </td>
+</table>
