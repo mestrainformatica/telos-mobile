@@ -727,3 +727,10 @@
     
   </td>
   <!-- FIM MENU -->
+
+  <td id="botao1" style="top:50%;" align="left">
+      <img src="midia/anteriorMenu.gif" onclick="javascript:menuFlex(&#39;aberto&#39;)" style="cursor:hand">
+    </td>
+    <td id="botao2" style="display:none;top:50%" align="left">
+      <img src="midia/proximoMenu.gif" onclick="javascript:menuFlex(&#39;fechado&#39;)" style="cursor:hand">
+    </td>
