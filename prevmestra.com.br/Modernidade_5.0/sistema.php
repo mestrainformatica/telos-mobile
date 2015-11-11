@@ -149,6 +149,20 @@
 
 <body onload="iniciarPagina();" onkeydown="return executarAcaoFuncoes(event);" bgcolor="#ffffff" text="#000000" link="#023264" alink="#023264" vlink="#023264" topmargin="0" leftmargin="0">
 
+<div class="header-modernidade">
+	<div class="logo-div">
+		<img class="logo" src="modernidade/img/logo-provisoria.png">
+	</div>
+	<div class="inner">
+		<div class="navbar-left">
+			<h1>Módulo Contabilidade</h1>
+		</div>
+		<div class="navbar-right">
+			<p>Conectado como Luiz Cláudio. &nbsp; <a href="#">Desconectar <img src="modernidade/img/off.png"></a></p>
+		</div>
+	</div>
+</div>
+
 	<table width="100%" border="0" bordercolor="#beccdf" style="border-width:0mm" cellpadding="0" cellspacing="0" height="100%">
 		<tbody>
 
@@ -157,28 +171,18 @@
 
 
 					<!-- asdasd -->
-
+					<!-- @flag -->
 					<table onresize="redimencionaTesteira()" id="localTesteiraTable" bgcolor="#beccdf" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="z-index:500;">
 						<tbody><tr>
 							<td class="header-modernidade">
-								<!-- @flag --> <embed onresize="redimencionaTesteira()" id="localTesteira" border="0" width="100%" height="101%" bgcolor="#beccdf" style="border-color: rgb(135, 158, 189); z-index: 1; height: 71.9186046511628px; background-color: rgb(135, 158, 189);" cellpadding="0" cellspacing="0" fullscreen="no" src="/Mestra_Previdenciario/plc/midia/testeira_previdenciario.swf" wmode="opaque"> <!-- @flag -->
+								 <embed onresize="redimencionaTesteira()" id="localTesteira" border="0" width="100%" height="101%" bgcolor="#beccdf" style="border-color: rgb(135, 158, 189); z-index: 1; height: 71.9186046511628px; background-color: rgb(135, 158, 189);" cellpadding="0" cellspacing="0" fullscreen="no" src="/Mestra_Previdenciario/plc/midia/testeira_previdenciario.swf" wmode="opaque"> <!-- @flag -->
 
-									<div class="logo-div">
-										<img class="logo" src="modernidade/img/logo-provisoria.png">
-									</div>
-									<div class="inner">
-										<div class="navbar-left">
-											<h1>Módulo Contabilidade</h1>
-										</div>
-										<div class="navbar-right">
-											<p>Conectado como Luiz Cláudio. &nbsp; <a href="#">Desconectar <img src="modernidade/img/off.png"></a></p>
-										</div>
-									</div>
+									
 								</td>
 							</tr>
 						</tbody>
 					</table>		
-
+					<!-- /@flag -->
 					<script>
 
 						function 	Mestra() { 
