@@ -168,7 +168,7 @@
 		<?php include("includes/menu.php"); ?>	
 	</div>
 
-	<div id="main-content" role="main">
+	<div id="main-content" class="container" role="main">
 		<?php include("includes/conteudo.php"); ?>
 	</div>
 </div>

@@ -37,6 +37,11 @@
   }
   body {
     line-height: 1;
+
+    background: #fff; /* Old browsers */
+    background: -moz-linear-gradient(left, #f0f0f0 0, #f0f0f0 248px, #ffffff 248px, #ffffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #f0f0f0 0,#f0f0f0 248px,#ffffff 248px,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #f0f0f0 0,#f0f0f0 248px,#ffffff 248px,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   }
   ol, ul {
     list-style: none;
@@ -609,8 +614,9 @@
 }
 
 #main-content {
-  width: 100%;
+  width: 100% !important;
   float: right;
+  background: #fff;
 }
 
 
