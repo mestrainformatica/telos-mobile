@@ -178,7 +178,7 @@
 	<p class="right">v1.1.177/P - Copyright Mestra Informática e Tecnologia Ltda. 2010</p>
 </div>
 
-	<table width="100%" border="" bordercolor="#beccdf" style="border-width:0mm;" cellpadding="0" cellspacing="0" height="100%">
+	<table id="tabela-antiga" width="100%" border="" bordercolor="#beccdf" style="border-width:0mm;" cellpadding="0" cellspacing="0" height="100%">
 		<tbody>
 
 			<tr height="11%" bordercolor="#BECCDF" bgcolor="#879EBD">

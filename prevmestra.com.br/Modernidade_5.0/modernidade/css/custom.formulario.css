@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+ http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
    */
@@ -584,16 +584,21 @@
 
 /* = Rodape
 ========================= */
+#conteudo {
+  padding-left: 266px;
+}
+
 #left-column {
-  position: absolute;
-  left: 0;
-  height: 100px;
-  padding-bottom: 40px;
+  background: #F0F0F0;
+  float: left;
+  height: auto;
   width: 246px;
+  margin-left: -266px;
 }
 
 #main-content {
-  padding-left:266px;
+  width: 100%;
+  float: right;
 }
 
 
@@ -606,6 +611,7 @@
   padding: 20px;
   border: none !important;
   overflow: hidden;
+  clear: both;
 }
 
 #rodape p {
@@ -620,6 +626,9 @@
 #rodape .right {
   float: right;
 }
+
+/*  Fix tabela temporária  */
+#tabela-antiga {display: none;}
 
 /*@media (min-width: 1398px)
 {
@@ -655,4 +664,4 @@
     {
         margin-top: 25px;
     }
-}*/
+}
