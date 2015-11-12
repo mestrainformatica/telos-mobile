@@ -727,11 +727,11 @@
     
   <!-- </td> -->
   <!-- FIM MENU -->
-<table>
-  <td id="botao1" style="top:50%;" align="left">
-      <img src="midia/anteriorMenu.gif" onclick="javascript:menuFlex(&#39;aberto&#39;)" style="cursor:hand">
-    </td>
-    <td id="botao2" style="display:none;top:50%" align="left">
-      <img src="midia/proximoMenu.gif" onclick="javascript:menuFlex(&#39;fechado&#39;)" style="cursor:hand">
-    </td>
-</table>
+<!-- 
+@flag - Qual é a funcionalidade desse botao?
+<div id="botao1">
+  <img src="midia/anteriorMenu.gif" onclick="javascript:menuFlex(&#39;aberto&#39;)" style="cursor:hand">
+</div>
+<div id="botao2" style="display:none;">
+  <img src="midia/proximoMenu.gif" onclick="javascript:menuFlex(&#39;fechado&#39;)" style="cursor:hand">
+</div> -->
