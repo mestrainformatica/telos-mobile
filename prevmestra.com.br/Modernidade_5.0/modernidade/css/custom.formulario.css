@@ -1,4 +1,11 @@
- http://meyerweb.com/eric/tools/css/reset/ 
+/*
+  = Header
+  = Conteudo
+  = Rodape
+*/
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
    */
@@ -133,6 +140,10 @@
   /* Fim das correcoes */
 
 
+
+/* = Header
+========================= */
+
   body .header-modernidade .logo-div
   {
     background-color: #2A5894;
@@ -156,6 +167,7 @@
   body .header-modernidade .navbar-right
   {
     float: right;
+    margin-right: 0 !important;
   }
 
   body .header-modernidade .inner h1
@@ -582,7 +594,7 @@
   }
 
 
-/* = Rodape
+/* = Conteudo
 ========================= */
 #conteudo {
   padding-left: 266px;
