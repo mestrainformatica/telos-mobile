@@ -124,9 +124,13 @@
     border: solid 1px #d0d0d0;
     margin-right: 1em;
   }
-  body table td {
+  body table td,
+  body table th {
     text-align: left;
     font-size: 13px;
+  }
+  body table th {
+    font-weight: bold;
   }
   body tr.linhapar {
     background: #f0f0f0;

@@ -382,4 +382,147 @@
 
       <br>
 
-    </form>
+  <h3 class="secao">Tabelas</h3>
+
+  <p>Tabela com borda <code>.table</code></p>
+  <br>
+  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/table&gt;</span></code></pre></div>
+  <br>
+  <table class="table" border="0" cellspacing="0" cellpadding="0" width="100%" style=""> 
+    <thead>
+      <tr>
+        <th>Situação</th>  
+        <th>Nota</th>  
+        <th>Avaliação</th>  
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ótimo</td>
+        <td>4</td>
+        <td>Em conformidade - Atende Plenamente</td>
+      </tr>
+      
+      <tr>
+        <td>Bom</td>
+        <td>3</td>
+        <td>Possui pequenos problemas que não influenciam na qualidade e na sua aplicabilidade - Atende com restrinção</td>
+      </tr>
+      
+      <tr>
+        <td>Regular</td>
+        <td>2</td>
+        <td>Situação intermediária que não atende aos interesses da Mestra - Não atende</td>
+      </tr>
+      
+      <tr>
+        <td>Ruim</td>
+        <td>1</td>
+        <td>Apresenta não - conformidade - Não atende</td>
+      </tr>
+      
+      <tr>
+        <td>Péssimo</td>
+        <td>0</td>
+        <td>Apresenta não - conformidades séries - Não atende</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Tabela com borda <code>.table .table-bordered</code></p>
+  <br>
+  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-bordered"</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/table&gt;</span></code></pre></div>
+  <br>
+  <table class="table table-bordered"> 
+    <thead>
+      <tr>
+        <th>Situação</th>  
+        <th>Nota</th>  
+        <th>Avaliação</th>  
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ótimo</td>
+        <td>4</td>
+        <td>Em conformidade - Atende Plenamente</td>
+      </tr>
+      
+      <tr>
+        <td>Bom</td>
+        <td>3</td>
+        <td>Possui pequenos problemas que não influenciam na qualidade e na sua aplicabilidade - Atende com restrinção</td>
+      </tr>
+      
+      <tr>
+        <td>Regular</td>
+        <td>2</td>
+        <td>Situação intermediária que não atende aos interesses da Mestra - Não atende</td>
+      </tr>
+      
+      <tr>
+        <td>Ruim</td>
+        <td>1</td>
+        <td>Apresenta não - conformidade - Não atende</td>
+      </tr>
+      
+      <tr>
+        <td>Péssimo</td>
+        <td>0</td>
+        <td>Apresenta não - conformidades séries - Não atende</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Tabela com borda <code>.table .table-striped</code></p>
+  <br>
+  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-striped"</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/table&gt;</span></code></pre></div>
+  <br>
+  <table class="table table-striped" border="0" cellspacing="0" cellpadding="0" width="100%" style="">
+    <thead>
+      <tr>
+        <th>Situação</th>  
+        <th>Nota</th>  
+        <th>Avaliação</th>  
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ótimo</td>
+        <td>4</td>
+        <td>Em conformidade - Atende Plenamente</td>
+      </tr>
+      
+      <tr>
+        <td>Bom</td>
+        <td>3</td>
+        <td>Possui pequenos problemas que não influenciam na qualidade e na sua aplicabilidade - Atende com restrinção</td>
+      </tr>
+      
+      <tr>
+        <td>Regular</td>
+        <td>2</td>
+        <td>Situação intermediária que não atende aos interesses da Mestra - Não atende</td>
+      </tr>
+      
+      <tr>
+        <td>Ruim</td>
+        <td>1</td>
+        <td>Apresenta não - conformidade - Não atende</td>
+      </tr>
+      
+      <tr>
+        <td>Péssimo</td>
+        <td>0</td>
+        <td>Apresenta não - conformidades séries - Não atende</td>
+      </tr>
+    </tbody>
+  </table>
+
+</form>
