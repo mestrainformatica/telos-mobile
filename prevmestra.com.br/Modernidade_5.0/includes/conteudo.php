@@ -194,7 +194,32 @@
 
 <input type="hidden" name="idParticipante" value="">
 
+
+<h3 class="secao">Exemplos de Grid</h3>
+<p>O grid possui 12 colunas e o tamanho de cada coluna é definido através da classe <code>.col-sm-*</code>, onde * é o número de colunas.</p>
+<pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="row"&gt;
+  &lt;div class="col-sm-8"&gt;...&lt;/div&gt;
+  &lt;div class="col-sm-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="row show-grid">
+  <div class="col-sm-8"><p>.col-sm-8</p></div>
+  <div class="col-sm-4"><p>.col-sm-4</p></div>
+</div>
+<div class="row show-grid">
+  <div class="col-sm-3"><p>.col-sm-3</p></div>
+  <div class="col-sm-4"><p>.col-sm-4</p></div>
+  <div class="col-sm-5"><p>.col-sm-5</p></div>
+</div>
+<div class="row show-grid">
+  <div class="col-sm-6"><p>.col-sm-6</p></div>
+  <div class="col-sm-6"><p>.col-sm-6</p></div>
+</div>
+
+
 <h3 class="secao">Funcionários</h3>
+
 
 <div class="row">
   <div class="col-sm-6 form-group">
@@ -243,12 +268,10 @@
 </div>
 
 
-
-
-
 <h3 class="secao">Exemplo de Modal</h3>
+<p>Primeiro adicione o HTML que vai chamar o modal</p>
+<p>O link do botão que vai chamar o modal precisa</p>
 
-<!-- Primeiro adiciona o HTML que vai chamar o modal -->
 <div class="row">
 
   <div class="col-sm-6 form-group">
@@ -266,7 +289,7 @@
   </div>
 </div>
 
-<!-- Depois adiciona o código referente ao conteúdo do modal -->
+<p>Depois adiciona o código referente ao conteúdo do modal utilize a classe <code>.modal</code></p>
 
 <div class="modal fade" id="modal-da-mestra">
   <div class="modal-dialog">
@@ -317,11 +340,11 @@
 
 </script>
 
-
-
-<h3 class="secao">Dados Pessoais</h3>
-
-
+<h3 class="secao">Campos que utilizam datas</h3>
+<p>Para criar campos de data, utilize a classe <code>.datepicker</code></p>
+<br>
+<pre><code class="language-html" data-lang="html">&lt;input class="form-control datepicker" type="text" name="..."  value="..." title="..."></code></pre>
+</br>
 <div class="row">
   <div class="col-sm-2 form-group">
     <label>Nascimento <span class="text-warning">*</span></label>
@@ -339,7 +362,6 @@
       <option value="F">F - Feminino</option>
       <option value="M">M - Masculino</option></select>
     </div>
-
 
     <div class="col-sm-2 form-group">
       <label>Estado Civil <span class="text-warning">*</span></label>

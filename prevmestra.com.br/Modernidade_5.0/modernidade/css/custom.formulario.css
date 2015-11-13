@@ -657,8 +657,18 @@
   float: right;
 }
 
+
+/* = Exemplos
+========================= */
+.show-grid {margin-bottom: 20px;}
+.show-grid p {background: #f0f0f0; padding: 10px;}
+.pre-exemplo {margin: 15px 0;}
+
 /*  Fix tabela temporária  */
 #tabela-antiga {display: none;}
+
+
+
 
 /*@media (min-width: 1398px)
 {
