@@ -557,4 +557,120 @@
     </div>
   </fieldset>
 
+  <h3 class="secao">Componente</h3>
+  <span id="componenteVisual" style="margin-right: 20px">
+
+    <script>
+      var ancora  = "";
+      var pos     = -1;
+    </script>
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="">
+
+      <tbody><tr>
+        <td class="col_hierarq">
+          <!-- Botao de + - -->
+
+          <script>
+            ancora  = "";
+            if(ancora != ""){
+              setTimeout("setAncora('#"+ancora+"')", 10);
+            } 
+          </script>
+
+          <input type="submit" name="evento" tabindex="30000" value="-" onclick="setValorCampo('detCorrPlc','pIdPlc=itensPlc&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#itensPlc');" class="botao_menos">
+
+          <script>regBotaoEvento('-','PORTLET_RETRAI');</script>
+          <script>regBotaoEvento('+','PORTLET_EXPANDE');</script>
+
+
+          <!-- Fim botao + - -->
+        </td>
+
+        <script>
+          var idPortlet   = "itensPlc";
+          var campoFoco   = "";
+          if(ancora != "" && ancora == idPortlet){
+            setVarGlobal("idPortlet", idPortlet);
+
+          }
+        </script>
+        <td>
+          <!-- Barra de funções do navegador -->
+
+
+          <table class="componenteRetratil" width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tbody><tr>
+              <td class="secao">
+                <!-- Título - Sempre Aparece -->
+
+                Usuário Centro Custo&nbsp;
+
+
+
+                <!-- Fim titulo -->
+              </td>
+              <!-- Função ... -->
+              <!-- Controles do topo -->
+
+              <td class="secao">
+                <input type="button" name="evento" value="Novo" onclick="setValorCampo('detCorrPlc','itensPlc');plcAjax.ajaxEscondeBarraProgresso();plcAjax.ajaxSubmit('POST',getBotaoArray('INCLUIR_DET'));" onmouseover="try{animar(event , '2')}catch(e){}" onmouseout="try{animar(event, '')}catch(e){}" id="botao_secao" style="text-align:center;background-image: 'url(/Mestra_Compras/plc/midia/mestra/evt_incluir_det.gif)'; background-position: 'left center'; background-repeat: 'no-repeat'; padding-left: '8px';">
+                <script>regBotaoEvento('Novo','INCLUIR_DET');</script>
+              </td>
+
+              <!-- Fim Controles do topo -->
+            </tr>
+          </tbody></table>
+
+
+        </td>
+      </tr>
+    </tbody></table>
+
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="">
+      <tbody><tr>
+        <td class="col_hierarq">&nbsp;</td>
+        <td>
+          <table class="conteudoComponenteRetratil" width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+              <td>
+                <div class="col-sm-6 form-group">
+                  <label for="">Centro Custo</label>
+                  <select name="itensPlc[0].identificadorCentroCusto" class="texto form-control"><option value="">[Selecione...]</option>
+                      <option value="43">MESTRA</option>
+                      <option value="45">CD - CONSELHO DELIBERATIVO</option>
+                      <option value="46">ACD - ASS. DO CONSELHO DELIBERATIVO</option>
+                      <option value="48">CF - CONSELHO FISCAL</option>
+                      <option value="53">AJU - ASSESSORIA JURIDICA          </option>
+                      <option value="55">PR - PRESIDENCIA</option>
+                      <option value="58">GAP - ADM. E GESTÃO DE PESSOAS</option>
+                      <option value="61">DA - DIRETORIA DE ASSISTENCIA</option>
+                      <option value="62">DA - DIRETORIA DE ASSISTENCIA</option>
+                      <option value="67">DF - DIRETORIA FINANCEIRA</option>
+                      <option value="68">GIN - GERENCIA DE INVESTIMENTOS</option>
+                      <option value="79">GCT - GERÊNCIA DE CONTROL. TECNOL.</option>
+                      <option value="80">GSS - GERÊNCIA DE SEG. SUPLETIVA</option>
+                      <option value="81">GEF - GERÊNCIA FINANCEIRA</option>
+                      <option value="82">DIRETORIA DE BENEFICIOS</option>
+                      <option value="83">DIRETORIA FINANCEIRA</option>
+                      <option value="84">ASSESSORIA DO CONSELHO DELIBERATIVO</option>
+                      <option value="85">ASSESSORIA JURIDICA</option>
+                      <option value="86">GERENCIA CONTR  INT, COMUNIC E TI</option>
+                      <option value="87">GERENCIA DE SEGURIDADE SUPLETIVA</option>
+                      <option value="88">GERENCIA DE ADM E GESTAO DE PESSOAL</option>
+                      <option value="89">GERENCIA DE INVESTIMENTOS</option>
+                      <option value="90">GERENCIA FINANCEIRA</option>
+                      <option value="91">ARL - ASSESSORIA DE RELACIONAMENTO</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+            </tbody></table>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </span>
+
 </form>
