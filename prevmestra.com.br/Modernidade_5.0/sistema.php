@@ -10,8 +10,8 @@
 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,600,700' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" href="modernidade/lib/bootstrap/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/PlcGeral.css" type="text/css">
-<link rel="stylesheet" href="css/PlcPele.css" type="text/css">
+<!-- <link rel="stylesheet" href="css/PlcGeral.css" type="text/css">
+<link rel="stylesheet" href="css/PlcPele.css" type="text/css"> -->
 <link rel="stylesheet" href="css/jquery-ui.structure.css" type="text/css">
 <link rel="stylesheet" href="css/jquery-ui.theme.css" type="text/css">
 <link rel="stylesheet" href="modernidade/css/custom.formulario.css"> 
@@ -50,7 +50,7 @@
 <title>:: Sysprev Web ::
 
 </title>	
-<link rel="stylesheet" href="css/PlcPele.css" type="text/css">
+<!-- <link rel="stylesheet" href="css/PlcPele.css" type="text/css"> -->
 <link rel="stylesheet" href="css/loading.css" type="text/css">
 <script src="javascript/menuExpandable.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="css/global.css">  
