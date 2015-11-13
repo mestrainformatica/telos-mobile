@@ -270,27 +270,60 @@
 
 <h3 class="secao">Exemplo de Modal</h3>
 <p>Primeiro adicione o HTML que vai chamar o modal</p>
-<p>O link do botão que vai chamar o modal precisa</p>
+<p>O botão que chama o modal precisa usar o atributo <code>data-toggle="modal"</code> e <code>data-target="#conteudo-do-modal"</code>.</p>
+<pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;button type="button" class="btn" data-toggle="modal" data-target="#conteudo-do-modal"&gt;Abrir modal&lt;/button&gt;</code></pre>
+<p>O conteúdo do modal precisa seguir a estrutura abaixo, com o <code>id="conteudo-do-modal"</code> utilizado no botão.</p>
 
+<pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="modal fade" id="conteudo-do-modal"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;
+        &lt;h4 class="modal-title"&gt;Título do Modal&lt;/h4&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+
+        &lt;div class="row"&gt;
+          &lt;div class="col-sm-12"&gt;Conteúdo do modal pode ser um texto como esse&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="row"&gt;
+
+          &lt;div class="col-sm-12 form-group"&gt;
+            &lt;p&gt;Ou um campo de formulário, como abaixo&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class="col-sm-12 form-group"&gt;
+            &lt;label&gt;Nome&nbsp; &lt;span class="text-warning"&gt;*&lt;/span&gt;&lt;/label&gt;
+            &lt;input type="text" class="form-control" name="nomeParticipante" maxlength="60" value="" class="texto" title="Informe o Nome" &gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Fechar&lt;/button&gt;
+        &lt;button type="button" class="btn btn-primary"&gt;Salvar alterações&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Exemplos:</p>
+<br>
 <div class="row">
-
-  <div class="col-sm-6 form-group">
-    <label>Botão que vai chamar o modal&nbsp; <span class="text-warning">*</span></label>
-    <div class="col-sm-6">
-      <button type="button" class="btn btn-primary btn-lg col-sm-12" data-toggle="modal" data-target="#modal-da-mestra">
-        Abrir modal 1
-      </button>
-    </div>
-    <div class="col-sm-6">
-      <button type="button" id="abrirIframe" class="btn btn-primary btn-lg col-sm-12" data-toggle="modal" data-target="#modal-iframe">
-        Abrir modal com iframe
-      </button>
-    </div>
+  <div class="col-sm-6">
+    <button type="button" class="btn btn-primary btn-lg col-sm-12" data-toggle="modal" data-target="#modal-da-mestra">
+      Abrir modal 1
+    </button>
+  </div>
+  <div class="col-sm-6">
+    <button type="button" id="abrirIframe" class="btn btn-primary btn-lg col-sm-12" data-toggle="modal" data-target="#modal-iframe">
+      Abrir modal com iframe
+    </button>
   </div>
 </div>
 
-<p>Depois adiciona o código referente ao conteúdo do modal utilize a classe <code>.modal</code></p>
-
+<!-- Codigo de exemplo do modal -->
 <div class="modal fade" id="modal-da-mestra">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -339,6 +372,10 @@
   });
 
 </script>
+<br>
+<p>Documentação e mais exemplos do modal: <a href="http://saribe.github.io/eModal/#demo" target="_blank">http://saribe.github.io/eModal/#demo</a></p>
+
+<hr>
 
 <h3 class="secao">Campos que utilizam datas</h3>
 <p>Para criar campos de data, utilize a classe <code>.datepicker</code></p>
