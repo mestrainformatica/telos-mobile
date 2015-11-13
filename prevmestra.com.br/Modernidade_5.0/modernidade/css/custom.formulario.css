@@ -117,6 +117,13 @@
     border: solid 1px #e0e0e0;
     padding: 1em;
   }
+
+  body legend.form-fieldset {
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+  }
+
   table.calendarioStyle td {
     border: solid 1px #d0d0d0;
   }

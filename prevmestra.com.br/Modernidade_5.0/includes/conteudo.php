@@ -387,8 +387,8 @@
   <p>Tabela com borda <code>.table</code></p>
   <br>
   <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
-    ...
-  <span class="nt">&lt;/table&gt;</span></code></pre></div>
+  ...
+<span class="nt">&lt;/table&gt;</span></code></pre></div>
   <br>
   <table class="table" border="0" cellspacing="0" cellpadding="0" width="100%" style=""> 
     <thead>
@@ -480,9 +480,11 @@
 
   <p>Tabela com borda <code>.table .table-striped</code></p>
   <br>
-  <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-striped"</span><span class="nt">&gt;</span>
-    ...
-  <span class="nt">&lt;/table&gt;</span></code></pre></div>
+  <div class="highlight">
+    <pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-striped"</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/table&gt;</span></code></pre>
+  </div>
   <br>
   <table class="table table-striped" border="0" cellspacing="0" cellpadding="0" width="100%" style="">
     <thead>
@@ -524,5 +526,35 @@
       </tr>
     </tbody>
   </table>
+
+  <h3 class="secao">Fieldsets</h3>
+  <p>Utilize a classe <code>.form-fieldset</code> tanto na tag <code>&lt;fieldset&gt;</code> quanto na <code>&lt;legend&gt;</code></p>
+  <br>
+  <pre><code class="language-html" data-lang="html">
+    &lt;fieldset class="form-fieldset"&gt;
+      &lt;legend class="form-fieldset">Fieldset 1&lt;/legend&gt;
+      ...
+    &lt;/fieldset&gt;
+  </code></pre>
+  <p></p>
+  <br>
+  <fieldset class="form-fieldset">
+    <legend class="form-fieldset">Fieldset Maior</legend>
+
+    <div class="row">
+      <div class="col-md-8">
+        <fieldset class="form-fieldset">
+          <legend class="form-fieldset">Fieldset 1</legend>
+          
+        </fieldset>
+      </div>
+      <div class="col-md-4">
+        <fieldset class="form-fieldset">
+          <legend class="form-fieldset">Fieldset 2</legend>
+          
+        </fieldset>
+      </div>
+    </div>
+  </fieldset>
 
 </form>
