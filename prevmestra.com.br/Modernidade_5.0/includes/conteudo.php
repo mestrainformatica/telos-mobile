@@ -616,8 +616,8 @@
     </div>
   </fieldset>
 
-  <h3 class="secao">Componente</h3>
-  <span id="componenteVisual" style="margin-right: 20px">
+  <h3 class="secao">Componente retrátil</h3>
+  <div id="componenteVisual" class="form-group" style="margin-right: 20px">
 
     <script>
       var ancora  = "";
@@ -730,6 +730,29 @@
         </tr>
       </tbody>
     </table>
-  </span>
+  </div>
 
+  <h3 class="secao">Campos desabilitados ou de apenas leitura</h3>
+  <p>Para usar campos que os usuário não possam editar, utilize o atributo <code>disabled="disabled"</code>.</p>
+  <p>Funciona também com os campos de datepicker.</p>
+  <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;input class="form-control datepicker" type="text" name="..."  value="..." <strong>disabled="disabled"</strong>></code></pre>
+
+  <div class="row form-group">
+    <div class="col-sm-4">
+      <label for="">Input</label>
+      <input type="text" class="form-control col-sm-10" name="" value="" disabled="disabled">
+    </div>
+    <div class="col-sm-4">
+      <label for="">Select</label>
+      <select class="form-control chosen" name="codigoFundo" disabled="disabled" onchange="disparaAcaoBotao(&#39;botaoComboPatrocinadoraPlanoID&#39;)" class="texto" title="Escolha o Fundo"><option value="">[Selecione...]</option>
+        <option value="001" selected="selected">001 - MESTRA - FUNDAÇÃO DE PREVIDÊNCIA COMPLEMENTAR</option>
+        <option value="002">002 - MESTRA - CAIXA DE ASSISTÊNCIA</option>
+      </select>
+    </div>
+    <div class="col-sm-4">
+      <label for="">Datepicker</label>
+      <input class="form-control datepicker" type="text" disabled="disabled">
+    </div>
+    
+  </div>
 </form>
