@@ -662,6 +662,26 @@
 .show-grid p {background: #f0f0f0; padding: 10px;}
 .pre-exemplo {margin: 15px 0;}
 
+
+
+/* = Módulo retrátil
+========================= */
+body .botao_menos, body .botao_mais {
+  font-size: 14px;
+  font-weight: bold;
+  height: 20px;
+  width: 20px;
+  color: #000;
+  text-align: center;
+  padding: 0;
+  margin-left: -11px;
+  margin-top: -4px;
+}
+.componenteRetratil .componente-titulo {padding: 10px;}
+.componenteRetratil .controles-right {text-align: right;}
+
+
+
 /*  Fix tabela temporária  */
 #tabela-antiga {display: none;}
 
