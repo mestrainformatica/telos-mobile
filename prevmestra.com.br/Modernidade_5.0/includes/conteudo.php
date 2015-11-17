@@ -704,6 +704,17 @@
     </div>
   </div>
 
+  <h3 class="secao">Alertas</h3>
+  <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="alert alert-success" role="alert"&gt;Sucesso&lt;/div&gt;
+  &lt;div class="alert alert-info" role="alert"&gt;Informativo&lt;/div&gt;
+  &lt;div class="alert alert-warning" role="alert"&gt;Aviso&lt;/div&gt;
+  &lt;div class="alert alert-danger" role="alert"&gt;Erro&lt;/div&gt;
+  </code></pre>
+  <div class="alert alert-success" role="alert">Sucesso</div>
+  <div class="alert alert-info" role="alert">Informativo</div>
+  <div class="alert alert-warning" role="alert">Aviso</div>
+  <div class="alert alert-danger" role="alert">Erro</div>
+
   <h3 class="secao">Campos desabilitados ou de apenas leitura</h3>
   <p>Para usar campos que os usuário não possam editar, utilize o atributo <code>disabled="disabled"</code>.</p>
   <p>Funciona também com os campos de datepicker.</p>
