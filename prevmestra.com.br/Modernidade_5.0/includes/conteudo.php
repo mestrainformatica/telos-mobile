@@ -443,7 +443,7 @@
 
   <h3 class="secao">Tabelas</h3>
 
-  <p>Tabela com borda <code>.table</code></p>
+  <p>Tabela sem borda <code>.table</code></p>
   <br>
   <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table"</span><span class="nt">&gt;</span>
   ...
