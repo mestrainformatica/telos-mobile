@@ -595,7 +595,6 @@
       ...
     &lt;/fieldset&gt;
   </code></pre>
-  <p></p>
   <br>
   <fieldset class="form-fieldset">
     <legend class="form-fieldset">Fieldset Maior</legend>
@@ -617,6 +616,13 @@
   </fieldset>
 
   <h3 class="secao">Componente retrátil</h3>
+  <p>O componente retrátil deve utilizar o <a href="http://getbootstrap.com/components/#panels" target="_blank">componente panel</a> do Bootstrap com a insersão de algumas classes.</p>
+  <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="panel panel-default <strong>componenteRetratil form-group</strong>"&gt;
+  &lt;div class="panel-heading <strong>componente-titulo</strong>"&gt;Título simples do painel&lt;/div&gt;
+  &lt;div class="panel-body <strong>conteudoComponenteRetratil</strong>"&gt;
+    Conteúdo do painel
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
   <div id="componenteVisual" class="form-group panel panel-default componenteRetratil">
 
     <div class="panel-heading componente-titulo">
