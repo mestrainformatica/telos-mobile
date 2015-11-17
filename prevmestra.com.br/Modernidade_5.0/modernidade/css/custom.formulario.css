@@ -600,10 +600,12 @@
   }
 
 
+
 /* = Conteudo
 ========================= */
 #conteudo {
   padding-left: 266px;
+  font-size: 14px;
 }
 
 #left-column {
@@ -680,10 +682,11 @@ body .botao_menos, body .botao_mais {
 .componenteRetratil .controles-right .btn {line-height: 23px; padding: 0 7px; margin-top: -3px;}
 .componenteRetratil .contrai-btn {position: absolute; left: -15px; top:3px;}
 
-/* = Inputs com erro
+
+/* = Formulários
 ========================= */
 .has-error .form-control {border:1px solid #a94442 !important;}
-
+.form-group.required label:after {content: " *";}
 
 
 /*  Fix tabela temporária  */
