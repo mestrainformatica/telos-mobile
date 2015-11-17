@@ -678,8 +678,9 @@ body .botao_menos, body .botao_mais {
   margin-left: -11px;
   margin-top: -4px;
 }
-.componenteRetratil .componente-titulo {padding: 10px;}
-.componenteRetratil .controles-right {text-align: right;}
+.componenteRetratil .componente-titulo {position: relative;}
+.componenteRetratil .controles-right {text-align: right; float: right;}
+.componenteRetratil .contrai-btn {position: absolute; left: -15px; top:3px;}
 
 
 
