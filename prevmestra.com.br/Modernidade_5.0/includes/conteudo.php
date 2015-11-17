@@ -537,7 +537,7 @@
     </tbody>
   </table>
 
-  <p>Tabela com borda <code>.table .table-striped</code></p>
+  <p>Tabela com fundo alternado <code>.table .table-striped</code></p>
   <br>
   <div class="highlight">
     <pre><code class="language-html" data-lang="html"><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"table table-striped"</span><span class="nt">&gt;</span>
