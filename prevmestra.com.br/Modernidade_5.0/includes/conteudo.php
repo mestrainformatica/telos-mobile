@@ -33,133 +33,109 @@
   </script>
 
 
-  <!-- INÍCIO ANIMAÇÃO LOADING -->
+  <div class="menu_acoes">
 
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tbody><tr>
-      <td valign="bottom" align="right"><strong><font size="3" color="red">
+    <input type="button" name="evento" value="F7-Novo" onclick="setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariosman.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_incluir.gif)" title="Novo">
+    <script>
+      regBotaoEvento('F7-Novo','INCLUIR');
+    </script>
 
-
-      </font></strong></td>
-      <td>
-        <table border="0" cellpadding="0" cellspacing="0" class="menu_acoes">
-          <tbody><tr><td>
-
-
-
-            <input type="button" name="evento" value="F7-Novo" onclick="setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariosman.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_incluir.gif)" title="Novo">
-            <script>
-              regBotaoEvento('F7-Novo','INCLUIR');
-            </script>
-
-            <input type="submit" name="evento" value="F10-Gravar" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_gravar.gif)" title="Gravar">
-            <script>
-              setBotaoAcaoEnter('F10-Gravar');
-              regBotaoEvento('F10-Gravar','GRAVAR');
-            </script>
+    <input type="submit" name="evento" value="F10-Gravar" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_gravar.gif)" title="Gravar">
+    <script>
+      setBotaoAcaoEnter('F10-Gravar');
+      regBotaoEvento('F10-Gravar','GRAVAR');
+    </script>
 
 
 
-            <input type="button" name="evento" value="F8-Abrir" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariossel.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_abrir.gif)" title="Abrir">
-            <script>
-              regBotaoEvento('F8-Abrir','ABRIR');
-            </script>
+    <input type="button" name="evento" value="F8-Abrir" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariossel.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_abrir.gif)" title="Abrir">
+    <script>
+      regBotaoEvento('F8-Abrir','ABRIR');
+    </script>
 
 
-            <a href="http://www.prevmestra.com.br/Mestra_Previdenciario/funcionariosman.do?evento=x&idRotina=731#" onclick="janelaAjudaHtml(); return false"><img align="ABSMIDDLE" border="0" height="20" hspace="3" src="midia/g_botao_ajuda.gif" vspace="0" width="20"></a>
+    <a href="http://www.prevmestra.com.br/Mestra_Previdenciario/funcionariosman.do?evento=x&idRotina=731#" onclick="janelaAjudaHtml(); return false"><img align="ABSMIDDLE" border="0" height="20" hspace="3" src="midia/g_botao_ajuda.gif" vspace="0" width="20"></a>
+  </div>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- JANELA DE AJUDA -->
+  <style>
+    div#ajuda{
+      width: 200px;
+      background: #F8D1CB;
+      border-bottom: 2px solid #DC3823;
+      margin: 0;
+      padding: 0 0 15px 0;
+      z-index: 5;
+      position: absolute;
+      right: 10px;
 
-    <!-- JANELA DE AJUDA -->
-    <style>
-      div#ajuda{
-        width: 200px;
-        background: #F8D1CB;
-        border-bottom: 2px solid #DC3823;
-        margin: 0;
-        padding: 0 0 15px 0;
-        z-index: 5;
-        position: absolute;
-        right: 10px;
+    }
+    div#ajuda h1{
+      position: relative;
+      height: 30px;
+      color: #FFF;
+      margin: 0 0 5px 0;
+      font: bold 18px/30px Tahoma, Arial, Verdana, sans-serif;
+      padding: 0 5px 0 10px;
+      background: #DC3823;
+      border-bottom: 2px solid #FFF;
+    }
+    div#ajuda h1 span{
+      height: 20px;
+      font: bold 11px/16px Verdana, Tahoma, Arial, sans-serif;
+      padding: 0 5px 0 5px;
+      position: absolute;
+      cursor: pointer;
+      right: 5px;
+      top: 5px;
+      color: #FFF;
+      background: #CA230D;
+      border-top: 1px solid #F04933;
+      border-right: 1px solid #A41C0B;
+      border-bottom: 1px solid #A41C0B;
+      border-left: 1px solid #F04933; 
+    }
+    div#ajuda h2{
+      height: 28px;
+      font: bold 18px/28px Tahoma, Arial, Verdana, sans-serif;
+      margin: 10px 5px 10px 20px;
+      padding: 0 0 0 5px;
+      color: #DC3823;
+      background: #FFF;
+      letter-spacing: 0px;
+    }
+    div#ajuda p{
+      font: 11px/14px Verdana, Tahoma, Arial, sans-serif;
+      color: #DC3823;
+      margin: 0 5px 10px 35px;
+    }
+    div#ajuda input{
+      height: 20px;
+      font: bold 11px/15px Verdana, Tahoma, Arial, sans-serif;
+      padding: 0;
+      margin: 0 5px 0 35px;
+      cursor: pointer;
+      color: #FFF;
+      background: #CA230D;
+      border-top: 1px solid #F04933;
+      border-right: 1px solid #A41C0B;
+      border-bottom: 1px solid #A41C0B;
+      border-left: 1px solid #F04933; 
+    }
+  </style>
+  <div id="ajuda" style="visibility: hidden">
+    <h1>Ajuda <span class="fechar" onclick="janelaAjuda(ajuda);">X</span></h1>
 
-      }
-      div#ajuda h1{
-        position: relative;
-        height: 30px;
-        color: #FFF;
-        margin: 0 0 5px 0;
-        font: bold 18px/30px Tahoma, Arial, Verdana, sans-serif;
-        padding: 0 5px 0 10px;
-        background: #DC3823;
-        border-bottom: 2px solid #FFF;
-      }
-      div#ajuda h1 span{
-        height: 20px;
-        font: bold 11px/16px Verdana, Tahoma, Arial, sans-serif;
-        padding: 0 5px 0 5px;
-        position: absolute;
-        cursor: pointer;
-        right: 5px;
-        top: 5px;
-        color: #FFF;
-        background: #CA230D;
-        border-top: 1px solid #F04933;
-        border-right: 1px solid #A41C0B;
-        border-bottom: 1px solid #A41C0B;
-        border-left: 1px solid #F04933; 
-      }
-      div#ajuda h2{
-        height: 28px;
-        font: bold 18px/28px Tahoma, Arial, Verdana, sans-serif;
-        margin: 10px 5px 10px 20px;
-        padding: 0 0 0 5px;
-        color: #DC3823;
-        background: #FFF;
-        letter-spacing: 0px;
-      }
-      div#ajuda p{
-        font: 11px/14px Verdana, Tahoma, Arial, sans-serif;
-        color: #DC3823;
-        margin: 0 5px 10px 35px;
-      }
-      div#ajuda input{
-        height: 20px;
-        font: bold 11px/15px Verdana, Tahoma, Arial, sans-serif;
-        padding: 0;
-        margin: 0 5px 0 35px;
-        cursor: pointer;
-        color: #FFF;
-        background: #CA230D;
-        border-top: 1px solid #F04933;
-        border-right: 1px solid #A41C0B;
-        border-bottom: 1px solid #A41C0B;
-        border-left: 1px solid #F04933; 
-      }
-    </style>
-    <div id="ajuda" style="visibility: hidden">
-      <h1>Ajuda <span class="fechar" onclick="janelaAjuda(ajuda);">X</span></h1>
+    <h2>Operação</h2>
+    <p>Em caso de dúvidas sobre como operar este sistema, utilize esta opção.</p>
 
-      <h2>Operação</h2>
-      <p>Em caso de dúvidas sobre como operar este sistema, utilize esta opção.</p>
+    <input type="button" value="Quero Ajuda!" onclick="window.open(&#39;/Mestra_Previdenciario/doc/operacao/operacao_viewlet_swf.html&#39;,&#39;Ajuda&#39;,&#39;&#39;)">
 
-      <input type="button" value="Quero Ajuda!" onclick="window.open(&#39;/Mestra_Previdenciario/doc/operacao/operacao_viewlet_swf.html&#39;,&#39;Ajuda&#39;,&#39;&#39;)">
+    <h2>Glossário</h2>
+    <p>Para uma relação com explicação sobre os principais termos utilizados neste sistema, utilize esta opção.</p>
 
-
-
-      <h2>Glossário</h2>
-      <p>Para uma relação com explicação sobre os principais termos utilizados neste sistema, utilize esta opção.</p>
-
-      <input type="button" value="Quero Ajuda!" onclick="window.open(&#39;/Mestra_Previdenciario/plc/layouts/PlcGlossarioLayout.jsp&#39;,&#39;Ajuda&#39;,&#39;&#39;)">
-
-
-
-    </div>
-    <!-- FIM JANELA DE AJUDA -->
-  </td></tr></tbody>
-</table>
+    <input type="button" value="Quero Ajuda!" onclick="window.open(&#39;/Mestra_Previdenciario/plc/layouts/PlcGlossarioLayout.jsp&#39;,&#39;Ajuda&#39;,&#39;&#39;)">
+  </div>
 <script>
   function janelaAjudaHtml() {
 

@@ -621,6 +621,12 @@
   padding-bottom: 10em;
 }
 
+.menu_acoes {
+  float: right;
+  margin-top: 10px;
+}
+}
+
 /* = Rodape
 ========================= */
 #rodape
