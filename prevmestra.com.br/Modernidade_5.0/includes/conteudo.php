@@ -657,7 +657,7 @@
       <!-- Controles do topo -->
 
       <div class="controles-right">
-        <input type="button" name="evento" value="Novo" class="btn btn-default" onclick="setValorCampo('detCorrPlc','itensPlc');plcAjax.ajaxEscondeBarraProgresso();plcAjax.ajaxSubmit('POST',getBotaoArray('INCLUIR_DET'));" onmouseover="try{animar(event , '2')}catch(e){}" onmouseout="try{animar(event, '')}catch(e){}" id="botao_secao" style="text-align:center;background-image: 'url(/Mestra_Compras/plc/midia/mestra/evt_incluir_det.gif)'; background-position: 'left center'; background-repeat: 'no-repeat'; padding-left: '8px';">
+        <input type="button" name="evento" value="Novo" class="btn btn-default btn-sm" onclick="setValorCampo('detCorrPlc','itensPlc');plcAjax.ajaxEscondeBarraProgresso();plcAjax.ajaxSubmit('POST',getBotaoArray('INCLUIR_DET'));" onmouseover="try{animar(event , '2')}catch(e){}" onmouseout="try{animar(event, '')}catch(e){}" id="botao_secao">
         <script>regBotaoEvento('Novo','INCLUIR_DET');</script>
       </div>
       <!-- Fim Controles do topo -->

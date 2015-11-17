@@ -359,16 +359,6 @@
     margin-top: 20px;
   }
 
-  body .componenteRetratil, body .conteudoComponenteRetratil
-  {
-    border: 1px solid #e0e0e0 !important;
-  }
-
-  body .componenteRetratil
-  {
-    border-bottom: 0 !important;
-  }
-
   body input, body textarea, body select
   {
     background-color: #f0f0f0 !important;
@@ -680,6 +670,7 @@ body .botao_menos, body .botao_mais {
 }
 .componenteRetratil .componente-titulo {position: relative;}
 .componenteRetratil .controles-right {text-align: right; float: right;}
+.componenteRetratil .controles-right .btn {line-height: 23px; padding: 0 7px; margin-top: -3px;}
 .componenteRetratil .contrai-btn {position: absolute; left: -15px; top:3px;}
 
 
