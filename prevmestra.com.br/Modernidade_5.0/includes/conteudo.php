@@ -708,12 +708,23 @@
   <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="alert alert-success" role="alert"&gt;Sucesso&lt;/div&gt;
   &lt;div class="alert alert-info" role="alert"&gt;Informativo&lt;/div&gt;
   &lt;div class="alert alert-warning" role="alert"&gt;Aviso&lt;/div&gt;
-  &lt;div class="alert alert-danger" role="alert"&gt;Erro&lt;/div&gt;
+&lt;div class="alert alert-danger" role="alert"&gt;Erro&lt;/div&gt;
   </code></pre>
   <div class="alert alert-success" role="alert">Sucesso</div>
   <div class="alert alert-info" role="alert">Informativo</div>
   <div class="alert alert-warning" role="alert">Aviso</div>
   <div class="alert alert-danger" role="alert">Erro</div>
+
+  <h3 class="secao">Campos com erro de validação</h3>
+  <p>Para criar campos de formulário com notificação de erro, adicione a classe <code>.has-error</code> a classe <code>.form-group</code> do campo em questão.</p>
+  <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="form-group has-error"&gt;
+  &lt;label class="control-label" for="inputError1"&gt;Exemplo de campo com erro de validação&lt;/label&gt;
+  &lt;input type="text" class="form-control" id="inputError1"&gt;
+&lt;/div&gt;</code></pre>
+  <div class="form-group has-error">
+    <label class="control-label" for="inputError1">Exemplo de campo com erro de validação</label>
+    <input type="text" class="form-control" id="inputError1">
+  </div>
 
   <h3 class="secao">Campos desabilitados ou de apenas leitura</h3>
   <p>Para usar campos que os usuário não possam editar, utilize o atributo <code>disabled="disabled"</code>.</p>

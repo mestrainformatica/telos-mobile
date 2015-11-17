@@ -674,6 +674,10 @@ body .botao_menos, body .botao_mais {
 .componenteRetratil .controles-right .btn {line-height: 23px; padding: 0 7px; margin-top: -3px;}
 .componenteRetratil .contrai-btn {position: absolute; left: -15px; top:3px;}
 
+/* = Inputs com erro
+========================= */
+.has-error .form-control {border:1px solid #a94442 !important;}
+
 
 
 /*  Fix tabela temporária  */
