@@ -683,6 +683,7 @@ body .botao_menos, body .botao_mais {
 .has-error .form-control {border:1px solid #a94442 !important;}
 .form-group.required label:after {content: " *";}
 
+.ui-tabs.ui-widget {padding: 0; margin: 0; border: none;}
 .ui-tabs .ui-widget-header { background: #fff; border: none;}
 .ui-tabs .ui-tabs-nav li.ui-state-default {border:1px solid #ddd; border-bottom: none; border-radius: 3px 3px 0 0;}
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {font-weight: normal; font-size: 14px; color:#414141; outline: none;}
