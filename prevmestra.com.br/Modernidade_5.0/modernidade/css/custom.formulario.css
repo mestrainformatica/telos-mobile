@@ -113,11 +113,6 @@
     margin: .5em 0;
   }
 
-  body fieldset label {
-    border: solid 1px #e0e0e0;
-    padding: 1em;
-  }
-
   body legend.form-fieldset {
     width:inherit; /* Or auto */
     padding:0 10px; /* To give a bit of padding on the left and right */

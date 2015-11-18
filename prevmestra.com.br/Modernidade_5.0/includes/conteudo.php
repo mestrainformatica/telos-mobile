@@ -579,7 +579,10 @@
       <div class="col-md-8">
         <fieldset class="form-fieldset">
           <legend class="form-fieldset">Fieldset 1</legend>
-          
+          <div class="form-group">
+            <label class="control-label">Inscrição</label>
+            <input type="text" class="form-control" name="" value="">
+          </div>
         </fieldset>
       </div>
       <div class="col-md-4">
