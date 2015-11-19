@@ -563,22 +563,20 @@
   </table>
 
   <h3 class="secao">Fieldsets</h3>
-  <p>Utilize a classe <code>.form-fieldset</code> tanto na tag <code>&lt;fieldset&gt;</code> quanto na <code>&lt;legend&gt;</code></p>
-  <br>
-  <pre><code class="language-html" data-lang="html">
-    &lt;fieldset class="form-fieldset"&gt;
-      &lt;legend class="form-fieldset">Fieldset 1&lt;/legend&gt;
+  
+  <pre class="pre-exemplo"><code class="language-html" data-lang="html">
+    &lt;fieldset&gt;
+      &lt;legend>Fieldset 1&lt;/legend&gt;
       ...
     &lt;/fieldset&gt;
   </code></pre>
-  <br>
-  <fieldset class="form-fieldset">
-    <legend class="form-fieldset">Fieldset Maior</legend>
+  <fieldset>
+    <legend>Fieldset Maior</legend>
 
     <div class="row">
       <div class="col-md-8">
-        <fieldset class="form-fieldset">
-          <legend class="form-fieldset">Fieldset 1</legend>
+        <fieldset>
+          <legend>Fieldset 1</legend>
           <div class="form-group">
             <label class="control-label">Inscrição</label>
             <input type="text" class="form-control" name="" value="">
@@ -586,8 +584,8 @@
         </fieldset>
       </div>
       <div class="col-md-4">
-        <fieldset class="form-fieldset">
-          <legend class="form-fieldset">Fieldset 2</legend>
+        <fieldset>
+          <legend>Fieldset 2</legend>
           
         </fieldset>
       </div>
