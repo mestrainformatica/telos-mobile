@@ -739,6 +739,72 @@
     <label class="control-label">Email</label>
     <input type="text" class="form-control">
   </div>
+
+  <h3>Checkboxes e Radio Buttons</h3>
+  <p></p>
+  <pre class="pre-exemplo"><code class="language-html" data-lang="html"><div class="form-group">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"> Remember me
+      </label>
+    </div>
+  </div></code></pre>
+
+  <div class="form-group">
+   <div class="checkbox">
+    <label>
+      <input type="checkbox" value="">
+      Opção 1
+    </label>
+  </div>
+  <div class="checkbox disabled">
+    <label>
+      <input type="checkbox" value="" disabled>
+      Checkbox desabilitado
+    </label>
+  </div>
+
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+      Botão de radio
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+      Botão de rádio 2
+    </label>
+  </div>
+  <div class="radio disabled">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+      Botão desabilitado
+    </label>
+  </div>
+  <form action="">
+    <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+    </label>
+    <label class="checkbox-inline">
+      <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+    </label>
+  </form>
+  <form action="">
+    <label class="radio-inline">
+      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+    </label>
+  </form>
+  </div>
   
   <h3 class="secao">Campos desabilitados ou de apenas leitura</h3>
   <p>Para usar campos que os usuário não possam editar, utilize o atributo <code>disabled="disabled"</code>.</p>
