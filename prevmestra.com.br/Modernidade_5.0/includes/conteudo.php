@@ -1,6 +1,4 @@
 <form name="funcionariosForm" method="post" action="http://www.prevmestra.com.br/Mestra_Previdenciario/funcionariosman.do" enctype="text/html" onsubmit="return executarAcaoFuncoes(event)"><input type="hidden" name="org.apache.struts.taglib.html.TOKEN" value="c59ed6acb13da8ef739fc6a2f5de53fe">
-
-
   <input type="hidden" name="modoPlc" value="inclusaoPlc">
   <!-- Retornar se nao houver melhor forma de identificar portlets em uma mesma pagina -->
   <!-- html:hidden property="< %=PlcConstantes.PORTLET_KEY% >" /> -->
@@ -169,6 +167,15 @@
 
 
 <input type="hidden" name="idParticipante" value="">
+
+<br clear="both"><br>
+<div class="jumbotron">
+  <h1 style="font-size:28px;">Documentação de exemplo para o Sysprev Modernidade.</h1 >
+  <br>
+  <p style="font-size:18px; margin-top:20px;">Esta documentação possui exemplos da documentação do framework <a blank="_target" href="http://getbootstrap.com/">Bootstrap</a> que deve ser usado como referência.</p>
+  <p style="font-size:18px;">Para ver mais detalhes da documentação sobre elementos gerais do Bootstrap, como grid, formulários, tabelas e butões acesse: <a blank="_target" href="http://getbootstrap.com/css/">http://getbootstrap.com/css/</a>.</p>
+  <p style="font-size:18px;">Para ver detalhes de componentes mais específicos como grupos de botões, paginação, alertas, flash messages e outros acesse: <a blank="_target" href="http://getbootstrap.com/components/">http://getbootstrap.com/components/</a></p>
+</div>
 
 
 <h3 class="secao">Exemplos de Grid</h3>
