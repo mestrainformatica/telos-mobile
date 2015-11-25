@@ -172,7 +172,7 @@
 <div class="jumbotron">
   <h1 style="font-size:28px;">Documentação de exemplo para o Sysprev Modernidade.</h1 >
   <br>
-  <p style="font-size:18px; margin-top:20px;">Esta documentação possui exemplos da documentação do framework <a blank="_target" href="http://getbootstrap.com/">Bootstrap</a> que deve ser usada como referência.</p>
+  <p style="font-size:18px; margin-top:20px;">Exemplos baseados na documentação do <a blank="_target" href="http://getbootstrap.com/">Bootstrap</a> que deve ser usada como referência.</p>
   <p style="font-size:18px;">Para ver mais detalhes da documentação sobre elementos gerais do Bootstrap, como grid, formulários, tabelas e butões acesse: <a blank="_target" href="http://getbootstrap.com/css/">http://getbootstrap.com/css/</a>.</p>
   <p style="font-size:18px;">Para ver detalhes de componentes mais específicos como grupos de botões, paginação, alertas, flash messages e outros acesse: <a blank="_target" href="http://getbootstrap.com/components/">http://getbootstrap.com/components/</a>.</p>
 </div>
