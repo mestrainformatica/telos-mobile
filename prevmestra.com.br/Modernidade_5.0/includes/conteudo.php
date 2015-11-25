@@ -710,8 +710,7 @@
   <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="alert alert-success" role="alert"&gt;Sucesso&lt;/div&gt;
   &lt;div class="alert alert-info" role="alert"&gt;Informativo&lt;/div&gt;
   &lt;div class="alert alert-warning" role="alert"&gt;Aviso&lt;/div&gt;
-&lt;div class="alert alert-danger" role="alert"&gt;Erro&lt;/div&gt;
-  </code></pre>
+&lt;div class="alert alert-danger" role="alert"&gt;Erro&lt;/div&gt;</code></pre>
   <div class="alert alert-success" role="alert">Sucesso</div>
   <div class="alert alert-info" role="alert">Informativo</div>
   <div class="alert alert-warning" role="alert">Aviso</div>
@@ -741,48 +740,71 @@
   </div>
 
   <h3>Checkboxes e Radio Buttons</h3>
-  <p></p>
-  <pre class="pre-exemplo"><code class="language-html" data-lang="html"><div class="form-group">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox"> Remember me
-      </label>
-    </div>
-  </div></code></pre>
+  <p>Para usar checkboxes crie uma <code>div</code> com a classe <code>.checkbox</code> envolvendo o <code>label</code> e o <code>input</code> do checkbox. </p>
+  <p>O mesmo serve para radio buttons, porém a classe é <code>.radio</code></p>
+  <p>Também é possível utilizar os atributos <code>disabled</code> para inputs desabilitados e <code>checked</code> para campos marcados.</p>
+  <p>As divs de checkbox precisam estar dentro de uma div com a classe <code>.form-group</code>.</p>
+  <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="form-group"&gt;
+  &lt;div class="checkbox"&gt;
+    &lt;label&gt;
+      &lt;input type="checkbox" name="" value=""&gt;
+      Checkbox
+    &lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="radio"&gt;
+    &lt;label&gt;
+      &lt;input type="radio" name="" id="" value=""&gt;
+      Botão de radio
+    &lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
   <div class="form-group">
-   <div class="checkbox">
-    <label>
-      <input type="checkbox" value="">
-      Opção 1
-    </label>
-  </div>
-  <div class="checkbox disabled">
-    <label>
-      <input type="checkbox" value="" disabled>
-      Checkbox desabilitado
-    </label>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">
+        Opção 1
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="" disabled>
+        Checkbox desabilitado
+      </label>
+    </div>
+
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        Botão de radio
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+        Botão de rádio 2
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+        Botão desabilitado
+      </label>
+    </div>
   </div>
 
-  <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-      Botão de radio
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-      Botão de rádio 2
-    </label>
-  </div>
-  <div class="radio disabled">
-    <label>
-      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-      Botão desabilitado
-    </label>
-  </div>
-  <form action="">
+  <p>Para uma lista de checkboxes alinhados lado a lado use a classe <code>.checkbox-inline</code> no label do input. Não utilize a <code>div</code> com a class <code>.checkbox</code> envolvendo cada opção.</p>
+  <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;label class="checkbox-inline"&gt;
+  &lt;input type="checkbox" name="" value=""&gt; Checkbox Inline
+&lt;/label&gt;
+
+[...]
+
+&lt;label class="radio-inline"&gt;
+  &lt;input type="radio" name=""  value=""&gt; Radio Inline
+&lt;/label&gt;</code></pre>
+  
+  <div class="form-group">
     <label class="checkbox-inline">
       <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
     </label>
@@ -792,8 +814,9 @@
     <label class="checkbox-inline">
       <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
     </label>
-  </form>
-  <form action="">
+  
+    <br>
+  
     <label class="radio-inline">
       <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
     </label>
@@ -803,7 +826,6 @@
     <label class="radio-inline">
       <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
     </label>
-  </form>
   </div>
   
   <h3 class="secao">Campos desabilitados ou de apenas leitura</h3>
