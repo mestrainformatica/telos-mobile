@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="modernidade/css/custom.bootstrap.fix.css"> 
 <link rel="stylesheet" href="modernidade/lib/jquery-ui/jquery-ui.css"> 
 <link rel="stylesheet" href="modernidade/lib/chosen/chosen.min.css"> 
+<link rel="stylesheet" type="text/css" href="javascript/bootstrap-sweetalert/lib/sweet-alert.css">
 
 
 <script src="javascript/loading.js" type="text/javascript"></script>
@@ -34,6 +35,7 @@
 <script src="modernidade/lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="modernidade/lib/emodal/emodal.min.js" type="text/javascript"></script>
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
+<script src="javascript/bootstrap-sweetalert/lib/sweet-alert.min.js"></script> 
 
 
 
