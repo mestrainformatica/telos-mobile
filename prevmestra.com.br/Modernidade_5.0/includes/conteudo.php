@@ -421,6 +421,29 @@
 <br><br>
 <p>Para a documentação completa acese: <a href="https://lipis.github.io/bootstrap-sweetalert/" target="_blank">https://lipis.github.io/bootstrap-sweetalert/</a></p>
 
+<h3 class="secao">Campos com máscara</h3>
+<p>Utilizando o <a href="http://digitalbush.com/projects/masked-input-plugin" target="_blank">Masked Input</a></p>
+<div class="row">
+  <div class="col-sm-3 form-group">
+    <label>CPF</label>
+    <input class="form-control cpf-field" type="text" name=""value="" placeholder="999.999.999-99">
+  </div>
+  <div class="col-sm-3 form-group">
+    <label>CEP</label>
+    <input class="form-control cep-field" type="text" name=""value="" placeholder="99.999-99">
+  </div>
+</div>
+<script>
+  $(".cpf-field").mask("999.999.999-99");
+  $(".cep-field").mask("99.999-99");
+</script>
+<pre class="pre-exemplo"><code>&lt;input class="form-control cpf-field" type="text" name=""value="" placeholder="999.999.999-99"&gt;
+&lt;input class="form-control cep-field" type="text" name=""value="" placeholder="99.999-99"&gt;
+</code></pre>
+<pre class="pre-exemplo"><code>&lt;script&gt;
+  $(".cpf-field").mask("999.999.999-99");
+  $(".cep-field").mask("99.999-99");
+&lt;/script&gt;</code></pre>
 
 
 <h3 class="secao">Campos que utilizam datas</h3>
