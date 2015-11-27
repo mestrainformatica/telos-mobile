@@ -4,7 +4,7 @@
                   
 
     <div id="menuDiv"><ul id="menuList">
-                <li class="menu-title">Menu <span style="float:right;" class="glyphicon glyphicon-menu-hamburger"></span></li>
+                <li class="menu-title">Menu <span class="glyphicon glyphicon-menu-hamburger"></span></li>
                   
       
         

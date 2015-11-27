@@ -589,9 +589,9 @@
 ========================= */
 #conteudo.menu-collapsed {padding-left: 66px;}
 #conteudo.menu-collapsed #left-column li {visibility: hidden;}
-#conteudo #left-column .menu-title {cursor: pointer;}
 #conteudo.menu-collapsed #left-column .menu-title {visibility: visible !important;}
-#conteudo.menu-collapsed {}
+#conteudo #left-column .menu-title {cursor: pointer;}
+#conteudo #left-column .menu-title span {float: right; margin-top: 3px;}
 
 
 /* = Rodape
