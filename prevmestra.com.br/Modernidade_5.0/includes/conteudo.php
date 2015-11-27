@@ -360,6 +360,69 @@
 
 <hr>
 
+<h3 class="secao">Modal com SweetAlert</h3>
+<p>O SweetAlert é uma alternativa com mais funções para os alertas criados por javascript.</p>
+<br>
+<p>Use <code>swal("mensagem");</code> javascript no lugar de <code>alert("mensagem");</code> para utilizá-lo.</p>
+
+<pre class="pre-exemplo"><code>$(".sweet-1").click(function(e) {
+  e.preventDefault();
+  swal("Mensagem de alerta simples");
+});</code></pre>
+
+<button class="btn btn-primary sweet-1">Testar</button>
+<script>
+  $(".sweet-1").click(function(e) {
+    e.preventDefault();
+    swal("Mensagem de alerta simples");
+  });
+</script>
+<br><br>
+
+<p>Inserindo título, texto e uma mensagem de confirmação</p>
+<pre class="pre-exemplo"><code>&lt;script&gt;
+  $(".sweet-1").click(function(e) {
+    e.preventDefault();
+    swal({
+      title: "Você tem certeza?",
+      text: "Você não poderá desfazer essa ação depois",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Sim, fazer a ação!",
+      closeOnConfirm: false
+    },
+    function(){
+      swal("Feito!", "A ação foi feita.", "success");
+    });
+  });
+&lt;/script&gt;</code></pre>
+<button class="btn btn-primary sweet-2">Testar</button>
+<script>
+  $(".sweet-2").click(function(e) {
+    e.preventDefault();
+    swal({
+      title: "Você tem certeza?",
+      text: "Você não poderá desfazer essa ação depois",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Sim, fazer a ação!",
+      closeOnConfirm: false
+    },
+    function(){
+      swal("Feito!", "A ação foi feita.", "success");
+    });
+  });
+</script>
+
+
+
+<br><br>
+<p>Para a documentação completa acese: <a href="https://lipis.github.io/bootstrap-sweetalert/" target="_blank">https://lipis.github.io/bootstrap-sweetalert/</a></p>
+
+
+
 <h3 class="secao">Campos que utilizam datas</h3>
 <p>Para criar campos de data, utilize a classe <code>.datepicker</code></p>
 <br>

@@ -703,6 +703,10 @@ body .botao_menos, body .botao_mais {
 #tabela-antiga {display: none;}
 
 
+/* = Formulários
+========================= */
+.sweet-alert h2 {margin-top: 30px;}
+
 
 
 /*@media (min-width: 1398px)
