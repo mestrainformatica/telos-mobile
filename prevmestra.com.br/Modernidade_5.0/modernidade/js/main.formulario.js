@@ -19,6 +19,10 @@ $(document).ready(function()
 
     $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
     $('.chosen').chosen();
+
+    $("#menuDiv .menu-title").click(function () {
+        $(this).parents('#conteudo').toggleClass("menu-collapsed");
+    });
 });
 
 

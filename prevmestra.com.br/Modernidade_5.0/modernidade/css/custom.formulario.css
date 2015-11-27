@@ -98,6 +98,19 @@
 
 
 
+/* = Icomoon
+========================= */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+.icon-menu3 {
+  width: 1.375em;
+}
+
+
 /* = Header
 ========================= */
 
@@ -547,6 +560,8 @@
 #conteudo {
   padding-left: 266px;
   font-size: 14px;
+  -webkit-transition: padding .8s;
+  transition: padding .8s;
 }
 
 #left-column {
@@ -567,7 +582,17 @@
 .menu_acoes {
   float: right;
   margin-top: 10px;
+
 }
+
+/* = Menu hamburgu}er
+========================= */
+#conteudo.menu-collapsed {padding-left: 66px;}
+#conteudo.menu-collapsed #left-column li {visibility: hidden;}
+#conteudo #left-column .menu-title {cursor: pointer;}
+#conteudo.menu-collapsed #left-column .menu-title {visibility: visible !important;}
+#conteudo.menu-collapsed {}
+
 
 /* = Rodape
 ========================= */
