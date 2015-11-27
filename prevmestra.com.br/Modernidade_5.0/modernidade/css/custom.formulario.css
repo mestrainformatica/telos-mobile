@@ -585,13 +585,15 @@
 
 }
 
-/* = Menu hamburgu}er
+/* = Menu hamburguer
 ========================= */
 #conteudo.menu-collapsed {padding-left: 66px;}
 #conteudo.menu-collapsed #left-column li {visibility: hidden;}
 #conteudo.menu-collapsed #left-column .menu-title {visibility: visible !important;}
 #conteudo #left-column .menu-title {cursor: pointer;}
 #conteudo #left-column .menu-title span {float: right; margin-top: 3px;}
+
+#conteudo.stand-alone {padding-left: 0;}
 
 
 /* = Rodape
