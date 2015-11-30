@@ -1,6 +1,4 @@
 <form name="funcionariosForm" method="post" action="http://www.prevmestra.com.br/Mestra_Previdenciario/funcionariosman.do" enctype="text/html" onsubmit="return executarAcaoFuncoes(event)"><input type="hidden" name="org.apache.struts.taglib.html.TOKEN" value="c59ed6acb13da8ef739fc6a2f5de53fe">
-
-
   <input type="hidden" name="modoPlc" value="inclusaoPlc">
   <!-- Retornar se nao houver melhor forma de identificar portlets em uma mesma pagina -->
   <!-- html:hidden property="< %=PlcConstantes.PORTLET_KEY% >" /> -->
@@ -169,6 +167,15 @@
 
 
 <input type="hidden" name="idParticipante" value="">
+
+<br clear="both"><br>
+<div class="jumbotron">
+  <h1 style="font-size:28px;">Documentação de exemplo para o Sysprev Modernidade.</h1 >
+  <br>
+  <p style="font-size:18px; margin-top:20px;">Exemplos baseados na documentação do <a blank="_target" href="http://getbootstrap.com/">Bootstrap</a> que deve ser usada como referência.</p>
+  <p style="font-size:18px;">Para ver mais detalhes da documentação sobre elementos gerais do Bootstrap, como grid, formulários, tabelas e butões acesse: <a blank="_target" href="http://getbootstrap.com/css/">http://getbootstrap.com/css/</a>.</p>
+  <p style="font-size:18px;">Para ver detalhes de componentes mais específicos como grupos de botões, paginação, alertas, flash messages e outros acesse: <a blank="_target" href="http://getbootstrap.com/components/">http://getbootstrap.com/components/</a>.</p>
+</div>
 
 
 <h3 class="secao">Exemplos de Grid</h3>
@@ -352,6 +359,92 @@
 <p>Documentação e mais exemplos do modal: <a href="http://saribe.github.io/eModal/#demo" target="_blank">http://saribe.github.io/eModal/#demo</a></p>
 
 <hr>
+
+<h3 class="secao">Modal com SweetAlert</h3>
+<p>O SweetAlert é uma alternativa com mais funções para os alertas criados por javascript.</p>
+<br>
+<p>Use <code>swal("mensagem");</code> javascript no lugar de <code>alert("mensagem");</code> para utilizá-lo.</p>
+
+<pre class="pre-exemplo"><code>$(".sweet-1").click(function(e) {
+  e.preventDefault();
+  swal("Mensagem de alerta simples");
+});</code></pre>
+
+<button class="btn btn-primary sweet-1">Testar</button>
+<script>
+  $(".sweet-1").click(function(e) {
+    e.preventDefault();
+    swal("Mensagem de alerta simples");
+  });
+</script>
+<br><br>
+
+<p>Inserindo título, texto e uma mensagem de confirmação</p>
+<pre class="pre-exemplo"><code>&lt;script&gt;
+  $(".sweet-1").click(function(e) {
+    e.preventDefault();
+    swal({
+      title: "Você tem certeza?",
+      text: "Você não poderá desfazer essa ação depois",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Sim, fazer a ação!",
+      closeOnConfirm: false
+    },
+    function(){
+      swal("Feito!", "A ação foi feita.", "success");
+    });
+  });
+&lt;/script&gt;</code></pre>
+<button class="btn btn-primary sweet-2">Testar</button>
+<script>
+  $(".sweet-2").click(function(e) {
+    e.preventDefault();
+    swal({
+      title: "Você tem certeza?",
+      text: "Você não poderá desfazer essa ação depois",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Sim, fazer a ação!",
+      closeOnConfirm: false
+    },
+    function(){
+      swal("Feito!", "A ação foi feita.", "success");
+    });
+  });
+</script>
+
+
+
+<br><br>
+<p>Para a documentação completa acese: <a href="https://lipis.github.io/bootstrap-sweetalert/" target="_blank">https://lipis.github.io/bootstrap-sweetalert/</a></p>
+
+<h3 class="secao">Campos com máscara</h3>
+<p>Utilizando o <a href="http://digitalbush.com/projects/masked-input-plugin" target="_blank">Masked Input</a></p>
+<div class="row">
+  <div class="col-sm-3 form-group">
+    <label>CPF</label>
+    <input class="form-control cpf-field" type="text" name=""value="" placeholder="999.999.999-99">
+  </div>
+  <div class="col-sm-3 form-group">
+    <label>CEP</label>
+    <input class="form-control cep-field" type="text" name=""value="" placeholder="99.999-99">
+  </div>
+</div>
+<script>
+  $(".cpf-field").mask("999.999.999-99");
+  $(".cep-field").mask("99.999-99");
+</script>
+<pre class="pre-exemplo"><code>&lt;input class="form-control cpf-field" type="text" name=""value="" placeholder="999.999.999-99"&gt;
+&lt;input class="form-control cep-field" type="text" name=""value="" placeholder="99.999-99"&gt;
+</code></pre>
+<pre class="pre-exemplo"><code>&lt;script&gt;
+  $(".cpf-field").mask("999.999.999-99");
+  $(".cep-field").mask("99.999-99");
+&lt;/script&gt;</code></pre>
+
 
 <h3 class="secao">Campos que utilizam datas</h3>
 <p>Para criar campos de data, utilize a classe <code>.datepicker</code></p>

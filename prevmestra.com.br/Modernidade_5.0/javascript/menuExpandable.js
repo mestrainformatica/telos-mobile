@@ -95,6 +95,11 @@ function initializeMenu(menuId, actuatorId) {
 // initializes the menus for them if they have menu classes
 function initializeMenus() {
 
+if (!$('#menuDiv').length) {
+    return null;
+} 
+
+
     // Define objeto do menu
     var menu = document.getElementById("menuDiv");
     // Define objeto com os links (a) do menu
