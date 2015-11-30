@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="modernidade/css/custom.bootstrap.fix.css"> 
 <link rel="stylesheet" href="modernidade/lib/jquery-ui/jquery-ui.css"> 
 <link rel="stylesheet" href="modernidade/lib/chosen/chosen.min.css"> 
-
+<link rel="stylesheet" href="fonts/font.iconmoon.css">
 
 <script src="javascript/loading.js" type="text/javascript"></script>
 <script src="javascript/MestraAjax.js" type="text/javascript"></script>

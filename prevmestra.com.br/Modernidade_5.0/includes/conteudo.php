@@ -916,3 +916,41 @@
   </nav>
   <p>Para ver a documentação completa sobre paginação acesse: <a href="http://getbootstrap.com/components/#pagination" target="_blank">http://getbootstrap.com/components/#pagination</a></p>
 </form>
+
+
+
+<h3 class="secao">Ícones</h3>
+
+<div class="row">
+  <div class="col-sm-2">
+      <button class="btn btn-primary">
+          <span class="icon icon-file-text2"></span> btn-primary
+      </button>
+  </div>
+  <div class="col-sm-2">
+      <button class="btn btn-default">
+          <span class="icon icon-file-text2"></span> btn-default
+      </button>
+  </div>
+  <div class="col-sm-2">
+      <button class="btn btn-success">
+           btn-success <span class="icon icon-file-text2"></span>
+      </button>
+  </div>
+  <div class="col-sm-2">
+      <button class="btn btn-info">
+           btn-info <span class="icon icon-file-text2"></span>
+      </button>
+  </div>
+  <div class="col-sm-2">
+      <button class="btn btn-default">
+           <span class="icon icon-file-text2"></span>
+      </button>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      Buscar nome dos ícones em <a href='https://icomoon.io/#preview-ultimate'>https://icomoon.io/#preview-ultimate</a>
+    </div>
+  </div>
+</div>
