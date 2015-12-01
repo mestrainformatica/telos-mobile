@@ -24,6 +24,11 @@ $(document).ready(function()
         $(this).parents('#conteudo').toggleClass("menu-collapsed");
     });
 });
+// fim do document.ready()
+
+$(document).scroll(function () {
+    $("#conteudo.menu-collapsed #left-column .menu-title").affix({offset: 80});
+});
 
 
 /*

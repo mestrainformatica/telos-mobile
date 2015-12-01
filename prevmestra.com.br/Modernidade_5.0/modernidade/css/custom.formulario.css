@@ -582,8 +582,8 @@ body {
 #conteudo {
   padding-left: 246px;
   font-size: 14px;
-  -webkit-transition: padding .8s;
-  transition: padding .8s;
+  -webkit-transition: padding .3s;
+  transition: padding .3s;
 }
 
 #left-column {
@@ -611,8 +611,9 @@ body {
 ========================= */
 #conteudo.menu-collapsed {padding-left: 43px;}
 #conteudo.menu-collapsed #left-column li {display: none;}
-#conteudo.menu-collapsed #left-column .menu-title {display: block !important; position: fixed; width: 246px;}
-#conteudo #left-column .menu-title {cursor: pointer;}
+#conteudo.menu-collapsed #left-column .menu-title {display: block !important; width: 246px;}
+#conteudo.menu-collapsed #left-column .menu-title.affix {position: fixed; top: 0;}
+#conteudo #left-column .menu-title {cursor: pointer; position: static;}
 #conteudo #left-column .menu-title span {float: right; margin-top: 3px;}
 
 #conteudo.stand-alone {padding-left: 0;}
