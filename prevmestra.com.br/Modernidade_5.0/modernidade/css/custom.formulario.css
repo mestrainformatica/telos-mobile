@@ -580,7 +580,7 @@ body {
 /* = Conteudo
 ========================= */
 #conteudo {
-  padding-left: 266px;
+  padding-left: 246px;
   font-size: 14px;
   -webkit-transition: padding .8s;
   transition: padding .8s;
@@ -591,7 +591,7 @@ body {
   float: left;
   height: auto;
   width: 246px;
-  margin-left: -267px;
+  margin-left: -246px;
 }
 
 #main-content {
@@ -609,9 +609,9 @@ body {
 
 /* = Menu hamburguer
 ========================= */
-#conteudo.menu-collapsed {padding-left: 66px;}
-#conteudo.menu-collapsed #left-column li {visibility: hidden;}
-#conteudo.menu-collapsed #left-column .menu-title {visibility: visible !important;}
+#conteudo.menu-collapsed {padding-left: 43px;}
+#conteudo.menu-collapsed #left-column li {display: none;}
+#conteudo.menu-collapsed #left-column .menu-title {display: block !important; position: fixed; width: 246px;}
 #conteudo #left-column .menu-title {cursor: pointer;}
 #conteudo #left-column .menu-title span {float: right; margin-top: 3px;}
 
