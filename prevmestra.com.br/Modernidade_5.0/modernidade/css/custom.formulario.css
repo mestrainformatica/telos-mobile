@@ -582,8 +582,8 @@ body {
 #conteudo {
   padding-left: 246px;
   font-size: 14px;
-  -webkit-transition: padding .8s;
-  transition: padding .8s;
+  -webkit-transition: padding .3s;
+  transition: padding .3s;
 }
 
 #left-column {
