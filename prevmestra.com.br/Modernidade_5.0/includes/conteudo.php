@@ -1068,11 +1068,18 @@
 </form>
 
 <h3 class="secao">Ícones</h3>
+<p>Utilize um <code>&lt;span&gt;</code> com a classe <code>icon</code> e a classe do ícone escolhido <code>icon-exemplo</code>.</p>
+<pre class="pre-exemplo"><code>&lt;span class="icon icon-checkmark"&gt;&lt;/span&gt;</code></pre>
+<h1><span class="icon icon-checkmark"></span></h1>
 
+<p>Para inserir ícones dentro de botões utilize a tag <code>&lt;button&gt;</code> ou <code>&lt;a&gt;</code>. Não é possível inserir ícones em inputs utilizando apenas as classes.</p>
+<pre class="pre-exemplo"><code>&lt;button class="btn btn-primary"&gt;
+  &lt;span class="icon icon-file-text2"&gt;&lt;/span&gt; Texto do botão
+&lt;/button&gt;</code></pre>
 <div class="row">
   <div class="col-sm-2">
       <button class="btn btn-primary">
-          <span class="icon icon-file-text2"></span> btn-primary
+        <span class="icon icon-file-text2"></span> btn-primary
       </button>
   </div>
   <div class="col-sm-2">
@@ -1096,9 +1103,10 @@
       </button>
   </div>
   </div>
+  <br>
   <div class="row">
     <div class="col-sm-12">
-      Buscar nome dos ícones em <a href='https://icomoon.io/#preview-ultimate'>https://icomoon.io/#preview-ultimate</a>
+      A lista inteira dos ícones pode ser vista em: <a href='https://icomoon.io/#preview-ultimate'>https://icomoon.io/#preview-ultimate</a>
     </div>
   </div>
 </div>
