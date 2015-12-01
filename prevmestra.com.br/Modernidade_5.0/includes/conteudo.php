@@ -365,6 +365,8 @@
 <br>
 <p>Use <code>swal("mensagem");</code> javascript no lugar de <code>alert("mensagem");</code> para utilizá-lo.</p>
 
+
+<!-- Exemplo sweet alert 1 -->
 <pre class="pre-exemplo"><code>$(".sweet-1").click(function(e) {
   e.preventDefault();
   swal("Mensagem de alerta simples");
@@ -379,39 +381,61 @@
 </script>
 <br><br>
 
-<p>Inserindo título, texto e uma mensagem de confirmação</p>
-<pre class="pre-exemplo"><code>&lt;script&gt;
-  $(".sweet-1").click(function(e) {
+
+<!-- Exemplo sweet alert 2 -->
+<p>Inserindo título e texto descritivo</p>
+<pre class="pre-exemplo"><code>$(".sweet-2").click(function(e) {
     e.preventDefault();
-    swal({
-      title: "Você tem certeza?",
-      text: "Você não poderá desfazer essa ação depois",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "Sim, fazer a ação!",
-      closeOnConfirm: false
-    },
-    function(){
-      swal("Feito!", "A ação foi feita.", "success");
-    });
+    swal("Mensagem de alerta", "Descrição da mensagem ou detalhes do aviso");
   });
-&lt;/script&gt;</code></pre>
+</code></pre>
 <button class="btn btn-primary sweet-2">Testar</button>
+
+
+
 <script>
   $(".sweet-2").click(function(e) {
     e.preventDefault();
+    swal("Mensagem de alerta", "Descrição da mensagem ou detalhes do aviso");
+  });
+</script>
+
+<br><br>
+
+<p>Inserindo título, texto e uma mensagem de confirmação</p>
+<pre class="pre-exemplo"><code>$(".sweet-3").click(function(e) {
+    e.preventDefault();
     swal({
       title: "Você tem certeza?",
       text: "Você não poderá desfazer essa ação depois",
       type: "warning",
       showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "Sim, fazer a ação!",
+      confirmButtonClass: "btn-primary",
+      confirmButtonText: "Sim, continuar a ação",
+      cancelButtonText: "Cancelar",
       closeOnConfirm: false
     },
     function(){
-      swal("Feito!", "A ação foi feita.", "success");
+      swal("Ação executada", "A ação foi realizada com sucesso.", "success");
+    });
+  });
+</code></pre>
+<button class="btn btn-primary sweet-3">Testar</button>
+<script>
+  $(".sweet-3").click(function(e) {
+    e.preventDefault();
+    swal({
+      title: "Você tem certeza?",
+      text: "Você não poderá desfazer essa ação depois",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-primary",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Sim, continuar a ação",
+      closeOnConfirm: false
+    },
+    function(){
+      swal("Ação executada", "A ação foi realizada com sucesso.", "success");
     });
   });
 </script>
