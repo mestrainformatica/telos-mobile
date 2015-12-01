@@ -580,6 +580,7 @@ body {
 /* = Conteudo
 ========================= */
 #conteudo {
+  overflow: hidden;
   padding-left: 246px;
   font-size: 14px;
   -webkit-transition: padding .3s;
@@ -621,13 +622,20 @@ body {
 
 /* = Rodape
 ========================= */
+html {position: relative; min-height: 100%;} /* Para o sticky footer */
+body {padding-bottom: 60px;}
+
 #rodape
 {
+  position: absolute;
+  bottom: 0;
   background-color: #1F4F8D !important;
   padding: 20px;
   border: none !important;
   overflow: hidden;
   clear: both;
+  width: 100%;
+  height: 60px;
 }
 
 #rodape p {
