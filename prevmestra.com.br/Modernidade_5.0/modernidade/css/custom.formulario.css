@@ -98,6 +98,22 @@
 
 
 
+/* = SweetAlert
+========================= */
+
+.sweet-alert {
+  padding: 5px !important;
+}
+.sweet-alert h2 {
+  font-size: 19px;
+  margin-bottom: .5em;
+}
+.sweet-alert p {
+  font-size: 15px;
+  margin-bottom: 1.5em;
+}
+
+
 /* = Icomoon
 ========================= */
 .icon {
