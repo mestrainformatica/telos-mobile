@@ -968,6 +968,39 @@
     </div>
   </div>
 
+  <h3 class="secao">Paginação simples</h3>
+  <nav>
+    <ul class="pager">
+      <li><a href="#"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+      <li class="page-items">1 - 4 de 9 itens</li>
+      <li><a href="#">Próxima <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+  </nav>
+  <pre class="pre-exemplo"><code>&lt;nav&gt;
+  &lt;ul class="pager"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;&lt;span aria-hidden="true"&gt;&larr;&lt;/span&gt; Anterior&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-items"&gt;1 - 4 de 9 itens&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Próxima &lt;span aria-hidden="true"&gt;&rarr;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+  <br>
+
+  <p>Utilize a classe <code>previous</code> e <code>next</code> no <code>&lt;li&gt;</code> para alinhar o botões de paginação.</p>
+  <pre class="pre-exemplo"><code>&lt;nav&gt;
+  &lt;ul class="pager"&gt;
+    &lt;li class="previous"&gt;&lt;a href="#"&gt;&lt;span aria-hidden="true"&gt;&larr;&lt;/span&gt; Anterior&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="page-items"&gt;Exibindo 1 - 4 de 9 itens&lt;/li&gt;
+    &lt;li class="next"&gt;&lt;a href="#"&gt;Próxima &lt;span aria-hidden="true"&gt;&rarr;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+  <nav>
+    <ul class="pager">
+      <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+      <li class="page-items">Exibindo 1 - 4 de 9 itens</li>
+      <li class="next"><a href="#">Próxima <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+  </nav>
+
   <h3 class="secao">Paginação</h3>
   <p>Utilize listas <code>&lt;ul&gt;</code> com a classe <code>.pagination</code> para criar a paginação</p>
   <pre class="pre-exemplo"><code class="language-html" data-lang="html"><span class="nt">&lt;nav&gt;</span>
@@ -1033,8 +1066,6 @@
   </nav>
   <p>Para ver a documentação completa sobre paginação acesse: <a href="http://getbootstrap.com/components/#pagination" target="_blank">http://getbootstrap.com/components/#pagination</a></p>
 </form>
-
-
 
 <h3 class="secao">Ícones</h3>
 

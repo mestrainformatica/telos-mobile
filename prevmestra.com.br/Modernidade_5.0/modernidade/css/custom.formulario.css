@@ -662,6 +662,10 @@ body {padding-bottom: 60px;}
 
 
 
+/* = Pagination
+========================= */
+.pager .page-items {padding: 5px; display: inline-block;}
+
 /* = Módulo retrátil
 ========================= */
 body .botao_menos, body .botao_mais {
