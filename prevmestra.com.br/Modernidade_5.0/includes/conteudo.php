@@ -971,9 +971,16 @@
   <h3 class="secao">Paginação simples</h3>
   <nav>
     <ul class="pager">
-      <li><a href="#"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+      <li><a href="#" class="btn btn-sm btn-default"><span class="icon icon-first"></span> Primeiro</a><a href="#" class="btn btn-sm btn-default"><span class="icon icon-backward2"></span> Anterior</a></li>
       <li class="page-items">1 - 4 de 9 itens</li>
-      <li><a href="#">Próxima <span aria-hidden="true">&rarr;</span></a></li>
+      <li><a href="#" class="btn btn-sm btn-default">Próxima <span class="icon icon-forward3"></span> </a><a href="#" class="btn btn-sm btn-default">Última <span class="icon icon-last"></span></a></li>
+    </ul>
+  </nav>
+  <nav>
+    <ul class="pager">
+      <li><a href="#" class="btn btn-sm btn-default"><span class="icon icon-first"></span></a><a href="#" class="btn btn-sm btn-default"><span class="icon icon-backward2"></span></a></li>
+      <li class="page-items">1 - 4 de 9 itens</li>
+      <li><a href="#" class="btn btn-sm btn-default"><span class="icon icon-forward3"></span> </a><a href="#" class="btn btn-sm btn-default"><span class="icon icon-last"></span></a></li>
     </ul>
   </nav>
   <pre class="pre-exemplo"><code>&lt;nav&gt;
