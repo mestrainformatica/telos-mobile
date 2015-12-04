@@ -402,14 +402,14 @@ body {
     margin-top: 20px;
   }
 
-  body input, body textarea, body select
+  body textarea, body select
   {
     background-color: #f0f0f0 !important;
     border-color: #e5e6e5 !important;
     height: 23px;
   }
 
-  body .bt_secao_texto, body .bt_secao_icone, body #botao_menu, body #botao_menu2, body #botao_secao, body #botao_secao2, body .botao, body .bt
+  body .bt_secao_texto, body .bt_secao_icone, body #botao_secao, body #botao_secao2, body .botao, body .bt
   {
     background-color: #f0f0f0;
     border-color: #e5e6e5;
@@ -726,6 +726,17 @@ body {padding-bottom: 60px;}
 .pre-exemplo {margin: 15px 0;}
 .pre-exemplo strong{font-weight: bolder;}
 .secao {clear: both;}
+
+.input-icon {font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+.exemplo-icon {margin: 0; padding: 0;}
+.exemplo-icon li {float: left; padding: 20px 0 0; list-style: none; width: 33%;}
 
 
 
