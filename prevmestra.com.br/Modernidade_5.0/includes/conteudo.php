@@ -1084,35 +1084,6 @@
   &lt;span class="icon icon-file-text2"&gt;&lt;/span&gt; Texto do botão
 &lt;/button&gt;</code></pre>
 
-<div class="row">
-  <div class="col-sm-2">
-      <button class="btn btn-primary">
-        <span class="icon icon-file-text2"></span> btn-primary
-      </button>
-  </div>
-  <div class="col-sm-2">
-      <button class="btn btn-default">
-          <span class="icon icon-file-text2"></span> btn-default
-      </button>
-  </div>
-  <div class="col-sm-2">
-      <button class="btn btn-success">
-           btn-success <span class="icon icon-file-text2"></span>
-      </button>
-  </div>
-  <div class="col-sm-2">
-      <button class="btn btn-info">
-           btn-info <span class="icon icon-file-text2"></span>
-      </button>
-  </div>
-  <div class="col-sm-2">
-      <button class="btn btn-default">
-           <span class="icon icon-file-text2"></span>
-      </button>
-  </div>
-</div>
-  <br /><br />
-
   <div class="row">
     <div class="col-sm-2">
         <button class="btn btn-primary">
@@ -1142,26 +1113,13 @@
   </div>
   <br>
   <p>Para inserir o ícone dentro de um input, utilize a classe <code>input-icon</code> e o código hexadecimal do ícone.</p>
-  <pre class="pre-exemplo"><code>&lt;input type="submit" class="btn btn-primary input-icon" value="&#xE900; Exemplo"&gt;</code></pre>
+  <pre class="pre-exemplo"><code>&lt;input type="submit" class="btn btn-primary input-icon" value="&amp;#xE900; Exemplo"&gt;</code></pre>
   <input type="submit" class="btn btn-primary input-icon" value="&#xE900; Exemplo">
 
   <h3 class="secao">Lista completa de ícones</h3>
-  <p></p>
->>>>>>> Adicionando lista de ícones e documenatação de ícones nos inputs
   <div class="row">
     <div class="col-sm-12">
       <?php include("icon.php"); ?>
     </div>
   </div>
-<<<<<<< HEAD
-  <br /><br />
-  <h3>Ícones dentro do input</h3>
-  <div class="row">
-    <div class="col-sm-12">
-      
-    </div>
-  </div>
-=======
-
->>>>>>> Adicionando lista de ícones e documenatação de ícones nos inputs
 </div>
