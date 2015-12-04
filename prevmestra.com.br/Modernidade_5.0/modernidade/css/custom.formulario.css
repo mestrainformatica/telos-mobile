@@ -160,6 +160,19 @@ body {
   -webkit-box-shadow: 0;
   background-color: inherit;
 }
+.btn {
+  line-height: 1.28em;
+}
+
+/* = Layout Botão Paginação
+========================= */
+
+.pager li > a, .pager li > span {
+  background-color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  padding: inherit;
+}
 
 /* = Container mais espaçado e menos radius
 ========================= */
