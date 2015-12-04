@@ -1102,11 +1102,18 @@
            <span class="icon icon-file-text2"></span>
       </button>
   </div>
-  </div>
-  <br>
+</div>
+  <br /><br />
   <div class="row">
     <div class="col-sm-12">
       A lista inteira dos ícones pode ser vista em: <a href='https://icomoon.io/#preview-ultimate'>https://icomoon.io/#preview-ultimate</a>
+    </div>
+  </div>
+  <br /><br />
+  <h3>Ícones dentro do input</h3>
+  <div class="row">
+    <div class="col-sm-12">
+      
     </div>
   </div>
 </div>

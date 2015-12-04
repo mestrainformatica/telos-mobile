@@ -132,6 +132,45 @@ body {
   width: 1.375em;
 }
 
+/* = Suavizar campos de formulário
+========================= */
+
+.form-control {
+  border-radius: 2px;
+  height: 32px;
+  font-size: 14px;
+  padding: 2px 6px;
+  border: solid 1px #d0d0d0 !important;
+}
+.form-group label {
+  padding: .15em 0;
+  font-weight: 500;
+}
+.form-control:not([disabled]):not([readonly="readonly"]):focus {
+    border-color: #aebac6 !important;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 2px rgba(52,104,153,.2);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 2px rgba(52,104,153,.2);
+    background-color: #f2f2f3 !important;
+}
+.form-control[readonly="readonly"]:focus
+.chosen-container-single .chosen-single {
+  border-color: none;
+  box-shadow: 0;
+  -webkit-box-shadow: 0;
+  background-color: inherit;
+}
+
+/* = Container mais espaçado e menos radius
+========================= */
+
+.container {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+.container .jumbotron, .container-fluid .jumbotron {
+    border-radius: 2px;
+}
 
 /* = Header
 ========================= */
@@ -168,7 +207,7 @@ body {
     font-size: 23px;
     margin-bottom: 0;
     margin-top: 30px;
-    margin-left: 39px;
+    margin-left: 35px;
     font-weight: 300;
   }
 
