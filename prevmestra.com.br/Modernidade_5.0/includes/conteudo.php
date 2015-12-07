@@ -33,12 +33,12 @@
 
   <div class="menu_acoes">
 
-    <input type="button" name="evento" value="&#xE9A1;" class="btn btn-default input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariosman.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" title="F7 - Novo" id="botao_menu" >
+    <input type="button" name="evento" value="&#xE9A1;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariosman.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" title="F7 - Novo" id="botao_menu" >
     <script>
       regBotaoEvento('F7-Novo','INCLUIR');
     </script>
 
-    <input type="submit" name="evento" value="&#xE9A9;" class="btn btn-default input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" title="F10 - Gravar">
+    <input type="submit" name="evento" value="&#xE9A9;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" title="F10 - Gravar">
     <script>
       setBotaoAcaoEnter('F10-Gravar');
       regBotaoEvento('F10-Gravar','GRAVAR');
@@ -46,7 +46,7 @@
 
 
 
-    <input type="button" name="evento" value="&#xE9DC;" class="btn btn-default input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariossel.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" title="F8 - Abrir">
+    <input type="button" name="evento" value="&#xE9DC;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariossel.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" title="F8 - Abrir">
     <script>
       regBotaoEvento('F8-Abrir','ABRIR');
     </script>

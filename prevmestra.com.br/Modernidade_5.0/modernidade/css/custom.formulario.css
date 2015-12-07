@@ -267,107 +267,19 @@ body {
     margin-bottom: -3px;
   }
 
-  body #layout_col_principal
-  {
-    padding-left: 20px;
-    padding-right: 39px;
-    padding-bottom: 7em;
-  }
-
-  body #layout_col_principal .titulo.first
-  {
-    width: 10px;
-    color: #337ab7 !important;
-    padding-top: 20px;
-  }
-
-  body #layout_col_principal .titulo.first strong
-  {
-    font-weight: 100;
-  }
-
-  body #layout_col_principal .titulo.first strong font
-  {
-    color: #337ab7;
-    font-size: 21px;
-  }
-
-  body #layout_col_principal fieldset
-  {
-    border: 1px solid #e0e0e0;
-    padding: 1em;
-    margin: 1em 0;
-  }
-
-  body #layout_col_principal .menu_acoes
-  {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  body #layout_col_principal .menu_acoes #botao_menu:first-child
-  {
-    background-image: url(../img/inbox.png) !important;
-  }
-
-  body #layout_col_principal .menu_acoes #botao_menu
+  body .menu_acoes input
   {
     padding: 3px;
     width: 35px !important;
     height: 35px !important;
-    background-image: url(../img/save.png) !important;
-    background-size: 30px 30px !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
+    background: #ddd;
+    border-radius: 0px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
   }
 
-  body #layout_col_principal .menu_acoes #botao_menu:nth-child(5)
-  {
-    background-image: url(../img/folder.png) !important;
-  }
-
-  body #layout_col_principal .menu_acoes #botao_menu2:first-child
-  {
-    background-image: url(../img/inbox-hover.png) !important;
-  }
-
-  body #layout_col_principal .menu_acoes #botao_menu2
-  {
-    padding: 0;
-    width: 35px !important;
-    height: 35px!important;
-    background-color: #1F4F8D !important;
-    background-image: url(../img/save-hover.png) !important;
-    background-size: 30px 30px !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-  }
-
-  body #layout_col_principal .menu_acoes #botao_menu2:nth-child(5)
-  {
-    background-image: url(../img/folder-hover.png) !important;
-  }
-
-  body #layout_col_principal .menu_acoes a
-  {
-    width: 35px;
-    height: 35px;
-    background-image: url(../img/help.png);
-    background-size: 30px 30px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: #F0F0F0;
-    display: inline-block;
-    margin-bottom: -15px;
-  }
-
-  body #layout_col_principal .menu_acoes a:hover, body #layout_col_principal .menu_acoes a:active
-  {
-    background-color: #1F4F8D;
-    background-image: url(../img/help-hover.png);
-  }
-
-  body #layout_col_principal .menu_acoes a img
+  body .menu_acoes a img
   {
     display: none;
   }
