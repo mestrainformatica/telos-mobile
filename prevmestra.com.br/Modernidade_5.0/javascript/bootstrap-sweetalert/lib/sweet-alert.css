@@ -55,12 +55,12 @@
   }
 }
 .showSweetAlert {
-  -webkit-animation: showSweetAlert 0.3s;
-  animation: showSweetAlert 0.3s;
+  /*-webkit-animation: showSweetAlert 0.3s;
+  animation: showSweetAlert 0.3s;*/
 }
 .hideSweetAlert {
-  -webkit-animation: hideSweetAlert 0.2s;
-  animation: hideSweetAlert 0.2s;
+  /*-webkit-animation: hideSweetAlert 0.2s;
+  animation: hideSweetAlert 0.2s;*/
 }
 @-webkit-keyframes animateSuccessTip {
   0% {
