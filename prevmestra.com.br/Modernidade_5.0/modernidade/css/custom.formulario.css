@@ -94,11 +94,12 @@
   }
 body {
   background: #fff; /* Old browsers */
-  background: -moz-linear-gradient(left, #f0f0f0 0, #f0f0f0 248px, #ffffff 248px, #ffffff 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, #f0f0f0 0,#f0f0f0 248px,#ffffff 248px,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #f0f0f0 0,#f0f0f0 248px,#ffffff 248px,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  box-shadow: inset 246px 0 #f0f0f0;
+  transition: box-shadow .3s;
 }
-
+body.menu-collapsed {
+  box-shadow: inset 44px 0 #f0f0f0;
+}
 
   /* Fim das correcoes */
 
@@ -580,7 +581,7 @@ body {
 #main-content {
   width: 100% !important;
   float: right;
-  background: #fff;
+  background: transparent;
   padding-bottom: 10em;
 }
 
