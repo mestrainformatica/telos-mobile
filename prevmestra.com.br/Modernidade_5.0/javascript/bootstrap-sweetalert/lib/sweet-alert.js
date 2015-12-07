@@ -23,7 +23,7 @@
         titleClass: '',
         textClass: '',
         imageUrl: null,
-        imageSize: null,
+        imageSize: 30,
         timer: null
       };
 

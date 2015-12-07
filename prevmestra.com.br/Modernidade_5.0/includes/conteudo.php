@@ -408,7 +408,6 @@
     swal({
       title: "Você tem certeza?",
       text: "Você não poderá desfazer essa ação depois",
-      type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-primary",
       confirmButtonText: "Sim, continuar a ação",
@@ -416,7 +415,7 @@
       closeOnConfirm: false
     },
     function(){
-      swal("Ação executada", "A ação foi realizada com sucesso.", "success");
+      swal("Ação executada", "A ação foi realizada com sucesso.");
     });
   });
 </code></pre>
@@ -427,7 +426,6 @@
     swal({
       title: "Você tem certeza?",
       text: "Você não poderá desfazer essa ação depois",
-      type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-primary",
       cancelButtonText: "Cancelar",
@@ -435,7 +433,7 @@
       closeOnConfirm: false
     },
     function(){
-      swal("Ação executada", "A ação foi realizada com sucesso.", "success");
+      swal("Ação executada", "A ação foi realizada com sucesso.");
     });
   });
 </script>
