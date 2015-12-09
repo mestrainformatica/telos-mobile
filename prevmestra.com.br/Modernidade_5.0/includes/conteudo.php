@@ -474,24 +474,24 @@
 <pre><code class="language-html" data-lang="html">&lt;input class="form-control datepicker" type="text" name="..."  value="..." title="..."></code></pre>
 </br>
 <div class="row">
-  <div class="col-sm-2 form-group">
+  <div class="col-sm-3 form-group">
     <label>Nascimento <span class="text-warning">*</span></label>
     <input class="form-control datepicker" type="text" name="dataNascimentoParticipanteFormatado" maxlength="10"  value="" onkeyup="DateFormat(this,this.value,event,false)" onfocus="javascript:vDateType=&#39;3&#39;" class="texto" title="Informe a Data">
   </div>
 
-  <div class="col-sm-2 form-group">
+  <div class="col-sm-3 form-group">
     <label>Por Falecimento</label>
     <input class="form-control" type="text" name="dataFalecimentoParticipanteFormatado" maxlength="10"  value="" onkeyup="DateFormat(this,this.value,event,false)" onblur="DateFormat(this,this.value,event,true)" onfocus="javascript:vDateType=&#39;3&#39;" readonly="readonly" class="texto_obrigatorio" title="Informe a Data">
   </div>
 
-  <div class="col-sm-2 form-group">
+  <div class="col-sm-3 form-group">
     <label>Sexo <span class="text-warning">*</span></label>
     <select  class="form-control" name="tipoSexoParticipante" class="texto"><option value="" selected="selected">[Selecione...]</option>
       <option value="F">F - Feminino</option>
       <option value="M">M - Masculino</option></select>
     </div>
 
-    <div class="col-sm-2 form-group">
+    <div class="col-sm-3 form-group">
       <label>Estado Civil <span class="text-warning">*</span></label>
       <select class="form-control chosen" name="codigoEstadoCivilParticipante" onchange="desabilitarNomeConjuge()" class="texto"><option value="" selected="selected">[Selecione...]</option>
         <option value="01">01 - Solteiro (a)</option>
@@ -504,7 +504,7 @@
       </div>
 
 
-      <div class="col-sm-2 form-group">
+      <div class="col-sm-3 form-group">
         <label>Escolaridade <span class="text-warning">*</span></label>
         <select class="form-control" name="codigoGrauInstrucaoParticipante" class="texto"><option value="" selected="selected">[Selecione...]</option>
           <option value="00">00 - Não alfabetizado</option>
