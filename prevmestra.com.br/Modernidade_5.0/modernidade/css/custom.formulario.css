@@ -145,6 +145,7 @@ body.menu-collapsed {
   font-size: 14px;
   padding: 2px 6px;
   border: solid 1px #d0d0d0 !important;
+  background-color: #f0f0f0;
 }
 .form-group label {
   padding: .15em 0;

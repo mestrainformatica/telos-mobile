@@ -18,6 +18,16 @@ $(document).ready(function()
     });
 
     $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
+    $(".datepicker").blur(function(){
+        val = $(this).val();
+        val1 = Date.parse(val);
+        if (isNaN(val1)==true && val!==''){
+           $(this).val().empty();
+           swal("Data inválida")
+        }
+        else{
+        }
+    });
     $('.chosen').chosen();
 
     $("#menuDiv .menu-title").click(function () {
