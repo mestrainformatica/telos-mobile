@@ -22,8 +22,7 @@ $(document).ready(function()
         val = $(this).val();
         val1 = Date.parse(val);
         if (isNaN(val1)==true && val!==''){
-           $(this).val().empty();
-           swal("Data inválida")
+           swal("Data inválida");
         }
         else{
         }
@@ -33,12 +32,23 @@ $(document).ready(function()
     $("#menuDiv .menu-title").click(function () {
         $(this).parents('#conteudo, body').toggleClass("menu-collapsed");
     });
+    /*
+        Tooltipster
+     */
+    $('input.input-icon').tooltipster({
+        'hideOnClick': true,
+        'position': 'bottom',
+        'speed':100,
+        'touchdevices':false,
+        'theme':'tooltipster-light'
+    });
 });
 // fim do document.ready()
 
 $(document).scroll(function () {
     $("#conteudo.menu-collapsed #left-column .menu-title").affix({offset: 80});
 });
+
 
 
 /*

@@ -652,7 +652,10 @@ body {padding-bottom: 60px;}
   text-transform: none;
   line-height: 1;
 }
-
+.input-icon:hover {
+  background: #f0f0f0;
+  border:solid 1px #c0c6c9;
+}
 .exemplo-icon {margin: 0; padding: 0;}
 .exemplo-icon li {float: left; padding: 20px 0 0; list-style: none; width: 33%;}
 

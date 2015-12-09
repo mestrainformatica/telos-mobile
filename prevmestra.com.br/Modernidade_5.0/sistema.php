@@ -20,6 +20,8 @@
 <link rel="stylesheet" href="modernidade/lib/chosen/chosen.min.css"> 
 <link rel="stylesheet" href="fonts/font.iconmoon.css">
 <link rel="stylesheet" type="text/css" href="javascript/bootstrap-sweetalert/lib/sweet-alert.css">
+<link rel="stylesheet" type="text/css" href="modernidade/lib/tooltipster/css/tooltipster.css">
+<link rel="stylesheet" type="text/css" href="modernidade/lib/tooltipster/css/themes/tooltipster-light.css">
 
 <script src="javascript/loading.js" type="text/javascript"></script>
 <script src="javascript/MestraAjax.js" type="text/javascript"></script>
@@ -34,8 +36,9 @@
 <script src="javascript/jquery.qtip-1.0.0-rc3.min.js" type="text/javascript"></script>
 <script src="modernidade/lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="modernidade/lib/emodal/emodal.min.js" type="text/javascript"></script>
-<script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 <script src="javascript/bootstrap-sweetalert/lib/sweet-alert.min.js"></script> 
+<script src="modernidade/lib/tooltipster/js/jquery.tooltipster.min.js"></script> 
+<script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
 
 
