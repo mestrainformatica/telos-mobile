@@ -33,12 +33,12 @@
 
   <div class="menu_acoes">
 
-    <input type="button" name="evento" value="F7-Novo" onclick="setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariosman.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_incluir.gif)" title="Novo">
+    <input type="button" name="evento" value="&#xE9A1;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariosman.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" title="F7 - Novo" id="botao_menu" >
     <script>
       regBotaoEvento('F7-Novo','INCLUIR');
     </script>
 
-    <input type="submit" name="evento" value="F10-Gravar" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_gravar.gif)" title="Gravar">
+    <input type="submit" name="evento" value="&#xE9A9;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" title="F10 - Gravar">
     <script>
       setBotaoAcaoEnter('F10-Gravar');
       regBotaoEvento('F10-Gravar','GRAVAR');
@@ -46,7 +46,7 @@
 
 
 
-    <input type="button" name="evento" value="F8-Abrir" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariossel.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Previdenciario/midia/mestra/evt_abrir.gif)" title="Abrir">
+    <input type="button" name="evento" value="&#xE9DC;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariossel.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" title="F8 - Abrir">
     <script>
       regBotaoEvento('F8-Abrir','ABRIR');
     </script>
@@ -408,7 +408,6 @@
     swal({
       title: "Você tem certeza?",
       text: "Você não poderá desfazer essa ação depois",
-      type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-primary",
       confirmButtonText: "Sim, continuar a ação",
@@ -416,7 +415,7 @@
       closeOnConfirm: false
     },
     function(){
-      swal("Ação executada", "A ação foi realizada com sucesso.", "success");
+      swal("Ação executada", "A ação foi realizada com sucesso.");
     });
   });
 </code></pre>
@@ -427,7 +426,6 @@
     swal({
       title: "Você tem certeza?",
       text: "Você não poderá desfazer essa ação depois",
-      type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-primary",
       cancelButtonText: "Cancelar",
@@ -435,7 +433,7 @@
       closeOnConfirm: false
     },
     function(){
-      swal("Ação executada", "A ação foi realizada com sucesso.", "success");
+      swal("Ação executada", "A ação foi realizada com sucesso.");
     });
   });
 </script>
@@ -1075,52 +1073,51 @@
 </form>
 
 <h3 class="secao">Ícones</h3>
-<p>Utilize um <code>&lt;span&gt;</code> com a classe <code>icon</code> e a classe do ícone escolhido <code>icon-exemplo</code>.</p>
+<p>Utilize um <code>&lt;span&gt;</code> com a classe <code>icon</code> e a classe do ícone escolhido <code>icon-<strong>NOME_DO_ICONE</strong></code>.</p>
 <pre class="pre-exemplo"><code>&lt;span class="icon icon-checkmark"&gt;&lt;/span&gt;</code></pre>
 <h1><span class="icon icon-checkmark"></span></h1>
 
-<p>Para inserir ícones dentro de botões utilize a tag <code>&lt;button&gt;</code> ou <code>&lt;a&gt;</code>. Não é possível inserir ícones em inputs utilizando apenas as classes.</p>
+<p>Para inserir ícones dentro de botões utilize a tag <code>&lt;button&gt;</code> ou <code>&lt;a&gt;</code>.</p>
 <pre class="pre-exemplo"><code>&lt;button class="btn btn-primary"&gt;
   &lt;span class="icon icon-file-text2"&gt;&lt;/span&gt; Texto do botão
 &lt;/button&gt;</code></pre>
-<div class="row">
-  <div class="col-sm-2">
-      <button class="btn btn-primary">
-        <span class="icon icon-file-text2"></span> btn-primary
-      </button>
-  </div>
-  <div class="col-sm-2">
-      <button class="btn btn-default">
-          <span class="icon icon-file-text2"></span> btn-default
-      </button>
-  </div>
-  <div class="col-sm-2">
-      <button class="btn btn-success">
-           btn-success <span class="icon icon-file-text2"></span>
-      </button>
-  </div>
-  <div class="col-sm-2">
-      <button class="btn btn-info">
-           btn-info <span class="icon icon-file-text2"></span>
-      </button>
-  </div>
-  <div class="col-sm-2">
-      <button class="btn btn-default">
-           <span class="icon icon-file-text2"></span>
-      </button>
-  </div>
-</div>
-  <br /><br />
+
   <div class="row">
-    <div class="col-sm-12">
-      A lista inteira dos ícones pode ser vista em: <a href='https://icomoon.io/#preview-ultimate'>https://icomoon.io/#preview-ultimate</a>
+    <div class="col-sm-2">
+        <button class="btn btn-primary">
+          <span class="icon icon-file-text2"></span> btn-primary
+        </button>
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-default">
+            <span class="icon icon-file-text2"></span> btn-default
+        </button>
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-success">
+             btn-success <span class="icon icon-file-text2"></span>
+        </button>
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-info">
+             btn-info <span class="icon icon-file-text2"></span>
+        </button>
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-default">
+             <span class="icon icon-file-text2"></span>
+        </button>
     </div>
   </div>
-  <br /><br />
-  <h3>Ícones dentro do input</h3>
+  <br>
+  <p>Para inserir o ícone dentro de um input, utilize a classe <code>input-icon</code> e o código hexadecimal do ícone.</p>
+  <pre class="pre-exemplo"><code>&lt;input type="submit" class="btn btn-primary input-icon" value="&amp;#xE900; Exemplo"&gt;</code></pre>
+  <input type="submit" class="btn btn-primary input-icon" value="&#xE900; Exemplo">
+
+  <h3 class="secao">Lista completa de ícones</h3>
   <div class="row">
     <div class="col-sm-12">
-      
+      <?php include("icon.php"); ?>
     </div>
   </div>
 </div>

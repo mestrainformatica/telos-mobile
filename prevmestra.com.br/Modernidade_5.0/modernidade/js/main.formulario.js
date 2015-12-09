@@ -21,7 +21,7 @@ $(document).ready(function()
     $('.chosen').chosen();
 
     $("#menuDiv .menu-title").click(function () {
-        $(this).parents('#conteudo').toggleClass("menu-collapsed");
+        $(this).parents('#conteudo, body').toggleClass("menu-collapsed");
     });
 });
 // fim do document.ready()
