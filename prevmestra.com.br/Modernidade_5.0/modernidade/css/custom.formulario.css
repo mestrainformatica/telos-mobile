@@ -145,7 +145,7 @@ body.menu-collapsed {
   font-size: 14px;
   padding: 2px 6px;
   border: solid 1px #d0d0d0 !important;
-  background-color: #f0f0f0;
+  background-color: #F4F4F4;
 }
 .form-group label {
   padding: .15em 0;
@@ -156,7 +156,7 @@ body.menu-collapsed {
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 2px rgba(52,104,153,.2);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0px 6px rgba(31,79,141,0.3);
-    background-color: #f2f2f3 !important;
+    background-color: #fcfcfc !important;
 }
 .form-control[readonly="readonly"]:focus
 .chosen-container-single .chosen-single {
@@ -168,6 +168,7 @@ body.menu-collapsed {
 .btn {
   line-height: 1.28em;
 }
+
 
 /* = Layout Botão Paginação
 ========================= */
@@ -272,13 +273,15 @@ body.menu-collapsed {
   body .menu_acoes input
   {
     padding: 3px;
-    width: 35px !important;
-    height: 35px !important;
+    width: 40px !important;
+    height: 40px !important;
     background: #ddd;
     border-radius: 0px;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
+    margin:0 2px;
+
   }
 
   body .menu_acoes a img
@@ -709,7 +712,16 @@ body .botao_menos, body .botao_mais {
 /*  Fix tabela temporária  */
 #tabela-antiga {display: none;}
 
-
+/* Bordas suaves */
+.alert,
+pre,
+.btn-lg,
+.btn-md,
+.btn-sm,
+.btn
+{
+  border-radius: 2px;
+}
 /* = Formulários
 ========================= */
 

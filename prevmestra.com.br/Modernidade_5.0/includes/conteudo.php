@@ -181,23 +181,23 @@
 <h3 class="secao">Exemplos de Grid</h3>
 <p>O grid possui 12 colunas e o tamanho de cada coluna é definido através da classe <code>.col-sm-*</code>, onde * é o número de colunas.</p>
 <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="row"&gt;
+  &lt;div class="col-sm-16"&gt;...&lt;/div&gt;
   &lt;div class="col-sm-8"&gt;...&lt;/div&gt;
-  &lt;div class="col-sm-4"&gt;...&lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
 
 <div class="row show-grid">
+  <div class="col-sm-16"><p>.col-sm-16</p></div>
   <div class="col-sm-8"><p>.col-sm-8</p></div>
-  <div class="col-sm-4"><p>.col-sm-4</p></div>
-</div>
-<div class="row show-grid">
-  <div class="col-sm-3"><p>.col-sm-3</p></div>
-  <div class="col-sm-4"><p>.col-sm-4</p></div>
-  <div class="col-sm-5"><p>.col-sm-5</p></div>
 </div>
 <div class="row show-grid">
   <div class="col-sm-6"><p>.col-sm-6</p></div>
-  <div class="col-sm-6"><p>.col-sm-6</p></div>
+  <div class="col-sm-8"><p>.col-sm-8</p></div>
+  <div class="col-sm-10"><p>.col-sm-10</p></div>
+</div>
+<div class="row show-grid">
+  <div class="col-sm-12"><p>.col-sm-12</p></div>
+  <div class="col-sm-12"><p>.col-sm-12</p></div>
 </div>
 
 
@@ -205,7 +205,7 @@
 
 
 <div class="row">
-  <div class="col-sm-6 form-group">
+  <div class="col-sm-12 form-group">
     <label>Fundo&nbsp; <span class="text-warning">*</span></label>
 
     <select class="form-control chosen" name="codigoFundo" onchange="disparaAcaoBotao(&#39;botaoComboPatrocinadoraPlanoID&#39;)" class="texto" title="Escolha o Fundo"><option value="">[Selecione...]</option>
@@ -214,7 +214,7 @@
     </select>
   </div>  
 
-  <div class="col-sm-4 form-group">
+  <div class="col-sm-8 form-group">
     <label>Inscrição</label>
 
     <input type="text" class="form-control" name="numeroInscricao" maxlength="10" size="11" value="" readonly="readonly" class="texto_obrigatorio" title="Informe o Número de Inscrição">
@@ -222,7 +222,7 @@
 </div>
 <div class="row">
 
-  <div class="col-sm-4 form-group">
+  <div class="col-sm-8 form-group">
     <label>Patrocinador&nbsp; <span class="text-warning">*</span></label>
 
     <select  class="form-control" name="codigoPatrocinadora" class="texto" title="Escolha o Patrocinador"><option value="">[Selecione...]</option>
@@ -234,17 +234,17 @@
   </div>
 
 
-  <div class="col-sm-4 form-group form-inline">
+  <div class="col-sm-8 form-group form-inline">
     <label>Matrícula&nbsp; <span class="text-warning">*</span></label>
 
-    <input type="text" class="form-control col-sm-10" name="numeroMatricula" maxlength="10" size="11" value="" onkeypress="return sonumero(event)" onblur="disparaAcaoBotao(&#39;acaoGerarDigitoVerificador&#39;)" class="texto" title="Informe o Número da Matrícula">
-    <input type="text" class="form-control col-sm-2" name="numeroDigitoVerificadorMatricula" maxlength="1" size="1" value="" readonly="readonly" class="texto_obrigatorio">
+    <input type="text" class="form-control col-sm-20" name="numeroMatricula" maxlength="10" size="11" value="" onkeypress="return sonumero(event)" onblur="disparaAcaoBotao(&#39;acaoGerarDigitoVerificador&#39;)" class="texto" title="Informe o Número da Matrícula">
+    <input type="text" class="form-control col-sm-4" name="numeroDigitoVerificadorMatricula" maxlength="1" size="1" value="" readonly="readonly" class="texto_obrigatorio">
 
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-3 form-group">
+  <div class="col-sm-6 form-group">
     <label>Nome&nbsp; <span class="text-warning">*</span></label>
     <input type="text" class="form-control" name="nomeParticipante" maxlength="60" value="" class="texto" title="Informe o Nome" >
   </div>
@@ -267,14 +267,14 @@
       &lt;div class="modal-body"&gt;
 
         &lt;div class="row"&gt;
-          &lt;div class="col-sm-12"&gt;Conteúdo do modal pode ser um texto como esse&lt;/div&gt;
+          &lt;div class="col-sm-24"&gt;Conteúdo do modal pode ser um texto como esse&lt;/div&gt;
         &lt;/div&gt;
         &lt;div class="row"&gt;
 
-          &lt;div class="col-sm-12 form-group"&gt;
+          &lt;div class="col-sm-24 form-group"&gt;
             &lt;p&gt;Ou um campo de formulário, como abaixo&lt;/p&gt;
           &lt;/div&gt;
-          &lt;div class="col-sm-12 form-group"&gt;
+          &lt;div class="col-sm-24 form-group"&gt;
             &lt;label&gt;Nome&nbsp; &lt;span class="text-warning"&gt;*&lt;/span&gt;&lt;/label&gt;
             &lt;input type="text" class="form-control" name="nomeParticipante" maxlength="60" value="" class="texto" title="Informe o Nome" &gt;
           &lt;/div&gt;
@@ -294,13 +294,13 @@
 <p>Exemplos:</p>
 <br>
 <div class="row">
-  <div class="col-sm-6">
-    <button type="button" class="btn btn-primary btn-lg col-sm-12" data-toggle="modal" data-target="#modal-da-mestra">
+  <div class="col-sm-12">
+    <button type="button" class="btn btn-primary btn-lg col-sm-24" data-toggle="modal" data-target="#modal-da-mestra">
       Abrir modal 1
     </button>
   </div>
-  <div class="col-sm-6">
-    <button type="button" id="abrirIframe" class="btn btn-primary btn-lg col-sm-12" data-toggle="modal" data-target="#modal-iframe">
+  <div class="col-sm-12">
+    <button type="button" id="abrirIframe" class="btn btn-primary btn-lg col-sm-24" data-toggle="modal" data-target="#modal-iframe">
       Abrir modal com iframe
     </button>
   </div>
@@ -317,14 +317,14 @@
       <div class="modal-body">
 
         <div class="row">
-          <div class="col-sm-12">Conteúdo do modal pode ser um texto como esse</div>
+          <div class="col-sm-24">Conteúdo do modal pode ser um texto como esse</div>
         </div>
         <div class="row">
 
-          <div class="col-sm-12 form-group">
+          <div class="col-sm-24 form-group">
             <p>Ou um campo de formulário, como abaixo</p>
           </div>
-          <div class="col-sm-12 form-group">
+          <div class="col-sm-24 form-group">
             <label>Nome&nbsp; <span class="text-warning">*</span></label>
             <input type="text" class="form-control" name="nomeParticipante" maxlength="60" value="" class="texto" title="Informe o Nome" >
           </div>
@@ -446,11 +446,11 @@
 <h3 class="secao">Campos com máscara</h3>
 <p>Utilizando o <a href="http://digitalbush.com/projects/masked-input-plugin" target="_blank">Masked Input</a></p>
 <div class="row">
-  <div class="col-sm-3 form-group">
+  <div class="col-sm-6 form-group">
     <label>CPF</label>
     <input class="form-control cpf-field" type="text" name=""value="" placeholder="999.999.999-99">
   </div>
-  <div class="col-sm-3 form-group">
+  <div class="col-sm-6 form-group">
     <label>CEP</label>
     <input class="form-control cep-field" type="text" name=""value="" placeholder="99.999-99">
   </div>
@@ -764,7 +764,7 @@
 
     <div class="conteudoComponenteRetratil panel-body">
       <div class="row">
-        <div class="col-sm-6 form-group">
+        <div class="col-sm-12 form-group">
           <label for="">Centro Custo</label>
           <select name="itensPlc[0].identificadorCentroCusto" class="texto form-control"><option value="">[Selecione...]</option>
             <option value="43">MESTRA</option>
@@ -949,18 +949,18 @@
   <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;input class="form-control datepicker" type="text" name="..."  value="..." <strong>disabled="disabled"</strong>></code></pre>
 
   <div class="row form-group">
-    <div class="col-sm-4">
+    <div class="col-sm-8">
       <label for="">Input</label>
-      <input type="text" class="form-control col-sm-10" name="" value="" disabled="disabled">
+      <input type="text" class="form-control col-sm-20" name="" value="" disabled="disabled">
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-8">
       <label for="">Select</label>
       <select class="form-control chosen" name="codigoFundo" disabled="disabled" onchange="disparaAcaoBotao(&#39;botaoComboPatrocinadoraPlanoID&#39;)" class="texto" title="Escolha o Fundo"><option value="">[Selecione...]</option>
         <option value="001" selected="selected">001 - MESTRA - FUNDAÇÃO DE PREVIDÊNCIA COMPLEMENTAR</option>
         <option value="002">002 - MESTRA - CAIXA DE ASSISTÊNCIA</option>
       </select>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-8">
       <label for="">Datepicker</label>
       <input class="form-control datepicker" type="text" disabled="disabled">
     </div>
@@ -1083,27 +1083,27 @@
 &lt;/button&gt;</code></pre>
 
   <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <button class="btn btn-primary">
           <span class="icon icon-file-text2"></span> btn-primary
         </button>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <button class="btn btn-default">
             <span class="icon icon-file-text2"></span> btn-default
         </button>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <button class="btn btn-success">
              btn-success <span class="icon icon-file-text2"></span>
         </button>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <button class="btn btn-info">
              btn-info <span class="icon icon-file-text2"></span>
         </button>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-4">
         <button class="btn btn-default">
              <span class="icon icon-file-text2"></span>
         </button>
@@ -1116,7 +1116,7 @@
 
   <h3 class="secao">Lista completa de ícones</h3>
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-24">
       <?php include("icon.php"); ?>
     </div>
   </div>
