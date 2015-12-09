@@ -179,7 +179,7 @@
 
 
 <h3 class="secao">Exemplos de Grid</h3>
-<p>O grid possui 12 colunas e o tamanho de cada coluna é definido através da classe <code>.col-sm-*</code>, onde * é o número de colunas.</p>
+<p>O grid possui <strong>24 colunas</strong> e o tamanho de cada coluna é definido através da classe <code>.col-sm-*</code>, onde * é o número de colunas.</p>
 <pre class="pre-exemplo"><code class="language-html" data-lang="html">&lt;div class="row"&gt;
   &lt;div class="col-sm-16"&gt;...&lt;/div&gt;
   &lt;div class="col-sm-8"&gt;...&lt;/div&gt;
