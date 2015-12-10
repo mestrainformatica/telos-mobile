@@ -1,0 +1,22 @@
+.td_lista_excluir INPUT
+{
+	color: #ff0000;
+	text-decoration: line-through;
+
+}
+
+.lista_normal
+{
+    background-color: #FFFFFF
+}
+
+.td_lista_a
+{
+    BACKGROUND-COLOR: #F9EEDC;
+	CURSOR:HAND;
+}
+
+.td_lista_b
+{
+	CURSOR:HAND;
+}

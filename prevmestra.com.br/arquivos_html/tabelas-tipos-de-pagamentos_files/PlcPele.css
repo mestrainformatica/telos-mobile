@@ -1,0 +1,148 @@
+/* ELEMENTOS GENÉRICO (TAGS HTML */
+body{scrollbar-face-color:#d0dbeb;scrollbar-highlight-color:#EFF6FA;scrollbar-3dlight-color:#B0CFE3;scrollbar-darkshadow-color:#4E9CB6;scrollbar-shadow-color:#BCD7E7;scrollbar-arrow-color:#64828E;scrollbar-track-color:#E1F2FD}
+a{color:#00008B}
+a:hover{color:#1F96DA}
+.destaque1{color:#515D68}
+/* ELEMENTOS DE FORMULÁRIO */
+/* CAMPOS DE TEXTO */
+tr.linhaimpar{background:#d0dbeb;color:#144888}
+tr.linhapar{background:#e4ecf7;color:#144888}
+/* SELECTS */
+select{color:#2D7991;background:#e4ecf7}
+/* BOTÕES */
+#botao_menu2{color:#2B414E;border-top:1px solid #87D7E7;border-left:1px solid #87D7E7;border-bottom:1px solid #60A2B8;border-right:1px solid #60A2B8;background:#beccdf}
+/*	Semelhante ao #botao_menu,mas usado para quiosque
+a figura do botão será colocada inline no elemento
+as medidas da figura são exatos 32x32px
+colocar o seguinte código inline no botão:
+background:url(../seu_icone.gif) no-repeat 5px 5px;
+*/
+#botaoQuiosque{color:#3D4F57;border-top:4px solid #C1DAE8;border-right:4px solid #89A9BC;border-bottom:4px solid #89A9BC;border-left:4px solid #C1DAE8;background:#A0C5DB}
+/* Versão hover */
+#botaoQuiosque2{color:#2B414E;border-top:4px solid #87D7E7;border-right:4px solid #60A2B8;border-bottom:4px solid #60A2B8;border-left:4px solid #87D7E7;background:#beccdf}
+/* Igual ao #botao_menu,mas deve ser usado sempre dentro da td secao  */
+#botao_secao2{color:#2B414E;border-top:1px solid #60A2B8;border-left:1px solid #60A2B8;border-bottom:1px solid #87D7E7;border-right:1px solid #87D7E7;background:#beccdf}
+.bt:hover{color:#3D4F57}
+/* solução encontrada para a barrinha do portlet sem ter q alterar o class bt criada uma classe só para o texto que fica com as funções do portlet ela tem as mesmas propriedades do bt_secao_icone,mas a fonte muda. As cores são iguais ao .bt*/
+.botao_mais{color:#beccdf;background:#beccdf url(../../midia/plc_css_mais.gif) no-repeat 1px;border-top:1px solid #C1DAE8;border-left:1px solid #C1DAE8;border-bottom:1px solid #89A9BC;border-right:1px solid #89A9BC}
+.botao_menos{color:#beccdf;background:#beccdf url(../../midia/plc_css_menos.gif) no-repeat 1px;border-top:1px solid #C1DAE8;border-left:1px solid #C1DAE8;border-bottom:1px solid #89A9BC;border-right:1px solid #89A9BC}
+.botao_subdetalhe{color:#beccdf;border-top:1px solid #C1DAE8;border-left:1px solid #C1DAE8;border-bottom:1px solid #89A9BC;border-right:1px solid #89A9BC;background:#beccdf url(../../midia/ico_novo_sdet.gif) no-repeat 1px}
+/* CONTAINERS DE ELEMENTOS */
+/* Componente Retrátil (+ -):segue padrão de cores do delimitador */
+table.componenteRetratil{padding-left:2px;border-top:1px solid #68AAC1;border-left:1px solid #68AAC1;border-right:1px solid #68AAC1}
+table.conteudoComponenteRetratil{border-left:1px solid #68AAC1;border-bottom:1px solid #68AAC1;border-right:1px solid #68AAC1;background:#FFFFFF}
+/* Fim Componente Retrátil */
+table.delimitador{border-top:1px solid #beccdf;border-left:1px solid #beccdf;border-bottom:1px solid #beccdf;border-right:1px solid #beccdf;background:#FFFFFF}
+td.subsecao{background:#E1F2FD;border-top:0px solid #FFFFFF;color:#3D4F57}
+td.titulo{color:#325D82}
+td.campo{color:#5B5B5B}
+td.linha_treeview{color:#313031}
+td.menu_item{color:#3D4F57;border-left:1px solid #ADD8E6;border-bottom:1px solid #ADD8E6;border-right:1px solid #ADD8E6;background:#e4ecf7}
+
+td.submenu_titulo{color:#00008B;border-left:1px solid #ADD8E6;border-bottom:1px solid #ADD8E6;border-right:1px solid #ADD8E6;background:#e4ecf7;font:normal normal 10px Verdana;height:15px;padding:2px 2px 2px 4px;text-align:left;vertical-align:middle}
+td.submenu_item{color:#00008B;border-left:1px solid #ADD8E6;border-bottom:1px solid #ADD8E6;border-right:1px solid #ADD8E6;background:#e4ecf7;font:normal normal 10px Verdana;height:15px;padding:2px 2px 2px 20px;text-align:left;vertical-align:middle}
+
+/* Início tabela de lista */
+table.lista{border-top:1px solid #68AAC1;border-left:1px solid #68AAC1;border-bottom:1px solid #68AAC1;border-right:0px solid #68AAC1}
+td.cabecalho{color:#58717C;border-top:1px solid #E9F2F5;border-right:1px solid #86BBCE;border-bottom:1px solid #86BBCE;border-left:1px solid #E9F2F5;background:#beccdf}
+td.linha{color:#333333;border-top:1px solid #68AAC1;border-right:1px solid #68AAC1}
+/* Fim tabela de lista */
+/* TAB FOLDER */
+td.tab_ativada{color:#394D52;border-top:3px solid #FFFFFF;border-bottom:6px solid #CEDFEF;background:#CEDFEF}
+/* Resolver problema com link nas tabs */
+/* Usa a mesma cor da tab_ativada */
+td.tab_ativada a{color:#394D52}
+td.tab_desativada{top:-1px;color:#FFFFFF;border-top:3px solid #FFFFFF;border-bottom:6px solid #73C3DE;background:#73C3DE}
+/* Resolver problema com link nas tabs */
+/* Usa a mesma cor da tab_desativada */
+td.tab_desativada a{color:#FFFFFF}
+td.corpoTabFolder{border-top:1px solid #DEFFFF;border-left:1px solid #DEFFFF;border-bottom:1px solid #607D99;border-right:1px solid #607D99;background:#CEDFEF}
+/*FIM TAB FOLDER*/
+/* Topo aplicação */
+div.topo{background:url(app_topo_bg_titulo.gif)}
+div.tituloPagina{color:#005982}
+/* Usado apenas no topo do layout Sistema */
+div.portaMenuSistema{border-bottom:1px solid #94a2b3;background:#D2DFF3}
+/* Fim topo aplicação */
+td.sobre{color:#3D4F57;border:1px solid #D4D4D4;background:#e4ecf7}
+/* cor padrão:não alterar */
+div.balao{color:#000000;border:1px solid #796300;background:#FFF6A7}
+/* Definição da janelinha de Mensagens */
+.janela_msg{border:1px solid #68AAC1;background:#EEEEEE}
+.janela_msg_sub_tit{color:#3D4F57;border-bottom:1px solid #BEE0EB;background:#e4ecf7}
+.janela_msg_conteudo{color:#666666;background:#FFFFFF}
+pre,h1,hr{color:#0058AC}
+INPUT.texto,INPUT.false,TEXTAREA{color:#2D7991;border-top:1px solid #2D7991;border-left:1px solid #2D7991;border-bottom:1px solid #ADD8E6;border-right:1px solid #ADD8E6;background:#e4ecf7}
+INPUT.texto_obrigatorio,TEXTAREA.obrigatorio{color:#085669;border-top:1px solid #beccdf;border-left:1px solid #beccdf;border-bottom:1px solid #beccdf;border-right:1px solid #beccdf;background:#e4ecf7}
+INPUT.texto_desabilitado,INPUT.true,TEXTAREA.desabilitado{color:#939393;border-top:1px solid #BDBDBD;border-left:1px solid #BDBDBD;border-bottom:1px solid #EBEBEB;border-right:1px solid #EBEBEB;background:#FDFDFD}
+td.menu_titulo,td.rodape{color:#3D4F57;border-top:1px solid #EFF6FA;border-left:1px solid #EFF6FA;border-bottom:1px solid #A1C7DD;border-right:1px solid #A1C7DD;background:#d0dbeb}
+div.nomeEmpresa,div.nomeAplicacao{color:#527B9B}
+.janela_msg_tit,td.secao,td.porta_portlet{color:#3D4F57;border-top:1px solid #EFF6FA;border-left:1px solid #EFF6FA;border-bottom:1px solid #A1C7DD;border-right:0px solid #A1C7DD;background:#d0dbeb}
+h2,.t2,td.normal,.linha_ajuda{color:#333333}
+.bt_secao_texto,.bt_secao_icone,#botao_menu,#botao_secao,.botao,.bt{color:#3D4F57;border-top:1px solid #C1DAE8;border-left:1px solid #C1DAE8;border-bottom:1px solid #89A9BC;border-right:1px solid #89A9BC;background:#beccdf}
+/* Formatação para as abas ágeis */
+div.tabbar {
+  margin-top: 0;
+  border-bottom: 7px solid #beccdf;
+  padding: 2px 0px;
+  font-family: sans-serif;
+  font-size: 83%;
+  
+}
+.tabbar {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  list-style: none;
+}
+ 
+.tabSelecionada{
+   border-top: 2px solid #beccdf;
+ background-color: #beccdf;
+   border-bottom: 2px solid #beccdf;
+}
+ 
+.tabNaoSelecionada{
+ background-color: #FFFFFF;
+}
+ 
+div.tabbar a {
+  padding: 2px 1em;
+  text-decoration: none;
+}
+ 
+div.tabbar a:hover, div.tabbar a:active {
+  text-decoration: underline;
+}
+ 
+div.tabbar a, div.tabbar a:hover, div.tabbar a:active {
+  border-top: 1px solid #beccdf;
+  border-left: 1px solid #beccdf;
+  border-right: 1px solid #beccdf;
+  border-bottom: none;
+  color: #3D4F57;
+  text-decoration: underline;
+}
+ 
+div.tabOculta {
+ display:none;
+}
+div.tabVisivel {
+ display:inline;
+}
+/* FIM Formatação para as abas ágeis */
+TEXTAREA.campoComErro, INPUT.campoComErro, .campoComErro{
+	background-color:#FFD9D9;
+	color			: #000000;
+}
+
+INPUT.valor{
+	color:#2D7991;
+	border-top:
+	1px solid #2D7991;
+	border-left:1px solid #2D7991;
+	border-bottom:1px solid #ADD8E6;
+	border-right:1px solid #ADD8E6;
+	background:#e4ecf7;
+	text-align: right;
+}
