@@ -21,9 +21,9 @@ $(document).ready(function()
     $(".datepicker").blur(function(){
         val = $(this).val();
         val1 = Date.parse(val);
-        if (isNaN(val1)==true && val!==''){
+        if (isNaN(val1)==true && (val!='' && val != '__/__/____')){
            swal("Data inválida");
-		   $(this).val('');
+           $(this).val('');
         }
     });
     $('.chosen').chosen();
