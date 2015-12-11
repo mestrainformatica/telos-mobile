@@ -23,8 +23,7 @@ $(document).ready(function()
         val1 = Date.parse(val);
         if (isNaN(val1)==true && val!==''){
            swal("Data inválida");
-        }
-        else{
+		   $(this).val('');
         }
     });
     $('.chosen').chosen();
