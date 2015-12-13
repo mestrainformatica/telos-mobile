@@ -690,6 +690,7 @@ body .botao_menos, body .botao_mais {
 /* = Formulários
 ========================= */
 .has-error .form-control {border:1px solid #a94442 !important;}
+.has-error .chosen-container {border:1px solid #a94442 !important;}
 .form-group.required label:after {content: " *";}
 
 .ui-tabs.ui-widget {padding: 0; margin: 0; border: none;}
