@@ -722,6 +722,12 @@ pre,
 {
   border-radius: 2px;
 }
+
+/* = Tabela
+========================= */
+table.table.no-lines tr th {border-bottom: none !important;}
+
+
 /* = Formulários
 ========================= */
 

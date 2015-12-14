@@ -24,3 +24,6 @@
     font-weight: 400;
     cursor: pointer;
 }
+
+table th,
+table td { vertical-align: middle; }
