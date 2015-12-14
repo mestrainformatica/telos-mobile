@@ -1,0 +1,2259 @@
+
+<!-- saved from url=(0081)http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&idRotina=4105 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+  	 	
+    
+
+
+
+
+
+	
+
+
+
+
+
+<link href="./pagamentos-calcular_files/css" rel="stylesheet" type="text/css">
+<link href="./pagamentos-calcular_files/css(1)" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="./pagamentos-calcular_files/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="./pagamentos-calcular_files/jquery-ui.structure.css" type="text/css">
+<link rel="stylesheet" href="./pagamentos-calcular_files/jquery-ui.theme.css" type="text/css">
+<link rel="stylesheet" href="./pagamentos-calcular_files/custom.formulario.css"> 
+<link rel="stylesheet" href="./pagamentos-calcular_files/custom.bootstrap.fix.css"> 
+<link rel="stylesheet" href="./pagamentos-calcular_files/jquery-ui.css"> 
+<link rel="stylesheet" href="./pagamentos-calcular_files/chosen.min.css">
+<link rel="stylesheet" href="./pagamentos-calcular_files/font.iconmoon.css">
+<link rel="stylesheet" type="text/css" href="./pagamentos-calcular_files/sweet-alert.css">
+<link rel="stylesheet" type="text/css" href="./pagamentos-calcular_files/tooltipster.css">
+<link rel="stylesheet" type="text/css" href="./pagamentos-calcular_files/tooltipster-light.css">
+
+<script src="./pagamentos-calcular_files/loading.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/MestraAjax.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="./pagamentos-calcular_files/chosen.jquery.min.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/priceformat.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/jquery.maskedinput.1.4.1.js" type="text/javascript"></script>
+
+<script src="./pagamentos-calcular_files/bootstrap.min.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/emodal.min.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/sweet-alert.js"></script>
+<script src="./pagamentos-calcular_files/main.formulario.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/jquery.tooltipster.min.js"></script>
+
+<script src="./pagamentos-calcular_files/PlcGeral.js" type="text/javascript"></script><style type="text/css">.expandeRetraiPlc{display:none;}</style><style type="text/css">.expandeRetraiPlc{display:none;}</style>
+<script src="./pagamentos-calcular_files/AppGeral.js" type="text/javascript"></script>
+<script src="./pagamentos-calcular_files/mestra.script.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="./pagamentos-calcular_files/loading.css" type="text/css">
+<script src="./pagamentos-calcular_files/menuExpandable.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="./pagamentos-calcular_files/global.css">  
+<link rel="stylesheet" type="text/css" media="screen" href="./pagamentos-calcular_files/menuExpandable.css"> 
+
+	<title>:: Sysprev Web ::</title>
+
+
+
+	</head>
+	<body onload="iniciarPagina();initializeMenus();" onkeydown="return executarAcaoFuncoes(event);" bgcolor="#ffffff" text="#000000" link="#023264" alink="#023264" vlink="#023264" topmargin="0" leftmargin="0">
+
+		
+		   
+		   
+		   
+		   
+		
+
+
+
+<div class="header-modernidade">
+	<div class="logo-div" style="width: 246px;">
+		<img class="logo" src="./pagamentos-calcular_files/logo-provisoria.png">
+	</div>
+	<div class="inner">
+		<div class="navbar-left">
+			<h1>Módulo Folha Ativo</h1>
+		</div>
+		<div class="navbar-right">
+			<p>Conectado como faeces. &nbsp; 
+			
+						
+						
+						<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/plc/desconectaPlc.do?evento=Desconectar" style="cursor:hand;" onclick="return executarEventoAplicacao(getBotaoArray(&#39;DESCONECTAR&#39;));">
+							</a><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/plc/desconectaPlc.do?evento=Desconectar">Desconectar <img src="./pagamentos-calcular_files/off.png"></a>
+						
+						
+						
+			</p>
+		</div>
+	</div>
+</div>
+
+
+		<div id="conteudo">
+
+			<div id="left-column" role="complementary">
+				
+				   
+				   
+				   
+				   
+				
+
+
+
+
+
+
+
+	
+	
+
+	
+	
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	<div id="menuDiv"><ul id="menuList">
+<li class="menu-title affix-top">Menu <span class="glyphicon glyphicon-menu-hamburger"></span></li>
+
+
+	
+		
+	       	      
+			<li class="menubar">
+
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00000Actuator" class="actuator active">Tabelas</a>
+		<ul id="M00000Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/funcoesman.do?evento=x&amp;idRotina=4067" title="Funções">Funções</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/tipopagamentoman.do?evento=x&amp;idRotina=4074" title="Tipos de Pagamentos">Tipos de Pagamentos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/consignatariosman.do?evento=x&amp;idRotina=4076" title="Consignatários">Consignatários</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/cargosman.do?evento=x&amp;idRotina=4068" title="Cargos">Cargos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/lotacoesman.do?evento=x&amp;idRotina=4069" title="Lotação">Lotação</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/grausinstrucoesman.do?evento=x&amp;idRotina=4070" title="Graus de Instruções">Graus de Instruções</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/situacoescolaboradoresman.do?evento=x&amp;idRotina=4071" title="Situações dos Colaboradores">Situações dos Colaboradores</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/tiposcategoriasman.do?evento=x&amp;idRotina=4072" title="Categorias dos Colaboradores">Categorias dos Colaboradores</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/finalidadedependenteman.do?evento=x&amp;idRotina=4073" title="Finalidades dos Dependentes">Finalidades dos Dependentes</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/tipomotivorecisorioman.do?evento=x&amp;idRotina=4075" title="Motivos das Recisões">Motivos das Recisões</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calendariopagamentoman.do?evento=x&amp;idRotina=4077" title="Calendário de Pagamentos">Calendário de Pagamentos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/cargosniveisman.do?evento=x&amp;idRotina=4080" title="Cargos x Níveis">Cargos x Níveis</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/tiposcolaboradoresman.do?evento=x&amp;idRotina=4082" title="Tipos de Colaboradores">Tipos de Colaboradores</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/tiposdependentesman.do?evento=x&amp;idRotina=4083" title="Tipos de Dependentes">Tipos de Dependentes</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/modelostarifastransportesman.do?evento=x&amp;idRotina=4084" title="Modelos e Tarifas de Transportes">Modelos e Tarifas de Transportes</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/faixasinssman.do?evento=x&amp;idRotina=4086" title="Faixas de INSS">Faixas de INSS</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/faixaslicencainssman.do?evento=x&amp;idRotina=4087" title="Faixas de Licença de INSS">Faixas de Licença de INSS</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/faixaplanosaudeman.do?evento=x&amp;idRotina=4088" title="Faixas de Plano de Saúde">Faixas de Plano de Saúde</a></li>
+</ul>
+	</li>
+
+
+	
+		
+	       	      
+			<li class="menubar">
+
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00001Actuator" class="actuator active">Parâmetros</a>
+		<ul id="M00001Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/parametrosistemaman.do?evento=x&amp;idRotina=4090" title="Sistema">Sistema</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/rendimentosman.do?evento=x&amp;idRotina=4091" title="Rendimentos">Rendimentos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/descontosman.do?evento=x&amp;idRotina=4092" title="Descontos">Descontos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/encargosman.do?evento=x&amp;idRotina=4093" title="Encargos">Encargos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/contabeisman.do?evento=x&amp;idRotina=4094" title="Contábeis">Contábeis</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/parametrosfinanceirosman.do?evento=x&amp;idRotina=4095" title="Financeiros">Financeiros</a></li>
+</ul>
+	</li>
+
+
+	
+		
+	       	      
+			<li class="menubar">
+
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00002Actuator" class="actuator active">Cadastros/Lançamentos</a>
+		<ul id="M00002Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/rubricasman.do?evento=x&amp;idRotina=4097" title="Rubricas">Rubricas</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/colaboradoresdependentesman.do?evento=x&amp;idRotina=4098" title="Colaboradores/Dependentes">Colaboradores/Dependentes</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/faltasatrasosman.do?evento=x&amp;idRotina=4101" title="Faltas/Atrasos">Faltas/Atrasos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/horasextrasman.do?evento=x&amp;idRotina=4102" title="Horas Extras">Horas Extras</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/aumentossalariaisman.do?evento=x&amp;idRotina=4103" title="Aumentos Salariais">Aumentos Salariais</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/coparticipacaoplanosaudeman.do?evento=x&amp;idRotina=4096" title="Coparticipação do Plano de Saúde">Coparticipação do Plano de Saúde</a></li>
+</ul>
+	</li>
+
+
+	
+		
+	       	      
+			<li class="menubar">
+
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00003Actuator" class="actuator active">Pagamentos</a>
+		<ul id="M00003Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/emitirencargosman.do?evento=x&amp;idRotina=4104" title="Emitir Encargos">Emitir Encargos</a></li>
+	<li><a href="./pagamentos-calcular_files/pagamentos-calcular.html" title="Calcular" class=" highlight">Calcular</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/emitirpreviaspagamentosman.do?evento=x&amp;idRotina=4106" title="Emitir Prévias">Emitir Prévias</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/alterarfolhasman.do?evento=x&amp;idRotina=4107" title="Alterar Folhas">Alterar Folhas</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/confirmarpagamentosman.do?evento=x&amp;idRotina=4108" title="Confirmar">Confirmar</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/emitirfolhasman.do?evento=x&amp;idRotina=4109" title="Emitir Folhas">Emitir Folhas</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/emitircontrachequesman.do?evento=x&amp;idRotina=4110" title="Emitir Contra-Cheques">Emitir Contra-Cheques</a></li>
+</ul>
+	</li>
+
+
+	
+		
+	       	      
+			<li class="menubar">
+
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00004Actuator" class="actuator active">Encargos</a>
+		<ul id="M00004Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularencargosman.do?evento=x&amp;idRotina=4111" title="Calcular">Calcular</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/emitirpreviasencargosman.do?evento=x&amp;idRotina=4112" title="Emitir Prévias">Emitir Prévias</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/confirmarencargosman.do?evento=x&amp;idRotina=4113" title="Confirmar">Confirmar</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/relencargosman.do?evento=x&amp;idRotina=4114" title="Relatórios">Relatórios</a></li>
+</ul>
+	</li>
+
+
+	
+		
+	       	      
+			<li class="menubar">
+
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00005Actuator" class="actuator active">Controles</a>
+		<ul id="M00005Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/feriascontrolesman.do?evento=x&amp;idRotina=4115" title="Férias/Recessos">Férias/Recessos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/fechamentomensalman.do?evento=x&amp;idRotina=4116" title="Fechamento Mensal">Fechamento Mensal</a></li>
+</ul>
+	</li>
+
+
+	
+		
+	       	      
+			<li class="menubar">
+
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00006Actuator" class="actuator active">Relatórios</a>
+		<ul id="M00006Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/relcolaboradoresman.do?evento=x&amp;idRotina=4117" title="Colaboradores">Colaboradores</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/feriasrelatoriosman.do?evento=x&amp;idRotina=4118" title="Férias/Recessos">Férias/Recessos</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/informespagamentosman.do?evento=x&amp;idRotina=4119" title="Informes de Pagamentos">Informes de Pagamentos</a></li>
+</ul>
+	</li>
+
+
+	
+		
+	       	      
+			<li class="menubar">
+
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00007Actuator" class="actuator active">Integrações</a>
+		<ul id="M00007Menu" class="menu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/integracoescontabeisman.do?evento=x&amp;idRotina=4120" title="Contábeis">Contábeis</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/financeirasman.do?evento=x&amp;idRotina=4121" title="Financeiras">Financeiras</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/previdenciariasman.do?evento=x&amp;idRotina=4122" title="Previdenciárias">Previdenciárias</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/emprestimosman.do?evento=x&amp;idRotina=4123" title="Empréstimos">Empréstimos</a></li>
+<li>
+	<a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do?evento=x&amp;idRotina=4105#" id="M00008Actuator" class="actuator active">Entidades Externas</a>
+		<ul id="M00008Menu" class="submenu" style="display: block;">
+
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/sefipman.do?evento=x&amp;idRotina=4125" title="SEFIP">SEFIP</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/valetransporteman.do?evento=x&amp;idRotina=4126" title="Vale Transporte">Vale Transporte</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/raisentidadesexternasman.do?evento=x&amp;idRotina=4127" title="RAIS">RAIS</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/dirfentidadesexternasman.do?evento=x&amp;idRotina=4128" title="DIRF">DIRF</a></li>
+	<li><a href="http://www.sysprev.com.br/FAECES_FolhaAtivo/creditosbancariosman.do?evento=x&amp;idRotina=4129" title="Créditos Bancários">Créditos Bancários</a></li>
+		</ul>
+	</li>
+
+
+</ul>
+	</li>
+
+
+	
+	</ul></div>
+	
+
+	
+
+	
+ 	
+			</div><!-- Fim left-column -->
+
+		
+			<div id="main-content" class="container" role="main">
+				
+				   
+				   
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if(typeof barraProgressoAjax == "undefined" && plcAjax.ajaxUsaBarraProgresso){
+	barraProgressoAjax = createBar(320,15,'lightyellow',1,'black','green',50,7,9999,'','');
+	barraProgressoAjax.hideBar();
+}
+</script><div id="fundoBar" style="background-color:lavender; z-index:200; display:none; position:absolute; top:0; left:0; width:1259px; height:586px;-Moz-opacity:0.5"></div><div id="barraProgresso" style="visibility:visible; z-index:300; position:absolute; top:300; left:300;"><div id="_xpbar0" style="display:none; position:relative; overflow:hidden; width:320px; height:15px; background-color:lightyellow; border-color:black; border-width:1px; border-style:solid; font-size:1px;"><span id="blocks0" style="left:-31px; position:absolute; font-size:1px"><span style="background-color:green; left:-0px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:1"></span><span style="background-color:green; left:-16px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.8571428571428571"></span><span style="background-color:green; left:-32px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.7142857142857143"></span><span style="background-color:green; left:-48px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.5714285714285714"></span><span style="background-color:green; left:-64px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.42857142857142855"></span><span style="background-color:green; left:-80px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.2857142857142857"></span><span style="background-color:green; left:-96px; font-size:1px; position:absolute; width:15px; height:15px; -Moz-opacity:0.14285714285714277"></span></span><span style="font: 10px Verdana; width:320px; height:15px;text-align:&#39;center&#39;;"><center><b></b></center></span></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span id="AJAX">
+<ajax>
+
+
+
+
+
+<form name="calcularForm" method="post" action="http://www.sysprev.com.br/FAECES_FolhaAtivo/calcularman.do" enctype="text/html" onsubmit="return executarAcaoFuncoes(event)">
+
+
+
+
+<input type="hidden" name="lookupCorrentePlc" value="">
+
+
+
+
+
+
+
+<script avaliar="S">
+setFuncaoOnLoad("setFocoDetalhe()")	
+//CONFIGURAÇÕES GERAIS JCOMPANY
+plcGeral.contextPath = "/FAECES_FolhaAtivo";
+</script>
+<input type="text" style="position:absolute; top:-100px;" id="navSetaFocoPlc" name="navSetaFocoPlc" inibefoco="S" title="ATENCAO - Campo utilizado em logica de navegacao do menu de sistema via setas. Nao retirar.">
+
+
+
+<style>
+.skin0{
+	position:absolute;
+	width:220px;
+	border:1px solid black;
+	background-color:menu;
+	font-family:Verdana;
+	line-height:20px;
+	cursor:default;
+	font-size:12px;
+	z-index:100;
+	visibility:hidden;
+	text-align:right;
+}
+.menuitems{
+	width:220px;
+	//padding-left:10px;
+	//padding-right:20px;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+</style>
+<script>
+var menuImp = false;
+var element = "";
+function gerarMenuImpressao(evt){
+	if(ExpYes){
+		evt = event;
+		element = evt.srcElement;
+	}else{
+		if(element == "")
+			element = evt.target;
+	}
+//	if(!menuImp && element.value && element.value.toLowerCase().indexOf("imprimir") > -1 && 
+//		(capturaMouseDown(evt) == '2' || capturaMouseDown(evt) == '3')){
+	if(!menuImp && element.value && element.value.toLowerCase().indexOf("imprimir") > -1){
+		showMenuImpressao(evt);
+	}
+	if(menuImp)
+		return false;
+}
+
+function imprimirDireto(){
+	window.print(document);
+}
+
+function imprimirDiretoIntel(){
+	gerarImpressaoInteligente(); 
+	window.print(document);
+}
+</script>
+<div id="menuImpressaoDiv" class="skin0" onmouseover="highlightMenuImpressao(event)" onmouseout="lowlightMenuImpressao(event)" onclick="jumptoMenuImpressao(event)" display:none="">
+	<div class="menuitems" funcao="chamarImpressao(&#39;/FAECES_FolhaAtivo/plc/impressaoPlc.do?evento=F12-Imprimir&amp;impIntel=N&#39;,document.title,&#39;impressao&#39;);">Visualizando Modo Formulário</div>
+	<div class="menuitems" funcao="chamarImpressao(&#39;/FAECES_FolhaAtivo/plc/impressaoPlc.do?evento=F12-Imprimir&amp;impIntel=S&#39;,document.title,&#39;impressao&#39;);">Visualizando Modo Texto</div>
+	<div class="menuitems" funcao="imprimirDireto();">Diretamente Modo Formulário</div>
+	
+	<hr>
+	<div class="menuitems" funcao="hideMenuImpressao(event);">Cancelar</div>
+</div>
+<script src="./pagamentos-calcular_files/PlcTooltip.js" type="text/javascript"></script>
+
+
+
+	
+
+
+
+
+<input type="hidden" name="modoPlc" value="inclusaoPlc">
+
+<input type="hidden" name="detCorrPlc" value="">
+
+
+
+
+<input type="hidden" name="indExcDetPlc" value="">
+
+
+
+
+
+
+	
+
+
+
+
+
+
+ 
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+		function econderMgsExibida() {
+			var obj = window.document.getElementById("DIV_MENSAGEM_FLUTUANTE");
+			var objFrame = window.document.getElementById("FRAME_MENSAGEM_FLUTUANTE");
+			obj.style.visibility = "hidden";
+			objFrame.style.visibility = "hidden";
+		}
+</script>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="menu_acoes">
+		
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Comentado 18/10/2006 - by Rodrigo Magno -->
+<!-- Aguardando lÃ³gica de Aprovar Todos (jCompany 3.5). -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script avaliar="S">
+regBotaoEvento('Visualizar Documento','VIS_DOCUMENTO');
+regBotaoEvento('Editar Documento','EDT_DOCUMENTO');
+</script>
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- /Mostra botao? -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+<script>
+msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
+</script>
+
+
+
+
+<!-- INI -->
+
+
+
+
+
+			
+			
+
+
+
+	
+
+
+
+	
+ 
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	<h3>Calcular</h3>
+	<div class="row">
+		&nbsp;
+	</div>
+
+<div class="row">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+<div id="div_mesAnoReferencia" class="col-sm-3 form-group form-group  required  ">
+<label class="control-label" for="mesAnoReferencia">
+
+Mês de Referência
+</label>
+
+<input type="text" name="mesAnoReferencia" maxlength="7" size="8" value="12/2015" onkeydown="" onkeyup="" onkeypress="return mascComp(this, event)" onchange="recuperaComboPagamento();return sonumero(event);" onblur=" validComp(this);" onfocus="skip(this);" id="mesAnoReferencia" style="" class="form-control " title="">
+	
+</div>
+	<div id="divPagamento">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-sm-3 form-group  required  ">
+
+<label class="control-label" for="identificadorPagamento">
+	
+	Pagamento
+</label>
+
+
+	
+	
+	
+	
+	
+	
+		<select name="identificadorPagamento" onchange="preencheDadosDependentesPagamento(this);" onblur="" onfocus="skip(this);" id="identificadorPagamento" style="display: none;" class="form-control form-control chosen"><option value="" selected="selected">[Selecione...]</option>
+		
+	
+		
+			<option value="1006;2015-10-26">DÉCIMO TERCEIRO - 26/10/2015</option>
+<option value="1007;2015-10-27">DÉCIMO TERCEIRO - 27/10/2015</option>
+<option value="1011;2015-10-27">MENSAL - 27/10/2015</option>
+<option value="1008;2015-10-28">DÉCIMO TERCEIRO - 28/10/2015</option>
+<option value="4;2015-12-10">RESCISÃO - 10/12/2015</option>
+<option value="1;2015-12-15">ADIANTAMENTO QUINZENAL - 15/12/2015</option>
+<option value="1009;2015-12-22">teste - 22/12/2015</option>
+<option value="2;2015-12-31">MENSAL - 31/12/2015</option>
+<option value="1005;2016-04-20">RECESSO - 20/04/2016</option>
+<option value="5;2016-04-29">FÉRIAS - 29/04/2016</option></select><div class="chosen-container chosen-container-single" style="width: 101px;" title="" id="identificadorPagamento_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+	
+</div>
+	</div>
+	<input type="hidden" name="exibeDetalhe" value="N" id="exibeDetalhe">
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+
+<div class="row">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-sm-6 form-group  required  ">
+
+<label class="control-label" for="identificadorTipoColabotador">
+	
+	Tipo de Colaborador
+</label>
+
+
+	
+	
+	
+	
+	
+	
+		<select name="identificadorTipoColabotador" onchange="exibeCampos(this)" onblur="" onfocus="skip(this);" id="identificadorTipoColabotador" style="display: none;" class="form-control form-control chosen"><option value="" selected="selected">[Selecione...]</option>
+		
+	
+		
+			<option value="9">DNE - DIRETOR NÃO EMPREGADO</option>
+<option value="8">EST - ESTAGIÁRIO</option>
+<option value="7">FUN - FUNCIONÁRIO</option></select><div class="chosen-container chosen-container-single" style="width: 222px;" title="" id="identificadorTipoColabotador_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+	
+</div>
+	
+	
+	
+</div>
+<div id="idFundoPatrocinadora" style="display: none">
+	<div class="row">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-sm-6 form-group  required  ">
+
+<label class="control-label" for="identificadorFundo">
+	
+	Fundo
+</label>
+
+
+	
+	
+	
+	
+	
+	
+		<select name="identificadorFundo" onchange="recuperarDadosPatrocinadora(this)" onblur="" onfocus="skip(this);" id="identificadorFundo" style="display: none;" class="form-control form-control chosen"><option value="" selected="selected">[Selecione...]</option>
+		
+	
+		
+			<option value="1">001 - FAECES - FUNDAÇÃO DE PREVIDÊNCIA COMPLEMENTAR</option>
+<option value="2">002 - FAECES - CAIXA DE ASSISTÊNCIA</option>
+<option value="3">003 - TESTE</option></select><div class="chosen-container chosen-container-single" style="width: 0px;" title="" id="identificadorFundo_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+	
+</div>
+	</div>
+	<div class="row">
+		<div id="divPatrocinadora">
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-sm-6 form-group  required  ">
+
+<label class="control-label" for="identificadorPatrocinadora">
+	
+	Patrocinadora
+</label>
+
+
+	
+	
+	
+	
+	
+	
+		<select name="identificadorPatrocinadora" onchange="" onblur="" onfocus="skip(this);" id="identificadorPatrocinadora" style="display: none;" class="form-control form-control chosen"><option value="" selected="selected">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 0px;" title="" id="identificadorPatrocinadora_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+	
+</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div>
+		<div class="col-sm-24 form-inline">
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+<div id="div_numeroMatricula" class="col-sm-4 input-group form-group  ">
+<label class="control-label" for="numeroMatricula">
+
+Matrícula
+</label>
+
+<input type="text" name="numeroMatricula" maxlength="10" size="11" value="" onkeydown="" onkeyup="" onkeypress="" onchange="validaFundoPatroc();preencheMatricula(this);" onblur=" " onfocus="skip(this);" id="numeroMatricula" style="" class="form-control " title="">
+	
+</div>
+			&nbsp;
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+<div id="div_nomeColaborador" class="col-sm-10 input-group form-group  ">
+<label class="control-label" for="nomeColaborador">
+
+Nome do Colaborador
+</label>
+
+<input type="text" name="nomeColaborador" maxlength="60" size="61" value="" onkeydown="" onkeyup="" onkeypress="" onchange="" onblur=" " onfocus="skip(this);" disabled="disabled" id="nomeColaborador" style="" class="form-control " title="">
+	
+<div style="vertical-align:bottom;" id="btnPopColaborador" class="input-group-btn">
+				<button class="btn btn-default" type="button" onclick="chamaModal();">...</button>
+				<input type="hidden" name="habilitaFunPatroc" value="" id="habilitaFunPatroc">
+				<input type="hidden" name="identificadorColaborador" value="" id="identificadorColaborador">
+			</div></div>
+			&nbsp;
+			<div class="col-sm-8 input-group">
+				<div class="row">
+					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<script>
+
+$(document).ready(function() {
+	if($('#habilitaFunPatroc').val() == 'S') {
+		$('#idFundoPatrocinadora').show();
+	}
+
+	$("#btnPopColaborador").appendTo("#div_nomeColaborador");
+	
+	
+});
+
+
+function preencheMatricula(campo){
+	
+	if(campo && campo.value != '') {
+
+		var dataString = $("form").serialize() + '&evento=preencheMatricula';
+		dataString += '&rnd=' + Math.random();
+		
+		$.ajax({
+			type : "POST",
+			url : "?",
+			data : dataString,
+			cache : false,
+			dataType: "json",
+			success : function(html) {
+				
+				if(html.MSG != '' && html.MSG != undefined){
+	            	 alert(html.MSG);
+	            	 $('#numeroMatricula').val('');
+	            	 $('#nomeColaborador').val('');
+	            	 $('#identificadorColaborador').val('');
+	            	 desfazPreencheMatricula();
+	            	 
+				} else if ((html.nome != '' && html.nome != undefined) &&
+						(html.matricula != '' && html.matricula != undefined) &&
+						(html.identificadorColaborador != '' && html.identificadorColaborador != undefined && html.identificadorColaborador != null)){
+					$('#numeroMatricula').val(html.matricula);
+	            	$('#nomeColaborador').val(html.nome);
+	            	$('#identificadorColaborador').val(html.identificadorColaborador);
+	            	 aposPreencheMatricula(html);
+				}
+			}
+		}); 
+	} else {
+		$('#nomeColaborador').val('');
+		$('#identificadorColaborador').val('');
+		desfazPreencheMatricula();
+	}
+	 	
+}
+
+function aposPreencheMatricula(json) {
+
+}
+
+function desfazPreencheMatricula() {
+
+}
+
+function antesEscolherTipoColabotador(){}
+function aposEscolherTipoColabotador(campo){}
+
+function exibeCampos(campo){
+
+	antesEscolherTipoColabotador();
+
+	$('#idFundoPatrocinadora').hide();
+	$('#identificadorFundo').val('');
+	$('#identificadorPatrocinadora').val('');
+	$('#habilitaFunPatroc').val('N'); 
+	
+	if(campo && campo.value != '') {
+		
+		var dataString = $("form").serialize() + '&evento=exibeCampos';
+		dataString += '&rnd=' + Math.random();
+		
+		$.ajax({
+			type : "POST",
+			url : "?",
+			data : dataString,
+			cache : false,
+			dataType: "json",
+			success : function(html) {
+				var id = '';
+				if(html.MSG != '' && html.MSG != undefined){
+	            	 alert(html.MSG);
+	            	 $('#idFundoPatrocinadora').hide();
+	            	 $('#identificadorTipoColabotador').val('');
+				} else {
+					if(html.tipoColabotador != '' && html.tipoColabotador != undefined && html.tipoColabotador == 'DNE'){
+						$('#habilitaFunPatroc').val('S');
+						$('#idFundoPatrocinadora').show();
+					} 
+
+					id = campo.value;
+				} 
+				
+				aposEscolherTipoColabotador(id);
+			}
+		}); 
+	} else {
+		
+		aposEscolherTipoColabotador('');
+	}
+		 	
+}
+
+function recuperarDadosPatrocinadora(campo){
+	
+	var comboPatrocinadora = '<div class="col-sm-6 form-group">';
+	comboPatrocinadora += '<label for="identificadorPatrocinadora">Patrocinadora<span class="text-warning">*</span></label>';
+	comboPatrocinadora += '<select id="identificadorPatrocinadora" class="form-control form-inline" style="" onfocus="skip(this);" onblur="" onchange="" name="identificadorPatrocinadora">';
+	comboPatrocinadora += '<option value="">[Selecione...]</option>';
+	comboPatrocinadora += '</select>';
+	comboPatrocinadora += '</div>';
+	
+	$('#divPatrocinadora').html(comboPatrocinadora);
+	
+	if(campo && campo.value != '') {
+
+		var dataString = $("form").serialize() + '&evento=recuperarDadosPatrocinadora&idFundo='+campo.value;
+		dataString += '&rnd=' + Math.random();
+		
+		$.ajax({
+			type : "POST",
+			url : "?",
+			data : dataString,
+			cache : false,
+			dataType: "json",
+			success : function(html) {
+				if(html.MSG != '' && html.MSG != undefined){
+	            	 alert(html.MSG);
+				} else if (html.patrocinadoras != null && html.patrocinadoras != '' && html.patrocinadoras != undefined ){
+					
+
+					var comboPatrocinadora = '<div class="col-sm-6 form-group">';
+					comboPatrocinadora += '<label for="identificadorPatrocinadora">Patrocinadora<span class="text-warning">*</span></label>';
+					comboPatrocinadora += '<select id="identificadorPatrocinadora" class="form-control form-inline" style="" onfocus="skip(this);" onblur="" onchange="" name="identificadorPatrocinadora">';
+					comboPatrocinadora += '<option value="">[Selecione...]</option>';
+					$.each(html.patrocinadoras, function(key, value){
+						comboPatrocinadora +='<option value="'+value.id+'">'+value.descricao+'</option>';
+					});
+					comboPatrocinadora += '</select>';
+					comboPatrocinadora += '</div>';
+					
+					$('#divPatrocinadora').html(comboPatrocinadora);
+
+					$('#identificadorPatrocinadora').val(html.idPatrocinadora);
+					
+
+				}
+			}
+		}); 
+	}
+	 	
+}
+
+function validaFundoPatroc() {
+	if($('#habilitaFunPatroc').val() == 'S') {
+		var idFun = $('#identificadorFundo').val();
+		var idPatroc = $('#identificadorPatrocinadora').val();
+	
+		if (idFun == null || idFun == '' || idFun == undefined ){
+			 alert('Fundo é obrigatório.');
+
+			 $('#numeroMatricula').val('');
+        	 $('#nomeColaborador').val('');
+        	 $('#identificadorColaborador').val('');
+        	 desfazPreencheMatricula();
+		} else if (idPatroc == null || idPatroc == '' || idPatroc == undefined ){
+			 alert('Patrocinadora é obrigatória.');
+
+			 $('#numeroMatricula').val('');
+	       	 $('#nomeColaborador').val('');
+	       	 $('#identificadorColaborador').val('');
+	       	 desfazPreencheMatricula();
+		}
+	}
+	
+}
+
+function chamaModal() {
+	
+	var idTipoColabotador = $('#identificadorTipoColabotador').val();
+	var m  = $('#modo').val();
+	var tpCol  = $('#tipoCol').val();
+	var idFun = $('#identificadorFundo').val();
+	var idPatroc = $('#identificadorPatrocinadora').val();
+	var num = $('#numeroMatricula').val();
+	var nome = $('#nomeColaborador').val();
+	var habilita = $('#habilitaFunPatroc').val();
+	
+	var url = '&iTpCol=';
+
+	if(idTipoColabotador && idTipoColabotador != null && idTipoColabotador != '' && idTipoColabotador != undefined) {
+		url += idTipoColabotador;
+	} else {
+		url += '0';
+	}
+	
+	url += '&idFun=';
+
+	if(idFun && idFun != null && idFun != '' && idFun != undefined) {
+		url += idFun;
+	}
+	
+	url += '&idPatroc=';
+
+	if(idPatroc && idPatroc != null && idPatroc != '' && idPatroc != undefined) {
+		url += idPatroc;
+	}
+	
+	url += '&num=';
+
+	if(num && num != null && num != '' && num != undefined) {
+		url += num;
+	}
+	
+	url += '&nome=';
+
+	if(nome && nome != null && nome != '' && nome != undefined) {
+		url += nome;
+	}
+
+	url += '&habilita=';
+
+	if(habilita && habilita != null && habilita != '' && habilita != undefined) {
+		url += habilita;
+	}
+	selecaoModal('/FAECES_FolhaAtivo/matriculapopup.do?evento=x&selecaopopup=S'+url, 'numeroMatricula#numeroMatricula;nomeColaborador#nomeColaborador;identificadorColaborador#identificadorColaborador');
+	return false;
+}
+</script>
+
+
+<div class="row">
+	<div class="col-sm-4 form-line">
+		<fieldset>
+			<legend>
+				<input type="checkbox" name="flagDiferenca" value="S" onclick="liberaMesAno()" id="flagDiferenca">
+				
+				Diferença
+			</legend>
+			
+			<div class="row">
+				<div class="col-sm-6 form-group" id="mesAnoDiferencaObrigatorio" style="display: none;">
+					<label>Mês/Ano<span class="text-warning required">*</span></label>
+				</div>	
+				<div class="col-sm-6 form-group" id="mesAnoDiferencaNaoObrigatorio">
+					<label>Mês/Ano</label>
+				</div>
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+<div id="div_mesAnoDiferenca" class="col-sm-6 form-group form-group  required  ">
+
+
+<input type="text" name="mesAnoDiferenca" maxlength="7" size="9" value="" onkeydown="" onkeyup="" onkeypress="return mascComp(this, event)" onchange="return sonumero(event)" onblur=" validComp(this)" onfocus="skip(this);" id="mesAnoDiferenca" style="" class="form-control " title="" disabled="disabled">
+	
+</div>	
+			</div>
+		</fieldset>
+	</div>
+</div>
+
+<div id="divDetalhe" style="display: none">
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id="componenteVisual" class="form-group panel panel-default componenteRetratil">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+<script>
+	var ancora 	= "";
+	var pos 		= -1;
+</script>
+	<div class="panel-heading componente-titulo">
+
+		<div class="col_hierarq contrai-btn">
+			<!-- Botao de + - -->
+			
+				<script>
+					ancora	= "";
+					if(ancora != ""){
+						setTimeout("setAncora('#"+ancora+"')", 10);
+					}	
+				</script>
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="submit" name="evento" tabindex="30000" value="-" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;pIdPlc=listaDetalhe&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#listaDetalhe&#39;);" class="botao_menos">
+
+
+
+<script>regBotaoEvento('-','PORTLET_RETRAI');</script>
+<script>regBotaoEvento('+','PORTLET_EXPANDE');</script>
+
+			
+			<!-- Fim botao + - -->
+		</div>
+			<script>
+				var idPortlet 	= "listaDetalhe";
+				var campoFoco 	= "";
+				if(ancora != "" && ancora == idPortlet){
+					setVarGlobal("idPortlet", idPortlet);
+					
+				}
+			</script>
+	
+	
+		
+
+	&nbsp;
+
+
+	</div>
+
+
+		
+			
+			
+			
+			
+		
+
+
+
+
+ 
+	<div class="conteudoComponenteRetratil panel-body">
+
+				
+					
+				
+
+
+
+
+
+
+
+
+
+
+<div id="navegacao">
+	
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	</div>
+
+
+	</div>
+</div>
+
+<script>
+
+$(document).ready(function (){
+	liberaMesAno();
+
+	var exibe = $('#exibeDetalhe').val();
+
+	exibeDetalhe(exibe);
+
+});
+
+function recuperaComboPagamento(){
+	
+	var mesAnoReferencia = $('#mesAnoReferencia').val();
+	
+	var comboPagamento = '<div class="col-sm-3 form-group">';
+	comboPagamento += '<label for="identificadorPagamento">Pagamento<span class="text-warning">*</span></label>';
+	comboPagamento += '<select id="identificadorPagamento" class="form-control form-inline" style="" onfocus="skip(this);" onblur="" onchange="preencheDadosDependentesPagamento(this);" name="identificadorPagamento">';
+	comboPagamento += '<option value="">[Selecione...]</option>';
+	comboPagamento += '</select>';
+	comboPagamento += '</div>';
+
+	$('#divPagamento').html(comboPagamento);
+
+	exibeDetalhe('N');
+	
+	var dataString = '&mesAnoReferencia=' + mesAnoReferencia + '&evento=recuperaComboPagamento';
+	dataString += '&rnd=' + Math.random();
+	
+	$.ajax({
+		type : "POST",
+		url : "?",
+		data : dataString,
+		cache : false,
+		dataType: "json",
+		success : function(html) {
+			if(html.MSG != '' && html.MSG != undefined){
+            	 alert(html.MSG);
+			} else if (html.pagamentos != null && html.pagamentos != '' && html.pagamentos != undefined ){
+				
+				comboPagamento = '<div class="col-sm-3 form-group">';
+				comboPagamento += '<label for="identificadorPagamento">Pagamento<span class="text-warning">*</span></label>';
+				comboPagamento += '<select id="identificadorPagamento" class="form-control form-inline" style="" onfocus="skip(this);" onblur="" onchange="preencheDadosDependentesPagamento(this);" name="identificadorPagamento">';
+				comboPagamento += '<option value="">[Selecione...]</option>';
+				$.each(html.pagamentos, function(key, value){
+					comboPagamento +='<option value="'+value.valor+'">'+value.descricao+'</option>';
+				});
+				comboPagamento += '</select>';
+				
+				$('#divPagamento').html(comboPagamento);
+
+				$('#identificadorPagamento').val(html.idPagamento);
+
+			}
+
+			if(html.exibeDetalhe != '' && html.exibeDetalhe != undefined){
+				$('#exibeDetalhe').val(html.exibeDetalhe);
+				exibeDetalhe(html.exibeDetalhe);
+			}
+		}
+	}); 
+	 	
+}
+
+function liberaMesAno(){
+	$('#mesAnoDiferenca').attr("disabled", true);
+	$('#mesAnoDiferencaObrigatorio').hide();
+	$('#mesAnoDiferencaNaoObrigatorio').show();
+	$('#mesAnoDiferenca').val('');
+
+	if(document.getElementById('flagDiferenca').checked) {
+		$('#mesAnoDiferenca').attr("disabled", false);
+		$('#mesAnoDiferencaObrigatorio').show();
+		$('#mesAnoDiferencaNaoObrigatorio').hide();
+	}
+}
+
+function preencheDadosDependentesPagamento(campo){
+	
+	var dataString = '&valorPagamento=' + campo.value + '&evento=preencheDadosDependentesPagamento';
+	dataString += '&rnd=' + Math.random();
+
+	exibeDetalhe('N');
+	$('#idFundoPatrocinadora').hide();
+	$('#identificadorTipoColabotador').val('');
+	
+	$.ajax({
+		type : "POST",
+		url : "?",
+		data : dataString,
+		cache : false,
+		dataType: "json",
+		success : function(html) {
+			if(html.MSG != '' && html.MSG != undefined){
+            	 alert(html.MSG);	 
+			}
+			
+			if(html.exibeDetalhe != '' && html.exibeDetalhe != undefined){
+				$('#exibeDetalhe').val(html.exibeDetalhe);
+				exibeDetalhe(html.exibeDetalhe);
+			}
+		}
+	}); 
+}
+
+function aposEscolherTipoColabotador(idTipoColabotador){
+	exibeDetalhe('N');
+
+	if(idTipoColabotador != '') {
+
+		var formData = new FormData($('FORM')[0]);
+
+		$.ajax({
+			type : "POST",
+			url : "?evento=preencheDadosDetalhe",
+			data : formData,
+			cache : false,
+			contentType: false,
+	        processData: false,
+			success : function(html) {
+
+				if(html.contains('#')) {
+					var text = html.split('#');
+				
+					if(text[0] != '' && text[0] != undefined){
+						if(text[0] == 'MSG'){
+		            	 	alert(text[1]);
+		            	 	$('#idFundoPatrocinadora').hide();
+			            	$('#identificadorTipoColabotador').val('');
+						}
+					} 
+				}else {
+					document.getElementById('navegacao').innerHTML = html;
+					atualizaCampos();
+				}
+			}
+		}); 
+	}
+}
+
+function atualizaCampos(){
+	var dataString = '&evento=atualizaCampos';
+	dataString += '&rnd=' + Math.random();
+	
+	$.ajax({
+		type : "POST",
+		url : "?",
+		data : dataString,
+		cache : false,
+		dataType: "json",
+		success : function(html) {
+			if(html.MSG != '' && html.MSG != undefined){
+            	 alert(html.MSG);	 
+			}
+			
+			if(html.exibeDetalhe != '' && html.exibeDetalhe != undefined){
+				$('#exibeDetalhe').val(html.exibeDetalhe);
+				exibeDetalhe(html.exibeDetalhe);
+			}
+		}
+	}); 
+}
+
+function exibeDetalhe(exibe) {
+
+	$('#divDetalhe').hide();
+	
+	if(exibe == 'S') {
+		$('#divDetalhe').show();
+	}
+	
+}
+
+function aposPreencheMatricula(json) {
+
+	var identificadorTipoColabotador = $('#identificadorTipoColabotador').val();
+	
+	aposEscolherTipoColabotador(identificadorTipoColabotador);
+}
+
+</script>
+
+
+ 
+
+
+		
+
+<!-- FIM -->
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ajax>
+</span>
+
+
+
+
+
+
+
+
+	
+
+
+
+  
+			</div><!-- Fim main-content -->
+		</div><!-- Fim conteudo -->
+		
+
+		
+		 
+		   
+		   
+		
+
+
+
+
+	
+		
+	
+
+
+
+
+
+
+<div id="rodape">
+	<p>Seja bem-vindo,&nbsp;administrador.</p>
+	<p class="right">5.0.0 - Copyright Mestra Informática e Tecnologia Ltda. 2016</p>
+</div>
+
+
+
+
+	
+
+
+<div><div class="sweet-overlay" tabindex="-1"></div><div class="sweet-alert" tabindex="-1"><div class="icon error"><span class="x-mark"><span class="line left"></span><span class="line right"></span></span></div><div class="icon warning"> <span class="body"></span> <span class="dot"></span> </div> <div class="icon info"></div> <div class="icon success"> <span class="line tip"></span> <span class="line long"></span> <div class="placeholder"></div> <div class="fix"></div> </div> <div class="icon custom"></div> <h2>Title</h2><p class="lead text-muted">Text</p><p><button class="cancel btn btn-md" tabindex="2">Cancel</button> <button class="confirm btn btn-md" tabindex="1">OK</button></p></div></div></body></html>
