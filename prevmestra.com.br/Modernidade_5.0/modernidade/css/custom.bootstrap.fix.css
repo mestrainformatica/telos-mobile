@@ -5,6 +5,8 @@
 
 #conteudo { font-size: 13px; }
 
+.no-pad-left {padding-left: 0;}
+
 body fieldset legend {font-size: 13px; margin-bottom: 0;}
 .form-group label {padding: 0;}
 
