@@ -4,7 +4,7 @@
 }
 
 .checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
-  margin-top: -4px;
+  /*margin-top: -4px;*/
 }
 
 .form-group .checkbox-inline,.form-group .radio-inline {
