@@ -638,14 +638,8 @@ function imprimirDiretoIntel(){
 
 
 
+<input type="submit" name="evento" value="&#xe916;" title="Limpar" onclick="setBotaoAcao(getBotaoArray(&#39;LIMPAR_ARGS&#39;));" id="botao_menu" class="input-icon">
 
-
-
-
-
-	<button type="submit" title="Limpar" class="btn btn-default" id="botao_menu" onclick="setBotaoAcao(getBotaoArray(&#39;LIMPAR_ARGS&#39;));" value="Limpar" name="evento">
-		<span class="icon icon-rotate-ccw3"></span>
-	</button>
 	<script>regBotaoEvento('Limpar','LIMPAR_ARGS');</script>
 
 
@@ -887,20 +881,20 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 	</div>
 
 <div class="row">
-	<div class="col-sm-3 form-group">
-		<label>Mês de Referência&nbsp;<span class="text-warning">*</span></label><br>
+	<div class="col-sm-4 form-group">
+		<label>Mês de Referência&nbsp;<span class="text-warning">*</span></label>
 		<input type="text" name="mesReferencia" maxlength="8" size="7" value="12/2015" readonly="readonly" class="form-control">
 	</div>
 	<div class="col-sm-4 form-group">
 		<label>Pagamento&nbsp; <span class="text-warning">*</span></label>
-		<select name="identificadorDataPagamento" onchange="disparaAcaoBotao(&#39;acaoRecuperaTipoColaborador&#39;);" id="identificadorDataPagamento" class="form-control chosen" style="display: none;"><option value="" selected="selected">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 142px;" title="" id="identificadorDataPagamento_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+		<select name="identificadorDataPagamento" onchange="disparaAcaoBotao(&#39;acaoRecuperaTipoColaborador&#39;);" id="identificadorDataPagamento" class="form-control chosen"><option value="" selected="selected">[Selecione...]</option></select>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-sm-3 form-group">
+	<div class="col-sm-8 form-group">
 		<label>Tipo de Colaborador&nbsp; <span class="text-warning">*</span></label>
-		<select name="identificadorTipoColaborador" id="identificadorTipoColaborador" class="form-control chosen" style="display: none;"><option value="" selected="selected">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 101px;" title="" id="identificadorTipoColaborador_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+		<select name="identificadorTipoColaborador" id="identificadorTipoColaborador" class="form-control chosen"><option value="" selected="selected">[Selecione...]</option></select>
 	</div>
 </div>
 
