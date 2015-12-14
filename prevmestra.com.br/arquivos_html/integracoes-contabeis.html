@@ -22,11 +22,11 @@
 <link rel="stylesheet" href="./integracoes-contabeis_files/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="./integracoes-contabeis_files/jquery-ui.structure.css" type="text/css">
 <link rel="stylesheet" href="./integracoes-contabeis_files/jquery-ui.theme.css" type="text/css">
-<link rel="stylesheet" href="./integracoes-contabeis_files/custom.formulario.css"> 
-<link rel="stylesheet" href="./integracoes-contabeis_files/custom.bootstrap.fix.css"> 
-<link rel="stylesheet" href="./integracoes-contabeis_files/jquery-ui.css"> 
-<link rel="stylesheet" href="./integracoes-contabeis_files/chosen.min.css">
-<link rel="stylesheet" href="./integracoes-contabeis_files/font.iconmoon.css">
+<link rel="stylesheet" href="../Modernidade_5.0/modernidade/css/custom.formulario.css"> 
+<link rel="stylesheet" href="../Modernidade_5.0/modernidade/css/custom.bootstrap.fix.css">  
+<link rel="stylesheet" href="./encargos-calcular_files/jquery-ui.css"> 
+<link rel="stylesheet" href="./encargos-calcular_files/chosen.min.css">
+<link rel="stylesheet" href="../Modernidade_5.0/fonts/font.iconmoon.css">
 <link rel="stylesheet" type="text/css" href="./integracoes-contabeis_files/sweet-alert.css">
 <link rel="stylesheet" type="text/css" href="./integracoes-contabeis_files/tooltipster.css">
 <link rel="stylesheet" type="text/css" href="./integracoes-contabeis_files/tooltipster-light.css">
@@ -642,11 +642,8 @@ function imprimirDiretoIntel(){
 
 
 
-
-	<button type="submit" title="Limpar" class="btn btn-default" id="botao_menu" onclick="setBotaoAcao(getBotaoArray(&#39;LIMPAR_ARGS&#39;));" value="Limpar" name="evento">
-		<span class="icon icon-rotate-ccw3"></span>
-	</button>
-	<script>regBotaoEvento('Limpar','LIMPAR_ARGS');</script>
+<input type="submit" name="evento" value="&#xe916;" title="Limpar" onclick="setBotaoAcao(getBotaoArray(&#39;LIMPAR_ARGS&#39;));" id="botao_menu" class="input-icon">
+<script>regBotaoEvento('Limpar','LIMPAR_ARGS');</script>
 
 
 
@@ -881,245 +878,25 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 
 
 
-	<h3>Contábeis</h3>
-	<div class="row">
-		&nbsp;
-	</div>
-	
-	<div class="row">
+<h3>Contábeis</h3>
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-	
-
-
-
-
-
-<div id="div_mesReferencia" class="col-sm-2 form-group  required  ">
-<label class="control-label" for="mesReferencia">
-
-Mês de Referência
-</label>
-
-<input type="text" name="mesReferencia" maxlength="7" size="9" value="12/2015" onkeydown="" onkeyup="" onkeypress="" onchange="" onblur=" " onfocus="skip(this);" id="mesReferencia" style="" class="form-control numerico" title="">
-	
-</div>
+<div class="row">
+	<div class="col-sm-4 form-group required">
+		<label>Mês de Referência</label>
+		<input type="text" name="mesReferencia" maxlength="8" size="7" value="12/2015" readonly="readonly" class="form-control datepicker">
 	</div>
-
-	<div class="row">
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-<div id="div_identificadorDataPagamento" class="col-sm-3 form-group  required  ">
-
-<label class="control-label" for="identificadorDataPagamento">
-	
-	Pagamento
-</label>
-
-
-	
-	
-	
-	
-	
-	
-		<select name="identificadorDataPagamento" onchange="disparaAcaoBotao(&#39;acaoRecuperaTipoColaborador&#39;);" onblur="" onfocus="skip(this);" id="identificadorDataPagamento" style="display: none;" class="form-control form-control chosen"><option value="" selected="selected">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 101px;" title="" id="identificadorDataPagamento_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
-	
-</div>
+	<div class="col-sm-4 form-group required">
+		<label>Pagamento</label>
+		<select name="identificadorDataPagamento" onchange="disparaAcaoBotao(&#39;acaoRecuperaTipoColaborador&#39;);" id="identificadorDataPagamento" class="form-control chosen"><option value="" selected="selected">[Selecione...]</option></select>
 	</div>
-
-	<div class="row">
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-<div id="div_identificadorTipoColaborador" class="col-sm-3 form-group  required  ">
-
-<label class="control-label" for="identificadorTipoColaborador">
-	
-	Tipo de Colaborador
-</label>
-
-
-	
-	
-	
-	
-	
-	
-		<select name="identificadorTipoColaborador" onchange="" onblur="" onfocus="skip(this);" id="identificadorTipoColaborador" style="display: none;" class="form-control form-control chosen"><option value="" selected="selected">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 101px;" title="" id="identificadorTipoColaborador_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
-	
 </div>
+
+<div class="row">
+	<div class="col-sm-8 form-group required">
+		<label>Tipo de Colaborador</label>
+		<select name="identificadorTipoColaborador" id="identificadorTipoColaborador" class="form-control chosen"><option value="" selected="selected">[Selecione...]</option></select>
 	</div>
+</div>
 
 
 <input type="submit" name="evento" value="acaoRecuperaTipoColaborador" id="acaoRecuperaTipoColaborador" style="visibility:hidden;width:0;height:0">
