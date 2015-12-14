@@ -22,11 +22,11 @@
 <link rel="stylesheet" href="./encargos-confirmar_files/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="./encargos-confirmar_files/jquery-ui.structure.css" type="text/css">
 <link rel="stylesheet" href="./encargos-confirmar_files/jquery-ui.theme.css" type="text/css">
-<link rel="stylesheet" href="./encargos-confirmar_files/custom.formulario.css"> 
-<link rel="stylesheet" href="./encargos-confirmar_files/custom.bootstrap.fix.css"> 
-<link rel="stylesheet" href="./encargos-confirmar_files/jquery-ui.css"> 
-<link rel="stylesheet" href="./encargos-confirmar_files/chosen.min.css">
-<link rel="stylesheet" href="./encargos-confirmar_files/font.iconmoon.css">
+<link rel="stylesheet" href="../Modernidade_5.0/modernidade/css/custom.formulario.css"> 
+<link rel="stylesheet" href="../Modernidade_5.0/modernidade/css/custom.bootstrap.fix.css">  
+<link rel="stylesheet" href="./encargos-calcular_files/jquery-ui.css"> 
+<link rel="stylesheet" href="./encargos-calcular_files/chosen.min.css">
+<link rel="stylesheet" href="../Modernidade_5.0/fonts/font.iconmoon.css">
 <link rel="stylesheet" type="text/css" href="./encargos-confirmar_files/sweet-alert.css">
 <link rel="stylesheet" type="text/css" href="./encargos-confirmar_files/tooltipster.css">
 <link rel="stylesheet" type="text/css" href="./encargos-confirmar_files/tooltipster-light.css">
@@ -643,9 +643,8 @@ function imprimirDiretoIntel(){
 
 
 
-	<button type="submit" title="Limpar" class="btn btn-default" id="botao_menu" onclick="setBotaoAcao(getBotaoArray(&#39;LIMPAR_ARGS&#39;));" value="Limpar" name="evento">
-		<span class="icon icon-rotate-ccw3"></span>
-	</button>
+<input type="submit" name="evento" value="&#xe916;" title="Limpar" onclick="setBotaoAcao(getBotaoArray(&#39;LIMPAR_ARGS&#39;));" id="botao_menu" class="input-icon">
+
 	<script>regBotaoEvento('Limpar','LIMPAR_ARGS');</script>
 
 
@@ -887,20 +886,20 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 	</div>
 	
 <div class="row">
-	<div class="col-sm-3 form-group">
-		<label>Mês de Referência&nbsp;<span class="text-warning">*</span></label><br>
+	<div class="col-sm-4 form-group required">
+		<label>Mês de Referência</label>
 		<input type="text" name="mesReferencia" maxlength="8" size="7" value="12/2015" readonly="readonly" class="form-control">
 	</div>
-	<div class="col-sm-4 form-group">
-		<label>Pagamento&nbsp; <span class="text-warning">*</span></label>
-		<select name="identificadorDataPagamento" onchange="disparaAcaoBotao(&#39;acaoRecuperaTipoColaborador&#39;);" id="identificadorDataPagamento" class="form-control chosen" style="display: none;"><option value="" selected="selected">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 142px;" title="" id="identificadorDataPagamento_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"><li class="active-result result-selected" data-option-array-index="0">[Selecione...]</li></ul></div></div>
+	<div class="col-sm-4 form-group required">
+		<label>Pagamento</label>
+		<select name="identificadorDataPagamento" onchange="disparaAcaoBotao(&#39;acaoRecuperaTipoColaborador&#39;);" id="identificadorDataPagamento" class="form-control chosen"><option value="" selected="selected">[Selecione...]</option></select>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-sm-3 form-group">
-		<label>Tipo de Colaborador&nbsp; <span class="text-warning">*</span></label>
-		<select name="identificadorTipoColaborador" id="identificadorTipoColaborador" class="form-control chosen" style="display: none;"><option value="" selected="selected">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 101px;" title="" id="identificadorTipoColaborador_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"><li class="active-result result-selected" data-option-array-index="0">[Selecione...]</li></ul></div></div>
+	<div class="col-sm-8 form-group required">
+		<label>Tipo de Colaborador</label>
+		<select name="identificadorTipoColaborador" id="identificadorTipoColaborador" class="form-control chosen"><option value="" selected="selected">[Selecione...]</option></select>
 	</div>
 </div>
 
