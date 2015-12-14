@@ -726,7 +726,8 @@ pre,
 
 /* = Tabela
 ========================= */
-table.table.no-lines tr th {border-bottom: none !important;}
+table.table.no-lines tr th,
+table.table.no-lines tr td {border-bottom: none !important;}
 
 
 /* = Formulários
