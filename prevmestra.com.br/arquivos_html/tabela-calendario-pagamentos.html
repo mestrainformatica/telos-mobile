@@ -1028,7 +1028,7 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 
 
 
-<div class="col-sm-3 form-group  required  ">
+<div class="col-sm-6 form-group  required  ">
 
 <label class="control-label" for="identificadorTipoPagamento">
 	
@@ -1109,7 +1109,7 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 
 
 
-<div id="div_numeroAnoPagamento" class="col-sm-2 form-group  required  ">
+<div id="div_numeroAnoPagamento" class="col-sm-6 form-group  required  ">
 <label class="control-label" for="numeroAnoPagamento">
 
 Ano Calendário
@@ -1175,7 +1175,7 @@ Ano Calendário
 
 
 
-<div id="div_numeroMesPagamento" class="col-sm-2 form-group  ">
+<div id="div_numeroMesPagamento" class="col-sm-6 form-group  ">
 <label class="control-label" for="numeroMesPagamento">
 
 Mês de Referência
@@ -1431,28 +1431,26 @@ Mês de Referência
 
 
 
-<table class="table">
-   	<tbody><tr>
-   		<td>&nbsp;</td>
-   		<td>Mês de Referência<font color="red">&nbsp;*</font></td>
-   		<td>Pagamento<font color="red">&nbsp;*</font></td>
-   	</tr>
-    
-       	
-	       	<tr>
-	       		<td>
+<table class="table no-lines">
+
+			<thead>
+				<tr>
+		   		<th>&nbsp;</th>
+		   		<th>Mês de Referência<font color="red">&nbsp;*</font></th>
+		   		<th>Pagamento<font color="red">&nbsp;*</font></th>
+		   	</tr>
+			</thead>
+      <tbody>
+     	<tr>
+     		<td>
 					<b>1.</b>
 					
 				</td>
 	       		<td>
-	       			<div class="form-group form-inline">
 	       				<input type="text" name="itensPlc[0].numeroMesPagamento" maxlength="2" size="3" value="" onblur="validaMes(this)" id="numeroMesPagamento0" class="form-control">
-	       			</div>
 	       		</td>
 	       		<td>
-	       			<div class="form-group form-inline">
-	       				<input type="text" name="itensPlc[0].dataPagamentoFormatada" maxlength="10" size="11" value="" onchange="validarDiaUtil(this, &#39;0&#39;)" id="dataPagamentoFormatada0" class="form-control datepicker hasDatepicker">
-	       			</div>
+	       				<input type="text" name="itensPlc[0].dataPagamentoFormatada" maxlength="10" size="11" value="" onchange="validarDiaUtil(this, &#39;0&#39;)" id="dataPagamentoFormatada0" class="form-control datepicker">
 	       		</td>
 	       	</tr>
        	
@@ -1462,14 +1460,10 @@ Mês de Referência
 					
 				</td>
 	       		<td>
-	       			<div class="form-group form-inline">
 	       				<input type="text" name="itensPlc[1].numeroMesPagamento" maxlength="2" size="3" value="" onblur="validaMes(this)" id="numeroMesPagamento1" class="form-control">
-	       			</div>
 	       		</td>
 	       		<td>
-	       			<div class="form-group form-inline">
-	       				<input type="text" name="itensPlc[1].dataPagamentoFormatada" maxlength="10" size="11" value="" onchange="validarDiaUtil(this, &#39;1&#39;)" id="dataPagamentoFormatada1" class="form-control datepicker hasDatepicker">
-	       			</div>
+	       				<input type="text" name="itensPlc[1].dataPagamentoFormatada" maxlength="10" size="11" value="" onchange="validarDiaUtil(this, &#39;1&#39;)" id="dataPagamentoFormatada1" class="form-control datepicker">
 	       		</td>
 	       	</tr>
        	
