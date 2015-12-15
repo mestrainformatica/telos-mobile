@@ -276,6 +276,7 @@ body.menu-collapsed {
   body .menu_acoes input,
   body .menu_acoes button
   {
+    vertical-align: middle;
     padding: 3px;
     width: 40px !important;
     height: 40px !important;
