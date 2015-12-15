@@ -644,7 +644,8 @@ body.menu-collapsed {
 #conteudo #left-column .menu-title {cursor: pointer; position: static;}
 #conteudo #left-column .menu-title span {float: right; margin-top: 3px;}
 
-#conteudo.stand-alone {padding-left: 0;}
+#conteudo.stand-alone,
+.stand-alone #conteudo {padding-left: 0;}
 
 
 /* = Rodape
