@@ -98,6 +98,7 @@ body {
 }
 body.stand-alone {
   box-shadow: inset 0px 0 #fff;
+  min-width: auto;
 }
 .stand-alone { background: #fff; }
 body.menu-collapsed {
