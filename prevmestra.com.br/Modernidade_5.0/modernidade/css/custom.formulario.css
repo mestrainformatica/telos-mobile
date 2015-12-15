@@ -96,6 +96,7 @@ body {
   box-shadow: inset 246px 0 #f0f0f0;
   transition: box-shadow .3s;
 }
+.stand-alone { background: #fff; }
 body.menu-collapsed {
   box-shadow: inset 44px 0 #f0f0f0;
 }
