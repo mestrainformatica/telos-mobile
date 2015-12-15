@@ -538,11 +538,7 @@ function imprimirDiretoIntel(){
 
 
 
-
-
-
-	
-	         <input type="submit" name="evento" value="processar" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center;background: url(/FAECES_FolhaAtivo/plc/midia/mestra/evt_processar.gif); background-position: &#39;left center&#39;; height: 28px; width: 28px; margin-right:5px;  background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;;" title="Processar">
+<input type="submit" name="evento" value="&#xeb5e;" title="Processar" id="botao_menu" class="input-icon">
 	
 
 
@@ -645,9 +641,7 @@ function imprimirDiretoIntel(){
 
 
 
-	<button type="submit" title="Limpar" class="btn btn-default" id="botao_menu" onclick="setBotaoAcao(getBotaoArray(&#39;LIMPAR_ARGS&#39;));" value="Limpar" name="evento">
-		<span class="icon icon-rotate-ccw3"></span>
-	</button>
+<input type="submit" name="evento" value="&#xe916;" title="Limpar" onclick="setBotaoAcao(getBotaoArray(&#39;LIMPAR_ARGS&#39;));" id="botao_menu" class="input-icon">
 	<script>regBotaoEvento('Limpar','LIMPAR_ARGS');</script>
 
 
@@ -900,378 +894,34 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 
 	<h3>Empréstimos</h3>
 	<div class="row">
-		&nbsp;
+		<div class="col-sm-4 form-group required">
+			<label>Mês de Referência</label>
+			<input type="text" name="mesReferencia" maxlength="8" size="7" value="12/2015" readonly="readonly" class="form-control datepicker">
+		</div>
+		<div class="col-sm-4 form-group required">
+			<label>Pagamento</label>
+			<select name="identificadorDataPagamento" onchange="disparaAcaoBotao(&#39;acaoRecuperaTipoColaborador&#39;);" id="identificadorDataPagamento" class="form-control chosen"><option value="" selected="selected">[Selecione...]</option></select>
+		</div>
 	</div>
 
 	<div class="row">
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-	
-
-
-
-
-
-<div id="div_mesReferencia" class="col-sm-2 form-group  required  ">
-<label class="control-label" for="mesReferencia">
-
-Mês de Referência
-</label>
-
-<input type="text" name="mesReferencia" maxlength="7" size="9" value="12/2015" onkeydown="" onkeyup="" onkeypress="" onchange="" onblur=" " onfocus="skip(this);" id="mesReferencia" style="" class="form-control numerico" title="">
-	
-</div>
+		<div class="col-sm-8 form-group required">
+			<label>Tipo de Colaborador</label>
+			<select name="identificadorTipoColaborador" id="identificadorTipoColaborador" class="form-control chosen"><option value="" selected="selected">[Selecione...]</option></select>
+		</div>
 	</div>
 
 	<div class="row">
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-<div id="div_identificadorDataPagamento" class="col-sm-3 form-group  required  ">
-
-<label class="control-label" for="identificadorDataPagamento">
-	
-	Pagamento
-</label>
-
-
-	
-	
-	
-	
-	
-	
-		<select name="identificadorDataPagamento" onchange="disparaAcaoBotao(&#39;acaoRecuperaTipoColaborador&#39;);" onblur="" onfocus="skip(this);" id="identificadorDataPagamento" style="display: none;" class="form-control form-control chosen"><option value="" selected="selected">[Selecione...]</option>
-		
-	
-		
-			<option value="1011">MENSAL - 27/10/2015</option>
-<option value="2">MENSAL - 31/12/2015</option></select><div class="chosen-container chosen-container-single" style="width: 101px;" title="" id="identificadorDataPagamento_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
-	
-</div>
-	</div>
-
-	<div class="row">
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-<div id="div_identificadorTipoColaborador" class="col-sm-3 form-group  required  ">
-
-<label class="control-label" for="identificadorTipoColaborador">
-	
-	Tipo de Colaborador
-</label>
-
-
-	
-	
-	
-	
-	
-	
-		<select name="identificadorTipoColaborador" onchange="" onblur="" onfocus="skip(this);" id="identificadorTipoColaborador" style="display: none;" class="form-control form-control chosen"><option value="" selected="selected">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 101px;" title="" id="identificadorTipoColaborador_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
-	
-</div>
-	</div>
-
-	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-8 form-group required">
 			<fieldset>
-				<div class="row">
-					<div class="col-sm-12">
-						<legend>Tipo</legend>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="col-sm-4 form-group">
-
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="tipoImportacaoExportacao" value="I" checked="checked">
-				
-					
-					Importação
-				
-		</label>
-	</div>
-
-</div>
-
-	
-	
-					</div>
-					<div class="col-sm-4">
-						
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="col-sm-4 form-group">
-
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="tipoImportacaoExportacao" value="E">
-				
-					
-					Exportação
-				
-		</label>
-	</div>
-
-</div>
-
-	
-	
-					</div>
+				<legend>Tipo</legend>
+				<div class="row form-group">
+					<label class="checkbox-inline">
+					  <input type="checkbox" name="tipoImportacaoExportacao" value="I" checked="checked"> Importação
+					</label>
+					<label class="checkbox-inline">
+					  <input type="checkbox" name="tipoImportacaoExportacao" value="E"> Exportação
+					</label>
 				</div>
 			</fieldset>
 		</div>
