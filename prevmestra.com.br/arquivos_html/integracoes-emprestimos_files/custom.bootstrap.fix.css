@@ -1,0 +1,29 @@
+
+.form-group label {
+    font-size: 13px; padding: .5em 0; display: block;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+  /*margin-top: -4px;*/
+}
+
+.form-group .checkbox-inline,.form-group .radio-inline {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.form-group .checkbox label, .form-group .radio label {
+    min-height: 20px;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+table th,
+table td { vertical-align: middle; }
