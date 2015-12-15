@@ -96,6 +96,9 @@ body {
   box-shadow: inset 246px 0 #f0f0f0;
   transition: box-shadow .3s;
 }
+body.stand-alone {
+  box-shadow: inset 0px 0 #fff;
+}
 .stand-alone { background: #fff; }
 body.menu-collapsed {
   box-shadow: inset 44px 0 #f0f0f0;
@@ -282,6 +285,7 @@ body.menu-collapsed {
     font-size: 20px;
     font-weight: bold;
     margin:0 2px;
+    line-height: 1em;
 
   }
 
@@ -655,9 +659,10 @@ body {padding-bottom: 60px;}
   text-transform: none;
   line-height: 1;
 }
-.input-icon:hover {
+.input-icon:hover,
+.menu_acoes button:hover {
   background: #f0f0f0;
-  border:solid 1px #c0c6c9;
+  border: solid 1px #c0c6c9;
 }
 .exemplo-icon {margin: 0; padding: 0;}
 .exemplo-icon li {float: left; padding: 20px 0 0; list-style: none; width: 33%;}

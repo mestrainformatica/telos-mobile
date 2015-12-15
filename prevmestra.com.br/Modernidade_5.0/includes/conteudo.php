@@ -33,10 +33,17 @@
 
   <div class="menu_acoes">
 
-    <input type="button" name="evento" value="&#xE9A1;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariosman.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" title="F7 - Novo" id="botao_menu" >
-    <script>
-      regBotaoEvento('F7-Novo','INCLUIR');
-    </script>
+   <button type="submit" title="F7-Novo" class="btn btn-default" id="botao_menu" onclick="setBotaoAcao(getBotaoArray('INCLUIR')); redirect('/FAECES_FolhaAtivo/funcoesman.do?evento=x');" value="F7-Novo" name="evento">
+      <span class="icon icon-file-text2"></span>
+    </button>
+
+
+<script avaliar="S">
+regBotaoEvento('F7-Novo','INCLUIR');
+
+
+</script> 
+
 
     <input type="submit" name="evento" value="&#xE9A9;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" title="F10 - Gravar">
     <script>
@@ -46,10 +53,17 @@
 
 
 
-    <input type="button" name="evento" value="&#xE9DC;" class="input-icon" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Previdenciario/funcionariossel.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" title="F8 - Abrir">
-    <script>
-      regBotaoEvento('F8-Abrir','ABRIR');
-    </script>
+   
+   <button type="submit" title="F7-Novo" class="btn btn-default" id="botao_menu" onclick="setBotaoAcao(getBotaoArray('INCLUIR')); redirect('/FAECES_FolhaAtivo/funcoesman.do?evento=x');" value="F7-Novo" name="evento">
+      <span class="icon icon-file-text2"></span>
+    </button>
+
+
+<script avaliar="S">
+regBotaoEvento('F7-Novo','INCLUIR');
+
+
+</script> 
 
 
     <a href="http://www.prevmestra.com.br/Mestra_Previdenciario/funcionariosman.do?evento=x&idRotina=731#" onclick="janelaAjudaHtml(); return false"><img align="ABSMIDDLE" border="0" height="20" hspace="3" src="midia/g_botao_ajuda.gif" vspace="0" width="20"></a>

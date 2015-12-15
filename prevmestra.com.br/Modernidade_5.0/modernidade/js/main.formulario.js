@@ -34,7 +34,7 @@ $(document).ready(function()
     /*
         Tooltipster
      */
-    $('input.input-icon').tooltipster({
+    $('input.input-icon, .menu_acoes button').tooltipster({
         'hideOnClick': true,
         'position': 'bottom',
         'speed':100,
