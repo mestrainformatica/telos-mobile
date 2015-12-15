@@ -41,6 +41,7 @@ $(document).ready(function()
         'touchdevices':false,
         'theme':'tooltipster-light'
     });
+    $('input.datepicker').parent().addClass('right-addon').addClass('inner-addon').append('<i class="icon icon-calendar3"></i>');
 });
 // fim do document.ready()
 

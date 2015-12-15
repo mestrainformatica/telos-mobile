@@ -209,6 +209,41 @@ body.menu-collapsed {
     border-radius: 2px;
 }
 
+/* = 
+  Icone de calendário automatico
+========================= */
+
+  /* enable absolute positioning */
+  .inner-addon { 
+      position: relative; 
+  }
+
+  /* style icon */
+  .inner-addon .glyphicon,
+  .inner-addon .icon
+   {
+    position: absolute;
+    padding: 10px 32px;
+    pointer-events: none;
+    bottom: 0px;
+    top: auto;
+    color: #909090;
+  }
+
+  /* align icon */
+  .left-addon .glyphicon,
+  .left-addon .icon
+    { left:  0px; 
+    height: 32px;}
+  .right-addon .glyphicon,
+  .right-addon .icon
+   { right: 0px;
+    height: 32px; }
+
+  /* add padding  */
+  .left-addon input  { padding-left:  30px;  }
+  .right-addon input { padding-right: 30px; }
+
 /* = Header
 ========================= */
 
