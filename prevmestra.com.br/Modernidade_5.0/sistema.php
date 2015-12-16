@@ -176,6 +176,7 @@
 	<div id="main-content" class="container" role="main">
 		<?php include("includes/conteudo.php"); ?>
 	</div>
+	<div class="clear-fix"></div>
 </div>
 
 <div id="rodape">

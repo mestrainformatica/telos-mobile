@@ -417,6 +417,7 @@ body.menu-collapsed {
   {
     margin: 0 !important;
     width: 100%;
+    padding-bottom: 4em;
     /*max-width: 249px;*/
   }
 
@@ -604,12 +605,14 @@ body.menu-collapsed {
     color: #333 !important;
   }
 
-
+  body .clear-fix {
+    clear: both;
+  }
 
 /* = Conteudo
 ========================= */
 #conteudo {
-  overflow: hidden;
+  /*overflow: hidden;*/
   padding-left: 246px;
   -webkit-transition: padding .3s;
   transition: padding .3s;
@@ -666,6 +669,7 @@ body {padding-bottom: 60px;}
   width: 100%;
   height: 60px;
   min-width: 1260px;
+  z-index: 1000;
 }
 
 #rodape p {
