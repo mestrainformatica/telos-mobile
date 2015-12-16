@@ -151,7 +151,7 @@ body.menu-collapsed {
   border: solid 1px #d0d0d0 !important;
   background-color: #F4F4F4;
 }
-.form-group label {
+label, .form-group label {
   padding: .15em 0;
   font-weight: 500;
 }
@@ -620,7 +620,6 @@ body.menu-collapsed {
   -webkit-transition: padding .3s;
   transition: padding .3s;
 }
-
 #left-column {
   background: #F0F0F0;
   float: left;
