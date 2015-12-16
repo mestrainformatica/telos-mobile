@@ -155,6 +155,7 @@ label, .form-group label {
   padding: .15em 0;
   font-weight: 500;
 }
+.disabled label { color: #909090;}
 .form-control:focus {
     border-color: #aebac6 !important;
     outline: 0;
