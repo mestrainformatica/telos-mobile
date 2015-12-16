@@ -17,14 +17,17 @@ $(document).ready(function()
         $('.logo-div').width(menu_width);
     });
 
-    $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
-    $(".datepicker").blur(function(){
-        val = $(this).val();
-        val1 = Date.parse(val);
-        if (isNaN(val1)==true && (val!='' && val != '__/__/____')){
-           swal("Data inválida");
-           $(this).val('');
-        }
+    $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).change(function () {
+         val = $(this).val();
+         date = val.split('/');
+         setTimeout(function () { 
+            
+            val1 = Date.parse(date[2]+'-'+date[1]+'-'+date[0]);
+            if ((isNaN(val1)==true && (val!='' && val != '__/__/____')) || (val.length < 10)) {
+               swal("Data inválida");
+               $(this).val('');
+            }
+        })
     });
     $('.chosen').chosen();
 
