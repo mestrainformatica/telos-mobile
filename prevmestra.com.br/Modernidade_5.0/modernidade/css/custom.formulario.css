@@ -172,7 +172,10 @@ body.menu-collapsed {
 .btn {
   line-height: 1.28em;
 }
-
+.chosen-container .chosen-results li {
+    padding: 4px 5px;
+    font-size: 13px;
+}
 
 /* = Layout Botão Paginação
 ========================= */
