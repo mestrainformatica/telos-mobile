@@ -1,0 +1,821 @@
+/*
+  = Header
+  = Conteudo
+  = Rodape
+*/
+
+
+  body
+  {
+    min-width: 1260px;
+  }
+
+  body *
+  {
+    font-family: 'Open Sans', helvetica, arial, sans-serif;
+  }
+
+  table, td
+  {
+    text-align: left;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  body #botao1
+  {
+    visibility: hidden;
+  }
+
+  body .header-modernidade
+  {
+    height: 80px;
+    background-color: #1F4F8D;
+  }
+
+  body .header-modernidade embed
+  {
+    display: none;
+  }
+
+  body iframe
+  {
+    display: none;
+  }
+
+  /* Inicio das correcoes de 08/10/2015 */
+
+  body textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 23px;
+    /* max-height: 180px; */
+    margin-right: .5em;
+  }
+  body fieldset {
+    border: solid 1px #e0e0e0;
+    padding: 1em;
+    margin: .5em 0;    
+  }
+
+  body fieldset legend {
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+  }
+
+  table.calendarioStyle td {
+    border: solid 1px #d0d0d0;
+  }
+  table.calendarioStyle {
+    border: solid 1px #d0d0d0;
+    margin-right: 1em;
+  }
+  body table td,
+  body table th {
+    text-align: left;
+    font-size: 13px;
+  }
+  body table th {
+    font-weight: bold;
+  }
+  body tr.linhapar {
+    background: #f0f0f0;
+    color: #303030;
+  }
+  body tr.linhaimpar {
+    background: #e4e4e4;
+    color: #303030;
+  }
+  body table.lista {
+    border-color: #e0e0e0;
+  }
+body {
+  background: #fff; /* Old browsers */
+  box-shadow: inset 246px 0 #f0f0f0;
+  transition: box-shadow .3s;
+}
+body.stand-alone {
+  box-shadow: inset 0px 0 #fff;
+  min-width: auto;
+}
+.stand-alone { background: #fff; }
+body.menu-collapsed {
+  box-shadow: inset 44px 0 #f0f0f0;
+}
+
+  /* Fim das correcoes */
+
+
+
+/* = SweetAlert
+========================= */
+
+.sweet-alert {
+  padding: 5px !important;
+}
+.sweet-alert h2 {
+  font-size: 15px;
+  margin: 1em 0;
+  color:#2e6da4;
+  font-weight: bold;
+}
+.sweet-alert p {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 1em;
+}
+
+
+/* = Icomoon
+========================= */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+.icon-menu3 {
+  width: 1.375em;
+}
+
+/* = Suavizar campos de formulário
+========================= */
+
+.form-control {
+  border-radius: 2px;
+  height: 32px;
+  font-size: 14px;
+  padding: 2px 6px;
+  border: solid 1px #d0d0d0 !important;
+  background-color: #F4F4F4;
+}
+label, .form-group label {
+  padding: .15em 0;
+  font-weight: 500;
+}
+.disabled label { color: #909090;}
+.form-control:focus {
+    border-color: #aebac6 !important;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 2px rgba(52,104,153,.2);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0px 6px rgba(31,79,141,0.3);
+    background-color: #fcfcfc !important;
+}
+.form-control[readonly="readonly"]:focus
+.chosen-container-single .chosen-single {
+  border-color: none;
+  box-shadow: 0;
+  -webkit-box-shadow: 0;
+  background-color: inherit;
+}
+.btn {
+  line-height: 1.28em;
+}
+.chosen-container .chosen-results li {
+    padding: 4px 5px;
+    font-size: 13px;
+}
+
+/* = Layout Botão Paginação
+========================= */
+
+.pager li > a {
+ 
+  display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border-radius: 4px;
+}
+
+/* = Container mais espaçado e menos radius
+========================= */
+
+.container {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+.container .jumbotron, .container-fluid .jumbotron {
+    border-radius: 2px;
+}
+
+/* = 
+  Icone de calendário automatico
+========================= */
+
+  /* enable absolute positioning */
+  .inner-addon { 
+      position: relative; 
+  }
+
+  /* style icon */
+  .inner-addon .glyphicon,
+  .inner-addon .icon
+   {
+    position: absolute;
+    padding: 10px 32px;
+    pointer-events: none;
+    bottom: 0px;
+    top: auto;
+    color: #909090;
+  }
+
+  /* align icon */
+  .left-addon .glyphicon,
+  .left-addon .icon
+    { left:  0px; 
+    height: 32px;}
+  .right-addon .glyphicon,
+  .right-addon .icon
+   { right: 0px;
+    height: 32px; }
+
+  /* add padding  */
+  .left-addon input  { padding-left:  30px;  }
+  .right-addon input { padding-right: 30px; }
+
+/* = Header
+========================= */
+
+  body .header-modernidade .logo-div
+  {
+    background-color: #2A5894;
+    /*Provisorio por causa da cor da logo conflitando no MAC*/
+    background-color: #254E89;
+    width: 242px;
+    height: 80px;
+    float: left;
+  }
+
+  body .header-modernidade .logo-div .logo
+  {
+    width: 100%;
+  }
+
+  body .header-modernidade .navbar-left
+  {
+    float: left;
+  }
+
+  body .header-modernidade .navbar-right
+  {
+    float: right;
+    margin-right: 0 !important;
+  }
+
+  body .header-modernidade .inner h1
+  {
+    color: #fff;
+    font-size: 23px;
+    margin-bottom: 0;
+    margin-top: 30px;
+    margin-left: 35px;
+    font-weight: 300;
+  }
+
+  body .header-modernidade .inner p
+  {
+    color: #A5B6D7;
+    font-size: 15px;
+    margin-top: 35px;
+    margin-right: 39px;
+  }
+
+  body .header-modernidade .inner a
+  {
+    color: #A5B6D7;
+  }
+
+  body .header-modernidade .inner a:hover, body .header-modernidade .inner a:active
+  {
+    text-decoration: underline;
+  }
+
+  body .header-modernidade .inner p img
+  {
+    width: 19px;
+    height: 19px;
+    margin-bottom: -3px;
+  }
+
+  body .menu_acoes input,
+  body .menu_acoes button
+  {
+    vertical-align: middle;
+    padding: 3px;
+    width: 40px !important;
+    height: 40px !important;
+    background: #ddd;
+    border-radius: 0px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin:0 2px;
+    line-height: 1em;
+
+  }
+
+  body .menu_acoes a img
+  {
+    display: none;
+  }
+
+  body .delimitador
+  {
+    border: none !important;
+  }
+
+  body .delimitador .secao
+  {
+    background-color: transparent;
+    border: none;
+    font-weight: 300;
+    font-size: 18px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1.5em;
+    padding-top: 2em;
+  }
+
+  td.secao:first-of-type {
+  }
+  body .secao
+  {
+    background-color: transparent !important;
+    border: none !important;
+    font-weight: 300;
+    font-size: 17px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  body .componenteRetratil
+  {
+    margin-top: 20px;
+  }
+
+  body textarea, body select
+  {
+    background-color: #f0f0f0 !important;
+    border-color: #e5e6e5 !important;
+    height: 23px;
+  }
+
+  body .bt_secao_texto, body .bt_secao_icone, body #botao_secao, body #botao_secao2, body .botao, body .bt
+  {
+    background-color: #f0f0f0;
+    border-color: #e5e6e5;
+    height: 23px;/*!important*/
+  }
+
+  body .bt
+  {
+    padding: 4px 5px 4px 5px;
+  }
+
+  body .titulo
+  {
+    font-weight: 400;
+    font-size: 12px;
+    padding: .75em .75em .25em .25em;
+  }
+
+  body .conteudoComponenteRetratil .titulo
+  {
+    font-weight: 400;
+    font-size: 12px;
+    padding: .75em .75em 0.25em .75em;
+  }
+  body .conteudoComponenteRetratil .campo {
+    padding-left: .75em;
+  }
+
+
+/*
+  Inicio CSS Menu
+  */
+
+
+  body #tabelaMenu
+  {
+    padding: 0 !important;
+    background-color: #F0F0F0;
+    vertical-align: top;
+  }
+
+  body #menuDiv
+  {
+    margin: 0 !important;
+    width: 100%;
+    padding-bottom: 4em;
+    /*max-width: 249px;*/
+  }
+
+  body #menuList
+  {
+    padding: 0 !important;
+  }
+
+  body #menuDiv .menu-title
+  {
+    color: #c8c8c8;
+    border-bottom: 1px solid #dfdfdf;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 10px 15px;
+  }
+
+
+
+/*
+  Menu Nível 1
+  */
+
+
+  body #menuDiv ul li a
+  {
+    padding: 0;
+    display: block;
+    color: #337ab7;
+    padding: 11px 15px;
+    padding-right: 28px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+    background-repeat: no-repeat;
+    background-position: top 14px right 15px;
+    background-size: 12px 12px;
+    font-weight: 300;
+    background-color: #F0F0F0;
+  }
+
+  body #menuDiv ul li a.actuator
+  {
+    background-image: url(../img/chevron-down.png);
+  }
+
+  body #menuDiv ul li ul li a.actuator
+  {
+    background-image: url(../img/chevron-plus.png);
+  }
+
+  body #menuDiv ul li ul li ul li a.actuator
+  {
+    background-image: url(../img/chevron-down.png);
+  }
+
+  body #menuDiv ul li a.active
+  {
+    background-image: url(../img/chevron-up.png);
+  }
+  body #menuDiv ul li ul li a.active
+  {
+    background-image: url(../img/chevron-minus.png);
+  }
+
+  body #menuDiv ul li a.sem-submenu
+  {
+    background-image: none;
+  }
+
+  body #menuDiv ul li a:hover
+  {
+    text-decoration: none;
+    background-color: #f0f0f0;
+  }
+
+  body #menuDiv ul li a:active
+  {
+    text-decoration: none;
+    background-color: #DFDFDF;
+  }
+
+  body #menuDiv ul li a.highlight,
+  body #menuDiv ul li a.highlight:hover
+  {
+    color: #215193 !important;
+    font-weight: 600;
+  }
+
+
+/*
+  Sub-Menu
+  */
+
+
+  body #menuDiv ul li ul
+  {
+    margin: 0;
+  }
+
+  body #menuDiv ul li ul li a
+  {
+    background-color: #fff;
+    font-size: 14px;
+    color: #5a5a5a;
+    border-color: #f5f5f5;
+    border-right: 2px solid #F0F0F0;
+    background-position: top 14px right 13px;
+
+  }
+
+  body #menuDiv ul li ul li a:hover, body #menuDiv ul li ul li a:active
+  {
+    background-color: #eaeaea;
+    color: #000 !important;
+  }
+
+  body #menuDiv ul li ul li a.active,
+  body #menuDiv ul li ul li a:active,
+  body #menuDiv ul li ul li a.active:hover
+
+  {
+    background-color: #2D5992;
+    color: #fefefe !important;
+  }
+
+
+/*
+  Sub-Menu Nivel 2
+  */
+
+
+  body #menuDiv ul li ul li ul
+  {
+    margin: 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  body #menuDiv ul li ul li ul li a
+  {
+    background-color: #fff;
+    color: #aaa !important;
+    /*border-right: 4px solid #F0F0F0;*/
+    font-size: 13px;
+    border-bottom: 0;
+    padding-top: 7px;
+    padding-left: 35px;
+    padding-bottom: 7px;
+    background-position: top 8px left 17px;
+    /* comentar após icones */
+    background-image: none;
+  }
+
+  body #menuDiv ul li ul li ul li a.active
+  {
+    background-color: #DFDFDF;
+    color: #333 !important;
+  }
+
+  body #menuDiv ul li ul li ul li a:hover, body #menuDiv ul li ul li ul li a:active
+  {
+    background-color: #DFDFDF;
+    color: #333 !important;
+  }
+
+/*
+  Sub-Menu Nivel 3
+  */
+
+  body #menuDiv ul li ul li ul li ul li a
+  {
+    background-color: #fff;
+    color: #666 !important;
+    background-image: none;
+    /* border-right: 4px solid #F0F0F0; */
+    font-size: 12px;
+    border-bottom: 0;
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  body #menuDiv ul li ul li ul li a:hover, body #menuDiv ul li ul li ul li a:active
+  {
+    background-color: #DFDFDF;
+    color: #333 !important;
+  }
+
+  body .clear-fix {
+    clear: both;
+  }
+
+/* = Conteudo
+========================= */
+#conteudo {
+  /*overflow: hidden;*/
+  padding-left: 246px;
+  -webkit-transition: padding .3s;
+  transition: padding .3s;
+}
+#left-column {
+  background: #F0F0F0;
+  float: left;
+  height: auto;
+  width: 246px;
+  margin-left: -246px;
+}
+
+#main-content {
+  width: 100% !important;
+  float: right;
+  background: transparent;
+  padding-bottom: 15em;
+}
+
+.menu_acoes {
+  float: right;
+  margin-top: 10px;
+
+}
+
+/* = Menu hamburguer
+========================= */
+#conteudo.menu-collapsed {padding-left: 43px;}
+#conteudo.menu-collapsed #left-column li {display: none;}
+#conteudo.menu-collapsed #left-column .menu-title {display: block !important; width: 246px;}
+#conteudo.menu-collapsed #left-column .menu-title.affix {position: fixed; top: 0;}
+#conteudo #left-column .menu-title {cursor: pointer; position: static;}
+#conteudo #left-column .menu-title span {float: right; margin-top: 3px;}
+
+#conteudo.stand-alone,
+.stand-alone #conteudo {padding-left: 0;}
+
+
+/* = Rodape
+========================= */
+html {position: relative; min-height: 100%;} /* Para o sticky footer */
+body {padding-bottom: 60px;}
+
+#rodape
+{
+  position: absolute;
+  bottom: 0;
+  background-color: #1F4F8D !important;
+  padding: 20px;
+  border: none !important;
+  overflow: hidden;
+  clear: both;
+  width: 100%;
+  height: 60px;
+  min-width: 1260px;
+  z-index: 1000;
+}
+
+#rodape p {
+  color: #fff !important;
+  font-family: 'Open Sans', helvetica, arial, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 300 !important;
+  float: left;
+}
+
+
+#rodape .right {
+  float: right;
+}
+
+
+/* = Exemplos
+========================= */
+.show-grid {margin-bottom: 20px;}
+.show-grid p {background: #f0f0f0; padding: 10px;}
+.pre-exemplo {margin: 15px 0;}
+.pre-exemplo strong{font-weight: bolder;}
+.secao {clear: both;}
+
+.input-icon {font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+.input-icon:hover,
+.menu_acoes button:hover {
+  background: #f0f0f0;
+  border: solid 1px #c0c6c9;
+}
+.exemplo-icon {margin: 0; padding: 0;}
+.exemplo-icon li {float: left; padding: 20px 0 0; list-style: none; width: 33%;}
+
+
+
+/* = Pagination
+========================= */
+.pager .page-items {padding: 5px; display: inline-block;}
+
+/* = Módulo retrátil
+========================= */
+body .botao_menos, body .botao_mais {
+  font-size: 14px;
+  font-weight: bold;
+  height: 20px;
+  width: 20px;
+  color: #000;
+  text-align: center;
+  padding: 0;
+  margin-left: -11px;
+  margin-top: -4px;
+}
+.componenteRetratil .componente-titulo {position: relative;}
+.componenteRetratil .controles-right {text-align: right; float: right;}
+.componenteRetratil .controles-right .btn {line-height: 23px; padding: 0 7px; margin-top: -3px;}
+.componenteRetratil .contrai-btn {position: absolute; left: -15px; top:3px;}
+
+
+/* = Formulários
+========================= */
+.has-error .form-control {border:1px solid #a94442 !important;}
+.has-error .chosen-container {border:1px solid #a94442 !important;}
+.form-group.required label:after {content: " *";}
+
+.ui-tabs.ui-widget {padding: 0; margin: 0; border: none;}
+.ui-tabs .ui-widget-header { background: #fff; border: none;}
+.ui-tabs .ui-tabs-nav li.ui-state-default {border:1px solid #ddd; border-bottom: none; border-radius: 3px 3px 0 0;}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {font-weight: normal; font-size: 14px; color:#414141; outline: none;}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover {color:#fff; border-radius: 3px 3px 0 0;}
+
+.ui-tabs .ui-tabs-nav .ui-state-active .ui-tabs-anchor {background: transparent; color:#414141;}
+
+.ui-tabs .ui-state-active,
+.ui-tabs .ui-widget-content .ui-state-active,
+.ui-tabs .ui-widget-header .ui-state-active {background:#fff; color:#414141;}
+
+.ui-tabs .ui-tabs-panel.ui-corner-bottom {border: 1px solid #ddd; border-radius: 0 3px 3px 3px; padding: 1em;}
+
+.ui-tabs .ui-tabs-nav.ui-corner-all {padding: .2em 0 0;}
+
+
+/*  Fix tabela temporária  */
+#tabela-antiga {display: none;}
+
+/* Bordas suaves */
+.alert,
+pre,
+.btn-lg,
+.btn-md,
+.btn-sm,
+.btn
+{
+  border-radius: 2px;
+}
+
+/* = Tabela
+========================= */
+table.table.no-lines tr th,
+table.table.no-lines tr td {border-bottom: none !important;}
+
+
+/* = Formulários
+========================= */
+
+
+/*@media (min-width: 1398px)
+{
+    body .header-modernidade .logo-div .logo
+    {
+        height: 100%;
+        width: auto;
+        margin: auto;
+        display: block;
+    }
+}
+
+
+@media (max-width: 1300px)
+{
+    body .header-modernidade .logo-div .logo
+    {
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 1200px)
+{
+    body .header-modernidade .logo-div .logo
+    {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 1100px)
+{
+    body .header-modernidade .logo-div .logo
+    {
+        margin-top: 25px;
+    }
+}
