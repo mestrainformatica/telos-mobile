@@ -1,94 +1,81 @@
-
 <div class="row">
   <div class="col-sm-24">
     <div id="componenteVisual" class="form-group panel panel-default componenteRetratil">
- 
-<script>
-  var ancora  = "";
-  var pos     = -1;
-</script>
-  <div class="panel-heading componente-titulo">
 
-    <div class="col_hierarq contrai-btn">
-      <!-- Botao de + - -->
-      
+      <script>
+        var ancora  = "";
+        var pos     = -1;
+      </script>
+      <div class="panel-heading componente-titulo">
+
+        <div class="col_hierarq contrai-btn">
+          <!-- Botao de + - -->
+
+          <script>
+            ancora  = "";
+            if(ancora != ""){
+              setTimeout("setAncora('#"+ancora+"')", 10);
+            } 
+          </script>
+
+          <input type="submit" name="evento" tabindex="30000" value="-" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;pIdPlc=listaRubricaDirf&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#listaRubricaDirf&#39;);" class="botao_menos">
+
+          <script>regBotaoEvento('-','PORTLET_RETRAI');</script>
+          <script>regBotaoEvento('+','PORTLET_EXPANDE');</script>
+
+          <!-- Fim botao + - -->
+        </div>
         <script>
-          ancora  = "";
-          if(ancora != ""){
-            setTimeout("setAncora('#"+ancora+"')", 10);
-          } 
+          var idPortlet   = "listaRubricaDirf";
+          var campoFoco   = "";
+          if(ancora != "" && ancora == idPortlet){
+            setVarGlobal("idPortlet", idPortlet);
+
+          }
         </script>
 
-<input type="submit" name="evento" tabindex="30000" value="-" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;pIdPlc=listaRubricaDirf&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#listaRubricaDirf&#39;);" class="botao_menos">
+        DIRF&nbsp;
 
-
-
-<script>regBotaoEvento('-','PORTLET_RETRAI');</script>
-<script>regBotaoEvento('+','PORTLET_EXPANDE');</script>
-
-      
-      <!-- Fim botao + - -->
-    </div>
-      <script>
-        var idPortlet   = "listaRubricaDirf";
-        var campoFoco   = "";
-        if(ancora != "" && ancora == idPortlet){
-          setVarGlobal("idPortlet", idPortlet);
-          
-        }
-      </script>
-    
-
-  DIRF&nbsp;
-
-      <div class="controles-right">
-
-
-<input type="submit" name="evento" tabindex="30001" value="Novo" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;listaRubricaDirf&#39;);" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="try{animar(event, &#39;&#39;)}catch(e){}" id="botao_secao" class="btn btn-default btn-sm">
-
-
-<script>regBotaoEvento('Novo','INCLUIR_DET');</script>
-
+        <div class="controles-right">
+          <input type="submit" name="evento" tabindex="30001" value="Novo" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;listaRubricaDirf&#39;);" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="try{animar(event, &#39;&#39;)}catch(e){}" id="botao_secao" class="btn btn-default btn-sm">
+          <script>regBotaoEvento('Novo','INCLUIR_DET');</script>
+        </div>
 
       </div>
 
-  </div>
- 
-  <div class="conteudoComponenteRetratil panel-body">
+      <div class="conteudoComponenteRetratil panel-body">
 
-  <div class="row">
-    <div class="col-lg-3 form-inline">&nbsp;</div>
-    <div class="col-lg-3 form-inline">Início de Vigência<span class="text-warning">*</span></div>
-    <div class="col-lg-3 form-inline">Término de Vigência</div>
-    <div class="col-lg-3 form-inline">Tipo de Rubrica<span class="text-warning">*</span></div>
-    <div class="col-lg-3">
-      <b>1</b>
-      
-    </div>
-    <div class="col-lg-3 form-inline right-addon inner-addon">
-      <input type="text" name="listaRubricaDirf[0].dataInicioVigenciaFormatada" maxlength="10" size="11" value="" id="dataInicioVigenciaFormatadaD0" class="form-control datepicker hasDatepicker" disabled="">
-    <i class="icon icon-calendar3"></i></div>
-    <div class="col-lg-3 form-inline right-addon inner-addon">
-      <input type="text" name="listaRubricaDirf[0].dataFimVigenciaFormatada" maxlength="10" size="11" value="" id="dataFimVigenciaFormatadaD0" class="form-control datepicker hasDatepicker" disabled="">
-    <i class="icon icon-calendar3"></i></div>
-    <div class="col-lg-3 form-inline">
-      <select name="listaRubricaDirf[0].tipoRubrica" id="tipoRubricaD0" class="form-inline chosen" style="display: none;" disabled=""><option value="">[Selecione...]</option>
-        <option value="01">01 - RENDIMENTO</option>
-        <option value="02">02 - IMPOSTOS RETIDOS</option>
-        <option value="03">03 - DEDUÇÃO ( PREVIDÊNCIA SOCIAL )</option>
-        <option value="04">04 - DEDUÇÃO ( DEPENDENTE )</option>
-        <option value="05">05 - DEDUÇÃO ( PENSÃO ALIMENTÍCIA )</option>
-        <option value="06">06 - DEDUÇÃO ( PREVIDÊNCIA PRIVADA )</option>
-        <option value="07">07 - ABONO PECUNIÁRIO</option>
-        <option value="08">08 - RENDIMENTO ISENTOS E NÃO TRIBUTÁVEIS</option>
-        <option value="09">09 - ASSISTÊNCIA MÉDICA</option>
-        <option value="10">10 - RENDIMENTO ( PPR )</option>
-        <option value="11">11 - PENSÃO ALIMENTÍCIA ( PPR )</option>
-        <option value="12">12 - IMPOSTO RETIDO ( PPR )</option></select><div class="chosen-container chosen-container-single" style="width: 322px;" title="" id="tipoRubricaD0_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
-    </div>
-  </div>
+        <div class="row form-group">
+          <div class="col-sm-2" style="text-align:right;"><br>1</div>
+          <div class="col-sm-8">
+            <label for="listaRubricaDirf[0].dataInicioVigenciaFormatada" class="label-control">Início de Vigência</label>
+            <input type="text" name="listaRubricaDirf[0].dataInicioVigenciaFormatada" maxlength="10" size="11" value="" id="dataInicioVigenciaFormatadaD0" class="form-control datepicker">
+          </div>
+          <div class="col-sm-7">
+            <label for="listaRubricaDirf[0].dataFimVigenciaFormatada" class="label-control">Término de Vigência</label>
+            <input type="text" name="listaRubricaDirf[0].dataFimVigenciaFormatada" maxlength="10" size="11" value="" id="dataFimVigenciaFormatadaD0" class="form-control datepicker">
+          </div>
+          <div class="col-sm-7">
+            <label for="listaRubricaDirf[0].tipoRubrica" class="label-control">Tipo de Rubrica</label>
+            <select name="listaRubricaDirf[0].tipoRubrica" id="tipoRubricaD0" class="form-control chosen">
+              <option value="">[Selecione...]</option>
+              <option value="01">01 - RENDIMENTO</option>
+              <option value="02">02 - IMPOSTOS RETIDOS</option>
+              <option value="03">03 - DEDUÇÃO ( PREVIDÊNCIA SOCIAL )</option>
+              <option value="04">04 - DEDUÇÃO ( DEPENDENTE )</option>
+              <option value="05">05 - DEDUÇÃO ( PENSÃO ALIMENTÍCIA )</option>
+              <option value="06">06 - DEDUÇÃO ( PREVIDÊNCIA PRIVADA )</option>
+              <option value="07">07 - ABONO PECUNIÁRIO</option>
+              <option value="08">08 - RENDIMENTO ISENTOS E NÃO TRIBUTÁVEIS</option>
+              <option value="09">09 - ASSISTÊNCIA MÉDICA</option>
+              <option value="10">10 - RENDIMENTO ( PPR )</option>
+              <option value="11">11 - PENSÃO ALIMENTÍCIA ( PPR )</option>
+              <option value="12">12 - IMPOSTO RETIDO ( PPR )</option>
+            </select>
+          </div>     
 
-  </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
