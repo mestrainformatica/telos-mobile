@@ -991,51 +991,33 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 <input type="hidden" name="posicaoDet" value="" id="posicaoDet">
 
 <div class="row">
-	
 
-
-
-
-
-
-
-
-
+<hr>
 
 
 <table class="table table-hover">
    	<thead>
-   		<tr><td>Início de Vigência</td>
-   		<td>I.N.C.R.A</td>
-   		<td>R.A.T</td>
-   		<td>Salário Educação</td>
-   		<td>P.I.S</td>
-   		<td>F.G.T.S Empresa</td>
-   		<td>I.N.S.S Previdência Social Empresa</td>
-   		<td>F.G.T.S Empregado</td>
-   		<td>
-   			<input type="button" name="posicaoDet" value="Excluir" onclick="disparaExcluiSelecionado(this);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/FAECES_FolhaAtivo/midia/evt_excluir.gif)" class="bt" title="Excluir Detalhe">
-			&nbsp;&nbsp;
-			<input type="button" name="btOk" value="Click" onclick="disparaRecuperacaoDetalheDadosColaboradores();" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 24px; width: 24px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/FAECES_FolhaAtivo/midia/ok_icon.png)" class="bt" title="Aplicar Detalhe">
-   		</td>
+   		<tr>
+   		<th style="white-space:nowrap; font-weight: normal;">
+				<input type="button" name="btOk" value="&#xed58;" onclick="disparaRecuperacaoDetalheDadosColaboradores();" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)"  class="btn btn-default input-icon" title="Aplicar Detalhe">
+				<input type="button" name="posicaoDet" value="&#xed63;" onclick="disparaExcluiSelecionado(this);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)"  class="btn btn-default input-icon" title="Excluir Detalhe">
+			</th>
+   		<th>Início de Vigência</th>
+   		<th>I.N.C.R.A</th>
+   		<th>R.A.T</th>
+   		<th>Salário Educação</th>
+   		<th>P.I.S</th>
+   		<th>F.G.T.S Empresa</th>
+   		<th>I.N.S.S Previdência Social Empresa</th>
+   		<th>F.G.T.S Empregado</th>
    	</tr></thead>
   	<tbody id="grid">
-
-
-
-
-
-
-
-
-
  
 	 
 		<tr>
      		<td>
-     			<h1>1</h1>
-     			<input type="checkbox" name="tipoColaboradorDet[0].indExcPlc" value="S" onclick="marcarExclusao(this,event);" id="indExcPlc" class="indExcPlc" title="???pt_BR.ajuda.excluir???">
-				
+	     		<input type="checkbox" name="tipoColaboradorDet[0].indExcPlc" value="S" onclick="marcarExclusao(this,event);" id="indExcPlc" class="indExcPlc" title="???pt_BR.ajuda.excluir???">
+     			&nbsp;&nbsp; 1
      		</td>
      		<td style="cursor:pointer">
      			<div id="div0" style="width:100%" onclick="preenchePos(0);">
@@ -1081,9 +1063,8 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
    	 
 		<tr>
      		<td>
-     			<h1>2</h1>
      			<input type="checkbox" name="tipoColaboradorDet[1].indExcPlc" value="S" onclick="marcarExclusao(this,event);" id="indExcPlc" class="indExcPlc" title="???pt_BR.ajuda.excluir???">
-				
+					&nbsp;&nbsp; 2
      		</td>
      		<td style="cursor:pointer">
      			<div id="div1" style="width:100%" onclick="preenchePos(1);">
