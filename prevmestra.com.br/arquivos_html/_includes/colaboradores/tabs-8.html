@@ -1,0 +1,90 @@
+<h3>Detalhe - Lotação</h3>
+<div class="row">
+    <div class="col-sm-4 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Data da Mudança</label>
+      <input type="text" maxlength="10" size="11" value="" class="form-control datepicker">
+    </div>
+
+    <div class="col-sm-6 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Lotação de Destino</label>
+      <select class="form-control chosen">
+        <option value="" selected="selected">[Selecione...]</option>
+      </select>
+    </div>
+
+    <div class="col-sm-7 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Documento Decisório</label>
+      <input type="text" maxlength="10" size="11" value="" class="form-control">
+    </div>
+
+    
+  </div>
+
+<input type="hidden" name="posicaoDet" value="" id="posicaoDet">
+
+<div class="row">
+
+<hr>
+
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+      <th style="white-space:nowrap; font-weight: normal;">
+        <input type="button" name="btOk" value="&#xed58;" class="btn btn-default input-icon" title="Aplicar Detalhe">
+        <input type="button" name="posicaoDet" value="&#xed63;" class="btn btn-default input-icon" title="Excluir Detalhe">
+      </th>
+      <th>Data da Mudança</th>
+      <th>Lotação de Destino</th>
+      <th>Documento Decisório</th>
+    </tr></thead>
+    <tbody id="grid">
+ 
+   
+    <tr>
+        <td>
+          <input type="checkbox" value="S" id="indExcPlc" class="indExcPlc" title="???pt_BR.ajuda.excluir???">
+          &nbsp;&nbsp; 1
+        </td>
+        <td style="cursor:pointer">
+          <div id="div0" style="width:100%" >
+            01/12/2015
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div0" style="width:100%" >
+            8,80
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div0" style="width:100%" >
+            8,80
+          </div>
+        </td>
+      </tr>
+     
+    <tr>
+        <td>
+          <input type="checkbox" name="tipoColaboradorDet[1].indExcPlc" value="S" id="indExcPlc" class="indExcPlc" title="???pt_BR.ajuda.excluir???">
+          &nbsp;&nbsp; 2
+        </td>
+        <td style="cursor:pointer">
+          <div id="div1" style="width:100%" >
+            17/12/2015
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div1" style="width:100%" >
+            0,11
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div1" style="width:100%" >
+            0,11
+          </div>
+        </td>
+      </tr>
+</tbody>
+</table>
+
+</div>

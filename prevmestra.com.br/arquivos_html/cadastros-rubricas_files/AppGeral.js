@@ -2205,7 +2205,7 @@ return this.replace(/^\s*/, "").replace(/\s*$/, "");
 
 /**
 * Funcao de Formatacao de numeros decimais. Corrige um problema com valores
-* começados com "0,0", mas "arredonda" quando o número é grande.
+* comeï¿½ados com "0,0", mas "arredonda" quando o nï¿½mero ï¿½ grande.
 * @author Andre Santos
 */
 function formataDecimalPatch(campo, e, milSep, decSep, casas){
@@ -2220,7 +2220,7 @@ function formataDecimalPatch(campo, e, milSep, decSep, casas){
 	}
 	
 	var key = String.fromCharCode(code); //Transforma codigo em caracter
-	if (isNaN(key)) return false;  //Não é numero, sai da funcao
+	if (isNaN(key)) return false;  //Nï¿½o ï¿½ numero, sai da funcao
 	if(campo.maxLength <= campo.value.length) return false;//trata erro de casas
 	
 	var i = j = 0;
@@ -2229,7 +2229,7 @@ function formataDecimalPatch(campo, e, milSep, decSep, casas){
 	var aux = aux2 = '';
 	
 	milSep = typeof milSep != "undefined" ? milSep : "."; //se separadores forem nulos,
-	decSep = typeof decSep != "undefined" ? decSep : ",";//especifica separadores padrões
+	decSep = typeof decSep != "undefined" ? decSep : ",";//especifica separadores padrï¿½es
 	
 	for(i = 0; i < len; i++)
 		if ((campo.value.charAt(i) != '0') && (campo.value.charAt(i) != decSep))
@@ -2280,4 +2280,45 @@ function formataDecimalPatch(campo, e, milSep, decSep, casas){
 		campo.value += decSep + aux.substr(len - casas, len);
 	}
 	return false;
+}
+
+function valData(dataForm){
+	var data = dataForm.value;
+	day = data.substring(0,2);
+	month = data.substring(3,5);
+	year = data.substring(6,10);
+
+	if(parseInt(day) == 0 || parseInt(month) == 0 || parseInt(year) == 0) {
+		swal('Data invÃ¡lida!');
+		dataForm.value = '';
+	}
+
+	if(parseInt(month) > 12) {
+		swal('Data invÃ¡lida!');
+		dataForm.value = '';
+	}
+
+	if( (month==01) || (month==03) || (month==05) || (month==07) || (month==08) || (month==10) || (month==12) )    {
+		if( (day < 01) || (day > 31) ){
+			swal('Data invÃ¡lida!');
+			dataForm.value = '';
+		}
+	} else if( (month==04) || (month==06) || (month==09) || (month==11) ){//mes com 30 dias
+		if( (day < 01) || (day > 30) ){
+			swal('Data invÃ¡lida!');
+			dataForm.value = '';
+		}
+	} else if( (month==02) ){//February and leap year
+		if( (year % 4 == 0) && ( (year % 100 != 0) || (year % 400 == 0) ) ){
+			if( (day < 01) || (day > 29) ){
+				swal('Data invÃ¡lida!');
+				dataForm.value = '';
+			}
+		} else {		
+			if( (day < 01) || (day > 28) ){
+				swal('Data invÃ¡lida!');
+				dataForm.value = '';
+			}
+		}
+	}
 }

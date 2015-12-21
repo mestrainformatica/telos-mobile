@@ -21,13 +21,12 @@ $(document).ready(function()
     $(".datepicker").blur(function(){
         val = $(this).val();
         val1 = Date.parse(val);
-        if (isNaN(val1)==true && val!==''){
+        if (isNaN(val1)==true && (val!='' && val != '__/__/____')){
            swal("Data inválida");
-        }
-        else{
+           $(this).val('');
         }
     });
-    $('.chosen').chosen();
+    $('.chosen').chosen({width: '100%'});
 
     $("#menuDiv .menu-title").click(function () {
         $(this).parents('#conteudo, body').toggleClass("menu-collapsed");
@@ -35,13 +34,14 @@ $(document).ready(function()
     /*
         Tooltipster
      */
-    $('input.input-icon').tooltipster({
+    $('input.input-icon, .menu_acoes button').tooltipster({
         'hideOnClick': true,
         'position': 'bottom',
         'speed':100,
         'touchdevices':false,
         'theme':'tooltipster-light'
     });
+    $('input.datepicker').parent().addClass('right-addon').addClass('inner-addon').append('<i class="icon icon-calendar3"></i>');
 });
 // fim do document.ready()
 

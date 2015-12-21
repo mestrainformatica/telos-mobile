@@ -2135,11 +2135,13 @@ function selecaoPopup(url, listaCampos, separador, larg, alt, posX, posY, alvo)
 	return janela(url,larg,alt,"",alvo,"",posX, posY);
 }
 
-function selecaoModal(url, listaCampos, separador, larg, alt, posX, posY, alvo)
+function selecaoModal(url, listaCampos, separador, titulo)
 {
+	if (!titulo) {
+		titulo = "Sysprevweb";
+	}
 	camposRetorno = registrarCamposRetorno(listaCampos, "nome,id", separador);
-	return eModal.iframe({'url':url, 'size':'lg'},  'Titulo');
-	//return janelaModal(url,larg,alt,"",alvo,"",posX, posY);
+	return eModal.iframe({'url':url, 'size':'lg'},  titulo);
 }
 
 /******************************************************************************
@@ -4599,7 +4601,9 @@ PlcAjax.prototype.ajaxMostraCamada= function (ajaxConteudo, elementoID){
 	plcLog.debug("##### Entrou para mostrar resultado pesquisa");
 	plcLog.debug("ID Elemento atualizacao: "+elementoID);
 	var elementoAtualizacao = getElementoPorId(elementoID);
-	plcLog.debug("Elemento atualizacao: "+elementoAtualizacao.id);
+	if (elementoAtualizacao) {
+		plcLog.debug("Elemento atualizacao: "+elementoAtualizacao.id);
+	}
 	if(elementoAtualizacao != null){
 		elementoAtualizacao.innerHTML = ajaxConteudo;
 		plcAjax.executaScriptsInternos(elementoAtualizacao);

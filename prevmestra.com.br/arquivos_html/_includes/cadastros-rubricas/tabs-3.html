@@ -1,0 +1,135 @@
+<div class="row">
+  <div class="col-sm-24">
+    <div id="componenteVisual" class="form-group panel panel-default componenteRetratil">
+
+
+ 
+<script>
+  var ancora  = "";
+  var pos     = -1;
+</script>
+  <div class="panel-heading componente-titulo">
+
+    <div class="col_hierarq contrai-btn">
+      <!-- Botao de + - -->
+      
+        <script>
+          ancora  = "";
+          if(ancora != ""){
+            setTimeout("setAncora('#"+ancora+"')", 10);
+          } 
+        </script>
+
+
+<input type="submit" name="evento" tabindex="30000" value="-" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;pIdPlc=listaRubricaInformeRendimento&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#listaRubricaInformeRendimento&#39;);" class="botao_menos">
+
+
+
+<script>regBotaoEvento('-','PORTLET_RETRAI');</script>
+<script>regBotaoEvento('+','PORTLET_EXPANDE');</script>
+
+      
+      <!-- Fim botao + - -->
+    </div>
+      <script>
+        var idPortlet   = "listaRubricaInformeRendimento";
+        var campoFoco   = "";
+        if(ancora != "" && ancora == idPortlet){
+          setVarGlobal("idPortlet", idPortlet);
+          
+        }
+      </script>
+
+  Informe de Rendimentos&nbsp;
+
+
+      <div class="controles-right">
+
+
+<input type="submit" name="evento" tabindex="30001" value="Novo" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;listaRubricaInformeRendimento&#39;);" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="try{animar(event, &#39;&#39;)}catch(e){}" id="botao_secao" class="btn btn-default btn-sm">
+
+
+<script>regBotaoEvento('Novo','INCLUIR_DET');</script>
+
+
+      </div>
+
+  </div>
+ 
+  <div class="conteudoComponenteRetratil panel-body">
+
+
+  <div class="row form-group">
+    <div class="col-sm-2" style="text-align:right;"><br>1</div>
+      <div class="col-sm-4">
+        <label for="listaRubricaInformeRendimento[0].dataInicioVigenciaFormatada" class="label-control">Início de Vigência</label>
+        <input type="text" name="listaRubricaInformeRendimento[0].dataInicioVigenciaFormatada" maxlength="10" size="11" value="" onchange="recuperaDadosLinhaInformeRendimento(this, &#39;0&#39;)" id="dataInicioVigenciaFormatadaIR0" class="form-control datepicker hasDatepicker" disabled="">
+      </div>
+      <div class="col-sm-4">
+        <label for="listaRubricaInformeRendimento[0].dataFimVigenciaFormatada" class="label-control">Término de Vigência</label>
+        <input type="text" name="listaRubricaInformeRendimento[0].dataFimVigenciaFormatada" maxlength="10" size="11" value="" id="dataFimVigenciaFormatadaIR0" class="form-control datepicker hasDatepicker" disabled="">
+      </div>
+      <div class="col-sm-7">
+        <label for="" class="label-control">Linha do Informe de Rendimento</label>
+        <select name="listaRubricaInformeRendimento[0].identificadorLinhaRendimento" id="identificadorLinhaRendimentoIR0" class="form-control"><option value="">[Selecione...]</option></select>
+      </div>
+      <div class="col-sm-7">
+        <label for="listaRubricaDirf[0].tipoRubrica" class="label-control">Tipo de Rubrica</label>
+        <select name="listaRubricaInformeRendimento[0].tipoRubrica" id="tipoRubricaIR0" class="form-control"><option value="">[Selecione...]</option>
+          <option value="R">RENDIMENTO</option>
+          <option value="D">DEDUÇÃO</option>
+          <option value="I">IMPOSTO RETIDO</option>
+        </select>
+      </div>
+    </div>
+
+
+<script>  
+
+recuperaDadosLinhaInformeRendimento = function (campo, indice) {  
+
+  var comboLinhaInformeRendimento = '<select name="listaRubricaInformeRendimento['+indice+'].identificadorLinhaRendimento" id="identificadorLinhaRendimento'+indice+'" class="form-control chosen" >';
+  comboLinhaInformeRendimento += '<option value="">[Selecione...]</option>';
+  comboLinhaInformeRendimento += '</select>';
+
+  document.getElementById('divLinhaInformeRendimento'+indice).innerHTML = comboLinhaInformeRendimento
+  
+  if(campo && campo.value != '') {
+
+    var dataString = '&evento=recuperaDadosLinhaInformeRendimento&dtIni='+campo.value+'&indice='+indice;
+    dataString += '&rnd=' + Math.random();
+    
+    $.ajax({
+      type : "POST",
+      url : "?",
+      data : dataString,
+      cache : false,
+      dataType: "json",
+      success : function(html) {
+        if(html.MSG != '' && html.MSG != undefined){
+                 alert(html.MSG);
+        } else if (html.listaLinhaInformeRendimento != null && html.listaLinhaInformeRendimento != '' && html.listaLinhaInformeRendimento != undefined ){
+          
+          comboLinhaInformeRendimento = '<select name="listaRubricaInformeRendimento['+indice+'].identificadorRubricaDiferenca" id="identificadorRubricaDiferenca'+indice+'" class="form-control chosen" >';
+          comboLinhaInformeRendimento += '<option value="">[Selecione...]</option>';
+          $.each(html.listaLinhaInformeRendimento, function(key, value){
+            comboLinhaInformeRendimento +='<option value="'+value.id+'">'+value.descricao+'</option>';
+          });
+          comboLinhaInformeRendimento += '</select>';
+          
+          document.getElementById('divLinhaInformeRendimento'+indice).innerHTML = comboLinhaInformeRendimento;
+
+          document.getElementById('identificadorRubricaDiferenca'+indice).value = html.idLinhaInformeRendimento;
+        }
+      }
+    }); 
+  }
+}
+</script>
+
+  </div>
+
+
+    </div>
+  </div>
+</div>

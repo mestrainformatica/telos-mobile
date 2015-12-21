@@ -63,7 +63,6 @@
     width:inherit; /* Or auto */
     padding:0 10px; /* To give a bit of padding on the left and right */
     border-bottom:none;
-    font-size:15px;
   }
 
   table.calendarioStyle td {
@@ -97,6 +96,11 @@ body {
   box-shadow: inset 246px 0 #f0f0f0;
   transition: box-shadow .3s;
 }
+body.stand-alone {
+  box-shadow: inset 0px 0 #fff;
+  min-width: auto;
+}
+.stand-alone { background: #fff; }
 body.menu-collapsed {
   box-shadow: inset 44px 0 #f0f0f0;
 }
@@ -147,10 +151,11 @@ body.menu-collapsed {
   border: solid 1px #d0d0d0 !important;
   background-color: #F4F4F4;
 }
-.form-group label {
+label, .form-group label {
   padding: .15em 0;
   font-weight: 500;
 }
+.disabled label { color: #909090;}
 .form-control:focus {
     border-color: #aebac6 !important;
     outline: 0;
@@ -168,7 +173,10 @@ body.menu-collapsed {
 .btn {
   line-height: 1.28em;
 }
-
+.chosen-container .chosen-results li {
+    padding: 4px 5px;
+    font-size: 13px;
+}
 
 /* = Layout Botão Paginação
 ========================= */
@@ -205,6 +213,41 @@ body.menu-collapsed {
 .container .jumbotron, .container-fluid .jumbotron {
     border-radius: 2px;
 }
+
+/* = 
+  Icone de calendário automatico
+========================= */
+
+  /* enable absolute positioning */
+  .inner-addon { 
+      position: relative; 
+  }
+
+  /* style icon */
+  .inner-addon .glyphicon,
+  .inner-addon .icon
+   {
+    position: absolute;
+    padding: 10px 32px;
+    pointer-events: none;
+    bottom: 0px;
+    top: auto;
+    color: #909090;
+  }
+
+  /* align icon */
+  .left-addon .glyphicon,
+  .left-addon .icon
+    { left:  0px; 
+    height: 32px;}
+  .right-addon .glyphicon,
+  .right-addon .icon
+   { right: 0px;
+    height: 32px; }
+
+  /* add padding  */
+  .left-addon input  { padding-left:  30px;  }
+  .right-addon input { padding-right: 30px; }
 
 /* = Header
 ========================= */
@@ -270,8 +313,10 @@ body.menu-collapsed {
     margin-bottom: -3px;
   }
 
-  body .menu_acoes input
+  body .menu_acoes input,
+  body .menu_acoes button
   {
+    vertical-align: middle;
     padding: 3px;
     width: 40px !important;
     height: 40px !important;
@@ -281,6 +326,7 @@ body.menu-collapsed {
     font-size: 20px;
     font-weight: bold;
     margin:0 2px;
+    line-height: 1em;
 
   }
 
@@ -375,6 +421,7 @@ body.menu-collapsed {
   {
     margin: 0 !important;
     width: 100%;
+    padding-bottom: 4em;
     /*max-width: 249px;*/
   }
 
@@ -562,18 +609,18 @@ body.menu-collapsed {
     color: #333 !important;
   }
 
-
+  body .clear-fix {
+    clear: both;
+  }
 
 /* = Conteudo
 ========================= */
 #conteudo {
-  overflow: hidden;
+  /*overflow: hidden;*/
   padding-left: 246px;
-  font-size: 14px;
   -webkit-transition: padding .3s;
   transition: padding .3s;
 }
-
 #left-column {
   background: #F0F0F0;
   float: left;
@@ -586,7 +633,7 @@ body.menu-collapsed {
   width: 100% !important;
   float: right;
   background: transparent;
-  padding-bottom: 10em;
+  padding-bottom: 15em;
 }
 
 .menu_acoes {
@@ -604,7 +651,8 @@ body.menu-collapsed {
 #conteudo #left-column .menu-title {cursor: pointer; position: static;}
 #conteudo #left-column .menu-title span {float: right; margin-top: 3px;}
 
-#conteudo.stand-alone {padding-left: 0;}
+#conteudo.stand-alone,
+.stand-alone #conteudo {padding-left: 0;}
 
 
 /* = Rodape
@@ -624,6 +672,7 @@ body {padding-bottom: 60px;}
   width: 100%;
   height: 60px;
   min-width: 1260px;
+  z-index: 1000;
 }
 
 #rodape p {
@@ -655,9 +704,10 @@ body {padding-bottom: 60px;}
   text-transform: none;
   line-height: 1;
 }
-.input-icon:hover {
+.input-icon:hover,
+.menu_acoes button:hover {
   background: #f0f0f0;
-  border:solid 1px #c0c6c9;
+  border: solid 1px #c0c6c9;
 }
 .exemplo-icon {margin: 0; padding: 0;}
 .exemplo-icon li {float: left; padding: 20px 0 0; list-style: none; width: 33%;}
@@ -690,6 +740,7 @@ body .botao_menos, body .botao_mais {
 /* = Formulários
 ========================= */
 .has-error .form-control {border:1px solid #a94442 !important;}
+.has-error .chosen-container {border:1px solid #a94442 !important;}
 .form-group.required label:after {content: " *";}
 
 .ui-tabs.ui-widget {padding: 0; margin: 0; border: none;}
@@ -722,6 +773,13 @@ pre,
 {
   border-radius: 2px;
 }
+
+/* = Tabela
+========================= */
+table.table.no-lines tr th,
+table.table.no-lines tr td {border-bottom: none !important;}
+
+
 /* = Formulários
 ========================= */
 

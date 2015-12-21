@@ -29,7 +29,7 @@ $(document).ready(function()
             }
         })
     });
-    $('.chosen').chosen();
+    $('.chosen').chosen({width: '100%'});
 
     $("#menuDiv .menu-title").click(function () {
         $(this).parents('#conteudo, body').toggleClass("menu-collapsed");

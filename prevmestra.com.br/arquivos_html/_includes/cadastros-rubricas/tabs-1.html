@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-sm-24">
+    <div id="componenteVisual" class="form-group panel panel-default componenteRetratil">
+
+
+      <script>
+        var ancora  = "";
+        var pos     = -1;
+      </script>
+      <div class="panel-heading componente-titulo">
+
+        <div class="col_hierarq contrai-btn">
+          <!-- Botao de + - -->
+
+          <script>
+            ancora  = "";
+            if(ancora != ""){
+              setTimeout("setAncora('#"+ancora+"')", 10);
+            } 
+          </script>
+
+          <input type="submit" name="evento" tabindex="30000" value="-" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;pIdPlc=listaRubricaBaseCalculo&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#listaRubricaBaseCalculo&#39;);" class="botao_menos">
+
+
+
+          <script>regBotaoEvento('-','PORTLET_RETRAI');</script>
+          <script>regBotaoEvento('+','PORTLET_EXPANDE');</script>
+
+
+          <!-- Fim botao + - -->
+        </div>
+        <script>
+          var idPortlet   = "listaRubricaBaseCalculo";
+          var campoFoco   = "";
+          if(ancora != "" && ancora == idPortlet){
+            setVarGlobal("idPortlet", idPortlet);
+
+          }
+        </script>
+
+
+
+
+        Base de Cálculo&nbsp;
+
+
+        <div class="controles-right">
+
+          <input type="submit" name="evento" tabindex="30001" value="Novo" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;listaRubricaBaseCalculo&#39;);" onmouseover="try{animar(event , &#39;2&#39;)}catch(e){}" onmouseout="try{animar(event, &#39;&#39;)}catch(e){}" id="botao_secao" class="btn btn-default btn-sm">
+          <script>regBotaoEvento('Novo','INCLUIR_DET');</script>
+
+
+        </div>
+
+      </div>
+      <div class="conteudoComponenteRetratil panel-body">
+
+        <div class="row form-group">
+          <div class="col-sm-2" style="text-align:right;"><br>1</div>
+          <div class="col-sm-8">
+            <label for="listaRubricaBaseCalculo[0].dataInicioVigenciaFormatada" class="label-control">Início de Vigência</label>
+            <input type="text" name="listaRubricaBaseCalculo[0].dataInicioVigenciaFormatada" maxlength="10" size="11" value="" id="dataInicioVigenciaFormatadaBC0" class="form-control datepicker">
+          </div>
+          <div class="col-sm-7">
+            <label for="listaRubricaBaseCalculo[0].dataFimVigenciaFormatada" class="label-control">Término de Vigência</label>
+            <input type="text" name="listaRubricaBaseCalculo[0].dataFimVigenciaFormatada" maxlength="10" size="11" value="" id="dataFimVigenciaFormatadaBC0" class="form-control datepicker">
+          </div>
+          <div class="col-sm-7">
+            <label for="listaRubricaBaseCalculo[0].identificadorRubricaBase" class="label-control">Rubricas</label>
+            <select name="listaRubricaBaseCalculo[0].identificadorRubricaBase" id="identificadorRubricaBaseBC0" class="form-control chosen"><option value="">[Selecione...]</option></select>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-2" style="text-align:right;"><br>2</div>
+          <div class="col-sm-8">
+            <label for="listaRubricaBaseCalculo[0].dataInicioVigenciaFormatada" class="label-control">Início de Vigência</label>
+            <input type="text" name="listaRubricaBaseCalculo[0].dataInicioVigenciaFormatada" maxlength="10" size="11" value="" id="dataInicioVigenciaFormatadaBC0" class="form-control datepicker">
+          </div>
+          <div class="col-sm-7">
+            <label for="listaRubricaBaseCalculo[0].dataFimVigenciaFormatada" class="label-control">Término de Vigência</label>
+            <input type="text" name="listaRubricaBaseCalculo[0].dataFimVigenciaFormatada" maxlength="10" size="11" value="" id="dataFimVigenciaFormatadaBC0" class="form-control datepicker">
+          </div>
+          <div class="col-sm-7">
+            <label for="listaRubricaBaseCalculo[0].identificadorRubricaBase" class="label-control">Rubricas</label>
+            <select name="listaRubricaBaseCalculo[0].identificadorRubricaBase" id="identificadorRubricaBaseBC0" class="form-control chosen"><option value="">[Selecione...]</option></select>
+          </div>
+        </div>
+
+      </div>
+
+
+        </div>
+      </div>
+    </div>
