@@ -950,7 +950,7 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 			    	<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-19" aria-labelledby="a-tab19" aria-selected="false" aria-expanded="false"><a id="a-tab19" href="http://www.sysprev.com.br/FAECES_FolhaAtivo/rubricasman.do?evento=x&amp;idRotina=4097#tabs-19" onclick="mudaAba(&#39;3&#39;);" class="ui-tabs-anchor" role="presentation" tabindex="-1">Centro de Custo</a></li>	
 			  	</ul>
 					<div id="tabs-1" aria-labelledby="a-tab1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
-						<?php include("_includes/colaboradores/tabs-5.html"); ?>	
+						<?php include("_includes/colaboradores/tabs-6.html"); ?>	
 					</div>
 					<div id="tabs-2" aria-labelledby="a-tab2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
 						<?php include("_includes/colaboradores/tabs-2.html"); ?>
@@ -970,29 +970,41 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 					<div id="tabs-7" aria-labelledby="a-tab7" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
 						<?php include("_includes/colaboradores/tabs-7.html"); ?>
 					</div>
-					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					<div id="tabs-8" aria-labelledby="a-tab8" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-8.html"); ?>
 					</div>
-					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					<div id="tabs-9" aria-labelledby="a-tab9" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-9.html"); ?>
 					</div>
-					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					<div id="tabs-10" aria-labelledby="a-tab10" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-10.html"); ?>
 					</div>
-					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					<div id="tabs-11" aria-labelledby="a-tab11" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-11.html"); ?>
 					</div>
-					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					<div id="tabs-12" aria-labelledby="a-tab12" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-12.html"); ?>
 					</div>
-					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					<div id="tabs-13" aria-labelledby="a-tab13" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-13.html"); ?>
 					</div>
-					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					<div id="tabs-14" aria-labelledby="a-tab14" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-14.html"); ?>
 					</div>
-					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					<div id="tabs-15" aria-labelledby="a-tab15" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-15.html"); ?>
+					</div>
+					<div id="tabs-16" aria-labelledby="a-tab16" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-16.html"); ?>
+					</div>
+					<div id="tabs-17" aria-labelledby="a-tab17" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-17.html"); ?>
+					</div>
+					<div id="tabs-18" aria-labelledby="a-tab18" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-18.html"); ?>
+					</div>
+					<div id="tabs-19" aria-labelledby="a-tab19" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-19.html"); ?>
 					</div>
 				</div>
 

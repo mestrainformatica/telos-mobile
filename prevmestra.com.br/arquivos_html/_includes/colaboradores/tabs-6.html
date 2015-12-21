@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-sm-4 form-group required">
       <label style="height:4.3em; display:flex; align-items:flex-end;">Data Início</label>
-      <input type="text" maxlength="10" size="11" value="" class="form-control datepicker">
+      <input type="text" maxlength="10" size="11" value="" class="form-control datepicker hasDatepicker">
     </div>
     <div class="col-sm-4 form-group">
       <label style="height:4.3em; display:flex; align-items:flex-end;">Data Término</label>
@@ -10,11 +10,31 @@
     </div>
 
     <div class="col-sm-4 form-group required">
-      <label style="height:4.3em; display:flex; align-items:flex-end;">% Adiantamento Quinzenal</label>
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Contrato</label>
       <select class="form-control chosen">
         <option value="" selected="selected">[Selecione...]</option>
       </select>
     </div>
+
+    <div class="col-sm-4 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Plano</label>
+      <select class="form-control chosen">
+        <option value="" selected="selected">[Selecione...]</option>
+      </select>
+    </div>
+
+    <div class="col-sm-4 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Produto</label>
+      <select class="form-control chosen">
+        <option value="" selected="selected">[Selecione...]</option>
+      </select>
+    </div>
+
+    <div class="col-sm-4 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Número da Carteira</label>
+      <input type="text" maxlength="5" size="10" value="" class="form-control valor" placeholder="%">
+    </div>
+
     
   </div>
 
@@ -34,7 +54,10 @@
       </th>
       <th>Início</th>
       <th>Término</th>
-      <th>% Adiantamento Quinzenal</th>
+      <th>Contrato</th>
+      <th>Plano</th>
+      <th>Produto</th>
+      <th>Número da Carteira</th>
     </tr></thead>
     <tbody id="grid">
  
@@ -59,6 +82,21 @@
             8,80
           </div>
         </td>
+        <td style="cursor:pointer">
+          <div id="div0" style="width:100%" >
+            8,80
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div0" style="width:100%" >
+            8,80
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div0" style="width:100%" >
+            8,80
+          </div>
+        </td>
       </tr>
      
     <tr>
@@ -74,6 +112,21 @@
         <td style="cursor:pointer">
           <div id="div1" style="width:100%" >
             2,32
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div1" style="width:100%" >
+            0,11
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div1" style="width:100%" >
+            0,11
+          </div>
+        </td>
+        <td style="cursor:pointer">
+          <div id="div1" style="width:100%" >
+            0,11
           </div>
         </td>
         <td style="cursor:pointer">
