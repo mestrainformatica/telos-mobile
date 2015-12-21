@@ -950,13 +950,46 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 			    	<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="tabs-19" aria-labelledby="a-tab19" aria-selected="false" aria-expanded="false"><a id="a-tab19" href="http://www.sysprev.com.br/FAECES_FolhaAtivo/rubricasman.do?evento=x&amp;idRotina=4097#tabs-19" onclick="mudaAba(&#39;3&#39;);" class="ui-tabs-anchor" role="presentation" tabindex="-1">Centro de Custo</a></li>	
 			  	</ul>
 					<div id="tabs-1" aria-labelledby="a-tab1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
-						<?php include("_includes/colaboradores/tabs-4.html"); ?>	
+						<?php include("_includes/colaboradores/tabs-5.html"); ?>	
 					</div>
 					<div id="tabs-2" aria-labelledby="a-tab2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
 						<?php include("_includes/colaboradores/tabs-2.html"); ?>
 					</div>
 					<div id="tabs-3" aria-labelledby="a-tab3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
 						<?php include("_includes/colaboradores/tabs-3.html"); ?>
+					</div>
+					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					</div>
+					<div id="tabs-5" aria-labelledby="a-tab5" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-5.html"); ?>
+					</div>
+					<div id="tabs-6" aria-labelledby="a-tab6" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-6.html"); ?>
+					</div>
+					<div id="tabs-7" aria-labelledby="a-tab7" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-7.html"); ?>
+					</div>
+					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					</div>
+					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					</div>
+					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					</div>
+					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					</div>
+					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					</div>
+					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-4.html"); ?>
+					</div>
+					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+						<?php include("_includes/colaboradores/tabs-4.html"); ?>
 					</div>
 					<div id="tabs-4" aria-labelledby="a-tab4" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
 						<?php include("_includes/colaboradores/tabs-4.html"); ?>
