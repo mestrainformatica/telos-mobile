@@ -59,34 +59,29 @@
   <div class="conteudoComponenteRetratil panel-body">
 
 
-  <div class="row">
-    <div class="col-lg-2 form-inline">&nbsp;</div>
-    <div class="col-lg-2 form-inline">Início de Vigência<span class="text-warning">*</span></div>
-    <div class="col-lg-2 form-inline">Término de Vigência</div>
-    <div class="col-lg-2 form-inline">Linha do Informe de Rendimento<span class="text-warning">*</span></div>
-    <div class="col-lg-2 form-inline">Tipo de Rubrica<span class="text-warning">*</span></div>
-  </div>
-  <div class="row">
-    <div class="col-lg-2">
-      <b>1</b>
-      
+  <div class="row form-group">
+    <div class="col-sm-2" style="text-align:right;"><br>1</div>
+      <div class="col-sm-4">
+        <label for="listaRubricaInformeRendimento[0].dataInicioVigenciaFormatada" class="label-control">Início de Vigência</label>
+        <input type="text" name="listaRubricaInformeRendimento[0].dataInicioVigenciaFormatada" maxlength="10" size="11" value="" onchange="recuperaDadosLinhaInformeRendimento(this, &#39;0&#39;)" id="dataInicioVigenciaFormatadaIR0" class="form-control datepicker hasDatepicker" disabled="">
+      </div>
+      <div class="col-sm-4">
+        <label for="listaRubricaInformeRendimento[0].dataFimVigenciaFormatada" class="label-control">Término de Vigência</label>
+        <input type="text" name="listaRubricaInformeRendimento[0].dataFimVigenciaFormatada" maxlength="10" size="11" value="" id="dataFimVigenciaFormatadaIR0" class="form-control datepicker hasDatepicker" disabled="">
+      </div>
+      <div class="col-sm-7">
+        <label for="" class="label-control">Linha do Informe de Rendimento</label>
+        <select name="listaRubricaInformeRendimento[0].identificadorLinhaRendimento" id="identificadorLinhaRendimentoIR0" class="form-control"><option value="">[Selecione...]</option></select>
+      </div>
+      <div class="col-sm-7">
+        <label for="listaRubricaDirf[0].tipoRubrica" class="label-control">Tipo de Rubrica</label>
+        <select name="listaRubricaInformeRendimento[0].tipoRubrica" id="tipoRubricaIR0" class="form-control"><option value="">[Selecione...]</option>
+          <option value="R">RENDIMENTO</option>
+          <option value="D">DEDUÇÃO</option>
+          <option value="I">IMPOSTO RETIDO</option>
+        </select>
+      </div>
     </div>
-    <div class="col-lg-2 form-inline right-addon inner-addon">
-      <input type="text" name="listaRubricaInformeRendimento[0].dataInicioVigenciaFormatada" maxlength="10" size="11" value="" onchange="recuperaDadosLinhaInformeRendimento(this, &#39;0&#39;)" id="dataInicioVigenciaFormatadaIR0" class="form-control datepicker hasDatepicker" disabled="">
-    <i class="icon icon-calendar3"></i></div>
-    <div class="col-lg-2 form-inline right-addon inner-addon">
-      <input type="text" name="listaRubricaInformeRendimento[0].dataFimVigenciaFormatada" maxlength="10" size="11" value="" id="dataFimVigenciaFormatadaIR0" class="form-control datepicker hasDatepicker" disabled="">
-    <i class="icon icon-calendar3"></i></div>
-    <div class="col-lg-2 form-inline" id="divLinhaInformeRendimento0">
-      <select name="listaRubricaInformeRendimento[0].identificadorLinhaRendimento" id="identificadorLinhaRendimentoIR0" class="form-control chosen" style="display: none;" disabled=""><option value="">[Selecione...]</option></select><div class="chosen-container chosen-container-single" style="width: 116px;" title="" id="identificadorLinhaRendimentoIR0_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
-    </div>
-    <div class="col-lg-2 form-inline">
-      <select name="listaRubricaInformeRendimento[0].tipoRubrica" id="tipoRubricaIR0" class="form-inline chosen" style="display: none;" disabled=""><option value="">[Selecione...]</option>
-        <option value="R">RENDIMENTO</option>
-        <option value="D">DEDUÇÃO</option>
-        <option value="I">IMPOSTO RETIDO</option></select><div class="chosen-container chosen-container-single" style="width: 139px;" title="" id="tipoRubricaIR0_chosen"><a class="chosen-single" tabindex="-1"><span>[Selecione...]</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
-    </div>
-  </div>
 
 
 <script>  
