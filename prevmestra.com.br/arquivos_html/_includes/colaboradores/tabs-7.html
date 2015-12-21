@@ -1,38 +1,32 @@
-<h3>Detalhe</h3>
+<h3>Detalhe - Cargos</h3>
 <div class="row">
     <div class="col-sm-4 form-group required">
-      <label style="height:4.3em; display:flex; align-items:flex-end;">Data Início</label>
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Data da Mudança</label>
       <input type="text" maxlength="10" size="11" value="" class="form-control datepicker">
     </div>
-    <div class="col-sm-4 form-group">
-      <label style="height:4.3em; display:flex; align-items:flex-end;">Data Término</label>
-      <input type="text" maxlength="5" size="10" value="" class="form-control datepicker">
-    </div>
 
-    <div class="col-sm-4 form-group required">
-      <label style="height:4.3em; display:flex; align-items:flex-end;">Contrato</label>
+    <div class="col-sm-6 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Cargo de Destino</label>
       <select class="form-control chosen">
         <option value="" selected="selected">[Selecione...]</option>
       </select>
     </div>
 
     <div class="col-sm-4 form-group required">
-      <label style="height:4.3em; display:flex; align-items:flex-end;">Plano</label>
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Nível</label>
       <select class="form-control chosen">
         <option value="" selected="selected">[Selecione...]</option>
       </select>
     </div>
 
-    <div class="col-sm-4 form-group required">
-      <label style="height:4.3em; display:flex; align-items:flex-end;">Produto</label>
-      <select class="form-control chosen">
-        <option value="" selected="selected">[Selecione...]</option>
-      </select>
+    <div class="col-sm-3 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">C.B.O</label>
+      <input type="text" maxlength="10" size="11" value="" class="form-control">
     </div>
 
-    <div class="col-sm-4 form-group required">
-      <label style="height:4.3em; display:flex; align-items:flex-end;">Número da Carteira</label>
-      <input type="text" maxlength="5" size="10" value="" class="form-control valor">
+    <div class="col-sm-7 form-group required">
+      <label style="height:4.3em; display:flex; align-items:flex-end;">Documento Decisório</label>
+      <input type="text" maxlength="10" size="11" value="" class="form-control">
     </div>
 
     
@@ -52,12 +46,11 @@
         <input type="button" name="btOk" value="&#xed58;" class="btn btn-default input-icon" title="Aplicar Detalhe">
         <input type="button" name="posicaoDet" value="&#xed63;" class="btn btn-default input-icon" title="Excluir Detalhe">
       </th>
-      <th>Início</th>
-      <th>Término</th>
-      <th>Contrato</th>
-      <th>Plano</th>
-      <th>Produto</th>
-      <th>Número da Carteira</th>
+      <th>Data da Mudança</th>
+      <th>Cargo de Destino</th>
+      <th>Nível</th>
+      <th>C.B.O</th>
+      <th>Documento Decisório</th>
     </tr></thead>
     <tbody id="grid">
  
@@ -92,11 +85,6 @@
             8,80
           </div>
         </td>
-        <td style="cursor:pointer">
-          <div id="div0" style="width:100%" >
-            8,80
-          </div>
-        </td>
       </tr>
      
     <tr>
@@ -112,11 +100,6 @@
         <td style="cursor:pointer">
           <div id="div1" style="width:100%" >
             2,32
-          </div>
-        </td>
-        <td style="cursor:pointer">
-          <div id="div1" style="width:100%" >
-            0,11
           </div>
         </td>
         <td style="cursor:pointer">
