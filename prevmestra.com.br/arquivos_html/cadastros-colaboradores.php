@@ -909,8 +909,6 @@ msgTeclaRedefinida = 'Esta função foi redefinida para a tecla "{0}"';
 		    }
 		});
 
-		habilitaCampo();
-
 		var abaSel = $('#abaSelecionada').val();
 		
         $("#tabs").tabs({ active: abaSel }); 
