@@ -780,6 +780,9 @@ table.table.no-lines tr th,
 table.table.no-lines tr td {border-bottom: none !important;}
 
 
+.menu_acoes_detalhe {border-radius: 0; margin-right: 10px; float: left;}
+.menu_acoes_detalhe:last-of-type {margin-right:0;}
+
 /* = Formulários
 ========================= */
 

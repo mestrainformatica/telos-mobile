@@ -29,8 +29,16 @@
     <thead>
       <tr>
       <th style="white-space:nowrap; font-weight: normal;">
-        <input type="button" name="btOk" value="&#xed58;" class="btn btn-default input-icon" title="Aplicar Detalhe">
-        <input type="button" name="posicaoDet" value="&#xed63;" class="btn btn-default input-icon" title="Excluir Detalhe">
+        <div class="menu_acoes_detalhe">
+		   			<button class="btn btn-warnning tooltipstered" type="button" onclick="limpaCampos();">
+		   				<span class="icon icon-eraser2"></span>
+		   			</button>
+	   			</div>
+        <div class="menu_acoes_detalhe">
+		   			<button class="btn btn-warnning tooltipstered" type="button" onclick="disparaRecuperacaoDetalheDadosColaboradores();">
+		   				<span class="icon icon-checkmark4"></span>
+		   			</button>
+	   			</div>
       </th>
       <th>Mês/Ano Referência</th>
       <th>Valor</th>
