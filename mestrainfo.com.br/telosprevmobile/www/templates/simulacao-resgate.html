@@ -1,0 +1,134 @@
+<ion-view title="Saldo de Contas" ng-controller="SimulacaoResgateCtrl">
+ <ion-content class="has-header" id="simulacaoResgate">
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <!-- 
+  Objeto JSON
+
+  {
+   “sucess”:true,
+   “msg”:””,
+   “result”:{
+                   “atualizado_em”: “08/04/2015”
+                   “participante”: “7.772,12”
+         “patrocinadora”: “0,00”
+         “joia”: “0,00”
+         “outros”: “0,00”
+                   “portab_aberta”: “0,00”
+         “sub_total_saldo”: “7.772,12”
+                   “emprestimos”: “2.647,61”
+                   “financiamento_imobiliario”: “0,00”
+                   “irrf”: “2.720,24”
+                   “qtd_dependentes_irrf”: “00”
+                   “portab_fechada”: “0,00”
+                   “sub_total_descontos”: “5.367,85”
+                   “resgate_liquido”: “2.404,27”
+       }
+  } 
+  -->
+
+  <div class="list" id="mainMenu">        
+  <div class="item item-divider">
+    <h3>Atualizado em 23/10/2015</h3>
+  </div>
+  <div class="item item-divider">
+      Saldo de Contas
+  </div>
+
+  <div class="item">
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Participante</div>
+      <div class="col valor">7.772,12</div>
+    </div>
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Patrocinadora</div>
+      <div class="col valor">0,00</div>
+    </div>
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Jóia</div>
+      <div class="col valor">0,00</div>
+    </div>
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Outros</div>
+      <div class="col valor">0,00</div>
+    </div>
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Portab. Aberta</div>
+      <div class="col valor">0,00</div>
+    </div>
+    <hr>
+    <div class="label row">
+      <div class="col col-25">Sub-Total</div>
+      <div class="col valor">7.772,12</div>
+    </div>
+    
+  </div>
+  <div class="item item-divider">
+      Descontos
+  </div>
+
+  <div class="item">
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Empréstimos</div>
+      <div class="col valor">2.647,61</div>
+    </div>
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Financiamento Imobiliário</div>
+      <div class="col valor">0,00</div>
+    </div>
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">IRRF</div>
+      <div class="col valor">2.720,24</div>
+    </div>
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Qtd. Dependentes IRRF</div>
+      <div class="col valor">00</div>
+    </div>
+  
+    <div class="label row">
+      <div class="col col-25 softcolor">Portab. Fechada</div>
+      <div class="col valor">0,00</div>
+    </div>
+    <hr>
+    <div class="label row">
+      <div class="col col-25">Sub-Total</div>
+      <div class="col valor">5.367,85</div>
+    </div>
+    
+  </div>
+  
+  <div class="item item-divider">
+      Resgate Líquido
+  </div>
+
+  <div class="item">
+  
+    <div class="label row">
+      <div class="col col-25">Total</div>
+      <div class="col valor">2.404,27</div>
+    </div>
+  </div>
+  <div class="item item-divider">
+      Observação
+  </div>
+  
+  <div class="item item-text-wrap assertive">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse odit deserunt officia quod nesciunt totam, qui ab enim dolorum explicabo ipsum.<br /><br />
+
+    Doloremque dignissimos neque deserunt tempore esse ut enim, molestias.
+  </div>
+  
+     
+  </ion-content>
+</ion-view>

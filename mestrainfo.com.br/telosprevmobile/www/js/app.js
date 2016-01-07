@@ -154,6 +154,13 @@
       templateUrl: "templates/emprestimo-simulacao-campos-emitido.html"    
     })
 
+
+    .state('simulacaoResgate', {
+      cache: false,
+      url: '/simulacao-resgate',
+      templateUrl: "templates/simulacao-resgate.html"    
+    })
+
     .state('splitmatriculas', {
       cache: false,
       url: '/split-matriculas',

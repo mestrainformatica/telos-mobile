@@ -17,6 +17,9 @@ body {
 #emprestimo .th .valor {
 	padding-right: .7em;
 }
+.item-text-wrap {
+	font-size: 14px;
+}
 .col-40, .col-41 {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 40.9%;
