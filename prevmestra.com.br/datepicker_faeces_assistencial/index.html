@@ -1,0 +1,834 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0116)http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&chPlc=43 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<script>
+		    var path = '/FAECES_Assistencial';
+			
+			var botaoAcionado = 'sim';
+			// função para criar arvore de diretorio usado em seguranca
+
+			function controlaBotaoGravar(){
+				if(botaoAcionado == 'nao'){		
+					botaoAcionado = 'sim';		
+					return true;		
+				}	
+				alert("Aguarde a execução completa do procedimento selecionado.");
+				return true;
+			}
+			
+			function menuFlex(estadoMenu){	
+				if (estadoMenu == "aberto"){
+					document.getElementById('tabelaMenu').style.display = "none";
+					document.getElementById('tabelaMenu').style.widthantes = document.getElementById('tabelaMenu').style.width;
+					$('#botao1').css('display', 'none');
+					$('#botao2').css('display', '');
+					$('#mainForm').css('width','98%');
+				}else{
+					document.getElementById('tabelaMenu').style.display = "";
+					document.getElementById('tabelaMenu').style.width = document.getElementById('tabelaMenu').style.widthantes;
+					$('#botao1').css('display', '');
+					$('#botao2').css('display', 'none');
+					$('#mainForm').css('width','80%');
+				}
+			}
+		</script>
+		
+		
+		
+		<link rel="stylesheet" href="./index_files/PlcPele.css" type="text/css">
+		<link rel="stylesheet" href="./index_files/AppPele.css" type="text/css">
+		<link rel="stylesheet" href="./index_files/nucleosestilo.css" type="text/css">
+		<link rel="stylesheet" type="text/css" media="screen" href="./index_files/global.css">  
+	    <link rel="stylesheet" type="text/css" media="screen" href="./index_files/menuExpandable.css">
+	    <link rel="stylesheet" type="text/css" media="screen" href="./index_files/colorbox.css">
+	    <link rel="stylesheet" type="text/css" media="screen" href="./index_files/loading.css">
+	    
+		<link rel="stylesheet" href="./index_files/jquery-ui.css" type="text/css">
+		<link rel="stylesheet" href="./index_files/jquery-ui.structure.css" type="text/css">
+		<link rel="stylesheet" href="./index_files/jquery-ui.theme.css" type="text/css">
+
+		<script src="./index_files/PlcGeral.js" type="text/javascript"></script>
+		<script src="./index_files/AppGeral.js" type="text/javascript"></script>
+		<script src="./index_files/PlcGeral.js" type="text/javascript"></script>
+		<script src="./index_files/MestraAjax.js" type="text/javascript"></script>
+		<script src="./index_files/jquery-2.1.4.js" type="text/javascript"></script>
+		<script src="./index_files/jquery-ui.js" type="text/javascript"></script>
+
+		<!-- datepicker -->
+		<script src="./index_files/datepicker/datepicker.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="./index_files/datepicker/datepicker.css" type="text/css">
+		<!-- fim do datepicker -->
+
+		<script src="./index_files/menuExpandable.js" type="text/javascript"></script>
+		<script src="./index_files/loading.js" type="text/javascript"></script>
+		
+		<title>
+			Sysprev Web
+		</title>
+
+		<script>
+			var preparaMenus = initializeMenus;
+			if (window.addEventListener)
+				window.addEventListener("load", preparaMenus, false)
+			else if (window.attachEvent)
+				window.attachEvent("onload", preparaMenus)
+				
+			hostdogifanimado_AnimaAjax = path+'/plc/midia/indicator.gif';
+			
+			function marcaObrigatorio(){
+				$('.obrigatorio').append('<font color="red">&nbsp;*</font>');
+			}
+
+			if (window.addEventListener)
+				window.addEventListener("load", marcaObrigatorio, false);
+			else if (window.attachEvent)
+				window.attachEvent("onload", marcaObrigatorio);
+			
+		</script>
+		
+	</head>
+
+	
+
+	<body onkeydown="return executarAcaoFuncoes(event);">
+		<span id="conteudo">
+			
+				
+				
+					
+				
+
+
+
+
+<fmt:setbundle basename="jCompanyResources" var="jCompanyResources">
+<fmt:setbundle basename="ApplicationResources" var="ApplicationResources_pt_BR">
+
+
+
+		<table onresize="redimencionaTesteira()" id="localTesteiraTable" bgcolor="#beccdf" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="z-index:500;">
+			<tbody><tr>
+				<td> 
+					<embed onresize="redimencionaTesteira()" id="localTesteira" border="0" width="100%" height="101%" bgcolor="#beccdf" style="border-color: rgb(135, 158, 189); z-index: 1; height: 63.4118px; background-color: rgb(135, 158, 189);" cellpadding="0" cellspacing="0" fullscreen="no" src="/FAECES_Assistencial/plc/midia/testeira_assistencial.swf" wmode="opaque">
+				</td>
+			</tr>
+		</tbody></table>		
+
+<script>
+
+	redimencionaTesteira();
+	
+	function redimencionaTesteira(){
+		telaWidth = $(window).width();
+		$('#localTesteira').css('height',telaWidth / 17);
+	}
+	
+	function escondeTopo(){
+		$('#localTesteiraTable').css('display','none');
+		$('#localTesteira').css('display','none');
+	}
+
+</script>
+			
+			
+			<span id="tabelaMenu" style="height: 269px;">
+											
+					<div id="menuDiv"><ul id="menuList">
+
+			            
+						
+							
+							
+								<li class="menubar" style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/minus.gif&quot;);">
+
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="TabelasActuator" class="actuator">Tabelas</a>
+		<ul id="TabelasMenu" class="menu" style="display: block;">
+
+<li style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/minus.gif&quot;);">
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="Planos/ProdutosActuator" class="actuator">Planos/Produtos</a>
+		<ul id="Planos/ProdutosMenu" class="submenu" style="display: block;">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/planosnav.do?evento=Pesquisar&amp;idRotina=3733" title="Planos">Planos</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturasnav.do?evento=Pesquisar&amp;idRotina=3734" title="Coberturas" class=" highlight">Coberturas</a></li>
+<li style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/minus.gif&quot;);">
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="RegistroProdutoActuator" class="actuator">Registro Produto</a>
+		<ul id="RegistroProdutoMenu" class="submenu" style="display: block;">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/abrangenciasGeograficasnav.do?evento=Pesquisar&amp;idRotina=3737" title="Abrangências Geográficas">Abrangências Geográficas</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/segmentacaonav.do?evento=Pesquisar&amp;idRotina=3735" title="Segmentação">Segmentação</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/tipoContratacaonav.do?evento=Pesquisar&amp;idRotina=3740" title="Tipo de Contratação">Tipo de Contratação</a></li>
+		</ul>
+	</li>
+
+
+<li style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="ProcedimentosActuator" class="actuator">Procedimentos</a>
+		<ul id="ProcedimentosMenu" class="submenu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/especialidadesGruposnav.do?evento=Pesquisar&amp;idRotina=3762" title="Especialidades X Grupos">Especialidades X Grupos</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/tiposProcedimentosnav.do?evento=Pesquisar&amp;idRotina=3764" title="Tipos de Procedimentos">Tipos de Procedimentos</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/procedimentosnav.do?evento=Pesquisar&amp;idRotina=3765" title="Procedimentos">Procedimentos</a></li>
+		</ul>
+	</li>
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/produtosnav.do?evento=Pesquisar&amp;idRotina=3735" title="Produtos">Produtos</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/produtosCategoriasnav.do?evento=Pesquisar&amp;idRotina=3810" title="Categoria x Produto">Categoria x Produto</a></li>
+<li style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="SituaçãoActuator" class="actuator">Situação</a>
+		<ul id="SituaçãoMenu" class="submenu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/motivosPorSituacaonav.do?evento=Pesquisar&amp;idRotina=3743" title="Motivos por Situação">Motivos por Situação</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/motivosDescredencnav.do?evento=Pesquisar&amp;idRotina=3780" title="Motivos Descredenciamento">Motivos Descredenciamento</a></li>
+		</ul>
+	</li>
+
+<li style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="DeclaraçãoPessoaldeSaúdeActuator" class="actuator">Declaração Pessoal de Saúde</a>
+		<ul id="DeclaraçãoPessoaldeSaúdeMenu" class="submenu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/gruposnav.do?evento=Pesquisar&amp;idRotina=3746" title="Item da Declaração">Item da Declaração</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/cidnav.do?evento=Pesquisar&amp;idRotina=3747" title="CID">CID</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/gruposCidnav.do?evento=Pesquisar&amp;idRotina=3748" title="CID&#39;s por Item">CID's por Item</a></li>
+		</ul>
+	</li>
+
+<li style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="PrestadoresdeServiçoActuator" class="actuator">Prestadores de Serviço</a>
+		<ul id="PrestadoresdeServiçoMenu" class="submenu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/tiposContatonav.do?evento=Pesquisar&amp;idRotina=3756" title="Tipos de Contato">Tipos de Contato</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/tiposIdentificacaonav.do?evento=Pesquisar&amp;idRotina=3757" title="Conselhos Profissionais">Conselhos Profissionais</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/tiposDocumentoFontePagadoranav.do?evento=Pesquisar&amp;idRotina=3758" title="Tipos Documento Fonte Pagadora INSS">Tipos Documento Fonte Pagadora INSS</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/condicaoContratualnav.do?evento=Pesquisar&amp;idRotina=3759" title="Condições Contratuais">Condições Contratuais</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/cadastroTaxasnav.do?evento=Pesquisar&amp;idRotina=3760" title="Cadastro de Taxas">Cadastro de Taxas</a></li>
+		</ul>
+	</li>
+
+		</ul>
+	</li>
+
+<li style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="CobrançasActuator" class="actuator">Cobranças</a>
+		<ul id="CobrançasMenu" class="submenu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/contrato.do?evento=Incluir&amp;idRotina=3832" title="Contrato">Contrato</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/tabelasFaixas.do?evento=Incluir&amp;idRotina=3834" title="Tabelas de Faixas">Tabelas de Faixas</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/contratoFaixanav.do?evento=Pesquisar&amp;idRotina=3835" title="Contrato x Faixa x Formas de Cobrança">Contrato x Faixa x Formas de Cobrança</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/tipocobrancanav.do?evento=Pesquisar&amp;idRotina=4051" title="Tipo de Cobrança">Tipo de Cobrança</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/calendarioCobrancanav.do?evento=Pesquisar&amp;idRotina=4052" title="Calendários de Cobranças">Calendários de Cobranças</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/parametrosuspensaocancelamentonav.do?evento=Pesquisar&amp;idRotina=4055" title="Parâmetros de Suspensão/Cancelamento">Parâmetros de Suspensão/Cancelamento</a></li>
+		</ul>
+	</li>
+
+<li style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="ParâmetrosdoSistemaActuator" class="actuator">Parâmetros do Sistema</a>
+		<ul id="ParâmetrosdoSistemaMenu" class="submenu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/parametrosSistemanav.do?evento=Pesquisar&amp;idRotina=3776" title="Parâmetros do Sistema">Parâmetros do Sistema</a></li>
+		</ul>
+	</li>
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/parametroCoparticipacaonav.do?evento=Pesquisar&amp;idRotina=4054" title="Parâmetros de Coparticipação">Parâmetros de Coparticipação</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="CadastrosActuator" class="actuator">Cadastros</a>
+		<ul id="CadastrosMenu" class="menu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/vinculacaoPlanosel.do?evento=Pesquisar&amp;idRotina=3785" title="Vinculação ao Plano">Vinculação ao Plano</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/historicoAssociadossel.do?evento=Abrir&amp;idRotina=3786" title="Histórico Vinculação Plano">Histórico Vinculação Plano</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/credenciamentosel.do?evento=Abrir&amp;idRotina=3787" title="Credenciamento">Credenciamento</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="AtendimentoActuator" class="actuator">Atendimento</a>
+		<ul id="AtendimentoMenu" class="menu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/cadastroProtocolosnav.do?evento=Pesquisar&amp;idRotina=3795" title="Cadastro Protocolos">Cadastro Protocolos</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="PagamentosActuator" class="actuator">Pagamentos</a>
+		<ul id="PagamentosMenu" class="menu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/digitacaoGuiasnav.do?evento=x&amp;idRotina=3796" title="Digitação de Guias">Digitação de Guias</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="RelatóriosActuator" class="actuator">Relatórios</a>
+		<ul id="RelatóriosMenu" class="menu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/relAnaliticoDespesaMedica.do?evento=Abrir&amp;idRotina=4053" title="Relatório Analítico de Despesas Médicas">Relatório Analítico de Despesas Médicas</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/relExtratoUtilizacao.do?evento=Abrir&amp;idRotina=4056" title="Extrato de Utilização">Extrato de Utilização</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="CondiçãoActuator" class="actuator">Condição</a>
+		<ul id="CondiçãoMenu" class="menu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/calculoFaixa.do?evento=Incluir&amp;idRotina=3837" title="Cálculo de Faixas">Cálculo de Faixas</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="ImportaçãoActuator" class="actuator">Importação</a>
+		<ul id="ImportaçãoMenu" class="menu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/atualizacaocadastralman.do?evento=x&amp;idRotina=4043" title="Atualizações Cadastrais">Atualizações Cadastrais</a></li>
+</ul>
+	</li>
+
+
+						
+							
+							
+								<li class="menubar" style="background-image: url(&quot;/FAECES_Assistencial/plc/midia/menuExpandable_images/plus.gif&quot;);">
+
+	<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" id="IntegraçãoActuator" class="actuator">Integração</a>
+		<ul id="IntegraçãoMenu" class="menu">
+
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/ans.do?evento=Abrir&amp;idRotina=3807" title="ANS">ANS</a></li>
+	<li><a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/cobrancasman.do?evento=x&amp;idRotina=4050" title="Cobranças">Cobranças</a></li>
+</ul>
+	</li>
+
+
+						                  
+					</ul></div>
+				
+			</span>
+			
+			<span id="botao1" class="botaoOcultaMenu" onclick="javascript:menuFlex(&#39;aberto&#39;)" style="top: 66.5px;">
+				<img class="imagemBotao" src="./index_files/anteriorMenu.gif">
+			</span>
+			<span id="botao2" style="display: none; top: 66.5px;" class="botaoOcultaMenu" onclick="javascript:menuFlex(&#39;fechado&#39;)">
+				<img class="imagemBotao" src="./index_files/proximoMenu.gif">
+			</span>
+			
+			<form name="coberturasForm" method="post" action="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do" enctype="multipart/form-data" onsubmit="return executarAcaoFuncoes(event)" id="mainForm" style="height: 269px;">
+
+				
+					<div id="acoes">
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- INÍCIO ANIMAÇÃO LOADING -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="submit" name="evento" value="Incluir" style="cursor:poiter;" id="botao_incluir" title="Incluir">
+<script>
+				regBotaoEvento('Incluir','INCLUIR');
+				</script>
+
+			
+			
+
+
+<input type="submit" name="evento" value="Gravar" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" style="cursor:poiter;" id="botao_gravar" title="Gravar">
+<script>
+				setBotaoAcaoEnter('Gravar');
+				regBotaoEvento('Gravar','GRAVAR');
+				</script>
+
+			
+			
+
+
+
+			
+
+			
+
+
+
+
+
+
+
+<input type="submit" name="evento" value="Selecionar" id="botao_selecionar" title="Selecionar">
+<script>
+				regBotaoEvento('Selecionar','ABRIR');
+				</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
+
+
+
+
+
+				<input type="button" name="evento" value="Imprimir" onclick="chamarImpressao(&#39;/FAECES_Assistencial/plc/impressaoPlc.do?evento=F12-Imprimir&amp;indImp=N&#39;,document.title,&#39;impressao&#39;);" id="botao_imprimir" title="Imprimir">
+				<script>
+				
+						regBotaoEvento('Imprimir','IMPRIMIR');
+				</script>
+
+
+
+
+
+
+
+					</div>
+				
+				
+					<div id="corpo" style="height: 234px;">
+						
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="hidden" name="modoPlc" value="inclusaoPlc">
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+	td.msg_confirma{background:#D8E5ED;color:#144888;font:bold 11px Verdana;}
+	td.msg_erro{background:#FFDBDB;color:#AB3838;font:normal bold 11px Verdana;height:auto;}
+	td.msg_erro_ver{background:#89B39C;color:#FFFFFF;font:normal bold 11px Verdana;height:auto;}
+	td.msg_erro_am{background:#FFFEAF;color:#413A01;font:normal bold 11px Verdana;height:auto;}
+</style>
+<div id="DIV_MENSAGEM_FLUTUANTE" style="width:700px;height:1;position:absolute;top:82px;z-index:800;filter:alpha(opacity=70); -moz-opacity:0.7;opacity:0.7">
+	
+
+
+</div>
+<script>
+		function econderMgsExibida() {
+			var obj = window.document.getElementById("DIV_MENSAGEM_FLUTUANTE");
+			obj.style.visibility = "hidden";
+		}
+</script>
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	
+		
+	
+
+
+
+
+<table class="delimitador" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr> 
+		<td class="secao">
+			???label.titulo.coberturas??? - ???jcompany.evt.editar???
+		</td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellspacing="0" cellpadding="0">
+
+	<tbody><tr>
+		<td class="titulo">???label.codigo???</td>
+		<td class="titulo" colspan="2">???label.descricao???&nbsp;<font color="red">*</font></td>
+	</tr>
+
+	<tr>	
+		<td class="campo">
+		 
+		</td>
+		<td class="campo" colspan="2">
+			<input type="text" name="descricaoCobertura" maxlength="45" size="45" value="" class="textoObrigatorio" title="Informe a Descrição">
+			
+		</td>
+	</tr>
+	<tr>
+        <td class="titulo">???label.descricao.reduzido???&nbsp;<font color="red">*</font></td>
+		<td class="titulo">???label.data.inicio.vigencia???&nbsp;<font color="red">*</font></td>
+		<td class="titulo">???label.data.fim.vigencia???</td>
+	</tr>
+	<tr>
+		<td class="campo">
+			<input type="text" name="descricaoCoberturaReduzido" maxlength="25" size="25" value="" class="textoObrigatorio" title="Informe a Descrição Reduzida">
+			
+		</td>
+		<td class="campo">DP: 
+			<input type="text" name="dataInicioVigenciaAux" maxlength="10" size="12" value="" onkeyup="DateFormat(this,this.value,event,false)" onblur="DateFormat(this,this.value,event,true)" onfocus="javascript:vDateType=&#39;3&#39;" class="textoObrigatorio datepicker" title="Informe uma data no formato dd/mm/aaaa">
+			
+		</td>
+		<td class="campo">
+			<input type="text" name="dataFimVigenciaAux" maxlength="10" size="12" value="" onkeyup="DateFormat(this,this.value,event,false)" onblur="DateFormat(this,this.value,event,true)" onfocus="javascript:vDateType=&#39;3&#39;" class="texto" title="Informe uma data no formato dd/mm/aaaa">
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+       
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		
+		<td class="col_hierarq">
+			<!-- Botao de + - -->
+			
+			<a href="http://192.100.100.152:8181/FAECES_Assistencial/atendimento/coberturas.do?evento=portlet&amp;pIdPlc=detalheCoberturasProcedimentos_Det1&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#detalheCoberturasProcedimentos_Det1"><div class="botao_menos">&nbsp;</div></a>
+			
+			<!-- Fim botao + - -->
+		</td>
+		
+		<td>
+		<!-- Barra de funções do navegador -->
+			<table class="componenteRetratil" width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tbody><tr>
+					<td class="secao">
+						<!-- Título - Sempre Aparece -->
+						Procedimentos
+						
+						<!-- Fim titulo -->
+					</td>
+					<!-- Função ... -->
+					<!-- Controles do topo -->
+					
+					<td class="secao">
+					<input type="submit" name="evento" value="Novo" onclick="setValorCampo(&#39;detCorrPlc&#39;,&#39;detalheCoberturasProcedimentos_Det1&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_secao">
+					</td>
+					
+					
+					<!-- Fim Controles do topo -->
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+<!--a name="detalheCoberturasProcedimentos_Det1"></a-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td class="col_hierarq">&nbsp;</td>
+		<td>
+
+			<table class="conteudoComponenteRetratil" width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody><tr>
+					<td>
+						
+						
+						
+						
+
+
+
+
+
+
+<table class="delimitador" border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tbody><tr>
+		<td>
+
+	
+	
+	<table border="0" cellspacing="0" cellpadding="0">
+		<tbody><tr>
+			<td class="campo"><b>1</b></td>
+	        <td class="campo">
+			    <input type="text" name="detalheCoberturasProcedimentos_Det1[0].codigoProcedimentoMedico" maxlength="9" size="12" value="" class="textoObrigatorio">
+	        </td>
+			<td class="campo">
+				<a href="http://192.100.100.152:8181/FAECES_Assistencial/assistencial/coberturas.do?evento=???jcompany.evt.editar???&amp;chPlc=43#" onclick="selecaoPopup(&#39;/FAECES_Assistencial/assistencial/especialidadesGruposProcedimentospopup.do?evento=F8-Abrir&amp;selecaopopup=S&#39;,&#39;detalheCoberturasProcedimentos_Det1[0].codigoEspecialidadeMedica#codigoEspecialidadeMedica;detalheCoberturasProcedimentos_Det1[0].codigoGrupoEspecialidade#codigoGrupoEspecialidade;detalheCoberturasProcedimentos_Det1[0].codigoProcedimentoMedico#codigoProcedimentoMedico;detalheCoberturasProcedimentos_Det1[0].descricaoProcedimentoMedico#descricaoProcedimentoMedico&#39;); return false;">
+	            	<span class="bt">...</span>
+	            </a>
+	        </td>
+	        <td class="campo">
+	            <input type="text" name="detalheCoberturasProcedimentos_Det1[0].descricaoProcedimentoMedico" maxlength="120" size="70" value="" readonly="readonly" class="texto">
+				&nbsp;<font color="red">*</font>
+	            <input type="hidden" name="detalheCoberturasProcedimentos_Det1[0].codigoEspecialidadeMedica" value="">
+			    <input type="hidden" name="detalheCoberturasProcedimentos_Det1[0].codigoGrupoEspecialidade" value="">
+			</td>
+		</tr>
+		<tr>
+			<td class="campo">&nbsp;</td>
+			<td colspan="3">
+				<table cellspacing="0" cellpadding="0" border="0">
+					<tbody><tr>
+					    <td class="campo">???label.data.inicio.vigencia???&nbsp;<font color="red">*</font></td>
+					    <td class="campo">???label.data.fim.vigencia???</td>
+					</tr>
+					<tr>
+					    <td class="campo">
+					        <input type="text" name="detalheCoberturasProcedimentos_Det1[0].dataInicioVigenciaAux" maxlength="10" size="12" value="" onkeyup="DateFormat(this,this.value,event,false)" onblur="DateFormat(this,this.value,event,true)" onfocus="javascript:vDateType=&#39;3&#39;" class="textoObrigatorio" title="Informe uma data no formato dd/mm/aaaa">
+				            
+					    </td>
+					    <td class="campo">
+					        <input type="text" name="detalheCoberturasProcedimentos_Det1[0].dataFimVigenciaAux" maxlength="10" size="12" value="" onkeyup="DateFormat(this,this.value,event,false)" onblur="DateFormat(this,this.value,event,true)" onfocus="javascript:vDateType=&#39;3&#39;" class="texto" title="Informe uma data no formato dd/mm/aaaa">
+					    </td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
+	
+
+</td>
+</tr>
+</tbody></table>
+						
+					</td>
+				</tr>
+			</tbody></table>
+
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+					</div>
+				
+			
+			</form>
+		</fmt:setbundle></fmt:setbundle></span>
+		<div style="clear:both">
+	
+		
+
+
+
+
+
+
+
+
+
+<div id="rodape">
+<div> &nbsp; </div>
+	
+	
+		<a style="cursor:hand;float:left" href="http://192.100.100.152:8181/FAECES_Assistencial/plc/desconectaPlc.do?evento=Desconectar" onclick="return executarEventoAplicacao(getBotaoArray(&#39;DESCONECTAR&#39;));">
+			<span id="botao_secao">
+				Desconectar
+			</span>
+		</a>
+	
+
+	Seja bem-vindo,&nbsp;faeces.
+
+	<span style="float:right">
+		vD,1.0 - Copyright Mestra Informática e Tecnologia Ltda. 2010
+	</span>
+</div>
+
+<script>
+	regBotaoEvento('Desconectar','DESCONECTAR');
+	regEvento('Desconectar','MENSAGEM','');
+	regMensagem('Desconectar','CONFIRMACAO','Tem certeza que deseja desconectar?');
+</script>
+
+
+		
+		<script>
+			regBotaoEvento('Desconectar','DESCONECTAR');
+			regEvento('Desconectar','MENSAGEM','');
+			regMensagem('Desconectar','CONFIRMACAO','Tem certeza que deseja desconectar?');
+			
+			function redimensionaCorpo(){
+				telaHeight = $(window).height();
+				topoHeight = $('#localTesteira').height();
+				rodapeHeight = $('#rodape').height();
+				acoesHeight = $('#acoes').height();
+				
+				corpoHeight = telaHeight - topoHeight - rodapeHeight;
+				spanCorpoHeight = corpoHeight - acoesHeight;
+				
+				$('#tabelaMenu').css('height',corpoHeight + 'px');
+				$('#mainForm').css('height',corpoHeight + 'px');
+				$('#corpo').css('height',(spanCorpoHeight - 10) + 'px');
+			}
+			
+			function posicionaBotaoOculta(){
+				var heightMainForm = $('#mainForm').height();
+				var heightImagemBotao = $('.imagemBotao').height(); //136
+
+				$('.botaoOcultaMenu').css('top',((heightMainForm - 136) / 2) + 'px');
+				
+			}
+			
+			function redimensiona(){
+				redimensionaCorpo();
+				redimencionaTesteira();
+				posicionaBotaoOculta();
+			}
+			
+			
+			redimensionaCorpo();
+			posicionaBotaoOculta();
+			
+			$(window).resize(function(){
+				redimensiona()
+			});
+			
+			$(window).mousemove(function(){
+				redimensiona()
+			});
+		</script>
+		<!-- INÍCIO ANIMAÇÃO LOADING -->
+			
+		<!-- FIM ANIMAÇÃO LOADING //Felipe Reis -->
+	
+
+</div></body></html>

@@ -1,0 +1,11 @@
+.icon.icon-calendar3 {
+	background: url('calendar-icon.png') no-repeat;
+	width: 20px;
+	height: 20px;
+	display: block;
+}
+.datepicker {
+	z-index:999;
+	padding-right: 20px;
+	background: url('calendar-icon.png') no-repeat right 1px;	
+}

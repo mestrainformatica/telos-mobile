@@ -1,0 +1,273 @@
+.conteudo { 
+	background-color: #FEFDF9;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+form, body{  
+	margin:0;  
+	padding:0;  
+	height:100%;  
+	width:100%;
+}
+
+body{
+	scrollbar-face-color:#d0dbeb;
+	scrollbar-highlight-color:#EFF6FA;
+	scrollbar-3dlight-color:#B0CFE3;
+	scrollbar-darkshadow-color:#4E9CB6;
+	scrollbar-shadow-color:#BCD7E7;
+	scrollbar-arrow-color:#64828E;
+	scrollbar-track-color:#E1F2FD
+}
+
+table {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	text-decoration: none;
+}
+
+div.titulo, span.titulo{
+	color:#325D82;
+	text-align: left;
+	font-family: Verdana;
+	font-size: 13px;
+	font-style: normal;
+	vertical-align: middle;
+	margin: 8px 10px 0px 0px;
+}
+
+td.campo{color:#5B5B5B}
+
+.texto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	height: 17px;
+	border: 1px solid #CCCCCC;
+	padding-left: 2px;
+	color:#2D7991;border-top:1px solid #2D7991;border-left:1px solid #2D7991;border-bottom:1px solid #ADD8E6;border-right:1px solid #ADD8E6;
+}
+
+textarea {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-decoration: none;
+	border: 1px solid #CCCCCC;
+}
+
+select {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	height: 17px;
+	border: 1px solid #CCCCCC;
+	padding-left: 2px;
+	color:#2D7991;border-top:1px solid #2D7991;border-left:1px solid #2D7991;border-bottom:1px solid #ADD8E6;border-right:1px solid #ADD8E6;
+}
+
+.titulo {
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-right: 18px;
+	padding-left: 2px;
+	font-size: 13px;
+}
+
+.msgAcao {
+	padding-bottom: 5px;
+	font-family:Verdana;
+	font-weight: bold;
+	color: #144888;
+	font-size: 11px;
+}
+
+.tituloConsulta{
+	background-color: #BECCDF;
+	color:#325D82;
+	font-weight: bold;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-right: 18px;
+	padding-left: 2px;
+}
+
+.menuesq {
+	background-repeat: repeat-x;
+	background-position: top;
+	background-color: #EFFAFE;
+	padding-bottom: 15px;
+	padding-left: 5px;
+	padding-right: 7px;
+}
+
+.desconectar {
+	background-repeat: repeat-x;
+	background-position: top;
+}
+
+.rdp {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	background-repeat: repeat-y;
+	background-position: left;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+INPUT.cpsenha {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;	
+	font-weight: bold;
+	height:15px;
+}
+
+.bgmodulos {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: #FFFFFF;
+	background-image: url(../../../plc/midia/background_serpros1024.jpg);
+	height: 100%;
+	width: 100%;
+}
+
+INPUT.textoSemBorda{
+	height: 17px;
+	vertical-align: middle;
+	padding-left: 3px;
+	font-family: Verdana, Arial;
+	font-size: 9px;
+	color: #000000;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #FFFFFF;
+	border-bottom-color: #FFFFFF;
+	border-left-color: #FFFFFF;
+	background-color: #FFFFFF;
+}
+
+legend{
+	color: #325D82;
+}
+
+fieldset{
+	display:block;
+	margin: 16px 20px 16px 8px;
+}
+
+.campoMesmaLinha{
+	float:left;
+}
+
+.separadorGrupoCampos{
+	clear:both;
+}
+
+#localTesteiraTable{
+	background-color:#beccdf;
+	width:100%;
+	z-index:500;
+}
+	
+#localTesteira{
+	width:100%;
+	border-color:#879EBD;
+	background-color:#879EBD;
+	z-index:1;
+}
+
+#tabelaMenu{
+	float:left;
+	padding-left:5px;
+	background-image:url('../../midia/fundoDegradeMenu.jpg');
+	background-repeat:repeat-x;
+	background-color:#e4ecf7;
+	height:inherit;
+	width:18%;
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
+
+#rodape{
+	position:relative;
+	margin-top: -20px;
+	height: 30px;
+	clear:both;
+	background-color:#d0dbeb;
+	width:99,5%;
+	color:#2D7991;
+	font:normal bold 10px Verdana;
+	text-align:center;
+}
+
+#mainForm{
+	width: 81%;
+	height:inherit;
+	float:right;
+}
+
+#corpo{
+	overflow:scroll;
+	overflow-x:hidden;
+}
+
+#localTesteiraTable{
+	background-color:#beccdf;
+	width:100%;
+	position:relative;
+}
+
+#localTesteira{
+	width:100%;
+	border-color:#879EBD;
+	background-color:#879EBD;
+	height: 18%;
+	position:relative;
+}
+
+.botaoOcultaMenu{
+	float:left;
+	cursor:hand;
+	cursor:pointer;
+	position: relative;
+	overflow:hidden;
+}
+
+.link{
+	cursor:pointer;
+}
+
+p, pre{line-height:200%;}
+
+#acoes{
+	text-align:right;
+	margin: 8px 10px 4px 0px;
+}
+
+.botaoOcultaMenu{
+	float:left;
+	cursor:hand;
+	cursor:pointer;
+	position: relative;
+}
+
+#conteudo{
+	clear:both;
+	overflow:hidden;
+}
+
+a{
+	color: #023264;
+}
