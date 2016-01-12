@@ -287,14 +287,13 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 
 
-.controller('simulacaoResgateCtrl', ['$scope', '$state', '$http', '$ionicLoading', '$rootScope', '$ionicPopup', function($scope, $state, $http, $ionicLoading, $rootScope, $ionicPopup) {
-
-  $$http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
-        { "param" : { "acao": "simulacaoResgate", "cpf": userInfo.cpf }, "login" : { "u":$rootScope.lastRequest.login.u, "s":$rootScope.lastRequest.login.s } }
+.controller('SimulacaoResgateCtrl', ['$scope', '$state', '$http', '$ionicLoading', '$rootScope', '$ionicPopup', function($scope, $state, $http, $ionicLoading, $rootScope, $ionicPopup) {
+  $scope.resgate = [];
+  $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
+        { "param" : { "acao": "simulacaoResgate" }, "login" : { "u":$rootScope.lastRequest.login.u, "s":$rootScope.lastRequest.login.s } }
       ).then(function(resp) {
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
-          
-          console.log($resp.data.result);
+          $scope.resgate = resp.data.result;
           $ionicLoading.hide();        
         }
 
