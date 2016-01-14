@@ -1,4 +1,4 @@
-<ion-view title="Saldo de Contas" ng-controller="SimulacaoResgateCtrl">
+<ion-view title="Simulação de Resgate" ng-controller="SimulacaoResgateCtrl">
  <ion-content class="has-header" id="simulacaoResgate">
     <div class="headerInfo" >
         <div ng-include="'js/directives/userInfo.html'"></div> 
@@ -39,7 +39,7 @@
     <h3>Atualizado em {{resgate.atualizado_em}}</h3>
   </div>
   <div class="item item-divider">
-      Saldo de Contas
+      Simulação de Resgate
   </div>
 
   <div class="item">
@@ -96,9 +96,9 @@
       <div class="col valor">{{resgate.irrf}}</div>
     </div>
   
-    <div class="label row hide" ng-hide="resgate.qtd_dependentes_irrf == 'N'">
+    <div class="label row hide" ng-hide="resgate.qtd_dependente_irrf == 'N'">
       <div class="col col-25 softcolor">Qtd. Dependentes IRRF</div>
-      <div class="col valor">{{resgate.qtd_dependentes_irrf}}</div>
+      <div class="col valor">{{resgate.qtd_dependente_irrf}}</div>
     </div>
   
     <div class="label row">
@@ -108,7 +108,7 @@
     <hr>
     <div class="label row">
       <div class="col col-25">Sub-Total</div>
-      <div class="col valor">{{sub_total_descontos}}</div>
+      <div class="col valor">{{resgate.sub_total_descontos}}</div>
     </div>
     
   </div>
