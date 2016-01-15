@@ -10,7 +10,7 @@ $(function(){
                swal("Data inválida");
                $(this).val('');
             }
-        })
+        }, 30);
     });
 	$('input.datepicker').parent().addClass('right-addon').addClass('inner-addon');
 
