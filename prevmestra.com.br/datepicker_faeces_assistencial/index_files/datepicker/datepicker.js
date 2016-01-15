@@ -1,22 +1,3 @@
-$(function(){
-
-	$('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).change(function () {
-         val = $(this).val();
-         date = val.split('/');
-         setTimeout(function () { 
-            
-            val1 = Date.parse(date[2]+'-'+date[1]+'-'+date[0]);
-            if ((isNaN(val1)==true && (val!='' && val != '__/__/____')) || (val.length < 10)) {
-               swal("Data inválida");
-               $(this).val('');
-            }
-        }, 30);
-    });
-	$('input.datepicker').parent().addClass('right-addon').addClass('inner-addon');
-
-})
-
-
 /*
     Addons
  */
@@ -58,3 +39,25 @@ datepicker.setDefaults( datepicker.regional[ "pt-BR" ] );
 return datepicker.regional[ "pt-BR" ];
 
 } ) );
+
+
+$(function(){
+
+    $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' }).change(function () {
+         val = $(this).val();
+         date = val.split('/');
+         setTimeout(function () { 
+            
+            val1 = Date.parse(date[2]+'-'+date[1]+'-'+date[0]);
+            if ((isNaN(val1)==true && (val!='' && val != '__/__/____')) || (val.length < 10)) {
+               swal("Data inválida");
+               $(this).val('');
+            }
+        }, 30);
+    });
+    $('input.datepicker').parent().addClass('right-addon').addClass('inner-addon');
+
+})
+
+
+
