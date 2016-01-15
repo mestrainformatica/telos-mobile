@@ -292,9 +292,10 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
   $ionicLoading.show();
   $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
-        { "param" : { "acao": "simulacaoResgate", "cpf": userInfo.cpf }, "login" : { "u":$rootScope.lastRequest.login.u, "s":$rootScope.lastRequest.login.s } }
+        { "param" : { "acao": "simulacaoResgate" }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
       ).then(function(resp) {
-        $rootScope.lastRequest.login = resp.data.login;
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
         
