@@ -46,8 +46,7 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(['$provide', function($pro
     return $delegate;
 
     function isIOS9UIWebView(userAgent) {
-      return true;
-      //return /(iPhone|iPad|iPod).* OS 9_\d/.test(userAgent) && !/Version\/9\./.test(userAgent);
+      return /(iPhone|iPad|iPod).* OS 9_\d/.test(userAgent) && !/Version\/9\./.test(userAgent);
     }
 
     function applyIOS9Shim(browser) {

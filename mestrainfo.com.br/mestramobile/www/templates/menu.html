@@ -40,20 +40,26 @@
           </h2>
           </a>
 
-      		<div class="submenu ng-cloak" ng-show="showSub">
-      	          <a class="item" href="#/emprestimo-consulta"  ng-show="stageMap['06']">
-      	          <h2><i class="icon"></i>  {{ stageMap['06'] }}
-      	         	<i class="right-icon icon ion-chevron-right"></i>
-      	          </h2>
-      	          </a>
+          <div class="submenu ng-cloak" ng-show="showSub">
+                  <a class="item" href="#/emprestimo-consulta"  ng-show="stageMap['06']">
+                  <h2><i class="icon"></i>  {{ stageMap['06'] }}
+                  <i class="right-icon icon ion-chevron-right"></i>
+                  </h2>
+                  </a>
 
-      	          <a class="item" href="#/emprestimo-simulacao"  ng-show="stageMap['07']">
-      	          <h2><i class="icon"></i>  {{ stageMap['07'] }}
-      	          <i class="right-icon icon ion-chevron-right"></i>
-      	          </h2>
-      	          </a>
-      		</div>
+                  <a class="item" href="#/emprestimo-simulacao"  ng-show="stageMap['07']">
+                  <h2><i class="icon"></i>  {{ stageMap['07'] }}
+                  <i class="right-icon icon ion-chevron-right"></i>
+                  </h2>
+                  </a>
+          </div>
 
+
+          <a class="item" href="#/simulacao-resgate"  ng-show="stageMap['08']">
+          <h2><i class="icon ion-ios-list-outline"></i>  {{ stageMap['08'] }}
+          <i class="right-icon icon ion-chevron-right"></i>
+          </h2>
+          </a>
           
           <a class="item" ng-class="confirm" ng-click="logout()">
           <h2><i class="icon ion-ios-unlocked-outline"></i> Encerrar 

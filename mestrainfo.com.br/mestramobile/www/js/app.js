@@ -1,7 +1,10 @@
-//window.alert = function (txt) {
+// window.alert = function (txt) {
 //    navigator.notification.alert(txt, null, "Aviso", "Fechar");
-//}
- var app = angular.module('starter', [
+// }
+// window.onerror = function (errorMsg, url, lineNumber) {
+//      alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
+// }
+  var app = angular.module('starter', [
     'ionic',
     'ngCordova',
     'starter.controller',
@@ -10,6 +13,14 @@
   ])
   .run(function($ionicPlatform, $state, $timeout) {
     
+    $ionicPlatform.onHardwareBackButton(function () {
+        if ($state.is('signin')) { // here to check whether the home page, if yes, exit the application
+          navigator.app.exitApp();
+        } else {
+          return;
+        }
+    })
+
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -18,8 +29,8 @@
       //}
        if (window.StatusBar) {
           if (ionic.Platform.isAndroid()) {
-            StatusBar.backgroundColorByHexString("#01013f");
-            $cordovaStatusbar.styleHex('#01013f') //azul mestra
+            StatusBar.backgroundColorByHexString("#0080a5");
+            $cordovaStatusbar.styleHex('#0080a5') //azul mestra
           } else {
             //StatusBar.styleLightContent();
           }
@@ -141,6 +152,13 @@
       cache: false,
       url: '/emprestimo-simulacao-campos-emitido',
       templateUrl: "templates/emprestimo-simulacao-campos-emitido.html"    
+    })
+
+
+    .state('simulacaoResgate', {
+      cache: false,
+      url: '/simulacao-resgate',
+      templateUrl: "templates/simulacao-resgate.html"    
     })
 
     .state('splitmatriculas', {

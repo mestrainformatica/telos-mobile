@@ -158,7 +158,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
   $scope.formData = {};
   
-  
   $scope.submit = function(){
     stageMap = {}
     logged = false;
@@ -275,6 +274,33 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           $ionicLoading.hide();        
           $scope.termosText = resp.data.result.termo_de_uso[0].descricao_termo_uso;
           //console.log($scope.termosText);
+        }
+
+      }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+
+}])
+
+
+.controller('SimulacaoResgateCtrl', ['$scope', '$state', '$http', '$ionicLoading', '$rootScope', '$ionicPopup', function($scope, $state, $http, $ionicLoading, $rootScope, $ionicPopup) {
+  $scope.resgate = [];
+
+  $ionicLoading.show();
+  $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
+        { "param" : { "acao": "simulacaoResgate" }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+        
+          $scope.resgate = resp.data.result;
+          $ionicLoading.hide();        
         }
 
       }, function(err) {
