@@ -154,6 +154,17 @@
       templateUrl: "templates/emprestimo-simulacao-campos-emitido.html"    
     })
 
+    .state('faleconosco', {
+      cache: false,
+      url: '/fale-conosco',
+      templateUrl: "templates/faleconosco.html"    
+    })
+    
+    .state('contatoform', {
+      cache: false,
+      url: '/contato-form',
+      templateUrl: "templates/contato-form.html"    
+    })
 
     .state('simulacaoResgate', {
       cache: false,

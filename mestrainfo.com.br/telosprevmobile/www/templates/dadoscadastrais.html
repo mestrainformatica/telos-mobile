@@ -56,6 +56,38 @@
       </div>
       </div>
 
+    <div>
+    <div ng-show="infobenef.length > 0">
+      <div class="item item-divider softrow">
+        Informações Beneficiários
+      </div>
+      <div class="item inner"  ng-click="itemShow=!itemShow" ng-repeat="n in infobenef track by $index" style="padding-top: 1em;">
+        <div class="label row">
+          <div class="col col-67">{{ infobenef[$index].nome }}</div>
+          <div class="col valor"><i class="right-icon icon ion-chevron-down" ng-hide="itemShow"></i>
+    <i class="right-icon icon ion-chevron-up" ng-show="itemShow"></i></div>
+        </div>
+        <div ng-show="itemShow">
+          <div class="label row" style="color:#909090;">
+            <div class="col col-67">Nascimento</div>
+            <div class="col valor">{{infobenef[$index].nascimento}}</div>
+          </div>
+          <div class="label row" style="color:#909090;">
+            <div class="col col-67">Parentesco</div>
+            <div class="col valor">{{infobenef[$index].cod_grau_parentesco}}</div>
+          </div>
+          <div class="label row" style="color:#909090;">
+            <div class="col col-67">Tipo</div>
+            <div class="col valor">{{infobenef[$index].tipo}}</div>
+          </div>
+          <div class="label row" style="color:#909090;">
+            <div class="col col-67">Manter Após 21 Anos</div>
+            <div class="col valor">{{infobenef[$index].manter_apos_21}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     
   </ion-content>
 </ion-view>

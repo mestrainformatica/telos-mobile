@@ -1,6 +1,6 @@
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -398,6 +398,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   //$scope.dados.exibe_botao_editar = $scope.dados.exibe_botao_editar;
   
   $scope.infoprev = $rootScope.lastRequest.result.informacoesPrevidenciarias;
+  $scope.infobenef = $rootScope.lastRequest.result.informacoesDependentes;
+
 }])
 .controller('DadosCtrl.form', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
   
