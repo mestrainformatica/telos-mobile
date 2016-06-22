@@ -1,5 +1,5 @@
-<ion-view title="Dados Cadastrais">
- <ion-content class="has-header" ng-controller="DadosCtrl.form">
+<ion-view title="Fale Conosco">
+ <ion-content class="has-header" ng-controller="ContatoCtrl.form">
     <div class="headerInfo" >
         <div ng-include="'js/directives/userInfo.html'"></div> 
     </div>
@@ -10,29 +10,29 @@
     </div>
     
       <div class="list">
-        <form ng-submit="submit()">
+        <form name="formContato" ng-submit="submit()">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Telefone</span>
-          <input type="text" placeholder="(99) 99999-9999">
+          <input type="tel" name="telefone" placeholder="(99) 99999-9999" ng-model="formData.telefone">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">E-Mail</span>
-          <input type="text" placeholder="seu@email.com">
+          <input type="email" name="email" placeholder="seu@email.com" ng-model="formData.email"> 
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Mensagem</span>
-          <input type="text" placeholder="Digite sua mensagem..">
+          <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
         </label>
       
-      <div class="the_error">
-        <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
-      </div>
-      <div class="padding">
-        <div class="button-bar">
-          <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Enviar Mensagem">      
-          <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
+        <div class="the_error">
+          <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
         </div>
-      </div>
+        <div class="padding">
+          <div class="button-bar">
+            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitContato" value="Enviar Mensagem">      
+            <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
+          </div>
+        </div>
 
       </form>
     </div>

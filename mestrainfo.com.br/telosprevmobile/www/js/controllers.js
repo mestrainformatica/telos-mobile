@@ -603,6 +603,65 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 }])
 
+.controller('ContatoCtrl.form', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
+  
+
+  $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0];
+  //{'login':{'u':u, 's':s}, 'param':{'acao':'', 'nome' : '', 'email' : '', 'telefone' : '', 'mensagem': '', 'patrocinador': '', 'matricula': ''}}
+  $rootScope.erroMsg = false;
+  $scope.formData = {};
+
+  $scope.submit = function(){
+    
+    if (typeof($scope.formData.mensagem) == 'undefined') {
+      $rootScope.errorMsg = "Por favor preencha todos os campos";
+    } else {    
+
+     
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : { 
+          'acao':'faleConosco',
+          'nome': $scope.matricula.nome,
+          'email': $scope.formData.email,
+          'telefone': $scope.formData.telefone,
+          'mensagem': $scope.formData.mensagem,
+          'patrocinador': $scope.matricula.patrocinadora,
+          'matricula': $scope.matricula.matricula 
+
+           }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        $ionicLoading.hide();
+    
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+            $scope.formData = {};
+          } else {
+            $rootScope.demonstrativoEmitido = resp.data.result;
+            $rootScope.errorMsg = false;
+            //$state.go('demonstrativoemitido');
+            $rootScope.errorMsg = "Erro ao enviar mensagem";
+      
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+    }
+
+  }
+
+}])
+
 .controller('DemonstrativoCtrl.emitido', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $rootScope.erroMsg = false;
   $scope.demonstrativo = $rootScope.demonstrativoEmitido;
