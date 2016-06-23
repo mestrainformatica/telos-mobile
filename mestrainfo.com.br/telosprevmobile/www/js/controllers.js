@@ -1,6 +1,6 @@
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -613,7 +613,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
   $scope.submit = function(){
     
-    if (typeof($scope.formData.mensagem) == 'undefined') {
+    if ((typeof($scope.formData.mensagem) == 'undefined') || (typeof($scope.formData.telefone) == 'undefined') || (typeof($scope.formData.email) == 'undefined')) {
       $rootScope.errorMsg = "Por favor preencha todos os campos";
     } else {    
 
