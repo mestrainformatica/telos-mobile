@@ -1,6 +1,6 @@
-var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -641,10 +641,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
             $scope.formData = {};
+            setTimeout(function() {
+              $state.go('menu');
+            }, 200);
           } else {
             $rootScope.demonstrativoEmitido = resp.data.result;
             $rootScope.errorMsg = false;
-            //$state.go('demonstrativoemitido');
             $rootScope.errorMsg = "Erro ao enviar mensagem";
       
           }
