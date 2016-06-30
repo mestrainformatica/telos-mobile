@@ -24,11 +24,9 @@
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      //if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-        //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      //}
-      setTimeout(function() {
-       if (window.StatusBar) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      
+      if (window.StatusBar) {
           if (ionic.Platform.isAndroid()) {
             StatusBar.backgroundColorByHexString("#0080a5");
             $cordovaStatusbar.styleHex('#0080a5') //azul mestra
@@ -39,8 +37,7 @@
             StatusBar.backgroundColorByHexString("#0080a5");
           }
         }
-      }, 300);
-
+      
     });
 
      document.addEventListener("deviceReady", function () {

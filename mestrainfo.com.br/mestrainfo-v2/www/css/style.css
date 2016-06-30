@@ -7,7 +7,6 @@
 .ng-hide-remove {
   display: none !important;
 }
-
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
@@ -498,4 +497,6 @@ h4.title_label {
 	background: #afcdd7 !important;
 }
 
-
+.contato-form .list {
+	background:#FFF;
+}

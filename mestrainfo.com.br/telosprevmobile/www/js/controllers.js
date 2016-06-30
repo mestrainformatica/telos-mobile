@@ -643,7 +643,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $scope.formData = {};
             setTimeout(function() {
               $state.go('menu');
-            }, 200);
+            }, 1200);
           } else {
             $rootScope.demonstrativoEmitido = resp.data.result;
             $rootScope.errorMsg = false;

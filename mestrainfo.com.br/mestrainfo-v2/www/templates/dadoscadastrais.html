@@ -61,8 +61,8 @@
       <div class="item item-divider softrow">
         Informações Beneficiários
       </div>
-      <div class="item inner" ng-repeat="n in infobenef track by $index" style="padding-top: 1em;">
-        <div class="label row" ng-click="itemShow=!itemShow">
+      <div class="item inner"  ng-click="itemShow=!itemShow" ng-repeat="n in infobenef track by $index" style="padding-top: 1em;">
+        <div class="label row">
           <div class="col col-67">{{ infobenef[$index].nome }}</div>
           <div class="col valor"><i class="right-icon icon ion-chevron-down" ng-hide="itemShow"></i>
     <i class="right-icon icon ion-chevron-up" ng-show="itemShow"></i></div>
