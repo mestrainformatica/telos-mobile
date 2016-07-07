@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?2axqba');
+    src:    url('fonts/icomoon.eot?2axqba#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?2axqba') format('truetype'),
+        url('fonts/icomoon.woff?2axqba') format('woff'),
+        url('fonts/icomoon.svg?2axqba#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ico-reembolso-pasa:before {
+    content: "\e900";
+}
+.icon-ico-protese-pasa:before {
+    content: "\e901";
+}
+.icon-ico-mais-agregados-pasa:before {
+    content: "\e903";
+}
+.icon-ico-limite-pasa:before {
+    content: "\e904";
+}
+.icon-ico-individual-pasa:before {
+    content: "\e905";
+}
+

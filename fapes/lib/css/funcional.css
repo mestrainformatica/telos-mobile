@@ -1,0 +1,121 @@
+/*
+CSS FUNCIONAL v1
+Criado em: 27/05/2013
+Atualizado em: 15/09/2014
+Desenvolvido por: Diego eis - www.github.com/tableless/css-functional-classes
+Adaptado por : Luciano Barauna
+Site: www.lucianobarauna.com.br
+*/
+
+
+/* FLOAT CLEAR - OVERFLOW  E VISIBILITY */
+
+.nofloat{float: none !important;}
+.fright{float: right !important;}
+.fleft{float: left !important;}
+
+.cboth{clear: both !important;}
+.cright{clear: right !important;}
+.cleft{clear: left !important;}
+.cnone{ clear:none !important;}
+
+.overflowhidden{ overflow: hidden !important;}
+.overflowvisible{overflow: visible !important;}
+
+.visibilityhidden{ visibility: hidden !important;}
+.visibilityvisible{ visibility: visible !important;}
+
+/* BLOCO E LINHA */
+
+.dblock{display: block !important;}
+.dinline{display: inline !important; float: none !important;}
+.dinlineblock{display: inline-block !important; float: none !important;}
+.dnone{display: none !important;}
+
+/* TAMANHO */
+
+.widthauto{width: auto !important;}
+.widthinherit{width: inherit !important;}
+.heightinherit{height: inherit !important;}
+.heightauto{height: auto !important;}
+
+/* MARGIN E PADDING */
+
+.nomargin{margin: 0 !important;}
+.nomarginleft{margin-left: 0 !important;}
+.nomarginright{margin-right: 0 !important;}
+.nomargintop{margin-top: 0 !important;}
+.nomarginbottom{margin-bottom: 0 !important;}
+
+.nopadding{padding: 0 !important;}
+.nopaddingleft{padding-left: 0 !important;}
+.nopaddingright{padding-right: 0 !important;}
+.nopaddingtop{padding-top: 0 !important;}
+.nopaddingbottom{padding-bottom: 0 !important;}
+.marginauto{ margin-left: auto !important;  margin-right: auto !important;}
+
+/* FONTES */
+
+.nobold {font-weight: normal!important;}
+/* CORES */
+
+.bgwhite {background: white!important;}
+.bgtransparent {background-color: transparent !important;}
+.colorblack {color: #000;}
+
+/* ALINHAMENTO DE TEXTO */
+
+.txtleft {text-align: left !important;}
+.txtright {text-align: right !important;}
+.txtjustify {text-align: justify !important;}
+.txtcenter {text-align: center !important;}
+
+table.txtleft td, table.txtleft th {text-align: left;}
+table.txtright td, table.txtright th {text-align: right;}
+
+/* ALINHAMENTO DE VERTICAL */
+
+.valigntop {vertical-align: top !important;}
+.valignmiddle {vertical-align: middle !important;}
+.valignbottom {vertical-align: bottom !important;}
+.valigntopimportant {vertical-align: top  !important;}
+.valignmiddleimportant {vertical-align: middle  !important;}
+.valignbottomimportant {vertical-align: bottom  !important;}
+
+/* BACKGROUND E BORDA */
+
+.nobackground {background: none !important;}
+.noshadow {box-shadow: none !important;}
+
+.noborder {border: none !important;}
+.noborderright {border-right: none !important;}
+.noborderleft {border-left: none !important;}
+.noborderbottom {border-bottom: none !important;}
+.nobordertop {border-top: none !important;}
+
+.noradius{ -moz-border-radius: 0!important; -webkit-border-radius: 0!important; border-radius: 0!important;}
+
+/* LISTA */
+
+.nobullet, .noliststyle {list-style: none !important;}
+
+/* CURSOR DE MOUSE */
+
+.cursorpointer {cursor: pointer !important;}
+.cursordefault {cursor: default !important;}
+.cursorcrosshair {cursor: crosshair !important;}
+.cursormove {cursor: move !important;}
+.cursorhelp {cursor: help !important;}
+.cursorwait {cursor: wait !important;}
+.cursorinherit {cursor: inherit !important;}
+.cursortext {cursor: text !important;}
+.cursorprogress {cursor: progress !important;}
+
+/* INPUT */
+
+.input-none{ border:0 !important; background-color:transparent !important;}
+
+/* POSITION */
+
+.position-relative {position: relative !important;}
+.position-absolute { position: absolute !important;}

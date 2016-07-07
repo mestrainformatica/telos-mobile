@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html ng-app="planoCV">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <!-- STYLES -->
+
+        <link rel="stylesheet" href="../../lib/css/funcional.css">
+        <link rel="stylesheet" href="../../lib/css/bootstrap-3.3.6/css/bootstrap.css">
+        <link rel="stylesheet" href="../../lib/js/jquery-ui-1.11.4.custom/jquery-ui.css">
+        <link rel="stylesheet" href="../../lib/css/estilo.css">
+        <!-- SCRIPTS -->
+        <script src="../../lib/angular-1.5.7/angular.js"></script>
+        <script src="../../lib/js/jquery-1.11.3.min.js"></script>
+        <script src="../../lib/css/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+        <script src="../../lib/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#dropdownMenu1, #dropdownMenu2').click(function(){
+                    $(this).toggleClass('active-menu');
+                });
+                $('#dropdownMenu1, #dropdownMenu2').blur(function(){
+                    $(this).removeClass('active-menu');
+                });
+
+
+                $( ".barra-progressao" ).slider({
+                  range: "min",
+                  value: 10,
+                  min: 0,
+                  max: 700,
+                //   slide: function( event, ui ) {
+                //     $( "#amount" ).val( "$" + ui.value );
+                //   }
+                });
+                //$( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+
+            });
+
+            angular.module("planoCV", []);
+
+            angular.module("planoCV").controller("planoCVCtrl", function($scope) {
+                $scope.message = "Hello World!";
+
+                $scope.participantes = [
+                    {
+                        nome: "MARIA DA GLORIA RODRIGUES E SILVA", 
+                        cpf: "01107365759", 
+                        matricula: "000116",
+                        dataAdmissao: "08/01/1953",
+                        patrocinador: "",
+                        identidade: "000001144048",
+                        orgaoEmissor: "DETRAN",
+                        ufIdentidade: "RJ",
+                        dataEmissao: "24/11/2011",
+                        dataNascimento: "08/11/1935",
+                        sexo: "F",
+                        estadoCivil: "",
+                        nomeMae: "JOVELINA BRITO RODRIGUES",
+                        nomePai: "ALVARO RODRIGUES",
+                        nacionalidade: "BRASIL",
+                        naturalidade: "RIO DE JANEIRO",
+                        logradouro: "R TREZE DE MAIO",
+                        numero: "160",
+                        complemento: "AP -102",
+                        bairro: "CENTRO",
+                        cidade: "PETROPOLIS",
+                        ufContato: "RJ",
+                        cep: "25685231",
+                        telefoneResidencial: "",
+                        telefoneCelular: "987071542 ",
+                        telefoneComercial: "",
+                        email: "LAURAMARIARS@IG.COM.BR"
+                    }
+                ];
+
+                $scope.dependentes = [
+                    {
+                        nome: "DAMIAO AUGUSTO RODRIGUES E SILVA",
+                        cpf: "999.999.999-99",
+                        parentesco: "",
+                        dataNascimento: "05/16/1968",
+                        estadoCivil: "Solteiro",
+                        sexo: "M",
+                        invalido: "",
+                        finalidade: "PECULIO POR MORTE",
+                        excluido: false
+                    },
+                    {
+                        nome: "LAURA MARIA RODRIGUES E SILVA",
+                        cpf: "999.999.999-99",
+                        parentesco: "",
+                        dataNascimento: "02/09/1971",
+                        estadoCivil: "Divorciada",
+                        sexo: "F",
+                        invalido: "",
+                        finalidade: "PECULIO POR MORTE",
+                        excluido: false
+                    },
+                    {
+                        nome: "12345678901234567890123456789012345678901234567890",
+                        cpf: "999.999.999-99",
+                        parentesco: "1111111111",
+                        dataNascimento: "02/23/1935",
+                        estadoCivil: "1111111111",
+                        sexo: "M",
+                        invalido: "S",
+                        finalidade: "12345678901234567890123456789012345678901234",
+                        excluido: false
+                    }
+                ];
+            });
+        </script>
+    </head>
+    <body class="bg-cinza" ng-controller="planoCVCtrl">
+        <div class="container-flui bg-azul-esc txtright header-padrao">
+            <img src="../../lib/img/logo-branco-30x110.png" alt="">
+        </div>
+        <div class="container-fluid bg-cinza-azul">
+            <div class="container txtcenter">
+                <ul class="list-padrao-hor list-menu-princ">
+                    <li class="dropdown">
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid bg-azul-cl-cv bg-menu-categoria--azul-cv">
+            <div class="container">
+                <div class="col-md-3 col-sm-3 txtright">
+                    <img src="../../lib/img/cv-logo.png" alt="" class="logo-tipo-plano"/>
+                </div>
+                <div class="col-md-9 col-sm-9">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid bg-azul-bb-cv padding-bloco-padrao">
+            <div class="container bg-azul-bb--pbb-saldado">
+                <h1 class="tit-bloco-padrao">Requerimento de Inscrição no Plano CV</h1>
+                <p class="sub-tit-padrao--cv">DADOS DO REQUERENTE</p>
+
+                <form action="" class="form-padrao" ng-repeat="participante in participantes">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="">NOME COMPLETO</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.nome}} disabled>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="">CPF</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.cpf}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label for="">MATRÍCULA</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.matricula}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">DATA DE ADMISSÃO</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.dataAdmissao}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">PATROCINADOR</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.patrocinador}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label for="">IDENTIDADE</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.identidade}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">ÓRGÃO EMISSOR</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.matricula}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">UF</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.ufIdentidade}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">DATA EMISSÃO</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.dataEmissao}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label for="">DATA NASCIMENTO</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.dataNascimento}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">SEXO</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.sexo}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">ESTADO CIVIL</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.estadoCivil}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="">NOME DA MÃE</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.nomeMae}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="">NOME DO PAI</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.nomePai}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="">NACIONALIDADE</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.nacionalidade}} disabled>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="">NATURALIDADE</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.naturalidade}} disabled>
+                        </div>
+                    </div>
+
+                    <p class="sub-tit-padrao--cv">DADOS DE CONTATO</p>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="">LOGRADOURO</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.logradouro}} disabled>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <label for="">Nº</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.numero}} disabled>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="">COMPLEMENTO</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.complemento}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label for="">BAIRRO</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.bairro}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">CIDADE</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.cidade}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">UF</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.ufContato}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">CEP</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.cep}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label for="">TELEFONE RESIDENCIAL</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.telefoneResidencial}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">TELEFONE CELULAR</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.telefoneCelular}} disabled>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">TELEFONE COMERCIAL</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.telefoneComercial}} disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">E-MAIL PESSOAL</label>
+                            <input type="text" class="form-control input-lg" id="" placeholder="" value={{participante.email}} disabled>
+                        </div>
+                    </div>
+
+                    <div class="checkbox">
+                        <label for="">
+                            <input type="checkbox" value="">Desejo receber comunicações da FAPES eletrônicas no e-mail acima cadastrado.
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="">
+                            <input type="checkbox" value="">Desejo receber comunicações da FAPES por SMS no número de celular acima cadastrado.
+                        </label>
+                    </div>
+
+                    <p class="sub-tit-padrao--cv">PPE - PESSOA POLITICAMENTE EXPOSTA</p>
+
+                    <p>
+                        1) É ou foi, nos últimos 5 anos, Pessoa Politicamente Exposta - PPE no país ou no exterior?
+                    </p>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <p>1) É ou foi, nos últimos 5 anos, Pessoa Politicamente Exposta - PPE no país ou no exterior?</p>
+                            <div class="radio">                                
+                                <p class="radio-inline"><input type="radio" name="optradio">NÃO</p>
+                                <p class="radio-inline"><input type="radio" name="optradio">SIM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        2) Nos últimos 5 anos, algum dos seus familiares, na linha direta até o 1º grau (pai, mãe e filhos), incluindo neste grupo cônjuge, companheiro(a), enteados, bem como representantes e outras pessoas de seu relacionamente próximo é ou já foi Pessoa Politicamente Exposta - PPE no país ou no exterior?
+                    </p>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="radio">                                
+                                <p class="radio-inline"><input type="radio" name="optradio">NÃO</p>
+                                <p class="radio-inline"><input type="radio" name="optradio">SIM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="sub-tit-padrao--cv"></p>
+
+                    <p class="sub-tit-padrao--cv">CONTRIBUIÇÕES E IMPOSTO DE RENDA</p>
+
+                    <div class="row">
+                        <div class="form-group col-md-4 col-sm-4">
+                            <label for="">TRIBUTÃÇÃO DE IMPOSTO DE RENDA¹</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">REGIME PROGRESSIVO</option>
+                                <option value="">REGIME REGRESSIVO</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-4">
+                            <label for="">% DE CONTRIBUIÇÃO BÁSICA ADICIONAL²</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">1%</option>
+                                <option value="">2%</option>
+                                <option value="">3%</option>
+                                <option value="">4%</option>
+                                <option value="">5%</option>
+                                <option value="">6%</option>
+                                <option value="">7%</option>
+                                <option value="">8%</option>
+                                <option value="">9%</option>
+                                <option value="">10%</option>
+                                <option value="">11%</option>
+                                <option value="">12%</option>                                
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-4">
+                            <label for="">VALOR DA CONTRIBUIÇÃO VOLUNTÁRIA MENSAL³</label>
+                            <input type="text" class="form-control input-md" id="" placeholder="" value="R$ 50,00">
+                        </div>
+                    </div>
+
+                    <p>
+                        ¹ A opção pela tributação de Imposto de Renda é irrevogável e irretratável.
+                    </p> 
+                    <p>
+                        ² O percentual da Contribuição Básica somente será utilizado no cálculo nos meses em que o Salário-de-Participação (SP) for superior a 10 vezes o Valor de Referência - VR, conforme previsto no Regulamento.
+                    </p>
+                    <p>
+                        ³ O valor da Contribuição Voluntária não terá a contrapartida do Patrocinador e poderá ser alterado, anualmente, no mês de dezembro.
+                    </p>
+
+                    <p class="sub-tit-padrao--cv">DEPENDENTES</p>
+                    <table class="table table-hover tabela-padrao--azul-cv tabela-padrao">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Nome Completo</th>
+                              <th>CPF</th>
+                              <th>Parentesco</th>
+                              <th>Data de Nascimento</th>
+                              <th>Estado Civil</th>
+                              <th>Sexo (F/M)</th>
+                              <th>Inválido (S/N)</th>
+                              <th>Finalidade</th>
+                            </tr>
+                          </thead>
+                          <tbody ng-repeat="dependente in dependentes" class="excluido-{{ dependente.excluido }} menor">
+                            <tr>
+                              <td><input type="checkbox" ng-model="dependente.excluido" title="Exclui Dependente"></td>
+                              <td >{{dependente.nome}}</td>
+                              <td>{{dependente.cpf}}</td>
+                              <td>{{dependente.parentesco}}</td>
+                              <td>{{dependente.dataNascimento}}</td>
+                              <td>{{dependente.estadoCivil}}</td>
+                              <td>{{dependente.sexo}}</td>
+                              <td>{{dependente.invalido}}</td>
+                              <td>{{dependente.finalidade}}</td>
+                            </tr>
+                          </tbody>
+                    </table>
+
+                    <p class="sub-tit-padrao--cv">DECLARAÇÃO DE CONCORDÂNCIA</p>
+
+                    <p>
+                        Para todos os fins de direito, DECLARO que são verdadeiras todas as informações prestadas, sendo o único responsável por quaisquer consequências advindas de erros ou omissões constantes deste cadastro, e, comprometo-me a informar, imediatamente, qualquer modificação relativa ao mesmo.
+                    </p>
+
+                    <p>
+                        Estou ciente que a inscrição no Plano CV somente terá validade após o desconto da primeira contribuição na folha de pagamento do patrocinador, conforme percentuais definidos.
+                    </p>
+
+                    <p>
+                        DECLARO ter recebido um exemplar do Estatuto e do Regulamento do Plano CV, com os quais manifesto minha integral ciência e concordância.
+                    </p>
+
+                    <p>
+                        Diante do exposto, solicito minha inscrição como participante do Plano CV, em conformidade com os dispositivos regulamentares.
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                           <a href="../../lib/arquivos/requerimentoInscricaoplano.pdf" target="blank" class="btn btn-padrao-gd btn-azul-esc"><i class="fa fa-print"></i> IMPRIMIR</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <a href="../../index.html" class="container-fluid bg-azul-esc btn-block btn-azul-esc btn-voltar-block">
+            <i class="glyphicon glyphicon-chevron-left"></i>VOLTAR
+        </a>
+
+        <div class="container-fluid bg-cinza">
+            <div class="container txtcenter container-rodape">
+                <p>Copyright Fapes 2016 - Todos os direitos Reservados</p>
+            </div>
+        </div>
+    </body>
+</html>
