@@ -72,12 +72,12 @@ ion-content {  }
 
 }
 .button.button-positive {
-    border-color: #044973;
-    background-color: #044973;
+    border-color: #2a2b6b;
+    background-color: #2a2b6b;
     color: #fff;
 }
 .button.button-positive.activated {
-    border-color: #044973;
+    border-color: #2a2b6b;
     background-color: #033452;
     color: #fff;
 }
@@ -248,8 +248,8 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	color: #404040;
 }
 #signin .button.button-positive {
-	background-color: #00688f !important;
-	border-color: #045878 !important;
+	background-color: #2a2b6b !important;
+	border-color: #2a2b6b !important;
 
 }
 #saldoEmitido h4 { margin-left: 5px; margin-top: 1em; }
@@ -499,3 +499,11 @@ h4.title_label {
 }
 
 
+
+
+
+
+
+.contato-form .list {
+	background:#FFF;
+}
