@@ -17,6 +17,9 @@ body {
 #emprestimo .th .valor {
 	padding-right: .7em;
 }
+.item-text-wrap {
+	font-size: 14px;
+}
 .col-40, .col-41 {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 40.9%;
@@ -69,12 +72,12 @@ ion-content {  }
 
 }
 .button.button-positive {
-    border-color: #044973;
-    background-color: #044973;
+    border-color: #2a2b6b;
+    background-color: #2a2b6b;
     color: #fff;
 }
 .button.button-positive.activated {
-    border-color: #044973;
+    border-color: #2a2b6b;
     background-color: #033452;
     color: #fff;
 }
@@ -141,6 +144,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 .list.dadosInfo p {
 	font-size: 12px;
 	font-weight: 400;
+	white-space: normal;
 }
 .scroll-content {
 	background-color: #ececec;
@@ -165,7 +169,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	background: #dbdbdb;
 }
 .bar.bar-light .title {
-	color: #1d539e !important;
+	color: #1c7fa2 !important;
 	font-weight: 500;
 	text-align: center;
 }
@@ -193,10 +197,10 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 
 }
 #splitMatricula .card .item h2 {
-	color: #1d539e;
+	color: #1c7fa2;
 }
 #splitMatricula .card .item:active {
-	background: #1d539e;
+	background: #1c7fa2;
 }
 #splitMatricula .card .item:active p {
 	color: #fff;
@@ -244,8 +248,8 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	color: #404040;
 }
 #signin .button.button-positive {
-	background-color: #1a3c6c !important;
-	border-color: #1a3254 !important;
+	background-color: #2a2b6b !important;
+	border-color: #2a2b6b !important;
 
 }
 #saldoEmitido h4 { margin-left: 5px; margin-top: 1em; }
@@ -395,10 +399,9 @@ h4.title_label {
 }
 .headerInfo .item h5 {
 	padding-top:.5em;
-	
 }
 .headerInfo .item {
-	background: #1d539e;
+	background: #1c7fa2;
 	padding-top: .5em;
 	padding-bottom: .5em;
 }
@@ -435,14 +438,14 @@ h4.title_label {
 }
 
 .headerInfo .item h5 {
-	color: #7B98BD;
+	color: #034a60;
 	font-size: 10px;
      text-transform: uppercase;
      line-height: 0.8em;
 }
 .headerInfo .right-icon {
 	float: right;
-	margin-top: -2em;
+	margin-top: -37px;
 	margin-right: .6em;
 	color: #224450;
 }
@@ -450,7 +453,7 @@ h4.title_label {
 	text-decoration: none;
 }
 .headerInfo .subitem {
-	background: #91b3ea;
+	background: #afcdd7;
 	padding: .6em;
 }
 .headerInfo .subitem .row {
@@ -488,11 +491,19 @@ h4.title_label {
 
 
 .button.button-positive.button-clear {
-	color: #4574B3;
+	color: #4596b3;
 }
 
 .submenu * {
-	background: #91b3ea !important;
+	background: #afcdd7 !important;
 }
 
 
+
+
+
+
+
+.contato-form .list {
+	background:#FFF;
+}

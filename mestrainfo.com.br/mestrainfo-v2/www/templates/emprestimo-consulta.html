@@ -1,0 +1,39 @@
+<ion-view title="Consulta" ng-controller="EmprestimoConsultaCtrl">
+ <ion-content class="has-header" id="consultaEmprestimo">
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">        
+
+  <div class="item item-divider softrow">
+      Consulta Empréstimo
+  </div>
+
+  <div class="padding" ng-hide="consultaEmprestimo[0]">
+  <h4>Não há contrato vigente</h4>
+  </div>
+  <div class="item" ng-repeat="(key,value) in consultaEmprestimo">
+  <h4>Contrato {{value.contrato}}</h4>
+  
+  <div class="label row">
+         <div class="col col-25 softcolor">Data</div>
+         <div class="col valor">{{value.data}}</div>
+    </div>
+    <div class="label row">
+        <div class="col col-25 softcolor">Prazo</div>
+        <div class="col valor">{{value.prazo}}</div>
+  </div>
+    <div class="label row">
+        <div class="col col-25 softcolor">Tipo</div>
+        <div class="col valor">{{value.tipo_emprestimo}}</div>
+  </div>
+    <div class="label row">
+        <div class="col col-25 softcolor">Saldo Devedor</div>
+        <div class="col valor">{{value.saldo_devedor}}</div>
+  </div>
+  </div>
+  
+     
+  </ion-content>
+</ion-view>

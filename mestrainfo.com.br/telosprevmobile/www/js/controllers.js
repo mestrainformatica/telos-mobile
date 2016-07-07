@@ -1,6 +1,6 @@
-var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -398,6 +398,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   //$scope.dados.exibe_botao_editar = $scope.dados.exibe_botao_editar;
   
   $scope.infoprev = $rootScope.lastRequest.result.informacoesPrevidenciarias;
+  $scope.infobenef = $rootScope.lastRequest.result.informacoesDependentes;
+
 }])
 .controller('DadosCtrl.form', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
   
@@ -586,6 +588,67 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $rootScope.demonstrativoEmitido = resp.data.result;
             $rootScope.errorMsg = false;
             $state.go('demonstrativoemitido');
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+    }
+
+  }
+
+}])
+
+.controller('ContatoCtrl.form', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
+  
+
+  $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0];
+  //{'login':{'u':u, 's':s}, 'param':{'acao':'', 'nome' : '', 'email' : '', 'telefone' : '', 'mensagem': '', 'patrocinador': '', 'matricula': ''}}
+  $rootScope.erroMsg = false;
+  $scope.formData = {};
+
+  $scope.submit = function(){
+    
+    if ((typeof($scope.formData.mensagem) == 'undefined') || (typeof($scope.formData.telefone) == 'undefined') || (typeof($scope.formData.email) == 'undefined')) {
+      $rootScope.errorMsg = "Por favor preencha todos os campos";
+    } else {    
+
+     
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : { 
+          'acao':'faleConosco',
+          'nome': $scope.matricula.nome,
+          'email': $scope.formData.email,
+          'telefone': $scope.formData.telefone,
+          'mensagem': $scope.formData.mensagem,
+          'patrocinador': $scope.matricula.patrocinadora,
+          'matricula': $scope.matricula.matricula 
+
+           }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        $ionicLoading.hide();
+    
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+            $scope.formData = {};
+            setTimeout(function() {
+              $state.go('menu');
+            }, 1200);
+          } else {
+            $rootScope.demonstrativoEmitido = resp.data.result;
+            $rootScope.errorMsg = false;
+            $rootScope.errorMsg = "Erro ao enviar mensagem";
+      
           }
         }
      }, function(err) {

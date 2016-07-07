@@ -1,7 +1,10 @@
-//window.alert = function (txt) {
+// window.alert = function (txt) {
 //    navigator.notification.alert(txt, null, "Aviso", "Fechar");
-//}
- var app = angular.module('starter', [
+// }
+// window.onerror = function (errorMsg, url, lineNumber) {
+//      alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
+// }
+  var app = angular.module('starter', [
     'ionic',
     'ngCordova',
     'starter.controller',
@@ -10,18 +13,28 @@
   ])
   .run(function($ionicPlatform, $state, $timeout) {
     
+    $ionicPlatform.onHardwareBackButton(function () {
+        if ($state.is('signin')) { // here to check whether the home page, if yes, exit the application
+          navigator.app.exitApp();
+        } else {
+          return;
+        }
+    })
+
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      //if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-        //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      //}
-       if (window.StatusBar) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      
+      if (window.StatusBar) {
           if (ionic.Platform.isAndroid()) {
-            StatusBar.backgroundColorByHexString("#01013f");
-            $cordovaStatusbar.styleHex('#01013f') //azul mestra
+            StatusBar.backgroundColorByHexString("#010042");
+            $cordovaStatusbar.styleHex('#010042') //azul mestra
           } else {
-            //StatusBar.styleLightContent();
+            console.log(StatusBar);
+            StatusBar.overlaysWebView(false);
+            StatusBar.styleBlackTranslucent();
+            StatusBar.backgroundColorByHexString("#010042");
           }
         }
     });
@@ -141,6 +154,24 @@
       cache: false,
       url: '/emprestimo-simulacao-campos-emitido',
       templateUrl: "templates/emprestimo-simulacao-campos-emitido.html"    
+    })
+
+    .state('faleconosco', {
+      cache: false,
+      url: '/fale-conosco',
+      templateUrl: "templates/faleconosco.html"    
+    })
+    
+    .state('contatoform', {
+      cache: false,
+      url: '/contato-form',
+      templateUrl: "templates/contato-form.html"    
+    })
+
+    .state('simulacaoResgate', {
+      cache: false,
+      url: '/simulacao-resgate',
+      templateUrl: "templates/simulacao-resgate.html"    
     })
 
     .state('splitmatriculas', {
