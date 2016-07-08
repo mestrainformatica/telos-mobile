@@ -503,7 +503,7 @@ a[data-toggle='tooltip'] {
 
 /* TABELA AZUL CV */
 
-.tabela-padrao--azul-cv > tbody > tr > td { border-top: 1px solid #FFFFFF}
+.tabela-padrao--azul-cv > tbody > tr > td { border-top: 1px solid transparent}
 .tabela-padrao--azul-cv thead,
 .tabela-rodape--azul-cv {
 	background-color: #2A4089;
@@ -686,11 +686,13 @@ a[data-toggle='tooltip'] {
 .rectangle-azul-cl { background-color: #438DCA;}
 .rectangle-verde { background-color: #659440;}
 
+.danger .dependenteNome {
+	text-decoration: line-through;
+}
 
 /*#page-planos form .form-group{	
 	padding:10px;
 }*/
-
 
 #page-planos .list-group-item label{
 	cursor:pointer;
@@ -727,6 +729,9 @@ a[data-toggle='tooltip'] {
 	}
 }
 
+.oculto{
+	display: none;
+}
 
 #termo-individual input{
 	font-size:12px;
@@ -755,6 +760,14 @@ a[data-toggle='tooltip'] {
 	margin:0;
 }
 
+#termo-individual .list-group{
+	margin-top: 10px;
+	margin-bottom:30px;
+}
 
+.form-control{
+	background-color: white;
+	color:#000;
+}
 
 
