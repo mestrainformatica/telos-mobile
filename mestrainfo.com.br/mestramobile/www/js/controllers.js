@@ -612,9 +612,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
   $scope.submit = function(){
     
-    if ((typeof($scope.formData.mensagem) == 'undefined') || (typeof($scope.formData.telefone) == 'undefined') || (typeof($scope.formData.email) == 'undefined')) {
-      $rootScope.errorMsg = "Por favor preencha todos os campos";
-    } else {    
+    // if ((typeof($scope.formData.mensagem) == 'undefined') || (typeof($scope.formData.telefone) == 'undefined') || (typeof($scope.formData.email) == 'undefined')) {
+    //   $rootScope.errorMsg = "Por favor preencha todos os campos";
+    // } else {    
 
      
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
@@ -635,19 +635,14 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         userInfo.s = resp.data.login.s;
         
         $ionicLoading.hide();
-    
-        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
-          if (resp.data.msg.length > 0){
-            $rootScope.errorMsg = resp.data.msg; 
+        $rootScope.errorMsg = resp.data.msg;
+        
+        if (!resp.data.success) { $state.go('signin'); } else {
+          if (resp.data.msg == "O Email foi enviado com sucesso."){
             $scope.formData = {};
             setTimeout(function() {
               $state.go('menu');
             }, 1200);
-          } else {
-            $rootScope.demonstrativoEmitido = resp.data.result;
-            $rootScope.errorMsg = false;
-            $rootScope.errorMsg = "Erro ao enviar mensagem";
-      
           }
         }
      }, function(err) {
@@ -657,7 +652,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
          template: timeoutMsg
        });
      })
-    }
+    // }
 
   }
 
