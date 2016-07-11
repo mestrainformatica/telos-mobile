@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+        <link rel="stylesheet" href="../../lib/css/funcional.css">
+        <link rel="stylesheet" href="../../lib/css/bootstrap-3.3.6/css/bootstrap.css">
+        <link rel="stylesheet" href="../../lib/js/jquery-ui-1.11.4.custom/jquery-ui.css">
+        <link rel="stylesheet" href="../../lib/css/estilo.css">
+        <!-- SCRIPTS -->
+        <script src="../../lib/angular-1.5.7/angular.js"></script>
+        <script src="../../lib/js/jquery-1.11.3.min.js"></script>
+        <script src="../../lib/css/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+        <script src="../../lib/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+</head>
+<body>
+    <div class="container-flui bg-azul-esc txtright header-padrao">
+        <img src="../img/logo-branco-30x110.png" alt="">
+    </div>
+
+    <div class="container-fluid bg-cinza-azul">
+        <div class="container txtcenter">
+            <ul class="list-padrao-hor list-menu-princ">
+                <!-- <li><a href="">Início</a></li> -->
+                <li class="dropdown">
+                        <a href="" id="dropdownMenu1" data-toggle="dropdown">Planos <i class="glyphicon glyphicon-chevron-down"></i></a>
+                        <!-- SUBMENU DROPDOWN -->
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">PBB Ajustado</a></li>
+                            <li><a href="#">BD Saldado</a></li>
+                            <li><a href="#">CV</a></li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" id="dropdownMenu2" data-toggle="dropdown">Simuladores <i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <!-- SUBMENU DROPDOWN -->
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <li><a href="#">Simulador PBB Ajustado</a></li>
+                      <li><a href="#">Simulador BD Saldado</a></li>
+                      <li><a href="#">Simulador CV</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Perguntas Frequentes</a></li>
+                <li><a href="">Fale Conosco</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-verde-cl bg-menu-categoria--verde">
+        <div class="container">
+            <div class="col-md-3 col-sm-3 txtright">
+                <img src="../img/pbb-alterado-logo.png" alt="" style="padding: 20px 10px;"/>
+            </div>
+            <div class="col-md-9 col-sm-9">
+                <ul class="list-padrao-hor list-menu-cat--verde txt-branco">
+                    <li><a href="">Vídeos</a></li>
+                    <li><a href="">Simulador</a></li>
+                    <li><a href="">kit do participante</a></li>
+                    <li><a href="">Dúvidas sobre o plano</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-verde-bb padding-bloco-padrao txt-verde">
+        <div class="container">
+                <!-- Titulo e Botoes Simulacao -->
+                <div class="row content-tit-simu">
+                    <h1 class="fleft tit-bloco-padrao nomargin">Simulação PBB ALTERADO</h1>
+                    <a href="#" class="btn btn-padrao btn-margin-lat btn-verde fright"><i class="fa fa-print"></i> IMPRIMIR</a>
+                    <a href="#" class="btn btn-padrao btn-margin-lat btn-verde fright"><i class="fa fa-file-pdf-o"></i> SALVAR EM PDF</a>
+                </div>
+
+                <!-- Informações Simulação -->
+                <div class="row content-dados-simu">
+                    <div class="col-md-6 nopaddingleft">
+                        <p>Matrícula: <span>2093284</span></p>
+                        <p>Nome: <span>Maria da Silva</span></p>
+                    </div>
+                    <div class="col-md-6 txtright">
+                        <p>Simulação realizada pelo usuário <span>XXXXXX</span> em: 00/00/0000</p>
+                        <p>Data base dos dados utilizados no cálculo: 00/00/0000</p>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <!-- GRRÁFICO -->
+                    <div class="col-md-4 col-sm-4 content-box-grafico box-grafico--verde">
+                        <h2>REGRA ATUAL <br> <span>(ANTECIPAÇÃO)</span></h2>
+
+                        <ul class="list-padrao-dados-grafico list-padrao">
+                            <li>
+                                <span>56 anos e 10 meses</span>
+                                <p>Idade prevista para a aposentadoria</p>
+                            </li>
+                            <li>
+                                <span>00 anos e 00 meses</span>
+                                <p>Tempo previsto para a aposentadoria</p>
+                            </li>
+                            <li>
+                                <h3><span>R$</span> 23.505,00</h3>
+                                <h4>Renda Global</h4>
+                            </li>
+                        </ul>
+
+                        <div id="grafico1" class="box-grafico"></div>
+
+                        <ul class="list-padrao-dados-grafico list-padrao">
+                            <li>
+                                <span>20 anos e 9 meses</span>
+                                <p>Tempo de contribuição INSS</p>
+                            </li>
+                            <li>
+                                <span>R$ 25.000,00</span>
+                                <p>SRB</p>
+                            </li>
+                            <li>
+                                <span>10 anos e 11 meses</span>
+                                <p>Tempo de contribuição FAPES</p>
+                            </li>
+                            <li>
+                                <span>90,42%</span>
+                                <p>Fator redutor de antecipação</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- GRRÁFICO -->
+                    <div class="col-md-4 col-sm-4 content-box-grafico box-grafico--verde">
+                        <h2>NOVA REGRA <br> <span>(INTEGRAL)</span></h2>
+
+                        <ul class="list-padrao-dados-grafico list-padrao">
+                            <li>
+                                <span>70 anos e 11 meses</span>
+                                <p>Idade prevista para a aposentadoria</p>
+                            </li>
+                            <li>
+                                <span>00 anos e 00 meses</span>
+                                <p>Tempo previsto para a aposentadoria</p>
+                            </li>
+                            <li>
+                                <h3><span>R$</span> 24.000,00</h3>
+                                <h4>Renda Global</h4>
+                            </li>
+                        </ul>
+
+                        <div id="grafico2" class="box-grafico"></div>
+
+                        <ul class="list-padrao-dados-grafico list-padrao">
+                            <li>
+                                <span>34 anos e 10 meses</span>
+                                <p>Tempo de contribuição INSS</p>
+                            </li>
+                            <li>
+                                <span>R$ 23.000,00</span>
+                                <p>SRB</p>
+                            </li>
+                            <li>
+                                <span>25 anos e 0 meses</span>
+                                <p>Tempo de contribuição FAPES</p>
+                            </li>
+                            <li>
+                                <span>100%</span>
+                                <p>Fator redutor de antecipação</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- GRÁFICO -->
+                    <div class="col-md-4 col-sm-4 content-box-grafico box-grafico--verde">
+                        <h2>NOVA REGRA <br> <span>(ANTECIPAÇÃO)</span></h2>
+
+                        <ul class="list-padrao-dados-grafico list-padrao">
+                            <li>
+                                <span>60 anos e 11 meses</span>
+                                <p>Idade prevista para a aposentadoria</p>
+                            </li>
+                            <li>
+                                <span>00 anos e 00 meses</span>
+                                <p>Tempo previsto para a aposentadoria</p>
+                            </li>
+                            <li>
+                                <h3><span>R$</span> 20.910,00</h3>
+                                <h4>Renda Global</h4>
+                            </li>
+                        </ul>
+
+                        <div id="grafico3" class="box-grafico"></div>
+
+                        <ul class="list-padrao-dados-grafico list-padrao">
+                            <li>
+                                <span>24 anos e 10 meses</span>
+                                <p>Tempo de contribuição INSS</p>
+                            </li>
+                            <li>
+                                <span>R$22.000,00</span>
+                                <p>SRB</p>
+                            </li>
+                            <li>
+                                <span>15 anos e 0 meses</span>
+                                <p>Tempo de contribuição FAPES</p>
+                            </li>
+                            <li>
+                                <span>100%</span>
+                                <p>Fator redutor de antecipação</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tabela -->
+                <table class="table table-hover tabela-padrao--verde tabela-padrao">
+                  <thead>
+                    <tr>
+                      <th>Complementação</th>
+                      <th>Regra Anterior</th>
+                      <th>Regra Atual</th>
+                      <th></th>
+                    </tr>
+
+                    <tr>
+                      <th class="bgtransper--verde"></th>
+                      <th class="bgverde--claro">Antecipação/Integral</th>
+                      <th class="bgverde--claro">Integral</th>
+                      <th class="bgverde--claro">Antecipação</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Situação na data da simulação</td>
+                      <td>Elegível à antecipação</td>
+                      <td>Não elegível</td>
+                      <td>Elegível</td>
+                    </tr>
+
+                    <tr>
+                      <td>Data prevista de aposentadoria</td>
+                      <td>31/01/16</td>
+                      <td>31/01/16</td>
+                      <td>31/01/16</td>
+                    </tr>
+
+                    <tr>
+                      <td>Tempo previsto para aposentadoria</td>
+                      <td>0 anos e 0 meses</td>
+                      <td>14 anos e 1 meses</td>
+                      <td>12 anos e 11 meses</td>
+                    </tr>
+
+                    <tr>
+                      <td>Idade1 </td>
+                      <td>56 anos e 10 meses</td>
+                      <td>70 anos e 11 meses</td>
+                      <td>60 anos e 11 meses</td>
+                    </tr>
+
+                    <tr>
+                      <td>Tempo de contribuição INSS1 4</td>
+                      <td>20 anos e 9 meses</td>
+                      <td>34 anos e 10 meses</td>
+                      <td>24 anos e 10 meses</td>
+                    </tr>
+
+                    <tr>
+                      <td>Tempo de contribuição FAPES1 </td>
+                      <td>10 anos e 11 meses</td>
+                      <td>25 anos e 0 meses</td>
+                      <td>15 anos e 0 meses</td>
+                    </tr>
+
+                    <tr>
+                      <td>SRB</td>
+                      <td>25.000,00</td>
+                      <td>23.000,00</td>
+                      <td>22.000,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>Fator redutor de antecipação1</td>
+                      <td>90,42%</td>
+                      <td>100,00%</td>
+                      <td>90,91%</td>
+                    </tr>
+
+                    <tr>
+                      <td>A - SRB com fator redutor2</td>
+                      <td>22.605,00</td>
+                      <td>23.000,00</td>
+                      <td>20.000,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>B - INSS estimado</td>
+                      <td>4.437,53</td>
+                      <td>5.000,00</td>
+                      <td>5.000,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>C - Complementação FAPES (A - B)</td>
+                      <td>18.167,48</td>
+                      <td>18.000,00</td>
+                      <td>15.000,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>D - Abono com fator redutor2</td>
+                      <td>900,00</td>
+                      <td>1.000,00</td>
+                      <td>910,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>E - Renda Global (B + C + D)</td>
+                      <td>23.505,00</td>
+                      <td>24.000,00</td>
+                      <td>20.910,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>F - Renda Bruta FAPES (E - B)</td>
+                      <td>19.067,48</td>
+                      <td>19.000,00</td>
+                      <td>15.910,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>G - Contribuição FAPES</td>
+                      <td>1.175,25</td>
+                      <td>1.200,00</td>
+                      <td>1.045,50</td>
+                    </tr>
+
+                    <tr>
+                      <td>H - Benefício FAPES (F - G)</td>
+                      <td>17.892,23</td>
+                      <td>17.800,00</td>
+                      <td>14.864,50</td>
+                    </tr>
+
+                    <tr class="tabela-rodape--verde">
+                      <td>Recursos Portados</td>
+                      <td>100.000,00</td>
+                      <td>100.000,00</td>
+                      <td>100.000,00</td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-cinza">
+        <div class="container txtcenter container-rodape">
+            <p>Copyright Fapes 2016 - Todos os direitos Reservados</p>
+        </div>
+    </div>
+
+<!-- SCRIPTS -->
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../css/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script src="../js/highcharts.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#dropdownMenu1, #dropdownMenu2').click(function(){
+            $(this).toggleClass('active-menu');
+        });
+        $('#dropdownMenu1, #dropdownMenu2').blur(function(){
+            $(this).removeClass('active-menu');
+        });
+        // TOOLTIP
+        $('[data-toggle="tooltip"]').tooltip();
+        // GRAFICO
+        $(function () {
+            Highcharts.setOptions({
+                colors: ['#F97B00','#FEDF09','#BDE35A']
+            });
+            $('#grafico1').highcharts({
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: 'categories',
+                    lineColor: 'transparent',
+                    gridLineWidth: 0,
+                    minorGridLineWidth: 0,
+                    minorTickLength: 0,
+                    tickLength: 0,
+                    labels: {
+                        enabled:false,
+                    }
+                },
+                credits: {
+                   enabled: false
+                },
+                yAxis: {
+                    title: {
+                        text: ''
+                    },
+                    gridLineWidth: 0,
+                    minorGridLineWidth: 0,
+                    labels: {
+                        enabled: false
+                    }
+                },
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    shadow: false
+                },
+                tooltip: {
+                    enabled: true
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        borderColor: 'transparent',
+                        dataLabels: {
+                            enabled: false
+                        },
+                    }
+                },
+                series: [{
+                    name: ['Reserva'],
+                    data: [1]
+                }, {
+                    name: ['Reserva'],
+                    data: [2]
+                },{
+                    name: ['Reserva'],
+                    data: [5]
+                }]
+            });
+
+            $('#grafico2').highcharts({
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: 'categories',
+                    lineColor: 'transparent',
+                    gridLineWidth: 0,
+                    minorGridLineWidth: 0,
+                    minorTickLength: 0,
+                    tickLength: 0,
+                    labels: {
+                        enabled:false,
+                    }
+                },
+                credits: {
+                   enabled: false
+                },
+                yAxis: {
+                    title: {
+                        text: ''
+                    },
+                    gridLineWidth: 0,
+                    minorGridLineWidth: 0,
+                    labels: {
+                        enabled: false
+                    }
+                },
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    shadow: false
+                },
+                tooltip: {
+                    enabled: true
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        borderColor: 'transparent',
+                        dataLabels: {
+                            enabled: false
+                        },
+                    }
+                },
+                series: [{
+                    name: ['Reserva'],
+                    data: [1]
+                }, {
+                    name: ['Reserva'],
+                    data: [2]
+                },{
+                    name: ['Reserva'],
+                    data: [5]
+                }]
+            });
+
+
+            $('#grafico3').highcharts({
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'transparent'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: 'categories',
+                    lineColor: 'transparent',
+                    gridLineWidth: 0,
+                    minorGridLineWidth: 0,
+                    minorTickLength: 0,
+                    tickLength: 0,
+                    labels: {
+                        enabled:false,
+                    }
+                },
+                credits: {
+                   enabled: false
+                },
+                yAxis: {
+                    title: {
+                        text: ''
+                    },
+                    gridLineWidth: 0,
+                    minorGridLineWidth: 0,
+                    labels: {
+                        enabled: false
+                    }
+                },
+                legend: {
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    shadow: false
+                },
+                tooltip: {
+                    enabled: true
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        borderColor: 'transparent',
+                        dataLabels: {
+                            enabled: false
+                        },
+                    }
+                },
+                series: [{
+                    name: ['Reserva'],
+                    data: [1]
+                }, {
+                    name: ['Reserva'],
+                    data: [2]
+                },{
+                    name: ['Reserva'],
+                    data: [5]
+                }]
+            });
+
+
+        });
+    });
+</script>
+
+</body>
+</html>

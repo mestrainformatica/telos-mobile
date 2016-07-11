@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html ng-app="planoPBB-Saldado">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <!-- STYLES -->
+
+         <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="../../lib/css/funcional.css">
+        <link rel="stylesheet" href="../../lib/css/bootstrap-3.3.6/css/bootstrap.css">
+        <link rel="stylesheet" href="../../lib/js/jquery-ui-1.11.4.custom/jquery-ui.css">
+        <link rel="stylesheet" href="../../lib/css/estilo.css">
+
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+        <!-- SCRIPTS -->
+        <script src="../../lib/angular-1.5.7/angular.js"></script>
+        <script src="../../lib/js/jquery-1.11.3.min.js"></script>
+        <script src="../../lib/css/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+        <script src="../../lib/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#dropdownMenu1, #dropdownMenu2').click(function(){
+                    $(this).toggleClass('active-menu');
+                });
+                $('#dropdownMenu1, #dropdownMenu2').blur(function(){
+                    $(this).removeClass('active-menu');
+                });
+
+
+                $( ".barra-progressao" ).slider({
+                  range: "min",
+                  value: 10,
+                  min: 0,
+                  max: 700,
+                //   slide: function( event, ui ) {
+                //     $( "#amount" ).val( "$" + ui.value );
+                //   }
+                });
+                //$( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+
+            });
+
+            angular.module("planoPBB-Saldado", []);
+
+            angular.module("planoPBB-Saldado").controller("planoPBB-SaldadoCtrl", function($scope) {
+                $scope.message = "Hello World!";
+
+                $scope.participantes = [
+                    {
+                        nome: "MARIA DA GLORIA RODRIGUES E SILVA", 
+                        cpf: "01107365759", 
+                        matricula: "000116",
+                        dataAdmissao: "08/01/1953",
+                        patrocinador: "",
+                        identidade: "000001144048",
+                        orgaoEmissor: "DETRAN",
+                        ufIdentidade: "RJ",
+                        dataEmissao: "24/11/2011",
+                        dataNascimento: "08/11/1935",
+                        sexo: "F",
+                        estadoCivil: "",
+                        nomeMae: "JOVELINA BRITO RODRIGUES",
+                        nomePai: "ALVARO RODRIGUES",
+                        nacionalidade: "BRASIL",
+                        naturalidade: "RIO DE JANEIRO",
+                        logradouro: "R TREZE DE MAIO",
+                        numero: "160",
+                        complemento: "AP -102",
+                        bairro: "CENTRO",
+                        cidade: "PETROPOLIS",
+                        ufContato: "RJ",
+                        cep: "25685231",
+                        telefoneResidencial: "",
+                        telefoneCelular: "987071542 ",
+                        telefoneComercial: "",
+                        email: "LAURAMARIARS@IG.COM.BR"
+                    }
+                ];
+
+                $scope.dependentes = [
+                    {
+                        id: 1,
+                        nome: "DAMIAO AUGUSTO RODRIGUES E SILVA",
+                        cpf: "999.999.999-99",
+                        parentesco: "",
+                        dataNascimento: "05/16/1968",
+                        estadoCivil: "",
+                        sexo: "M",
+                        invalido: "",
+                        finalidade: "PECULIO POR MORTE"
+                    },
+                    {
+                        id: 2,
+                        nome: "LAURA MARIA RODRIGUES E SILVA",
+                        cpf: "",
+                        parentesco: "",
+                        dataNascimento: "02/09/1971",
+                        estadoCivil: "",
+                        sexo: "F",
+                        invalido: "",
+                        finalidade: "PECULIO POR MORTE"
+                    },
+                    {
+                        id:3,
+                        nome: "CANDIDO AUGUSTO DA CUNHA E SILVA",
+                        cpf: "",
+                        parentesco: "",
+                        dataNascimento: "02/23/1935",
+                        estadoCivil: "",
+                        sexo: "M",
+                        invalido: "",
+                        finalidade: ""
+                    }
+                ];
+            });
+        </script>
+    </head>
+    <body id="termo-individual" class="bg-cinza" ng-controller="planoPBB-SaldadoCtrl">
+
+        <div class="container-fluid bg-azul-esc txtright header-padrao">
+            <img src="../../lib/img/logo-branco-30x110.png" alt="">
+        </div>
+
+        <div class="container-fluid bg-cinza-azul">
+            <div class="container txtcenter">
+                <ul class="list-padrao-hor list-menu-princ">
+                    <li class="dropdown">
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="container-fluid bg-azul-cl bg-menu-categoria--azul">
+            <div class="container">
+                <div class="col-md-3 col-sm-3 txtright">
+                    <img src="../../lib/img/pbb-logo.png" alt="" class="logo-tipo-plano"/>
+                </div>
+                <div class="col-md-9 col-sm-9">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid bg-azul-bb padding-bloco-padrao bg-azul-bb--pbb-saldado">
+
+            <div class="container bg-azul-bb--pbb-saldado">
+
+                <div class="col-md-8 col-md-offset-2">
+
+                    <div class="row">
+
+                        <h2 class="tit-bloco-padrao">Termo Individual de Opção pela Migração</h2>
+                        <p class="sub-tit-padrao--cv">Plano Básico de Benefícios - CNPB Nº 19.790.015-29</p>
+                        <p class="sub-tit-padrao--cv">Participante Ativo e Participante Autopatrocinado</p>
+                       
+                    </div>
+
+                    <form action="" class="form-padrao" ng-repeat="participante in participantes">
+
+                        <div class="row">
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading">
+                                     <h3 class="panel-title">DADOS PESSOAIS</h3>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="">NOME DO PARTICIPANTE</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.nome}} disabled>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="">MATRÍCULA</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.matricula}} disabled>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="">CPF</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.cpf}} disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="form-group col-md-3">
+                                            <label for="">SEXO</label>
+                                            <input type="text" class="form-control" id="" placeholder="" value={{participante.sexo}} disabled>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="">DATA NASCIMENTO</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.dataNascimento}} disabled>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="">ESTADO CIVIL</label>
+                                            <input type="text" class="form-control"  id="" placeholder="" value={{participante.estadoCivil}} disabled>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="">PAÍS</label>
+                                            <input type="text" class="form-control" id="" placeholder="" value={{participante.nacionalidade}} disabled>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-3">
+                                            <label for="">Nº DA IDENTIDADE</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.identidade}} disabled>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="">ÓRGÃO EXPEDIDOR</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.orgaoEmissor}} disabled>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="">UF</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.ufIdentidade}} disabled>
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="">DATA DE EMISSÃO</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.dataEmissao}} disabled>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="">NOME DA MÃE</label>
+                                            <input type="text" class="form-control" id="" placeholder="" value={{participante.nomeMae}} disabled>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="">NOME DO PAI</label>
+                                            <input type="text" class="form-control " id="" placeholder="" value={{participante.nomePai}} disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="">PATROCINADOR</label>
+                                            <input type="text" class="form-control" id="" placeholder="" value={{participante.patrocinador}} disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="row">
+                                <div class="panel panel-default">
+
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">DADOS DE CONTATO</h3>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">LOGRADOURO</label>
+                                                <input type="text" class="form-control " id="" placeholder="" value={{participante.logradouro}} disabled>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="">Nº</label>
+                                                <input type="text" class="form-control " id="" placeholder="" value={{participante.numero}} disabled>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="">COMPLEMENTO</label>
+                                                <input type="text" class="form-control" id="" placeholder="" value={{participante.complemento}} disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">BAIRRO</label>
+                                                <input type="text" class="form-control " id="" placeholder="" value={{participante.bairro}} disabled>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="">MUNICÍPIO</label>
+                                                <input type="text" class="form-control " id="" placeholder="" value={{participante.cidade}} disabled>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="">UF</label>
+                                                <input type="text" class="form-control " id="" placeholder="" value={{participante.ufContato}} disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                             <div class="form-group col-md-6">
+                                                <label for="">E-MAIL PESSOAL</label>
+                                                <input type="text" class="form-control " id="" placeholder="" value={{participante.email}} disabled>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="">TELEFONE RESIDENCIAL</label>
+                                                <input type="text" class="form-control " id="" placeholder="" value={{participante.telefoneResidencial}} disabled>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="">TELEFONE CELULAR</label>
+                                                <input type="text" class="form-control " id="" placeholder="" value={{participante.telefoneCelular}} disabled>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        
+
+                        <div class="txt-justify">
+                            <div class="row">
+                                <p>CONSIDERANDO o Plano Básico de Benefícios adminstrado pela FAPES, suas respectivas alterações aprovadas pela PREVIC, assim como a aprovação da criação dos novos Planos de Benefícios Saldado e de Contribuição Variável e o respectivo Processo de Migração. <a href="plano-cv-aba.html" target="_blank">Clique aqui para ler na íntegra <span class="glyphicon glyphicon-link"></span></a></P>
+
+                                <p class="sub-tit-padrao--cv">I – DECLARAÇÕES INICIAIS DO PARTICIPANTE</p>
+
+                                <p>DECLARO expressa ciência e concordância com o disposto nos Regulamentos dos <a href="#">Planos Básico de Benefício</a>, <a href="#">Básico de Benefícios Saldado </a> e <a href="#">Benefícios de Contribuição Variável</a> bem como com a <a href="#">Cartilha Explicativa do Processo de Migração </a> <!-- <a href="#demo" data-toggle="collapse" class="" aria-expanded="true">(clique aqui para ler na íntegra)</a> -->
+                                
+                                <!-- <div id="demo" class="collapse"> -->
+                                <div id="demo">
+                                    <p>1. DECLARO que recebi, li e manifesto expressa concordância com o disposto no Regulamento do Plano Básico de Benefícios – RPBB, aprovado pelo órgão governamental competente.</p>
+
+                                    <p>2. Especificamente quanto ao Processo de Migração, cujas regras estão inseridas na Seção I do Capítulo II do Título IX do RPBB, DECLARO que:</p>
+
+                                    <p>a) li, compreendi e concordo com todas as suas regras, parâmetros e condições;</p>
+
+                                    <p>b) recebi, li e compreendi os Regulamentos dos novos Planos administrados pela FAPES e que serão objeto de Migração, quais sejam, o Plano Básico de Benefícios Saldado (“Plano PBB Saldado”) e o Plano de Benefícios de Contribuição Variável (“Plano CV”);</p> 
+
+                                    <p>c) recebi, li e compreendi a Cartilha Explicativa do Processo de Migração, que, em linguagem clara e objetiva, apresentou informações e esclarecimentos sobre a opção pela Migração ao Plano PBB Saldado e ao Plano CV; e</p>
+
+                                    <p>d) todas as minhas dúvidas sobre o Processo de Migração e sobre as regras previstas nos Regulamentos do Plano PBB Saldado e do Plano CV foram esclarecidas pela FAPES por meio dos canais de comunicação disponibilizados.</p>
+                                </div>
+
+
+                                <p>3. DECLARO, também, que (conforme cada caso):</p>
+
+                            </div>
+
+                            
+                                <div class="list-group">
+                                    <a class="list-group-item row" href="javascript://"><label for="op1">
+                                        <div class="col-xs-1">
+                                            <input checked="checked" id="op1" type="radio" name="declaracaoInicial">
+                                        </div>
+                                        <div class="col-xs-11">
+                                            <p> Não estou no polo ativo de nenhuma ação judicial movida contra o BNDES ou o BNDESPAR ou a FINAME ou a FAPES e que discuta, direta ou indiretamente, dispositivo(s) constante(s) no Regulamento do Plano Básico de Benefícios ou cuja eventual decisão final favorável a mim possa ter impacto financeiro ou atuarial no aludido  Plano de Benefícios; </p>
+                                        </div>
+                                    </label></a> 
+
+                                    <a class="list-group-item row" href="javascript://"><label for="op2">
+                                        <div class="col-xs-1">
+                                            <input id="op2" type="radio" name="declaracaoInicial">
+                                        </div>
+                                        <div class="col-xs-11">
+                                            <p> Protocolei petição(ões) manifestando minha renúncia ao direito sobre o qual se funda(m) a(s) ação(ões) judicial(is) movida(s) contra o BNDES ou o BNDESPAR ou a FINAME ou a FAPES e que discutam, direta ou indiretamente, dispositivo(s) constante(s) no Regulamento do Plano Básico de Benefícios ou cuja eventual decisão final favorável a mim possa ter impacto financeiro ou atuarial no aludido Plano de Benefícios. A(s) cópia(s) da(s) petição(ões) que comprova(m) o requerimento de renúncia está(estão) anexada(s) ao presente instrumento.</p>
+                                        </div>
+                                       
+      
+                                    </label></a> 
+
+                                    <a class="list-group-item row" href="javascript://"><label for="op3">
+                                        <div class="col-xs-1">
+                                            <input id="op3" type="radio" name="declaracaoInicial">
+                                        </div>
+
+                                        <div class="col-xs-11">
+                                            <p> Promovi transação judicial com o objetivo de extinguir a(s) eventual(is) ação(ões) judiciais movida(s) contra o BNDES ou o BNDESPAR ou a Agência Especial de FINAME ou a FAPES e que discutam, direta ou indiretamente, dispositivo(s) constante(s) no Regulamento do Plano Básico de Benefícios ou cuja eventual decisão final favorável a mim possa ter impacto financeiro ou atuarial no aludido Plano de Benefícios. A(s) cópia(s) da(s) petição(ões) que comprova(m) o requerimento  do(s) acordo(s) judicial(is) está(estão) anexada(s) ao presente instrumento.</p>
+                                        </div>
+                                    </label></a> 
+
+                                </div>
+                            
+
+                          <!--   <p><input type="radio" name="optradio"> não estou no polo ativo de nenhuma ação judicial movida contra o BNDES ou o BNDESPAR ou a FINAME ou a FAPES <a href="#demo1" data-toggle="collapse">(clique aqui para ler na íntegra)</a></p>
+
+                            <div id="demo1" class="collapse">
+                                <p>e que discuta, direta ou indiretamente, dispositivo(s) constante(s) no Regulamento do Plano Básico de Benefícios ou cuja eventual decisão final favorável a mim possa ter impacto financeiro ou atuarial no aludido  Plano de Benefícios;</p>
+                            </div>
+
+                            <p>ou</p>
+
+                            <p><input type="radio" name="optradio"> protocolei petição(ões) manifestando minha renúncia ao direito sobre o qual se funda(m) a(s) ação(ões) judicial(is) movida(s) contra o BNDES ou o BNDESPAR ou a FINAME ou a FAPES <a href="#demo2" data-toggle="collapse">(clique aqui para ler na íntegra)</a></p>
+
+                            <div id="demo2" class="collapse">
+                                <p>e que discutam, direta ou indiretamente, dispositivo(s) constante(s) no Regulamento do Plano Básico de Benefícios ou cuja eventual decisão final favorável a mim possa ter impacto financeiro ou atuarial no aludido Plano de Benefícios. A(s) cópia(s) da(s) petição(ões) que comprova(m) o requerimento de renúncia está(estão) anexada(s) ao presente instrumento.</p>
+                            </div>
+ -->
+                           <!--  <p>ou</p>
+
+                            <p><input type="radio" name="optradio"> promovi transação judicial com o objetivo de extinguir a(s) eventual(is) ação(ões) judiciais movida(s) contra o BNDES ou o BNDESPAR ou a Agência Especial de FINAME ou a FAPES <a href="#demo3" data-toggle="collapse">(clique aqui para ler na íntegra)</a></p>
+
+                            <div id="demo3" class="collapse">
+                                <p>e que discutam, direta ou indiretamente, dispositivo(s) constante(s) no Regulamento do Plano Básico de Benefícios ou cuja eventual decisão final favorável a mim possa ter impacto financeiro ou atuarial no aludido Plano de Benefícios. A(s) cópia(s) da(s) petição(ões) que comprova(m) o requerimento  do(s) acordo(s) judicial(is) está(estão) anexada(s) ao presente instrumento.</p>
+                            </div> -->
+                            <div class="row">
+                                <p>II – MANIFESTAÇÃO DE VONTADE DO PARTICIPANTE<p>
+
+                                <p>4. Nesse contexto, de forma livre e espontânea, em caráter irrevogável e irretratável, na forma de novação contratual, exerço minha opção pela MIGRAÇÃO ao Plano de Benefícios abaixo assinalado, de forma que estou ciente de que, em face da inscrição mediante a MIGRAÇÃO no referido Plano de Benefícios, estarei, a partir de sua Data Efetiva, desvinculando-me total e definitivamente do Plano Básico de Benefícios - PBB, registrado no CNPB sob o nº 19.790.015-29, bem como transferindo minha Reserva de Transferência, definida no Regulamento do PBB, para o seguinte Plano de Benefícios:<p>
+                            </div>
+
+                            <div class="list-group">
+                               <!--  <p><input type="radio" name="optradio"> Plano Básico de Benefícios Saldado (“Plano PBB Saldado”);<p> -->
+
+                                <a class="list-group-item row" href="javascript://">
+                                    <label for="op4">
+                                        <div class="col-xs-1">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                        </div>
+                                        
+                                        <div class="col-xs-11">
+                                          <p>Plano Básico de Benefícios Saldado (“Plano PBB Saldado”);</p>
+                                        </div>
+
+                                      
+                                    </label>
+                                </a>
+
+                            </div>
+
+
+                            <!--p><input type="radio" name="optradio"> Plano de Benefícios de Contribuição Variável (“Plano CV”)<p-->
+                            <div class="row">
+                                <p>5. Em decorrência da vontade manifestada nos termos do item acima, DECLARO que, em caráter irrevogável e irretratável, renuncio, pelo presente ato, a qualquer direito, atual ou futuro, referente especificamente ao PBB, de forma que à Fundação de Assistência e Previdência Social do BNDES – FAPES e ao meu Patrocinador não competirão quaisquer obrigações adicionais referentes à minha anterior vinculação ao PBB, com exceção somente daquelas previstas na Seção I do Capítulo II do Título IX do Regulamento do aludido Plano de Benefícios.<p>
+
+                                <p>6. DECLARO, ainda, que tenho ciência de que a opção pela Migração, ora manifestada, somente produzirá efeitos jurídicos a partir da Data Efetiva do Plano de Benefícios escolhido no item 4 acima, definida em seu Regulamento.</p>
+
+                                <p>III – Relação de Dependentes </p>
+                                <p>7. DECLARO que, para efeito da inscrição no Plano de Benefícios escolhido no item 4 acima, devem ser inscritos no referido Plano de Benefícios os seguintes Dependentes:</p>
+                            </div>
+
+                        </div>
+                        
+                        <div class="row">
+
+
+                               <table class="table tabela-padrao--azul-cv tabela-padrao">
+                                      <thead>
+                                        <tr>
+                                          
+                                          <th>Nome Completo</th>
+                                          <th>CPF</th>
+                                          <th>Parentesco</th>
+                                          <th>Data de Nascimento</th>
+                                          <th>Estado Civil</th>
+                                          <th>Sexo (F/M)</th>
+                                          <th>Inválido (S/N)</th>
+                                          <th>Finalidade</th>
+                                          <th></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody ng-repeat="dependente in dependentes" class="excluido-{{ dependente.excluido }} menor">
+
+                                         <tr class="table-values">
+                                       <!--    <td><input type="checkbox" ng-model="dependente.excluido" title="Exclui Dependente"></td> -->
+                                          <td class="dependenteNome">{{dependente.nome}}</td>
+                                          <td class="cpf-value">{{dependente.cpf}}</td>
+                                          <td>{{dependente.parentesco}}</td>
+                                          <td>{{dependente.dataNascimento}}</td>
+                                          <td>Solteiro{{dependente.estadoCivil}}</td>
+                                          <td>{{dependente.sexo}}</td>
+                                          <td>{{dependente.invalido}}</td>
+                                          <td>{{dependente.finalidade}}</td>
+                                          <td>
+                                              <a id="btnExcluir" class="btnExcluir" title="Excluir"><button class="btn btn-xs btn-default">Remover</button></a>
+                                          </td>
+                                        </tr>
+                                        <tr id="input-remover" class="input-remover danger oculto">
+                                            <td colspan="9">
+                                                <label>Motivo da exclusão:</label>
+                                                <select class="form-control input-sm">
+                                                    <option>Selecione uma Opção</option>
+                                                    <option value="CESSAÇÃO DA INVALIDEZ">CESSAÇÃO DA INVALIDEZ</option>
+                                                    <option value="DESLIGAMENTO DO PARTICIPANTE">DESLIGAMENTO DO PARTICIPANTE</option>
+                                                    <option value="DIVÓRCIO">DIVÓRCIO</option>
+                                                    <option value="ESGOTAMENTO DO SALDO DE CONTAS">ESGOTAMENTO DO SALDO DE CONTAS</option>
+                                                    <option value="IDADE">IDADE</option>
+                                                    <option value="ÓBITO DO DEPENDENTE">ÓBITO DO DEPENDENTE</option>
+                                                    <option value="ÓBITO DO PARTICIPANTE">ÓBITO DO PARTICIPANTE</option>
+                                                    <option value="SEPARAÇÃO">SEPARAÇÃO</option>
+                                                    <option value="VONTADE DO PARTICIPANTE">VONTADE DO PARTICIPANTE</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                      </tbody>
+                                </table>
+
+                        </div>
+                     
+                        <div class="row">
+                            <p class="txt-justify">[1] Recebedores do Pecúlio por Morte ou Saldo de Contas, conforme Regulamento do Plano Básico de Benefícios Saldado ou Regulamento do Plano de Contribuição Variável, respectivamente.</p>
+
+                            <!--p>IV – Declarações Adicionais que devem ser preenchidas EXCLUSIVAMENTE pelo Participante que tenha optado pelo Plano de Benefícios de Contribuição Variável (“Plano CV”)</p>
+
+                            <p>8. Tendo em vista a minha opção pela inscrição mediante MIGRAÇÃO no Plano de Benefícios de Contribuição Variável (“Plano CV”), apresento as seguintes Declarações Adicionais:</p>
+
+                            <p class="sub-tit-padrao--cv">CONTRIBUIÇÕES NORMAIS AO PLANO CV</p>
+
+                            <p><strong title="(0%, 1%, 2%, 3%, 4%, 5%, 6%, 7%, 8%, 9%, 10%, 11% ou 12% que incidirá sobre a diferença, se positiva, entre o Salário de Participação e 10 vezes o Valor de Referência definido no Regulamento do Plano CV)">Contribuição Básica (obrigatória):</strong><input type="text" class="input-sm" id="" placeholder=""> %</p>
+
+                            <p>O percentual escolhido se somará à parcela obrigatória da Contribuição Básica correspondente a 3% (três por cento) do Salário de Participação.</p>
+
+                            <p><strong title="(O valor da Contribuição Voluntária escolhido não terá a contrapartida do Patrocinador e somente poderá ser alterado, anualmente, no mês de dezembro).">Contribuição Voluntária (não obrigatória):</strong> R$ <input type="text" class="input-sm" id="" placeholder="" ></p>
+
+                            <p class="sub-tit-padrao--cv">REGIME DE TRIBUTAÇÃO</p>
+
+                            <div class="row">
+                                <div class="form-group col-md-3">
+                                    <div class="radio">                                
+                                        <p class="radio-inline"><input type="radio" name="optradio">PROGRESSIVO</p>
+                                        <p class="radio-inline"><input type="radio" name="optradio">REGRESSIVO</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p> A opção pelo regime de tributação de Imposto de Renda é irrevogável e irretratável conforme determinado na Instrução Normativa nº 588/2005 e alterações posteriores.</p-->
+
+                            <p>IV – Declaração Final (aplicável a qualquer Participante, independentemente do Plano de Benefícios escolhido).</p>
+
+
+
+                            <p class="sub-tit-padrao--cv">PPE – PESSOA POLITICAMENTE EXPOSTA</p>    
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12 txt-justify">
+
+                                <div class="row">
+                                    <p>1) É ou foi, nos últimos 5 anos, Pessoa Politicamente Exposta - PPE no país ou no exterior?</p>
+                                </div>
+
+                                <div class="list-group">
+
+                                    <a class="list-group-item row" href="javascript://">
+                                        <label for="op5">
+
+                                            <div class="col-xs-1">
+                                                <input id="op5" checked="checked" type="radio" name="pessoaPoliticamenteExposta">
+                                            </div>
+                                            
+                                            <div class="col-xs-11">
+                                                <p>NÃO</p>
+                                            </div>
+                                            
+                                        </label>
+                                    </a>
+
+
+                                    <a class="list-group-item row" href="javascript://">
+                                        <label for="op6">
+
+                                            <div class="col-xs-1">
+                                                <input type="radio" id="op6" name="pessoaPoliticamenteExposta">
+                                            </div>
+
+                                            <div class="col-xs-11">
+                                                <p> SIM</p>
+                                            </div>
+                                            
+                                        </label>
+                                    </a> 
+
+                                </div>
+
+                               <!--  <div class="radio">                                
+                                    <p class="radio-inline"><input type="radio" name="optradio">NÃO</p>
+                                    <p class="radio-inline"><input type="radio" name="optradio">SIM</p>
+                                </div> -->
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12 txt-justify">
+                                <div class="row">
+                                <p>2) Nos últimos 5 anos, algum dos seus familiares, na linha direta até o 1º grau (pai, mãe e filhos), incluindo neste grupo o cônjuge, companheiro(a), enteados, bem como representantes e outras pessoas de seu relacionamento próximo é ou já foi Pessoa Politicamente Exposta - PPE no país ou no exterior?</p>
+                                </div>
+
+                                <div class="list-group">
+                                    <a class="list-group-item row" href="javascript://">
+                                        <label for="op7">
+
+                                            <div class="col-xs-1">
+                                                <input checked="checked" id="op7" type="radio" name="optradio">
+                                            </div>
+
+                                            <div class="col-xs-11">
+                                                 <p> NÃO</p>
+                                            </div>
+
+                                           
+                                        </label>
+                                    </a> 
+
+                                    <a class="list-group-item row" href="javascript://">
+                                     <label for="op8">
+
+                                            <div class="col-xs-1">
+                                                <input id="op8" type="radio" name="optradio">
+                                            </div>
+
+                                            <div class="col-xs-11">
+                                                <p> SIM</p>
+                                            </div>
+
+     
+                                             
+                                        </label>
+                                    </a> 
+
+                                </div>
+
+                               <!--  <div class="radio">                                
+                                    <p class="radio-inline"><input type="radio" name="optradio"> NÃO</p>
+                                    <p class="radio-inline"><input type="radio" name="optradio"> SIM</p>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                               <a href="../../lib/arquivos/migracaoparticipanteAtivo.pdf" target="blank" class="btn btn-padrao-gd btn-azul"><i class="fa fa-print"></i> IMPRIMIR</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <a href="../../index.html" class="container-fluid bg-azul btn-block btn-azul btn-voltar-block">
+            <i class="glyphicon glyphicon-chevron-left"></i>VOLTAR
+        </a>
+
+        <div class="container-fluid bg-cinza">
+            <div class="container txtcenter container-rodape">
+                <p>Copyright Fapes 2016 - Todos os direitos Reservados</p>
+            </div>
+        </div>
+    </body>
+
+
+    <script type="text/javascript" src="../../lib/js/main.js" ></script>
+
+
+</html>

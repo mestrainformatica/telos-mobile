@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/fonts/fontes.css">
+    <link rel="stylesheet" href="lib/css/funcional.css">
+    <link rel="stylesheet" href="lib/css/bootstrap-3.3.6/css/bootstrap.css">
+
+    <link rel="stylesheet" href="lib/css/estilo.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <!-- SCRIPTS -->
+    <script src="lib/js/jquery-1.11.3.min.js"></script>
+    <script src="lib/css/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dropdownMenu1, #dropdownMenu2').click(function(){
+                $(this).toggleClass('active-menu');
+            });
+            $('#dropdownMenu1, #dropdownMenu2').blur(function(){
+                $(this).removeClass('active-menu');
+            });
+        });
+    </script>
+</head>
+<body id="page-planos" >
+    <!-- HEADER AZUL ESCURO -->
+    <div class="container-fluid bg-azul-esc txtright header-padrao">
+        <img src="lib/img/logo-branco-30x110.png" alt="">
+    </div>
+    <!-- MENU -->
+    <div class="container-fluid bg-cinza-azul">
+        <div class="container txtcenter">
+            <ul class="list-padrao-hor list-menu-princ">
+                <li class="dropdown">
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="container-fluid bg-branco padding-bloco-padrao">
+        <div class="container">
+           
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <form method="post" class="panel planos-panel">
+
+                        <div class="panel-heading">
+                            <h3 class="tit-bloco-padrao">Conheça as novas opções de Planos</h3>
+                            <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a ipsum sed est facilisis pulvinar. Nunc luctus consectetur viverra. Mauris egestas non enim non pretium. Proin in ligula ac ligula hendrerit blandit dapibus sed eros. Donec lectus nibh, dapibus ac ante vulputate, rhoncus tempus libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</h5>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="list-group select-planos">
+                                
+                                <a href="javascript://" class="list-group-item row"><label for="plano-1">
+
+                                    
+                                        <div class="form-group col-xs-2 col-sm-1">
+                                            <input id="plano-1" value="1" name="plano" type="radio" class="radio" />
+                                        </div>
+                                        <div class="form-group col-xs-10 col-sm-11">
+                                             <div class="rectangle-verde">
+                                                 <img src="lib/img/pbb-alterado-logo.png" alt="">
+                                            </div> 
+                                            <h4 class="list-group-item-heading">Plano Básico de Benefício</h4>
+                                            <p>Permanecer no Plano Básico de Benefício</p>
+                                        </div>
+
+                                    
+
+                                </label></a> 
+
+                                <a href="javascript://" class="list-group-item row"><label for="plano-2">
+
+
+
+                                        <div class="form-group col-xs-2 col-sm-1">
+                                             <input id="plano-2" value="2" name="plano" type="radio" />
+                                        </div>
+
+                                        <div class="form-group col-xs-10 col-sm-11">
+                                            <div class="rectangle-azul-cl">
+                                                  <img src="lib/img/pbb-logo.png" alt="">
+                                            </div>
+                                            <h4 class="list-group-item-heading">Plano Básico de Benefício Saldado</h4>
+                                            <p>Optar pelo Plano Básico de Benefício SALDADO</p>
+                                        </div>
+
+
+
+                                </label></a> 
+
+                                <a href="javascript://" class="list-group-item row">
+
+                                    <label for="plano-3">
+
+
+
+                                            <div class="form-group col-xs-2 col-sm-1">
+                                                 <input id="plano-3" value="2" name="plano" type="radio" />
+                                            </div>
+
+                                            <div class="form-group col-xs-10 col-sm-11">
+                                                <div class="rectangle-azul-esc">
+                                                      <img src="lib/img/cv-logo.png" alt="">
+                                                </div> 
+                                                 <h4 class="list-group-item-heading">Plano CV</h4>
+                                                <p>Migrar para o plano CV</p>
+                                            </div>
+                     
+                                    </label>
+
+                                </a> 
+
+
+                            </div>
+
+                            <div class="panel-footer">
+                                <button type="submit" class="btn btn-padrao-gd btn-azul-esc">Selecionar Plano</button>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid bg-azul-bb padding-bloco-padrao">
+        <div class="container txtcenter">
+            <h3 class="tit-bloco-padrao--italic nomargintop">Entenda melhor as mudanças.</h3>
+            <p class="txt-padrao-cinza">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eum sequi, ex voluptates, iusto quas commodi reiciendis aperiam ducimus nisi. Sint quia fugiat minus placeat dignissimos, assumenda, dolor numquam reiciendis?</p>
+        </div>
+    </div>
+
+    <!-- RODAPE -->
+    <div class="container-fluid bg-cinza">
+        <div class="container txtcenter container-rodape">
+            <p>Copyright Fapes 2016 - Todos os direitos Reservados</p>
+        </div>
+    </div>
+</body>
+</html>
