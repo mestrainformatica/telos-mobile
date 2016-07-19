@@ -13,15 +13,15 @@
         <form name="formContato" ng-submit="submit()">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Telefone</span>
-          <input type="tel" name="telefone" placeholder="(99) 99999-9999" ng-model="formData.telefone" required>
+          <input type="tel" name="telefone" placeholder="(99) 99999-9999" ng-model="formData.telefone">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">E-Mail</span>
-          <input type="email" name="email" placeholder="seu@email.com" ng-model="formData.email" required> 
+          <input type="text" name="email" placeholder="seu@email.com" ng-model="formData.email"> 
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Mensagem</span>
-          <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem"required>
+          <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
         </label>
       
         <div class="the_error">

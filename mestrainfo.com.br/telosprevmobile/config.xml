@@ -9,7 +9,7 @@
     </author>
     <content src="http://localhost:0" />
     <access origin="*" />
-    <allow-intent href="tel:*" />
+    <allow-intent href="tel:*" launch-external="yes" />
     <allow-navigation href="http://*/*" />
     <allow-navigation href="https://*/*" />
     <preference name="webviewbounce" value="false" />

@@ -1,6 +1,6 @@
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -620,6 +620,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
      
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
+
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : { 
           'acao':'faleConosco',
@@ -646,7 +647,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
               $state.go('menu');
             }, 1200);
           } else {
-            
+
           }
         }
         
