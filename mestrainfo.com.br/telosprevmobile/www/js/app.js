@@ -198,7 +198,13 @@
       url: '/sign-in',
       templateUrl: "templates/sign-in.html",
     })
-
+//MEUS STATES
+    .state('simulacaorendamensalvitalicia', {
+      cache: false,
+      url: '/simulacao-renda-mensal-vitalicia',
+      templateUrl: "templates/simulacao-renda-mensal-vitalicia.html",
+    })
+//END MEUS STATES
     .state('menu', {
       cache: false,
       url: "/menu",

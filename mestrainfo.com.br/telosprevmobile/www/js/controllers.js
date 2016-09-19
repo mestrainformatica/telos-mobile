@@ -982,6 +982,16 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 }])
 
+//MEUS CONTROLLERS
+
+.controller('SimulacaoRendaMensalVitaliciaCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
 .controller('PopupCtrl',['$scope', '$ionicPopup', '$timeout', function($scope, $ionicPopup, $timeout) {
 
 // Triggered on a button click, or some other target
