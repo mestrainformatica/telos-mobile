@@ -1,0 +1,140 @@
+<ion-view title="Simulação" ng-controller="SimulacaoRmvSaqueProgramadoCtrl" has-bouncing="false" padding="false" >
+ <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">        
+    <div class="item item-divider softrow">
+      Simulação de RMV e Saque Programado
+    </div>
+
+    <div class="item extratoDoMes">
+      <div class="label" >
+        <h4 class="title_label">ELIGIBILIDADE PREVISTA PELO PCVI:</h4>
+        <p>12/2030</p>
+      </div>
+    </div>
+    <div class="item item-divider softrow">
+      PREMISSAS SUGERIDAS PELO PARTICIPANTE
+    </div>
+
+        <form id="formCampos">
+          <div class="item">
+             <label class="item item-input item-select">
+                <div class="input-label">
+                    Idade
+                </div>
+                <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
+                 <option value="">- Selecione -</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                  45 anos
+              </div>
+              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                 <option value="">- Selecione -</option>
+              </select>
+            </label>
+            
+          <hr>
+             <label class="item item-input item-select">
+                <div class="input-label">
+                    Tipo de reajuste
+                </div>
+                <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
+                 <option value="">RENTABILIDADE</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                  Com pensão?
+              </div>
+              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                 <option value="">NÃO</option>
+              </select>
+            </label>
+
+          <hr>
+
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">ANTECIPAÇÃO DO BENEFÍCIO</span>
+              <input type="tel" name="telefone" placeholder="%" ng-model="formData.telefone">(0 a 20)
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">CRESCIMENTO REAL DO SALÁRIO</span>
+              <input type="text" name="email" placeholder="seu@email.com" ng-model="formData.email">(ao ano) 
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">CONTRIBUIÇÃO DO PARTICIPANTE</span>
+              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">ESTIMATIVA DE RENTABILIDADE MÉDIA ANUAL REAL</span>
+              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">DEPENDENTES PARA FINS DE IR</span>
+              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">APORTE FINANCEIRO</span>
+              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+            </label>
+            
+          </div>
+
+          <div class="item item-divider softrow">
+            ESCOLHA OS PERCENTUAIS DE DISTRIBUIÇÃO DE SALDO
+          </div>
+
+            <div class="item">
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">SAQUE PROGRAMADO</span>
+                <input type="text" name="email" placeholder="seu@email.com" ng-model="formData.email">
+              </label>
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">RENDA MENSAL VITALÍCIA</span>
+                <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+              </label>
+            </div>
+
+          <div class="item item-divider softrow">
+            PREMISSAS ESPECÍFICAS DE SAQUE PROGRAMADO
+          </div>
+            
+            <div class="item">
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">RENDA MENSAL</span>
+                <input type="text" name="email" placeholder="" ng-model="formData.email">
+              </label>
+              <label class="item item-input item-stacked-label">
+                <span class="input-label">ESTIMATIVA DE RENTABILIDADE</span>
+                <input type="text" name="mensagem" placeholder=" " ng-model="formData.mensagem">
+              </label> 
+
+              <label class="item item-input item-select">
+                <div class="input-label">
+                    Abono Anual?
+                </div>
+                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                   <option value="">NÃO</option>
+                </select>
+              </label>
+            </div>
+
+          <div class="the_error">
+            <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+          </div>
+          <div class="padding">
+            <div class="button-bar">
+              <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+
+  </ion-content>
+</ion-view>

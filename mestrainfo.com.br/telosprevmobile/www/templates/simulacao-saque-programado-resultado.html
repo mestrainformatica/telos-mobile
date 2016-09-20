@@ -1,0 +1,98 @@
+<ion-view title="Simulação" ng-controller="SimulacaoSaqueProgramadoCtrl.resultado" has-bouncing="false" padding="false" >
+ <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">        
+    <div class="item item-divider softrow">
+      Resultado da simulação de Saque Programado
+    </div>
+    
+    <div class="item extratoDoMes">
+      <div class="separador">
+        <div class="label" >
+          <h4 class="title_label">Saldo de conta considerado</h4>
+          <p>3232656</p>
+        </div>
+        <div class="label" >
+          <h4 class="title_label">Saldo de conta total</h4>
+          <p>456</p>
+        </div>
+      </div>
+
+      <div class="separador">
+        <div class="label" >
+          <h4 class="title_label">Renda mensal vitalícia - valor bruto</h4>
+          <p>123</p>
+        </div> 
+        <div class="label" >
+          <h4 class="title_label">valor do imposto de renda (progressivo)</h4>
+          <p>0,00</p>
+        </div> 
+      </div>
+
+      <div class="separador">
+        <div class="label" >
+          <h4 class="title_label">prazo previsto para manutenção de benefício caso o percentual de saque não seja alterado</h4>
+          <p>0,00</p>
+        </div>
+      </div>
+
+      <div class="separador">
+        <div class="label" >
+          <h4 class="title_label">Antecipação do benefício</h4>
+          <p>0,00</p>
+        </div> 
+        <div class="label" >
+          <h4 class="title_label">valor do imposto de renda (progressivo)</h4>
+          <p>0,00</p>
+        </div>
+      </div>
+      
+      <hr>
+
+      <div class="label" >
+        <h4 class="title_label">última renda mensal não vitalícia em 11/2135</h4>
+        <p>0,00</p>
+      </div> 
+      <div class="label" >
+        <h4 class="title_label">saldo remanescente à ser pago em 12/2135</h4>
+        <p>0,00</p>
+      </div>
+  </div>
+
+  <div class="list">
+    <form class="formCampos">
+      <div class="item">
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Estimativa de rentabilidade média anual</span>
+          <input type="text" name="text" placeholder="Entre a data de simulação e início do benefício" ng-model="formData.email">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Estimativa de rentabilidade média anual</span>
+          <input type="text" name="text" placeholder="Após o início do benefício" ng-model="formData.email">
+        </label>
+        <div class="button-bar">
+          <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação"">      
+        </div>
+        Atenção:
+        <div class="text-small">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Quos necessitatibus unde delectus,
+            tenetur quidem natus veniam aspernatur 
+            eveniet blanditiis quisquam alias omnis neque quia
+            iure sint nulla molestias recusandae repellendus!
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+  </ion-content>
+</ion-view>

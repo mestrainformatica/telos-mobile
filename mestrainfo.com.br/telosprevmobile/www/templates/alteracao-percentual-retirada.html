@@ -1,0 +1,50 @@
+<ion-view title="Simulação" ng-controller="AlteracaoPercentualRetiradaCtrl" has-bouncing="false" padding="false" >
+ <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">        
+    <div class="item item-divider softrow">
+      Alteração de percentual de retirada
+    </div>
+        <form id="formCampos">
+          <div class="item">
+
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">PERCENTUAL DE RENDA MENSAL</span>
+              <input type="text" name="telefone" placeholder="(0,5% A 2,0%)" ng-model="formData.telefone">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">ESTIMATIVA DE RENTABILIDADE MÉDIA ANUAL</span>
+              <input type="text" name="email" placeholder="Após iniício do benefício" ng-model="formData.email">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">DEPENDENTES PARA FINS DE IR</span>
+              <input type="text" name="mensagem" placeholder="0" ng-model="formData.mensagem">
+            </label>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                  Abono Anual?
+              </div>
+              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                 <option value="">NÃO</option>
+              </select>
+            </label>
+
+          </div>
+
+          <div class="the_error">
+            <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+          </div>
+          <div class="padding">
+            <div class="button-bar">
+              <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+
+  </ion-content>
+</ion-view>

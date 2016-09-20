@@ -55,11 +55,64 @@
           </div>
 
 
-          <a class="item" href="#/simulacao-resgate"  ng-show="stageMap['08']">
-          <h2><i class="icon ion-ios-list-outline"></i>  {{ stageMap['08'] }}
-          <i class="right-icon icon ion-chevron-right"></i>
+          <a class="item" ng-click="showSubAtivo = !showSubAtivo" >
+          <h2><i class="icon ion-ios-calculator-outline"></i> Simulação de Benefício
+          <i class="right-icon icon ion-chevron-down" ng-hide="showSubAtivo"></i>
+          <i class="right-icon icon ion-chevron-up" ng-show="showSubAtivo"></i>
           </h2>
           </a>
+
+          <div class="submenu ng-cloak" ng-show="showSubAtivo">
+                  <a class="item" href="#/simulacao-renda-mensal-vitalicia" >
+                  <h2><i class="icon"></i> RMV
+                  <i class="right-icon icon ion-chevron-right"></i>
+                  </h2>
+                  </a>
+
+                  <a class="item" href="#/simulacao-saque-programado">
+                  <h2><i class="icon"></i> Saque Programado
+                  <i class="right-icon icon ion-chevron-right"></i>
+                  </h2>
+                  </a>
+
+                  <a class="item" href="#/simulacao-rmv-saque-programado">
+                  <h2><i class="icon"></i> RMV e Saque Programado
+                  <i class="right-icon icon ion-chevron-right"></i>
+                  </h2>
+                  </a>
+
+          </div>
+
+
+          <a class="item" ng-click="showSubParticipante = !showSubParticipante" >
+          <h2><i class="icon ion-ios-settings"></i> Simulação de Benefício
+          <i class="right-icon icon ion-chevron-down" ng-hide="showSubParticipante"></i>
+          <i class="right-icon icon ion-chevron-up" ng-show="showSubParticipante"></i>
+          </h2>
+          </a>
+
+          <div class="submenu ng-cloak" ng-show="showSubParticipante">
+                  <a class="item" href="#/alteracao-percentual-retirada" >
+                  <h2><i class="icon"></i> Benefício de Saque
+                  <i class="right-icon icon ion-chevron-right"></i>
+                  </h2>
+                  </a>
+
+                  <a class="item" href="#/simulacao-rmv-aposentado">
+                  <h2><i class="icon"></i> Alteração para RMV
+                  <i class="right-icon icon ion-chevron-right"></i>
+                  </h2>
+                  </a>
+
+                  <a class="item" href="#/alteracao-rmv-saque">
+                  <h2><i class="icon"></i> Alteração para RMV e SP
+                  <i class="right-icon icon ion-chevron-right"></i>
+                  </h2>
+                  </a>
+
+          </div>
+
+
 
           <a class="item" href="#/fale-conosco" ng-show="stageMap['09']">
           <h2><i class="icon ion-ios-email-outline"></i>  {{ stageMap['09'] }}

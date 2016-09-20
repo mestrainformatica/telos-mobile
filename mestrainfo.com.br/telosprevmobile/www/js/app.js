@@ -204,6 +204,72 @@
       url: '/simulacao-renda-mensal-vitalicia',
       templateUrl: "templates/simulacao-renda-mensal-vitalicia.html",
     })
+
+    .state('simulacaorendamensalvitaliciabeneficiarios', {
+      cache: false,
+      url: '/simulacao-renda-mensal-vitalicia-beneficiarios',
+      templateUrl: "templates/simulacao-renda-mensal-vitalicia-beneficiarios.html",
+    })
+
+    .state('simulacaorendamensalvitaliciaresultado', {
+      cache: false,
+      url: '/simulacao-renda-mensal-vitalicia-resultado',
+      templateUrl: "templates/simulacao-renda-mensal-vitalicia-resultado.html",
+    })
+
+    .state('simulacaosaqueprogramado', {
+      cache: false,
+      url: '/simulacao-saque-programado',
+      templateUrl: "templates/simulacao-saque-programado.html",
+    })
+
+    .state('simulacaosaqueprogramadoresultado', {
+      cache: false,
+      url: '/simulacao-saque-programado-resultado',
+      templateUrl: "templates/simulacao-saque-programado-resultado.html",
+    })
+
+    .state('simulacaormvsaqueprogramado', {
+      cache: false,
+      url: '/simulacao-rmv-saque-programado',
+      templateUrl: "templates/simulacao-rmv-saque-programado.html",
+    })
+
+    .state('simulacaormvsaqueprogramadoresultado', {
+      cache: false,
+      url: '/simulacao-rmv-saque-programado-resultado',
+      templateUrl: "templates/simulacao-rmv-saque-programado-resultado.html",
+    })
+
+    .state('alteracaopercentualretirada', {
+      cache: false,
+      url: '/alteracao-percentual-retirada',
+      templateUrl: "templates/alteracao-percentual-retirada.html",
+    })
+
+    .state('simulacaormvaposentado', {
+      cache: false,
+      url: '/simulacao-rmv-aposentado',
+      templateUrl: "templates/simulacao-rmv-aposentado.html",
+    })
+
+    .state('alteracaormvsaque', {
+      cache: false,
+      url: '/alteracao-rmv-saque',
+      templateUrl: "templates/alteracao-beneficio-rmv-saque.html",
+    })
+
+    .state('simulacaoresgatenovo', {
+      cache: false,
+      url: '/simulacao-resgate-novo',
+      templateUrl: "templates/simulacao-resgate-novo.html",
+    })
+
+    .state('saldocontas', {
+      cache: false,
+      url: '/saldo-contas',
+      templateUrl: "templates/saldo-contas.html",
+    })
 //END MEUS STATES
     .state('menu', {
       cache: false,

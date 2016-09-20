@@ -992,6 +992,48 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
 }])
 
+.controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SimulacaoSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SimulacaoRmvSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SimulacaoRmvAposentadoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SimulacaoResgateNovoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SaldoContasCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+//END MEUS CONTROLLERS
+
 .controller('PopupCtrl',['$scope', '$ionicPopup', '$timeout', function($scope, $ionicPopup, $timeout) {
 
 // Triggered on a button click, or some other target
