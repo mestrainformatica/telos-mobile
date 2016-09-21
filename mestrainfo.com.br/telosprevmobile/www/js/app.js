@@ -247,16 +247,34 @@
       templateUrl: "templates/alteracao-percentual-retirada.html",
     })
 
+    .state('alteracaopercentualretiradaresultado', {
+      cache: false,
+      url: '/alteracao-percentual-retirada-resultado',
+      templateUrl: "templates/alteracao-percentual-retirada-resultado.html",
+    })
+
     .state('simulacaormvaposentado', {
       cache: false,
       url: '/simulacao-rmv-aposentado',
       templateUrl: "templates/simulacao-rmv-aposentado.html",
     })
 
+    .state('simulacaormvaposentadoresultado', {
+      cache: false,
+      url: '/simulacao-rmv-aposentado-resultado',
+      templateUrl: "templates/simulacao-rmv-aposentado-resultado.html",
+    })
+
     .state('alteracaormvsaque', {
       cache: false,
       url: '/alteracao-rmv-saque',
       templateUrl: "templates/alteracao-beneficio-rmv-saque.html",
+    })
+
+    .state('alteracaormvsaqueresultado', {
+      cache: false,
+      url: '/alteracao-rmv-saque-resultado',
+      templateUrl: "templates/alteracao-beneficio-rmv-saque-resultado.html",
     })
 
     .state('simulacaoresgatenovo', {

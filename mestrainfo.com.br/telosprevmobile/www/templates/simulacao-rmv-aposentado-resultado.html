@@ -1,4 +1,4 @@
-<ion-view title="Simulação" ng-controller="SimulacaoSaqueProgramadoCtrl.resultado" has-bouncing="false" padding="false" >
+<ion-view title="Simulação" ng-controller="AlteracaoRmvSaqueCtrl.resultado" has-bouncing="false" padding="false" >
  <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
     <div class="headerInfo" >
         <div ng-include="'js/directives/userInfo.html'"></div> 
@@ -6,15 +6,11 @@
 
   <div class="list" id="mainMenu">        
     <div class="item item-divider softrow">
-      Resultado da simulação de Saque Programado
+      Resultado da alteração para RMV
     </div>
     
     <div class="item extratoDoMes">
       <div class="separador">
-        <div class="label row" >
-          <div class="col col-67">Saldo de conta considerado</div>
-          <div class="col valor">3232656</div>
-        </div>
         <div class="label row" >
           <div class="col col-67">Saldo de conta total</div>
           <div class="col valor">456</div>
@@ -34,49 +30,37 @@
 
       <div class="separador">
         <div class="label row" >
-          <div class="col col-67">prazo previsto para manutenção de benefício caso o percentual de saque não seja alterado</div>
+          <div class="col col-67">Unidade previvdenciária</div>
           <div class="col valor">0,00</div>
         </div>
       </div>
 
       <div class="separador">
         <div class="label row" >
-          <div class="col col-67">Antecipação do benefício</div>
+          <div class="col col-67">pagamento integral</div>
           <div class="col valor">0,00</div>
-        </div> 
+        </div>
         <div class="label row" >
           <div class="col col-67">valor do imposto de renda (progressivo)</div>
           <div class="col valor">0,00</div>
         </div>
       </div>
-      
-      <hr>
-
-      <div class="label row" >
-        <div class="col col-67">última renda mensal não vitalícia em 11/2135</div>
-        <div class="col valor">0,00</div>
-      </div> 
-      <div class="label row" >
-        <div class="col col-67">saldo remanescente à ser pago em 12/2135</div>
-        <div class="col valor">0,00</div>
-      </div>
   </div>
 
+  <div class="item item-divider softrow">
+    Relação de beneficiários selecionados para pensão
+  </div>
+
+  <div class="item item-divider softrow item-select">
+    FILHO(A)
+  </div>
+  <div class="item item-divider softrow item-select">
+    CÔNJUGE
+  </div>
   <div class="list">
+   
     <form class="formCampos">
       <div class="item">
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Estimativa de rentabilidade média anual</span>
-          <input type="text" name="text" placeholder="Entre a data de simulação e início do benefício" ng-model="formData.email">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Estimativa de rentabilidade média anual</span>
-          <input type="text" name="text" placeholder="Após o início do benefício" ng-model="formData.email">
-        </label>
-        <div class="button-bar">
-          <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação"">      
-        </div>
         Atenção:
         <div class="text-small">
           <p>
@@ -89,8 +73,9 @@
         </div>
       </div>
     </form>
-  </div>
+  </div>  
 
+</div>
 </div>
 
 

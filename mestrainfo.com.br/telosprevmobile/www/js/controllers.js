@@ -1016,11 +1016,23 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
 }])
 
+.controller('AlteracaoPercentualRetiradaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
 .controller('SimulacaoRmvAposentadoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   
 }])
 
+.controller('SimulacaoRmvAposentadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
 .controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('AlteracaoRmvSaqueCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   
 }])
 
