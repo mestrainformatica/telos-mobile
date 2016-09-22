@@ -509,7 +509,7 @@ div.no-wrap p {
 .top-page .extratoDoMes{
 	margin-left: 0 ;
     padding-left: 0 ;
-    color: #ccc;
+    color: #adadad;
 }
 
 .top-page .extratoDoMes .valor{
@@ -607,4 +607,14 @@ div.no-wrap p {
 	margin-top:20px;
 	padding-top:10px;
 	border-top:1px solid #ccc;
+}
+
+.top-page .separador{
+	margin:10px 0;
+	font-weight: 400;
+}
+
+.top-page .separador .label{
+	text-transform: none ;
+	font-size:.9em;
 }
