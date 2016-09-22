@@ -36,13 +36,15 @@
       </div>
     </div>
 
-        <form id="formCampos">
+    <form id="formCampos" class="formCampo">
           <div class="item">
-             <label class="item item-input ">
+             <label class="item item-input item-select ">
                 <div class="input-label">
                     Data de nascimento
                 </div>
-                <input type="date" name="nascimento" placeholder="" ng-model="formData.nascimento">
+                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                 <option value="">DD/MM/AAAA</option>
+              </select>
             </label>
             <label class="item item-input item-select">
               <div class="input-label">
@@ -69,23 +71,29 @@
                  <option value="">FILHO(A)</option>
               </select>
             </label>
-            <a href="">Remover Beneficiário</a>
 
-            <hr>
+            <a class="link-remove" href="">Remover Beneficiário</a>
 
             <button class="button button-block button-calm icon-right ion-plus">
               Adicionar Beneficiário
             </button>
+
+            <div class="button-bar">
+              <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+            </div>
+
           </div>
 
           <div class="the_error">
             <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
           </div>
-          <div class="padding">
+          <!-- <div class="padding">
             <div class="button-bar">
               <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
             </div>
-          </div>
+          </div> -->
+
+
         </form>
     </div>
   </div>

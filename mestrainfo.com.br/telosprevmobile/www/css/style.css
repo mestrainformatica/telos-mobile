@@ -525,7 +525,6 @@ div.no-wrap p {
 .top-page .item-divider.bg-destaq{
 	background: #d8d8d8;
 	color: #333;
-
 }
 
 .top-page .item-divider span{
@@ -554,7 +553,7 @@ div.no-wrap p {
 }
 
 #formCampos.formCampo .input-label{
-	font-size: 1.3em;
+	font-size: 1.1em;
 	font-weight: 300;
     color: #ccc;
     text-transform: uppercase;
@@ -578,3 +577,34 @@ div.no-wrap p {
 	color: #333 !important;
 }
 
+#formCampos.formCampo a.link-remove{
+	display: block;
+	margin: 30px 0;
+	float:right;
+	text-decoration: none;
+	color: red;
+}
+
+#formCampos.formCampo a.link-remove:focus, #formCampos a.link-remove:active{
+	text-decoration: none;
+	color: #d60101;
+}
+
+#formCampos.formCampo button.button-calm{
+	background: #afcdd7;
+	border-color: #8cc5d8; 
+}
+
+#formCampos.formCampo button.button-calm{
+	background: #8cc5d8;
+	border-color: #8cc5d8; 
+	color: #333;
+	text-align: left;
+	font-weight: 300;
+}
+
+#formCampos.formCampo .button-bar{
+	margin-top:20px;
+	padding-top:10px;
+	border-top:1px solid #ccc;
+}
