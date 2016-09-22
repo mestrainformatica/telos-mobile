@@ -495,3 +495,86 @@ h4.title_label {
 div.no-wrap p {
 	white-space: normal;
 }
+
+.top-page .item-divider{
+	padding:15px 0 !important;
+}
+
+.top-page .item-divider h3.title{
+	font-weight: 400 !important;
+	color: #A3A0A0 !important;
+	text-transform: none;
+}
+
+.top-page .extratoDoMes{
+	margin-left: 0 ;
+    padding-left: 0 ;
+    color: #ccc;
+}
+
+.top-page .extratoDoMes .valor{
+    color: #333;
+}
+
+.top-page .item-divider.dif{
+	color:#333;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+.top-page .item-divider.bg-destaq{
+	background: #d8d8d8;
+	color: #333;
+
+}
+
+.top-page .item-divider span{
+	margin-top: -25px;
+    display: block;
+    margin-left: 78px;
+}
+
+#formCampos.formCampo .select-box{
+	margin:25px 0;
+}
+
+#formCampos.formCampo .select-box:first-child{
+	margin-top:0;
+	border-bottom:1px solid #e6e6e6;
+	padding-bottom:30px;
+}
+
+
+#formCampos.formCampo .no-border.item.item-input{
+	border-width: 0;
+}
+
+#formCampos.formCampo .item-input{
+	/*padding: 0px 0 0px 0px;*/
+}
+
+#formCampos.formCampo .input-label{
+	font-size: 1.3em;
+	font-weight: 300;
+    color: #ccc;
+    text-transform: uppercase;
+    width: 100% !important;
+	max-width:100% !important;
+	white-space: normal;
+}
+
+#formCampos.formCampo .input-label.box{
+	text-align: right;
+	padding-top:10px;
+}
+
+#formCampos.formCampo .input-label small{
+	display: block;
+	font-size: .8em;
+}
+
+
+#formCampos.formCampo .item-select .input-label{
+	color: #333 !important;
+}
+

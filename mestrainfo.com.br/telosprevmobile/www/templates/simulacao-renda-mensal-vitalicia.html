@@ -4,84 +4,226 @@
         <div ng-include="'js/directives/userInfo.html'"></div> 
     </div>
 
-  <div class="list" id="mainMenu">        
-    <div class="item item-divider softrow">
-      Simulação de Renda Mensal Vitalícia
+  <div class="list" id="mainMenu">   
+
+    <div class="top-page">
+
+        <div class="item item-divider softrow">
+           <div class="row">
+            <div class="col col-100">
+              <h3 class="title">Simulação de Renda Mensal Vitalícia</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="item extratoDoMes">     
+          <div class="row">
+              <div class="col col-67">Eligibilidade prevista pelo PCVI:</div>
+              <div class="col valor">12/2030</div>
+          </div>
+
+        </div>
+
+
+        <div class="item item-divider dif softrow">
+          <div class="row">
+            <div class="col col-100">
+              Premissas sugeridas pelo participante
+            </div>
+          </div>
+          
+        </div>
+
     </div>
 
-    <div class="item extratoDoMes">
-      <div class="label row" >
-        <div class="col col-67">Eligibilidade prevista pelo PCVI:</div>
-        <div class="col valor">12/2030</div>
-      </div>
-    </div>
-    <div class="item item-divider softrow">
-      Premissas sugeridas pelo participante
-    </div>
+        <form id="formCampos" class="formCampo">
+              <div class="item">
 
-        <form id="formCampos">
-          <div class="item">
-             <label class="item item-input item-select">
-                <div class="input-label">
-                    Idade
-                </div>
-                <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                 <option value=""></option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-              <div class="input-label">
-                  45 anos
-              </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value=""></option>
-              </select>
-            </label>
+                <!-- <div class="row">
+                  <div class="col col-100"> -->
+
+                  <div class="select-box">
+                    <div class="row">
+                      <div class="col col-100">
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Idade
+                            </div>
+                            <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
+                             <option value=""></option>
+                            </select>
+                        </label>
+                        <label class="item item-input item-select">
+                          <div class="input-label">
+                              45 anos
+                          </div>
+                          <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                             <option value=""></option>
+                          </select>
+                        </label>
+                        </div>
+                      </div>
+                  </div>
+                
+                
+          
+          
+                  <div class="select-box">
+                    <div class="row">
+                      <div class="col col-100">
+
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Tipo de reajuste
+                            </div>
+                            <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
+                             <option value="">RENTABILIDADE</option>
+                            </select>
+                        </label>
+              
+                        <label class="item item-input item-select">
+                          <div class="input-label">
+                              Com pensão?
+                          </div>
+                          <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                             <option value="">NÃO</option>
+                          </select>
+                        </label>
+
+                      </div>
+                    </div>
+
+                  </div>
             
-          <hr>
-             <label class="item item-input item-select">
-                <div class="input-label">
-                    Tipo de reajuste
-                </div>
-                <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                 <option value="">RENTABILIDADE</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-              <div class="input-label">
-                  Com pensão?
+            <div class="row">
+              <div class="col-100">
+
+
+                <label class="no-border item item-input item-stacked-label">
+                 <!--  <span class="input-label">Antecipação de benefício <small>(0 a 20)</small></span>
+                  <input type="tel" name="telefone" placeholder="%" ng-model="formData.telefone"> -->
+
+                  <div class="row">
+                    <div class="col col-70">
+                      <span class="input-label">Antecipação de benefício <small>(0 a 20)</small></span>
+                    </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                        <input type="text" name="telefone" ng-model="formData.telefone" /> 
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box ">%</span>
+                    </div>
+                  </div>
+
+                </label>
+
+                <label class="no-border item item-input item-stacked-label">
+                <!--   <span class="input-label">Crescimento real do Salário <br /> <small>(ao ano)</small></span></span>
+                  <input type="text" name="email" placeholder="%" ng-model="formData.email">  -->
+
+                  <div class="row">
+                    <div class="col col-70">
+                      <span class="input-label">Crescimento real do Salário <br /> <small>(ao ano)</small></span>
+                   </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                         <input type="text" name="email" ng-model="formData.email">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box">%</span>
+                    </div>
+                  </div>
+
+                </label>
+
+
+                <label class="no-border item item-input item-stacked-label">
+                <!--   <span class="input-label">Contribuição do participante</span>
+                  <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem"> -->
+                  
+                  <div class="row">
+                    <div class="col col-70">
+                      <span class="input-label">Contribuição do participante</span>
+                    </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                         <input type="text" name="mensagem" ng-model="formData.mensagem">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box">%</span>
+                    </div>
+                  </div>
+
+                </label>
+
+
+                <label class="no-border item item-input item-stacked-label">
+                 <!--  <span class="input-label">Estimativa de rentabilidade média anual real</span>
+                  <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem"> -->
+                  
+                  <div class="row">
+                    <div class="col col-70">
+                       <span class="input-label">Estimativa de rentabilidade média anual real</span>
+                    </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                         <input type="text" name="mensagem" ng-model="formData.mensagem">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box">%</span>
+                    </div>
+                  </div>
+
+                </label>
+
+
+                <label class="no-border item item-input item-stacked-label">
+                 <!--  <span class="input-label">Dependentes para fins de IR</span>
+                  <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
+
+                  <div class="row">
+                    <div class="col col-70">
+                     <span class="input-label">Dependentes para fins de IR</span>
+                    </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                       <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box"></span>
+                    </div>
+                  </div>
+
+                </label>
+
+                <label class="no-border item item-input item-stacked-label">
+                 <!--  <span class="input-label">Aporte financeiro <small>(R$)</small></span>
+                  <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
+                  
+                  <div class="row">
+                    <div class="col col-50">
+                       <span class="input-label">Aporte financeiro <small>(R$)</small></span>
+                    </div>
+                    <div class="col col-40">
+                      <label class="item item-input">
+                      <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box"></span>
+                    </div>
+                  </div>
+
+                </label>
+
               </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value="">NÃO</option>
-              </select>
-            </label>
-
-          <hr>
-
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Antecipação de benefício <br /> <small>(0 a 20)</small></span>
-              <input type="tel" name="telefone" placeholder="%" ng-model="formData.telefone">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Crescimento real do Salário <br /> <small>(ao ano)</small></span></span>
-              <input type="text" name="email" placeholder="%" ng-model="formData.email"> 
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Contribuição do participante</span>
-              <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Estimativa de rentabilidade média anual real</span>
-              <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Dependentes para fins de IR</span>
-              <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Aporte financeiro <small>(R$)</small></span>
-              <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
-            </label>
+            </div>
 
           </div>
 
