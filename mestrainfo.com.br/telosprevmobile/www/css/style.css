@@ -491,3 +491,7 @@ h4.title_label {
 .contato-form .list {
 	background:#FFF;
 }
+
+div.no-wrap p {
+	white-space: normal;
+}

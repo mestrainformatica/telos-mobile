@@ -11,12 +11,12 @@
 
     <div class="item extratoDoMes">
       <div class="label row" >
-        <div class="col col-67">ELIGIBILIDADE PREVISTA PELO PCVI:</div>
+        <div class="col col-67">Eligibilidade prevista pelo PCVI:</div>
         <div class="col valor">12/2030</div>
       </div>
     </div>
     <div class="item item-divider softrow">
-      PREMISSAS SUGERIDAS PELO PARTICIPANTE
+      Premissas sugeridas pelo participante
     </div>
 
         <form id="formCampos">
@@ -26,7 +26,7 @@
                     Idade
                 </div>
                 <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                 <option value="">- Selecione -</option>
+                 <option value=""></option>
                 </select>
             </label>
             <label class="item item-input item-select">
@@ -34,7 +34,7 @@
                   45 anos
               </div>
               <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value="">- Selecione -</option>
+                 <option value=""></option>
               </select>
             </label>
             
@@ -59,28 +59,28 @@
           <hr>
 
             <label class="item item-input item-stacked-label">
-              <span class="input-label">ANTECIPAÇÃO DO BENEFÍCIO</span>
-              <input type="tel" name="telefone" placeholder="%" ng-model="formData.telefone">(0 a 20)
+              <span class="input-label">Antecipação de benefício <br /> <small>(0 a 20)</small></span>
+              <input type="tel" name="telefone" placeholder="%" ng-model="formData.telefone">
             </label>
             <label class="item item-input item-stacked-label">
-              <span class="input-label">CRESCIMENTO REAL DO SALÁRIO</span>
-              <input type="text" name="email" placeholder="seu@email.com" ng-model="formData.email">(ao ano) 
+              <span class="input-label">Crescimento real do Salário <br /> <small>(ao ano)</small></span></span>
+              <input type="text" name="email" placeholder="%" ng-model="formData.email"> 
             </label>
             <label class="item item-input item-stacked-label">
-              <span class="input-label">CONTRIBUIÇÃO DO PARTICIPANTE</span>
-              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+              <span class="input-label">Contribuição do participante</span>
+              <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem">
             </label>
             <label class="item item-input item-stacked-label">
-              <span class="input-label">ESTIMATIVA DE RENTABILIDADE MÉDIA ANUAL REAL</span>
-              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+              <span class="input-label">Estimativa de rentabilidade média anual real</span>
+              <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem">
             </label>
             <label class="item item-input item-stacked-label">
-              <span class="input-label">DEPENDENTES PARA FINS DE IR</span>
-              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+              <span class="input-label">Dependentes para fins de IR</span>
+              <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
             </label>
             <label class="item item-input item-stacked-label">
-              <span class="input-label">APORTE FINANCEIRO</span>
-              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
+              <span class="input-label">Aporte financeiro <small>(R$)</small></span>
+              <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
             </label>
 
           </div>
