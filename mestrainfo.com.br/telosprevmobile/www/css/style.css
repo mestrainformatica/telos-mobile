@@ -290,11 +290,11 @@ h4.title_label {
 .item.item-divider.softrow {
     padding: 0.75em 1em;
     color: #a0a0a0;
-    font-weight: 400;
+    font-weight: 800;
     background-color: #ececec;
     border-bottom: 0;
     font-size: 14px;
-
+	
 }
 .item.item-divider.softrow .th {
 	border-bottom: 0; margin-bottom: 0;
@@ -510,6 +510,10 @@ div.no-wrap p {
 	margin-left: 0 ;
     padding-left: 0 ;
     color: #adadad;
+}
+
+.extratoDoMes div.col {
+	white-space: normal;
 }
 
 .top-page .extratoDoMes .valor{

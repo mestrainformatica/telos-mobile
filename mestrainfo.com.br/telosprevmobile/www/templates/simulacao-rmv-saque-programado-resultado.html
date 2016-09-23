@@ -149,17 +149,41 @@
     CÔNJUGE
   </div>
   <div class="list">
-    <form class="formCampos">
+    <form class="formCampos" class="formCampo">
       <div class="item">
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Estimativa de rentabilidade média anual</span>
-          <input type="text" name="text" placeholder="Entre a data de simulação e início do benefício" ng-model="formData.email">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Estimativa de rentabilidade média anual</span>
-          <input type="text" name="text" placeholder="Após o início do benefício" ng-model="formData.email">
-        </label>
+        
+        <!-- <label class="no-border item item-input item-stacked-label"> -->
+        <div class="row">
+          <div class="col col-70">
+            <span class="input-label">Estimativa de rentabilidade média anual</span>
+          </div>
+          <div class="col col-20">
+            <label class="item item-input">
+              <input type="text" name="" ng-model="" /> 
+            </label>
+          </div>
+          <div class="col col-10">
+            <span class="input-label box ">%</span>
+          </div>
+        </div>
+        <!-- </label> -->
+  
+        <!-- <label class="no-border item item-input item-stacked-label"> -->
+          <div class="row">
+            <div class="col col-70">
+              <span class="input-label">Estimativa de rentabilidade média anual</span>
+            </div>
+            <div class="col col-20">
+              <label class="item item-input">
+                <input type="text" name="" ng-model="" /> 
+              </label>
+            </div>
+            <div class="col col-10">
+              <span class="input-label box ">%</span>
+            </div>
+          </div>
+        <!-- </label> -->
+  
         <div class="button-bar">
           <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação"">      
         </div>

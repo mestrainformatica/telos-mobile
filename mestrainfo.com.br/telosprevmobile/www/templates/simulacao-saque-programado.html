@@ -19,7 +19,7 @@
       Premissas sugeridas pelo participante
     </div>
 
-        <form id="formCampos">
+        <form id="formCampos" class="formCampo">
           <div class="item">
              <label class="item item-input item-select">
                 <div class="input-label">
@@ -37,9 +37,8 @@
                  <option value="">- Selecione -</option>
               </select>
             </label>
-            
-          <hr>
-             <label class="item item-input item-select">
+
+            <label class="item item-input item-select">
                 <div class="input-label">
                     Tipo de reajuste
                 </div>
@@ -56,32 +55,128 @@
               </select>
             </label>
 
-          <hr>
+             <label class="no-border item item-input item-stacked-label">
+                 <!--  <span class="input-label">Antecipação de benefício <small>(0 a 20)</small></span>
+                  <input type="tel" name="telefone" placeholder="%" ng-model="formData.telefone"> -->
 
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Antecipação do benefício</span>
-              <input type="tel" name="telefone" placeholder="%" ng-model="formData.telefone">(0 a 20)
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Crescimento real do salário</span>
-              <input type="text" name="email" placeholder="seu@email.com" ng-model="formData.email">(ao ano) 
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Contribuição do participante</span>
-              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Estimativa de rentabilidade média anual real</span>
-              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Dependentes para fins de IR</span>
-              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Aporte financeiro</span>
-              <input type="text" name="mensagem" placeholder="Digite sua mensagem.." ng-model="formData.mensagem">
-            </label>
+                  <div class="row">
+                    <div class="col col-70">
+                      <span class="input-label">Antecipação de benefício <small>(0 a 20)</small></span>
+                    </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                        <input type="text" name="telefone" ng-model="formData.telefone" /> 
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box ">%</span>
+                    </div>
+                  </div>
+
+                </label>
+
+                <label class="no-border item item-input item-stacked-label">
+                <!--   <span class="input-label">Crescimento real do Salário <br /> <small>(ao ano)</small></span></span>
+                  <input type="text" name="email" placeholder="%" ng-model="formData.email">  -->
+
+                  <div class="row">
+                    <div class="col col-70">
+                      <span class="input-label">Crescimento real do Salário <br /> <small>(ao ano)</small></span>
+                   </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                         <input type="text" name="email" ng-model="formData.email">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box">%</span>
+                    </div>
+                  </div>
+
+                </label>
+
+
+                <label class="no-border item item-input item-stacked-label">
+                <!--   <span class="input-label">Contribuição do participante</span>
+                  <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem"> -->
+                  
+                  <div class="row">
+                    <div class="col col-70">
+                      <span class="input-label">Contribuição do participante</span>
+                    </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                         <input type="text" name="mensagem" ng-model="formData.mensagem">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box">%</span>
+                    </div>
+                  </div>
+
+                </label>
+
+
+                <label class="no-border item item-input item-stacked-label">
+                 <!--  <span class="input-label">Estimativa de rentabilidade média anual real</span>
+                  <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem"> -->
+                  
+                  <div class="row">
+                    <div class="col col-70">
+                       <span class="input-label">Estimativa de rentabilidade média anual real</span>
+                    </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                         <input type="text" name="mensagem" ng-model="formData.mensagem">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box">%</span>
+                    </div>
+                  </div>
+
+                </label>
+
+
+                <label class="no-border item item-input item-stacked-label">
+                 <!--  <span class="input-label">Dependentes para fins de IR</span>
+                  <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
+
+                  <div class="row">
+                    <div class="col col-70">
+                     <span class="input-label">Dependentes para fins de IR</span>
+                    </div>
+                    <div class="col col-20">
+                      <label class="item item-input">
+                       <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box"></span>
+                    </div>
+                  </div>
+
+                </label>
+
+                <label class="no-border item item-input item-stacked-label">
+                 <!--  <span class="input-label">Aporte financeiro <small>(R$)</small></span>
+                  <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
+                  
+                  <div class="row">
+                    <div class="col col-50">
+                       <span class="input-label">Aporte financeiro <small>(R$)</small></span>
+                    </div>
+                    <div class="col col-40">
+                      <label class="item item-input">
+                      <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                      </label>
+                    </div>
+                    <div class="col col-10">
+                      <span class="input-label box"></span>
+                    </div>
+                  </div>
+
+                </label>
             <label class="item item-input item-select">
               <div class="input-label">
                   Abono Anual?
