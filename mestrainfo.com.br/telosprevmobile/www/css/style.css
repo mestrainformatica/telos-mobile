@@ -344,7 +344,8 @@ h4.title_label {
 
 .label.row, .label.col {
 	font-size: .75em;
-	text-transform: uppercase;
+	/*text-transform: uppercase; @coment */
+
 	padding: 0;
 	line-height: 1em;
 }
@@ -531,6 +532,10 @@ div.no-wrap p {
 	color: #333;
 }
 
+.top-page .item-divider.bg-destaq span{
+	font-weight: 400;
+}
+
 .top-page .item-divider span{
 	margin-top: -25px;
     display: block;
@@ -557,9 +562,9 @@ div.no-wrap p {
 }
 
 #formCampos.formCampo .input-label{
-	font-size: 1.1em;
+	font-size: .9em;
 	font-weight: 300;
-    color: #ccc;
+    color: #888;
     text-transform: uppercase;
     width: 100% !important;
 	max-width:100% !important;
@@ -569,6 +574,7 @@ div.no-wrap p {
 #formCampos.formCampo .input-label.box{
 	text-align: right;
 	padding-top:10px;
+	color: #888;
 }
 
 #formCampos.formCampo .input-label small{
@@ -608,9 +614,17 @@ div.no-wrap p {
 }
 
 #formCampos.formCampo .button-bar{
-	margin-top:20px;
-	padding-top:10px;
-	border-top:1px solid #ccc;
+	/*margin-top:20px;*/
+	/*padding-top:10px;*/
+	/*border-top:1px solid #ccc;*/
+}
+
+#formCampos.formCampo .no-border.item.item-input {
+    padding-left: 0;
+}
+
+#formCampos .separador{
+	margin: 20px 0;
 }
 
 .top-page .separador{
@@ -621,4 +635,87 @@ div.no-wrap p {
 .top-page .separador .label{
 	text-transform: none ;
 	font-size:.9em;
+}
+
+.iteml{
+	padding-left:0;
+}
+
+.nopadding{
+	padding:0;
+}
+
+.nopadding .input-label{
+	text-transform: capitalize !important;
+}
+
+.item.footer{
+	padding-top:0;
+}
+
+.footer.noborder{
+	border:0;
+}
+
+.title{
+	font-size: 1.2em;
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+.item.title{
+	color: #888;
+}
+
+.item .text{
+	color: #b9b9b9;
+}
+
+.item .text.upper{
+	text-transform: uppercase;
+	font-weight: 300;
+}
+
+.item .text .dif{
+	color:#333;
+}
+
+.box-calculo .item{
+	background:#e7e7e7;
+}
+
+.box-calculo .item .input-label{
+	color: #333 !important;
+	text-transform: none !important;
+	font-size:.9em !important;
+}
+
+.box-calculo label.item.item-input{
+	background: #fff !important;
+	padding-top: 0;
+	padding-bottom: 0;
+    margin: 3px 0;
+}
+
+.item.item-input{
+	padding-top:1px;
+	padding-bottom: 1px;
+}
+
+.obs p{
+	font-size:.75em;
+	color: #888;
+}
+
+.extratoDoMes .separador{
+	padding:0;
+}
+
+.menu-item{
+	background: #fdfbf1 !important;
+}
+
+.item-input .input-label.lower{
+	text-transform: none !important;
+	font-size:.9em !important;
 }

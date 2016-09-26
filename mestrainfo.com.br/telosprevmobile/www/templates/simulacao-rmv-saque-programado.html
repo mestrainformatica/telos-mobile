@@ -11,7 +11,7 @@
 
     <div class="item extratoDoMes">
       <div class="label row" >
-        <div class="col col-67">Eligibilidade prevista pelo PCVI:</div>
+        <div class="col col-67 text upper">Eligibilidade prevista pelo PCVI:</div>
         <div class="col valor">12/2030</div>
       </div>
     </div>
@@ -21,6 +21,8 @@
 
         <form id="formCampos" class="formCampo">
           <div class="item">
+
+          <div class="separador">
              <label class="item item-input item-select">
                 <div class="input-label">
                     Idade
@@ -37,8 +39,12 @@
                  <option value=""></option>
               </select>
             </label>
+          </div>
             
-          <hr>
+            
+
+          <div class="separador">
+
              <label class="item item-input item-select">
                 <div class="input-label">
                     Tipo de reajuste
@@ -55,10 +61,11 @@
                  <option value="">NÃO</option>
               </select>
             </label>
+          </div>
 
           <label class="no-border item item-input item-stacked-label">
             <div class="row">
-              <div class="col col-70">
+              <div class="col col-75">
                 <span class="input-label">Antecipação de benefício <small>(0 a 20)</small></span>
               </div>
               <div class="col col-20">
@@ -66,7 +73,7 @@
                   <input type="text" name="telefone" ng-model="formData.telefone" /> 
                 </label>
               </div>
-              <div class="col col-10">
+              <div class="col col-1">
                 <span class="input-label box ">%</span>
               </div>
             </div>
@@ -78,7 +85,7 @@
             <input type="text" name="email" placeholder="%" ng-model="formData.email">  -->
 
             <div class="row">
-              <div class="col col-70">
+              <div class="col col-75">
                 <span class="input-label">Crescimento real do Salário <br /> <small>(ao ano)</small></span>
              </div>
               <div class="col col-20">
@@ -86,7 +93,7 @@
                    <input type="text" name="email" ng-model="formData.email">
                 </label>
               </div>
-              <div class="col col-10">
+              <div class="col col-1">
                 <span class="input-label box">%</span>
               </div>
             </div>
@@ -99,7 +106,7 @@
             <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem"> -->
             
             <div class="row">
-              <div class="col col-70">
+              <div class="col col-75">
                 <span class="input-label">Contribuição do participante</span>
               </div>
               <div class="col col-20">
@@ -107,7 +114,7 @@
                    <input type="text" name="mensagem" ng-model="formData.mensagem">
                 </label>
               </div>
-              <div class="col col-10">
+              <div class="col col-1">
                 <span class="input-label box">%</span>
               </div>
             </div>
@@ -120,7 +127,7 @@
             <input type="text" name="mensagem" placeholder="%" ng-model="formData.mensagem"> -->
             
             <div class="row">
-              <div class="col col-70">
+              <div class="col col-75">
                  <span class="input-label">Estimativa de rentabilidade média anual real</span>
               </div>
               <div class="col col-20">
@@ -128,7 +135,7 @@
                    <input type="text" name="mensagem" ng-model="formData.mensagem">
                 </label>
               </div>
-              <div class="col col-10">
+              <div class="col col-1">
                 <span class="input-label box">%</span>
               </div>
             </div>
@@ -141,7 +148,7 @@
             <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
 
             <div class="row">
-              <div class="col col-70">
+              <div class="col col-75">
                <span class="input-label">Dependentes para fins de IR</span>
               </div>
               <div class="col col-20">
@@ -149,7 +156,7 @@
                  <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                 </label>
               </div>
-              <div class="col col-10">
+              <div class="col col-1">
                 <span class="input-label box"></span>
               </div>
             </div>
@@ -161,17 +168,17 @@
             <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
             
             <div class="row">
-              <div class="col col-50">
+              <div class="col col-70">
                  <span class="input-label">Aporte financeiro <small>(R$)</small></span>
               </div>
-              <div class="col col-40">
+              <div class="col col-30">
                 <label class="item item-input">
                 <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                 </label>
               </div>
-              <div class="col col-10">
+<!--               <div class="col col-10">
                 <span class="input-label box"></span>
-              </div>
+              </div> -->
             </div>
 
           </label>
@@ -188,7 +195,7 @@
                 <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
 
                 <div class="row">
-                  <div class="col col-70">
+                  <div class="col col-75">
                    <span class="input-label">Saque programado</span>
                   </div>
                   <div class="col col-20">
@@ -196,14 +203,14 @@
                      <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                     </label>
                   </div>
-                  <div class="col col-10">
+                  <div class="col col-1">
                     <span class="input-label box">%</span>
                   </div>
                 </div>
               </label>
               <label class="no-border item item-input item-stacked-label">
                  <div class="row">
-                  <div class="col col-70">
+                  <div class="col col-75">
                    <span class="input-label">Renda mensal vitalícia</span>
                   </div>
                   <div class="col col-20">
@@ -211,7 +218,7 @@
                      <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                     </label>
                   </div>
-                  <div class="col col-10">
+                  <div class="col col-1">
                     <span class="input-label box">%</span>
                   </div>
                 </div>
@@ -223,59 +230,65 @@
             Premissas específicas de saque programado
           </div>
             
-            <div class="item">
-              <label class="no-border item item-input item-stacked-label">
-                 <div class="row">
-                  <div class="col col-70">
-                   <span class="input-label">Renda mensal</span>
-                  </div>
-                  <div class="col col-20">
-                    <label class="item item-input">
-                     <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
-                    </label>
-                  </div>
-                  <div class="col col-10">
-                    <span class="input-label box">%</span>
-                  </div>
+          <div class="item">
+            <label class="no-border item item-input item-stacked-label">
+               <div class="row">
+                <div class="col col-75">
+                 <span class="input-label">Renda mensal</span>
                 </div>
-
-              </label>
-              
-              <label class="no-border item item-input item-stacked-label">
-                 <div class="row">
-                  <div class="col col-70">
-                   <span class="input-label">Estimativa de rentabilidade</span>
-                  </div>
-                  <div class="col col-20">
-                    <label class="item item-input">
-                     <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
-                    </label>
-                  </div>
-                  <div class="col col-10">
-                    <span class="input-label box">%</span>
-                  </div>
+                <div class="col col-20">
+                  <label class="item item-input">
+                   <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                  </label>
                 </div>
-
-              </label>
-
-              <label class="item item-input item-select">
-                <div class="input-label">
-                    Abono Anual?
+                <div class="col col-1">
+                  <span class="input-label box">%</span>
                 </div>
-                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                   <option value="">NÃO</option>
-                </select>
-              </label>
+              </div>
+
+            </label>
+            
+            <label class="no-border item item-input item-stacked-label">
+               <div class="row">
+                <div class="col col-75">
+                 <span class="input-label">Estimativa de rentabilidade</span>
+                </div>
+                <div class="col col-20">
+                  <label class="item item-input">
+                   <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                  </label>
+                </div>
+                <div class="col col-1">
+                  <span class="input-label box">%</span>
+                </div>
+              </div>
+
+            </label>
+
+            <label class="item item-input item-select">
+              <div class="input-label">
+                  Abono Anual?
+              </div>
+              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                 <option value="">NÃO</option>
+              </select>
+            </label>
+          </div>
+          
+          <div class="item footer noborder">
+
+            <div class="the_error">
+              <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+            </div>
+            <div class="padding">
+              <div class="button-bar">
+                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+              </div>
             </div>
 
-          <div class="the_error">
-            <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
           </div>
-          <div class="padding">
-            <div class="button-bar">
-              <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
-            </div>
-          </div>
+
+
         </form>
     </div>
   </div>
