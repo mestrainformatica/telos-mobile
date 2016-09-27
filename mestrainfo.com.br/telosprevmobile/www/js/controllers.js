@@ -522,7 +522,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     console.log('clicou');
         $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
-
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : { "data_atualizacao":$scope.formData.data_atualizacao, 'acao':'saldoContas' }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
       ).then(function(resp) {
@@ -996,9 +995,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 
 .controller('SimulacaoSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  $scope.submit = function() {
+   $scope.formData = {};
+
+  $scope.submit = function(formData) {
     console.log('teste');
-    console.log(this.formData);
+    console.log(formData);
     $state.go('simulacaosaqueprogramadoresultado');
   }
 }])

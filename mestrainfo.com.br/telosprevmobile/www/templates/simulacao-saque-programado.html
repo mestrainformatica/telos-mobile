@@ -20,7 +20,7 @@
       Premissas sugeridas pelo participante
     </div>
 
-        <form id="formCampos" class="formCampo" ng-submit="submit()">
+        <form id="formCampos" class="formCampo" ng-submit="submit(formData)">
           <div class="item">
 
             <div class="separador">
@@ -28,15 +28,16 @@
                   <div class="input-label">
                       Busca
                   </div>
-                  <select class="ion-input-select" name="idade" ng-model="formData.idade" ng-options="key as value.prazo for (key,value) in simulacaoSaqueProgramado.idade">
+                  <select class="ion-input-select" name="idade" ng-model="formData.idade">
                    <option value="">- Selecione -</option>
+                   <option value="45">45 anos</option>
                   </select>
               </label>
               <label class="item item-input item-select">
                 <div class="input-label">
                     Selecione
                 </div>
-                <select class="ion-input-select" name="tipo_idade" ng-model="formData.tipo_idade" ng-options="key as value for (key , value)  in simulacaoSaqyeProgramado.tipo_idade">
+                <select class="ion-input-select" name="tipo_idade" >
                    <option value="">- Selecione -</option>
                 </select>
               </label>
@@ -54,7 +55,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                        <input type="text" name="antecipacao_beneficio" ng-model="" /> 
+                        <input type="text" name="antecipacao_beneficio"/> 
                       </label>
                     </div>
                     <div class="col col-5">
@@ -66,7 +67,7 @@
 
                 <label class="iteml no-border item item-input item-stacked-label">
                 <!--   <span class="input-label">Crescimento real do Salário <br /> <small>(ao ano)</small></span></span>
-                  <input type="text" name="email" placeholder="%" ng-model="formData.email">  -->
+                  <input type="text" name="email" placeholder="%">  -->
 
                   <div class="row">
                     <div class="col col-75">
@@ -74,7 +75,7 @@
                    </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="email" ng-model="formData.email">
+                         <input type="text" name="email">
                       </label>
                     </div>
                     <div class="col col-5">
@@ -95,7 +96,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="mensagem" ng-model="formData.mensagem">
+                         <input type="text" name="mensagem" >
                       </label>
                     </div>
                     <div class="col col-5">
@@ -116,7 +117,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="mensagem" ng-model="formData.mensagem">
+                         <input type="text" name="mensagem" >
                       </label>
                     </div>
                     <div class="col col-5">
@@ -137,7 +138,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                       <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                       <input type="text" name="mensagem" placeholder="0,00" >
                       </label>
                     </div>
                     <div class="col col-5">
@@ -157,7 +158,7 @@
                     </div>
                     <div class="col col-30">
                       <label class="item item-input">
-                      <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem" />
+                      <input type="text" name="mensagem" placeholder="0,00" />
                       </label>
                     </div>
 
@@ -170,7 +171,7 @@
               <div class="input-label">
                   Abono Anual?
               </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+              <select class="ion-input-select">
                  <option value="">NÃO</option>
               </select>
             </label>
@@ -185,7 +186,7 @@
             </div>
             <div class="padding">
               <div class="button-bar">
-                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitSaqueProgramado" value="Calcular Simulação" >      
+                <input ng-hide="loading" type="submit" class="button button-positive button-block" value="Calcular Simulação" >      
               </div>
             </div>
           
