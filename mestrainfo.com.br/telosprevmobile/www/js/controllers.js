@@ -515,7 +515,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
   $scope.submit = function(){
     
-
     if (!$scope.formData.data_atualizacao){
       $rootScope.errorMsg = "Por favor preencha todos os campos";
     } else {
@@ -997,7 +996,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 
 .controller('SimulacaoSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+  $scope.submit = function() {
+    console.log('teste');
+    console.log(this.formData);
+    $state.go('simulacaosaqueprogramadoresultado');
+  }
 }])
 
 .controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {

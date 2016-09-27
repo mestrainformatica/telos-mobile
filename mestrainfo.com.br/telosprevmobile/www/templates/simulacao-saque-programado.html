@@ -16,13 +16,17 @@
       </div>
     </div>
 
+<<<<<<< HEAD
 
 
     <div class="sec-title item item-divider softrow">
+=======
+    <div class="item item-divider softrow">
+>>>>>>> 7c62b8ee7b8e57132c6bfdfe7ac87900b4f0a77a
       Premissas sugeridas pelo participante
     </div>
 
-        <form id="formCampos" class="formCampo">
+        <form id="formCampos" class="formCampo" ng-submit="submit()">
           <div class="item">
 
             <div class="separador">
@@ -30,38 +34,20 @@
                   <div class="input-label">
                       Busca
                   </div>
-                  <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                    <option value="">IDADE</option>
-                    <option value="">NASCIMENTO</option>
+                  <select class="ion-input-select" name="idade" ng-model="formData.idade" ng-options="key as value.prazo for (key,value) in simulacaoSaqueProgramado.idade">
+                   <option value="">- Selecione -</option>
                   </select>
               </label>
               <label class="item item-input item-select">
                 <div class="input-label">
                     Selecione
                 </div>
-                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                   <option value="">45 ANOS</option>
+                <select class="ion-input-select" name="tipo_idade" ng-model="formData.tipo_idade" ng-options="key as value for (key , value)  in simulacaoSaqyeProgramado.tipo_idade">
+                   <option value="">- Selecione -</option>
                 </select>
               </label>
             </div>
           </div>
-
-           <!--  <label class="item item-input item-select">
-                <div class="input-label">
-                    Tipo de reajuste
-                </div>
-                <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                 <option value="">RENTABILIDADE</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-              <div class="input-label">
-                  Com pensão?
-              </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value="">NÃO</option>
-              </select>
-            </label> -->
 
           <div class="item">
              <label class="iteml no-border item item-input item-stacked-label">
@@ -74,7 +60,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                        <input type="text" name="telefone" ng-model="formData.telefone" /> 
+                        <input type="text" name="antecipacao_beneficio" ng-model="" /> 
                       </label>
                     </div>
                     <div class="col col-5">
@@ -180,9 +166,7 @@
                       <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem" />
                       </label>
                     </div>
-                    <!-- <div class="col col-5">
-                      <span class="input-label box"></span>
-                    </div> -->
+
                   </div>
 
                 </label>
@@ -199,8 +183,6 @@
 
             </label>
 
-  
-            <!-- </div> -->
 
           </div>
 
@@ -211,7 +193,7 @@
             </div>
             <div class="padding">
               <div class="button-bar">
-                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitSaqueProgramado" value="Calcular Simulação" >      
               </div>
             </div>
           
