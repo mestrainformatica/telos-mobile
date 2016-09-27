@@ -493,6 +493,11 @@ h4.title_label {
 	background:#FFF;
 }
 
+div.text-small p {
+	margin: 10px;
+	color: #b8b8b8;
+}
+
 div.no-wrap p {
 	white-space: normal;
 }
