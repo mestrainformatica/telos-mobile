@@ -10,7 +10,7 @@
     </div>
 
     <div class="item extratoDoMes">
-      <div class="label row" >
+      <div class="row" >
         <div class="col col-67 text upper">Eligibilidade prevista pelo PCVI:</div>
         <div class="col valor">12/2030</div>
       </div>
@@ -22,46 +22,56 @@
         <form id="formCampos" class="formCampo">
           <div class="item">
 
-          <div class="separador">
-             <label class="item item-input item-select">
-                <div class="input-label">
-                    Idade
-                </div>
-                <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                 <option value=""></option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-              <div class="input-label">
-                  45 anos
-              </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value=""></option>
-              </select>
-            </label>
-          </div>
-            
-            
+            <div class="select-box">
+                    <div class="row">
+                      <div class="col col-100">
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Busca
+                            </div>
+                            <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
+                             <option value="">IDADE</option>
+                             <option value="">NASCIMENTO</option>
+                            </select>
+                        </label>
+                        <label class="item item-input item-select">
+                          <div class="input-label">
+                              Selecione
+                          </div>
+                          <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                             <option value="">45 ANOS</option>
+                          </select>
+                        </label>
+                        </div>
+                      </div>
+                  </div>
+                
+                  <div class="select-box">
+                    <div class="row">
+                      <div class="col col-100">
 
-          <div class="separador">
+                        <label class="item item-input item-select">
+                            <div class="input-label lower">
+                                Tipo de reajuste
+                            </div>
+                            <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
+                             <option value="">RENTABILIDADE</option>
+                            </select>
+                        </label>
+              
+                        <label class="item item-input item-select">
+                          <div class="input-label lower">
+                              Com pensão?
+                          </div>
+                          <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                             <option value="">NÃO</option>
+                          </select>
+                        </label>
 
-             <label class="item item-input item-select">
-                <div class="input-label">
-                    Tipo de reajuste
-                </div>
-                <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                 <option value="">RENTABILIDADE</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-              <div class="input-label">
-                  Com pensão?
-              </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value="">NÃO</option>
-              </select>
-            </label>
-          </div>
+                      </div>
+                    </div>
+
+                  </div>
 
           <label class="no-border item item-input item-stacked-label">
             <div class="row">
@@ -73,7 +83,7 @@
                   <input type="text" name="telefone" ng-model="formData.telefone" /> 
                 </label>
               </div>
-              <div class="col col-1">
+              <div class="col col-5">
                 <span class="input-label box ">%</span>
               </div>
             </div>
@@ -93,7 +103,7 @@
                    <input type="text" name="email" ng-model="formData.email">
                 </label>
               </div>
-              <div class="col col-1">
+              <div class="col col-5">
                 <span class="input-label box">%</span>
               </div>
             </div>
@@ -114,7 +124,7 @@
                    <input type="text" name="mensagem" ng-model="formData.mensagem">
                 </label>
               </div>
-              <div class="col col-1">
+              <div class="col col-5">
                 <span class="input-label box">%</span>
               </div>
             </div>
@@ -135,7 +145,7 @@
                    <input type="text" name="mensagem" ng-model="formData.mensagem">
                 </label>
               </div>
-              <div class="col col-1">
+              <div class="col col-5">
                 <span class="input-label box">%</span>
               </div>
             </div>
@@ -156,7 +166,7 @@
                  <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                 </label>
               </div>
-              <div class="col col-1">
+              <div class="col col-5">
                 <span class="input-label box"></span>
               </div>
             </div>
@@ -169,7 +179,7 @@
             
             <div class="row">
               <div class="col col-70">
-                 <span class="input-label">Aporte financeiro <small>(R$)</small></span>
+                 <span class="input-label">Aporte financeiro (R$)</span>
               </div>
               <div class="col col-30">
                 <label class="item item-input">
@@ -203,7 +213,7 @@
                      <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                     </label>
                   </div>
-                  <div class="col col-1">
+                  <div class="col col-5">
                     <span class="input-label box">%</span>
                   </div>
                 </div>
@@ -218,7 +228,7 @@
                      <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                     </label>
                   </div>
-                  <div class="col col-1">
+                  <div class="col col-5">
                     <span class="input-label box">%</span>
                   </div>
                 </div>
@@ -241,7 +251,7 @@
                    <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                   </label>
                 </div>
-                <div class="col col-1">
+                <div class="col col-5">
                   <span class="input-label box">%</span>
                 </div>
               </div>
@@ -258,7 +268,7 @@
                    <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
                   </label>
                 </div>
-                <div class="col col-1">
+                <div class="col col-5">
                   <span class="input-label box">%</span>
                 </div>
               </div>

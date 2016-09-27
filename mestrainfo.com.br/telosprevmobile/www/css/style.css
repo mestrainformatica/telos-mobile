@@ -659,16 +659,17 @@ div.no-wrap p {
 
 .title{
 	font-size: 1.2em;
-    color: #ccc;
+    color: #a7a7a7;
     text-transform: uppercase;
 }
 
 .item.title{
 	color: #888;
+	white-space: normal;
 }
 
 .item .text{
-	color: #b9b9b9;
+	color: #888;
 }
 
 .item .text.upper{
@@ -678,6 +679,10 @@ div.no-wrap p {
 
 .item .text .dif{
 	color:#333;
+}
+
+.item p{
+	font-size: 11px;
 }
 
 .box-calculo .item{
