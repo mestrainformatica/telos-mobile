@@ -1095,7 +1095,6 @@ console.log(resp);
           'data_nascimento': $scope.matricula.informacoesParticipante[0].data_nascimento,
           'sexo': $scope.matricula.informacoesParticipante[0].sexo,
           'data_eligibilidade_prevista': $scope.matricula.informacoesParticipante[0].data_eligibilidade_prevista,
-          // 'idade': $scope.matricula.simuladorBeneficios[0].idade,
           'idade': formData.idade,
           'mes_ano': '',
           'salario_participante': '',
@@ -1104,7 +1103,7 @@ console.log(resp);
           'antecipacao_beneficio': formData.antecipacao_beneficio,
           'aporte': formData.aporte,
           'estimativa_rent_entre': formData.estimativa_rent_entre,
-          'estimativa_rent_apos': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_apos,
           'renda_mensal': formData.renda_mensal,
           'abono_anual': formData.abono_anual,
           'dependentes_ir': formData.dependentes_ir
@@ -1113,8 +1112,6 @@ console.log(resp);
       ).then(function(resp) {
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
-
-console.log(resp);
 
         $ionicLoading.hide();
         

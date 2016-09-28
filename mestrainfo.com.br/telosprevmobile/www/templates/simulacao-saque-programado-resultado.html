@@ -52,6 +52,20 @@
       </div>
       
       <hr>
+      
+      <div class="separador">
+        <div class="label row" >
+          <div class="col col-67 text">Última renda mensal não vitalícia em <span class="dif">11/2135</span></div>
+          <div class="col valor">0,00</div>
+        </div> 
+      </div>
+      
+      <div class="separador">
+
+        <div class="label row" >
+          <div class="col col-67 text">Saldo remanescente à ser pago em <span class="dif">12/2135</span></div>
+          <div class="col valor">0,00</div>
+        </div>
 
       <div class="label row" >
         <div class="col col-67 text">Última renda mensal não vitalícia em <span class="dif">{{value.ultima_renda_data}}</span></div>
@@ -61,6 +75,7 @@
         <div class="col col-67 text">Saldo remanescente à ser pago em <span class="dif">{{value.saldo_remanescente_data}}</span></div>
         <div class="col valor">{{value.saldo_remanescente_valor}}</div>
       </div>
+
   </div>
 
   <div class="list">
@@ -70,11 +85,11 @@
         <div class="item">
           <div class="row">
             <div class="col col-70">
-              <span class="input-label">Estimativa de rentabilidade média anual <small>(0 a 20)</small></span>
+              <span class="input-label">Estimativa de rentabilidade média anual <small>Entre a data de simulação e início de benefício</small></span>
             </div>
             <div class="col col-20">
               <label class="item item-input">
-                <input type="text" name="" /> 
+                <input type="text" name="" ng-model="formData.estimativa_rent_entre"/> 
               </label>
             </div>
             <div class="col col-10">
@@ -84,11 +99,13 @@
 
           <div class="row">
             <div class="col col-70">
-              <span class="input-label">Estimativa de rentabilidade média anual <small>(0 a 20)</small></span>
+              <span class="input-label">Estimativa de rentabilidade média anual <small>Após o início do benefício</small></span>
             </div>
             <div class="col col-20">
               <label class="item item-input">
-                <input type="text" name="" /> 
+
+                <input type="text" name="" ng-model="formData.estimativa_rent_apos" /> 
+
               </label>
             </div>
             <div class="col col-10">
