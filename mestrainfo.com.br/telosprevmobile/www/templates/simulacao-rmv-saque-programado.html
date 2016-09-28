@@ -41,7 +41,7 @@
                             <div class="input-label">
                                 Busca
                             </div>
-                            <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
+                            <select class="ion-input-select">
                              <option value="">IDADE</option>
                              <option value="">NASCIMENTO</option>
                             </select>
@@ -50,7 +50,7 @@
                           <div class="input-label">
                               Selecione
                           </div>
-                          <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                          <select class="ion-input-select" ng-model="formData.idade" >
                              <option value="">45 ANOS</option>
                           </select>
                         </label>
@@ -66,7 +66,7 @@
                             <div class="input-label lower">
                                 Tipo de reajuste
                             </div>
-                            <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
+                            <select class="ion-input-select" ng-model="formData.tipo_reajuste">
                              <option value="">RENTABILIDADE</option>
                             </select>
                         </label>
@@ -75,7 +75,7 @@
                           <div class="input-label lower">
                               Com pensão?
                           </div>
-                          <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                          <select class="ion-input-select" ng-model="formData.pensao">
                              <option value="">NÃO</option>
                           </select>
                         </label>
@@ -92,7 +92,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="text" name="telefone" ng-model="formData.telefone" /> 
+                  <input type="text" name="antecipacao_beneficiocresc_real_sal" ng-model="formData.antecipacao_beneficiocresc_real_sal" /> 
                 </label>
               </div>
               <div class="col col-5">
@@ -112,7 +112,7 @@
              </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="text" name="email" ng-model="formData.email">
+                   <input type="text" name="cresc_real_sal" ng-model="formData.cresc_real_sal">
                 </label>
               </div>
               <div class="col col-5">
@@ -133,7 +133,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="text" name="mensagem" ng-model="formData.mensagem">
+                   <input type="text" name="contribuicao_participante" ng-model="formData.contribuicao_participante">
                 </label>
               </div>
               <div class="col col-5">
@@ -154,7 +154,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="text" name="mensagem" ng-model="formData.mensagem">
+                   <input type="text" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre">
                 </label>
               </div>
               <div class="col col-5">
@@ -175,7 +175,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                 <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                 <input type="text" name="dependentes_ir" placeholder="0,00" ng-model="formData.dependentes_ir">
                 </label>
               </div>
               <div class="col col-5">
@@ -195,7 +195,7 @@
               </div>
               <div class="col col-30">
                 <label class="item item-input">
-                <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                <input type="text" name="aporte" placeholder="0,00" ng-model="formData.aporte">
                 </label>
               </div>
 <!--               <div class="col col-10">
@@ -242,7 +242,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                     <input type="text" name="renda_mensal" placeholder="0,00" ng-model="formData.renda_mensal">
                     </label>
                   </div>
                   <div class="col col-5">
@@ -290,7 +290,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                     <input type="text" name="estimativa_rent_apos" placeholder="0,00" ng-model="formData.estimativa_rent_apos">
                     </label>
                   </div>
                   <div class="col col-5">
@@ -304,7 +304,7 @@
                 <div class="input-label">
                     Abono Anual?
                 </div>
-                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                <select class="ion-input-select" ng-model="formData.abono" >
                    <option value="">NÃO</option>
                 </select>
               </label>
