@@ -208,7 +208,12 @@
           </div>
 
           <div class="sec-title item item-divider softrow">
-            Escolha os percentuais de distribuição de saldo
+           
+            <div class="row">
+              <div class="col col-100">
+                Escolha os percentuais de distribuição de saldo
+              </div>
+            </div>
           </div>
 
             <div class="item">
@@ -256,50 +261,55 @@
               </div>
             </div>
           </div>
-            
-          <div class="item">
-            <label class="no-border item item-input item-stacked-label">
-               <div class="row">
-                <div class="col col-75">
-                 <span class="input-label">Renda mensal</span>
-                </div>
-                <div class="col col-20">
-                  <label class="item item-input">
-                   <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
-                  </label>
-                </div>
-                <div class="col col-5">
-                  <span class="input-label box">%</span>
-                </div>
-              </div>
+          
+          <div class="item-section">
 
-            </label>
-            
-            <label class="no-border item item-input item-stacked-label">
-               <div class="row">
-                <div class="col col-75">
-                 <span class="input-label">Estimativa de rentabilidade</span>
+            <div class="item">
+              <label class="no-border item item-input item-stacked-label">
+                 <div class="row">
+                  <div class="col col-75">
+                   <span class="input-label">Renda mensal</span><p>Em percentual do saldo do dia</p>
+                  </div>
+                  <div class="col col-20">
+                    <label class="item item-input">
+                     <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem" />
+                    </label>
+                    <p>(0,3 a 2,0)</p>
+                  </div>
+                  <div class="col col-5">
+                    <span class="input-label box">%</span>
+                  </div>
                 </div>
-                <div class="col col-20">
-                  <label class="item item-input">
-                   <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
-                  </label>
-                </div>
-                <div class="col col-5">
-                  <span class="input-label box">%</span>
-                </div>
-              </div>
 
-            </label>
+              </label>
+              
+              <label class="no-border item item-input item-stacked-label">
+                 <div class="row">
+                  <div class="col col-75">
+                   <span class="input-label">Estimativa de rentabilidade</span><p>Média anual real após o início do benefício</p>
+                  </div>
+                  <div class="col col-20">
+                    <label class="item item-input">
+                     <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                    </label>
+                  </div>
+                  <div class="col col-5">
+                    <span class="input-label box">%</span>
+                  </div>
+                </div>
 
-            <label class="abonoselect item item-input item-select">
-              <div class="input-label">
-                  Abono Anual?
-              </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value="">NÃO</option>
-              </select>
-            </label>
+              </label>
+
+              <label class="abonoselect item item-input item-select">
+                <div class="input-label">
+                    Abono Anual?
+                </div>
+                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                   <option value="">NÃO</option>
+                </select>
+              </label>
+            </div>
+
           </div>
           
           <div class="item footer noborder">

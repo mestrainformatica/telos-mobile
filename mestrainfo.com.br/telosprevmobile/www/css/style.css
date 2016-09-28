@@ -763,3 +763,10 @@ div.no-wrap p {
     text-transform: uppercase !important;
     white-space: normal;
 }
+
+.item-section p{
+	white-space: normal;
+	font-size:.65em;
+	color: #A9A9AA;
+	text-transform: uppercase;
+}
