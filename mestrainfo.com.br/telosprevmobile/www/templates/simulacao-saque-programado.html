@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="item item-divider softrow">
+    <div class="sec-title item item-divider softrow">
       Premissas sugeridas pelo participante
     </div>
 
@@ -165,15 +165,13 @@
                   </div>
 
                 </label>
-
-      
-            <label class="item item-input item-select">
-              <div class="input-label">
-                  Abono Anual?
-              </div>
-              <select class="ion-input-select">
-                 <option value="">NÃO</option>
-              </select>
+            <label class="abonoselect item item-input item-select">
+                  <div class="input-label">
+                      Abono Anual?
+                  </div>
+                  <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
+                     <option value="">NÃO</option>
+                  </select>
             </label>
 
 

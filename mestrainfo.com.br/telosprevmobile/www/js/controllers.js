@@ -995,7 +995,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 
 .controller('SimulacaoSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-   $scope.formData = {};
+  $scope.formData = {};
 
   $scope.submit = function(formData) {
     console.log('teste');
