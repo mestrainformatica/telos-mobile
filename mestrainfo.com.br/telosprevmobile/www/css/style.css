@@ -587,6 +587,7 @@ div.no-wrap p {
 #formCampos.formCampo .input-label small{
 	display: block;
 	font-size: .7em;
+	line-height: 1.1em;
 }
 
 
@@ -769,4 +770,8 @@ div.no-wrap p {
 	font-size:.65em;
 	color: #A9A9AA;
 	text-transform: uppercase;
+}
+
+.input-legend{
+	text-align: right;
 }
