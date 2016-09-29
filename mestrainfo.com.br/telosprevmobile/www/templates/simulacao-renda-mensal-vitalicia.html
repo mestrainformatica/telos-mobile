@@ -78,7 +78,7 @@
                                 Tipo de reajuste
                             </div>
                             <select class="ion-input-select" ng-model="formData.tipo_reajuste">
-                             <option value="">RENTABILIDADE</option>
+                             <option value="1">RENTABILIDADE</option>
                             </select>
                         </label>
               
@@ -87,7 +87,8 @@
                               Com pensão?
                           </div>
                           <select class="ion-input-select" ng-model="formData.pensao">
-                             <option value="">NÃO</option>
+                             <option value="0">NÃO</option>
+                             <option value="1">SIM</option>
                           </select>
                         </label>
 
@@ -242,9 +243,12 @@
               <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
             </div>
             <div class="padding">
-              <div class="button-bar">
+              
+              <div class="button-bar" ng-show="formData.pensao == 1">
                 <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a>
-              </div> <div class="button-bar">
+              </div>
+
+              <div class="button-bar">
                 <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
               </div>
             </div>
