@@ -1046,12 +1046,12 @@ console.log(resp);
             if (resp.data.result.emailEnviado){
               $scope.formData = {};
               setTimeout(function() {
-                $state.go('simulacaorendamensalvitalicia');
+                $state.go('simulacaorendamensalvitaliciaresultado');
               }, 1200);
             } else {
-              scope.formData = {};
+              $scope.formData = {};
               setTimeout(function() {
-                $state.go('simulacaorendamensalvitalicia');
+                $state.go('simulacaorendamensalvitaliciaresultado');
               }, 1200);
             }
         }
