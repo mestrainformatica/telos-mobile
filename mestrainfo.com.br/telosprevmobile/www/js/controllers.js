@@ -1002,32 +1002,32 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
           'matricula': $scope.matricula.informacoesParticipante[0].matricula,
           'cod_plano': $scope.matricula.dadosCadastrais[0].cod_fundo,
-          'admissao_patroc': $scope.matricula.informacoesParticipante[0].admissao_patroc,
-          'data_nascimento': $scope.matricula.informacoesParticipante[0].data_nascimento,
-          'sexo': $scope.matricula.informacoesParticipante[0].sexo,
-          'tipo_reajuste': formData.tipo_reajuste,
-          'data_eligibilidade_prevista': formData.idade,
+          'admissao_patroc': '01/05/1958',
+          'data_nascimento': '05/01/1998',
+          'sexo': 'M',
+          'tipo_reajuste': '3',
+          'data_eligibilidade_prevista': '07/2022',
           'idade': formData.idade,
           'mes_ano': '',
-          'salario_participante': '',
+          'salario_participante': '90004,00',
           'cresc_real_sal': formData.cresc_real_sal,
           'contribuicao_participante': formData.contribuicao_participante,
           'pensao': formData.pensao,
           'antecipacao_beneficio': formData.antecipacao_beneficio,
           'aporte': formData.aporte,
-          'estimativa_rent_entre': formData.estimativa_rent_entre,
-          'dependentes_para_fins_ir': formData.dependentes_ir,
-          'cod_opcao_tributacao': '',
-          'beneficiario': [
-            {
-              'beneficiario': '',
-              'dt_nascimento': '',
-              'vinculo': '',
-              'sexo': '',
-              'parentesco': '',
-              'editavel': ''
-            }
-          ]
+          'estimativa_rent_entre': '3,00',
+          'qtd_depend_ir': '0',
+          'cod_opcao_tributacao': '02'
+          // 'beneficiario': [
+          //   {
+          //     'beneficiario': '',
+          //     'dt_nascimento': '',
+          //     'vinculo': '',
+          //     'sexo': '',
+          //     'parentesco': '',
+          //     'editavel': ''
+          //   }
+          // ]
 
         }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {

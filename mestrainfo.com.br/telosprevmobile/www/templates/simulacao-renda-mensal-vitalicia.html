@@ -87,8 +87,8 @@
                               Com pensão?
                           </div>
                           <select class="ion-input-select" ng-model="formData.pensao">
-                             <option value="0">NÃO</option>
-                             <option value="1">SIM</option>
+                             <option value="N">NÃO</option>
+                             <option value="S">SIM</option>
                           </select>
                         </label>
 
@@ -242,7 +242,7 @@
             <div class="padding">
 
               
-              <div class="button-bar" ng-show="formData.pensao == 1">
+              <div class="button-bar" ng-show="formData.pensao == 'S'">
                 <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a>
               </div>
 
