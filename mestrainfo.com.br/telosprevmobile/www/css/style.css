@@ -534,6 +534,22 @@ div.no-wrap p {
 	font-weight: 400;
 }
 
+.item.bg-destaq{
+	background: #d8d8d8;
+	color: #333;
+}
+
+.bg-destaq span{
+	color: #888;
+	width: 100%;
+    display: block;
+    padding: 10px 30px;
+}
+
+.bg-destaq.item-select{
+	padding: 5px 16px 0 !important;
+}
+
 .top-page .item-divider.bg-destaq{
 	background: #d8d8d8;
 	color: #333;

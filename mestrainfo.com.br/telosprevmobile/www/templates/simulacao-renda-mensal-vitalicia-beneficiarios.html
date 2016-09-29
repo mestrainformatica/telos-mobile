@@ -4,7 +4,7 @@
         <div ng-include="'js/directives/userInfo.html'"></div> 
     </div>
 
-  <div class="list" id="mainMenu">
+  <div class="" id="mainMenu">
 
     <div class="top-page">
 
@@ -21,19 +21,24 @@
     <form id="formCampos" class="formCampo">
 
       <div>
-        <div class="item item-divider softrow item-select bg-destaq" ng-click="beneficiarioToggle(1)">
+        <div class="item softrow item-select bg-destaq">
           <div class="row">
-            <div class="col">
+           
+
+            <div class="col col-10">
               <label class="toggle toggle-calm ">
                  <input type="checkbox">
                  <div class="track">
                    <div class="handle"></div>
                  </div>
                </label>
-    
-              <span>BENEFICIÁRIO 1</span>
-
             </div>
+            
+            <div class="col" ng-click="beneficiarioToggle()">
+              <span>BENEFICIÁRIO 1</span>
+            </div>
+
+      
           </div>
 
         </div>
