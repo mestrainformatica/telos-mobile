@@ -71,7 +71,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                        <input type="text" name="antecipacao_beneficio"/> 
+                        <input type="text" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio"/> 
                       </label>
                     </div>
                     <div class="col col-10">
@@ -91,7 +91,7 @@
                    </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="email">
+                         <input type="text" name="" ng-model="formData.cresc_real_sal">
                       </label>
                     </div>
                     <div class="col col-10">
@@ -112,7 +112,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="mensagem" >
+                         <input type="text" name="contribuicao_participante" ng-model="formData.contribuicao_participante">
                       </label>
                     </div>
                     <div class="col col-10">
@@ -133,7 +133,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="mensagem" >
+                         <input type="text" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre">
                       </label>
                     </div>
                     <div class="col col-10">
@@ -154,7 +154,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                       <input type="text" name="mensagem" placeholder="0,00" >
+                       <input type="text" name="dependentes_ir" placeholder="0,00" ng-model="formData.dependentes_ir">
                       </label>
                     </div>
                     <div class="col col-10">
@@ -174,7 +174,7 @@
                     </div>
                     <div class="col col-33">
                       <label class="item item-input">
-                      <input type="text" name="mensagem" placeholder="0,00" />
+                      <input type="text" name="aporte" placeholder="0,00" ng-model="formData.aporte"/>
                       </label>
                     </div>
 
@@ -189,8 +189,8 @@
                   <div class="input-label">
                       Abono Anual?
                   </div>
-                  <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                     <option value="">NÃO</option>
+                  <select class="ion-input-select" ng-model="formData.abono_anual" >
+                     <option value="0">NÃO</option>
                   </select>
             </label>
 

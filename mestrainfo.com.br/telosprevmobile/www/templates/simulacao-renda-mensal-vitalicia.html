@@ -49,17 +49,17 @@
                             <div class="input-label">
                                 Busca
                             </div>
-                            <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                             <option value="">IDADE</option>
-                             <option value="">NASCIMENTO</option>
+                            <select class="ion-input-select" ng-model="formData.idade_nasc">
+                             <option value="01">IDADE</option>
+                             <option value="02">NASCIMENTO</option>
                             </select>
                         </label>
                         <label class="item item-input item-select">
                           <div class="input-label">
                               Selecione
                           </div>
-                          <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                             <option value="">45 ANOS</option>
+                          <select class="ion-input-select" ng-model="formData.idade">
+                             <option value="45">45 ANOS</option>
                           </select>
                         </label>
                         </div>
@@ -77,8 +77,8 @@
                             <div class="input-label lower">
                                 Tipo de reajuste
                             </div>
-                            <select class="ion-input-select" ng-model="formData.prazoInicial" ng-options="key as value.prazo for (key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-                             <option value="">RENTABILIDADE</option>
+                            <select class="ion-input-select" ng-model="formData.tipo_reajuste">
+                             <option value="1">RENTABILIDADE</option>
                             </select>
                         </label>
               
@@ -86,8 +86,9 @@
                           <div class="input-label lower">
                               Com pensão?
                           </div>
-                          <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                             <option value="">NÃO</option>
+                          <select class="ion-input-select" ng-model="formData.pensao">
+                             <option value="0">NÃO</option>
+                             <option value="1">SIM</option>
                           </select>
                         </label>
 
@@ -111,7 +112,7 @@
                     <div class="col col-20">
                         
                       <label class="item item-input">
-                        <input type="text" name="telefone" ng-model="formData.telefone" />
+                        <input type="text" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" />
                       </label>
 
 
@@ -137,7 +138,7 @@
                    </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="email" ng-model="formData.email">
+                         <input type="text" name="cresc_real_sal" ng-model="formData.cresc_real_sal">
                       </label>
                     </div>
                     <div class="col col-10">
@@ -158,7 +159,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="mensagem" ng-model="formData.mensagem">
+                         <input type="text" name="contribuicao_participante" ng-model="formData.contribuicao_participante">
                       </label>
                     </div>
                     <div class="col col-10">
@@ -179,7 +180,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="mensagem" ng-model="formData.mensagem">
+                         <input type="text" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre">
                       </label>
                     </div>
                     <div class="col col-10">
@@ -200,7 +201,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                       <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                       <input type="text" name="dependentes_para_fins_ir" placeholder="0,00" ng-model="formData.dependentes_para_fins_ir">
                       </label>
                     </div>
                     <div class="col col-10">
@@ -220,7 +221,7 @@
                     </div>
                     <div class="col col-33">
                       <label class="item item-input">
-                      <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                      <input type="text" name="aporte" placeholder="0,00" ng-model="formData.aporte">
                       </label>
                     </div>
 
@@ -232,9 +233,6 @@
 
                 </label>
 
-       <!--        </div>
-            </div> -->
-
           </div>
           
           <div class="item footer noborder">
@@ -242,10 +240,12 @@
               <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
             </div>
             <div class="padding">
-            
-              <div class="button-bar">
+
+              
+              <div class="button-bar" ng-show="formData.pensao == 1">
                 <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a>
-              </div> 
+              </div>
+
 
               <div class="button-bar">
                 <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
