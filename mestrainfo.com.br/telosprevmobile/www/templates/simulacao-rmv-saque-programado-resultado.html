@@ -155,7 +155,7 @@
     </div>
   </div>
 
-  <div class="menu-item item item-divider softrow item-select">
+  <div ng-click="toggleChild()" class="menu-item item item-divider softrow item-select">
 
     <div class="row">
       <div class="col col-100">
@@ -164,7 +164,46 @@
     </div>
    
   </div>
-  <div class="menu-item item item-divider softrow item-select">
+
+  <div class="child-dropdown" data-toggle="filho" ng-show="showChild">
+     <div class="extratoDoMes item">
+        <div class="label row">
+            <div class="col col-67 text">
+                Data de nascimento
+            </div>
+            <div class="col valor">
+             DD/MM/AAAA
+            </div>
+        </div>
+        <div class="label row">
+          <div class="col col-67 text">
+            Vínculo
+          </div>
+          <div class="col valor">
+            Vitalício
+          </div>
+        </div>
+        <div class="label row">
+         <div class="col col-67 text">
+            Sexo
+          </div>
+          <div class="col valor">
+            MASCULINO
+          </div>
+        </div>
+        <div class="label row">
+          <div class="col col-67 text">
+            Parentensco
+          </div>
+          <div class="col valor">
+             FILHO(A)
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+  <div ng-click="toggleChildC()" class="menu-item item item-divider softrow item-select">
   
     <div class="row">
       <div class="col col-100">
@@ -172,6 +211,43 @@
       </div>
     </div>
     
+  </div>
+
+  <div class="child-dropdown" ng-show="showChildC">
+     <div class="extratoDoMes item">
+        <div class="label row">
+            <div class="col col-67 text">
+                Data de nascimento
+            </div>
+            <div class="col valor">
+             DD/MM/AAAA
+            </div>
+        </div>
+        <div class="label row">
+          <div class="col col-67 text">
+            Vínculo
+          </div>
+          <div class="col valor">
+            Vitalício
+          </div>
+        </div>
+        <div class="label row">
+         <div class="col col-67 text">
+            Sexo
+          </div>
+          <div class="col valor">
+            MASCULINO
+          </div>
+        </div>
+        <div class="label row">
+          <div class="col col-67 text">
+            Parentensco
+          </div>
+          <div class="col valor">
+             FILHO(A)
+          </div>
+        </div>
+      </div>
   </div>
 
   <div class="list">

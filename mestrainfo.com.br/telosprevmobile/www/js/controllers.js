@@ -1263,7 +1263,25 @@ console.log(resp);
 }])
 
 .controller('SimulacaoRmvSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+    $scope.showChild = false;
+
+    $scope.toggleChild = function() {
+      if($scope.showChild)
+        $scope.showChild = false;
+      else
+        $scope.showChild = true;
+
+    }
+
+    $scope.showChildC = false;
+
+    $scope.toggleChildC = function() {
+      if($scope.showChildC)
+        $scope.showChildC = false;
+      else
+        $scope.showChildC = true;
+
+    }
 }])
 
 .controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
