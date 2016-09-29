@@ -1049,7 +1049,10 @@ console.log(resp);
                 $state.go('simulacaorendamensalvitalicia');
               }, 1200);
             } else {
-
+              scope.formData = {};
+              setTimeout(function() {
+                $state.go('simulacaorendamensalvitalicia');
+              }, 1200);
             }
         }
         
@@ -1064,11 +1067,38 @@ console.log(resp);
 }])
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+  $scope.beneficiario = false;
+
+  $scope.beneficiarioToggle = function() {
+    if($scope.beneficiario)
+      $scope.beneficiario = false;
+    else
+      $scope.beneficiario = true;
+
+  }
 }])
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+  $scope.showChild = false;
+
+  $scope.toggleChild = function() {
+    if($scope.showChild)
+      $scope.showChild = false;
+    else
+      $scope.showChild = true;
+
+  }
+
+  $scope.showChildC = false;
+
+  $scope.toggleChildC = function() {
+    if($scope.showChildC)
+      $scope.showChildC = false;
+    else
+      $scope.showChildC = true;
+
+  }
+
 }])
 
 .controller('SimulacaoSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
@@ -1126,7 +1156,10 @@ console.log(resp);
                 $state.go('simulacaosaqueprogramadoresultado');
               }, 1200);
             } else {
-
+              $scope.formData = {};
+              setTimeout(function() {
+                $state.go('simulacaosaqueprogramadoresultado');
+              }, 1200);
             }
         }
         
@@ -1141,7 +1174,7 @@ console.log(resp);
 }])
 
 .controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+
 }])
 
 .controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
@@ -1212,7 +1245,10 @@ console.log(resp);
                 $state.go('simulacaormvsaqueprogramadoresultado');
               }, 1200);
             } else {
-
+              $scope.formData = {};
+              setTimeout(function() {
+                $state.go('simulacaormvsaqueprogramadoresultado');
+              }, 1200);
             }
         }
         
