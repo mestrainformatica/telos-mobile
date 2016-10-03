@@ -51,7 +51,7 @@
                               Selecione
                           </div>
                           <select class="ion-input-select" ng-model="formData.idade" >
-                             <option value="">45 ANOS</option>
+                             <option value="45">45 ANOS</option>
                           </select>
                         </label>
                         </div>
@@ -67,7 +67,7 @@
                                 Tipo de reajuste
                             </div>
                             <select class="ion-input-select" ng-model="formData.tipo_reajuste">
-                             <option value="">RENTABILIDADE</option>
+                             <option value="0">RENTABILIDADE</option>
                             </select>
                         </label>
               
@@ -76,7 +76,7 @@
                               Com pensão?
                           </div>
                           <select class="ion-input-select" ng-model="formData.pensao">
-                             <option value="">NÃO</option>
+                             <option value="N">NÃO</option>
                           </select>
                         </label>
 
@@ -92,7 +92,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="text" name="antecipacao_beneficiocresc_real_sal" ng-model="formData.antecipacao_beneficiocresc_real_sal" /> 
+                  <input type="text" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" /> 
                 </label>
               </div>
               <div class="col col-10">
@@ -228,7 +228,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem">
+                     <input type="text" name="saque_programado" placeholder="0,00" ng-model="formData.saque_programado">
                     </label>
                   </div>
                   <div class="col col-10">
@@ -273,7 +273,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem" />
+                     <input type="text" name="renda_mensal" placeholder="0,00" ng-model="formData.renda_mensal" />
                     </label>
                     <p class="input-legend">(0,3 a 2,0)</p>
                   </div>
@@ -305,9 +305,9 @@
                 <div class="input-label">
                     Abono Anual?
                 </div>
-                <select class="ion-input-select" ng-model="formData.abono" >
-                   <option value="0">NÃO</option>
-                   <option value="1">SIM</option>
+                <select class="ion-input-select" ng-model="formData.abono_anual" >
+                   <option value="N">NÃO</option>
+                   <option value="S">SIM</option>
                 </select>
               </label>
             </div>
