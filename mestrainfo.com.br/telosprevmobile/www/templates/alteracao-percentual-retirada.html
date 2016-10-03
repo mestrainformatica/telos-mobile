@@ -13,22 +13,22 @@
 
             <label class="item item-input item-stacked-label">
               <span class="input-label">Percentual de renda mensal</span>
-              <input type="text" name="telefone" placeholder="(0,5% A 2,0%)" ng-model="formData.telefone">
+              <input type="text" name="percentual_renda_mensal" placeholder="(0,5% A 2,0%)" ng-model="formData.percentual_renda_mensal">
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Estimativa de rentabilidade média anual</span>
-              <input type="text" name="email" placeholder="Após iniício do benefício" ng-model="formData.email">
+              <input type="text" name="estimativa_rentabilidade" placeholder="Após iniício do benefício" ng-model="formData.estimativa_rentabilidade">
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Dependentes para fins de IR</span>
-              <input type="text" name="mensagem" placeholder="0" ng-model="formData.mensagem">
+              <input type="text" name="dependentes_ir" placeholder="0" ng-model="formData.dependentes_ir">
             </label>
             <label class="item item-input item-select">
               <div class="input-label">
                   Abono Anual?
               </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value="">NÃO</option>
+              <select class="ion-input-select" ng-model="formData.abono">
+                 <option value="N">NÃO</option>
               </select>
             </label>
 

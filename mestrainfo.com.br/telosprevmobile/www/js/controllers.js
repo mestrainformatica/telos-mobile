@@ -1020,16 +1020,16 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           'cod_opcao_tributacao': '02',
           'dependentes_para_fins_ir': formData.dependentes_para_fins_ir,
           // 'cod_opcao_tributacao': '02'
-          'beneficiario': [
-            {
-              'beneficiario': '01',
-              'dt_nascimento': '01/12/1993',
-              'vinculo': 'vitalicio',
-              'sexo': 'M',
-              'parentesco': 'filho',
-              'editavel': ''
-            }
-          ]
+          // 'beneficiario': [
+          //   {
+          //     'beneficiario': '01',
+          //     'dt_nascimento': '01/12/1993',
+          //     'vinculo': 'vitalicio',
+          //     'sexo': 'M',
+          //     'parentesco': 'filho',
+          //     'editavel': ''
+          //   }
+          // ]
 
         }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {
@@ -1072,14 +1072,46 @@ console.log($rootScope);
 }])
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  $scope.beneficiario = false;
+  $scope.beneficiario = Array();
 
-  $scope.beneficiarioToggle = function() {
-    if($scope.beneficiario)
-      $scope.beneficiario = false;
+  $scope.beneficiarios = [
+      {
+        beneficiario: 'Beneficiário 1',
+        dt_nascimento: '06/12/1993',
+        vinculo: 'vitalício',
+        sexo: 'M',
+        parentesco: 'Filho'
+      },
+      {
+        beneficiario: 'Beneficiário 2',
+        dt_nascimento: '06/12/1994',
+        vinculo: 'vitalício',
+        sexo: 'F',
+        parentesco: 'Filho'
+      }
+    ];
+
+  $scope.beneficiarioToggle = function(key) {
+    if($scope.beneficiario[key])
+      $scope.beneficiario[key] = false;
     else
-      $scope.beneficiario = true;
+      $scope.beneficiario[key] = true;
+  }
 
+  $scope.addBeneficiario = function() {
+    // alert('oi');
+    var new_benef = {
+      beneficiario: '',
+      dt_nascimento: '',
+      vinculo: '',
+      sexo: '',
+      parentesco: ''
+    }
+    $scope.beneficiarios.push(new_benef);
+    position = $scope.beneficiarios.length;
+
+    //abrir o form para editar este beneficiario
+    $scope.beneficiario[position-1] = true;
   }
 }])
 
@@ -1275,7 +1307,7 @@ console.log($rootScope);
   }
 }])
 
-.controller('SimulacaoRmvSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('SimulacaoRmvSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
     $scope.showChild = false;
 
     $scope.value = $rootScope.lastRequest.result.simulaRmvSp;
@@ -1299,8 +1331,55 @@ console.log($rootScope);
     }
 }])
 
-.controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+.controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', '$http',  function($scope, $state, $rootScope, $http) {
+
+  $scope.submit = function(formData) {
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : { 
+        'acao':'simulaBeneficioSaque',
+        'percentual_renda_mensal': formData.percentual_renda_mensal,
+        'estimativa_rentabilidade': formData.estimativa_rentabilidade,
+        'dependentes_ir': formData.dependentes_ir,
+        'abono': formData.abono
+
+      }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+      userInfo.u = resp.data.login.u;
+      userInfo.s = resp.data.login.s;
+
+console.log(resp);
+console.log($rootScope);
+
+      $ionicLoading.hide();
+      
+      $rootScope.errorMsg = resp.data.msg;
+      
+      if (!resp.data.success) {
+          $state.go('signin');
+        } else {
+          if (resp.data.result.emailEnviado){
+            $scope.formData = {};
+            $rootScope.lastRequest.result.simulaRmvSp = resp.data.result;
+            setTimeout(function() {
+              $state.go('simulacaormvsaqueprogramadoresultado');
+            }, 1200);
+          } else {
+            $scope.formData = {};
+            $rootScope.lastRequest.result.simulaRmvSp = resp.data.result;
+            setTimeout(function() {
+              $state.go('simulacaormvsaqueprogramadoresultado');
+            }, 1200);
+          }
+      }
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
 }])
 
 .controller('AlteracaoPercentualRetiradaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
