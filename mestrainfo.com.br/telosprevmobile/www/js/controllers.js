@@ -1,3 +1,4 @@
+// var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
 var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
@@ -1001,23 +1002,24 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
           'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
           'matricula': $scope.matricula.informacoesParticipante[0].matricula,
-          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_fundo,
-          'admissao_patroc': '01/05/1958',
-          'data_nascimento': '05/01/1998',
-          'sexo': 'M',
-          'tipo_reajuste': '3',
-          'data_eligibilidade_prevista': '07/2022',
+          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $scope.matricula.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+          'sexo': $scope.matricula.dadosCadastrais[0].sexo,
+          'tipo_reajuste': formData.tipo_reajuste,
+          'data_elegibilidade_prevista': '07/2022',
           'idade': formData.idade,
           'mes_ano': '',
-          'salario_participante': '90004,00',
+          'salario_participante': $scope.matricula.informacoesParticipante[0].salario_participante,
           'cresc_real_sal': formData.cresc_real_sal,
           'contribuicao_participante': formData.contribuicao_participante,
-          'pensao': formData.pensao,
+          'pensao': 'N',
           'antecipacao_beneficio': formData.antecipacao_beneficio,
           'aporte': formData.aporte,
-          'estimativa_rent_entre': '3,00',
-          'qtd_depend_ir': '0',
-          'cod_opcao_tributacao': '02'
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'cod_opcao_tributacao': '02',
+          'dependentes_para_fins_ir': formData.dependentes_para_fins_ir,
+          // 'cod_opcao_tributacao': '02'
           // 'beneficiario': [
           //   {
           //     'beneficiario': '',
@@ -1116,27 +1118,27 @@ console.log(resp);
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : { 
-          'acao':'simulaSaqueProgramado',
+          'acao':'simulaSP',
           'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
           'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
           'matricula': $scope.matricula.informacoesParticipante[0].matricula,
-          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_fundo,
-          'admissao_patroc': $scope.matricula.informacoesParticipante[0].admissao_patroc,
-          'data_nascimento': $scope.matricula.informacoesParticipante[0].data_nascimento,
-          'sexo': $scope.matricula.informacoesParticipante[0].sexo,
-          'data_eligibilidade_prevista': $scope.matricula.informacoesParticipante[0].data_eligibilidade_prevista,
-          'idade': formData.idade,
+          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $scope.matricula.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+          'sexo': $scope.matricula.dadosCadastrais[0].sexo,
+          'data_elegibilidade_prevista': '07/2022',
+          'idade': '45',
           'mes_ano': '',
-          'salario_participante': '',
-          'cresc_real_sal': formData.cresc_real_sal,
-          'contribuicao_participante': formData.contribuicao_participante,
-          'antecipacao_beneficio': formData.antecipacao_beneficio,
-          'aporte': formData.aporte,
-          'estimativa_rent_entre': formData.estimativa_rent_entre,
-          'estimativa_rent_apos': formData.estimativa_rent_apos,
-          'renda_mensal': formData.renda_mensal,
-          'abono_anual': formData.abono_anual,
-          'dependentes_ir': formData.dependentes_ir
+          'salario_participante': '0',
+          'cresc_real_sal': '0',
+          'contribuicao_participante': '5,00',
+          'antecipacao_beneficio': '0',
+          'aporte': '0',
+          'estimativa_rent_entre': '3',
+          'estimativa_rent_apos': '3',
+          'renda_mensal': '6',
+          'abono_anual': 'N',
+          'dependentes_ir': '2'
 
         }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {
@@ -1192,38 +1194,39 @@ console.log(resp);
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : { 
-          'acao':'simulaSaqueRMV',
+          'acao':'simulaRmvSp',
           'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
           'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
           'matricula': $scope.matricula.informacoesParticipante[0].matricula,
-          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_fundo,
-          'admissao_patroc': $scope.matricula.informacoesParticipante[0].admissao_patroc,
-          'data_nascimento': $scope.matricula.informacoesParticipante[0].data_nascimento,
-          'sexo': $scope.matricula.informacoesParticipante[0].sexo,
-          'tipo_reajuste': formData.tipo_reajuste,
-          'salario_participante': formData.salario_participante,
-          'cresc_real_sal': formData.cresc_real_sal,
-          'pensao': formData.pensao,
-          'antecipacao_beneficio': formData.antecipacao_beneficio,
-          'aporte': formData.aporte,
-          'estimativa_rent_entre': formData.estimativa_rent_entre,
-          'estimativa_rent_apos': formData.estimativa_rent_apos,
-          'renda_mensal': formData.renda_mensal,
-          'abono_anual': formData.abono_anual,
-          'dependentes_ir': formData.dependentes_ir,
-          'data_eligibilidade_prevista': formData.data_eligibilidade_prevista,
-          'idade': formData.idade,
-          'mes_ano': formData.mes_ano,
-          'beneficiario': [
-            {
-              'beneficiario': '',
-              'dt_nascimento': '',
-              'vinculo': '',
-              'sexo': '',
-              'parentesco': '',
-              'editavel': ''
-            }
-          ]
+          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $scope.matricula.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+          'sexo': $scope.matricula.dadosCadastrais[0].sexo,
+          'tipo_reajuste': '3',
+          'salario_participante': '6858,40',
+          'cresc_real_sal': '0',
+          'contribuicao_participante': '5,00',
+          'pensao': 'N',
+          'antecipacao_beneficio': '0',
+          'aporte': '0',
+          'estimativa_rent_entre': '3,00',
+          'estimativa_rent_apos': '3,00',
+          'renda_mensal': '6,00',
+          'abono_anual': 'N',
+          'dependentes_ir': '0',
+          'data_elegibilidade_prevista': '07/2022',
+          'idade': '45',
+          'mes_ano': '',
+          // 'beneficiario': [
+          //   {
+          //     'beneficiario': '',
+          //     'dt_nascimento': '',
+          //     'vinculo': '',
+          //     'sexo': '',
+          //     'parentesco': '',
+          //     'editavel': ''
+          //   }
+          // ]
 
         }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {
