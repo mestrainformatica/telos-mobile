@@ -1333,14 +1333,21 @@ console.log($rootScope);
 
 .controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
 
+  $scope.matricula = $rootScope.lastRequest.result;
+
   $scope.submit = function(formData) {
     $http.post(url_base+';jsessionid='+userInfo.s, 
       { "param" : { 
         'acao':'simulaBeneficioSP',
-        'percentual_renda_mensal': formData.percentual_renda_mensal,
-        'estimativa_rentabilidade': formData.estimativa_rentabilidade,
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'renda_mensal': formData.percentual_renda_mensal,
+        'estimativa_rent_anual': formData.estimativa_rentabilidade,
         'dependentes_ir': formData.dependentes_ir,
-        'abono': formData.abono
+        'abono_anual': formData.abono
 
       }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
     ).then(function(resp) {
@@ -1359,15 +1366,15 @@ console.log($rootScope);
         } else {
           if (resp.data.result.emailEnviado){
             $scope.formData = {};
-            $rootScope.lastRequest.result.simulaRmvSp = resp.data.result;
+            $rootScope.lastRequest.result.simulaBeneficioSP = resp.data.result;
             setTimeout(function() {
-              $state.go('simulacaormvsaqueprogramadoresultado');
+              $state.go('alteracaopercentualretiradaresultado');
             }, 1200);
           } else {
             $scope.formData = {};
-            $rootScope.lastRequest.result.simulaRmvSp = resp.data.result;
+            $rootScope.lastRequest.result.simulaBeneficioSP = resp.data.result;
             setTimeout(function() {
-              $state.go('simulacaormvsaqueprogramadoresultado');
+              $state.go('alteracaopercentualretiradaresultado');
             }, 1200);
           }
       }
@@ -1383,23 +1390,132 @@ console.log($rootScope);
 }])
 
 .controller('AlteracaoPercentualRetiradaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+  $scope.value = $rootScope.lastRequest.result.simulaBeneficioSP;
 }])
 
-.controller('SimulacaoRmvAposentadoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('SimulacaoRmvAposentadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   
+  $scope.matricula = $rootScope.lastRequest.result;
+
+  $scope.submit = function(formData) {
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : { 
+        'acao':'simulaAlteracaoRMV',
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'tipo_reajuste': formData.tipo_reajuste,
+        'percentual_de_renda_mensal': "0",
+        'pensao': formData.pensao,
+        'dependentes_ir': formData.dependentes_ir
+
+      }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+      userInfo.u = resp.data.login.u;
+      userInfo.s = resp.data.login.s;
+
+console.log(resp);
+console.log($rootScope);
+
+      $ionicLoading.hide();
+      
+      $rootScope.errorMsg = resp.data.msg;
+      
+      if (!resp.data.success) {
+          $state.go('signin');
+        } else {
+          if (resp.data.result.emailEnviado){
+            $scope.formData = {};
+            $rootScope.lastRequest.result.simulaAlteracaoRMV = resp.data.result;
+            setTimeout(function() {
+              $state.go('simulacaormvaposentadoresultado');
+            }, 1200);
+          } else {
+            $scope.formData = {};
+            $rootScope.lastRequest.result.simulaAlteracaoRMV = resp.data.result;
+            setTimeout(function() {
+              $state.go('simulacaormvaposentadoresultado');
+            }, 1200);
+          }
+      }
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
 }])
 
 .controller('SimulacaoRmvAposentadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+  $scope.value = $rootScope.lastRequest.result.simulaAlteracaoRMV;
 }])
 
-.controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+.controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+  $scope.matricula = $rootScope.lastRequest.result;
+
+  $scope.submit = function(formData) {
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : { 
+        'acao':'simulaBeneficioRmvSp',
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'tipo_reajuste': formData.tipo_reajuste,
+        'renda_mensal': formData.renda_mensal,
+        'estimativa_rent_apos': formData.estimativa_rent_apos,
+        'pensao': formData.pensao,
+        'abono_anual': formData.abono_anual,
+        'dependentes_ir': formData.dependentes_ir
+
+      }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+      userInfo.u = resp.data.login.u;
+      userInfo.s = resp.data.login.s;
+
+console.log(resp);
+console.log($rootScope);
+
+      $ionicLoading.hide();
+      
+      $rootScope.errorMsg = resp.data.msg;
+      
+      if (!resp.data.success) {
+          $state.go('signin');
+        } else {
+          if (resp.data.result.emailEnviado){
+            $scope.formData = {};
+            $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
+            setTimeout(function() {
+              $state.go('alteracaormvsaqueresultado');
+            }, 1200);
+          } else {
+            $scope.formData = {};
+            $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
+            setTimeout(function() {
+              $state.go('alteracaormvsaqueresultado');
+            }, 1200);
+          }
+      }
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
 }])
 
 .controller('AlteracaoRmvSaqueCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+  $scope.value = $rootScope.lastRequest.result.simulaBeneficioRmvSp;
 }])
 
 .controller('SimulacaoResgateNovoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {

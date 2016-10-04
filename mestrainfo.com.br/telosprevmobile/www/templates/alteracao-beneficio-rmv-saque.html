@@ -16,15 +16,15 @@
 
             <label class="item item-input item-stacked-label">
               <span class="input-label">SAQUE PROGRAMADO</span>
-              <input type="text" name="telefone" placeholder="26%" ng-model="formData.telefone">
+              <input type="text" name="telefone" placeholder="26%">
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">RENDA MENSAL VITALÍCIA</span>
-              <input type="text" name="email" placeholder="74%" ng-model="formData.email">
+              <input type="text" name="renda_mensal" placeholder="74%" ng-model="formData.renda_mensal">
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Dependentes para fins de IR</span>
-              <input type="text" name="mensagem" placeholder="1" ng-model="formData.mensagem">
+              <input type="text" name="dependentes_ir" placeholder="1" ng-model="formData.dependentes_ir">
             </label>
            
 
@@ -41,15 +41,15 @@
               </label>
               <label class="item item-input item-stacked-label">
                 <span class="input-label">Estimativa de rentabilidade</span>
-                <input type="text" name="mensagem" placeholder="Média anual real após o início do benefício" ng-model="formData.mensagem">
+                <input type="text" name="estimativa_rent_apos" placeholder="Média anual real após o início do benefício" ng-model="formData.estimativa_rent_apos">
               </label>
 
               <label class="item item-input item-select">
                 <div class="input-label">
                     Abono Anual?
                 </div>
-                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                   <option value="">NÃO</option>
+                <select class="ion-input-select" ng-model="formData.abono_anual">
+                   <option value="N">NÃO</option>
                 </select>
               </label>
             </div>
@@ -63,16 +63,16 @@
                 <div class="input-label">
                     Tipo de Reajuste
                 </div>
-                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                   <option value="">RENTABILIDADE</option>
+                <select class="ion-input-select" ng-model="formData.tipo_reajuste">
+                   <option value="3">RENTABILIDADE</option>
                 </select>
               </label>
               <label class="item item-input item-select">
                 <div class="input-label">
                     Com pensão?
                 </div>
-                <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                   <option value="">NÃO</option>
+                <select class="ion-input-select" ng-model="formData.pensao">
+                   <option value="N">NÃO</option>
                 </select>
               </label>
             </div>

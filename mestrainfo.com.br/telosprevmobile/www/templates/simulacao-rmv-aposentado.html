@@ -21,16 +21,16 @@
               <div class="input-label">
                 Tipo de Reajuste
               </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value="">RENTABILIDADE</option>
+              <select class="ion-input-select" ng-model="formData.tipo_reajuste">
+                 <option value="3">RENTABILIDADE</option>
               </select>
             </label>
             <label class="item item-input item-select">
               <div class="input-label">
                 Com pensão
               </div>
-              <select class="ion-input-select" ng-model="formData.tipo" ng-options="key as value for (key , value)  in emprestimoSimulacaoCampos.tipo_simulacao">
-                 <option value="">NÃO</option>
+              <select class="ion-input-select" ng-model="formData.pensao">
+                 <option value="N">NÃO</option>
               </select>
             </label>
           </div>
@@ -38,7 +38,7 @@
           <div class="item">
            <label class="item item-input item-stacked-label">
               <span class="input-label">Dependentes para fins de IR</span>
-              <input type="tel" name="telefone" placeholder="0" ng-model="formData.telefone">
+              <input type="tel" name="dependentes_ir" placeholder="0" ng-model="formData.dependentes_ir">
             </label>
           </div>
 

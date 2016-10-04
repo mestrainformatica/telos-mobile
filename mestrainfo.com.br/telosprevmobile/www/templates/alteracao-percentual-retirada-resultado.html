@@ -13,35 +13,35 @@
       <div class="separador">
         <div class="label row" >
           <div class="col col-67">Renda mensão não vitalícia vigente - valor bruto</div>
-          <div class="col valor">456</div>
+          <div class="col valor">{{value.val_bruto}}</div>
         </div>
       </div>
       <hr>
       <div class="separador">
         <div class="label row" >
           <div class="col col-67">Saldo de conta de saque programado</div>
-          <div class="col valor">0,00</div>
+          <div class="col valor">{{value.saldo_conta_considerado}}</div>
         </div> 
       </div>
       <hr>
       <div class="separador">
         <div class="label row" >
           <div class="col col-67">Prazo previsto para manutenção do beneficio</div>
-          <div class="col valor">0,00</div>
+          <div class="col valor">{{value.prazo_prev_manutencao_benef}}</div>
         </div>
       </div>
       <hr>
       <div class="separador">
         <div class="label row" >
-          <div class="col col-67">Ultima renda mensal não vitalícia</div>
-          <div class="col valor">0,00</div>
+          <div class="col col-67">Ultima renda mensal não vitalícia ({{value.ultima_renda_data}})</div>
+          <div class="col valor">{{value.ultima_renda_valor}}</div>
         </div> 
       </div>
       <hr>
       <div class="separador">
         <div class="label row" >
-          <div class="col col-67">Saldo remanescente a ser pago</div>
-          <div class="col valor">0,00</div>
+          <div class="col col-67">Saldo remanescente a ser pago ({{value.saldo_remanescente_data}})</div>
+          <div class="col valor">{{value.saldo_remanescente_valor}}</div>
         </div> 
       </div>
   </div>
@@ -51,7 +51,7 @@
       <div class="input-label">
         Rentabilidade anual
       </div>
-      <input type="text" name="" placeholder="" ng-model="">
+      <input type="text" name="" placeholder="">
     </label>
     <div class="padding">
       <div class="button-bar">
