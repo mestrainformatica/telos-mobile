@@ -1331,12 +1331,12 @@ console.log($rootScope);
     }
 }])
 
-.controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', '$http',  function($scope, $state, $rootScope, $http) {
+.controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
 
   $scope.submit = function(formData) {
     $http.post(url_base+';jsessionid='+userInfo.s, 
       { "param" : { 
-        'acao':'simulaBeneficioSaque',
+        'acao':'simulaBeneficioSP',
         'percentual_renda_mensal': formData.percentual_renda_mensal,
         'estimativa_rentabilidade': formData.estimativa_rentabilidade,
         'dependentes_ir': formData.dependentes_ir,
