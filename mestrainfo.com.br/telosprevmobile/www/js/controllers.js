@@ -588,11 +588,48 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   }
 }])
 
-.controller('SaldoCtrl.emitido', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('SaldoCtrl.emitido', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   
   $rootScope.erroMsg = false;
   $scope.saldo = $rootScope.lastRequest.saldoEmitido;
   console.log($scope.saldo);
+
+  if($rootScope.lastRequest.result.dadosCadastrais.email == "")
+    $scope.hasEmail = true;
+  else
+    $scope.hasEmail = false;
+
+  $scope.sendMail = function() {
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : {
+            'descricaoEmail' : '', 
+            'acao':'saldoContasEnvioEmail', 
+            'dataAtualizacao':''
+        }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+    
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            console.log(resp.data.result);
+            alert('enviado');
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+  }
+
 }])
 
 .controller('DemonstrativoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
@@ -700,9 +737,48 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 }])
 
-.controller('DemonstrativoCtrl.emitido', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('DemonstrativoCtrl.emitido', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   $rootScope.erroMsg = false;
   $scope.demonstrativo = $rootScope.demonstrativoEmitido;
+
+  if($rootScope.lastRequest.result.dadosCadastrais.email == "")
+    $scope.hasEmail = true;
+  else
+    $scope.hasEmail = false;
+
+  $scope.sendMail = function() {
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : {
+            'descricaoEmail' : '', 
+            'acao':'demonstrativoPagamentoEmail', 
+            'dataAtualizacao':''
+        }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+
+console.log(resp);
+
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            console.log(resp.data.result);
+            alert('enviado');
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+  }
+
 }])
 
 .controller('EmprestimoConsultaCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {

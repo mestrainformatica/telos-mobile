@@ -139,6 +139,10 @@
 
   </div>
 
+  <div class="the_error">
+    <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+  </div>
+
   <div class="padding">
     <div class="button-bar">
       <input ng-hide="loading" type="button" class="button button-positive button-block" value="Receber email" ng-click="sendMail()" ng-disabled="hasEmail">      
