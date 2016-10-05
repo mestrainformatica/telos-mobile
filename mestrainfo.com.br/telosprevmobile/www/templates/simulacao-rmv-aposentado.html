@@ -35,6 +35,7 @@
                 </div>
                 <select class="ion-input-select" ng-model="formData.pensao">
                    <option value="N">NÃO</option>
+                    <option value="S">SIM</option>
                 </select>
               </label>
           </div>
@@ -62,9 +63,13 @@
               <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
             </div>
             <div class="padding">
+              <div class="button-bar" ng-show="formData.pensao == 'S'">
+                <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a>
+              </div>
               <div class="button-bar">
                 <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
               </div>
+
             </div>
           </div>
 
