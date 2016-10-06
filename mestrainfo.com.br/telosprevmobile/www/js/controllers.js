@@ -1132,17 +1132,19 @@ console.log(resp);
           'estimativa_rent_entre': formData.estimativa_rent_entre,
           'cod_opcao_tributacao': '02',
           'dependentes_para_fins_ir': formData.dependentes_para_fins_ir,
-          // 'cod_opcao_tributacao': '02'
-          // 'beneficiario': [
-          //   {
-          //     'beneficiario': '01',
-          //     'dt_nascimento': '01/12/1993',
-          //     'vinculo': 'vitalicio',
-          //     'sexo': 'M',
-          //     'parentesco': 'filho',
-          //     'editavel': ''
-          //   }
-          // ]
+          'cod_opcao_tributacao': '02',
+          'beneficiario': [
+            {
+              'cod_parentesco': '01',
+              'data_nascimento': '01/12/1993',
+              'vinculo': 'V',
+              'sexo': 'M',
+              'parentesco': 'filho',
+              'habilitado': 'N',
+              'selecionado': 'S',
+              'ordenacao': '1'
+            }
+          ]
 
         }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {
