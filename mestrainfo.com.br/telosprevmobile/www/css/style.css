@@ -606,6 +606,9 @@ div.no-wrap p {
 	line-height: 1.1em;
 }
 
+.text small{
+	display: block;
+}
 
 #formCampos.formCampo .item-select .input-label{
 	color: #333 !important;
@@ -708,6 +711,10 @@ div.no-wrap p {
 	text-transform: uppercase;
 }
 
+.text .dif.cap{
+	text-transform: capitalize !important;
+}
+
 .resultados-title{
 	color: #888;
 }
@@ -741,6 +748,14 @@ div.no-wrap p {
 	font-size:.64em !important;
 }
 
+small.legend{
+	display: block;
+}
+
+.upper{
+	text-transform: uppercase !important; 
+}
+
 .item.item-input{
 	padding-top:1px;
 	padding-bottom: 1px;
@@ -754,6 +769,7 @@ div.no-wrap p {
 .extratoDoMes .separador{
 	padding:0;
 }
+
 
 .menu-item{
 	background: #fdfbf1 !important;
@@ -790,4 +806,17 @@ div.no-wrap p {
 
 .input-legend{
 	text-align: right;
+	white-space: normal !important;
+    font-size: .65em !important;
+    color: #A9A9AA !important;
+    text-transform: uppercase !important;
+}
+
+.header-page{
+	white-space: normal;
+}
+
+.alteracao .resultados-title{
+	padding-top:5px;
+	padding-bottom: 5px;
 }

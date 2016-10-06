@@ -4,87 +4,157 @@
         <div ng-include="'js/directives/userInfo.html'"></div> 
     </div>
 
-  <div class="list" id="mainMenu">        
+  <div class="list alteracao" id="mainMenu">        
     <div class="item item-divider softrow">
-      Alteração de benefício para RMV e Saque
+      <div class="row">
+        <div class="col">
+         Alteração de benefício para RMV e Saque
+        </div>
+      </div>
     </div>
-    <div class="item item-divider softrow">
-      Escolha os percentuais de distribuição do saldo
+
+    <div class="item resultados-title">
+      <div class="row">
+        <div class="col">
+          Escolha os percentuais de distribuição do saldo
+        </div>
+      </div> 
     </div>
-        <form id="formCampos">
+
+        <form id="formCampos" class="formCampo">
           <div class="item">
 
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">SAQUE PROGRAMADO</span>
-              <input type="text" name="telefone" placeholder="26%">
+            <label class="no-border item item-input item-stacked-label">
+              <div class="row">
+                <div class="col">
+                  <span class="input-label">SAQUE PROGRAMADO</span>
+                </div>
+                <div class="col col-20">
+                  <label class="item item-input">
+                    <input type="text" name="telefone" placeholder="26%">
+                  </label>
+                </div>
+              </div>
+            
             </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">RENDA MENSAL VITALÍCIA</span>
-              <input type="text" name="renda_mensal" placeholder="74%" ng-model="formData.renda_mensal">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Dependentes para fins de IR</span>
-              <input type="text" name="dependentes_ir" placeholder="1" ng-model="formData.dependentes_ir">
-            </label>
-           
 
+            <label class="no-border item item-input item-stacked-label">
+            
+              <div class="row">
+                <div class="col">
+                  <span class="input-label">RENDA MENSAL VITALÍCIA</span>
+                </div>
+                <div class="col col-20">
+                  <label class="item item-input">
+                     <input type="text" name="renda_mensal" placeholder="74%" ng-model="formData.renda_mensal">
+                  </label>
+                </div>
+              </div>
+
+            </label>
+
+            <label class="no-border item item-input item-stacked-label">
+              <div class="row">
+                <div class="col">
+                  <span class="input-label">Dependentes para fins de IR</span>
+                </div>
+                <div class="col col-20">
+                  <label class="item item-input">
+                    <input type="text" name="dependentes_ir" placeholder="1" ng-model="formData.dependentes_ir">
+                  </label>
+                </div>
+              </div>
+            
+            </label>
+          
           </div>
 
           <div class="item item-divider softrow">
-            Premissas Específicas de saque programado
+            <div class="row">
+              <div class="col">
+                Premissas Específicas de saque programado
+              </div>
+            </div>
           </div>
 
-            <div class="item">
-              <label class="item item-input item-stacked-label">
-                <span class="input-label">Renda mensal</span>
-                <input type="text" name="email" placeholder="Em percentual do saldo da conta" ng-model="formData.email">
-              </label>
-              <label class="item item-input item-stacked-label">
-                <span class="input-label">Estimativa de rentabilidade</span>
-                <input type="text" name="estimativa_rent_apos" placeholder="Média anual real após o início do benefício" ng-model="formData.estimativa_rent_apos">
+          <div class="item">
+
+              <label class="no-border item item-input item-stacked-label">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Renda mensal</span>
+                  </div>
+                  <div class="col col-20">
+                    <label class="item item-input">
+                      <input type="text" name="email" placeholder="Em percentual do saldo da conta" ng-model="formData.email">
+                    </label>
+                  </div>
+                </div>
               </label>
 
-              <label class="item item-input item-select">
+              <label class="no-border item item-input item-stacked-label">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Estimativa de rentabilidade</span>
+                  </div>
+                  <div class="col col-20">
+                    <label class="item item-input">
+                        <input type="text" name="estimativa_rent_apos" placeholder="Média anual real após o início do benefício" ng-model="formData.estimativa_rent_apos">
+                    </label>
+                  </div>
+                </div>
+              </label>
+
+              <label class="abonoselect item item-input item-select">
                 <div class="input-label">
                     Abono Anual?
                 </div>
                 <select class="ion-input-select" ng-model="formData.abono_anual">
                    <option value="N">NÃO</option>
+                   <option value="S">SIM</option>
                 </select>
               </label>
-            </div>
+
+
+          </div>
           
           <div class="item item-divider softrow">
-            Premissas específicas de RMV
-          </div>
-
-            <div class="item">
-              <label class="item item-input item-select">
-                <div class="input-label">
-                    Tipo de Reajuste
-                </div>
-                <select class="ion-input-select" ng-model="formData.tipo_reajuste">
-                   <option value="3">RENTABILIDADE</option>
-                </select>
-              </label>
-              <label class="item item-input item-select">
-                <div class="input-label">
-                    Com pensão?
-                </div>
-                <select class="ion-input-select" ng-model="formData.pensao">
-                   <option value="N">NÃO</option>
-                </select>
-              </label>
-            </div>
-
-          <div class="the_error">
-            <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
-          </div>
-          <div class="padding">
-            <div class="button-bar">
-              <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+            <div class="row">
+              <div class="col">
+                Premissas específicas de RMV
+              </div>
             </div>
           </div>
+
+          <div class="item">
+            <label class="item item-input item-select">
+              <div class="input-label">
+                  Tipo de Reajuste
+              </div>
+              <select class="ion-input-select" ng-model="formData.tipo_reajuste">
+                 <option value="3">RENTABILIDADE</option>
+              </select>
+            </label>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                  Com pensão?
+              </div>
+              <select class="ion-input-select" ng-model="formData.pensao">
+                 <option value="N">NÃO</option>
+              </select>
+            </label>
+
+            <div class="the_error">
+              <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+            </div>
+            <div class="padding">
+              <div class="button-bar">
+                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+              </div>
+            </div>
+          </div>
+
+          
         </form>
     </div>
   </div>

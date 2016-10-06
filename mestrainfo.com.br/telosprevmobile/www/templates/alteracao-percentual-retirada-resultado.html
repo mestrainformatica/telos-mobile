@@ -1,68 +1,112 @@
 <ion-view title="Simulação" ng-controller="AlteracaoPercentualRetiradaCtrl.resultado" has-bouncing="false" padding="false" >
+
+<!-- <ion-view title="Simulação" has-bouncing="false" padding="false" > -->
+
  <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
     <div class="headerInfo" >
         <div ng-include="'js/directives/userInfo.html'"></div> 
     </div>
 
-  <div class="list" id="mainMenu">        
-    <div class="item item-divider softrow">
-      Resultado da Alteração do Percentual de retirada
-    </div>
-    
-    <div class="item extratoDoMes">
-      <div class="separador">
-        <div class="label row" >
-          <div class="col col-67">Renda mensão não vitalícia vigente - valor bruto</div>
-          <div class="col valor">{{value.val_bruto}}</div>
-        </div>
-      </div>
-      <hr>
-      <div class="separador">
-        <div class="label row" >
-          <div class="col col-67">Saldo de conta de saque programado</div>
-          <div class="col valor">{{value.saldo_conta_considerado}}</div>
-        </div> 
-      </div>
-      <hr>
-      <div class="separador">
-        <div class="label row" >
-          <div class="col col-67">Prazo previsto para manutenção do beneficio</div>
-          <div class="col valor">{{value.prazo_prev_manutencao_benef}}</div>
-        </div>
-      </div>
-      <hr>
-      <div class="separador">
-        <div class="label row" >
-          <div class="col col-67">Ultima renda mensal não vitalícia ({{value.ultima_renda_data}})</div>
-          <div class="col valor">{{value.ultima_renda_valor}}</div>
-        </div> 
-      </div>
-      <hr>
-      <div class="separador">
-        <div class="label row" >
-          <div class="col col-67">Saldo remanescente a ser pago ({{value.saldo_remanescente_data}})</div>
-          <div class="col valor">{{value.saldo_remanescente_valor}}</div>
-        </div> 
-      </div>
-  </div>
+  <div class="list alteracao" id="mainMenu">
 
-  <div class="item item-divider softrow">
-    <label class="item item-input ">
-      <div class="input-label">
-        Rentabilidade anual
+      <div class="item item-divider softrow">
+        <div class="row">
+          <div class="col">
+            Resultado da Alteração do Percentual de retirada
+          </div>
+        </div>
+       
       </div>
-      <input type="text" name="" placeholder="">
-    </label>
-    <div class="padding">
-      <div class="button-bar">
-        <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação" ng-click="submit(formData)">      
-      </div>
+      
+      <div class="item extratoDoMes">
+        <div class="separador">
+          <div class="label row" >
+            <div class="col text col-67"><span class="dif cap">Renda mensão não vitalícia vigente - valor bruto</span></div>
+            <div class="col valor">{{value.val_bruto}}</div>
+          </div>
+        </div>
+
+
+        <div class="separador">
+          <div class="label row" >
+            <div class="col text col-67"><span class="dif cap">Saldo de conta de saque programado</span><small class="upper">Para Calculo do Benefício em 12/2016</small></div>
+            <div class="col valor">{{value.saldo_conta_considerado}}</div>
+          </div> 
+        </div>
+
+
+        <div class="separador">
+          <div class="label row" >
+            <div class="col text col-67"><span class="dif cap">Prazo previsto para manutenção do beneficio</span><small class="upper">Caso percentual de saque não seja alterado</small></div>
+            <div class="col valor">{{value.prazo_prev_manutencao_benef}}</div>
+          </div>
+        </div>
+
+
+        <div class="separador">
+          <div class="label row" >
+            <div class="col text col-67"><span class="dif cap">Ultima renda mensal não vitalícia ({{value.ultima_renda_data}})</span></div>
+            <div class="col valor">{{value.ultima_renda_valor}}</div>
+          </div> 
+        </div>
+
+
+        <div class="separador">
+          <div class="label row" >
+            <div class="col text col-67"><span class="dif cap">Saldo remanescente a ser pago ({{value.saldo_remanescente_data}})</span></div>
+            <div class="col valor">{{value.saldo_remanescente_valor}}</div>
+          </div> 
+        </div>
+
     </div>
-  </div>
+
   <div class="list">
    
     <form class="formCampos">
-      <div class="item">
+      
+      <div class="box-calculo">
+
+        <div class="item ">
+          
+          <div class="row">
+
+            <div class="col">
+              <div class="input-label">
+                Rentabilidade anual
+                <small class="legend upper">Após o início do benefício</small>
+              </div>
+            </div>
+
+            <div class="col col-20">
+              <label class="item item-input ">
+                <input type="text" name="" placeholder="">
+              </label>
+            </div>
+
+            <div class="col col-10">
+               <span class="input-label box ">%</span>
+            </div>
+
+          </div>
+
+        </div>
+        
+        <div class="item">
+
+          <div class="row">
+            <div class="col">
+              <div class="button-bar">
+                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação" ng-click="submit(formData)">      
+              </div>
+            </div>
+          </div>
+        </div>
+       
+        
+
+      </div>
+
+      <div class="item obs">
         Atenção:
         <div class="text-small no-wrap">
           <p>
