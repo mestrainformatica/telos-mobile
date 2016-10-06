@@ -1231,9 +1231,12 @@ console.log($rootScope);
 }])
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  $scope.showChild = false;
+  $scope.showChild = false
 
   $scope.value = $rootScope.lastRequest.result.simulaRMV;
+  
+  $scope.value.texto_simulacao_renda_mensal_vitalicia = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
+
 
   $scope.toggleChild = function() {
     if($scope.showChild)
@@ -1333,7 +1336,8 @@ console.log($rootScope);
 
 .controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.value = $rootScope.lastRequest.result.simulaSP;
-  $scope.value.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
+  $scope.value.texto_simulacao_saque_programado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_saque_prog;
+
 }])
 
 .controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
@@ -1427,6 +1431,8 @@ console.log($rootScope);
     $scope.showChild = false;
 
     $scope.value = $rootScope.lastRequest.result.simulaRmvSp;
+
+    $scope.value.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
 
     $scope.toggleChild = function() {
       if($scope.showChild)
