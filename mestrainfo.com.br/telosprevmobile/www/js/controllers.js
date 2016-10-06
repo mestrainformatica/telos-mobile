@@ -1331,6 +1331,7 @@ console.log($rootScope);
 
 .controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.value = $rootScope.lastRequest.result.simulaSP;
+  $scope.value.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
 }])
 
 .controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
@@ -1598,6 +1599,9 @@ console.log($rootScope);
       $ionicLoading.hide();
       
       $rootScope.errorMsg = resp.data.msg;
+
+      //inserir o percentual do saque no json
+      resp.data.result.percentual_saque = formData.saque_programado;
       
       if (!resp.data.success) {
           $state.go('signin');

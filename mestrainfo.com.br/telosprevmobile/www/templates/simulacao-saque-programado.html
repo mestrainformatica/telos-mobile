@@ -40,21 +40,21 @@
           <div class="item">
 
             <div class="separador">
-               <label class="item item-input item-select">
+               <label class="item item-input item-select" name="tipo_idade">
                   <div class="input-label">
                       Busca
                   </div>
-                  <select class="ion-input-select" name="idade" ng-model="formData.idade">
-                   <option value="">- Selecione -</option>
-                   <option value="45">45 anos</option>
+                  <select class="ion-input-select">
+                   <option value="idade">IDADE</option>
+                   <option value="nasc">NASCIMENTO</option>
                   </select>
               </label>
               <label class="item item-input item-select">
                 <div class="input-label">
                     Selecione
                 </div>
-                <select class="ion-input-select" name="tipo_idade" >
-                   <option value="">- Selecione -</option>
+                <select class="ion-input-select" name="idade" ng-model="formData.idade" >
+                   <option value="45">45 ANOS</option>
                 </select>
               </label>
             </div>

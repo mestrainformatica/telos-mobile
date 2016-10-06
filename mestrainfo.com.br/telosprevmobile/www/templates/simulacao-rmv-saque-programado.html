@@ -175,7 +175,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                 <input type="text" name="dependentes_ir" placeholder="0,00" ng-model="formData.dependentes_ir">
+                 <input type="text" name="dependentes_ir" ng-model="formData.dependentes_ir" ng-init="formData.dependentes_ir='0">
                 </label>
               </div>
               <div class="col col-10">
@@ -195,7 +195,7 @@
               </div>
               <div class="col col-33">
                 <label class="item item-input">
-                <input type="text" name="aporte" placeholder="0,00" ng-model="formData.aporte">
+                <input type="text" name="aporte" placeholder="0" ng-model="formData.aporte">
                 </label>
               </div>
 
@@ -228,7 +228,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="saque_programado" placeholder="0,00" ng-model="formData.saque_programado">
+                     <input type="text" name="saque_programado" placeholder="0" ng-model="formData.saque_programado">
                     </label>
                   </div>
                   <div class="col col-10">
@@ -236,7 +236,7 @@
                   </div>
                 </div>
               </label>
-              <label class="no-border item item-input item-stacked-label">
+              <!-- <label class="no-border item item-input item-stacked-label">
                  <div class="row">
                   <div class="col ">
                    <span class="input-label">Renda mensal vitalícia</span>
@@ -251,7 +251,7 @@
                   </div>
                 </div>
 
-              </label>
+              </label> -->
             </div>
 
           <div class="sec-title item item-divider softrow">
@@ -266,7 +266,7 @@
           <div class="item-section">
 
             <div class="item">
-              <label class="no-border item item-input item-stacked-label">
+              <!-- <label class="no-border item item-input item-stacked-label">
                  <div class="row">
                   <div class="col ">
                    <span class="input-label">Renda mensal</span><p>Em percentual do saldo do dia</p>
@@ -282,7 +282,7 @@
                   </div>
                 </div>
 
-              </label>
+              </label> -->
               
               <label class="no-border item item-input item-stacked-label">
                  <div class="row">
@@ -291,7 +291,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="estimativa_rent_apos" placeholder="0,00" ng-model="formData.estimativa_rent_apos">
+                     <input type="text" name="estimativa_rent_apos" placeholder="0" ng-model="formData.estimativa_rent_apos">
                     </label>
                   </div>
                   <div class="col col-10">
