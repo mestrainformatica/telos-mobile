@@ -112,7 +112,7 @@
                     <div class="col col-20">
                         
                       <label class="item item-input">
-                        <input type="text" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" />
+                        <input type="tel" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" mask="999" mask-restrict='reject'/>
                       </label>
 
 
@@ -138,7 +138,7 @@
                    </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="cresc_real_sal" ng-model="formData.cresc_real_sal">
+                         <input type="tel" name="cresc_real_sal" ng-model="formData.cresc_real_sal" mask="999" mask-restrict='reject'>
                       </label>
                     </div>
                     <div class="col col-10">
@@ -159,7 +159,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="contribuicao_participante" ng-model="formData.contribuicao_participante">
+                         <input type="tel" name="contribuicao_participante" ng-model="formData.contribuicao_participante" mask="999" mask-restrict='reject'>
                       </label>
                     </div>
                     <div class="col col-10">
@@ -180,7 +180,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                         <input type="text" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre">
+                         <input type="tel" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre" mask="999" mask-restrict='reject'>
                       </label>
                     </div>
                     <div class="col col-10">
@@ -201,7 +201,7 @@
                     </div>
                     <div class="col col-20">
                       <label class="item item-input">
-                       <input type="text" name="dependentes_para_fins_ir" placeholder="0" ng-model="formData.dependentes_para_fins_ir">
+                       <input type="tel" name="dependentes_para_fins_ir" placeholder="0" ng-model="formData.dependentes_para_fins_ir" mask="999" mask-restrict='reject'>
                       </label>
                     </div>
                     <div class="col col-10">
@@ -221,7 +221,7 @@
                     </div>
                     <div class="col col-33">
                       <label class="item item-input">
-                      <input type="text" name="aporte" placeholder="0" ng-model="formData.aporte">
+                      <input type="number" name="aporte" placeholder="0" ng-model="formData.aporte">
                       </label>
                     </div>
 

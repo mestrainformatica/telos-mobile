@@ -1234,7 +1234,7 @@ console.log($rootScope);
   $scope.showChild = false
 
   $scope.value = $rootScope.lastRequest.result.simulaRMV;
-  
+
   $scope.value.texto_simulacao_renda_mensal_vitalicia = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
 
 
@@ -1513,6 +1513,8 @@ console.log($rootScope);
 
 .controller('AlteracaoPercentualRetiradaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.value = $rootScope.lastRequest.result.simulaBeneficioSP;
+
+  $scope.value.texto_alteracao_percentual_retirada = $rootScope.lastRequest.result.simuladorBeneficios.desc_texto_benef_saque;
 }])
 
 .controller('SimulacaoRmvAposentadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
