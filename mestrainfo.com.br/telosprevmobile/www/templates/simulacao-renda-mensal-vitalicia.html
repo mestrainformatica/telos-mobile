@@ -49,12 +49,13 @@
                             <div class="input-label">
                                 Busca
                             </div>
-                            <select class="ion-input-select" ng-model="formData.idade_nasc">
+                            <select class="ion-input-select" ng-model="formData.idade_nasc" ng-init="formData.idade_nasc = '01'">
                              <option value="01">IDADE</option>
                              <option value="02">MES/ANO</option>
                             </select>
                         </label>
-                        <label class="item item-input item-select">
+                        
+                        <label class="item item-input item-select" ng-show="formData.idade_nasc == '01'">
                           <div class="input-label">
                               Selecione
                           </div>
@@ -62,8 +63,21 @@
                              <option value="45">45 ANOS</option>
                           </select>
                         </label>
+
+                        <div class="row" ng-show="formData.idade_nasc == '02'">
+                          <div class="col">
+                            <span class="input-label">Mes / Ano</span>
+                          </div>
+                          <div class="col col-25">
+                              
+                            <label class="item item-input">
+                              <input type="tel" name="mes-ano" ng-model="formData.mes_ano" mask="99/9999" mask-restrict='reject' ng-init="formData.mes_ano = '10/2016'">
+                            </label>
+                          </div>
                         </div>
+
                       </div>
+                    </div>
                   </div>
                 
                 
