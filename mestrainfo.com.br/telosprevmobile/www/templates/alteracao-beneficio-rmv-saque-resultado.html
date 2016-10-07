@@ -17,7 +17,7 @@
     <div class="item extratoDoMes">
       <div class="separador">
         <div class="label row" >
-          <div class="col text col-67"><span class="dif cap">Saldo de conta RMV ({{value.percentual_saque}}%)</span></div>
+          <div class="col text col-67"><span class="dif cap">Saldo de conta RMV ({{value.percentual_rmv}}%)</span></div>
           <div class="col valor">{{value.saldo_conta_considerado}}</div>
         </div>
       </div>
@@ -50,7 +50,7 @@
   <div class="item extratoDoMes">
     <div class="separador">
       <div class="label row" >
-        <div class="col text col-67"><span class="dif cap">Saldo de conta de saque programado</span></div>
+        <div class="col text col-67"><span class="dif cap">Saldo de conta de saque programado ({{value.percentual_saque}}%)</span></div>
         <div class="col valor">{{value.saldo_conta_saq_prog}}</div>
       </div>
     </div>
@@ -216,7 +216,7 @@
             </div>
             <div class="col col-20">
               <label class="item item-input">
-                <input type="text" name="" placeholder="">
+                <input type="tel" name="" placeholder="" mask="999" mask-restrict='reject' ng-model="formData.estimativa_rent_apos">
               </label>
             </div>
             <div class="col col-10">
@@ -239,7 +239,7 @@
         Atenção:
         <div class="text-small no-wrap">
           <p>
-            {{value.texto_alteracao_percentual_retirada}}
+            {{value.texto_alteracao_rmv_saque}}
           </p>
         </div>
       </div>

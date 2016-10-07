@@ -75,11 +75,11 @@
                             <div class="input-label lower">
                                 Tipo de reajuste
                             </div>
-                            <select class="ion-input-select" ng-model="formData.tipo_reajuste" mask="999" mask-restrict='reject'>
-                             <option value="0">RENTABILIDADE</option>
+                            <select class="ion-input-select" ng-model="formData.tipo_reajuste" ng-options="key as value for (key , value) in tipoReajuste" ng-init="formData.tipo_reajuste = tipoReajusteDefault">
+                                 <option value="{{key}}">{{value}}</option>
                             </select>
                         </label>
-              
+                
                         <label class="item item-input item-select">
                           <div class="input-label lower">
                               Com pensão?
@@ -239,6 +239,25 @@
                   <div class="col col-20">
                     <label class="item item-input">
                      <input type="tel" name="saque_programado" placeholder="0" ng-model="formData.saque_programado" mask="999" mask-restrict='reject'>
+                    </label>
+                  </div>
+                  <div class="col col-10">
+                    <span class="input-label box">%</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="no-border item item-input item-stacked-label">
+               <!--  <span class="input-label">Dependentes para fins de IR</span>
+                <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
+
+                <div class="row">
+                  <div class="col ">
+                   <span class="input-label">Renda mensal vitalícia</span>
+                  </div>
+                  <div class="col col-20">
+                    <label class="item item-input">
+                     <input type="tel" name="renda_mensal" placeholder="0" ng-model="formData.renda_mensal" mask="999" mask-restrict='reject'>
                     </label>
                   </div>
                   <div class="col col-10">

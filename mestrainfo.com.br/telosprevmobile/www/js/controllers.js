@@ -1098,6 +1098,13 @@ console.log(resp);
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl', ['$scope', '$state', '$rootScope', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicLoading, $http) {
   $scope.formData = {};
+  
+  $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  delete $scope.tipoReajuste.DEFAULT;
+
+  console.log($scope.tipoReajuste);
+  console.log($rootScope.lastRequest.result.tipoReajusteDefault);
 
   $scope.submit = function(formData) {
     console.log('teste');
@@ -1343,6 +1350,10 @@ console.log($rootScope);
 .controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   $scope.formData = {};
 
+  $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  delete $scope.tipoReajuste.DEFAULT;
+
   $scope.submit = function(formData) {
 
     $scope.matricula = $rootScope.lastRequest.result;
@@ -1521,6 +1532,10 @@ console.log($rootScope);
   
   $scope.matricula = $rootScope.lastRequest.result;
 
+  $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  delete $scope.tipoReajuste.DEFAULT;
+
   $scope.submit = function(formData) {
     $http.post(url_base+';jsessionid='+userInfo.s, 
       { "param" : { 
@@ -1580,12 +1595,28 @@ console.log($rootScope);
 
   //add o texto de alyteracao rmv aposentado
   $scope.value.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
+
+  $scope.value.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+  console.log($scope.value.desc_opcao_tributaca);
+
 }])
 
 .controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+  
+  if ($rootScope.formRecalcular){
+    $scope.formData = $rootScope.formRecalcular;
+  }
   $scope.matricula = $rootScope.lastRequest.result;
 
+  $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  delete $scope.tipoReajuste.DEFAULT;
+
   $scope.submit = function(formData) {
+    // aqui tem.
+    $ionicLoading.show();
+    $rootScope.formRecalcular = formData;
+
     $http.post(url_base+';jsessionid='+userInfo.s, 
       { "param" : { 
         'acao':'simulaBeneficioRmvSp',
@@ -1596,6 +1627,8 @@ console.log($rootScope);
         'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
         'tipo_reajuste': formData.tipo_reajuste,
         'renda_mensal': formData.renda_mensal,
+        'percentual_rmv': formData.renda_mensal_vitalicia,
+        'percentual_saque': formData.saque_programado,
         'estimativa_rent_apos': formData.estimativa_rent_apos,
         'pensao': formData.pensao,
         'abono_anual': formData.abono_anual,
@@ -1603,6 +1636,7 @@ console.log($rootScope);
 
       }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
     ).then(function(resp) {
+      // nao tem formdata aqui ()aqui nao tem escopo. tem que pegar do $scope.
       userInfo.u = resp.data.login.u;
       userInfo.s = resp.data.login.s;
 
@@ -1615,24 +1649,15 @@ console.log($rootScope);
 
       //inserir o percentual do saque no json
       resp.data.result.percentual_saque = formData.saque_programado;
+      resp.data.result.percentual_rmv = formData.renda_mensal_vitalicia;
       
       if (!resp.data.success) {
-          $state.go('signin');
-        } else {
-          if (resp.data.result.emailEnviado){
-            $scope.formData = {};
-            $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
-            setTimeout(function() {
-              $state.go('alteracaormvsaqueresultado');
-            }, 1200);
-          } else {
-            $scope.formData = {};
-            $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
-            setTimeout(function() {
-              $state.go('alteracaormvsaqueresultado');
-            }, 1200);
-          }
-      }
+        $state.go('signin');
+      } else {
+        $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
+        $state.go('alteracaormvsaqueresultado');
+      } 
+      
       
    }, function(err) {
       $ionicLoading.hide();
@@ -1644,8 +1669,67 @@ console.log($rootScope);
   }
 }])
 
-.controller('AlteracaoRmvSaqueCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('AlteracaoRmvSaqueCtrl.resultado', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+  $scope.matricula = $rootScope.lastRequest.result;
+  //$rootScope.formRecalcular;
+  
   $scope.value = $rootScope.lastRequest.result.simulaBeneficioRmvSp;
+  $scope.value.texto_alteracao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_alteracao_hibrido;
+
+  $scope.submit = function(formData) {
+    $ionicLoading.show();
+    $rootScope.formRecalcular = $rootScope.formRecalcular;
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : { 
+        'acao':'simulaBeneficioRmvSp',
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'tipo_reajuste': $rootScope.formRecalcular.tipo_reajuste,
+        'renda_mensal': $rootScope.formRecalcular.renda_mensal,
+        'percentual_rmv': $rootScope.formRecalcular.renda_mensal_vitalicia,
+        'percentual_saque': $rootScope.formRecalcular.saque_programado,
+        'estimativa_rent_apos': formData.estimativa_rent_apos,
+        'pensao': $rootScope.formRecalcular.pensao,
+        'abono_anual': $rootScope.formRecalcular.abono_anual,
+        'dependentes_ir': $rootScope.formRecalcular.dependentes_ir
+
+      }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+      userInfo.u = resp.data.login.u;
+      userInfo.s = resp.data.login.s;
+
+      console.log(resp);
+      console.log($rootScope);
+
+      $ionicLoading.hide();
+      
+      $rootScope.errorMsg = resp.data.msg;
+
+      //inserir o percentual do saque no json
+      resp.data.result.percentual_saque = $rootScope.formRecalcular.saque_programado;
+      resp.data.result.percentual_rmv = $rootScope.formRecalcular.renda_mensal_vitalicia;
+      
+      if (!resp.data.success) {
+        $state.go('signin');
+      } else {
+        $ionicLoading.hide();
+        $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
+        $state.go('alteracaormvsaqueresultado');
+      } 
+      
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
 }])
 
 .controller('SimulacaoResgateNovoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {

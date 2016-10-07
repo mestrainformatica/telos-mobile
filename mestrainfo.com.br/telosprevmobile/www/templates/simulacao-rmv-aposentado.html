@@ -23,8 +23,8 @@
                 <div class="input-label">
                   Tipo de Reajuste
                 </div>
-                <select class="ion-input-select" ng-model="formData.tipo_reajuste">
-                   <option value="3">RENTABILIDADE</option>
+                <select class="ion-input-select" ng-model="formData.tipo_reajuste" ng-options="key as value for (key , value) in tipoReajuste" ng-init="formData.tipo_reajuste = tipoReajusteDefault">
+                     <option value="{{key}}">{{value}}</option>
                 </select>
               </label>
 

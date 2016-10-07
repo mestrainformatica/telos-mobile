@@ -27,7 +27,7 @@
             <label class="no-border item item-input item-stacked-label">
               <div class="row">
                 <div class="col">
-                  <span class="input-label">SAQUE PROGRAMADO</span>
+                  <span class="input-label">SAQUE PROGRAMADO <small>(0 a 20)</small></span>
                 </div>
                 <div class="col col-20">
                   <label class="item item-input">
@@ -42,11 +42,11 @@
             
               <div class="row">
                 <div class="col">
-                  <span class="input-label">RENDA MENSAL VITALÍCIA</span>
+                  <span class="input-label">RENDA MENSAL VITALÍCIA <small>(ao ano)</small></span>
                 </div>
                 <div class="col col-20">
                   <label class="item item-input">
-                     <input type="tel" name="renda_mensal" ng-model="formData.renda_mensal" ng-init="formData.renda_mensal='0'" mask="999" mask-restrict='reject'>
+                     <input type="tel" name="renda_mensal_vitalicia" ng-model="formData.renda_mensal_vitalicia" ng-init="formData.renda_mensal_vitalicia='0'" mask="999" mask-restrict='reject'>
                   </label>
                 </div>
               </div>
@@ -95,7 +95,7 @@
               <label class="no-border item item-input item-stacked-label">
                 <div class="row">
                   <div class="col">
-                    <span class="input-label">Estimativa de rentabilidade</span>
+                    <span class="input-label">Estimativa de rentabilidade <small>(Entre a simulação e início do benefício)</small></span>
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
@@ -131,8 +131,9 @@
               <div class="input-label">
                   Tipo de Reajuste
               </div>
-              <select class="ion-input-select" ng-model="formData.tipo_reajuste">
-                 <option value="3">RENTABILIDADE</option>
+              <select class="ion-input-select" ng-model="formData.tipo_reajuste" ng-options="key as value for (key , value) in tipoReajuste" ng-init="formData.tipo_reajuste = tipoReajusteDefault">
+               <option value="{{key}}">{{value}}</option>
+
               </select>
             </label>
             <label class="item item-input item-select">
