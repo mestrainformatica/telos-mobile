@@ -1577,6 +1577,9 @@ console.log($rootScope);
 
 .controller('SimulacaoRmvAposentadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.value = $rootScope.lastRequest.result.simulaAlteracaoRMV;
+
+  //add o texto de alyteracao rmv aposentado
+  $scope.value.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
 }])
 
 .controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {

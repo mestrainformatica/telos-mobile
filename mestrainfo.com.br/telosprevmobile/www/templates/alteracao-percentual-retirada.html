@@ -26,7 +26,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="text" name="percentual_renda_mensal" ng-model="formData.percentual_renda_mensal">
+                  <input type="tel" name="percentual_renda_mensal" ng-model="formData.percentual_renda_mensal" mask="999" mask-restrict='reject'>
                 </label>
                  <p class="input-legend">(0,5% A 2,0%)</p>
               </div>
@@ -42,7 +42,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="text" name="estimativa_rentabilidade" placeholder="" ng-model="formData.estimativa_rentabilidade">
+                  <input type="tel" name="estimativa_rentabilidade" placeholder="" ng-model="formData.estimativa_rentabilidade" mask="999" mask-restrict='reject'>
                 </label>
 
               </div>
@@ -61,7 +61,7 @@
               <div class="col col-20">
                 
                 <label class="item item-input">
-                  <input type="text" name="dependentes_ir" placeholder="0" ng-model="formData.dependentes_ir">
+                  <input type="tel" name="dependentes_ir" placeholder="0" ng-model="formData.dependentes_ir" mask="999" mask-restrict='reject'>
                 </label>
       
               </div>

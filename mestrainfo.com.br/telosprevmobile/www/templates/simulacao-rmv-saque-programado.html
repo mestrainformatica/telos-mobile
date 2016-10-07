@@ -34,29 +34,38 @@
         <form id="formCampos" class="formCampo">
           <div class="item">
 
-            <div class="select-box">
-                    <div class="row">
-                      <div class="col col-100">
-                        <label class="item item-input item-select">
-                            <div class="input-label">
-                                Busca
-                            </div>
-                            <select class="ion-input-select">
-                             <option value="">IDADE</option>
-                             <option value="">MES/ANO</option>
-                            </select>
-                        </label>
-                        <label class="item item-input item-select">
-                          <div class="input-label">
-                              Selecione
-                          </div>
-                          <select class="ion-input-select" ng-model="formData.idade" >
-                             <option value="45">45 ANOS</option>
-                          </select>
-                        </label>
-                        </div>
-                      </div>
+            <div class="separador">
+               <label class="item item-input item-select" name="tipo_idade">
+                  <div class="input-label">
+                      Busca
                   </div>
+                  <select class="ion-input-select" ng-model="formData.idade_nasc" ng-init="formData.idade_nasc = '01'">
+                   <option value="01">IDADE</option>
+                   <option value="02">MES/ANO</option>
+                  </select>
+              </label>
+
+              <label class="item item-input item-select" ng-show="formData.idade_nasc == '01'">
+                <div class="input-label">
+                    Selecione
+                </div>
+                <select class="ion-input-select" ng-model="formData.idade" ng-init="formData.idade = '45'">
+                   <option value="45">45 ANOS</option>
+                </select>
+              </label>
+
+              <div class="row" ng-show="formData.idade_nasc == '02'">
+                <div class="col">
+                  <span class="input-label">Mes / Ano</span>
+                </div>
+                <div class="col col-25">
+                    
+                  <label class="item item-input">
+                    <input type="tel" name="mes-ano" ng-model="formData.mes_ano" mask="99/9999" mask-restrict='reject' ng-init="formData.mes_ano = '10/2016'">
+                  </label>
+                </div>
+              </div>
+            </div>
                 
                   <div class="select-box">
                     <div class="row">
@@ -66,7 +75,7 @@
                             <div class="input-label lower">
                                 Tipo de reajuste
                             </div>
-                            <select class="ion-input-select" ng-model="formData.tipo_reajuste">
+                            <select class="ion-input-select" ng-model="formData.tipo_reajuste" mask="999" mask-restrict='reject'>
                              <option value="0">RENTABILIDADE</option>
                             </select>
                         </label>
@@ -76,7 +85,8 @@
                               Com pensão?
                           </div>
                           <select class="ion-input-select" ng-model="formData.pensao">
-                             <option value="N">NÃO</option>
+                            <option value="N">NÃO</option>
+                            <option value="S">SIM</option>
                           </select>
                         </label>
 
@@ -92,7 +102,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="text" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" /> 
+                  <input type="tel" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" mask="999" mask-restrict='reject'/> 
                 </label>
               </div>
               <div class="col col-10">
@@ -112,7 +122,7 @@
              </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="text" name="cresc_real_sal" ng-model="formData.cresc_real_sal">
+                   <input type="tel" name="cresc_real_sal" ng-model="formData.cresc_real_sal" mask="999" mask-restrict='reject'>
                 </label>
               </div>
               <div class="col col-10">
@@ -133,7 +143,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="text" name="contribuicao_participante" ng-model="formData.contribuicao_participante">
+                   <input type="tel" name="contribuicao_participante" ng-model="formData.contribuicao_participante" mask="999" mask-restrict='reject'>
                 </label>
               </div>
               <div class="col col-10">
@@ -154,7 +164,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="text" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre">
+                   <input type="tel" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre" mask="999" mask-restrict='reject'>
                 </label>
               </div>
               <div class="col col-10">
@@ -175,7 +185,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                 <input type="text" name="dependentes_ir" ng-model="formData.dependentes_ir" ng-init="formData.dependentes_ir='0">
+                 <input type="tel" name="dependentes_ir" ng-model="formData.dependentes_ir" ng-init="formData.dependentes_ir='0'" mask="999" mask-restrict='reject'>
                 </label>
               </div>
               <div class="col col-10">
@@ -195,7 +205,7 @@
               </div>
               <div class="col col-33">
                 <label class="item item-input">
-                <input type="text" name="aporte" placeholder="0" ng-model="formData.aporte">
+                <input type="number" name="aporte" placeholder="0" ng-model="formData.aporte">
                 </label>
               </div>
 
@@ -228,7 +238,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="saque_programado" placeholder="0" ng-model="formData.saque_programado">
+                     <input type="tel" name="saque_programado" placeholder="0" ng-model="formData.saque_programado" mask="999" mask-restrict='reject'>
                     </label>
                   </div>
                   <div class="col col-10">
@@ -291,7 +301,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="estimativa_rent_apos" placeholder="0" ng-model="formData.estimativa_rent_apos">
+                     <input type="tel" name="estimativa_rent_apos" placeholder="0" ng-model="formData.estimativa_rent_apos" mask="999" mask-restrict='reject'>
                     </label>
                   </div>
                   <div class="col col-10">
