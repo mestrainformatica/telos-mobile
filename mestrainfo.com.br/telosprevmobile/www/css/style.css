@@ -11,6 +11,31 @@
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
+
+.mes-ano-input {
+	border: solid 1px #d0d0d0;
+	padding: 0 .75em;
+	margin:0;
+}
+.mes-ano-input .input-label {
+	color: #333 !important; 
+	padding: 4px 0;
+}
+.mes-ano-input .item.item-input {
+	width: 100% !important;
+	border: none;
+	padding:0;margin:0;
+	line-height: 1em;
+	height:28px;
+	border-left: solid 1px #d0d0d0;
+	border-bottom: solid 1px #e0e0e0;
+
+	background: #f0f0f0;
+}
+
+.mes-ano-input .item.item-input input {
+    width: 111px;
+}
 .th .col-40, .th .col-41 {
 	padding-left: .3em !important;
 }
@@ -229,7 +254,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	    max-width: 54% !important;
 	    text-align: right !important;
 	    padding-bottom: 0.5em !important;
-	    margin-top: -0.5em;
+	    margin-top: 0.5em;
 }
 #btn-editar { margin-top: 1em; color: #595959;}
 #btn-editar .icon { margin-top: 1px; margin-left: .25em}
@@ -237,11 +262,16 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	text-align: center;
 	color: #404040;
 }
-#signin .button.button-positive {
-	background-color: #00688f !important;
-	border-color: #045878 !important;
-
+#signin .button.button-positive,
+.button.button-positive {
+	background-color: #1c7fa2 !important;
+	border-color: #00688f !important;
 }
+.button.button-positive.button-clear {
+	background-color: transparent !important;
+	border-color: transparent !important;
+}
+
 #saldoEmitido h4 { margin-left: 5px; margin-top: 1em; }
 .title_label {
 	color: #909090 !important;

@@ -9,6 +9,7 @@
     'ngCordova',
     'starter.controller',
     'starter.services',
+    'ui.utils.masks',
     'ionic-datepicker'
   ])
   .run(function($ionicPlatform, $state, $timeout) {
@@ -25,13 +26,16 @@
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-      
+      // verificar se é melhor true ou false.
+      cordova.plugins.Keyboard.disableScroll(true);
+
+
       if (window.StatusBar) {
           if (ionic.Platform.isAndroid()) {
             StatusBar.backgroundColorByHexString("#0080a5");
             $cordovaStatusbar.styleHex('#0080a5') //azul mestra
           } else {
-            console.log(StatusBar);
+            //console.log(StatusBar);
             StatusBar.overlaysWebView(false);
             StatusBar.styleBlackTranslucent();
             StatusBar.backgroundColorByHexString("#0080a5");

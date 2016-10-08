@@ -54,7 +54,7 @@
                 </select>
               </label>
 
-              <div class="row" ng-show="formData.idade_nasc == '02'">
+              <div class="row mes-ano-input" ng-show="formData.idade_nasc == '02'">
                 <div class="col">
                   <span class="input-label">Mes / Ano</span>
                 </div>
@@ -102,7 +102,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="tel" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" mask="999" mask-restrict='reject'/> 
+                  <input type="tel" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" ui-number-mask min="0" max="20" mask-restrict='reject'/> 
                 </label>
               </div>
               <div class="col col-10">
@@ -122,7 +122,7 @@
              </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="tel" name="cresc_real_sal" ng-model="formData.cresc_real_sal" mask="999" mask-restrict='reject'>
+                   <input type="tel" name="cresc_real_sal" ng-model="formData.cresc_real_sal" ui-number-mask mask-restrict='reject'>
                 </label>
               </div>
               <div class="col col-10">
@@ -143,7 +143,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="tel" name="contribuicao_participante" ng-model="formData.contribuicao_participante" mask="999" mask-restrict='reject'>
+                   <input type="tel" name="contribuicao_participante" ui-number-mask ng-model="formData.contribuicao_participante" mask="999" mask-restrict='reject'>
                 </label>
               </div>
               <div class="col col-10">
@@ -164,7 +164,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="tel" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre" mask="999" mask-restrict='reject'>
+                   <input type="tel" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre" ui-number-mask mask-restrict='reject'>
                 </label>
               </div>
               <div class="col col-10">
@@ -185,7 +185,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                 <input type="tel" name="dependentes_ir" ng-model="formData.dependentes_ir" ng-init="formData.dependentes_ir='0'" mask="999" mask-restrict='reject'>
+                 <input type="tel" name="dependentes_ir" ng-model="formData.dependentes_ir" ng-init="formData.dependentes_ir='0'" ui-number-mask="0" mask-restrict='reject'>
                 </label>
               </div>
               <div class="col col-10">
@@ -205,7 +205,7 @@
               </div>
               <div class="col col-33">
                 <label class="item item-input">
-                <input type="number" name="aporte" placeholder="0" ng-model="formData.aporte">
+                <input type="tel" name="aporte" ui-number-mask="2" placeholder="0" ng-model="formData.aporte">
                 </label>
               </div>
 
@@ -238,7 +238,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="tel" name="saque_programado" placeholder="0" ng-model="formData.saque_programado" mask="999" mask-restrict='reject'>
+                     <input type="tel" name="saque_programado" placeholder="0" ng-model="formData.saque_programado" ui-number-mask mask-restrict='reject'>
                     </label>
                   </div>
                   <div class="col col-10">
@@ -257,7 +257,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="tel" name="renda_mensal" placeholder="0" ng-model="formData.renda_mensal" mask="999" mask-restrict='reject'>
+                     <input type="tel" name="renda_mensal" placeholder="0" ng-model="formData.renda_mensal" ui-number-mask mask-restrict='reject'>
                     </label>
                   </div>
                   <div class="col col-10">
@@ -295,14 +295,14 @@
           <div class="item-section">
 
             <div class="item">
-              <!-- <label class="no-border item item-input item-stacked-label">
+              <label class="no-border item item-input item-stacked-label">
                  <div class="row">
                   <div class="col ">
-                   <span class="input-label">Renda mensal</span><p>Em percentual do saldo do dia</p>
+                   <span class="input-label">Renda mensal</span><p>Em percentual do saldo da conta</p>
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="renda_mensal" placeholder="0,00" ng-model="formData.renda_mensal" />
+                     <input type="text" name="renda_mensal" ui-number-mask="2" min="0.3" max="2,0" placeholder="0,00" ng-model="formData.renda_mensal" />
                     </label>
                     <p class="input-legend">(0,3 a 2,0)</p>
                   </div>
@@ -311,7 +311,7 @@
                   </div>
                 </div>
 
-              </label> -->
+              </label>
               
               <label class="no-border item item-input item-stacked-label">
                  <div class="row">
@@ -320,7 +320,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="tel" name="estimativa_rent_apos" placeholder="0" ng-model="formData.estimativa_rent_apos" mask="999" mask-restrict='reject'>
+                     <input type="tel" name="estimativa_rent_apos" placeholder="0" ng-model="formData.estimativa_rent_apos" ui-number-mask="2" mask-restrict='reject'>
                     </label>
                   </div>
                   <div class="col col-10">
