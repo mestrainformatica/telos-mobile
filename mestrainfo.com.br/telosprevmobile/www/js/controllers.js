@@ -208,7 +208,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
               else if (typeof(resp.data.result.dadosView)){
                 
                
-                //console.log(stageMap);
+                ////console.log(stageMap);
                 // Ao definir as variáveis, vai pro menu principal
                 $state.go('menu');
               } else {
@@ -216,7 +216,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
               }
             }
             //alert('passou');
-            //console.log(resp);
+            ////console.log(resp);
             //$state.go('menu');
           }
           
@@ -255,7 +255,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 .controller('termosDeUso', ['$scope', '$state', '$rootScope', '$http', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicPopup) {
 
   $rootScope.erroMsg = false;
-  //console.log($rootScope.lastRequest.result);
+  ////console.log($rootScope.lastRequest.result);
   $scope.termosText = $rootScope.lastRequest.result.termo_de_uso[0].descricao_termo_uso;
 
 }])
@@ -274,7 +274,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           
           $ionicLoading.hide();        
           $scope.termosText = resp.data.result.termo_de_uso[0].descricao_termo_uso;
-          //console.log($scope.termosText);
+          ////console.log($scope.termosText);
         }
 
       }, function(err) {
@@ -367,7 +367,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
      });
      });
   }
-  //console.log($rootScope.lastRequest.result);
+  ////console.log($rootScope.lastRequest.result);
   $scope.termosText = $rootScope.lastRequest.result.termo_de_uso[0].descricao_termo_uso;
 
 }])
@@ -464,7 +464,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.extrato = $rootScope.lastRequest.result.extratoContas;
   $scope.formData = {};
 
-  console.log($scope.extrato);
+  //console.log($scope.extrato);
   $scope.submit = function(){
     
 
@@ -488,7 +488,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           } else {
             $rootScope.lastRequest.extratoEmitido = resp.data.result;
             $rootScope.lastRequest.extratoEmitido.mes_atual = $scope.cod_ano_mes;
-            console.log(resp.data.result);
+            //console.log(resp.data.result);
             $state.go('extratoemitido');
           }
         }
@@ -530,7 +530,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
-            console.log(resp.data.result);
+            //console.log(resp.data.result);
             alert('enviado');
           }
         }
@@ -557,7 +557,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       $rootScope.errorMsg = "Por favor preencha todos os campos";
     } else {
 
-    console.log('clicou');
+    //console.log('clicou');
         $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
@@ -572,7 +572,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $rootScope.errorMsg = resp.data.msg; 
           } else {
             $rootScope.lastRequest.saldoEmitido = resp.data.result;
-            console.log(resp.data.result);
+            //console.log(resp.data.result);
             $state.go('saldoemitido');
           }
         }
@@ -592,7 +592,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $rootScope.erroMsg = false;
   $scope.saldo = $rootScope.lastRequest.saldoEmitido;
-  console.log($scope.saldo);
+  //console.log($scope.saldo);
 
   if($rootScope.lastRequest.result.dadosCadastrais.email == "")
     $scope.hasEmail = true;
@@ -617,7 +617,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
-            console.log(resp.data.result);
+            //console.log(resp.data.result);
             alert('enviado');
           }
         }
@@ -760,13 +760,13 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
 
-console.log(resp);
+//console.log(resp);
 
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
-            console.log(resp.data.result);
+            //console.log(resp.data.result);
             alert('enviado');
           }
         }
@@ -818,8 +818,8 @@ console.log(resp);
         
         dataInicial = new Date(resp.data.result.data_inicial);
         $scope.dataInicial = dataInicial.getTime();
-        console.log(dataInicial);
-        console.log($scope.dataInicial);
+        //console.log(dataInicial);
+        //console.log($scope.dataInicial);
         $scope.disableCalendar = false; 
         
         datasIndisponiveis = resp.data.result.datas_credito;
@@ -834,7 +834,7 @@ console.log(resp);
             $scope.disableddates.push(currentDate.getTime());
           }
         }
-        console.log($scope.disableddates);
+        //console.log($scope.disableddates);
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
         
           if (resp.data.msg.length > 0){
@@ -865,7 +865,7 @@ console.log(resp);
         } else {
 
 
-        console.log('click');
+        //console.log('click');
             $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
         // Atualiza as datas de crédito
@@ -881,7 +881,7 @@ console.log(resp);
             $rootScope.lastRequest.esmprestimoSimulacaoCampos.cod_emprestimo = cod_emprestimo;
             $scope.errorMsg = false;
             $state.go('emprestimosimulacaocampos');
-            console.log(resp.data.result);
+            //console.log(resp.data.result);
 
         }, function(err) {
         $ionicLoading.hide();
@@ -902,7 +902,7 @@ console.log(resp);
 }])
 .controller('emprestimoSimulacaoCamposCtrl', ['$scope', '$state', '$rootScope',  '$http', '$ionicLoading', '$filter', '$ionicPopup', function($scope,$state,$rootScope,$http,$ionicLoading,$filter,$ionicPopup){
 
-    //console.log($rootScope.lastRequest.esmprestimoSimulacaoCampos);
+    ////console.log($rootScope.lastRequest.esmprestimoSimulacaoCampos);
     $scope.formData = {};
     $scope.contrato = $rootScope.lastRequest.esmprestimoSimulacaoCampos.saldos_dados_simulacao;
     $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.esmprestimoSimulacaoCampos;
@@ -1018,10 +1018,10 @@ console.log(resp);
           (!$scope.formData.valor)){
           $scope.errorMsg = "Por favor preencha todos os campos";
         } else {
-      // console.log($scope.formData);
-      // console.log($scope.emprestimoSimulacaoCampos);
-      // console.log($scope.tipos_emprestimo);
-      // console.log($scope.matricula);
+      // //console.log($scope.formData);
+      // //console.log($scope.emprestimoSimulacaoCampos);
+      // //console.log($scope.tipos_emprestimo);
+      // //console.log($scope.matricula);
       $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -1067,7 +1067,7 @@ console.log(resp);
                   }
                   $scope.errorMsg = false;
                   $state.go('emprestimosimulacaocamposemitido');
-                  //console.log(resp.data.result);
+                  ////console.log(resp.data.result);
                 }
               }
 
@@ -1090,29 +1090,40 @@ console.log(resp);
     $scope.emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido;
     $scope.emitido = $scope.emprestimoSimulacaoCamposEmitido;
   
-    //console.log($scope);
+    ////console.log($scope);
 
 }])
 
 //MEUS CONTROLLERS
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl', ['$scope', '$state', '$rootScope', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicLoading, $http) {
-  $scope.formData = {};
   
+  if ($rootScope.lastFormRMV){
+    $scope.formData = $rootScope.lastForm;
+  }
   $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
   $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
   delete $scope.tipoReajuste.DEFAULT;
 
-  console.log($scope.tipoReajuste);
-  console.log($rootScope.lastRequest.result.tipoReajusteDefault);
+  //console.log($scope.tipoReajuste);
+  //console.log($rootScope.lastRequest.result.tipoReajusteDefault);
 
+  $scope.goBeneficiarios = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $rootScope.lastFormRMV = {}
+    $rootScope.lastFormRMV = formData;
+    $state.go('simulacaorendamensalvitaliciabeneficiarios');
+
+  }
   $scope.submit = function(formData) {
-    console.log('teste');
-    console.log(formData);
-
+    //console.log('teste');
+    //console.log(formData);
+    $rootScope.lastFormRMV = {}
+    $rootScope.lastFormRMV = formData;
     $scope.matricula = $rootScope.lastRequest.result;
 
-    console.log($scope.matricula);
+    //console.log($scope.matricula);
 
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
@@ -1158,8 +1169,8 @@ console.log(resp);
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
 
-console.log(resp);
-console.log($rootScope);
+//console.log(resp);
+//console.log($rootScope);
 
         $ionicLoading.hide();
         
@@ -1194,24 +1205,31 @@ console.log($rootScope);
 }])
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+  console.log($rootScope);
   $scope.beneficiario = Array();
 
-  $scope.beneficiarios = [
-      {
-        beneficiario: 'Beneficiário 1',
-        dt_nascimento: '06/12/1993',
-        vinculo: 'vitalício',
-        sexo: 'M',
-        parentesco: 'Filho'
-      },
-      {
-        beneficiario: 'Beneficiário 2',
-        dt_nascimento: '06/12/1994',
-        vinculo: 'vitalício',
-        sexo: 'F',
-        parentesco: 'Filho'
-      }
-    ];
+  // $scope.beneficiarios = [
+  //     {
+  //       beneficiario: 'Beneficiário 1',
+  //       dt_nascimento: '06/12/1993',
+  //       vinculo: 'vitalício',
+  //       sexo: 'M',
+  //       parentesco: 'Filho'
+  //     },
+  //     {
+  //       beneficiario: 'Beneficiário 2',
+  //       dt_nascimento: '06/12/1994',
+  //       vinculo: 'vitalício',
+  //       sexo: 'F',
+  //       parentesco: 'Filho'
+  //     }
+  //   ];
+  if ($rootScope.lastRequest.result.simuladorBeneficios.beneficiarios) {
+    $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios.beneficiarios;
+  } else {
+  $scope.beneficiarios = new Array();  
+  }
 
   $scope.beneficiarioToggle = function(key) {
     if($scope.beneficiario[key])
@@ -1234,6 +1252,12 @@ console.log($rootScope);
 
     //abrir o form para editar este beneficiario
     $scope.beneficiario[position-1] = true;
+  }
+  $scope.rmBeneficiario = function(e) {
+    // alert('oi');
+    if (e){
+    $scope.beneficiarios.splice(e, 1);
+    }
   }
 }])
 
@@ -1269,12 +1293,12 @@ console.log($rootScope);
   $scope.formData = {};
 
   $scope.submit = function(formData) {
-    console.log('teste');
-    console.log(formData);
+    //console.log('teste');
+    //console.log(formData);
 
     $scope.matricula = $rootScope.lastRequest.result;
 
-    console.log($scope.matricula);
+    //console.log($scope.matricula);
 
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
@@ -1309,7 +1333,7 @@ console.log($rootScope);
 
         $ionicLoading.hide();
 
-        console.log($rootScope);
+        //console.log($rootScope);
         
         $rootScope.errorMsg = resp.data.msg;
         
@@ -1344,6 +1368,7 @@ console.log($rootScope);
 .controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.value = $rootScope.lastRequest.result.simulaSP;
   $scope.value.texto_simulacao_saque_programado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_saque_prog;
+  console.log($scope.value.texto_simulacao_saque_programado);
 
 }])
 
@@ -1358,7 +1383,7 @@ console.log($rootScope);
 
     $scope.matricula = $rootScope.lastRequest.result;
 
-    console.log($scope.matricula);
+    //console.log($scope.matricula);
 
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
@@ -1403,8 +1428,8 @@ console.log($rootScope);
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
 
-console.log(resp);
-console.log($rootScope);
+//console.log(resp);
+//console.log($rootScope);
 
         $ionicLoading.hide();
         
@@ -1444,6 +1469,8 @@ console.log($rootScope);
     $scope.value = $rootScope.lastRequest.result.simulaRmvSp;
 
     $scope.value.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
+
+    console.log($rootScope.lastRequest.result.simulaRmvSp);
 
     $scope.toggleChild = function() {
       if($scope.showChild)
@@ -1487,8 +1514,8 @@ console.log($rootScope);
       userInfo.u = resp.data.login.u;
       userInfo.s = resp.data.login.s;
 
-console.log(resp);
-console.log($rootScope);
+//console.log(resp);
+//console.log($rootScope);
 
       $ionicLoading.hide();
       
@@ -1555,8 +1582,8 @@ console.log($rootScope);
       userInfo.u = resp.data.login.u;
       userInfo.s = resp.data.login.s;
 
-console.log(resp);
-console.log($rootScope);
+//console.log(resp);
+//console.log($rootScope);
 
       $ionicLoading.hide();
       
@@ -1597,7 +1624,7 @@ console.log($rootScope);
   $scope.value.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
 
   $scope.value.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
-  console.log($scope.value.desc_opcao_tributaca);
+  //console.log($scope.value.desc_opcao_tributaca);
 
 }])
 
@@ -1640,8 +1667,8 @@ console.log($rootScope);
       userInfo.u = resp.data.login.u;
       userInfo.s = resp.data.login.s;
 
-console.log(resp);
-console.log($rootScope);
+//console.log(resp);
+//console.log($rootScope);
 
       $ionicLoading.hide();
       
@@ -1692,7 +1719,7 @@ console.log($rootScope);
         'renda_mensal': $rootScope.formRecalcular.renda_mensal,
         'percentual_rmv': $rootScope.formRecalcular.renda_mensal_vitalicia,
         'percentual_saque': $rootScope.formRecalcular.saque_programado,
-        'estimativa_rent_apos': formData.estimativa_rent_apos,
+        'estimativa_rent_apos': $scope.formData.estimativa_rent_apos,
         'pensao': $rootScope.formRecalcular.pensao,
         'abono_anual': $rootScope.formRecalcular.abono_anual,
         'dependentes_ir': $rootScope.formRecalcular.dependentes_ir
@@ -1702,8 +1729,8 @@ console.log($rootScope);
       userInfo.u = resp.data.login.u;
       userInfo.s = resp.data.login.s;
 
-      console.log(resp);
-      console.log($rootScope);
+      //console.log(resp);
+      //console.log($rootScope);
 
       $ionicLoading.hide();
       
@@ -1771,7 +1798,7 @@ $scope.showPopup = function() {
     ]
   });
   myPopup.then(function(res) {
-    console.log('Tapped!', res);
+    //console.log('Tapped!', res);
   });
   $timeout(function() {
      myPopup.close(); //close the popup after 3 seconds for some reason
@@ -1785,9 +1812,9 @@ $scope.showPopup = function() {
    });
    confirmPopup.then(function(res) {
      if(res) {
-       console.log('You are sure');
+       //console.log('You are sure');
      } else {
-       console.log('You are not sure');
+       //console.log('You are not sure');
      }
    });
  };
@@ -1799,7 +1826,7 @@ $scope.showPopup = function() {
      template: 'It might taste good'
    });
    alertPopup.then(function(res) {
-     console.log('Thank you for not eating my delicious ice cream cone');
+     //console.log('Thank you for not eating my delicious ice cream cone');
    });
  };
 }]);

@@ -461,6 +461,15 @@ h4.title_label {
 	font-size: 11px;
 }
 
+.tipo-reajuste {
+	padding:0;margin:0;
+}
+.tipo-reajuste .row {
+	padding:0;margin:0;
+}
+.tipo-reajuste .row .col.col-100 {
+	padding:0;margin:0;
+}
 
 .headerInfo .subitem .row .col.label {
 	color: #465961;
