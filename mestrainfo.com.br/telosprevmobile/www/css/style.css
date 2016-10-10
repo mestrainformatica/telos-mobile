@@ -24,13 +24,11 @@ body {
 .mes-ano-input .item.item-input {
 	width: 100% !important;
 	border: none;
-	padding:0;margin:0;
+	padding:0; margin:0;
 	line-height: 1em;
 	height:28px;
-	border-left: solid 1px #d0d0d0;
-	border-bottom: solid 1px #e0e0e0;
-
-	background: #f0f0f0;
+	border: solid 1px #d0d0d0;
+	background: #fff;
 }
 
 .mes-ano-input .item.item-input input {
