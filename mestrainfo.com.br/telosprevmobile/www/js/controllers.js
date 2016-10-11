@@ -1,4 +1,4 @@
-// var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
 var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
@@ -1298,6 +1298,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $scope.formData = new Object();
   console.log($scope.formData);
+  if ('lastFormDataSP' in $rootScope){
+    $scope.formData = $rootScope.lastFormDataSP;
+  }
   $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
@@ -1306,6 +1309,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
   $scope.submit = function(formData) {
     $scope.matricula = $rootScope.lastRequest.result;
+    $rootScope.lastFormDataSP = formData;
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
@@ -1361,10 +1365,73 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 
 .controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+
+  var formData = {};
+
+  if ('lastFormDataSP' in $rootScope){
+    $scope.formData = $rootScope.lastFormDataSP;
+  }
+
   $scope.value = $rootScope.lastRequest.result.simulaSP;
   $scope.value.texto_simulacao_saque_programado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_saque_prog;
   $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
  
+
+  $scope.submit = function(formData) {
+    $scope.matricula = $rootScope.lastRequest.result;
+    $rootScope.lastFormDataSP = formData;
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : { 
+          'acao':'simulaSP',
+          'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+          'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+          'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $scope.matricula.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+          'sexo': $scope.matricula.dadosCadastrais[0].sexo,
+          'data_elegibilidade_prevista': $scope.data_elegibilidade_prevista,
+          'idade': formData.idade,
+          'mes_ano': '',
+          'salario_participante': $scope.matricula.informacoesParticipante[0].salario_participante,
+          'cresc_real_sal': formData.cresc_real_sal,
+          'contribuicao_participante': formData.contribuicao_participante,
+          'antecipacao_beneficio': formData.antecipacao_beneficio,
+          'aporte': formData.aporte,
+          'dependentes_ir': formData.dependentes_ir,
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_entre,
+          'renda_mensal': formData.renda_mensal,
+          'abono_anual': formData.abono_anual
+
+        }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+
+        $rootScope.errorMsg = resp.data.msg; 
+        
+        if (!resp.data.success) { $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+          } else {
+            console.log('passou');
+            $rootScope.lastRequest.result.simulaSP = resp.data.result;
+            $state.go('simulacaosaqueprogramadoresultado');
+          }
+        }
+
+        $ionicLoading.hide();
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
 
 }])
 
