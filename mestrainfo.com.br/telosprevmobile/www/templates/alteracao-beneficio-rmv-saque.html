@@ -31,9 +31,12 @@
                 </div>
                 <div class="col col-20">
                   <label class="item item-input">
-                    <input type="tel" name="saque_programado" ng-model="formData.saque_programado" ng-init="formData.saque_programado='0'" mask="999" mask-restrict='reject'>
+                    <input type="tel" name="saque_programado" ng-model="formData.saque_programado" ng-init="formData.saque_programado='0'" ui-number-mask mask-restrict='reject'>
                   </label>
                 </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
+              </div>
               </div>
             
             </label>
@@ -46,9 +49,12 @@
                 </div>
                 <div class="col col-20">
                   <label class="item item-input">
-                     <input type="tel" name="renda_mensal_vitalicia" ng-model="formData.renda_mensal_vitalicia" ng-init="formData.renda_mensal_vitalicia='0'" mask="999" mask-restrict='reject'>
+                     <input type="tel" name="renda_mensal_vitalicia" ng-model="formData.renda_mensal_vitalicia" ng-init="formData.renda_mensal_vitalicia='0'" ui-number-mask mask-restrict='reject'>
                   </label>
                 </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
+              </div>
               </div>
 
             </label>
@@ -60,9 +66,12 @@
                 </div>
                 <div class="col col-20">
                   <label class="item item-input">
-                    <input type="tel" name="dependentes_ir" ng-model="formData.dependentes_ir" ng-init="formData.dependentes_ir='0'" mask="999" mask-restrict='reject'>
+                    <input type="tel" name="dependentes_ir" ng-model="formData.dependentes_ir" ng-init="formData.dependentes_ir='0'" ui-number-mask="0" mask-restrict='reject'>
                   </label>
                 </div>
+              <div class="col col-05">
+                <span class="input-label box "></span>
+              </div>
               </div>
             
             </label>
@@ -86,9 +95,12 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                      <input type="tel" name="renda_mensal" placeholder="" ng-model="formData.renda_mensal" mask="999" mask-restrict='reject'>
+                      <input type="tel" name="renda_mensal" placeholder="" ng-model="formData.renda_mensal" ui-number-mask mask-restrict='reject'>
                     </label>
                   </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
+              </div>
                 </div>
               </label>
 
@@ -99,9 +111,12 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                        <input type="tel" name="estimativa_rent_apos" placeholder="" ng-model="formData.estimativa_rent_apos" mask="999" mask-restrict='reject'>
+                        <input type="tel" name="estimativa_rent_apos" placeholder="" ng-model="formData.estimativa_rent_apos" ui-number-mask mask-restrict='reject'>
                     </label>
                   </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
+              </div>
                 </div>
               </label>
 

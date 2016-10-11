@@ -7,7 +7,15 @@
 .ng-hide-remove {
   display: none !important;
 }
-
+.col-05 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 6%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 6%;
+    -ms-flex: 0 0 6%;
+    flex: 0 0 6%;
+    max-width: 6%;
+}
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
@@ -22,17 +30,18 @@ body {
 	padding: 4px 0;
 }
 .mes-ano-input .item.item-input {
-	width: 100% !important;
 	border: none;
 	padding:0; margin:0;
 	line-height: 1em;
 	height:28px;
-	border: solid 1px #d0d0d0;
 	background: #fff;
+	 text-indent: 0px !important;
+    width: 100%;
+    padding: 0 0.2em;
 }
 
 .mes-ano-input .item.item-input input {
-    width: 111px;
+    width: auto;
 }
 .th .col-40, .th .col-41 {
 	padding-left: .3em !important;

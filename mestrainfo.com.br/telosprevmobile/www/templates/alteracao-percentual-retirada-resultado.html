@@ -21,7 +21,7 @@
       <div class="item extratoDoMes">
         <div class="separador">
           <div class="label row" >
-            <div class="col text col-67"><span class="dif cap">Renda mensão não vitalícia vigente - valor bruto</span></div>
+            <div class="col text col-67"><span class="dif cap">Renda mensal não vitalícia vigente - valor bruto</span></div>
             <div class="col valor">{{value.val_bruto}}</div>
           </div>
         </div>
@@ -77,13 +77,13 @@
               </div>
             </div>
 
-            <div class="col col-20">
+            <div class="col col-25">
               <label class="item item-input ">
-                <input type="text" name="" placeholder="">
+                <input type="text" name="" ng-model="formData.estimativa_rentabilidade" ui-number-mask placeholder="">
               </label>
             </div>
 
-            <div class="col col-10">
+            <div class="col col-05">
                <span class="input-label box ">%</span>
             </div>
 
@@ -110,11 +110,7 @@
         Atenção:
         <div class="text-small no-wrap">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Quos necessitatibus unde delectus,
-            tenetur quidem natus veniam aspernatur 
-            eveniet blanditiis quisquam alias omnis neque quia
-            iure sint nulla molestias recusandae repellendus!
+            {{value.texto_alteracao_percentual_retirada}}
           </p>
         </div>
       </div>

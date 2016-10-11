@@ -12,7 +12,8 @@
     'ui.utils.masks',
     'ionic-datepicker'
   ])
-  .run(function($ionicPlatform, $state, $timeout) {
+
+  .run(function($rootScope, $ionicPlatform, $state, $timeout) {
     
     $ionicPlatform.onHardwareBackButton(function () {
         if ($state.is('signin')) { // here to check whether the home page, if yes, exit the application
@@ -41,8 +42,11 @@
             StatusBar.backgroundColorByHexString("#0080a5");
           }
         }
+
       
     });
+
+    
 
      document.addEventListener("deviceReady", function () {
         document.addEventListener("resume", function () {
@@ -304,5 +308,6 @@
     $urlRouterProvider.otherwise('/sign-in');
     
   })
+
 
 

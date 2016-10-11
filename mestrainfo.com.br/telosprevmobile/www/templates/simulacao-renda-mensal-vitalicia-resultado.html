@@ -40,7 +40,7 @@
                 <div class="col valor">{{value.rmv_val_bruto}}</div>
               </div> 
               <div class="label row" >
-                <div class="col text col-67">Valor do imposto de renda (progressivo)</div>
+                <div class="col text col-67">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</div>
                 <div class="col valor">{{value.rmv_ir}}</div>
               </div> 
             </div>
@@ -58,19 +58,19 @@
                 <div class="col valor">{{value.antecipacao_beneficio}}</div>
               </div> 
               <div class="label row" >
-                <div class="col text col-67">Valor do imposto de renda (progressivo)</div>
-                <div class="col valor">{{value.rmv_ir}}</div>
+                <div class="col text col-67">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</div>
+                <div class="col valor">{{value.antecipacao_beneficio_ir}}</div>
               </div>
             </div>
 
             <div class="separador">
               <div class="label row" >
                 <div class="col text col-67">Pagamento integral</div>
-                <div class="col valor">{{value.pgt_integral_ir}}</div>
+                <div class="col valor">{{value.pagt_integral}}</div>
               </div>
               <div class="label row" >
-                <div class="col text col-67">Valor do imposto de renda (progressivo)</div>
-                <div class="col valor">{{value.rmv_ir}}</div>
+                <div class="col text col-67">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</div>
+                <div class="col valor">{{value.pagt_integral_ir}}</div>
               </div>
             </div>
 

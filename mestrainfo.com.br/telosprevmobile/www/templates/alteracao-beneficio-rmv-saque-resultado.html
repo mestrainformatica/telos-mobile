@@ -84,14 +84,14 @@
     <div class="separador">
       <div class="label row" >
         <div class="col text col-67"><span class="dif cap">Renda mensal total - valor bruto</span></div>
-        <div class="col valor">{{value.rmv_val_bruto}}</div>
+        <div class="col valor">{{value.result_simulacao_consolidada}}</div>
       </div>
     </div>
 
 
     <div class="separador">
       <div class="label row" >
-        <div class="col text col-67"><span class="dif cap">Valor do imposto de renda (progressivo)</span></div>
+        <div class="col text col-67"><span class="dif cap">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</span></div>
         <div class="col valor">{{value.val_ir}}</div>
       </div>
     </div>
@@ -214,12 +214,12 @@
             <div class="col">
               <div class="input-label">Rentabilidade anual</div>
             </div>
-            <div class="col col-20">
+            <div class="col col-30">
               <label class="item item-input">
-                <input type="tel" name="" placeholder="" mask="999" mask-restrict='reject' ng-model="formData.estimativa_rent_apos">
+                <input type="tel" name="" placeholder="" ui-number-mask mask-restrict='reject' ng-model="formData.estimativa_rent_apos">
               </label>
             </div>
-            <div class="col col-10">
+            <div class="col col-05">
                <span class="input-label box ">%</span>
             </div>
           </div>
