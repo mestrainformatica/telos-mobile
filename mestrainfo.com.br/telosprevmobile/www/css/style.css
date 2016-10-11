@@ -7,6 +7,9 @@
 .ng-hide-remove {
   display: none !important;
 }
+.list.spresultado {
+	margin-bottom: 0;
+}
 .col-05 {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 6%;

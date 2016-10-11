@@ -1364,7 +1364,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   }
 }])
 
-.controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$http', '$rootScope','$ionicLoading', function($scope, $state, $http, $rootScope, $ionicLoading) {
 
   var formData = {};
 
@@ -1375,7 +1375,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.value = $rootScope.lastRequest.result.simulaSP;
   $scope.value.texto_simulacao_saque_programado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_saque_prog;
   $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
- 
+  scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.years = new Array(); for (var year = 20; year <= 120; year++){
+    $scope.years.push(year);
+  }
+
+  $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
 
   $scope.submit = function(formData) {
     $scope.matricula = $rootScope.lastRequest.result;
@@ -1394,7 +1399,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           'sexo': $scope.matricula.dadosCadastrais[0].sexo,
           'data_elegibilidade_prevista': $scope.data_elegibilidade_prevista,
           'idade': formData.idade,
-          'mes_ano': '',
+          'mes_ano': formData.mes_ano,
           'salario_participante': $scope.matricula.informacoesParticipante[0].salario_participante,
           'cresc_real_sal': formData.cresc_real_sal,
           'contribuicao_participante': formData.contribuicao_participante,
@@ -1416,7 +1421,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         if (!resp.data.success) { $state.go('signin'); } else {
           if (resp.data.msg.length > 0){
           } else {
-            console.log('passou');
             $rootScope.lastRequest.result.simulaSP = resp.data.result;
             $state.go('simulacaosaqueprogramadoresultado');
           }

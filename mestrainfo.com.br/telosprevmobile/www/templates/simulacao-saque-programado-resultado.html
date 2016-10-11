@@ -4,7 +4,7 @@
         <div ng-include="'js/directives/userInfo.html'"></div> 
     </div>
 
-  <div class="list" id="mainMenu">       
+  <div class="list spresultado" id="mainMenu" >       
 
     <div class="resultados-title item">
       Resultados da simulação de Saque Programado
@@ -67,7 +67,7 @@
   </div>
 
   <div class="list">
-    <form id="formCampos" class="formCampo">
+    <form id="formCampos" class="formCampo" ng-submit="submit(FormData)">
       
       <div class="box-calculo">
         <div class="item">
