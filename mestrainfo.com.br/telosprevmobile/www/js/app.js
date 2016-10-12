@@ -210,79 +210,79 @@
     .state('simulacaorendamensalvitalicia', {
       cache: false,
       url: '/simulacao-renda-mensal-vitalicia',
-      templateUrl: "templates/simulacao-renda-mensal-vitalicia.html",
+      templateUrl: "templates/simulacao-ativo/simulacao-rmv.html",
     })
 
     .state('simulacaorendamensalvitaliciabeneficiarios', {
       cache: false,
       url: '/simulacao-renda-mensal-vitalicia-beneficiarios',
-      templateUrl: "templates/simulacao-renda-mensal-vitalicia-beneficiarios.html",
+      templateUrl: "templates/simulacao-ativo/simulacao-rmv-beneficiarios.html",
     })
 
     .state('simulacaorendamensalvitaliciaresultado', {
       cache: false,
       url: '/simulacao-renda-mensal-vitalicia-resultado',
-      templateUrl: "templates/simulacao-renda-mensal-vitalicia-resultado.html",
+      templateUrl: "templates/simulacao-ativo/simulacao-rmv-resultado.html",
     })
 
     .state('simulacaosaqueprogramado', {
       cache: false,
       url: '/simulacao-saque-programado',
-      templateUrl: "templates/simulacao-saque-programado.html",
+      templateUrl: "templates/simulacao-ativo/simulacao-sp.html",
     })
 
     .state('simulacaosaqueprogramadoresultado', {
       cache: false,
       url: '/simulacao-saque-programado-resultado',
-      templateUrl: "templates/simulacao-saque-programado-resultado.html",
+      templateUrl: "templates/simulacao-ativo/simulacao-sp-resultado.html",
     })
 
     .state('simulacaormvsaqueprogramado', {
       cache: false,
       url: '/simulacao-rmv-saque-programado',
-      templateUrl: "templates/simulacao-rmv-saque-programado.html",
+      templateUrl: "templates/simulacao-ativo/simulacao-rmvsp.html",
     })
 
     .state('simulacaormvsaqueprogramadoresultado', {
       cache: false,
       url: '/simulacao-rmv-saque-programado-resultado',
-      templateUrl: "templates/simulacao-rmv-saque-programado-resultado.html",
+      templateUrl: "templates/simulacao-ativo/simulacao-rmvsp-resultado.html",
     })
 
     .state('alteracaopercentualretirada', {
       cache: false,
       url: '/alteracao-percentual-retirada',
-      templateUrl: "templates/alteracao-percentual-retirada.html",
+      templateUrl: "templates/simulacao-assistido/alteracao-percentual-retirada.html",
     })
 
     .state('alteracaopercentualretiradaresultado', {
       cache: false,
       url: '/alteracao-percentual-retirada-resultado',
-      templateUrl: "templates/alteracao-percentual-retirada-resultado.html",
+      templateUrl: "templates/simulacao-assistido/alteracao-percentual-retirada-resultado.html",
     })
 
     .state('simulacaormvaposentado', {
       cache: false,
       url: '/simulacao-rmv-aposentado',
-      templateUrl: "templates/simulacao-rmv-aposentado.html",
+      templateUrl: "templates/simulacao-assistido/simulacao-rmv.html",
     })
 
     .state('simulacaormvaposentadoresultado', {
       cache: false,
       url: '/simulacao-rmv-aposentado-resultado',
-      templateUrl: "templates/simulacao-rmv-aposentado-resultado.html",
+      templateUrl: "templates/simulacao-assistido/simulacao-rmv-resultado.html",
     })
 
     .state('alteracaormvsaque', {
       cache: false,
       url: '/alteracao-rmv-saque',
-      templateUrl: "templates/alteracao-beneficio-rmv-saque.html",
+      templateUrl: "templates/simulacao-assistido/alteracao-beneficio-rmv-saque.html",
     })
 
     .state('alteracaormvsaqueresultado', {
       cache: false,
       url: '/alteracao-rmv-saque-resultado',
-      templateUrl: "templates/alteracao-beneficio-rmv-saque-resultado.html",
+      templateUrl: "templates/simulacao-assistido/alteracao-beneficio-rmv-saque-resultado.html",
     })
 
     .state('simulacaoresgatenovo', {

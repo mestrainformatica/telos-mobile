@@ -1203,10 +1203,48 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   }
 }])
 
-.controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', '$ionicModal', function($scope, $state, $rootScope, $ionicModal) {
   
   console.log($rootScope);
-  $scope.beneficiario = Array();
+  $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  $scope.formAddBeneficiario = {}
+
+  $scope.addBeneficiario = function(formAddBeneficiario){
+
+    console.log(formAddBeneficiario);
+
+    var addBeneficiario = formAddBeneficiario;
+    addBeneficiario.ordenacao = "3";
+    addBeneficiario.selecionado = "S";
+
+    $scope.beneficiarios.push(formAddBeneficiario);
+    $scope.closeModal();
+  }
+
+  $ionicModal.fromTemplateUrl('templates/modal/add-beneficiarios.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 
   // $scope.beneficiarios = [
   //     {
@@ -1224,41 +1262,42 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   //       parentesco: 'Filho'
   //     }
   //   ];
-  if ($rootScope.lastRequest.result.simuladorBeneficios.beneficiarios) {
-    $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios.beneficiarios;
-  } else {
-  $scope.beneficiarios = new Array();  
-  }
+  //   ------- abaixo foi comentado hj
+  // if ($rootScope.lastRequest.result.simuladorBeneficios.beneficiarios) {
+  //   $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios.beneficiarios;
+  // } else {
+  // $scope.beneficiarios = new Array();  
+  // }
 
-  $scope.beneficiarioToggle = function(key) {
-    if($scope.beneficiario[key])
-      $scope.beneficiario[key] = false;
-    else
-      $scope.beneficiario[key] = true;
-  }
+  // $scope.beneficiarioToggle = function(key) {
+  //   if($scope.beneficiario[key])
+  //     $scope.beneficiario[key] = false;
+  //   else
+  //     $scope.beneficiario[key] = true;
+  // }
 
-  $scope.addBeneficiario = function() {
-    // alert('oi');
-    var nextBeneficiario = $scope.beneficiarios.length+1;
-    var new_benef = {
-      beneficiario: 'Beneficiário '+nextBeneficiario,
-      dt_nascimento: '',
-      vinculo: '',
-      sexo: '',
-      parentesco: ''
-    }
-    $scope.beneficiarios.push(new_benef);
-    position = $scope.beneficiarios.length;
+  // $scope.addBeneficiario = function() {
+  //   // alert('oi');
+  //   var nextBeneficiario = $scope.beneficiarios.length+1;
+  //   var new_benef = {
+  //     beneficiario: 'Beneficiário '+nextBeneficiario,
+  //     dt_nascimento: '',
+  //     vinculo: '',
+  //     sexo: '',
+  //     parentesco: ''
+  //   }
+  //   $scope.beneficiarios.push(new_benef);
+  //   position = $scope.beneficiarios.length;
 
-    //abrir o form para editar este beneficiario
-    $scope.beneficiario[position-1] = true;
-  }
-  $scope.rmBeneficiario = function(e) {
-    // alert('oi');
-    if (e){
-    $scope.beneficiarios.splice(e, 1);
-    }
-  }
+  //   //abrir o form para editar este beneficiario
+  //   $scope.beneficiario[position-1] = true;
+  // }
+  // $scope.rmBeneficiario = function(e) {
+  //   // alert('oi');
+  //   if (e){
+  //   $scope.beneficiarios.splice(e, 1);
+  //   }
+  // }
 }])
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
