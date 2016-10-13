@@ -29,7 +29,9 @@
 	color: #808080;
 	margin:0;
 }
-
+#beneficiarios .extratoDoMes { 
+	padding: 0.5em 1em ;
+ }
 
 .toggle.toggle-positive input:checked + .track,
 #beneficiariosForm ion-header-bar .button,
@@ -51,6 +53,19 @@
     -ms-flex: 0 0 6%;
     flex: 0 0 6%;
     max-width: 6%;
+}
+.col-28 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 26%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 26%;
+    -ms-flex: 0 0 26%;
+    flex: 0 0 26%;
+    max-width: 26%;
+}
+.col-28 input {
+	padding-right: .5em;
+    text-align: right !important;
 }
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;

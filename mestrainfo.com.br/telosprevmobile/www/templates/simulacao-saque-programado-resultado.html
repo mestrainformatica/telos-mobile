@@ -67,7 +67,7 @@
   </div>
 
   <div class="list">
-    <form id="formCampos" class="formCampo" ng-submit="submit(formData)">
+    <form id="formCampos" class="formCampo">
       
       <div class="box-calculo">
         <div class="item">
@@ -102,7 +102,7 @@
           </div>
          
           <div class="button-bar">
-            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação">      
+            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação" ng-click="submit(FormData)">      
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@
           Atenção:
           <div class="text-small no-wrap">
             <p>
-              {{texto_simulacao_saque_programado}}
+              {{value.texto_simulacao_saque_programado}}
             </p>
           </div>
         </div>

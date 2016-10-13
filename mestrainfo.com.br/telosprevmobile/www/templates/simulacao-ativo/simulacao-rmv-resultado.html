@@ -40,7 +40,7 @@
                 <div class="col valor">{{value.rmv_val_bruto}}</div>
               </div> 
               <div class="label row" >
-                <div class="col text col-67">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</div>
+                <div class="col text col-67">Valor do imposto de renda ({{desc_opcao_tributacao}})</div>
                 <div class="col valor">{{value.rmv_ir}}</div>
               </div> 
             </div>
@@ -58,7 +58,7 @@
                 <div class="col valor">{{value.antecipacao_beneficio}}</div>
               </div> 
               <div class="label row" >
-                <div class="col text col-67">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</div>
+                <div class="col text col-67">Valor do imposto de renda ({{desc_opcao_tributacao}})</div>
                 <div class="col valor">{{value.antecipacao_beneficio_ir}}</div>
               </div>
             </div>
@@ -69,7 +69,7 @@
                 <div class="col valor">{{value.pagt_integral}}</div>
               </div>
               <div class="label row" >
-                <div class="col text col-67">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</div>
+                <div class="col text col-67">Valor do imposto de renda ({{desc_opcao_tributacao}})</div>
                 <div class="col valor">{{value.pagt_integral_ir}}</div>
               </div>
             </div>
@@ -80,105 +80,67 @@
     </div>
   </div>
 
-  <div class="beneficiarios-list" ng-show="value.beneficiarios">
-    <div class="item item-divider softrow">
-      <div class="row">
-        <div class="col col-100">
-          Relação de beneficiários selecionados para pensão
-        </div>
-      </div>
-    </div>
+  
 
-    <div class="menu-item item item-divider softrow item-select" id="filho" ng-click="toggleChild()">
-      <div class="row">
-        <div class="col col-100">
-          FILHO(A)
-        </div>
-      </div>
-    </div>
+  <div class="item item-divider softrow" ng-show="value.pensao == 'S'">
     
-    <div class="child-dropdown" data-toggle="filho" ng-show="showChild">
-       <div class="extratoDoMes item">
-          <div class="label row">
-              <div class="col col-67 text">
-                  Data de nascimento
-              </div>
-              <div class="col valor">
-               DD/MM/AAAA
-              </div>
-          </div>
-          <div class="label row">
-            <div class="col col-67 text">
-              Vínculo
-            </div>
-            <div class="col valor">
-              Vitalício
-            </div>
-          </div>
-          <div class="label row">
-           <div class="col col-67 text">
-              Sexo
-            </div>
-            <div class="col valor">
-              MASCULINO
-            </div>
-          </div>
-          <div class="label row">
-            <div class="col col-67 text">
-              Parentensco
-            </div>
-            <div class="col valor">
-               FILHO(A)
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div class="menu-item item item-divider softrow item-select" ng-click="toggleChildC()">
-      <div class="row">
-        <div class="col col-100">
-          CÔNJUGE
-        </div>
+    <div class="row">
+      <div class="col col-100">
+          Relação de beneficiários selecionados para pensão
       </div>
-    </div>
-
-    <div class="child-dropdown" ng-show="showChildC">
-       <div class="extratoDoMes item">
-          <div class="label row">
-              <div class="col col-67 text">
-                  Data de nascimento
-              </div>
-              <div class="col valor">
-               DD/MM/AAAA
-              </div>
-          </div>
-          <div class="label row">
-            <div class="col col-67 text">
-              Vínculo
-            </div>
-            <div class="col valor">
-              Vitalício
-            </div>
-          </div>
-          <div class="label row">
-           <div class="col col-67 text">
-              Sexo
-            </div>
-            <div class="col valor">
-              MASCULINO
-            </div>
-          </div>
-          <div class="label row">
-            <div class="col col-67 text">
-              Parentensco
-            </div>
-            <div class="col valor">
-               FILHO(A)
-            </div>
-          </div>
-        </div>
     </div>
   </div>
+  <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios" ng-show="value.pensao == 'S'">
+
+    <div class="menu-item item item-divider softrow">
+
+      <div class="row">
+        <div class="col col-100">
+           Beneficiário {{key+1}}
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="child-dropdown">
+       <div class="extratoDoMes item">
+           <div class="label row">
+              <div class="col col-67 text">
+                Data de nascimento
+              </div>
+              <div class="col valor">
+               {{value.data_nascimento}}
+              </div>
+            </div>
+            <div class="label row">
+              <div class="col col-67 text">
+                Vínculo
+              </div>
+              <div class="col valor">
+                {{map.vinculo[value.vinculo]}}
+              </div>
+            </div>
+            <div class="label row">
+             <div class="col col-67 text">
+                Sexo
+              </div>
+              <div class="col valor">
+                {{map.sexo[value.sexo]}}
+              </div>
+            </div>
+            <div class="label row">
+              <div class="col col-67 text">
+                Parentensco
+              </div>
+              <div class="col valor">
+                {{map.parentesco[value.cod_parentesco]}}
+              </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+         
   <div class="list">
    
     <form class="formCampos">

@@ -1,5 +1,5 @@
-//var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
@@ -1240,8 +1240,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
     var addBeneficiario = formAddBeneficiario;
     addBeneficiario.fromDB = false;
-    addBeneficiario.ordenacao = $scope.beneficiarios.length+1;
+    addBeneficiario.ordenacao = ($scope.beneficiarios.length+1).toString();
     addBeneficiario.selecionado = "S";
+    addBeneficiario.habilitado = "S";
     addBeneficiario.checked = true;
 
     $scope.beneficiarios.push(addBeneficiario);
@@ -1285,6 +1286,10 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
+    $rootScope.routeParams.beneficiario = $scope.beneficiarios;
+
+    console.log($rootScope.routeParams);
+
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : $rootScope.routeParams, "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {
@@ -1319,8 +1324,10 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.showChild = false
-
+  $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  $scope.map = map;
   $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+  
   $scope.value = $rootScope.simulaRMV;
   $scope.value.texto_simulacao_renda_mensal_vitalicia = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
 
@@ -1367,6 +1374,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.matricula = $rootScope.lastRequest.result;
     $rootScope.lastFormDataSP = formData;
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
     
     if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
 
@@ -1424,23 +1432,25 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 .controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$http', '$rootScope','$ionicLoading', function($scope, $state, $http, $rootScope, $ionicLoading) {
 
-  var formData = {};
-
-  if ('lastFormDataSP' in $rootScope){
+  $scope.formData = new Object();
+  
+  if (typeof($rootScope.lastFormDataSP) != 'undefined'){
     $scope.formData = $rootScope.lastFormDataSP;
   }
-
-  $scope.value = $rootScope.lastRequest.result.simulaSP;
-  $scope.value.texto_simulacao_saque_programado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_saque_prog;
-  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
-  scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
   }
+  $scope.value = $rootScope.lastRequest.result.simulaSP;
 
+  $scope.texto_simulacao_saque_programado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_saque_prog;
+  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+
+  
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
 
   $scope.submit = function(formData) {
+
     $scope.matricula = $rootScope.lastRequest.result;
     $rootScope.lastFormDataSP = formData;
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
@@ -1507,6 +1517,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 .controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   $scope.formData = {};
 
+  $scope.formData = {};
+  if (typeof($rootScope.formSimulaRMVSP) != 'undefined'){
+    $scope.formData = $rootScope.formSimulaRMVSP;
+  }
+
   $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
@@ -1566,11 +1581,15 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
+    $rootScope.formSimulaRMVSP = formData;
+
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : $scope.getParams(formData), "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
+
+        $ionicLoading.hide();
 
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
           if (resp.data.msg.length > 0){
@@ -1591,16 +1610,26 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   }
 }])
 
-.controller('SimulacaoRmvSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+.controller('SimulacaoRmvSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
     $scope.showChild = false;
 
+    $scope.formData = {};
+    if (typeof($rootScope.formSimulaRMVSP) != 'undefined'){
+      $scope.formData = $rootScope.formSimulaRMVSP;
+    } else if (typeof($rootScope.formToBeneficiarios) != 'undefined'){
+      $scope.formData = $rootScope.formToBeneficiarios;
+    }
+    $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+    $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+    $scope.map = map;
     $scope.value = $rootScope.simulaRmvSp;
+    console.log($scope.value);
     $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
-    $scope.value.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
+    $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
 
     console.log($rootScope.simulaRmvSp);
 
-    $scope.toggleChild = function() {
+    $scope.toggleChild = function(key) {
       if($scope.showChild)
         $scope.showChild = false;
       else
@@ -1617,6 +1646,78 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         $scope.showChildC = true;
 
     }
+     $scope.getParams = function(formData) {
+    
+    if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
+
+    return { 
+          'acao':'simulaRmvSp',
+          'cod_fundo': $rootScope.lastRequest.result.dadosCadastrais[0].cod_fundo,
+          'cod_patrocinadora': $rootScope.lastRequest.result.dadosCadastrais[0].cod_patrocinadora,
+          'matricula': $rootScope.lastRequest.result.informacoesParticipante[0].matricula,
+          'cod_plano': $rootScope.lastRequest.result.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $rootScope.lastRequest.result.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $rootScope.lastRequest.result.dadosCadastrais[0].data_nascimento,
+          'sexo': $rootScope.lastRequest.result.dadosCadastrais[0].sexo,
+          'tipo_reajuste': formData.tipo_reajuste,
+          'salario_participante': $rootScope.lastRequest.result.informacoesParticipante[0].salario_participante,
+          'cresc_real_sal': formData.cresc_real_sal,
+          'contribuicao_participante': formData.contribuicao_participante,
+          'pensao': formData.pensao,
+          'antecipacao_beneficio': formData.antecipacao_beneficio,
+          'aporte': formData.aporte,
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_apos,
+          'renda_mensal': formData.renda_mensal,
+          'abono_anual': formData.abono_anual,
+          'saque_programado': formData.saque_programado,
+          'renda_mensal_vitalicia': formData.renda_mensal_vitalicia,
+          'abono_anual': formData.abono_anual,
+          'dependentes_ir': formData.dependentes_ir,
+          'data_elegibilidade_prevista':  $scope.data_elegibilidade_prevista,
+          'idade': formData.idade,
+          'mes_ano': formData.mes_ano,
+          'beneficiario': $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+      }
+
+  }
+    $scope.submit = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $scope.matricula = $rootScope.lastRequest.result;
+    //console.log($scope.matricula);
+
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : $scope.getParams(formData), "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            $rootScope.simulaRMV = resp.data.result;
+            $state.go($rootScope.routeToBeneficiarios);
+          }
+        }
+
+        $ionicLoading.hide();
+
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
+
+
 }])
 
 .controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
@@ -1677,6 +1778,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 
 .controller('AlteracaoPercentualRetiradaCtrl.resultado', ['$scope', '$state', '$http', '$rootScope','$ionicLoading', function($scope, $state, $http, $rootScope, $ionicLoading) {
+ 
   $scope.value = $rootScope.lastRequest.result.simulaBeneficioSP;
 
   $scope.matricula = $rootScope.lastRequest.result;
