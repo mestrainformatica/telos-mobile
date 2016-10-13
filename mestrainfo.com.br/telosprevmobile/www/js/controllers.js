@@ -1,5 +1,5 @@
-var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
@@ -1302,6 +1302,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $rootScope.errorMsg = resp.data.msg; 
           } else {
             $rootScope.simulaRMV = resp.data.result;
+            $rootScope.simulaRmvSp = resp.data.result;
             $state.go($rootScope.routeToBeneficiarios);
           }
         }
@@ -1623,6 +1624,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
     $scope.map = map;
     $scope.value = $rootScope.simulaRmvSp;
+    console.log('segue:');
     console.log($scope.value);
     $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
     $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
