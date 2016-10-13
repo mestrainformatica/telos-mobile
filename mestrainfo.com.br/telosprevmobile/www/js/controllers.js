@@ -6,6 +6,29 @@ var stageMap = {}
 var logged = false;
 var userInfo = new Object();
 var timeoutMsg = "Rede indisponível";
+var map = {}
+map.vinculo = new Array();
+map.vinculo["V"] = 'Vitalício';
+map.vinculo["I"] = 'Indicado';
+map.vinculo["T"] = 'Temporário';
+
+map.sexo = new Array();
+map.sexo["M"] = 'Masculino';
+map.sexo["F"] = 'Feminino';
+
+map.parentesco = new Array();
+map.parentesco["01"] = "Cônjuge";
+map.parentesco["02"] = "Ex-Cônjuge";
+map.parentesco["03"] = "Companheiro(a)";
+map.parentesco["04"] = "Ex-Companheiro(a)";
+map.parentesco["05"] = "Pai ou Mãe";
+map.parentesco["06"] = "Designado";
+map.parentesco["07"] = "Filho(a)";
+map.parentesco["08"] = "Enteado(a)";
+map.parentesco["09"] = "Irmão ou Irmã";
+map.parentesco["10"] = "Menor sob Guarda";
+map.parentesco["11"] = "Sogro(a)";
+map.parentesco["12"] = "Filho > 24 anos";
 
 var toGuid = function (str) {
     return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase();
@@ -1162,18 +1185,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           'estimativa_rent_entre': formData.estimativa_rent_entre,
           'dependentes_para_fins_ir': formData.dependentes_para_fins_ir,
           'cod_opcao_tributacao': $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao,
-          'beneficiario': [
-            {
-              'cod_parentesco': '01',
-              'data_nascimento': '01/12/1993',
-              'vinculo': 'V',
-              'sexo': 'M',
-              'parentesco': 'filho',
-              'habilitado': 'N',
-              'selecionado': 'S',
-              'ordenacao': '1'
-            }
-          ]
+          'beneficiario': $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
 
         }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {
@@ -1203,22 +1215,35 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   }
 }])
 
-.controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', '$ionicModal', function($scope, $state, $rootScope, $ionicModal) {
+.controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', '$ionicModal', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicModal, $ionicLoading, $http) {
   
   console.log($rootScope);
   $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  $scope.beneficiarios.forEach(function(v,k){
+    $scope.beneficiarios[k].fromDB = true;
+    if ($scope.beneficiarios[k].selecionado = 'S'){
+      $scope.beneficiarios[k].checked = true;
+    }
+    if ($scope.beneficiarios[k].habilitado = 'N'){
+      $scope.beneficiarios[k].readonly = true;
+    }
+  });
+  $scope.map = map;
   $scope.formAddBeneficiario = {}
 
   $scope.addBeneficiario = function(formAddBeneficiario){
 
-    console.log(formAddBeneficiario);
-
     var addBeneficiario = formAddBeneficiario;
-    addBeneficiario.ordenacao = "3";
+    addBeneficiario.fromDB = false;
+    addBeneficiario.ordenacao = $scope.beneficiarios.length+1;
     addBeneficiario.selecionado = "S";
+    addBeneficiario.checked = true;
 
-    $scope.beneficiarios.push(formAddBeneficiario);
+    $scope.beneficiarios.push(addBeneficiario);
     $scope.closeModal();
+  }
+  $scope.rmBeneficiario = function(k){
+    $scope.beneficiarios.splice(k, 1);
   }
 
   $ionicModal.fromTemplateUrl('templates/modal/add-beneficiarios.html', {
@@ -1228,6 +1253,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.modal = modal;
   });
   $scope.openModal = function() {
+    $scope.formAddBeneficiario = {}
     $scope.modal.show();
   };
   $scope.closeModal = function() {
@@ -1246,58 +1272,69 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     // Execute action
   });
 
-  // $scope.beneficiarios = [
-  //     {
-  //       beneficiario: 'Beneficiário 1',
-  //       dt_nascimento: '06/12/1993',
-  //       vinculo: 'vitalício',
-  //       sexo: 'M',
-  //       parentesco: 'Filho'
-  //     },
-  //     {
-  //       beneficiario: 'Beneficiário 2',
-  //       dt_nascimento: '06/12/1994',
-  //       vinculo: 'vitalício',
-  //       sexo: 'F',
-  //       parentesco: 'Filho'
-  //     }
-  //   ];
-  //   ------- abaixo foi comentado hj
-  // if ($rootScope.lastRequest.result.simuladorBeneficios.beneficiarios) {
-  //   $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios.beneficiarios;
-  // } else {
-  // $scope.beneficiarios = new Array();  
-  // }
+   $scope.submit = function() {
+    //console.log('teste');
+    //console.log(formData);
+    $scope.matricula = $rootScope.lastRequest.result;
+    formData = $rootScope.lastFormRMV;
+    //console.log($scope.matricula);
 
-  // $scope.beneficiarioToggle = function(key) {
-  //   if($scope.beneficiario[key])
-  //     $scope.beneficiario[key] = false;
-  //   else
-  //     $scope.beneficiario[key] = true;
-  // }
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
-  // $scope.addBeneficiario = function() {
-  //   // alert('oi');
-  //   var nextBeneficiario = $scope.beneficiarios.length+1;
-  //   var new_benef = {
-  //     beneficiario: 'Beneficiário '+nextBeneficiario,
-  //     dt_nascimento: '',
-  //     vinculo: '',
-  //     sexo: '',
-  //     parentesco: ''
-  //   }
-  //   $scope.beneficiarios.push(new_benef);
-  //   position = $scope.beneficiarios.length;
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : { 
+          'acao':'simulaRMV',
+          'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+          'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+          'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $scope.matricula.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+          'sexo': $scope.matricula.dadosCadastrais[0].sexo,
+          'tipo_reajuste': formData.tipo_reajuste,
+          'data_elegibilidade_prevista': $scope.data_elegibilidade_prevista,
+          'idade': formData.idade,
+          'mes_ano': '',
+          'salario_participante': $scope.matricula.informacoesParticipante[0].salario_participante,
+          'cresc_real_sal': formData.cresc_real_sal,
+          'contribuicao_participante': formData.contribuicao_participante,
+          'pensao': formData.pensao,
+          'antecipacao_beneficio': formData.antecipacao_beneficio,
+          'aporte': formData.aporte,
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'dependentes_para_fins_ir': formData.dependentes_para_fins_ir,
+          'cod_opcao_tributacao': $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao,
+          'beneficiario': $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
 
-  //   //abrir o form para editar este beneficiario
-  //   $scope.beneficiario[position-1] = true;
-  // }
-  // $scope.rmBeneficiario = function(e) {
-  //   // alert('oi');
-  //   if (e){
-  //   $scope.beneficiarios.splice(e, 1);
-  //   }
-  // }
+        }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            $rootScope.simulaRMV = resp.data.result;
+            $state.go('simulacaorendamensalvitaliciaresultado');
+          }
+        }
+
+        $ionicLoading.hide();
+
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
+
+
+
 }])
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
@@ -1536,7 +1573,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           'data_elegibilidade_prevista':  $scope.data_elegibilidade_prevista,
           'idade': formData.idade,
           'mes_ano': '',
-          'beneficiario': []
+          'beneficiario': $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
 
         }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
       ).then(function(resp) {
@@ -1845,7 +1882,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 .controller('AlteracaoRmvSaqueCtrl.resultado', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   $scope.matricula = $rootScope.lastRequest.result;
-  //$rootScope.formRecalcular;
+  console.log($rootScope.lastRequest.result.informacoesParticipante);
 
   $scope.value.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
   $scope.value = $rootScope.lastRequest.result.simulaBeneficioRmvSp;

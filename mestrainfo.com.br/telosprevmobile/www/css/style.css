@@ -30,9 +30,11 @@
 	margin:0;
 }
 
+
+.toggle.toggle-positive input:checked + .track,
 #beneficiariosForm ion-header-bar .button,
 #beneficiariosForm ion-header-bar .button-positive
- {
+{
 	background: #0c6f92;
 	border:solid 1px #0c6f92;
 }
