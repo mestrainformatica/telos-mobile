@@ -29,7 +29,7 @@
           <div class="col valor">{{value.val_bruto}}</div>
         </div> 
         <div class="label row" >
-          <div class="col col-80">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</div>
+          <div class="col col-80">Valor do imposto de renda ({{desc_opcao_tributacao}})</div>
           <div class="col valor">{{value.rmv_ir}}</div>
         </div> 
       </div>
@@ -47,44 +47,76 @@
           <div class="col valor">{{value.pagt_integral}}</div>
         </div>
         <div class="label row" >
-          <div class="col col-80">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</div>
+          <div class="col col-80">Valor do imposto de renda ({{desc_opcao_tributacao}})</div>
           <div class="col valor">{{value.pagt_integral_ir}}</div>
         </div>
       </div>
   </div>
 
-  <div class="beneficiarios-list" ng-show="value.beneficiarios">
-    <div class="item item-divider softrow">
-     
-      <div class="row">
-        <div class="col col-100">
+  
+
+  <div class="item item-divider softrow" ng-show="formData.pensao == 'S'">
+    
+    <div class="row">
+      <div class="col col-100">
           Relação de beneficiários selecionados para pensão
-        </div>
-      </div>
-
-    </div>
-
-    <div class="list-beneficiarios" ng-show="value.beneficiarios">
-      <div class="menu-item item item-divider softrow item-select">
-
-        <div class="row">
-          <div class="col col-100">
-             FILHO(A)
-          </div>
-        </div>
-
-      </div>
-      <div class="menu-item item item-divider softrow item-select">
-       
-        <div class="row">
-          <div class="col col-100">
-             CÔNJUGE
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
+
+
+  <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios" ng-show="formData.pensao == 'S'">
+
+    <div class="menu-item item item-divider softrow">
+
+      <div class="row">
+        <div class="col col-100">
+           Beneficiário {{key+1}}
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="child-dropdown">
+       <div class="extratoDoMes item">
+           <div class="label row">
+              <div class="col col-67 text">
+                Data de nascimento
+              </div>
+              <div class="col valor">
+               {{value.data_nascimento}}
+              </div>
+            </div>
+            <div class="label row">
+              <div class="col col-67 text">
+                Vínculo
+              </div>
+              <div class="col valor">
+                {{map.vinculo[value.vinculo]}}
+              </div>
+            </div>
+            <div class="label row">
+             <div class="col col-67 text">
+                Sexo
+              </div>
+              <div class="col valor">
+                {{map.sexo[value.sexo]}}
+              </div>
+            </div>
+            <div class="label row">
+              <div class="col col-67 text">
+                Parentensco
+              </div>
+              <div class="col valor">
+                {{map.parentesco[value.cod_parentesco]}}
+              </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+  
 
   <div class="list">
    
@@ -93,7 +125,7 @@
         Atenção:
         <div class="text-small no-wrap">
           <p>
-            {{value.texto_alteracao_rmv_aposentado}}
+            {{texto_alteracao_rmv_aposentado}}
           </p>
         </div>
       </div>

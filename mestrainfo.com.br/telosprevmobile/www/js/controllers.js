@@ -1624,8 +1624,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
     $scope.map = map;
     $scope.value = $rootScope.simulaRmvSp;
-    console.log('segue:');
-    console.log($scope.value);
     $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
     $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
 
@@ -1853,14 +1851,21 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   if ('lastFormAposentadoRVM' in $rootScope) {
     $scope.formData = $rootScope.lastFormAposentadoRVM;
   }
+  $scope.goBeneficiarios = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $rootScope.formToBeneficiarios = {}
+    $rootScope.formToBeneficiarios = formData;
+    $rootScope.routeToBeneficiarios = "simulacaormvaposentadoresultado";
+    $rootScope.routeParams = $scope.getParams(formData);
+    $state.go('simulacaorendamensalvitaliciabeneficiarios');
 
-  $scope.submit = function(formData) {
+  }
+  $scope.getParams = function(formData) {
+    
+    if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
 
-    $rootScope.lastFormAposentadoRVM = {}
-    $rootScope.lastFormAposentadoRVM = formData;
-
-    $http.post(url_base+';jsessionid='+userInfo.s, 
-      { "param" : { 
+    return { 
         'acao':'simulaAlteracaoRMV',
         'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
         'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
@@ -1872,7 +1877,15 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         'pensao': formData.pensao,
         'dependentes_ir': formData.dependentes_ir
 
-      }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      }
+    }
+  $scope.submit = function(formData) {
+
+    $rootScope.lastFormAposentadoRVM = {}
+    $rootScope.lastFormAposentadoRVM = formData;
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : $scope.getParams(formData), "login" : { "u":userInfo.u, "s":userInfo.s  } }
     ).then(function(resp) {
        userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
@@ -1880,6 +1893,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
           if (resp.data.msg.length > 0){
           } else {
+            $rootScope.simulaRMV = resp.data.result;
             $rootScope.lastRequest.result.simulaAlteracaoRMV = resp.data.result;
             $state.go('simulacaormvaposentadoresultado');
           }
@@ -1897,13 +1911,16 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 
 .controller('SimulacaoRmvAposentadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  $scope.value = $rootScope.lastRequest.result.simulaAlteracaoRMV;
-
+  
+  $scope.value = $rootScope.simulaRMV;
+  if (typeof($rootScope.simulaRMV) != 'undefined'){
+    $scope.formData = $rootScope.simulaRMV;
+  }
   $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
   //add o texto de alyteracao rmv aposentado
-  $scope.value.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
+  $scope.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
 
-  $scope.value.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
   //console.log($scope.value.desc_opcao_tributaca);
 
 }])
