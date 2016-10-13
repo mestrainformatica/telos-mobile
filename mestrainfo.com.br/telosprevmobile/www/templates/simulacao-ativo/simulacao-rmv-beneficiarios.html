@@ -1,0 +1,114 @@
+<ion-view title="Simulação" ng-controller="SimulacaoRendaMensalVitaliciaCtrl.beneficiarios" has-bouncing="false" padding="false" >
+ <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="" id="mainMenu">
+
+    <div class="top-page">
+
+      <div class="item item-divider softrow">
+        <div class="row">
+          <div class="col col-100">
+            Simulação de Renda Mensal Vitalícia
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <form id="formCampos" class="formCampo">
+
+      <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios">
+        <div class="item softrow bg-destaq">
+          <div class="row">
+           
+
+            <div class="col col-10">
+              <label class="toggle toggle-calm ">
+                 <input type="checkbox" ng-model="beneficiarios[key].selecionado" checked>
+                 <div class="track">
+                   <div class="handle"></div>
+                 </div>
+               </label>
+            </div>
+            
+            <div class="col" ng-click="beneficiarioToggle(key)">
+              <span>Beneficiário {{key+1}}</span>
+            </div>
+
+      
+          </div>
+
+        </div>
+
+        <div id="content1" class="item"">
+                    <div class="label row">
+                        <div class="col col-67 text">
+                            Data de nascimento
+                        </div>
+                        <div class="col valor">
+                         {{value.data_nascimento}}
+                        </div>
+                    </div>
+                    <div class="label row">
+                      <div class="col col-67 text">
+                        Vínculo
+                      </div>
+                      <div class="col valor">
+                        {{value.vinculo}}
+                      </div>
+                    </div>
+                    <div class="label row">
+                     <div class="col col-67 text">
+                        Sexo
+                      </div>
+                      <div class="col valor">
+                        {{value.vinculo}}
+                      </div>
+                    </div>
+                    <div class="label row">
+                      <div class="col col-67 text">
+                        Parentensco
+                      </div>
+                      <div class="col valor">
+                        {{value.parentesco}}
+                      </div>
+                    </div>
+              <a class="button button-clear button-small pull-right button-assertive" href="" ng-click="rmBeneficiario(key)">Remover Beneficiário</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      </div>
+
+
+       <div class="item">
+          <button class="button button-block button-calm icon-right ion-plus" ng-click="openModal()">
+            Adicionar Beneficiário...
+          </button>
+
+          <div class="button-bar">
+            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+          </div>
+        </div>
+
+          
+
+          <div class="the_error">
+            <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+          </div>
+          
+        </form>
+
+
+    </div>
+  </div>
+
+  </ion-content>
+</ion-view>

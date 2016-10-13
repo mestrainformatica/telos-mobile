@@ -7,6 +7,37 @@
 .ng-hide-remove {
   display: none !important;
 }
+
+.pull-right.button-assertive {
+	float: right;
+	margin-top:1em;
+	margin-bottom: -.25em;
+}
+#beneficiariosForm .nome-label {
+	padding:0 0 0 .3em;
+	background: #fff;
+}
+#beneficiariosForm .item-select {
+	padding: .6em 1em;
+}
+#beneficiariosForm ion-header-bar {
+	background: #1c7fa2;
+}
+#beneficiariosForm p {
+	padding: 2em 1em;
+	background: #fff;
+	color: #808080;
+	margin:0;
+}
+
+#beneficiariosForm ion-header-bar .button,
+#beneficiariosForm ion-header-bar .button-positive
+ {
+	background: #0c6f92;
+	border:solid 1px #0c6f92;
+}
+
+
 .list.spresultado {
 	margin-bottom: 0;
 }
@@ -595,8 +626,8 @@ div.no-wrap p {
     padding: 10px 30px;
 }
 
-.bg-destaq.item-select{
-	padding: 5px 16px 0 !important;
+.bg-destaq{
+	padding: 2px 16px 0 !important;
 }
 
 .top-page .item-divider.bg-destaq{
