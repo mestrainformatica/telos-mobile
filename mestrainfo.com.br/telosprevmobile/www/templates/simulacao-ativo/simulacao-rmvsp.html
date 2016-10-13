@@ -31,7 +31,7 @@
 
     </div>
 
-       <form id="formCampos" class="formCampo" ng-submit="submit(formData)">
+       <form id="formCampos" class="formCampo">
           <div class="item">
 
             <div class="separador">
@@ -354,7 +354,7 @@
 
               
               <div class="button-bar" ng-show="formData.pensao == 'S'">
-                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Beneficiários" ng-click="goBeneficiarios(formData)">      
+                 <input ng-hide="loading" type="submit" class="button icon-right ion-chevron-right button-positive button-block" ng-model="submitExtrato" value="Beneficiários" ng-click="goBeneficiarios(formData)">      
                 <!-- <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a> -->
               </div>
 
