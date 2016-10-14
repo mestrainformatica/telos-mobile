@@ -1,6 +1,6 @@
 //var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
@@ -1725,7 +1725,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
-            $rootScope.simulaRMV = resp.data.result;
+            $rootScope.formSimulaRMVSP = $scope.formData;
+            $rootScope.formToBeneficiarios = $scope.formData;
+            $rootScope.simulaRmvSp = resp.data.result;
             $state.reload();
           }
         }
