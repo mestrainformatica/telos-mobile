@@ -27,7 +27,7 @@
 
             <div class="col col-10">
               <label class="toggle toggle-positive ">
-                 <input type="checkbox" ng-model="beneficiarios[key].checked" ng-readonly="beneficiarios[key].readonly">
+                 <input type="checkbox" ng-model="beneficiarios[key].checked" ng-disabled="beneficiarios[key].readonly" ng-click="changeSelecionado()">
                  <div class="track">
                    <div class="handle"></div>
                  </div>

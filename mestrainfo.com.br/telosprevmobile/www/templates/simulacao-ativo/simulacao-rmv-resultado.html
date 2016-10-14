@@ -81,8 +81,8 @@
   </div>
 
   
-
-  <div class="item item-divider softrow" ng-show="value.pensao == 'S'">
+  <div ng-show="formData.pensao == 'S'">
+  <div class="item item-divider softrow">
     
     <div class="row">
       <div class="col col-100">
@@ -90,7 +90,7 @@
       </div>
     </div>
   </div>
-  <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios" ng-show="value.pensao == 'S'">
+  <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios" ng-show="beneficiarios[key].selecionado == 'S'">
 
     <div class="menu-item item item-divider softrow">
 
@@ -139,7 +139,7 @@
         </div>
     </div>
 
-  </div>
+  </div></div>
          
   <div class="list">
    
@@ -151,7 +151,7 @@
             Atenção:
             <div class="text-small no-wrap">
               <p>
-                {{value.texto_simulacao_renda_mensal_vitalicia}}
+                {{texto_simulacao_renda_mensal_vitalicia}}
               </p>
             </div>
           </div>

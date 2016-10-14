@@ -1187,7 +1187,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     //console.log('teste');
     //console.log(formData);
     $rootScope.lastFormRMV = {}
-    $rootScope.lastFormRMV = formData;
+    $rootScope.lastFormRMV = $scope.getParams(formData);
     //console.log($rootScope.lastRequest.result);
 
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
@@ -1226,15 +1226,26 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
   $scope.beneficiarios.forEach(function(v,k){
     $scope.beneficiarios[k].fromDB = true;
-    if ($scope.beneficiarios[k].selecionado = 'S'){
+    if ($scope.beneficiarios[k].selecionado == 'S'){
       $scope.beneficiarios[k].checked = true;
     }
-    if ($scope.beneficiarios[k].habilitado = 'N'){
+    if ($scope.beneficiarios[k].habilitado == 'N'){
       $scope.beneficiarios[k].readonly = true;
     }
   });
   $scope.map = map;
   $scope.formAddBeneficiario = {}
+  $scope.changeSelecionado = function(){
+
+    $rootScope.routeParams.beneficiario.forEach(function(v,k){
+        if (($scope.beneficiarios[k].checked || $scope.beneficiarios[k].habilitado == 'N')){
+          $scope.beneficiarios[k].selecionado = 'S';
+        } else {
+          $scope.beneficiarios[k].selecionado = 'N';
+        }
+    })
+
+  }
 
   $scope.addBeneficiario = function(formAddBeneficiario){
 
@@ -1248,6 +1259,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.beneficiarios.push(addBeneficiario);
     $scope.closeModal();
   }
+
   $scope.rmBeneficiario = function(k){
     $scope.beneficiarios.splice(k, 1);
   }
@@ -1278,17 +1290,16 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     // Execute action
   });
 
-   $scope.submit = function() {
+    $scope.submit = function() {
     //console.log('teste');
     //console.log(formData);
     $scope.matricula = $rootScope.lastRequest.result;
-    //console.log($scope.matricula);
+    
 
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
     $rootScope.routeParams.beneficiario = $scope.beneficiarios;
 
-    console.log($rootScope.routeParams);
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : $rootScope.routeParams, "login" : { "u":userInfo.u, "s":userInfo.s  } }
@@ -1330,8 +1341,16 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
   
   $scope.value = $rootScope.simulaRMV;
-  $scope.value.texto_simulacao_renda_mensal_vitalicia = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
+
+  $scope.texto_simulacao_renda_mensal_vitalicia = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+
+  if (typeof($rootScope.formToBeneficiarios) != 'undefined'){
+    $scope.formData = $rootScope.formToBeneficiarios;
+  }
+
+  console.log($scope);
+  console.log($rootScope);
 
   $scope.toggleChild = function() {
     if($scope.showChild)
@@ -1627,7 +1646,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
     $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
 
-    console.log($rootScope.simulaRmvSp);
+    console.log($rootScope);
+    console.log($scope);
 
     $scope.toggleChild = function(key) {
       if($scope.showChild)
