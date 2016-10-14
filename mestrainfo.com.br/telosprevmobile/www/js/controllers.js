@@ -2108,6 +2108,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       } else {
         $ionicLoading.hide();
         $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
+        $rootScope.simulaRmvSp = resp.data.result;
         $state.reload();
       } 
       
