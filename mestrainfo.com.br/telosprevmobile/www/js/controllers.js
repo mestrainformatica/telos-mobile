@@ -1,6 +1,6 @@
 //var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
@@ -1248,8 +1248,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   }
 
   $scope.addBeneficiario = function(formAddBeneficiario){
-
-    console.log(typeof(formAddBeneficiario.cod_parentesco)+typeof(formAddBeneficiario.sexo)+typeof(formAddBeneficiario.vinculo)+typeof(formAddBeneficiario.data_nascimento));
 
     if ((typeof(formAddBeneficiario.cod_parentesco) == 'undefined') || (typeof(formAddBeneficiario.sexo) == 'undefined') || (typeof(formAddBeneficiario.vinculo) == 'undefined') || (typeof(formAddBeneficiario.data_nascimento) == 'undefined')){
       $scope.errorMsg = "Por favor preencha todos os campos";
