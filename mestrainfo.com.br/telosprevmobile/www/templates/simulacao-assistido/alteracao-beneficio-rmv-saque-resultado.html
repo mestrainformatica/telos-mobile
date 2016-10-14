@@ -91,117 +91,77 @@
 
     <div class="separador">
       <div class="label row" >
-        <div class="col text col-67"><span class="dif cap">Valor do imposto de renda ({{value.desc_opcao_tributacao}})</span></div>
+        <div class="col text col-67"><span class="dif cap">Valor do imposto de renda ({{desc_opcao_tributacao}})</span></div>
         <div class="col valor">{{value.val_ir}}</div>
       </div>
     </div>
   </div>
 
 
-  <div class="beneficiarios-list" ng-show="value.beneficiarios">
-    <div class="item item-divider softrow">
-      <div class="row">
-        <div class="col">
+  
+  
+<div  ng-show="value.pensao == 'S'">
+  <div class="item item-divider softrow">
+    
+    <div class="row">
+      <div class="col col-100">
           Relação de beneficiários selecionados para pensão
-        </div>
       </div>
     </div>
+  </div>
 
-    <div ng-click="toggleChild()" class="menu-item item item-divider softrow item-select">
+
+  <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios">
+
+    <div class="menu-item item item-divider softrow">
 
       <div class="row">
         <div class="col col-100">
-           FILHO(A)
+           Beneficiário {{key+1}}
         </div>
       </div>
      
     </div>
 
-    <div class="child-dropdown" data-toggle="filho" ng-show="showChild">
+    <div>
        <div class="extratoDoMes item">
-          <div class="label row">
+           <div class="label row">
               <div class="col col-67 text">
-                  Data de nascimento
+                Data de nascimento
               </div>
               <div class="col valor">
-               DD/MM/AAAA
+               {{value.data_nascimento}}
               </div>
-          </div>
-          <div class="label row">
-            <div class="col col-67 text">
-              Vínculo
             </div>
-            <div class="col valor">
-              Vitalício
-            </div>
-          </div>
-          <div class="label row">
-           <div class="col col-67 text">
-              Sexo
-            </div>
-            <div class="col valor">
-              MASCULINO
-            </div>
-          </div>
-          <div class="label row">
-            <div class="col col-67 text">
-              Parentensco
-            </div>
-            <div class="col valor">
-               FILHO(A)
-            </div>
-          </div>
-        </div>
-    </div>
-
-
-    <div ng-click="toggleChildC()" class="menu-item item item-divider softrow item-select">
-    
-      <div class="row">
-        <div class="col col-100">
-          CÔNJUGE
-        </div>
-      </div>
-      
-    </div>
-
-    <div class="child-dropdown" ng-show="showChildC">
-       <div class="extratoDoMes item">
-          <div class="label row">
+            <div class="label row">
               <div class="col col-67 text">
-                  Data de nascimento
+                Vínculo
               </div>
               <div class="col valor">
-               DD/MM/AAAA
+                {{map.vinculo[value.vinculo]}}
               </div>
-          </div>
-          <div class="label row">
-            <div class="col col-67 text">
-              Vínculo
             </div>
-            <div class="col valor">
-              Vitalício
+            <div class="label row">
+             <div class="col col-67 text">
+                Sexo
+              </div>
+              <div class="col valor">
+                {{map.sexo[value.sexo]}}
+              </div>
             </div>
-          </div>
-          <div class="label row">
-           <div class="col col-67 text">
-              Sexo
+            <div class="label row">
+              <div class="col col-67 text">
+                Parentensco
+              </div>
+              <div class="col valor">
+                {{map.parentesco[value.cod_parentesco]}}
+              </div>
             </div>
-            <div class="col valor">
-              MASCULINO
-            </div>
-          </div>
-          <div class="label row">
-            <div class="col col-67 text">
-              Parentensco
-            </div>
-            <div class="col valor">
-               FILHO(A)
-            </div>
-          </div>
         </div>
     </div>
+
   </div>
+</div>
 
   <div class="list">
     <form class="formCampos" class="formCampo">
@@ -214,7 +174,7 @@
             <div class="col">
               <div class="input-label">Rentabilidade anual</div>
             </div>
-            <div class="col col-30">
+            <div class="col col-28">
               <label class="item item-input">
                 <input type="tel" name="" placeholder="" ui-number-mask mask-restrict='reject' ng-model="formData.estimativa_rent_apos">
               </label>
@@ -239,7 +199,7 @@
         Atenção:
         <div class="text-small no-wrap">
           <p>
-            {{value.texto_alteracao_rmv_saque}}
+            {{texto_alteracao_rmv_saque}}
           </p>
         </div>
       </div>
