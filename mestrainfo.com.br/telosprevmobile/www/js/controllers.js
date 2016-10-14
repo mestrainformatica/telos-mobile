@@ -1249,6 +1249,13 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
   $scope.addBeneficiario = function(formAddBeneficiario){
 
+    console.log(typeof(formAddBeneficiario.cod_parentesco)+typeof(formAddBeneficiario.sexo)+typeof(formAddBeneficiario.vinculo)+typeof(formAddBeneficiario.data_nascimento));
+
+    if ((typeof(formAddBeneficiario.cod_parentesco) == 'undefined') || (typeof(formAddBeneficiario.sexo) == 'undefined') || (typeof(formAddBeneficiario.vinculo) == 'undefined') || (typeof(formAddBeneficiario.data_nascimento) == 'undefined')){
+      $scope.errorMsg = "Por favor preencha todos os campos";
+    } else {
+      $scope.errorMsg = "";
+    
     var addBeneficiario = formAddBeneficiario;
     addBeneficiario.fromDB = false;
     addBeneficiario.ordenacao = ($scope.beneficiarios.length+1).toString();
@@ -1258,6 +1265,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
     $scope.beneficiarios.push(addBeneficiario);
     $scope.closeModal();
+    }
   }
 
   $scope.rmBeneficiario = function(k){
@@ -1654,7 +1662,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         $scope.showChild = false;
       else
         $scope.showChild = true;
-
     }
 
     $scope.showChildC = false;
