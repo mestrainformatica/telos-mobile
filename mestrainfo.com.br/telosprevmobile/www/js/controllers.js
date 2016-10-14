@@ -1331,7 +1331,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $scope.value = $rootScope.simulaRMV;
   $scope.value.texto_simulacao_renda_mensal_vitalicia = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
-
+  $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
 
   $scope.toggleChild = function() {
     if($scope.showChild)
@@ -1413,7 +1413,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         if (!resp.data.success) { $state.go('signin'); } else {
           if (resp.data.msg.length > 0){
           } else {
-            console.log('passou');
             $rootScope.lastRequest.result.simulaSP = resp.data.result;
             $state.go('simulacaosaqueprogramadoresultado');
           }
@@ -1493,7 +1492,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           if (resp.data.msg.length > 0){
           } else {
             $rootScope.lastRequest.result.simulaSP = resp.data.result;
-            $state.go('simulacaosaqueprogramadoresultado');
+            $state.reload();
+            //$state.go('simulacaosaqueprogramadoresultado');
           }
         }
 
@@ -1701,7 +1701,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $rootScope.errorMsg = resp.data.msg; 
           } else {
             $rootScope.simulaRMV = resp.data.result;
-            $state.go($rootScope.routeToBeneficiarios);
+            $state.reload();
           }
         }
 
@@ -1821,7 +1821,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $rootScope.errorMsg = resp.data.msg; 
           } else {
             $rootScope.lastRequest.result.simulaBeneficioSP = resp.data.result;
-            $state.go('alteracaopercentualretiradaresultado');
+            $state.reload();
           }
         }
 
@@ -1912,7 +1912,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 .controller('SimulacaoRmvAposentadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   
-  $scope.value = $rootScope.simulaRMV;
+  $scope.value = $rootScope.routeParams;
   if (typeof($rootScope.simulaRMV) != 'undefined'){
     $scope.formData = $rootScope.simulaRMV;
   }
@@ -2043,7 +2043,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       } else {
         $ionicLoading.hide();
         $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
-        $state.go('alteracaormvsaqueresultado');
+        $state.reload();
       } 
       
       
