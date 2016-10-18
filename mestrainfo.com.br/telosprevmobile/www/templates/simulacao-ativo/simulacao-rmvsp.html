@@ -104,7 +104,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="tel" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" ui-number-mask mask-restrict='reject'/> 
+                  <input type="tel" name="antecipacao_beneficio" ng-model="formData.antecipacao_beneficio" ui-number-mask="1" ng-init="formData.antecipacao_beneficio='0.0'" /> 
                 </label>
               </div>
               <div class="col col-05">
@@ -124,7 +124,7 @@
              </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="tel" name="cresc_real_sal" ng-model="formData.cresc_real_sal" ui-number-mask mask-restrict='reject'>
+                   <input type="tel" name="cresc_real_sal" ng-model="formData.cresc_real_sal" ui-number-mask="1" ng-init="formData.cresc_real_sal='0.0'" > 
                 </label>
               </div>
               <div class="col col-05">
@@ -145,7 +145,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="tel" name="contribuicao_participante" ui-number-mask ng-model="formData.contribuicao_participante" mask-restrict='reject'>
+                   <input type="tel" name="contribuicao_participante" ng-model="formData.contribuicao_participante" ui-number-mask="1" ng-init="formData.contribuicao_participante='0.0'">
                 </label>
               </div>
               <div class="col col-05">
@@ -166,7 +166,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                   <input type="tel" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre" ui-number-mask mask-restrict='reject'>
+                   <input type="tel" name="estimativa_rent_entre" ng-model="formData.estimativa_rent_entre"ui-number-mask="1" ng-init="formData.estimativa_rent_entre='0.0'" >
                 </label>
               </div>
               <div class="col col-05">
@@ -177,7 +177,7 @@
           </label>
 
 
-          <label class="no-border item item-input item-stacked-label">
+          <label class="no-border item item-input item-stacked-label" ng-show="cod_opcao_tributacao != '02'">
            <!--  <span class="input-label">Dependentes para fins de IR</span>
             <input type="text" name="mensagem" placeholder="0,00" ng-model="formData.mensagem"> -->
 
@@ -240,7 +240,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="tel" name="saque_programado" placeholder="0" ng-model="formData.saque_programado" ui-number-mask mask-restrict='reject'>
+                     <input type="tel" name="saque_programado" placeholder="0" ng-model="formData.saque_programado" ui-number-mask="1" ng-init="formData.saque_programado='0.0'">
                     </label>
                   </div>
                   <div class="col col-05">
@@ -259,7 +259,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="tel" name="renda_mensal_vitalicia" placeholder="0" ng-model="formData.renda_mensal_vitalicia" ui-number-mask mask-restrict='reject'>
+                     <input type="tel" name="renda_mensal_vitalicia" placeholder="0" ng-model="formData.renda_mensal_vitalicia" ui-number-mask="1" ng-init="formData.renda_mensal_vitalicia='0.0'">
                     </label>
                   </div>
                   <div class="col col-05">
@@ -304,7 +304,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="text" name="renda_mensal" ui-number-mask="2" placeholder="0,00" ng-model="formData.renda_mensal" />
+                     <input type="text" name="renda_mensal" ui-number-mask="1" ng-init="formData.renda_mensal='0.3'" placeholder="0,00" ng-model="formData.renda_mensal" />
                     </label>
                     <p class="input-legend">(0,3 a 2,0)</p>
                   </div>
@@ -322,7 +322,7 @@
                   </div>
                   <div class="col col-20">
                     <label class="item item-input">
-                     <input type="tel" name="estimativa_rent_apos" placeholder="0" ng-model="formData.estimativa_rent_apos" ui-number-mask="2" mask-restrict='reject'>
+                     <input type="tel" name="estimativa_rent_apos" placeholder="0" ng-model="formData.estimativa_rent_apos" ui-number-mask="1" ng-init="formData.estimativa_rent_apos='3.0'">
                     </label>
                   </div>
                   <div class="col col-05">
@@ -358,7 +358,7 @@
                 <!-- <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a> -->
               </div>
 
-              <div class="button-bar" ng-show="formData.pensao == 'N'">
+              <div class="button-bar">
                 <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
               </div>
             </div>
