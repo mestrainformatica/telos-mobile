@@ -1131,7 +1131,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.formData = {};
   $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
-  console.log($rootScope);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
    }
@@ -1402,6 +1401,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.years.push(year);
   }
 
+  $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
   $scope.submit = function(formData) {
     $scope.matricula = $rootScope.lastRequest.result;
@@ -1548,7 +1549,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 ***
 **/
 .controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
-  $scope.formData = {};
 
   $scope.formData = {};
   if (typeof($rootScope.cache.formSimulaRMVSP) != 'undefined'){
@@ -1560,6 +1560,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.years.push(year);
   }
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+  $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
+  
   $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
   $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
   delete $scope.tipoReajuste.DEFAULT;
@@ -1611,7 +1614,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   }
 
   $scope.submit = function(formData) {
-    
+
     $rootScope.cache.formToBeneficiarios = {}
     $rootScope.cache.formToBeneficiarios = formData;
 
@@ -1761,7 +1764,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
   $scope.formData = {};
   $scope.matricula = $rootScope.lastRequest.result;
-
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   if ('lastFormAlteracaoRVM' in $rootScope) {
     $scope.formData = $rootScope.cache.lastFormAlteracaoRVM;
   }
@@ -1880,7 +1883,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 .controller('SimulacaoRmvAposentadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   
   $scope.matricula = $rootScope.lastRequest.result;
-
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
   $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
   delete $scope.tipoReajuste.DEFAULT;
@@ -1975,7 +1978,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 
 .controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
-  
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   if ($rootScope.cache.formRecalcular){
     $scope.formData = $rootScope.cache.formRecalcular;
   }
