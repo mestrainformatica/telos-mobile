@@ -28,7 +28,7 @@
       // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
       // verificar se é melhor true ou false.
-      cordova.plugins.Keyboard.disableScroll(true);
+      cordova.plugins.Keyboard.disableScroll(false);
 
 
       if (window.StatusBar) {
