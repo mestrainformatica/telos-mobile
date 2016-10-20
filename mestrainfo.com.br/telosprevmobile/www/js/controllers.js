@@ -1392,7 +1392,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 .controller('SimulacaoSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   
   $scope.formData = new Object();
-  console.log($scope.formData);
+  
   if ('lastFormDataSP' in $rootScope){
     $scope.formData = $rootScope.cache.lastFormDataSP;
   }
@@ -1466,7 +1466,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 .controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$http', '$rootScope','$ionicLoading', function($scope, $state, $http, $rootScope, $ionicLoading) {
 
   $scope.formData = new Object();
-  
+  console.log($rootScope);
   if (typeof($rootScope.cache.lastFormDataSP) != 'undefined'){
     $scope.formData = $rootScope.cache.lastFormDataSP;
   }
