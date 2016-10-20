@@ -26,7 +26,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="tel" name="percentual_renda_mensal" ng-model="formData.percentual_renda_mensal" ui-number-mask="decimals">
+                  <input type="tel" name="percentual_renda_mensal" ng-model="formData.percentual_renda_mensal" ui-number-mask="1" ng-value="0,0">
                 </label>
               </div>
               <div class="col col-05">
@@ -44,7 +44,7 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="tel" name="estimativa_rentabilidade" placeholder="" ng-model="formData.estimativa_rentabilidade" ui-number-mask />
+                  <input type="tel" name="estimativa_rentabilidade" placeholder="" ng-model="formData.estimativa_rentabilidade" ui-number-mask="1" ng-value="3,0" />
                 </label>
 
               </div>
@@ -56,7 +56,7 @@
 
           </label>
 
-          <label class="no-border item item-input item-stacked-label">
+          <label class="no-border item item-input item-stacked-label" ng-show="cod_opcao_tributacao != '02'">
             
             <div class="row">
               

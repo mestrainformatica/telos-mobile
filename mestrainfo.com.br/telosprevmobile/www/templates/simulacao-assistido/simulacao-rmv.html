@@ -40,7 +40,7 @@
               </label>
           </div>
 
-           <label class="no-border item item-input item-stacked-label">
+           <label class="no-border item item-input item-stacked-label" ng-show="cod_opcao_tributacao != '02'">
               <div class="row">
                 <div class="col">
                   <span class="input-label">Dependentes para fins de IR:</span>
@@ -67,7 +67,7 @@
                 <input ng-hide="loading" type="submit" class="button icon-right ion-chevron-right button-positive button-block" ng-model="submitExtrato" value="Definir Beneficiários..." ng-click="goBeneficiarios(formData)">      
                 <!-- <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a> -->
               </div>
-              <div class="button-bar" ng-show="formData.pensao == 'N'">
+              <div class="button-bar">
                 <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
               </div>
 
