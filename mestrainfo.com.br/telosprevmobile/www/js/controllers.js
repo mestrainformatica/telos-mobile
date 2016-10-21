@@ -1,7 +1,7 @@
 //var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -1432,7 +1432,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           'aporte': formData.aporte,
           'dependentes_ir': formData.dependentes_ir,
           'estimativa_rent_entre': formData.estimativa_rent_entre,
-          'estimativa_rent_apos': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_apos,
           'renda_mensal': formData.renda_mensal,
           'abono_anual': formData.abono_anual
 
@@ -1510,7 +1510,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           'aporte': formData.aporte,
           'dependentes_ir': formData.dependentes_ir,
           'estimativa_rent_entre': formData.estimativa_rent_entre,
-          'estimativa_rent_apos': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_apos,
           'renda_mensal': formData.renda_mensal,
           'abono_anual': formData.abono_anual
 
@@ -1821,6 +1821,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
  
   $scope.value = $rootScope.lastRequest.result.simulaBeneficioSP;
 
+  console.log($scope.value);
+
   $scope.matricula = $rootScope.lastRequest.result;
   $scope.value.texto_alteracao_percentual_retirada = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_benf_saque;
 
@@ -1884,6 +1886,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $scope.matricula = $rootScope.lastRequest.result;
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
+  console.log($scope);
   $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
   $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
   delete $scope.tipoReajuste.DEFAULT;
