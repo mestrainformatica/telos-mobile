@@ -176,7 +176,7 @@
             </div>
             <div class="col col-28">
               <label class="item item-input">
-                <input type="tel" name="" placeholder="" ui-number-mask mask-restrict='reject' ng-model="formData.estimativa_rent_apos">
+                <input type="tel" name="" placeholder="" ui-number-mask="1"mask-restrict='reject' ng-model="formData.estimativa_rent_apos">
               </label>
             </div>
             <div class="col col-05">
@@ -198,7 +198,7 @@
       <div class="item obs">
         Atenção:
         <div class="text-small no-wrap">
-          <p ng-bing-html="texto_alteracao_rmv_saque">
+          <p ng-bind-html="texto_alteracao_rmv_saque">
           </p>
         </div>
       </div>

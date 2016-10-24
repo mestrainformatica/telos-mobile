@@ -26,6 +26,13 @@
           </div>
         </div>
 
+      <div class="separador">
+        <div class="label row" >
+            <div class="col text col-67">Valor do imposto de renda  ({{desc_opcao_tributacao}})</div>
+            <div class="col valor">{{value.rmv_ir}}</div>
+          </div>
+        </div>
+
 
         <div class="separador">
           <div class="label row" >
@@ -79,7 +86,7 @@
 
             <div class="col col-25">
               <label class="item item-input ">
-                <input type="text" name="" ng-model="formData.estimativa_rentabilidade" ui-number-mask placeholder="">
+                <input type="text" name="" ng-model="formData.estimativa_rentabilidade" ui-number-mask="1" placeholder="">
               </label>
             </div>
 
