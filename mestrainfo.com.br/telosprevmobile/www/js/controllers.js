@@ -1670,6 +1670,10 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
     $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
     
+    console.log($scope);
+    console.log($rootScope);
+
+
     $scope.map = map;
     $scope.value = $rootScope.cache.simulaRmvSp;
     $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
@@ -2070,14 +2074,17 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       resp.data.result.percentual_saque = formData.saque_programado;
       resp.data.result.percentual_rmv = formData.renda_mensal_vitalicia;
       
-      if (!resp.data.success) {
-        $state.go('signin');
-      } else {
+
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
         $rootScope.cache.routeParams = $scope.getParams(formData);
         $rootScope.cache.routeParams.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
         $rootScope.cache.simulaRmvSp = resp.data.result;
         $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
         $state.go('alteracaormvsaqueresultado');
+        }
       } 
       
       
