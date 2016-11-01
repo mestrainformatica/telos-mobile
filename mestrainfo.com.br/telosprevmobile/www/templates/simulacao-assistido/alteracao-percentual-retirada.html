@@ -22,7 +22,7 @@
             
             <div class="row">
               <div class="col">
-                 <span class="input-label">Percentual de renda mensal <Br /><small>(0,3% A 2,0%)</small></span>
+                 <span class="input-label">Percentual de renda mensal <Br /><small>(0,5% A 2,0%)</small></span>
               </div>
               <div class="col col-20">
                 <label class="item item-input">
@@ -82,7 +82,7 @@
               <div class="input-label">
                 Abono Anual?
             </div>
-            <select class="ion-input-select" ng-model="formData.abono">
+            <select class="ion-input-select" ng-model="formData.abono" ng-init="formData.abono = 'S'">
                <option value="N">NÃO</option>
                <option value="S">SIM</option>
             </select>

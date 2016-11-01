@@ -49,7 +49,7 @@
                             <div class="input-label">
                                 Busca
                             </div>
-                            <select class="ion-input-select" ng-model="formData.camponasc" ng-init="formData.camponasc = '01'">
+                            <select class="ion-input-select" ng-model="formData.camponasc" ng-init="formData.camponasc = '01'" ng-change="formData.mes_ano = '';">
                              <option value="01">IDADE</option>
                              <option value="02">MES/ANO</option>
                             </select>
@@ -59,7 +59,7 @@
                           <div class="input-label">
                               Selecione
                           </div>
-                          <select class="ion-input-select" ng-options="y+' ANOS' for y in years" ng-model="formData.idade">
+                          <select class="ion-input-select" ng-options="y+' ANOS' for y in years" ng-model="formData.idade" >
                           </select>
                         </label>
 
@@ -101,7 +101,7 @@
                           <div class="input-label lower">
                               Com pensão?
                           </div>
-                          <select class="ion-input-select" ng-model="formData.pensao">
+                          <select class="ion-input-select" ng-model="formData.pensao" ng-init="formData.pensao = 'N'">
                              <option value="N">NÃO</option>
                              <option value="S">SIM</option>
                           </select>
@@ -237,7 +237,7 @@
                     </div>
                     <div class="col col-33">
                       <label class="item item-input">
-                      <input type="tel" name="aporte" ui-number-mask="2" placeholder="0" ng-model="formData.aporte">
+                      <input type="tel" name="aporte" ui-number-mask="2" placeholder="0" ng-model="formData.aporte" ng-init="formData.aporte = 0">
                       </label>
                     </div>
 

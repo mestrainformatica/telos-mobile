@@ -124,7 +124,7 @@
                 <div class="input-label">
                     Abono Anual?
                 </div>
-                <select class="ion-input-select" ng-model="formData.abono_anual">
+                <select class="ion-input-select" ng-model="formData.abono_anual" ng-init="formData.abono_anual = 'S'">
                    <option value="N">NÃO</option>
                    <option value="S">SIM</option>
                 </select>
@@ -155,7 +155,7 @@
               <div class="input-label">
                   Com pensão?
               </div>
-              <select class="ion-input-select" ng-model="formData.pensao">
+              <select class="ion-input-select" ng-model="formData.pensao" ng-init="formData.pensao = 'N'">
                  <option value="N">NÃO</option>
                  <option value="S">SIM</option>
               </select>
