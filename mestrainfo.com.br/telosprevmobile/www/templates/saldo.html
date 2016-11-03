@@ -31,6 +31,46 @@
       </div>
     </form>
     </div>
+    <div ng-show="saldo.detalhesSaldoContas">
+    <div class="item item-divider subitem">
+      CONTA
+    </div>
+    
+    <div class="item" id="saldoEmitido">   
+      
+      <div class="label row">
+        <h4 class="col-67">Total</h4>
+        <h4 class="col valor">{{saldo.total_financeiro}}</h4>
+      </div>
+      
+      <div class="" ng-repeat="(key,value) in saldo.detalhesSaldoContas">
+      <h4>{{value.conta}}</h4>
+      
+      <div class="label row">
+        <div class="softcolor col col-67" class="title_label">Índice</div>
+        <div class="col valor">{{value.indice}}</div>
+      </div>
+      <div class="label row">
+        <div class="softcolor col col-67" class="title_label">Data do Índice</div>
+        <div class="col valor">{{value.data_indice}}</div>
+      </div>
+      <div class="label row">
+        <div class="softcolor col col-67" class="title_label">Valor do Índice</div>
+        <div class="col valor">{{value.valor_indice}}</div>
+      </div>
+      <div class="label row">
+        <div class="softcolor col col-67" class="title_label">Qtd. Cotas</div>
+        <div class="col valor">{{value.quantidade_cotas}}</div>
+      </div>
+      <div class="label row">
+        <div class="softcolor col col-67" class="title_label">Vr. Financeiro</div>
+        <div class="col valor">{{value.valor_financeiro}}</div>
+      </div>
+      <hr>
+     </div>
+      
+    </div>
+    </div>
   </div>
   </ion-content>
 </ion-view>

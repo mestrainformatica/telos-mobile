@@ -1,7 +1,7 @@
 //var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -577,13 +577,14 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.formData = {};
 
   $scope.submit = function(){
-    
+    $scope.saldo.detalhesSaldoContas = false;
+
     if (!$scope.formData.data_atualizacao){
       $rootScope.errorMsg = "Por favor preencha todos os campos";
     } else {
 
     //console.log('clicou');
-        $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : { "data_atualizacao":$scope.formData.data_atualizacao, 'acao':'saldoContas' }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
@@ -597,8 +598,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $rootScope.errorMsg = resp.data.msg; 
           } else {
             $rootScope.lastRequest.saldoEmitido = resp.data.result;
-            //console.log(resp.data.result);
-            $state.go('saldoemitido');
+            $scope.saldo.detalhesSaldoContas = resp.data.result.detalhesSaldoContas;
+            $scope.saldo.total_financeiro = resp.data.result.total_financeiro;
+            $scope.formData.data_atualizacao = $scope.formData.data_atualizacao;
+            console.log(resp.data.result);
+            //$state.go('saldoemitido');
           }
         }
      }, function(err) {
