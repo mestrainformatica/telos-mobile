@@ -529,6 +529,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 }])
 .controller('ExtratoCtrl.emitido', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
 
+  console.log($rootScope);
+
   $rootScope.erroMsg = false;
   $scope.extrato = $rootScope.lastRequest.extratoEmitido;
 
@@ -1131,13 +1133,16 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 ***
 **/
 .controller('SimulacaoRendaMensalVitaliciaCtrl', ['$scope', '$state', '$rootScope', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicLoading, $http) {
-  
+
   $scope.formData = {};
   $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
    }
+
+
+
   console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
   if ('lastFormRMV' in $rootScope.cache) {
     $scope.formData = $rootScope.cache.lastFormRMV;
@@ -1146,9 +1151,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
   $scope.formData.dependentes_para_fins_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
   
-  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  $scope.formData.tipo_reajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0].DEFAULT);
   $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
-  delete $scope.tipoReajuste.DEFAULT;
 
 
   $scope.goBeneficiarios = function(formData) {
@@ -1576,7 +1580,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   
   $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
-  $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
   delete $scope.tipoReajuste.DEFAULT;
   
   $scope.goBeneficiarios = function(formData) {
@@ -1912,7 +1916,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   
   $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
-  $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
   delete $scope.tipoReajuste.DEFAULT;
 
   $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
@@ -2025,7 +2029,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.matricula = $rootScope.lastRequest.result;
 
   $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
-  $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
   delete $scope.tipoReajuste.DEFAULT;
   
   $scope.goBeneficiarios = function(formData) {
