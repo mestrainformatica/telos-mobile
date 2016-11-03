@@ -1,4 +1,4 @@
-//var url_base = 'http://192.100.100.191:8080/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
 var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
@@ -513,6 +513,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           } else {
             $rootScope.lastRequest.extratoEmitido = resp.data.result;
             $rootScope.lastRequest.extratoEmitido.mes_atual = $scope.cod_ano_mes;
+            $rootScope.cache.cod_ano_mes = $scope.formData.cod_ano_mes;
             //console.log(resp.data.result);
             $state.go('extratoemitido');
           }
@@ -544,9 +545,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : {
-            'descricaoEmail' : '', 
+            'descricaoEmail' : $rootScope.lastRequest.result.dadosCadastrais[0].email, 
             'acao':'extratoContasEnvioEmail', 
-            'dataAtualizacao':''
+            'dataAtualizacao':$rootScope.cache.cod_ano_mes
         }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
       ).then(function(resp) {
         userInfo.u = resp.data.login.u;
@@ -558,7 +559,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $rootScope.errorMsg = resp.data.msg; 
           } else {
             //console.log(resp.data.result);
-            alert('enviado');
+            alert('Enviado para '+$rootScope.lastRequest.result.dadosCadastrais[0].email);
           }
         }
      }, function(err) {
@@ -577,6 +578,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $rootScope.erroMsg = false;
   $scope.saldo = $rootScope.lastRequest.result.saldoContas;
   $scope.formData = {};
+  $scope.saldo.detalhesSaldoContas = false;
 
   $scope.submit = function(){
     $scope.saldo.detalhesSaldoContas = false;
@@ -604,6 +606,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $scope.saldo.total_financeiro = resp.data.result.total_financeiro;
             $scope.formData.data_atualizacao = $scope.formData.data_atualizacao;
             $scope.saldo.dados_atualizadoEm = resp.data.result.dados_atualizadoEm;
+            $rootScope.cache.data_atualizacao = $scope.formData.data_atualizacao;
             //$state.go('saldoemitido');
           }
         }
@@ -615,6 +618,36 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
      });
      });
     }
+   $scope.sendMail = function() {
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : {
+            'descricaoEmail' : $rootScope.lastRequest.result.dadosCadastrais[0].email, 
+            'acao':'saldoContasEnvioEmail', 
+            'dataAtualizacao':$rootScope.cache.data_atualizacao
+        }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+    
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            //console.log(resp.data.result);
+            alert('Enviado para '+$rootScope.lastRequest.result.dadosCadastrais[0].email);
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+  }
 
   }
 }])
@@ -629,37 +662,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.hasEmail = true;
   else
     $scope.hasEmail = false;
-
-  $scope.sendMail = function() {
-    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
-
-    $http.post(url_base+';jsessionid='+userInfo.s, 
-        { "param" : {
-            'descricaoEmail' : '', 
-            'acao':'saldoContasEnvioEmail', 
-            'dataAtualizacao':''
-        }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
-      ).then(function(resp) {
-        userInfo.u = resp.data.login.u;
-        userInfo.s = resp.data.login.s;
-        $ionicLoading.hide();
-    
-        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
-          if (resp.data.msg.length > 0){
-            $rootScope.errorMsg = resp.data.msg; 
-          } else {
-            //console.log(resp.data.result);
-            alert('enviado');
-          }
-        }
-     }, function(err) {
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-       title: 'Falha de conexão',
-       template: timeoutMsg
-     });
-     });
-  }
 
 }])
 
@@ -691,6 +693,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           } else {
             $rootScope.demonstrativoEmitido = resp.data.result;
             $rootScope.errorMsg = false;
+            $rootScope.cache.data_pagamento = $scope.formData.data_pagamento;
             $state.go('demonstrativoemitido');
           }
         }
@@ -782,23 +785,21 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : {
-            'descricaoEmail' : '', 
+            'descricaoEmail' : $rootScope.lastRequest.result.dadosCadastrais[0].email, 
             'acao':'demonstrativoPagamentoEmail', 
-            'dataAtualizacao':''
+            'dataAtualizacao':$rootScope.cache.data_pagamento
         }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
       ).then(function(resp) {
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
-
-//console.log(resp);
-
+    
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
             //console.log(resp.data.result);
-            alert('enviado');
+            alert('Enviado para '+$rootScope.lastRequest.result.dadosCadastrais[0].email);
           }
         }
      }, function(err) {
