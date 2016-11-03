@@ -601,7 +601,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $scope.saldo.detalhesSaldoContas = resp.data.result.detalhesSaldoContas;
             $scope.saldo.total_financeiro = resp.data.result.total_financeiro;
             $scope.formData.data_atualizacao = $scope.formData.data_atualizacao;
-            console.log(resp.data.result);
+            $scope.saldo.dados_atualizadoEm = resp.data.result.dados_atualizadoEm;
             //$state.go('saldoemitido');
           }
         }

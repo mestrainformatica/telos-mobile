@@ -9,13 +9,13 @@
       Saldo de Contas
     </div>
     <div class="item">
-    <form ng-submit="submit()">
+    <form>
       
       <label class="item item-input item-select">
         <div class="input-label">
           Data de Atualização
         </div>
-        <select  class="ion-input-select" ng-model="formData.data_atualizacao">
+        <select  class="ion-input-select" ng-model="formData.data_atualizacao" ng-change="submit()">
           <option value="">- Selecione -</option>
           <option 
              ng-repeat="(key, value) in saldo"
@@ -25,25 +25,30 @@
       <div class="the_error">
         <p ng-show="errorMsg" class="errorMsg assertive">{{errorMsg}}</p>
       </div>
-      <div class="button-bar" padding="true">
+      <!-- <div class="button-bar" padding="true">
         <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Visualizar Saldo">      
         <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
-      </div>
+      </div> -->
     </form>
     </div>
     <div ng-show="saldo.detalhesSaldoContas">
     <div class="item item-divider subitem">
-      CONTA
+      <div class="col col-33">Saldo de Contas</div>
+      <div class="col col2" style="margin-top: -23px;">{{saldo.dados_atualizadoEm[0].desc_atualizadoem}} {{saldo.dados_atualizadoEm[0].data_atualizadoem}}</div>
     </div>
     
-    <div class="item" id="saldoEmitido">   
+    <div class="item" id="">   
       
       <div class="label row">
-        <h4 class="col-67">Total</h4>
+        <h4 class="col-67" style="padding: 0 0.4em;">TOTAL</h4>
         <h4 class="col valor">{{saldo.total_financeiro}}</h4>
       </div>
-      
-      <div class="" ng-repeat="(key,value) in saldo.detalhesSaldoContas">
+    </div>
+    <div class="item item-divider subitem">
+      Saldo Detalhado
+    </div>
+        <div class="item" id="saldoEmitido">   
+  <div class="" ng-repeat="(key,value) in saldo.detalhesSaldoContas">
       <h4>{{value.conta}}</h4>
       
       <div class="label row">
