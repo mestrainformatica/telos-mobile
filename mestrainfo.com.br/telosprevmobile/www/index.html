@@ -45,6 +45,15 @@
     <script src="cordova.js"></script>
 
     <link href="css/style.css" rel="stylesheet">
+    <script>
+        window.addEventListener('native.keyboardshow', keyboardShowHandler);
+
+        function keyboardShowHandler(e) {
+            setTimeout(function () {
+                $('html, body').animate({ scrollTop: 0 }, 1000);
+            }, 0);
+        }
+    </script>
 
   </head>
   <body ng-app="starter" padding="true" class="platform-android platform-ios" ng-style="bodyStyle">
