@@ -46,12 +46,37 @@
 
     <link href="css/style.css" rel="stylesheet">
     <script>
+    
         window.addEventListener('native.keyboardshow', keyboardShowHandler);
+        window.addEventListener('native.keyboardhide', keyboardHideHandler);
+        window.addEventListener('touchstart', tapCoordinates);
+
+        let y;
+        let h;
+        let offsetY;
+
+        function tapCoordinates(e) {
+           y = e.touches[0].clientY;
+           h = window.innerHeight;
+           offsetY = (h - y); 
+           console.log("offset = " + offsetY);
+        }
 
         function keyboardShowHandler(e) {
-            setTimeout(function () {
-                $('html, body').animate({ scrollTop: 0 }, 1000);
-            }, 0);
+        let kH = e.keyboardHeight;
+        console.log(e.keyboardHeight);
+        let bodyMove = <HTMLElement>document.querySelector("ion-app"), bodyMoveStyle = bodyMove.style;           
+        console.log("calculating " + kH + "-" + offsetY + "=" + (kH - offsetY));
+
+        if (offsetY < kH + 40) {
+           bodyMoveStyle.bottom = (kH - offsetY + 40) + "px";
+           bodyMoveStyle.top = "initial";
+          }
+        }
+        function keyboardHideHandler() {
+           console.log('gone');
+           let removeStyles = <HTMLElement>document.querySelector("ion-app");
+           removeStyles.removeAttribute("style");
         }
     </script>
 
