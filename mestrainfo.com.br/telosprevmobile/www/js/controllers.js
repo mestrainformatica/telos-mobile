@@ -1244,7 +1244,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', '$ionicModal', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicModal, $ionicLoading, $http) {
   
-  console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
+  //console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
+  
   $scope.beneficiarios = angular.copy($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
   $scope.beneficiarios.forEach(function(v,k){
     $scope.beneficiarios[k].fromDB = true;
@@ -1299,6 +1300,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.modal = modal;
   });
   $scope.openModal = function() {
+    $rootScope.errorMsg = "";
+    $scope.errorMsg = "";
     $scope.formAddBeneficiario = {}
     $scope.modal.show();
   };
@@ -1318,11 +1321,10 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     // Execute action
   });
 
-    $scope.submit = function() {
+  $scope.submit = function() {
     //console.log('teste');
     //console.log(formData);
     $scope.matricula = $rootScope.lastRequest.result;
-    
 
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
@@ -1335,10 +1337,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
-        
+
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
+            $scope.errorMsg = resp.data.msg; 
+            console.log(resp);
           } else {
             $rootScope.cache.simulaRMV = resp.data.result;
             $rootScope.cache.simulaRmvSp = resp.data.result;
