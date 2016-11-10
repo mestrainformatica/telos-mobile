@@ -1136,13 +1136,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 .controller('SimulacaoRendaMensalVitaliciaCtrl', ['$scope', '$state', '$rootScope', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicLoading, $http) {
 
   $scope.formData = {};
+  $scope.formData.mes_ano = '';
   $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
    }
-
-
 
   console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
   if ('lastFormRMV' in $rootScope.cache) {
@@ -1154,7 +1153,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $scope.formData.tipo_reajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0].DEFAULT);
   $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
-
+  delete $scope.tipoReajuste.DEFAULT;
 
   $scope.goBeneficiarios = function(formData) {
     //console.log('teste');
@@ -1413,7 +1412,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 .controller('SimulacaoSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   
   $scope.formData = new Object();
-  
+  $scope.formData.mes_ano = '';
+
   if ('lastFormDataSP' in $rootScope.cache){
     $scope.formData = $rootScope.cache.lastFormDataSP;
   }
@@ -1572,6 +1572,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 .controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
 
   $scope.formData = {};
+  $scope.formData.mes_ano = '';
   if (typeof($rootScope.cache.formSimulaRMVSP) != 'undefined'){
     $scope.formData = $rootScope.cache.formSimulaRMVSP;
   }
@@ -1583,10 +1584,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
   $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
-  
+
   $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
   $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
   delete $scope.tipoReajuste.DEFAULT;
+
+  console.log($scope.tipoReajuste);
   
   $scope.goBeneficiarios = function(formData) {
     //console.log('teste');
@@ -1712,7 +1715,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         $scope.showChildC = true;
 
     }
-     $scope.getParams = function(formData) {
+    $scope.getParams = function(formData) {
     
     if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
 
