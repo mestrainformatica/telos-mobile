@@ -1386,8 +1386,9 @@ console.log('lastFormRMV no submit: '+$rootScope.cache.lastFormRMV);
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.showChild = false
-  //$scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
-  $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
+  $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  // $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
+  // $scope.beneficiarios = $scope.formData.beneficiarios;
   $scope.map = map;
   $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
   
@@ -1396,11 +1397,14 @@ console.log('lastFormRMV no submit: '+$rootScope.cache.lastFormRMV);
   $scope.texto_simulacao_renda_mensal_vitalicia = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
 
-  if (typeof($rootScope.cache.formToBeneficiarios) != 'undefined'){
+  if (typeof $rootScope.cache.formToBeneficiarios != 'undefined'){
     $scope.formData = $rootScope.cache.formToBeneficiarios;
   }
 
+  // $scope.beneficiarios = $scope.beneficiarios;
+  console.log('scope: ');
   console.log($scope);
+  console.log('rootScope: ');
   console.log($rootScope);
 
   $scope.toggleChild = function() {
