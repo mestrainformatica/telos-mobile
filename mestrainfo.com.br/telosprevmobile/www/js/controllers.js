@@ -1156,13 +1156,22 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 // console.log('lastFormRMV na tela: ');
 // console.log($rootScope.cache.lastFormRMV);  
-
+  
+  //se existe lastForm 
   if (typeof $rootScope.cache.lastFormRMV != 'undefined') {
 
     // console.log('entrou aqui');
 
     $scope.formData.tipo_reajuste = $rootScope.cache.lastFormRMV.tipo_reajuste;
-    $scope.tipoReajusteDefault
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.lastFormRMV.mes_ano != 'undefined') {
+      $scope.formData.idade = 58;
+    }
+
+    if(typeof $rootScope.cache.lastFormRMV.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
   }
 
   $scope.goBeneficiarios = function(formData) {
