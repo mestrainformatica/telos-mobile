@@ -1164,13 +1164,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   //seta o valor do form como o default do ws.
   $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
 
-console.log('default do tipo_reajuste: ');
-console.log($scope.formData.tipo_reajuste);  
+// console.log('default do tipo_reajuste: ');
+// console.log($scope.formData.tipo_reajuste);  
   
   //se existe lastForm 
   if (typeof $rootScope.cache.lastFormRMV != 'undefined') {
-
-    $scope.formData.tipo_reajuste = $rootScope.cache.lastFormRMV.tipo_reajuste;
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.lastFormRMV.mes_ano != 'undefined') {
@@ -1276,8 +1274,23 @@ console.log('lastFormRMV no submit: '+$rootScope.cache.lastFormRMV);
   
   console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
   
-  // $scope.beneficiarios = angular.copy($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
-  $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+
+console.log('scope: ');
+console.log($scope);
+console.log('rootScope: ');
+console.log($rootScope);
+
+  //se já existe um beneficiariosOriginal, não sobrescrever.
+  if(typeof $rootScope.beneficiariosOriginal == 'undefined') {
+    $rootScope.beneficiariosOriginal = angular.copy($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
+  }
+
+  if($rootScope.resetBeneficiarios && typeof $rootScope.beneficiariosOriginal != 'undefined'){
+    console.log('aqui resetou os beneficiarios');
+    $scope.beneficiarios = $rootScope.beneficiariosOriginal;
+  }else {
+    $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  }
 
   $scope.beneficiarios.forEach(function(v,k){
     $scope.beneficiarios[k].fromDB = true;
@@ -1291,7 +1304,9 @@ console.log('lastFormRMV no submit: '+$rootScope.cache.lastFormRMV);
   $scope.map = map;
   $scope.formAddBeneficiario = {}
   $scope.changeSelecionado = function(){
+
 console.log($scope.beneficiarios);
+
     $scope.beneficiarios.forEach(function(v,k){
         if (($scope.beneficiarios[k].checked || $scope.beneficiarios[k].habilitado == 'N')){
           $scope.beneficiarios[k].selecionado = 'S';
@@ -1438,6 +1453,9 @@ console.log($scope.beneficiarios);
 
   }
 
+  //depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+  $rootScope.resetBeneficiarios = true;
+
 }])
 
 /**
@@ -1452,6 +1470,20 @@ console.log($scope.beneficiarios);
   if ('lastFormDataSP' in $rootScope.cache){
     $scope.formData = $rootScope.cache.lastFormDataSP;
   }
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.lastFormDataSP != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.lastFormDataSP.mes_ano != 'undefined') {
+      $scope.formData.idade = 58;
+    }
+
+    if(typeof $rootScope.cache.lastFormDataSP.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
+
   $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
@@ -1607,9 +1639,11 @@ console.log($scope.beneficiarios);
 .controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
 
   $scope.formData = {};
-  if (typeof($rootScope.cache.formSimulaRMVSP) != 'undefined'){
-    $scope.formData = $rootScope.cache.formSimulaRMVSP;
-  }
+
+  // if (typeof($rootScope.cache.formSimulaRMVSP) != 'undefined'){
+  //   $scope.formData = $rootScope.cache.formSimulaRMVSP;
+  // }
+
   $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
   $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
@@ -1619,9 +1653,35 @@ console.log($scope.beneficiarios);
   $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   
-  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  // $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  // $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  // delete $scope.tipoReajuste.DEFAULT;
+
   $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  //pega o valor default
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0];
+
+  //remove default do tipo de reajuste
   delete $scope.tipoReajuste.DEFAULT;
+
+  //seta o valor do form como o default do ws.
+  $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
+
+console.log('default do tipo_reajuste: ');
+console.log($scope.formData.tipo_reajuste);  
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.formSimulaRMVSP != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.formSimulaRMVSP.mes_ano != 'undefined') {
+      $scope.formData.idade = 58;
+    }
+
+    if(typeof $rootScope.cache.formSimulaRMVSP.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
   
   $scope.goBeneficiarios = function(formData) {
     //console.log('teste');
@@ -1821,6 +1881,9 @@ console.log($scope.beneficiarios);
   }
 
 
+  //depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+  $rootScope.resetBeneficiarios = true;
+
 }])
 
 .controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
@@ -1955,15 +2018,41 @@ console.log($scope.beneficiarios);
   $scope.matricula = $rootScope.lastRequest.result;
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
   
-  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  // $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  // $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  // delete $scope.tipoReajuste.DEFAULT;
+
   $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  //pega o valor default
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0];
+
+  //remove default do tipo de reajuste
   delete $scope.tipoReajuste.DEFAULT;
+
+  //seta o valor do form como o default do ws.
+  $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
+
+// console.log('default do tipo_reajuste: ');
+// console.log($scope.formData.tipo_reajuste);  
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.lastFormAposentadoRVM != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.lastFormAposentadoRVM.mes_ano != 'undefined') {
+      $scope.formData.idade = 58;
+    }
+
+    if(typeof $rootScope.cache.lastFormAposentadoRVM.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
 
   $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
   
-  if ('lastFormAposentadoRVM' in $rootScope.cache) {
-    $scope.formData = $rootScope.cache.lastFormAposentadoRVM;
-  }
+  // if ('lastFormAposentadoRVM' in $rootScope.cache) {
+  //   $scope.formData = $rootScope.cache.lastFormAposentadoRVM;
+  // }
   $scope.goBeneficiarios = function(formData) {
     //console.log('teste');
     //console.log(formData);
@@ -2053,6 +2142,8 @@ console.log($scope.beneficiarios);
   //console.log($scope.value.desc_opcao_tributaca);
 
 
+  //depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+  $rootScope.resetBeneficiarios = true;
 }])
 
 .controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
@@ -2063,14 +2154,40 @@ console.log($scope.beneficiarios);
   
 
   $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
-  if ($rootScope.cache.formRecalcular){
-    $scope.formData = $rootScope.cache.formRecalcular;
-  }
+  // if ($rootScope.cache.formRecalcular){
+  //   $scope.formData = $rootScope.cache.formRecalcular;
+  // }
   $scope.matricula = $rootScope.lastRequest.result;
 
-  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
-  $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  // $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  // $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  // delete $scope.tipoReajuste.DEFAULT;
+
+    $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  //pega o valor default
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0];
+
+  //remove default do tipo de reajuste
   delete $scope.tipoReajuste.DEFAULT;
+
+  //seta o valor do form como o default do ws.
+  $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
+
+// console.log('default do tipo_reajuste: ');
+// console.log($scope.formData.tipo_reajuste);  
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.formRecalcular != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.formRecalcular.mes_ano != 'undefined') {
+      $scope.formData.idade = 58;
+    }
+
+    if(typeof $rootScope.cache.formRecalcular.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
   
   $scope.goBeneficiarios = function(formData) {
     //console.log('teste');
@@ -2224,6 +2341,10 @@ console.log($scope.beneficiarios);
      });
    })
   }
+
+
+  //depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+  $rootScope.resetBeneficiarios = true;
 }])
 
 .controller('SimulacaoResgateNovoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
