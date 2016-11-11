@@ -91,7 +91,7 @@
     </div>
   </div>
                             <!-- ng-show="beneficiarios[key].checked == true" -->
-  <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios">
+  <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios" ng-show="!beneficiarios[key].selecionado || beneficiarios[key].selecionado == 'S'">
 
     <div class="menu-item item item-divider softrow">
 

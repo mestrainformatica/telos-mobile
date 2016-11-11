@@ -1267,7 +1267,10 @@ console.log('lastFormRMV no submit: '+$rootScope.cache.lastFormRMV);
 .controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', '$ionicModal', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicModal, $ionicLoading, $http) {
   
   console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
-  $scope.beneficiarios = angular.copy($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
+  
+  // $scope.beneficiarios = angular.copy($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
+  $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  
   $scope.beneficiarios.forEach(function(v,k){
     $scope.beneficiarios[k].fromDB = true;
     if ($scope.beneficiarios[k].selecionado == 'S'){
@@ -1280,12 +1283,14 @@ console.log('lastFormRMV no submit: '+$rootScope.cache.lastFormRMV);
   $scope.map = map;
   $scope.formAddBeneficiario = {}
   $scope.changeSelecionado = function(){
-
-    $rootScope.cache.routeParams.beneficiarios.forEach(function(v,k){
+console.log($scope.beneficiarios);
+    $scope.beneficiarios.forEach(function(v,k){
         if (($scope.beneficiarios[k].checked || $scope.beneficiarios[k].habilitado == 'N')){
           $scope.beneficiarios[k].selecionado = 'S';
+          $scope.beneficiarios[k].checked = true;
         } else {
           $scope.beneficiarios[k].selecionado = 'N';
+          $scope.beneficiarios[k].checked = false;
         }
     })
 
