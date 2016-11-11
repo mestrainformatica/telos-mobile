@@ -1150,17 +1150,25 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
   $scope.formData.dependentes_para_fins_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
   
-  $scope.formData.tipo_reajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0].DEFAULT);
-  $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  // $scope.formData.tipo_reajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0].DEFAULT);
+  // $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  // delete $scope.tipoReajuste.DEFAULT;
+
+  $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  //pega o valor default
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0];
+
+  //remove default do tipo de reajuste
   delete $scope.tipoReajuste.DEFAULT;
 
-// console.log('lastFormRMV na tela: ');
-// console.log($rootScope.cache.lastFormRMV);  
+  //seta o valor do form como o default do ws.
+  $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
+
+console.log('default do tipo_reajuste: ');
+console.log($scope.formData.tipo_reajuste);  
   
   //se existe lastForm 
   if (typeof $rootScope.cache.lastFormRMV != 'undefined') {
-
-    // console.log('entrou aqui');
 
     $scope.formData.tipo_reajuste = $rootScope.cache.lastFormRMV.tipo_reajuste;
 
@@ -1270,7 +1278,7 @@ console.log('lastFormRMV no submit: '+$rootScope.cache.lastFormRMV);
   
   // $scope.beneficiarios = angular.copy($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
   $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
-  
+
   $scope.beneficiarios.forEach(function(v,k){
     $scope.beneficiarios[k].fromDB = true;
     if ($scope.beneficiarios[k].selecionado == 'S'){
