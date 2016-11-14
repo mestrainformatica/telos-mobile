@@ -389,6 +389,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             logged = false;
             userInfo = new Object();
             $rootScope.lastRequest = {}
+            delete $rootScope.beneficiariosOriginal;
             $ionicLoading.hide();
             
             $state.go('signin');
