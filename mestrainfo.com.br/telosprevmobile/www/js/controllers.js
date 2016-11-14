@@ -1315,7 +1315,8 @@ console.log($rootScope);
   $scope.formAddBeneficiario = {}
   $scope.changeSelecionado = function(){
 
-console.log('scope beneficiarios: '+$scope.beneficiarios);
+console.log('scope beneficiarios: ');
+console.log($scope.beneficiarios);
 
     $scope.beneficiarios.forEach(function(v,k){
         if (($scope.beneficiarios[k].checked || $scope.beneficiarios[k].habilitado == 'N')){
@@ -1424,7 +1425,7 @@ console.log('scope beneficiarios: '+$scope.beneficiarios);
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.showChild = false
-  $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
   // $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
   // $scope.beneficiarios = $scope.formData.beneficiarios;
   $scope.map = map;
