@@ -205,6 +205,13 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           $rootScope.lastRequest = resp.data;
           $rootScope.cache = {} 
 
+          if(typeof $rootScope.lastRequest.result.simuladorBeneficios != 'undefined') {
+            for(k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
+              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true;
+              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S';
+            }
+          }
+
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
@@ -1287,7 +1294,10 @@ console.log($rootScope);
 
   if($rootScope.resetBeneficiarios && typeof $rootScope.beneficiariosOriginal != 'undefined'){
     console.log('aqui resetou os beneficiarios');
-    $scope.beneficiarios = $rootScope.beneficiariosOriginal;
+    delete $scope.beneficiarios;
+    $scope.beneficiarios = angular.copy($rootScope.beneficiariosOriginal);
+    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios = angular.copy($rootScope.beneficiariosOriginal);
+    $rootScope.resetBeneficiarios = false;
   }else {
     $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
   }
@@ -1305,7 +1315,7 @@ console.log($rootScope);
   $scope.formAddBeneficiario = {}
   $scope.changeSelecionado = function(){
 
-console.log($scope.beneficiarios);
+console.log('scope beneficiarios: '+$scope.beneficiarios);
 
     $scope.beneficiarios.forEach(function(v,k){
         if (($scope.beneficiarios[k].checked || $scope.beneficiarios[k].habilitado == 'N')){
