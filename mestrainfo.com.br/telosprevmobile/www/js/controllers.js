@@ -112,6 +112,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             userInfo = new Object();
             $rootScope.cache = {}
             $rootScope.lastRequest = {}
+            delete $rootScope.beneficiariosOriginal;
             $ionicLoading.hide();
             
             $state.go('signin');
@@ -1311,6 +1312,7 @@ console.log($rootScope);
       $scope.beneficiarios[k].readonly = true;
     }
   });
+
   $scope.map = map;
   $scope.formAddBeneficiario = {}
   $scope.changeSelecionado = function(){
