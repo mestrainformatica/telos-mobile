@@ -1,7 +1,7 @@
 //var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
 var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+// var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -1156,7 +1156,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
 
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
-  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
   $scope.formData.dependentes_para_fins_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
   
   // $scope.formData.tipo_reajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0].DEFAULT);
@@ -1181,7 +1181,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.lastFormRMV.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.lastFormRMV.idade != 'undefined') {
@@ -1490,7 +1490,7 @@ console.log($scope.beneficiarios);
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.lastFormDataSP.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.lastFormDataSP.idade != 'undefined') {
@@ -1689,7 +1689,7 @@ console.log($scope.formData.tipo_reajuste);
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.formSimulaRMVSP.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.formSimulaRMVSP.idade != 'undefined') {
@@ -2054,7 +2054,7 @@ console.log($scope.formData.tipo_reajuste);
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.lastFormAposentadoRVM.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.lastFormAposentadoRVM.idade != 'undefined') {
@@ -2195,7 +2195,7 @@ console.log($scope.formData.tipo_reajuste);
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.formRecalcular.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.formRecalcular.idade != 'undefined') {
