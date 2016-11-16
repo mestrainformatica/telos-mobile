@@ -1498,7 +1498,7 @@ console.log($scope.beneficiarios);
     }
   }
 
-  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
   }
@@ -1572,7 +1572,7 @@ console.log($scope.beneficiarios);
   if (typeof($rootScope.cache.lastFormDataSP) != 'undefined'){
     $scope.formData = $rootScope.cache.lastFormDataSP;
   }
-  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
   }
@@ -1659,7 +1659,7 @@ console.log($scope.beneficiarios);
   // }
 
   $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
-  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
   }
