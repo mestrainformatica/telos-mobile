@@ -14,7 +14,7 @@
          <div class="col label valor">Valor</div>
       </div>
       <div class="label row" ng-repeat="(key,value) in emprestimoSimulacaoCampos.limitesCreditos">
-        <div class="col-67">{{value.prazo}}<div class="descricao_limite_aplicado" ng-show="value.descricao_limite_aplicado"><br />{{value.descricao_limite_aplicado}}</div></div>
+        <div class="col-67 upper">{{value.prazo}}<div class="descricao_limite_aplicado" ng-show="value.descricao_limite_aplicado"><br />{{value.descricao_limite_aplicado}}</div></div>
         <div class="col valor">{{value.valor}}</div>
         <hr />
       </div>
@@ -27,15 +27,15 @@
                      Contrato N. {{contrato[0].numero_contrato}}</h4>
 
        <div class="label row">
-         <div class="col col-50">Saldo Devedor</div>
+         <div class="col col-50 upper ">Saldo Devedor</div>
            <div class="col valor">{{contrato[0].saldo_devedor}}</div>
            </div>
            <div class="label row">
-             <div class="col col-50">Taxa de Administração</div>
+             <div class="col col-50  upper">Taxa de Administração</div>
              <div class="col valor">{{contrato[0].taxa_administracao}}</div>
            </div>
            <div class="label row">
-             <div class="col col-50">Saldo Devedor Total</div>
+             <div class="col col-50  upper">Saldo Devedor Total</div>
              <div class="col valor">{{contrato[0].saldo_devedor_total}}</div>
            </div>
         </div>

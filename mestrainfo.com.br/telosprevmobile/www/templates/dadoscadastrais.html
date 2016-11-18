@@ -25,32 +25,32 @@
     </div>
     <div class="item inner">
       <div class="label row th">
-        <div class="col col-67">Contribuições</div>
+        <div class="col col-67 upper">Contribuições</div>
         <div class="col valor">Valor (R$)</div>
       </div>
       <div class="label row">
-        <div class="col col-67">Ctb Normal do Participante</div>
+        <div class="col col-67 upper">Ctb Normal do Participante</div>
         <div class="col valor">{{infoprev[0].contribuicao_normal_par}}</div>
       </div>
       <div class="label row">
-        <div class="col col-67">Ctb Normal da Patrocinadora</div>
+        <div class="col col-67 upper">Ctb Normal da Patrocinadora</div>
         <div class="col valor">{{infoprev[0].contribuicao_normal_pat}}</div>
       </div>
       <div class="label row">
-        <div class="col col-67">Ctb Adicional do Participante</div>
+        <div class="col col-67 upper">Ctb Adicional do Participante</div>
         <div class="col valor">{{infoprev[0].contribuicao_adicional_par}}</div>
       </div>
       <div class="label row">
-        <div class="col col-67">Taxa de Administração</div>
+        <div class="col col-67 upper">Taxa de Administração</div>
         <div class="col valor">{{infoprev[0].taxa_administracao}}</div>
       </div>
       <div class="label row">
-        <div class="col col-67">Jóia</div>
+        <div class="col col-67 upper">Jóia</div>
         <div class="col valor">{{infoprev[0].joia}}</div>
       </div>
       <hr>
       <div class="label row">
-        <div class="col col-67">Total</div>
+        <div class="col col-67 upper">Total</div>
         <div class="col valor">{{infoprev[0].total}}</div>
       </div>
       </div>
@@ -69,20 +69,20 @@
         </div>
         <div ng-show="itemShow">
           <div class="label row" style="color:#909090;">
-            <div class="col col-67">Nascimento</div>
-            <div class="col valor">{{infobenef[$index].nascimento}}</div>
+            <div class="col col-67 upper">Nascimento</div>
+            <div class="col valor upper">{{infobenef[$index].nascimento}}</div>
           </div>
           <div class="label row" style="color:#909090;">
-            <div class="col col-67">Parentesco</div>
-            <div class="col valor">{{infobenef[$index].cod_grau_parentesco}}</div>
+            <div class="col col-67 upper">Parentesco</div>
+            <div class="col valor upper">{{infobenef[$index].cod_grau_parentesco}}</div>
           </div>
           <div class="label row" style="color:#909090;">
-            <div class="col col-67">Tipo</div>
-            <div class="col valor">{{infobenef[$index].tipo}}</div>
+            <div class="col col-67 upper">Tipo</div>
+            <div class="col valor upper">{{infobenef[$index].tipo}}</div>
           </div>
           <div class="label row" style="color:#909090;" ng-show="infobenef[$index].manter_apos_21">
-            <div class="col col-67">Manter Após 21 Anos</div>
-            <div class="col valor">{{infobenef[$index].manter_apos_21}}</div>
+            <div class="col col-67 upper">Manter Após 21 Anos</div>
+            <div class="col valor upper">{{infobenef[$index].manter_apos_21}}</div>
           </div>
         </div>
       </div>

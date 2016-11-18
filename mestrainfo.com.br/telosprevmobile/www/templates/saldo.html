@@ -33,14 +33,14 @@
     </div>
     <div ng-show="saldo.detalhesSaldoContas">
     <div class="item item-divider subitem">
-      <div class="col col-33">Saldo de Contas</div>
+      <div class="col col-33" style="padding-left: 0;">Saldo de Contas</div>
       <div class="col col2" style="margin-top: -23px;">{{saldo.dados_atualizadoEm[0].desc_atualizadoem}} {{saldo.dados_atualizadoEm[0].data_atualizadoem}}</div>
     </div>
     
     <div class="item" id="">   
       
       <div class="label row">
-        <h4 class="col-67" style="padding: 0 0.4em;">TOTAL</h4>
+        <h4 class="col-67" style="padding: 0 0.4em; font-weight: 400">TOTAL</h4>
         <h4 class="col valor">{{saldo.total_financeiro}}</h4>
       </div>
     </div>
@@ -49,26 +49,26 @@
     </div>
         <div class="item" id="saldoEmitido">   
   <div class="" ng-repeat="(key,value) in saldo.detalhesSaldoContas">
-      <h4>{{value.conta}}</h4>
+      <h4 class="upper" style="font-weight: 400">{{value.conta}}</h4>
       
       <div class="label row">
-        <div class="softcolor col col-67" class="title_label">Índice</div>
+        <div class="softcolor col col-67 upper" class="title_label">Índice</div>
         <div class="col valor">{{value.indice}}</div>
       </div>
       <div class="label row">
-        <div class="softcolor col col-67" class="title_label">Data do Índice</div>
+        <div class="softcolor col col-67 upper" class="title_label">Data do Índice</div>
         <div class="col valor">{{value.data_indice}}</div>
       </div>
       <div class="label row">
-        <div class="softcolor col col-67" class="title_label">Valor do Índice</div>
+        <div class="softcolor col col-67 upper" class="title_label">Valor do Índice</div>
         <div class="col valor">{{value.valor_indice}}</div>
       </div>
       <div class="label row">
-        <div class="softcolor col col-67" class="title_label">Qtd. Cotas</div>
+        <div class="softcolor col col-67 upper" class="title_label">Qtd. Cotas</div>
         <div class="col valor">{{value.quantidade_cotas}}</div>
       </div>
       <div class="label row">
-        <div class="softcolor col col-67" class="title_label">Vr. Financeiro</div>
+        <div class="softcolor col col-67 upper" class="title_label">Vr. Financeiro</div>
         <div class="col valor">{{value.valor_financeiro}}</div>
       </div>
       <hr>

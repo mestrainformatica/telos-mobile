@@ -13,6 +13,9 @@
 	margin-top:1em;
 	margin-bottom: -.25em;
 }
+.label .smaller {
+	font-size: 13px;
+}
 .descricao_limite_aplicado {
 	margin-top: -7px;
     margin-bottom: 14px;
@@ -383,7 +386,7 @@ h4.title_label {
 .item.item-divider.softrow {
     padding: 0.75em 1em;
     color: #a0a0a0;
-    font-weight: 800;
+    font-weight: 400;
     background-color: #ececec;
     border-bottom: 0;
     font-size: 14px;
@@ -789,7 +792,7 @@ div.no-wrap p {
 .title{
 	font-size: 1.2em;
     color: #a7a7a7;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .item.title{
@@ -822,7 +825,7 @@ div.no-wrap p {
 }
 
 .item p{
-	font-size: 16px;
+	font-size: 13px;
 }
 
 .box-calculo .item{
