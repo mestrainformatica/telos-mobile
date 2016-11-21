@@ -1,7 +1,7 @@
 //var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -589,6 +589,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.formData = {};
   $scope.saldo.detalhesSaldoContas = false;
 
+  setTimeout(function(){
+    $scope.formData.data_atualizacao = $scope.saldo[0].data_atualizacao;
+    $scope.submit();
+  }, 200);
+
   $scope.submit = function(){
     $scope.saldo.detalhesSaldoContas = false;
 
@@ -610,6 +615,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
+            console.log(resp.data.result);
             $rootScope.lastRequest.saldoEmitido = resp.data.result;
             $scope.saldo.detalhesSaldoContas = resp.data.result.detalhesSaldoContas;
             $scope.saldo.total_financeiro = resp.data.result.total_financeiro;
