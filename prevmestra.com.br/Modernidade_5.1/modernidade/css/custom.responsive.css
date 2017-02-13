@@ -1,0 +1,126 @@
+body.responsive {
+  min-width: 0;
+  width: 100%;
+}
+body.responsive #rodape {
+  min-width: 0;
+}
+body.responsive #conteudo::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+@media (max-width: 767px) {
+  body.responsive {
+    box-shadow: none;
+  }
+  body.responsive .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  body.responsive #conteudo {
+    width: 100%;
+    overflow: hidden;
+    padding-left: 0 !important;
+  }
+  body.responsive #conteudo #left-column {
+    float: right;
+  }
+  body.responsive #conteudo #left-column .menu-title span {
+    float: left;
+  }
+  body.responsive #conteudo #left-column #menuDiv {
+    background: #fff;
+    padding-bottom: 0;
+    width: 245px;
+    position: absolute;
+    z-index: 1050;
+    top: 0;
+    height: 100%;
+  }
+  body.responsive #conteudo #left-column #menuDiv .menu-title {
+    background: #1F4F8D;
+    padding: 17px 15px;
+    color: #fff !important;
+    position: fixed;
+    width: 100%;
+  }
+  body.responsive #conteudo #left-column #menuDiv .menu-title span {
+    margin-right: 20px;
+  }
+  body.responsive #conteudo #left-column #menuDiv #menuList {
+    box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow: auto;
+  }
+  body.responsive #conteudo #left-column #menuDiv #M00000Menu {
+    margin-top: 23px;
+  }
+  body.responsive #conteudo #left-column #menuDiv ul {
+    list-style: none;
+  }
+  body.responsive #conteudo #left-column #menuDiv ul li ul li a.active {
+    background-color: #e2e2e2;
+    color: #5f5f5f !important;
+  }
+  body.responsive #conteudo #left-column #menuDiv ul li.logout {
+    padding: 10px 15px 0;
+  }
+  body.responsive #conteudo #left-column #menuDiv ul li.logout a {
+    padding: 0 !important;
+    width: auto;
+    display: inline-block;
+    background: none;
+  }
+  body.responsive #conteudo.menu-collapsed {
+    padding-left: 0;
+    margin-right: -200px;
+  }
+  body.responsive #conteudo.menu-collapsed #menuDiv {
+    width: 50px !important;
+    overflow: hidden;
+    right: 0;
+    height: auto !important;
+  }
+  body.responsive #conteudo.menu-collapsed #menuDiv #menuList {
+    height: auto !important;
+  }
+  body.responsive #conteudo.menu-collapsed #menuDiv #menuList .menu-title {
+    position: static;
+    padding: 19.4px 5px;
+  }
+  body.responsive #conteudo.menu-collapsed #menuDiv #menuList .menu-title span {
+    margin-top: -30px;
+    background: #1f4f8d;
+    padding: 15px 12px;
+  }
+  body.responsive .header-modernidade {
+    height: 60px;
+  }
+  body.responsive .header-modernidade .logo-div {
+    width: 180px !important;
+    height: auto !important;
+  }
+  body.responsive .header-modernidade .inner h1 {
+    margin-top: 23px;
+    font-size: 15px;
+    margin-left: 0;
+  }
+  body.responsive .header-modernidade .inner p {
+    margin-top: 23px;
+    display: none;
+  }
+  body.responsive #rodape {
+    height: 85px;
+  }
+  body.responsive #rodape p {
+    float: none;
+  }
+}
+@media (max-width: 468px) {
+  body.responsive #menuList {
+    box-shadow: -222px 0px 0px rgba(0, 0, 0, 0.4) !important;
+  }
+}
+
+/*# sourceMappingURL=custom.responsive.css.map */

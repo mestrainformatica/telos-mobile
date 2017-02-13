@@ -1,0 +1,182 @@
+body.responsive{
+	min-width:0;
+	width:100%;
+
+	#rodape{
+		min-width: 0;
+	}
+
+	#conteudo{
+		&::after {
+		    display: block;
+		    content: "";
+		    clear: both;
+		}
+	}
+
+	.header-modernidade{
+		
+	}
+
+	
+		
+	@media(max-width:767px){
+		
+		box-shadow:none;
+
+		.container{
+			padding-left:15px;
+			padding-right: 15px;
+		}
+		
+		#conteudo{
+			width: 100%;
+    		overflow: hidden;
+			padding-left: 0 !important;
+
+			#left-column{
+
+				float: right;
+	
+				.menu-title{
+
+					span {
+						float: left;
+					}
+
+				} 
+
+				#menuDiv{
+					background: #fff;
+					padding-bottom:0;
+					width: 245px;
+					position: absolute;
+				    z-index: 1050;
+				    top: 0;
+				    height: 100%;
+
+				    .menu-title{
+				    	background: #1F4F8D;
+				    	padding: 17px 15px;
+				    	color: #fff !important;
+				    	position:fixed;
+				    	width: 100%;
+				    	span{
+				    		margin-right: 20px;
+				    	}
+				    }
+
+				    #menuList{
+				    	box-shadow: -5px 0px 10px rgba(0,0,0, 0.1);
+				    	height: 100%;
+				    	overflow: auto;
+				    }
+
+					#M00000Menu{
+						margin-top: 23px;
+					}
+
+				    ul{
+				    	list-style:none;
+
+				    	li{
+				    		ul{
+				    			li{
+				    				a.active{
+				    					    background-color: #e2e2e2;
+    										color: #5f5f5f !important;
+				    				}
+				    			}
+				    		}
+				    	}
+
+
+				    	li.logout{
+							    padding: 10px 15px 0;
+				    		a{
+				    			padding: 0 !important;
+							    width: auto;
+							    display: inline-block;
+							    background:none;
+				    		}
+
+				    	}
+				    }
+				}
+			}
+
+		}
+
+		#conteudo.menu-collapsed {
+		    padding-left: 0;
+		    margin-right: -200px;
+		    // padding-right:43px;
+
+		    #menuDiv{
+		    	width: 50px !important;
+			    overflow: hidden;
+			    right: 0;
+			    height: auto !important;
+
+			    #menuList{
+			    	height: auto !important;
+				    .menu-title{
+				    	position: static;
+				    	    padding: 19.4px 5px;
+				    	span{
+				    		margin-top: -30px;
+						    background: #1f4f8d;
+						    padding: 15px 12px;
+				    	}
+				    }
+			    }
+
+
+		    }
+		}
+
+
+		.header-modernidade{
+			height: 60px;
+
+			.logo-div{
+				width:180px !important;
+				height: auto !important;
+			}
+
+			.inner{
+				h1{
+					margin-top: 23px;
+					font-size: 15px;
+					margin-left: 0;
+				}
+				p{
+					margin-top: 23px;
+					display: none;
+				}
+			} 
+		}
+
+		#rodape{
+			// position:relative;
+			height: 85px;
+			p{
+				float: none;
+			}
+		}
+
+	}
+
+	@media(max-width:468px){
+
+
+	    #menuList{
+	    	box-shadow: -222px 0px 0px rgba(0,0,0, 0.4) !important;
+	    }
+	}
+
+	@media(max-width:991px){
+
+	}
+
+}

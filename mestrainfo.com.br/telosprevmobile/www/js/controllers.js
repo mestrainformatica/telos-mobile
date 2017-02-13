@@ -112,6 +112,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             userInfo = new Object();
             $rootScope.cache = {}
             $rootScope.lastRequest = {}
+            delete $rootScope.beneficiariosOriginal;
             $ionicLoading.hide();
             
             $state.go('signin');
@@ -204,6 +205,13 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
           $rootScope.lastRequest = resp.data;
           $rootScope.cache = {} 
+
+          if(typeof $rootScope.lastRequest.result.simuladorBeneficios != 'undefined') {
+            for(k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
+              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true;
+              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S';
+            }
+          }
 
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
@@ -381,6 +389,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             logged = false;
             userInfo = new Object();
             $rootScope.lastRequest = {}
+            delete $rootScope.beneficiariosOriginal;
             $ionicLoading.hide();
             
             $state.go('signin');
@@ -580,6 +589,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.formData = {};
   $scope.saldo.detalhesSaldoContas = false;
 
+  setTimeout(function(){
+    $scope.formData.data_atualizacao = $scope.saldo[0].data_atualizacao;
+    $scope.submit();
+  }, 200);
+
   $scope.submit = function(){
     $scope.saldo.detalhesSaldoContas = false;
 
@@ -601,6 +615,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
+            console.log(resp.data.result);
             $rootScope.lastRequest.saldoEmitido = resp.data.result;
             $scope.saldo.detalhesSaldoContas = resp.data.result.detalhesSaldoContas;
             $scope.saldo.total_financeiro = resp.data.result.total_financeiro;
@@ -1147,7 +1162,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
 
   $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
-  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
   $scope.formData.dependentes_para_fins_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
   
   // $scope.formData.tipo_reajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0].DEFAULT);
@@ -1172,7 +1187,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.lastFormRMV.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.lastFormRMV.idade != 'undefined') {
@@ -1287,7 +1302,10 @@ console.log($rootScope);
 
   if($rootScope.resetBeneficiarios && typeof $rootScope.beneficiariosOriginal != 'undefined'){
     console.log('aqui resetou os beneficiarios');
-    $scope.beneficiarios = $rootScope.beneficiariosOriginal;
+    delete $scope.beneficiarios;
+    $scope.beneficiarios = angular.copy($rootScope.beneficiariosOriginal);
+    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios = angular.copy($rootScope.beneficiariosOriginal);
+    $rootScope.resetBeneficiarios = false;
   }else {
     $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
   }
@@ -1301,10 +1319,12 @@ console.log($rootScope);
       $scope.beneficiarios[k].readonly = true;
     }
   });
+
   $scope.map = map;
   $scope.formAddBeneficiario = {}
   $scope.changeSelecionado = function(){
 
+console.log('scope beneficiarios: ');
 console.log($scope.beneficiarios);
 
     $scope.beneficiarios.forEach(function(v,k){
@@ -1414,7 +1434,7 @@ console.log($scope.beneficiarios);
 
 .controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   $scope.showChild = false
-  $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
   // $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
   // $scope.beneficiarios = $scope.formData.beneficiarios;
   $scope.map = map;
@@ -1476,7 +1496,7 @@ console.log($scope.beneficiarios);
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.lastFormDataSP.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.lastFormDataSP.idade != 'undefined') {
@@ -1484,7 +1504,7 @@ console.log($scope.beneficiarios);
     }
   }
 
-  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
   }
@@ -1558,7 +1578,7 @@ console.log($scope.beneficiarios);
   if (typeof($rootScope.cache.lastFormDataSP) != 'undefined'){
     $scope.formData = $rootScope.cache.lastFormDataSP;
   }
-  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
   }
@@ -1645,7 +1665,7 @@ console.log($scope.beneficiarios);
   // }
 
   $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
-  $scope.formData.idade = parseInt($rootScope.lastRequest.result.simuladorBeneficios[0].idade);
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
   $scope.years = new Array(); for (var year = 20; year <= 120; year++){
     $scope.years.push(year);
   }
@@ -1675,7 +1695,7 @@ console.log($scope.formData.tipo_reajuste);
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.formSimulaRMVSP.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.formSimulaRMVSP.idade != 'undefined') {
@@ -2040,7 +2060,7 @@ console.log($scope.formData.tipo_reajuste);
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.lastFormAposentadoRVM.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.lastFormAposentadoRVM.idade != 'undefined') {
@@ -2181,7 +2201,7 @@ console.log($scope.formData.tipo_reajuste);
 
     //se mes ano ta preenchido
     if(typeof $rootScope.cache.formRecalcular.mes_ano != 'undefined') {
-      $scope.formData.idade = 58;
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
     }
 
     if(typeof $rootScope.cache.formRecalcular.idade != 'undefined') {

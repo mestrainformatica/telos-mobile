@@ -14,23 +14,23 @@
   <h4>Não há contrato vigente</h4>
   </div>
   <div class="item" ng-repeat="(key,value) in consultaEmprestimo">
-  <h4>Contrato {{value.contrato}}</h4>
+  <h4 style="color: #909090; border-bottom: solid 1px #eee; margin-bottom: .75em;">Contrato {{value.contrato}}</h4>
   
   <div class="label row">
-         <div class="col col-25 softcolor">Data</div>
-         <div class="col valor">{{value.data}}</div>
+         <div class="col col-25 softcolor upper">Data</div>
+         <div class="col valor upper">{{value.data}}</div>
     </div>
     <div class="label row">
-        <div class="col col-25 softcolor">Prazo</div>
-        <div class="col valor">{{value.prazo}}</div>
+        <div class="col col-25 softcolor upper">Prazo</div>
+        <div class="col valor upper">{{value.prazo}}</div>
   </div>
     <div class="label row">
-        <div class="col col-25 softcolor">Tipo</div>
-        <div class="col valor">{{value.tipo_emprestimo}}</div>
+        <div class="col col-25 softcolor upper">Tipo</div>
+        <div class="col valor upper">{{value.tipo_emprestimo}}</div>
   </div>
     <div class="label row">
-        <div class="col col-25 softcolor">Saldo Devedor</div>
-        <div class="col valor">{{value.saldo_devedor}}</div>
+        <div class="col col-25 softcolor upper">Saldo Devedor</div>
+        <div class="col valor upper">{{value.saldo_devedor}}</div>
   </div>
   </div>
   
