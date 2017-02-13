@@ -5,8 +5,6 @@ $(document).ready(function()
         $('#conteudo').addClass('menu-collapsed');
         $('body').addClass('menu-collapsed');
 
-        $('.header-modernidade .navbar-right span.txt').hide();
-
         var logoutHtml =  $('.header-modernidade .navbar-right').html();
 
         $('#menuList .menuList').after('<li class="logout menubar">'+logoutHtml+'</li>');
@@ -18,9 +16,21 @@ $(document).ready(function()
             $('#conteudo').addClass('menu-collapsed');
             $('body').addClass('menu-collapsed');
 
+        }
+    });
+
+    if($(window).width() < 991){
+
+        $('.header-modernidade .navbar-right span.txt').hide();
+
+        $('#menuList .menuList').after('<li class="logout menubar">'+logoutHtml+'</li>');
+
+    }
+
+    $(window).resize(function(){
+        if($(window).width() < 991){
+
             $('.header-modernidade .navbar-right span.txt').hide();
-
-
 
         }else{
             $('.header-modernidade .navbar-right span.txt').show();

@@ -186,7 +186,7 @@
 		</div>
 
 		<div id="main-content" class="container" role="main">
-			<?php // include("includes/conteudo.php"); ?>sadsdafdsf
+			<?php  include("includes/conteudo.php"); ?>sadsdafdsf
 		</div>
 		<div class="clear-fix"></div>
 	</div>
