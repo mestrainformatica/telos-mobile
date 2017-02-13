@@ -44,7 +44,7 @@
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
 
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?version=0.01" rel="stylesheet">
     <script>
     
         window.addEventListener('native.keyboardshow', keyboardShowHandler);
@@ -65,7 +65,7 @@
         function keyboardShowHandler(e) {
         let kH = e.keyboardHeight;
         console.log(e.keyboardHeight);
-        let bodyMove = <HTMLElement>document.querySelector("ion-app"), bodyMoveStyle = bodyMove.style;           
+        let bodyMove = document.querySelector("ion-app"), bodyMoveStyle = bodyMove.style;           
         console.log("calculating " + kH + "-" + offsetY + "=" + (kH - offsetY));
 
         if (offsetY < kH + 40) {
@@ -75,7 +75,7 @@
         }
         function keyboardHideHandler() {
            console.log('gone');
-           let removeStyles = <HTMLElement>document.querySelector("ion-app");
+           let removeStyles = document.querySelector("ion-app");
            removeStyles.removeAttribute("style");
         }
     </script>
