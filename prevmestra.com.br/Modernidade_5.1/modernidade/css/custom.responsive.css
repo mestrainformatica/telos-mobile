@@ -92,8 +92,9 @@ body.responsive #conteudo::after {
     height: 60px;
   }
   body.responsive .header-modernidade .logo-div {
-    width: 180px !important;
+    width: 165px !important;
     height: auto !important;
+    margin: 3px 0;
   }
   body.responsive .header-modernidade .inner h1 {
     margin-top: 23px;

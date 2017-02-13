@@ -35,7 +35,7 @@ $(document).ready(function()
         }else{
             $('.header-modernidade .navbar-right span.txt').show();
         }
-    })
+    });
 
     //var secao_text = $('.secao').first().text();
     var titulo_first = $('.titulo').first();

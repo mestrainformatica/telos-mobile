@@ -175,9 +175,6 @@
 				<p><span class="txt">Conectado como </span> Luiz Cláudio &nbsp;  <a href="#"><span class="txt">Desconectar</span> <img src="modernidade/img/off.png"></a></p>
 			</div>
 		</div>
-		<!-- <a class="navbar-toggle" href="javascript://">
-			<span class="glyphicon glyphicon-menu-hamburger"></span>
-		</a> -->
 	</div>
 
 	<div id="conteudo">
@@ -185,9 +182,8 @@
 			<?php include("includes/menu.php"); ?>	
 		</div>
 
-		<div id="main-content" style="height: 1500px;" class="container" role="main">
-			<?php // include("includes/conteudo.php"); ?>
-			CONTEUDO
+		<div id="main-content" class="container" role="main">
+			<?php // include("includes/conteudo.php"); ?>CONTEUDO
 		</div>
 		<div class="clear-fix"></div>
 	</div>
