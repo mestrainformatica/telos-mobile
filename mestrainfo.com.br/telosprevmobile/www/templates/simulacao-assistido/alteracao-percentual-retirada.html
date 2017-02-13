@@ -14,7 +14,7 @@
       </div>
     </div>
 
-      <form id="formCampos" class="formCampo">
+      <form id="formCampos" class="formCampo" ng-submit="submit(formData)">
         <div class="item">
 
 
@@ -22,13 +22,15 @@
             
             <div class="row">
               <div class="col">
-                 <span class="input-label">Percentual de renda mensal</span>
+                 <span class="input-label">Percentual de renda mensal <Br /><small>(0,5% A 2,0%)</small></span>
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="text" name="percentual_renda_mensal" ng-model="formData.percentual_renda_mensal">
+                  <input type="tel" name="percentual_renda_mensal" ng-model="formData.percentual_renda_mensal" ui-number-mask="1">
                 </label>
-                 <p class="input-legend">(0,5% A 2,0%)</p>
+              </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
               </div>
             </div>
 
@@ -42,16 +44,19 @@
               </div>
               <div class="col col-20">
                 <label class="item item-input">
-                  <input type="text" name="estimativa_rentabilidade" placeholder="" ng-model="formData.estimativa_rentabilidade">
+                  <input type="tel" name="estimativa_rentabilidade" placeholder="" ng-model="formData.estimativa_rentabilidade" ui-number-mask="1" ng-init="formData.estimativa_rentabilidade = 3.0" />
                 </label>
 
+              </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
               </div>
                
             </div>
 
           </label>
 
-          <label class="no-border item item-input item-stacked-label">
+          <label class="no-border item item-input item-stacked-label" ng-show="cod_opcao_tributacao != '02'">
             
             <div class="row">
               
@@ -61,11 +66,14 @@
               <div class="col col-20">
                 
                 <label class="item item-input">
-                  <input type="text" name="dependentes_ir" placeholder="0" ng-model="formData.dependentes_ir">
+                  <input type="tel" name="dependentes_ir" placeholder="0" ng-model="formData.dependentes_ir" ui-number-mask="0" />
                 </label>
       
               </div>
             
+                    <div class="col col-05">
+                      <span class="input-label box "></span>
+                    </div>
             </div>
 
           </label>
@@ -74,7 +82,7 @@
               <div class="input-label">
                 Abono Anual?
             </div>
-            <select class="ion-input-select" ng-model="formData.abono">
+            <select class="ion-input-select" ng-model="formData.abono" ng-init="formData.abono = 'S'">
                <option value="N">NÃO</option>
                <option value="S">SIM</option>
             </select>
@@ -90,7 +98,7 @@
         </div>
         <div class="padding">
           <div class="button-bar">
-            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação">      
           </div>
         </div>
 

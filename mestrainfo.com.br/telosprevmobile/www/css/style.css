@@ -8,8 +8,99 @@
   display: none !important;
 }
 
+.pull-right.button-assertive {
+	float: right;
+	margin-top:1em;
+	margin-bottom: -.25em;
+}
+.label .smaller {
+	font-size: 13px;
+}
+.descricao_limite_aplicado {
+	margin-top: -7px;
+    margin-bottom: 14px;
+    color: #909090;
+}
+#beneficiariosForm .nome-label {
+	padding:0 0 0 .3em;
+	background: #fff;
+}
+#beneficiariosForm .item-select {
+	padding: .6em 1em;
+}
+#beneficiariosForm ion-header-bar {
+	background: #1c7fa2;
+}
+#beneficiariosForm p {
+	padding: 2em 1em;
+	background: #fff;
+	color: #808080;
+	margin:0;
+}
+#beneficiarios .extratoDoMes { 
+	padding: 0.5em 1em ;
+ }
+
+.toggle.toggle-positive input:checked + .track,
+#beneficiariosForm ion-header-bar .button,
+#beneficiariosForm ion-header-bar .button-positive
+{
+	background: #0c6f92;
+	border:solid 1px #0c6f92;
+}
+
+
+.list.spresultado {
+	margin-bottom: 0;
+}
+.col-05 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 6%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 6%;
+    -ms-flex: 0 0 6%;
+    flex: 0 0 6%;
+    max-width: 6%;
+}
+.col-28 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 26%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 26%;
+    -ms-flex: 0 0 26%;
+    flex: 0 0 26%;
+    max-width: 26%;
+}
+.col-28 input {
+	padding-right: .5em;
+    text-align: right !important;
+}
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+
+.mes-ano-input {
+	border: solid 1px #d0d0d0;
+	padding: 0 .75em;
+	margin:0;
+}
+.mes-ano-input .input-label {
+	color: #333 !important; 
+	padding: 4px 0;
+}
+.mes-ano-input .item.item-input {
+	border: none;
+	padding:0; margin:0;
+	line-height: 1em;
+	height:28px;
+	background: #fff;
+	 text-indent: 0px !important;
+    width: 100%;
+    padding: 0 0.2em;
+}
+
+.mes-ano-input .item.item-input input {
+    width: auto;
 }
 .th .col-40, .th .col-41 {
 	padding-left: .3em !important;
@@ -229,7 +320,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	    max-width: 54% !important;
 	    text-align: right !important;
 	    padding-bottom: 0.5em !important;
-	    margin-top: -0.5em;
+	    margin-top: 0.5em;
 }
 #btn-editar { margin-top: 1em; color: #595959;}
 #btn-editar .icon { margin-top: 1px; margin-left: .25em}
@@ -237,11 +328,16 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	text-align: center;
 	color: #404040;
 }
-#signin .button.button-positive {
-	background-color: #00688f !important;
-	border-color: #045878 !important;
-
+#signin .button.button-positive,
+.button.button-positive {
+	background-color: #1c7fa2 !important;
+	border-color: #00688f !important;
 }
+.button.button-positive.button-clear {
+	background-color: transparent !important;
+	border-color: transparent !important;
+}
+
 #saldoEmitido h4 { margin-left: 5px; margin-top: 1em; }
 .title_label {
 	color: #909090 !important;
@@ -290,7 +386,7 @@ h4.title_label {
 .item.item-divider.softrow {
     padding: 0.75em 1em;
     color: #a0a0a0;
-    font-weight: 800;
+    font-weight: 400;
     background-color: #ececec;
     border-bottom: 0;
     font-size: 14px;
@@ -461,6 +557,15 @@ h4.title_label {
 	font-size: 11px;
 }
 
+.tipo-reajuste {
+	padding:0;margin:0;
+}
+.tipo-reajuste .row {
+	padding:0;margin:0;
+}
+.tipo-reajuste .row .col.col-100 {
+	padding:0;margin:0;
+}
 
 .headerInfo .subitem .row .col.label {
 	color: #465961;
@@ -546,8 +651,8 @@ div.no-wrap p {
     padding: 10px 30px;
 }
 
-.bg-destaq.item-select{
-	padding: 5px 16px 0 !important;
+.bg-destaq{
+	padding: 2px 16px 0 !important;
 }
 
 .top-page .item-divider.bg-destaq{
@@ -687,7 +792,7 @@ div.no-wrap p {
 .title{
 	font-size: 1.2em;
     color: #a7a7a7;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .item.title{
@@ -712,7 +817,7 @@ div.no-wrap p {
 }
 
 .text .dif.cap{
-	text-transform: capitalize !important;
+	/*text-transform: capitalize !important;*/
 }
 
 .resultados-title{
@@ -720,7 +825,7 @@ div.no-wrap p {
 }
 
 .item p{
-	font-size: 16px;
+	font-size: 13px;
 }
 
 .box-calculo .item{

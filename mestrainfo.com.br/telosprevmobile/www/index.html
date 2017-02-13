@@ -30,6 +30,9 @@
     <script src="lib/ngmask/ngMask.min.js"></script>
     <script src="lib/currency.js"></script>
 
+    <script src="lib/angular-locale-pt-br/angular-locale_pt-br.js"></script>
+    <script src="lib/angular-input-masks/angular-input-masks-standalone.min.js"></script>
+
     <!-- your app's js -->
 
     <script src="js/app.js"></script>
@@ -42,6 +45,40 @@
     <script src="cordova.js"></script>
 
     <link href="css/style.css" rel="stylesheet">
+    <script>
+    
+        window.addEventListener('native.keyboardshow', keyboardShowHandler);
+        window.addEventListener('native.keyboardhide', keyboardHideHandler);
+        window.addEventListener('touchstart', tapCoordinates);
+
+        let y;
+        let h;
+        let offsetY;
+
+        function tapCoordinates(e) {
+           y = e.touches[0].clientY;
+           h = window.innerHeight;
+           offsetY = (h - y); 
+           console.log("offset = " + offsetY);
+        }
+
+        function keyboardShowHandler(e) {
+        let kH = e.keyboardHeight;
+        console.log(e.keyboardHeight);
+        let bodyMove = document.querySelector("ion-app"), bodyMoveStyle = bodyMove.style;           
+        console.log("calculating " + kH + "-" + offsetY + "=" + (kH - offsetY));
+
+        if (offsetY < kH + 40) {
+           bodyMoveStyle.bottom = (kH - offsetY + 40) + "px";
+           bodyMoveStyle.top = "initial";
+          }
+        }
+        function keyboardHideHandler() {
+           console.log('gone');
+           let removeStyles = document.querySelector("ion-app");
+           removeStyles.removeAttribute("style");
+        }
+    </script>
 
   </head>
   <body ng-app="starter" padding="true" class="platform-android platform-ios" ng-style="bodyStyle">

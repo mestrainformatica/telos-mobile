@@ -40,7 +40,7 @@ body.responsive #conteudo::after {
   }
   body.responsive #conteudo #left-column #menuDiv .menu-title {
     background: #1F4F8D;
-    padding: 19.4px 15px;
+    padding: 17px 15px;
     color: #fff !important;
     position: fixed;
     width: 100%;
@@ -87,6 +87,7 @@ body.responsive #conteudo::after {
   }
   body.responsive #conteudo.menu-collapsed #menuDiv #menuList .menu-title {
     position: static;
+    padding: 19.4px 5px;
   }
   body.responsive #conteudo.menu-collapsed #menuDiv #menuList .menu-title span {
     margin-top: -30px;

@@ -4,7 +4,7 @@
         <div ng-include="'js/directives/userInfo.html'"></div> 
     </div>
 
-  <div class="list" id="mainMenu">       
+  <div class="list spresultado" id="mainMenu" >       
 
     <div class="resultados-title item">
       Resultados da simulação de Saque Programado
@@ -28,7 +28,7 @@
           <div class="col valor">{{value.rmv_val_bruto}}</div>
         </div> 
         <div class="label row" >
-          <div class="col col-67 text">valor do imposto de renda (progressivo)</div>
+          <div class="col col-67 text">valor do imposto de renda ({{desc_opcao_tributacao}})</div>
           <div class="col valor">{{value.rmv_ir}}</div>
         </div> 
       </div>
@@ -46,27 +46,13 @@
           <div class="col valor">{{value.antecipacao_beneficio}}</div>
         </div> 
         <div class="label row" >
-          <div class="col col-67 text">valor do imposto de renda (progressivo)</div>
+          <div class="col col-67 text">valor do imposto de renda ({{desc_opcao_tributacao}})</div>
           <div class="col valor">{{value.rmv_ir}}</div>
         </div>
       </div>
       
       <hr>
       
-      <div class="separador">
-        <div class="label row" >
-          <div class="col col-67 text">Última renda mensal não vitalícia em <span class="dif">11/2135</span></div>
-          <div class="col valor">0,00</div>
-        </div> 
-      </div>
-      
-      <div class="separador">
-
-        <div class="label row" >
-          <div class="col col-67 text">Saldo remanescente à ser pago em <span class="dif">12/2135</span></div>
-          <div class="col valor">0,00</div>
-        </div>
-
       <div class="label row" >
         <div class="col col-67 text">Última renda mensal não vitalícia em <span class="dif">{{value.ultima_renda_data}}</span></div>
         <div class="col valor">{{value.ultima_renda_valor}}</div>
@@ -89,12 +75,12 @@
             <div class="col col-70">
               <span class="input-label">Estimativa de rentabilidade média anual <small>Entre a data de simulação e início de benefício</small></span>
             </div>
-            <div class="col col-20">
+            <div class="col col-28">
               <label class="item item-input">
-                <input type="text" name="" ng-model="formData.estimativa_rent_entre"/> 
+                <input type="text" name="" ui-number-mask="1" ng-model="formData.estimativa_rent_entre"/> 
               </label>
             </div>
-            <div class="col col-10">
+            <div class="col col-05">
               <span class="input-label box ">%</span>
             </div>
           </div>
@@ -103,20 +89,20 @@
             <div class="col col-70">
               <span class="input-label">Estimativa de rentabilidade média anual <small>Após o início do benefício</small></span>
             </div>
-            <div class="col col-20">
+            <div class="col col-28">
               <label class="item item-input">
 
-                <input type="text" name="" ng-model="formData.estimativa_rent_apos" /> 
+                <input type="text" name="" ui-number-mask="1" ng-model="formData.estimativa_rent_apos" /> 
 
               </label>
             </div>
-            <div class="col col-10">
+            <div class="col col-05">
               <span class="input-label box ">%</span>
             </div>
           </div>
          
           <div class="button-bar">
-            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação">      
+            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação" ng-click="submit(FormData)">      
           </div>
         </div>
       </div>
@@ -125,11 +111,7 @@
           Atenção:
           <div class="text-small no-wrap">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Quos necessitatibus unde delectus,
-              tenetur quidem natus veniam aspernatur 
-              eveniet blanditiis quisquam alias omnis neque quia
-              iure sint nulla molestias recusandae repellendus!
+              {{value.texto_simulacao_saque_programado}}
             </p>
           </div>
         </div>
