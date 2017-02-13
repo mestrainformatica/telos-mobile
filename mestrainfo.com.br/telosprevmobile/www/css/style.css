@@ -788,6 +788,7 @@ small.legend{
 .abonoselect{
 	margin-left: 7px;
     margin-right: 7px;
+    margin-top: 15px;
 }
 
 .sec-title{
@@ -806,7 +807,7 @@ small.legend{
 
 .input-legend{
 	text-align: right;
-	white-space: normal !important;
+	white-space: nowrap;
     font-size: .65em !important;
     color: #A9A9AA !important;
     text-transform: uppercase !important;
