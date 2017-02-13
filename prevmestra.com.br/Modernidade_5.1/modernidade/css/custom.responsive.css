@@ -54,8 +54,8 @@ body.responsive #conteudo::after {
     height: 100%;
     overflow: auto;
   }
-  body.responsive #conteudo #left-column #menuDiv #M00000Menu {
-    margin-top: 23px;
+  body.responsive #conteudo #left-column #menuDiv a#M00000Actuator {
+    margin-top: 60px;
   }
   body.responsive #conteudo #left-column #menuDiv ul {
     list-style: none;
