@@ -8,12 +8,11 @@ $(document).ready(function()
     }
 
     var appendLogout;
+    var logoutHtml =  $('.header-modernidade .navbar-right').html();
 
     if($(window).width() < 767){
         $('#conteudo').addClass('menu-collapsed');
         $('body').addClass('menu-collapsed');
-
-        var logoutHtml =  $('.header-modernidade .navbar-right').html();
 
         $('#menuList').append('<li class="logout menubar">'+logoutHtml+'</li>');
 
