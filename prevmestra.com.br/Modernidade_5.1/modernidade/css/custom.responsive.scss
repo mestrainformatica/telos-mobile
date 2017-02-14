@@ -89,16 +89,21 @@ body.responsive{
 				    	}
 
 
-				    	// li.logout{
-							  //   padding: 10px 15px 0;
-				    	// 	a{
-				    	// 		padding: 0 !important;
-							  //   width: auto;
-							  //   display: inline-block;
-							  //   background:none;
-				    	// 	}
+				    	li.logout{
+							    padding: 5px 15px;
+							    background: #f0f0f0;
+							    p{
+							    	margin:0;
+							    }
+				    		a{
+				    			padding: 0 !important;
+							    width: auto;
+							    display: inline-block;
+							    background:none;
+							    border: 0;
+				    		}
 
-				    	// }
+				    	}
 				    }
 				}
 			}

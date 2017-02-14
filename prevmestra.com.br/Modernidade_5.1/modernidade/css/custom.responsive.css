@@ -64,6 +64,20 @@ body.responsive #conteudo::after {
     background-color: #e2e2e2;
     color: #5f5f5f !important;
   }
+  body.responsive #conteudo #left-column #menuDiv ul li.logout {
+    padding: 5px 15px;
+    background: #f0f0f0;
+  }
+  body.responsive #conteudo #left-column #menuDiv ul li.logout p {
+    margin: 0;
+  }
+  body.responsive #conteudo #left-column #menuDiv ul li.logout a {
+    padding: 0 !important;
+    width: auto;
+    display: inline-block;
+    background: none;
+    border: 0;
+  }
   body.responsive #conteudo.menu-collapsed {
     padding-left: 0;
     margin-right: -200px;
