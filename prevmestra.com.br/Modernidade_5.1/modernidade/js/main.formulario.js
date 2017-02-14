@@ -2,9 +2,7 @@ $(document).ready(function()
 {   
 
     if($(window).width() < 991){
-
         $('.header-modernidade .navbar-right span.txt').hide();
-
     }
 
     var appendLogout;
@@ -22,6 +20,7 @@ $(document).ready(function()
 
     $(window).resize(function(){
         if($(window).width() < 767){
+
             $('#conteudo').addClass('menu-collapsed');
             $('body').addClass('menu-collapsed');
 
@@ -47,21 +46,22 @@ $(document).ready(function()
             appendLogout = 0;
         }
 
+        if($(window).width() < 991){
 
+            $('.header-modernidade .navbar-right span.txt').hide();
+
+            logoutHtml =  $('.header-modernidade .navbar-right').html();
+
+        }else{
+            $('.header-modernidade .navbar-right span.txt').show();
+
+            logoutHtml =  $('.header-modernidade .navbar-right').html();
+        }
 
     });
 
     
 
-    $(window).resize(function(){
-        if($(window).width() < 991){
-
-            $('.header-modernidade .navbar-right span.txt').hide();
-
-        }else{
-            $('.header-modernidade .navbar-right span.txt').show();
-        }
-    });
 
     //var secao_text = $('.secao').first().text();
     var titulo_first = $('.titulo').first();
