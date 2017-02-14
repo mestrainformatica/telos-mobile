@@ -70,7 +70,29 @@ $(document).ready(function()
 
     $("#menuDiv .menu-title").click(function () {
         $(this).parents('#conteudo, body').toggleClass("menu-collapsed");
+
+        if($(window).width() < 767){
+
+
+            if(!($('body').hasClass('menu-collapsed') && $('#conteudo').hasClass('menu-collapsed'))){
+                
+                $(document).mouseup(function (e)
+                {
+                    var container = $("#menuDiv");
+
+                    if (!container.is(e.target) 
+                        && container.has(e.target).length === 0) 
+                    {
+                        container.parents('#conteudo, body').addClass("menu-collapsed");
+
+                    }
+                });
+            }
+        }
     });
+
+        
+
     /*
         Tooltipster
      */
