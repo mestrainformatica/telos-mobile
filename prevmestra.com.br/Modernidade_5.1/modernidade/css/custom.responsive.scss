@@ -7,11 +7,29 @@ body.responsive{
 	}
 
 	#conteudo{
-		&::after {
+		// @media(min-width:992px){
+		// 	box-shadow: inset 246px 0 #f0f0f0;
+		// }
+		
+		&:after {
 		    display: block;
 		    content: "";
 		    clear: both;
 		}
+	}
+
+	#left-column{
+		@media(min-width:991px){
+			height:100%;
+			overflow: auto;
+		}
+	}
+
+
+	#conteudo.menu-collapsed {
+		// @media(min-width:992px){
+		// 	box-shadow: inset 44px 0 #f0f0f0;
+		// }
 	}
 
 
