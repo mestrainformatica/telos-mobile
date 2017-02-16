@@ -18,54 +18,67 @@
         <link rel="stylesheet" href="modernidade/lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="modernidade/css/custom.login.css">
 
+        
 
+        <link rel="stylesheet" href="modernidade/css/custom.formulario.css"> 
+        
+        <link rel="stylesheet" href="modernidade/css/custom.responsive.css">
+    
         <script src="modernidade/lib/boilerplate/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
-    <body>
+    <body class="responsive login-page">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="background-full"></div>
-        <div class="login">
-            <div class="container">
-                <h1>Bem-vindo ao novo sistema integrado<br /> de administração de previdência fechada</h1>
-                <div class="row">
-                    <div class="col-xs-10 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4 col-xs-offset-1 login-box">
-                        <h1 class="logo">Sysprev Web</h1>
-                        <form method="post" action="j_security_check" onsubmit="gravarUser()">
-                            <label>Usuário</label>
-                            <!--<div class="alert alert-danger" role="alert">
-                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                <span class="sr-only">Error:</span>
-                                Usuário e/ou senha inválida!
-                            </div>-->
-                            <div class="form-position">
-                                <input type="text" class="form-control loginTexto" name="j_username" autofocus />
-                                <span class="glyphicon glyphicon-user
-    "></span>
+       
+        <div id="conteudo">
+            <div id="main-content" class="container" role="main">
+                
+                 <div class="background-full"></div>
+
+                <div class="login">
+                    <div class="container">
+                        <h1>Bem-vindo ao novo sistema integrado<br /> de administração de previdência fechada</h1>
+                        <div class="row">
+                            <div class="col-xs-20 col-sm-12 col-md-8 col-sm-offset-6 col-md-offset-8 col-xs-offset-2 login-box">
+                                <h1 class="logo">Sysprev Web</h1>
+                                <form method="post" action="j_security_check" onsubmit="gravarUser()">
+                                    <label>Usuário</label>
+                                    <!--<div class="alert alert-danger" role="alert">
+                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                        <span class="sr-only">Error:</span>
+                                        Usuário e/ou senha inválida!
+                                    </div>-->
+                                    <div class="form-position">
+                                        <input type="text" class="form-control loginTexto" name="j_username" autofocus />
+                                        <span class="glyphicon glyphicon-user
+            "></span>
+                                    </div>
+                                    <label>Senha</label>
+                                    <div class="form-position">
+                                        <input type="password" class="form-control loginTexto" name="j_password"/>
+                                        <span class="glyphicon glyphicon-lock
+            "></span>
+                                    </div>
+                                    <ul class="senha-menu">
+                                        <li><a href="#" data-toggle="modal" data-target="#myModal">Alterar a Senha</a></li>
+                                        <li><a href="#" data-toggle="modal" data-target="#myModal">Esqueceu a Senha</a></li>
+                                    </ul>
+                                    <input type="submit" class="btn btn-primary btn-md pull-right" value="Entrar">
+                                </form>
                             </div>
-                            <label>Senha</label>
-                            <div class="form-position">
-                                <input type="password" class="form-control loginTexto" name="j_password"/>
-                                <span class="glyphicon glyphicon-lock
-    "></span>
-                            </div>
-                            <ul class="senha-menu">
-                                <li><a href="#" data-toggle="modal" data-target="#myModal">Alterar a Senha</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#myModal">Esqueceu a Senha</a></li>
-                            </ul>
-                            <input type="submit" class="btn btn-primary btn-md pull-right" value="Entrar">
-                        </form>
+                        </div>
+                        <ul class="mini-menu">
+                            <li><a href="#">Canais de Suporte</a></li>
+                            <li><a href="#">Política de Privacidade</a></li>
+                        </ul>
+                        <h5>Copyright @2015 Mestra Informática. <br/> Todos os direitos reservados.</h5>
                     </div>
                 </div>
-                <ul class="mini-menu">
-                    <li><a href="#">Canais de Suporte</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
-                </ul>
-                <h5>Copyright @2015 Mestra Informática. <br/> Todos os direitos reservados.</h5>
             </div>
+            <div class="clear-fix"></div>
         </div>
         
         <!-- Modal -->

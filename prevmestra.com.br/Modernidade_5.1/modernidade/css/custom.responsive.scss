@@ -7,18 +7,32 @@ body.responsive{
 	}
 
 	#conteudo{
-		&::after {
+		// @media(min-width:992px){
+		// 	box-shadow: inset 246px 0 #f0f0f0;
+		// }
+		
+		&:after {
 		    display: block;
 		    content: "";
 		    clear: both;
 		}
 	}
 
-	.header-modernidade{
-		
+	#left-column{
+		@media(min-width:767px){
+			height:100%;
+			overflow: auto;
+		}
 	}
 
-	
+
+	#conteudo.menu-collapsed {
+		// @media(min-width:992px){
+		// 	box-shadow: inset 44px 0 #f0f0f0;
+		// }
+	}
+
+
 		
 	@media(max-width:767px){
 		
@@ -50,19 +64,20 @@ body.responsive{
 					background: #fff;
 					padding-bottom:0;
 					width: 245px;
-					position: absolute;
+					position: fixed;
 				    z-index: 1050;
 				    top: 0;
 				    height: 100%;
 
 				    .menu-title{
 				    	background: #1F4F8D;
-				    	padding: 17px 15px;
+				    	padding: 19px 15px;
 				    	color: #fff !important;
 				    	position:fixed;
 				    	width: 100%;
 				    	span{
 				    		margin-right: 20px;
+				    		margin-left:200px;
 				    	}
 				    }
 
@@ -72,8 +87,9 @@ body.responsive{
 				    	overflow: auto;
 				    }
 
-					#M00000Menu{
-						margin-top: 23px;
+					a#M00000Actuator{
+						margin-top: 60px;
+					
 					}
 
 				    ul{
@@ -92,12 +108,17 @@ body.responsive{
 
 
 				    	li.logout{
-							    padding: 10px 15px 0;
+							    padding: 5px 15px;
+							    background: #f0f0f0;
+							    p{
+							    	margin:0;
+							    }
 				    		a{
 				    			padding: 0 !important;
 							    width: auto;
 							    display: inline-block;
 							    background:none;
+							    border: 0;
 				    		}
 
 				    	}
@@ -117,6 +138,7 @@ body.responsive{
 			    overflow: hidden;
 			    right: 0;
 			    height: auto !important;
+			    position:absolute !important;
 
 			    #menuList{
 			    	height: auto !important;
@@ -127,6 +149,7 @@ body.responsive{
 				    		margin-top: -30px;
 						    background: #1f4f8d;
 						    padding: 15px 12px;
+						    margin-left: 0;
 				    	}
 				    }
 			    }
@@ -140,14 +163,15 @@ body.responsive{
 			height: 60px;
 
 			.logo-div{
-				width:180px !important;
+				width:145px !important;
 				height: auto !important;
+				margin:6.3px 0;
 			}
 
 			.inner{
 				h1{
-					margin-top: 23px;
-					font-size: 15px;
+					margin-top: 25px;
+					font-size: 12px;
 					margin-left: 0;
 				}
 				p{
@@ -179,4 +203,12 @@ body.responsive{
 
 	}
 
+}
+
+body.responsive.login-page{
+	box-shadow: none;
+
+	#conteudo{
+		padding-left:0;
+	}
 }

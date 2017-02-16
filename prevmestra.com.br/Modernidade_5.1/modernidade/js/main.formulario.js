@@ -1,41 +1,67 @@
 $(document).ready(function()
-{
+{   
 
-    if($(window).width() < 768){
+    if($(window).width() < 991){
+        $('.header-modernidade .navbar-right span.txt').hide();
+    }
+
+    var appendLogout;
+    var logoutHtml =  $('.header-modernidade .navbar-right').html();
+
+    if($(window).width() < 767){
         $('#conteudo').addClass('menu-collapsed');
         $('body').addClass('menu-collapsed');
 
-        var logoutHtml =  $('.header-modernidade .navbar-right').html();
+        $('#menuList').append('<li class="logout menubar">'+logoutHtml+'</li>');
 
-        $('#menuList .menuList').after('<li class="logout menubar">'+logoutHtml+'</li>');
+        appendLogout = 1;
 
     }
 
     $(window).resize(function(){
-        if($(window).width() < 768){
+        if($(window).width() < 767){
+
             $('#conteudo').addClass('menu-collapsed');
             $('body').addClass('menu-collapsed');
 
+            if(appendLogout == 1){
+
+                $('#menuList li.logout.menubar').remove();
+                appendLogout = 0;
+
+            }else{
+
+                $('#menuList').append('<li class="logout menubar">'+logoutHtml+'</li>');
+
+                appendLogout = 1;
+            }
+
+            if($('#menuList li.logout.menubar').length == 0){
+                  $('#menuList').append('<li class="logout menubar">'+logoutHtml+'</li>');
+                  appendLogout = 1;
+            }
+
+        }else{
+            $('#menuList li.logout.menubar').remove();
+            appendLogout = 0;
         }
-    });
 
-    if($(window).width() < 991){
-
-        $('.header-modernidade .navbar-right span.txt').hide();
-
-        $('#menuList .menuList').after('<li class="logout menubar">'+logoutHtml+'</li>');
-
-    }
-
-    $(window).resize(function(){
         if($(window).width() < 991){
 
             $('.header-modernidade .navbar-right span.txt').hide();
 
+            logoutHtml =  $('.header-modernidade .navbar-right').html();
+
         }else{
             $('.header-modernidade .navbar-right span.txt').show();
+
+            logoutHtml =  $('.header-modernidade .navbar-right').html();
         }
-    })
+
+    });
+
+    
+
 
     //var secao_text = $('.secao').first().text();
     var titulo_first = $('.titulo').first();
@@ -70,7 +96,32 @@ $(document).ready(function()
 
     $("#menuDiv .menu-title").click(function () {
         $(this).parents('#conteudo, body').toggleClass("menu-collapsed");
+
+        //alterações responsivo
+        if($(window).width() < 767){
+
+
+            if(!($('body').hasClass('menu-collapsed') && $('#conteudo').hasClass('menu-collapsed'))){
+                
+                $(document).mouseup(function (e)
+                {
+                    var container = $("#menuDiv");
+
+                    if (!container.is(e.target) 
+                        && container.has(e.target).length === 0) 
+                    {
+                        container.parents('#conteudo, body').addClass("menu-collapsed");
+
+                    }
+                });
+            }
+        }
+
+
     });
+
+        
+
     /*
         Tooltipster
      */

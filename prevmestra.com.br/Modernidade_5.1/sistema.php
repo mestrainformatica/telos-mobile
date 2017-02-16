@@ -6,6 +6,8 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,100,300,600,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,600,700' rel='stylesheet' type='text/css'>
 
@@ -175,9 +177,6 @@
 				<p><span class="txt">Conectado como </span> Luiz Cláudio &nbsp;  <a href="#"><span class="txt">Desconectar</span> <img src="modernidade/img/off.png"></a></p>
 			</div>
 		</div>
-		<!-- <a class="navbar-toggle" href="javascript://">
-			<span class="glyphicon glyphicon-menu-hamburger"></span>
-		</a> -->
 	</div>
 
 	<div id="conteudo">
@@ -186,7 +185,7 @@
 		</div>
 
 		<div id="main-content" class="container" role="main">
-			<?php  include("includes/conteudo.php"); ?>sadsdafdsf
+			<?php // include("includes/conteudo.php"); ?>CONTEUDO
 		</div>
 		<div class="clear-fix"></div>
 	</div>
