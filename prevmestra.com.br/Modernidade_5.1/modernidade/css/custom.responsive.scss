@@ -19,7 +19,7 @@ body.responsive{
 	}
 
 	#left-column{
-		@media(min-width:991px){
+		@media(min-width:767px){
 			height:100%;
 			overflow: auto;
 		}

@@ -10,7 +10,7 @@ body.responsive #conteudo:after {
   content: "";
   clear: both;
 }
-@media (min-width: 991px) {
+@media (min-width: 767px) {
   body.responsive #left-column {
     height: 100%;
     overflow: auto;
