@@ -8,8 +8,95 @@
   display: none !important;
 }
 
+.pull-right.button-assertive {
+	float: right;
+	margin-top:1em;
+	margin-bottom: -.25em;
+}
+.label .smaller {
+	font-size: 13px;
+}
+.descricao_limite_aplicado {
+	margin-top: -7px;
+    margin-bottom: 14px;
+    color: #909090;
+}
+#beneficiariosForm .nome-label {
+	padding:0 0 0 .3em;
+	background: #fff;
+}
+#beneficiariosForm .item-select {
+	padding: .6em 1em;
+}
+#beneficiariosForm ion-header-bar {
+	background: #1c7fa2;
+}
+#beneficiariosForm p {
+	padding: 2em 1em;
+	background: #fff;
+	color: #808080;
+	margin:0;
+}
+#beneficiarios .extratoDoMes { 
+	padding: 0.5em 1em ;
+ }
+.toggle.toggle-positive input:checked + .track,
+#beneficiariosForm ion-header-bar .button,
+#beneficiariosForm ion-header-bar .button-positive
+{
+	background: #0c6f92;
+	border:solid 1px #0c6f92;
+}
+.list.spresultado {
+	margin-bottom: 0;
+}
+.col-05 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 6%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 6%;
+    -ms-flex: 0 0 6%;
+    flex: 0 0 6%;
+    max-width: 6%;
+}
+.col-28 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 26%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 26%;
+    -ms-flex: 0 0 26%;
+    flex: 0 0 26%;
+    max-width: 26%;
+}
+.col-28 input {
+	padding-right: .5em;
+    text-align: right !important;
+}
+
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
+  }
+.mes-ano-input {
+	border: solid 1px #d0d0d0;
+	padding: 0 .75em;
+	margin:0;
+}
+.mes-ano-input .input-label {
+	color: #333 !important; 
+	padding: 4px 0;
+}
+.mes-ano-input .item.item-input {
+	border: none;
+	padding:0; margin:0;
+	line-height: 1em;
+	height:28px;
+	background: #fff;
+	 text-indent: 0px !important;
+    width: 100%;
+    padding: 0 0.2em;
+}
+.mes-ano-input .item.item-input input {
+    width: auto;
 }
 .th .col-40, .th .col-41 {
 	padding-left: .3em !important;
@@ -239,7 +326,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	    max-width: 54% !important;
 	    text-align: right !important;
 	    padding-bottom: 0.5em !important;
-	    margin-top: -0.5em;
+	    margin-top: 0.5em;
 }
 #btn-editar { margin-top: 1em; color: #595959;}
 #btn-editar .icon { margin-top: 1px; margin-left: .25em}
@@ -247,10 +334,14 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	text-align: center;
 	color: #404040;
 }
-#signin .button.button-positive {
+#signin .button.button-positive,
+.button.button-positive {
 	background-color: #2a2b6b !important;
 	border-color: #2a2b6b !important;
-
+}
+.button.button-positive.button-clear {
+	background-color: transparent !important;
+	border-color: transparent !important;
 }
 #saldoEmitido h4 { margin-left: 5px; margin-top: 1em; }
 .title_label {
@@ -304,6 +395,8 @@ h4.title_label {
     background-color: #ececec;
     border-bottom: 0;
     font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
 }
 .item.item-divider.softrow .th {
@@ -354,7 +447,7 @@ h4.title_label {
 
 .label.row, .label.col {
 	font-size: .75em;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	padding: 0;
 	line-height: 1em;
 }
@@ -468,6 +561,15 @@ h4.title_label {
 	font-size: 11px;
 }
 
+.tipo-reajuste {
+	padding:0;margin:0;
+}
+.tipo-reajuste .row {
+	padding:0;margin:0;
+}
+.tipo-reajuste .row .col.col-100 {
+	padding:0;margin:0;
+}
 
 .headerInfo .subitem .row .col.label {
 	color: #465961;
@@ -499,7 +601,272 @@ h4.title_label {
 }
 
 
-
+.contato-form .list {
+	background:#FFF;
+}
+div.text-small p {
+	margin: 10px;
+	color: #b8b8b8;
+}
+div.no-wrap p {
+	white-space: normal;
+}
+.top-page .item-divider{
+	padding:15px 0 !important;
+}
+.top-page .item-divider h3.title{
+	font-weight: 400 !important;
+	color: #A3A0A0 !important;
+	text-transform: none;
+}
+.top-page .extratoDoMes{
+	margin-left: 0 ;
+    padding-left: 0 ;
+    color: #adadad;
+}
+.extratoDoMes div.col {
+	white-space: normal;
+}
+.contato-form .list {		.top-page .extratoDoMes .valor{
+	background:#FFF;		    color: #333;
+}		}
+.item-divider.dif{
+	color:#333;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+.item.bg-destaq{
+	background: #d8d8d8;
+	color: #333;
+}
+.bg-destaq span{
+	color: #888;
+	width: 100%;
+    display: block;
+    padding: 10px 30px;
+}
+.bg-destaq{
+	padding: 2px 16px 0 !important;
+}
+.top-page .item-divider.bg-destaq{
+	background: #d8d8d8;
+	color: #333;
+}
+.top-page .item-divider.bg-destaq span{
+	font-weight: 400;
+}
+.top-page .item-divider span{
+	margin-top: -25px;
+    display: block;
+    margin-left: 78px;
+}
+#formCampos.formCampo .select-box{
+	margin:15px 0;
+}
+#formCampos.formCampo .select-box:first-child{
+	margin-top:0;
+	border-bottom:1px solid #e6e6e6;
+	padding-bottom:15px;
+}
+#formCampos.formCampo .no-border.item.item-input{
+	border-width: 0;
+}
+#formCampos.formCampo .item-input{
+	/*padding: 0px 0 0px 0px;*/
+}
+#formCampos.formCampo .input-label{
+	font-size: .9em;
+	font-weight: 300;
+    color: #888;
+    text-transform: uppercase;
+    width: 100% !important;
+	max-width:100% !important;
+	white-space: normal;
+}
+#formCampos.formCampo .input-label.box{
+	text-align: right;
+	padding-top:10px;
+	color: #888;
+}
+#formCampos.formCampo .input-label small{
+	display: block;
+	font-size: .7em;
+	line-height: 1.1em;
+}
+.text small{
+	display: block;
+}
+#formCampos.formCampo .item-select .input-label{
+	color: #333 !important;
+}
+#formCampos.formCampo a.link-remove{
+	display: block;
+	margin: 30px 0;
+	float:right;
+	text-decoration: none;
+	color: red;
+}
+#formCampos.formCampo a.link-remove:focus, #formCampos a.link-remove:active{
+	text-decoration: none;
+	color: #d60101;
+}
+#formCampos.formCampo button.button-calm{
+	background: #afcdd7;
+	border-color: #8cc5d8; 
+}
+#formCampos.formCampo button.button-calm{
+	background: #8cc5d8;
+	border-color: #8cc5d8; 
+	color: #333;
+	text-align: left;
+	font-weight: 300;
+}
+#formCampos.formCampo .button-bar{
+	/*margin-top:20px;*/
+	/*padding-top:10px;*/
+	/*border-top:1px solid #ccc;*/
+}
+#formCampos.formCampo .no-border.item.item-input {
+    padding-left: 0;
+}
+#formCampos .separador{
+	margin: 20px 0;
+}
+.separador{
+	margin:10px 0;
+	font-weight: 400;
+}
+/*.top-page .separador .label{
+	text-transform: none ;
+	font-size:.9em;
+}*/
+.iteml{
+	padding-left:0;
+}
+.nopadding{
+	padding:0;
+}
+.nopadding .input-label{
+	text-transform: capitalize !important;
+}
+.item.footer{
+	padding-top:0;
+}
+.footer.noborder{
+	border:0;
+}
+.title{
+	font-size: 1.2em;
+    color: #a7a7a7;
+    /*text-transform: uppercase;*/
+}
+.item.title{
+	color: #888;
+	white-space: normal;
+}
+.item .text{
+	color: #888;
+}
+.item .text.upper{
+	text-transform: uppercase;
+	font-weight: 300;
+	line-height: 1.4em;
+	font-size: .9em;;
+}
+.item .text .dif{
+	color:#333;
+	text-transform: uppercase;
+}
+.text .dif.cap{
+	/*text-transform: capitalize !important;*/
+}
+.resultados-title{
+	color: #888;
+}
+.item p{
+	font-size: 13px;
+}
+.box-calculo .item{
+	background:#e7e7e7;
+	padding-top: 0;
+    padding-bottom: 0;
+}
+.box-calculo .item .input-label{
+	color: #333 !important;
+	text-transform: none !important;
+	font-size:.9em !important;
+}
+.box-calculo label.item.item-input{
+	background: #fff !important;
+	padding-top: 0;
+	padding-bottom: 0;
+    margin: 3px 0;
+}
+.box-calculo small{
+	text-transform: uppercase;
+	color:#949494;
+	font-size:.64em !important;
+}
+small.legend{
+	display: block;
+}
+.upper{
+	text-transform: uppercase !important; 
+}
+.item.item-input{
+	padding-top:1px;
+	padding-bottom: 1px;
+}
+.obs p{
+	font-size:.75em;
+	color: #888;
+}
+.extratoDoMes .separador{
+	padding:0;
+}
+.menu-item{
+	background: #fdfbf1 !important;
+	font-weight: 300 !important;
+    color: #333 !important;
+    font-size: 12.7px !important;
+    /*padding-top: 20px !important;*/
+    /*padding-bottom: 20px !important;*/
+}
+.item-input .input-label.lower{
+	text-transform: none !important;
+	font-size:.9em !important;
+}
+.abonoselect{
+	margin-left: 7px;
+    margin-right: 7px;
+    margin-top: 15px;
+}
+.sec-title{
+	color: #333 !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    white-space: normal;
+}
+.item-section p{
+	white-space: normal;
+	font-size:.65em;
+	color: #A9A9AA;
+	text-transform: uppercase;
+}
+.input-legend{
+	text-align: right;
+	white-space: nowrap;
+    font-size: .65em !important;
+    color: #A9A9AA !important;
+    text-transform: uppercase !important;
+}
+.header-page{
+	white-space: normal;
+}
+.alteracao .resultados-title{
+	padding-top:5px;
+	padding-bottom: 5px;
+}
 
 
 
