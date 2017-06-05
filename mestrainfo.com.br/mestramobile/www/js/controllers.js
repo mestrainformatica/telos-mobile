@@ -1,12 +1,35 @@
-var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
-// var url_base = 'http://www.prevmestra.com.br:7777/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
 var timeoutMsg = "Rede indisponível";
+var map = {}
+map.vinculo = new Array();
+map.vinculo["V"] = 'Vitalício';
+map.vinculo["I"] = 'Indicado';
+map.vinculo["T"] = 'Temporário';
+
+map.sexo = new Array();
+map.sexo["M"] = 'Masculino';
+map.sexo["F"] = 'Feminino';
+
+map.parentesco = new Array();
+map.parentesco["01"] = "Cônjuge";
+map.parentesco["02"] = "Ex-Cônjuge";
+map.parentesco["03"] = "Companheiro(a)";
+map.parentesco["04"] = "Ex-Companheiro(a)";
+map.parentesco["05"] = "Pai ou Mãe";
+map.parentesco["06"] = "Designado";
+map.parentesco["07"] = "Filho(a)";
+map.parentesco["08"] = "Enteado(a)";
+map.parentesco["09"] = "Irmão ou Irmã";
+map.parentesco["10"] = "Menor sob Guarda";
+map.parentesco["11"] = "Sogro(a)";
+map.parentesco["12"] = "Filho > 24 anos";
 
 var toGuid = function (str) {
     return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase();
@@ -88,7 +111,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             stageMap = {}
             logged = false;
             userInfo = new Object();
+            $rootScope.cache = {}
             $rootScope.lastRequest = {}
+            delete $rootScope.beneficiariosOriginal;
             $ionicLoading.hide();
             
             $state.go('signin');
@@ -180,6 +205,14 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           //resp.data.result.termo_de_uso = [ { descricao_termo_uso: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"} ];
 
           $rootScope.lastRequest = resp.data;
+          $rootScope.cache = {} 
+
+          if(typeof $rootScope.lastRequest.result.simuladorBeneficios != 'undefined') {
+            for(k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
+              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true;
+              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S';
+            }
+          }
 
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
@@ -209,7 +242,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
               else if (typeof(resp.data.result.dadosView)){
                 
                
-                //console.log(stageMap);
+                ////console.log(stageMap);
                 // Ao definir as variáveis, vai pro menu principal
                 $state.go('menu');
               } else {
@@ -217,7 +250,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
               }
             }
             //alert('passou');
-            //console.log(resp);
+            ////console.log(resp);
             //$state.go('menu');
           }
           
@@ -237,26 +270,26 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     }
     
   }
-  $ionicPlatform.ready(function() {
-        $cordovaTouchID.checkSupport().then(function() {
-          $cordovaTouchID.authenticate("Faça a autenticação").then(function() {
-            $scope.formData.cpf = "08275049776";
-            $scope.formData.sen = "123456";
-            $scope.submit();
-            // success
-          }, function () {
-            // error
-            //alert('Autenticação falhou. Tente Novamente.');
-          });
-        })
-      })
+  // $ionicPlatform.ready(function() {
+  //       $cordovaTouchID.checkSupport().then(function() {
+  //         $cordovaTouchID.authenticate("Faça a autenticação").then(function() {
+  //           $scope.formData.cpf = "08275049776";
+  //           $scope.formData.sen = "123456";
+  //           $scope.submit();
+  //           // success
+  //         }, function () {
+  //           // error
+  //           //alert('Autenticação falhou. Tente Novamente.');
+  //         });
+  //       })
+  //     })
 
 }])
 
 .controller('termosDeUso', ['$scope', '$state', '$rootScope', '$http', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicPopup) {
 
   $rootScope.erroMsg = false;
-  //console.log($rootScope.lastRequest.result);
+  ////console.log($rootScope.lastRequest.result);
   $scope.termosText = $rootScope.lastRequest.result.termo_de_uso[0].descricao_termo_uso;
 
 }])
@@ -275,7 +308,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           
           $ionicLoading.hide();        
           $scope.termosText = resp.data.result.termo_de_uso[0].descricao_termo_uso;
-          //console.log($scope.termosText);
+          ////console.log($scope.termosText);
         }
 
       }, function(err) {
@@ -357,6 +390,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             logged = false;
             userInfo = new Object();
             $rootScope.lastRequest = {}
+            delete $rootScope.beneficiariosOriginal;
             $ionicLoading.hide();
             
             $state.go('signin');
@@ -368,7 +402,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
      });
      });
   }
-  //console.log($rootScope.lastRequest.result);
+  ////console.log($rootScope.lastRequest.result);
   $scope.termosText = $rootScope.lastRequest.result.termo_de_uso[0].descricao_termo_uso;
 
 }])
@@ -401,6 +435,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $scope.infoprev = $rootScope.lastRequest.result.informacoesPrevidenciarias;
   $scope.infobenef = $rootScope.lastRequest.result.informacoesDependentes;
+
 }])
 .controller('DadosCtrl.form', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
   
@@ -464,7 +499,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.extrato = $rootScope.lastRequest.result.extratoContas;
   $scope.formData = {};
 
-  console.log($scope.extrato);
+  //console.log($scope.extrato);
   $scope.submit = function(){
     
 
@@ -488,7 +523,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           } else {
             $rootScope.lastRequest.extratoEmitido = resp.data.result;
             $rootScope.lastRequest.extratoEmitido.mes_atual = $scope.cod_ano_mes;
-            console.log(resp.data.result);
+            $rootScope.cache.cod_ano_mes = $scope.formData.cod_ano_mes;
+            //console.log(resp.data.result);
             $state.go('extratoemitido');
           }
         }
@@ -502,10 +538,49 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     }
   }
 }])
-.controller('ExtratoCtrl.emitido', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('ExtratoCtrl.emitido', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+
+  console.log($rootScope);
 
   $rootScope.erroMsg = false;
   $scope.extrato = $rootScope.lastRequest.extratoEmitido;
+
+  if($rootScope.lastRequest.result.dadosCadastrais.email == "")
+    $scope.hasEmail = true;
+  else
+    $scope.hasEmail = false;
+
+  $scope.sendMail = function() {
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : {
+            'descricaoEmail' : $rootScope.lastRequest.result.dadosCadastrais[0].email, 
+            'acao':'extratoContasEnvioEmail', 
+            'dataAtualizacao':$rootScope.cache.cod_ano_mes
+        }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+    
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            //console.log(resp.data.result);
+            alert('Enviado para '+$rootScope.lastRequest.result.dadosCadastrais[0].email);
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+  }
+
 }])
 
 .controller('SaldoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
@@ -513,17 +588,22 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $rootScope.erroMsg = false;
   $scope.saldo = $rootScope.lastRequest.result.saldoContas;
   $scope.formData = {};
+  $scope.saldo.detalhesSaldoContas = false;
+
+  setTimeout(function(){
+    $scope.formData.data_atualizacao = $scope.saldo[0].data_atualizacao;
+    $scope.submit();
+  }, 200);
 
   $scope.submit = function(){
-    
+    $scope.saldo.detalhesSaldoContas = false;
 
     if (!$scope.formData.data_atualizacao){
       $rootScope.errorMsg = "Por favor preencha todos os campos";
     } else {
 
-    console.log('clicou');
-        $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
-
+    //console.log('clicou');
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : { "data_atualizacao":$scope.formData.data_atualizacao, 'acao':'saldoContas' }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
@@ -536,9 +616,14 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           if (resp.data.msg.length > 0){
             $rootScope.errorMsg = resp.data.msg; 
           } else {
-            $rootScope.lastRequest.saldoEmitido = resp.data.result;
             console.log(resp.data.result);
-            $state.go('saldoemitido');
+            $rootScope.lastRequest.saldoEmitido = resp.data.result;
+            $scope.saldo.detalhesSaldoContas = resp.data.result.detalhesSaldoContas;
+            $scope.saldo.total_financeiro = resp.data.result.total_financeiro;
+            $scope.formData.data_atualizacao = $scope.formData.data_atualizacao;
+            $scope.saldo.dados_atualizadoEm = resp.data.result.dados_atualizadoEm;
+            $rootScope.cache.data_atualizacao = $scope.formData.data_atualizacao;
+            //$state.go('saldoemitido');
           }
         }
      }, function(err) {
@@ -549,15 +634,51 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
      });
      });
     }
+   $scope.sendMail = function() {
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : {
+            'descricaoEmail' : $rootScope.lastRequest.result.dadosCadastrais[0].email, 
+            'acao':'saldoContasEnvioEmail', 
+            'dataAtualizacao':$rootScope.cache.data_atualizacao
+        }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+    
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            //console.log(resp.data.result);
+            alert('Enviado para '+$rootScope.lastRequest.result.dadosCadastrais[0].email);
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+  }
 
   }
 }])
 
-.controller('SaldoCtrl.emitido', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('SaldoCtrl.emitido', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   
   $rootScope.erroMsg = false;
   $scope.saldo = $rootScope.lastRequest.saldoEmitido;
-  console.log($scope.saldo);
+  //console.log($scope.saldo);
+
+  if($rootScope.lastRequest.result.dadosCadastrais.email == "")
+    $scope.hasEmail = true;
+  else
+    $scope.hasEmail = false;
+
 }])
 
 .controller('DemonstrativoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
@@ -588,6 +709,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           } else {
             $rootScope.demonstrativoEmitido = resp.data.result;
             $rootScope.errorMsg = false;
+            $rootScope.cache.data_pagamento = $scope.formData.data_pagamento;
             $state.go('demonstrativoemitido');
           }
         }
@@ -621,6 +743,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
      
     $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
+
     $http.post(url_base+';jsessionid='+userInfo.s, 
         { "param" : { 
           'acao':'faleConosco',
@@ -637,6 +760,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         userInfo.s = resp.data.login.s;
         
         $ionicLoading.hide();
+        
         $rootScope.errorMsg = resp.data.msg;
         
         if (!resp.data.success) { $state.go('signin'); } else {
@@ -646,9 +770,10 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
               $state.go('menu');
             }, 1200);
           } else {
-            
+
           }
         }
+        
      }, function(err) {
         $ionicLoading.hide();
         $ionicPopup.alert({
@@ -662,9 +787,46 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 }])
 
-.controller('DemonstrativoCtrl.emitido', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('DemonstrativoCtrl.emitido', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   $rootScope.erroMsg = false;
   $scope.demonstrativo = $rootScope.demonstrativoEmitido;
+
+  if($rootScope.lastRequest.result.dadosCadastrais.email == "")
+    $scope.hasEmail = true;
+  else
+    $scope.hasEmail = false;
+
+  $scope.sendMail = function() {
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : {
+            'descricaoEmail' : $rootScope.lastRequest.result.dadosCadastrais[0].email, 
+            'acao':'demonstrativoPagamentoEmail', 
+            'dataAtualizacao':$rootScope.cache.data_pagamento
+        }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+    
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            //console.log(resp.data.result);
+            alert('Enviado para '+$rootScope.lastRequest.result.dadosCadastrais[0].email);
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+  }
+
 }])
 
 .controller('EmprestimoConsultaCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
@@ -704,8 +866,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         
         dataInicial = new Date(resp.data.result.data_inicial);
         $scope.dataInicial = dataInicial.getTime();
-        console.log(dataInicial);
-        console.log($scope.dataInicial);
+        //console.log(dataInicial);
+        //console.log($scope.dataInicial);
         $scope.disableCalendar = false; 
         
         datasIndisponiveis = resp.data.result.datas_credito;
@@ -720,7 +882,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $scope.disableddates.push(currentDate.getTime());
           }
         }
-        console.log($scope.disableddates);
+        //console.log($scope.disableddates);
         if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
         
           if (resp.data.msg.length > 0){
@@ -751,7 +913,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         } else {
 
 
-        console.log('click');
+        //console.log('click');
             $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
         // Atualiza as datas de crédito
@@ -767,7 +929,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
             $rootScope.lastRequest.esmprestimoSimulacaoCampos.cod_emprestimo = cod_emprestimo;
             $scope.errorMsg = false;
             $state.go('emprestimosimulacaocampos');
-            console.log(resp.data.result);
+            //console.log(resp.data.result);
 
         }, function(err) {
         $ionicLoading.hide();
@@ -786,9 +948,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.simulacao = $rootScope.lastRequest.result.simulacaoEmprestimo;
 
 }])
-.controller('emprestimoSimulacaoCamposCtrl', ['$scope', '$state', '$rootScope',  '$http', '$ionicLoading', '$filter', '$ionicPopup', function($scope,$state,$rootScope,$http,$ionicLoading,$filter,$ionicPopup){
+.controller('emprestimoSimulacaoCamposCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', '$filter', '$ionicPopup', function($scope,$state,$rootScope,$http,$ionicLoading,$filter,$ionicPopup){
 
-    //console.log($rootScope.lastRequest.esmprestimoSimulacaoCampos);
+    ////console.log($rootScope.lastRequest.esmprestimoSimulacaoCampos);
     $scope.formData = {};
     $scope.contrato = $rootScope.lastRequest.esmprestimoSimulacaoCampos.saldos_dados_simulacao;
     $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.esmprestimoSimulacaoCampos;
@@ -803,9 +965,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       casas = 3;
 
       campo = new Object;
-      campo.value = valor;
+      campo.value = $scope.formData.valor;
       campo.maxLength = 12;
-      valor = valor.replace(',','').replace('.','');
+      $scope.formData.valor = $scope.formData.valor.replace(',','').replace('.','');
 
       var code = e.keyCode; 
       //pega codigo datecla digitada
@@ -892,9 +1054,8 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       campo.value = campo.value.substr(0, campo.value.length - 1);
       
       $scope.formData.valor = campo.value;
-
     }
-
+    
     $scope.submit = function (formData){
 
 
@@ -904,10 +1065,10 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
           (!$scope.formData.valor)){
           $scope.errorMsg = "Por favor preencha todos os campos";
         } else {
-      // console.log($scope.formData);
-      // console.log($scope.emprestimoSimulacaoCampos);
-      // console.log($scope.tipos_emprestimo);
-      // console.log($scope.matricula);
+      // //console.log($scope.formData);
+      // //console.log($scope.emprestimoSimulacaoCampos);
+      // //console.log($scope.tipos_emprestimo);
+      // //console.log($scope.matricula);
       $ionicLoading.show({
       content: 'Loading',
       animation: 'fade-in',
@@ -953,7 +1114,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
                   }
                   $scope.errorMsg = false;
                   $state.go('emprestimosimulacaocamposemitido');
-                  //console.log(resp.data.result);
+                  ////console.log(resp.data.result);
                 }
               }
 
@@ -976,9 +1137,1246 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido;
     $scope.emitido = $scope.emprestimoSimulacaoCamposEmitido;
   
-    //console.log($scope);
+    ////console.log($scope);
 
 }])
+
+//MEUS CONTROLLERS
+
+
+/**
+***
+***  Simulação RMV 1.1
+***
+**/
+.controller('SimulacaoRendaMensalVitaliciaCtrl', ['$scope', '$state', '$rootScope', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicLoading, $http) {
+
+  $scope.formData = {};
+  $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
+  $scope.years = new Array(); for (var year = 20; year <= 120; year++){
+    $scope.years.push(year);
+   }
+
+
+
+  console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
+
+  $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+  $scope.formData.dependentes_para_fins_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
+  
+  // $scope.formData.tipo_reajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0].DEFAULT);
+  // $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
+  // delete $scope.tipoReajuste.DEFAULT;
+
+  $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  //pega o valor default
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0];
+
+  //remove default do tipo de reajuste
+  delete $scope.tipoReajuste.DEFAULT;
+
+  //seta o valor do form como o default do ws.
+  $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
+
+// console.log('default do tipo_reajuste: ');
+// console.log($scope.formData.tipo_reajuste);  
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.lastFormRMV != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.lastFormRMV.mes_ano != 'undefined') {
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+    }
+
+    if(typeof $rootScope.cache.lastFormRMV.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
+
+  $scope.goBeneficiarios = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $rootScope.cache.formToBeneficiarios = {}
+    $rootScope.cache.formToBeneficiarios = formData;
+    $rootScope.cache.routeToBeneficiarios = "simulacaorendamensalvitaliciaresultado";
+    $rootScope.cache.routeParams = $scope.getParams(formData);
+    $state.go('simulacaorendamensalvitaliciabeneficiarios');
+
+  }
+  $scope.getParams = function(formData) {
+     
+     if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
+     if (typeof(formData.idade) == 'undefined') { formData.idade = ''; }
+
+     if (formData.idade.length > 0 ) { console.log('entrou');  formData.mes_ano = ''; }
+
+     return { 
+          'acao':'simulaRMV',
+          'cod_fundo': $rootScope.lastRequest.result.dadosCadastrais[0].cod_fundo,
+          'cod_patrocinadora': $rootScope.lastRequest.result.dadosCadastrais[0].cod_patrocinadora,
+          'matricula': $rootScope.lastRequest.result.informacoesParticipante[0].matricula,
+          'cod_plano': $rootScope.lastRequest.result.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $rootScope.lastRequest.result.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $rootScope.lastRequest.result.dadosCadastrais[0].data_nascimento,
+          'sexo': $rootScope.lastRequest.result.dadosCadastrais[0].sexo,
+          'tipo_reajuste': formData.tipo_reajuste,
+          'data_elegibilidade_prevista': $scope.data_elegibilidade_prevista,
+          'idade': formData.idade,
+          'mes_ano': formData.mes_ano,
+          'salario_participante': $rootScope.lastRequest.result.informacoesParticipante[0].salario_participante,
+          'cresc_real_sal': formData.cresc_real_sal,
+          'contribuicao_participante': formData.contribuicao_participante,
+          'pensao': formData.pensao,
+          'antecipacao_beneficio': formData.antecipacao_beneficio,
+          'aporte': formData.aporte,
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'dependentes_para_fins_ir': formData.dependentes_para_fins_ir,
+          'cod_opcao_tributacao': $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao,
+          'beneficiario': $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+
+        }
+  }
+  $scope.submit = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $rootScope.cache.formToBeneficiarios = {}
+    $rootScope.cache.formToBeneficiarios = formData;
+    $rootScope.cache.routeParams = {}
+    $rootScope.cache.routeParams = formData;
+    $rootScope.cache.routeParams.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+    
+
+
+    $rootScope.cache.lastFormRMV = {}
+    $rootScope.cache.lastFormRMV = $scope.getParams(formData);
+console.log('lastFormRMV no submit: '+$rootScope.cache.lastFormRMV);
+    //console.log($rootScope.lastRequest.result);
+
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : $scope.getParams(formData), "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            $rootScope.cache.simulaRMV = resp.data.result;
+            $state.go('simulacaorendamensalvitaliciaresultado');
+          }
+        }
+
+        $ionicLoading.hide();
+
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
+}])
+
+.controller('SimulacaoRendaMensalVitaliciaCtrl.beneficiarios', ['$scope', '$state', '$rootScope', '$ionicModal', '$ionicLoading', '$http', function($scope, $state, $rootScope, $ionicModal, $ionicLoading, $http) {
+  
+  console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
+  
+
+console.log('scope: ');
+console.log($scope);
+console.log('rootScope: ');
+console.log($rootScope);
+
+  //se já existe um beneficiariosOriginal, não sobrescrever.
+  if(typeof $rootScope.beneficiariosOriginal == 'undefined') {
+    $rootScope.beneficiariosOriginal = angular.copy($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios);
+  }
+
+  if($rootScope.resetBeneficiarios && typeof $rootScope.beneficiariosOriginal != 'undefined'){
+    console.log('aqui resetou os beneficiarios');
+    delete $scope.beneficiarios;
+    $scope.beneficiarios = angular.copy($rootScope.beneficiariosOriginal);
+    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios = angular.copy($rootScope.beneficiariosOriginal);
+    $rootScope.resetBeneficiarios = false;
+  }else {
+    $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+  }
+
+  $scope.beneficiarios.forEach(function(v,k){
+    $scope.beneficiarios[k].fromDB = true;
+    if ($scope.beneficiarios[k].selecionado == 'S'){
+      $scope.beneficiarios[k].checked = true;
+    }
+    if ($scope.beneficiarios[k].habilitado == 'N'){
+      $scope.beneficiarios[k].readonly = true;
+    }
+  });
+
+  $scope.map = map;
+  $scope.formAddBeneficiario = {}
+  $scope.changeSelecionado = function(){
+
+console.log('scope beneficiarios: ');
+console.log($scope.beneficiarios);
+
+    $scope.beneficiarios.forEach(function(v,k){
+        if (($scope.beneficiarios[k].checked || $scope.beneficiarios[k].habilitado == 'N')){
+          $scope.beneficiarios[k].selecionado = 'S';
+          $scope.beneficiarios[k].checked = true;
+        } else {
+          $scope.beneficiarios[k].selecionado = 'N';
+          $scope.beneficiarios[k].checked = false;
+        }
+    })
+
+  }
+
+  $scope.addBeneficiario = function(formAddBeneficiario){
+
+    if ((typeof(formAddBeneficiario.cod_parentesco) == 'undefined') || (typeof(formAddBeneficiario.sexo) == 'undefined') || (typeof(formAddBeneficiario.vinculo) == 'undefined') || (typeof(formAddBeneficiario.data_nascimento) == 'undefined')){
+      $scope.errorMsg = "Por favor preencha todos os campos";
+    } else {
+      $scope.errorMsg = "";
+    
+    var addBeneficiario = formAddBeneficiario;
+    addBeneficiario.fromDB = false;
+    addBeneficiario.ordenacao = ($scope.beneficiarios.length+1).toString();
+    addBeneficiario.selecionado = "S";
+    addBeneficiario.habilitado = "S";
+    addBeneficiario.checked = true;
+
+    $scope.beneficiarios.push(addBeneficiario);
+    $scope.closeModal();
+    }
+  }
+
+  $scope.rmBeneficiario = function(k){
+    $scope.beneficiarios.splice(k, 1);
+  }
+
+  $ionicModal.fromTemplateUrl('templates/modal/add-beneficiarios.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.formAddBeneficiario = {}
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+
+    $scope.submit = function() {
+    //console.log('teste');
+    //console.log(formData);
+    $scope.matricula = $rootScope.lastRequest.result;
+    
+
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $rootScope.cache.routeParams.beneficiarios = $scope.beneficiarios;
+
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : $rootScope.cache.routeParams, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            $rootScope.cache.simulaRMV = resp.data.result;
+            $rootScope.cache.simulaRmvSp = resp.data.result;
+            $state.go($rootScope.cache.routeToBeneficiarios);
+          }
+        }
+
+        $ionicLoading.hide();
+
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
+
+
+
+}])
+
+.controller('SimulacaoRendaMensalVitaliciaCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  $scope.showChild = false
+  $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
+  // $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
+  // $scope.beneficiarios = $scope.formData.beneficiarios;
+  $scope.map = map;
+  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+  
+  $scope.value = $rootScope.cache.simulaRMV;
+
+  $scope.texto_simulacao_renda_mensal_vitalicia = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
+  $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+
+  if (typeof $rootScope.cache.formToBeneficiarios != 'undefined'){
+    $scope.formData = $rootScope.cache.formToBeneficiarios;
+  }
+
+  // $scope.beneficiarios = $scope.beneficiarios;
+  console.log('scope: ');
+  console.log($scope);
+  console.log('rootScope: ');
+  console.log($rootScope);
+
+  $scope.toggleChild = function() {
+    if($scope.showChild)
+      $scope.showChild = false;
+    else
+      $scope.showChild = true;
+
+  }
+
+  $scope.showChildC = false;
+
+  $scope.toggleChildC = function() {
+    if($scope.showChildC)
+      $scope.showChildC = false;
+    else
+      $scope.showChildC = true;
+
+  }
+
+  //depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+  $rootScope.resetBeneficiarios = true;
+
+}])
+
+/**
+***
+***  Simulação Saque Programado 1.2
+***
+**/
+.controller('SimulacaoSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+  
+  $scope.formData = new Object();
+  
+  if ('lastFormDataSP' in $rootScope.cache){
+    $scope.formData = $rootScope.cache.lastFormDataSP;
+  }
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.lastFormDataSP != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.lastFormDataSP.mes_ano != 'undefined') {
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+    }
+
+    if(typeof $rootScope.cache.lastFormDataSP.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
+
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+  $scope.years = new Array(); for (var year = 20; year <= 120; year++){
+    $scope.years.push(year);
+  }
+  $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
+  $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
+  $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+  $scope.submit = function(formData) {
+    $scope.matricula = $rootScope.lastRequest.result;
+    $rootScope.cache.lastFormDataSP = formData;
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    
+    if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : { 
+          'acao':'simulaSP',
+          'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+          'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+          'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $scope.matricula.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+          'sexo': $scope.matricula.dadosCadastrais[0].sexo,
+          'data_elegibilidade_prevista': $scope.data_elegibilidade_prevista,
+          'idade': formData.idade,
+          'mes_ano': formData.mes_ano,
+          'salario_participante': $scope.matricula.informacoesParticipante[0].salario_participante,
+          'cresc_real_sal': formData.cresc_real_sal,
+          'contribuicao_participante': formData.contribuicao_participante,
+          'antecipacao_beneficio': formData.antecipacao_beneficio,
+          'aporte': formData.aporte,
+          'dependentes_ir': formData.dependentes_ir,
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_apos,
+          'renda_mensal': formData.renda_mensal,
+          'abono_anual': formData.abono_anual
+
+        }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+
+        $rootScope.errorMsg = resp.data.msg; 
+        
+        if (!resp.data.success) { $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+          } else {
+            $rootScope.lastRequest.result.simulaSP = resp.data.result;
+            $state.go('simulacaosaqueprogramadoresultado');
+          }
+        }
+
+        $ionicLoading.hide();
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
+}])
+
+.controller('SimulacaoSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$http', '$rootScope','$ionicLoading', function($scope, $state, $http, $rootScope, $ionicLoading) {
+
+  $scope.formData = new Object();
+  console.log($rootScope);
+  if (typeof($rootScope.cache.lastFormDataSP) != 'undefined'){
+    $scope.formData = $rootScope.cache.lastFormDataSP;
+  }
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+  $scope.years = new Array(); for (var year = 20; year <= 120; year++){
+    $scope.years.push(year);
+  }
+  $scope.value = $rootScope.lastRequest.result.simulaSP;
+
+  $scope.texto_simulacao_saque_programado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_saque_prog;
+  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+
+  
+  $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+
+  $scope.submit = function(formData) {
+
+    $scope.matricula = $rootScope.lastRequest.result;
+    $rootScope.cache.lastFormDataSP = formData;
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : { 
+          'acao':'simulaSP',
+          'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+          'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+          'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+          'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $scope.matricula.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+          'sexo': $scope.matricula.dadosCadastrais[0].sexo,
+          'data_elegibilidade_prevista': $scope.data_elegibilidade_prevista,
+          'idade': formData.idade,
+          'mes_ano': formData.mes_ano,
+          'salario_participante': $scope.matricula.informacoesParticipante[0].salario_participante,
+          'cresc_real_sal': formData.cresc_real_sal,
+          'contribuicao_participante': formData.contribuicao_participante,
+          'antecipacao_beneficio': formData.antecipacao_beneficio,
+          'aporte': formData.aporte,
+          'dependentes_ir': formData.dependentes_ir,
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_apos,
+          'renda_mensal': formData.renda_mensal,
+          'abono_anual': formData.abono_anual
+
+        }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+
+        $rootScope.errorMsg = resp.data.msg; 
+        
+        if (!resp.data.success) { $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+          } else {
+            $rootScope.lastRequest.result.simulaSP = resp.data.result;
+            $state.reload();
+            //$state.go('simulacaosaqueprogramadoresultado');
+          }
+        }
+
+        $ionicLoading.hide();
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
+
+}])
+
+/**
+***
+***  Simulação RMV + Saque Programado 1.3
+***
+**/
+.controller('SimulacaoRmvSaqueProgramadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+
+  $scope.formData = {};
+
+  // if (typeof($rootScope.cache.formSimulaRMVSP) != 'undefined'){
+  //   $scope.formData = $rootScope.cache.formSimulaRMVSP;
+  // }
+
+  $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
+  $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+  $scope.years = new Array(); for (var year = 20; year <= 120; year++){
+    $scope.years.push(year);
+  }
+  $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+  $scope.contribuicao_participante = $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante;
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
+  
+  // $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  // $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  // delete $scope.tipoReajuste.DEFAULT;
+
+  $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  //pega o valor default
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0];
+
+  //remove default do tipo de reajuste
+  delete $scope.tipoReajuste.DEFAULT;
+
+  //seta o valor do form como o default do ws.
+  $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
+
+console.log('default do tipo_reajuste: ');
+console.log($scope.formData.tipo_reajuste);  
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.formSimulaRMVSP != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.formSimulaRMVSP.mes_ano != 'undefined') {
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+    }
+
+    if(typeof $rootScope.cache.formSimulaRMVSP.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
+  
+  $scope.goBeneficiarios = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $rootScope.cache.formToBeneficiarios = {}
+    $rootScope.cache.formToBeneficiarios = formData;
+    $rootScope.cache.routeToBeneficiarios = "simulacaormvsaqueprogramadoresultado";
+    $rootScope.cache.routeParams = $scope.getParams(formData);
+    $state.go('simulacaorendamensalvitaliciabeneficiarios');
+
+  }
+  $scope.getParams = function(formData) {
+    
+    if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
+
+    return { 
+          'acao':'simulaRmvSp',
+          'cod_fundo': $rootScope.lastRequest.result.dadosCadastrais[0].cod_fundo,
+          'cod_patrocinadora': $rootScope.lastRequest.result.dadosCadastrais[0].cod_patrocinadora,
+          'matricula': $rootScope.lastRequest.result.informacoesParticipante[0].matricula,
+          'cod_plano': $rootScope.lastRequest.result.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $rootScope.lastRequest.result.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $rootScope.lastRequest.result.dadosCadastrais[0].data_nascimento,
+          'sexo': $rootScope.lastRequest.result.dadosCadastrais[0].sexo,
+          'tipo_reajuste': formData.tipo_reajuste,
+          'salario_participante': $rootScope.lastRequest.result.informacoesParticipante[0].salario_participante,
+          'cresc_real_sal': formData.cresc_real_sal,
+          'contribuicao_participante': formData.contribuicao_participante,
+          'pensao': formData.pensao,
+          'antecipacao_beneficio': formData.antecipacao_beneficio,
+          'aporte': formData.aporte,
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_apos,
+          'renda_mensal': formData.renda_mensal,
+          'abono_anual': formData.abono_anual,
+          'saque_programado': formData.saque_programado,
+          'renda_mensal_vitalicia': formData.renda_mensal_vitalicia,
+          'abono_anual': formData.abono_anual,
+          'dependentes_ir': formData.dependentes_ir,
+          'data_elegibilidade_prevista':  $scope.data_elegibilidade_prevista,
+          'idade': formData.idade,
+          'mes_ano': formData.mes_ano,
+          'beneficiario': $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+      }
+
+  }
+
+  $scope.submit = function(formData) {
+
+    $rootScope.cache.formToBeneficiarios = {}
+    $rootScope.cache.formToBeneficiarios = formData;
+    $rootScope.cache.routeParams = {}
+    $rootScope.cache.routeParams.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $rootScope.cache.formSimulaRMVSP = formData;
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : $scope.getParams(formData), "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+
+        $ionicLoading.hide();
+
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            $rootScope.cache.simulaRmvSp = resp.data.result;
+            $state.go('simulacaormvsaqueprogramadoresultado');
+          }
+        }
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
+}])
+
+.controller('SimulacaoRmvSaqueProgramadoCtrl.resultado', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+    $scope.showChild = false;
+
+    $scope.formData = {};
+    if (typeof($rootScope.cache.formSimulaRMVSP) != 'undefined'){
+      $scope.formData = $rootScope.cache.formSimulaRMVSP;
+    } else if (typeof($rootScope.cache.formToBeneficiarios) != 'undefined'){
+      $scope.formData = $rootScope.cache.formToBeneficiarios;
+    }
+    $scope.data_elegibilidade_prevista = $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista;
+    $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
+    
+    console.log($scope);
+    console.log($rootScope);
+
+
+    $scope.map = map;
+    $scope.value = $rootScope.cache.simulaRmvSp;
+    $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+    $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido;
+
+    console.log($rootScope);
+    console.log($scope);
+
+    $scope.toggleChild = function(key) {
+      if($scope.showChild)
+        $scope.showChild = false;
+      else
+        $scope.showChild = true;
+    }
+
+    $scope.showChildC = false;
+
+    $scope.toggleChildC = function() {
+      if($scope.showChildC)
+        $scope.showChildC = false;
+      else
+        $scope.showChildC = true;
+
+    }
+     $scope.getParams = function(formData) {
+    
+    if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
+
+    return { 
+          'acao':'simulaRmvSp',
+          'cod_fundo': $rootScope.lastRequest.result.dadosCadastrais[0].cod_fundo,
+          'cod_patrocinadora': $rootScope.lastRequest.result.dadosCadastrais[0].cod_patrocinadora,
+          'matricula': $rootScope.lastRequest.result.informacoesParticipante[0].matricula,
+          'cod_plano': $rootScope.lastRequest.result.dadosCadastrais[0].cod_plano,
+          'admissao_patroc': $rootScope.lastRequest.result.dadosCadastrais[0].admissao_patroc,
+          'data_nascimento': $rootScope.lastRequest.result.dadosCadastrais[0].data_nascimento,
+          'sexo': $rootScope.lastRequest.result.dadosCadastrais[0].sexo,
+          'tipo_reajuste': formData.tipo_reajuste,
+          'salario_participante': $rootScope.lastRequest.result.informacoesParticipante[0].salario_participante,
+          'cresc_real_sal': formData.cresc_real_sal,
+          'contribuicao_participante': formData.contribuicao_participante,
+          'pensao': formData.pensao,
+          'antecipacao_beneficio': formData.antecipacao_beneficio,
+          'aporte': formData.aporte,
+          'estimativa_rent_entre': formData.estimativa_rent_entre,
+          'estimativa_rent_apos': formData.estimativa_rent_apos,
+          'renda_mensal': formData.renda_mensal,
+          'abono_anual': formData.abono_anual,
+          'saque_programado': formData.saque_programado,
+          'renda_mensal_vitalicia': formData.renda_mensal_vitalicia,
+          'abono_anual': formData.abono_anual,
+          'dependentes_ir': formData.dependentes_ir,
+          'data_elegibilidade_prevista':  $scope.data_elegibilidade_prevista,
+          'idade': formData.idade,
+          'mes_ano': formData.mes_ano,
+          'beneficiario': $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+      }
+
+  }
+    $scope.submit = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $scope.matricula = $rootScope.lastRequest.result;
+    //console.log($scope.matricula);
+
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : $scope.getParams(formData), "login" : { "u":userInfo.u, "s":userInfo.s  } }
+      ).then(function(resp) {
+        
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            $rootScope.cache.formSimulaRMVSP = $scope.formData;
+            $rootScope.cache.formToBeneficiarios = $scope.formData;
+            $rootScope.cache.simulaRmvSp = resp.data.result;
+            $state.reload();
+          }
+        }
+
+        $ionicLoading.hide();
+
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+         title: 'Falha de conexão',
+         template: timeoutMsg
+       });
+     })
+  }
+
+
+  //depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+  $rootScope.resetBeneficiarios = true;
+
+}])
+
+.controller('AlteracaoPercentualRetiradaCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+
+  console.log($rootScope.lastRequest.result);
+  $scope.formData = {};
+  $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
+  $scope.formData.percentual_renda_mensal = $rootScope.lastRequest.result.simuladorBeneficios[0].percentual_saque.replace(/,/g, '.'); 
+
+  $scope.matricula = $rootScope.lastRequest.result;
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
+  if ('lastFormAlteracaoRVM' in $rootScope.cache) {
+    $scope.formData = $rootScope.cache.lastFormAlteracaoRVM;
+  }
+
+  $scope.submit = function(formData) {
+
+    $rootScope.cache.lastFormAlteracaoRVM = {}
+    $rootScope.cache.lastFormAlteracaoRVM = formData;
+
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : { 
+        'acao':'simulaBeneficioSP',
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'renda_mensal': formData.percentual_renda_mensal,
+        'estimativa_rent_anual': formData.estimativa_rentabilidade,
+        'dependentes_ir': formData.dependentes_ir,
+        'abono_anual': formData.abono
+
+      }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+       
+
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            $rootScope.lastRequest.result.simulaBeneficioSP = resp.data.result;
+            $state.go('alteracaopercentualretiradaresultado');
+          }
+        }
+
+        $ionicLoading.hide();
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
+}])
+
+.controller('AlteracaoPercentualRetiradaCtrl.resultado', ['$scope', '$state', '$http', '$rootScope','$ionicLoading', function($scope, $state, $http, $rootScope, $ionicLoading) {
+
+  $scope.value = $rootScope.lastRequest.result.simulaBeneficioSP;
+
+  console.log($scope.value);
+
+  $scope.matricula = $rootScope.lastRequest.result;
+  $scope.value.texto_alteracao_percentual_retirada = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_benf_saque;
+
+  if ('lastFormAlteracaoRVM' in $rootScope.cache) {
+    $scope.formData = $rootScope.cache.lastFormAlteracaoRVM;
+  }
+
+  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+
+  $scope.submit = function(formData) {
+
+    $rootScope.cache.lastFormAlteracaoRVM = {}
+    $rootScope.cache.lastFormAlteracaoRVM = formData;
+
+    $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : { 
+        'acao':'simulaBeneficioSP',
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'renda_mensal': formData.percentual_renda_mensal,
+        'estimativa_rent_anual': formData.estimativa_rentabilidade,
+        'dependentes_ir': formData.dependentes_ir,
+        'abono_anual': formData.abono
+
+      }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+       
+
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+            $rootScope.lastRequest.result.simulaBeneficioSP = resp.data.result;
+            $state.reload();
+          }
+        }
+
+        $ionicLoading.hide();
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
+
+
+
+}])
+
+.controller('SimulacaoRmvAposentadoCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+     $scope.formData = {};
+  $scope.matricula = $rootScope.lastRequest.result;
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
+  
+  // $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  // $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  // delete $scope.tipoReajuste.DEFAULT;
+
+  $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  //pega o valor default
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0];
+
+  //remove default do tipo de reajuste
+  delete $scope.tipoReajuste.DEFAULT;
+
+  //seta o valor do form como o default do ws.
+  $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
+
+// console.log('default do tipo_reajuste: ');
+// console.log($scope.formData.tipo_reajuste);  
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.lastFormAposentadoRVM != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.lastFormAposentadoRVM.mes_ano != 'undefined') {
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+    }
+
+    if(typeof $rootScope.cache.lastFormAposentadoRVM.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
+
+  $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
+  
+  // if ('lastFormAposentadoRVM' in $rootScope.cache) {
+  //   $scope.formData = $rootScope.cache.lastFormAposentadoRVM;
+  // }
+  $scope.goBeneficiarios = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $rootScope.cache.formToBeneficiarios = {}
+    $rootScope.cache.formToBeneficiarios = formData;
+    $rootScope.cache.routeToBeneficiarios = "simulacaormvaposentadoresultado";
+    $rootScope.cache.routeParams = $scope.getParams(formData);
+    $state.go('simulacaorendamensalvitaliciabeneficiarios');
+
+  }
+  $scope.getParams = function(formData) {
+    
+    if (typeof(formData.mes_ano) == 'undefined') { formData.mes_ano = ''; }
+
+    return { 
+        'acao':'simulaAlteracaoRMV',
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'tipo_reajuste': formData.tipo_reajuste,
+        'percentual_de_renda_mensal': "0",
+        'pensao': formData.pensao,
+        'dependentes_ir': formData.dependentes_ir
+
+      }
+    }
+  $scope.submit = function(formData) {
+
+    $rootScope.cache.formToBeneficiarios = {}
+    $rootScope.cache.formToBeneficiarios = formData;
+    $rootScope.cache.lastFormAposentadoRVM = {}
+    $rootScope.cache.lastFormAposentadoRVM = formData;
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : $scope.getParams(formData), "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+       userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $rootScope.errorMsg = resp.data.msg; 
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+          } else {
+            $rootScope.cache.routeParams = $scope.getParams(formData);
+            $rootScope.cache.routeParams.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+
+            $rootScope.cache.simulaRMV = resp.data.result;
+            $rootScope.lastRequest.result.simulaAlteracaoRMV = resp.data.result;
+            $state.go('simulacaormvaposentadoresultado');
+          }
+        }
+      
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
+}])
+
+.controller('SimulacaoRmvAposentadoCtrl.resultado', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+  console.log($rootScope);
+  console.log($scope);
+ 
+  if (typeof($rootScope.cache.simulaRMV) != 'undefined'){
+    $scope.value = $rootScope.cache.simulaRMV;
+  }
+  if (typeof($rootScope.cache.simulaRMV) != 'undefined'){
+    $scope.value = $rootScope.cache.simulaRMV;
+  }
+   $scope.value.pensao = $rootScope.cache.formToBeneficiarios.pensao;
+ 
+  $scope.map = map;
+ 
+  $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
+ 
+  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+  //add o texto de alyteracao rmv aposentado
+  $scope.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv;
+
+  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+  //console.log($scope.value.desc_opcao_tributaca);
+
+
+  //depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+  $rootScope.resetBeneficiarios = true;
+}])
+
+.controller('AlteracaoRmvSaqueCtrl', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+
+  $scope.formData = {};
+  $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir;
+  $scope.formData.renda_mensal = $rootScope.lastRequest.result.simuladorBeneficios[0].percentual_saque.replace(/,/g, '.'); 
+  
+
+  $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao;
+  // if ($rootScope.cache.formRecalcular){
+  //   $scope.formData = $rootScope.cache.formRecalcular;
+  // }
+  $scope.matricula = $rootScope.lastRequest.result;
+
+  // $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0].DEFAULT;
+  // $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  // delete $scope.tipoReajuste.DEFAULT;
+
+    $scope.tipoReajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0]);
+  //pega o valor default
+  $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0];
+
+  //remove default do tipo de reajuste
+  delete $scope.tipoReajuste.DEFAULT;
+
+  //seta o valor do form como o default do ws.
+  $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT;
+
+// console.log('default do tipo_reajuste: ');
+// console.log($scope.formData.tipo_reajuste);  
+  
+  //se existe lastForm 
+  if (typeof $rootScope.cache.formRecalcular != 'undefined') {
+
+    //se mes ano ta preenchido
+    if(typeof $rootScope.cache.formRecalcular.mes_ano != 'undefined') {
+      $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo);
+    }
+
+    if(typeof $rootScope.cache.formRecalcular.idade != 'undefined') {
+      $scope.formData.mes_ano = '';
+    }
+  }
+  
+  $scope.goBeneficiarios = function(formData) {
+    //console.log('teste');
+    //console.log(formData);
+    $rootScope.cache.formToBeneficiarios = {}
+    $rootScope.cache.formToBeneficiarios = formData;
+    $rootScope.cache.routeToBeneficiarios = "alteracaormvsaqueresultado";
+    $rootScope.cache.routeParams = $scope.getParams(formData);
+    $state.go('simulacaorendamensalvitaliciabeneficiarios');
+
+  }
+
+  $scope.getParams = function(formData){
+    return { 
+        'acao':'simulaBeneficioRmvSp',
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'tipo_reajuste': formData.tipo_reajuste,
+        'renda_mensal': formData.renda_mensal,
+        'percentual_rmv': formData.renda_mensal_vitalicia,
+        'percentual_saque': formData.saque_programado,
+        'estimativa_rent_apos': formData.estimativa_rent_apos,
+        'pensao': formData.pensao,
+        'abono_anual': formData.abono_anual,
+        'dependentes_ir': formData.dependentes_ir
+      }
+  }
+  $scope.submit = function(formData) {
+    // aqui tem.
+    $rootScope.cache.formToBeneficiarios = {}
+    $rootScope.cache.formToBeneficiarios = formData;
+    $ionicLoading.show();
+    $rootScope.cache.formRecalcular = formData;
+    
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param": $scope.getParams(formData) , "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+      // nao tem formdata aqui ()aqui nao tem escopo. tem que pegar do $scope.
+      userInfo.u = resp.data.login.u;
+      userInfo.s = resp.data.login.s;
+
+      $ionicLoading.hide();
+      
+      $rootScope.errorMsg = resp.data.msg;
+
+      //inserir o percentual do saque no json
+      resp.data.result.percentual_saque = formData.saque_programado;
+      resp.data.result.percentual_rmv = formData.renda_mensal_vitalicia;
+      
+
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            $rootScope.errorMsg = resp.data.msg; 
+          } else {
+        $rootScope.cache.routeParams = $scope.getParams(formData);
+        $rootScope.cache.routeParams.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios;
+        $rootScope.cache.simulaRmvSp = resp.data.result;
+        $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
+        $state.go('alteracaormvsaqueresultado');
+        }
+      } 
+      
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
+}])
+
+.controller('AlteracaoRmvSaqueCtrl.resultado', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
+  $scope.matricula = $rootScope.lastRequest.result;
+  
+  if (typeof($rootScope.cache.routeParams) != 'undefined'){
+    $scope.formData = $rootScope.cache.routeParams;
+    $scope.value = $rootScope.cache.simulaRmvSp
+    $scope.value.pensao = $rootScope.cache.routeParams.pensao;
+  }
+
+  console.log($scope);
+  console.log($rootScope);
+  $scope.map = map;
+
+  $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios;
+  //$scope.value = $rootScope.lastRequest.result.simulaBeneficioRmvSp;
+  $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao;
+  $scope.texto_alteracao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_alteracao_hibrido;
+
+
+
+  $scope.submit = function(formData) {
+
+    $ionicLoading.show();
+    $rootScope.cache.formToBeneficiarios = formData;
+
+    $http.post(url_base+';jsessionid='+userInfo.s, 
+      { "param" : { 
+        'acao':'simulaBeneficioRmvSp',
+        'cod_fundo': $scope.matricula.dadosCadastrais[0].cod_fundo,
+        'cod_patrocinadora': $scope.matricula.dadosCadastrais[0].cod_patrocinadora,
+        'matricula': $scope.matricula.informacoesParticipante[0].matricula,
+        'cod_plano': $scope.matricula.dadosCadastrais[0].cod_plano,
+        'data_nascimento': $scope.matricula.dadosCadastrais[0].data_nascimento,
+        'tipo_reajuste': $rootScope.cache.formRecalcular.tipo_reajuste,
+        'renda_mensal': $rootScope.cache.formRecalcular.renda_mensal,
+        'percentual_rmv': $rootScope.cache.formRecalcular.renda_mensal_vitalicia,
+        'percentual_saque': $rootScope.cache.formRecalcular.saque_programado,
+        'estimativa_rent_apos': $scope.formData.estimativa_rent_apos,
+        'pensao': $rootScope.cache.formRecalcular.pensao,
+        'abono_anual': $rootScope.cache.formRecalcular.abono_anual,
+        'dependentes_ir': $rootScope.cache.formRecalcular.dependentes_ir
+
+      }, "login" : { "u":userInfo.u, "s":userInfo.s  } }
+    ).then(function(resp) {
+      userInfo.u = resp.data.login.u;
+      userInfo.s = resp.data.login.s;
+
+      //console.log(resp);
+      //console.log($rootScope);
+
+      $ionicLoading.hide();
+      
+      $rootScope.errorMsg = resp.data.msg;
+
+      //inserir o percentual do saque no json
+      resp.data.result.percentual_saque = $rootScope.cache.formRecalcular.saque_programado;
+      resp.data.result.percentual_rmv = $rootScope.cache.formRecalcular.renda_mensal_vitalicia;
+      
+      if (!resp.data.success) {
+        $state.go('signin');
+      } else {
+        $ionicLoading.hide();
+        $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result;
+        $rootScope.cache.simulaRmvSp = resp.data.result;
+        $state.reload();
+      } 
+      
+      
+   }, function(err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+   })
+  }
+
+
+  //depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+  $rootScope.resetBeneficiarios = true;
+}])
+
+.controller('SimulacaoResgateNovoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('SaldoContasCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+//END MEUS CONTROLLERS
 
 .controller('PopupCtrl',['$scope', '$ionicPopup', '$timeout', function($scope, $ionicPopup, $timeout) {
 
@@ -1009,7 +2407,7 @@ $scope.showPopup = function() {
     ]
   });
   myPopup.then(function(res) {
-    console.log('Tapped!', res);
+    //console.log('Tapped!', res);
   });
   $timeout(function() {
      myPopup.close(); //close the popup after 3 seconds for some reason
@@ -1023,9 +2421,9 @@ $scope.showPopup = function() {
    });
    confirmPopup.then(function(res) {
      if(res) {
-       console.log('You are sure');
+       //console.log('You are sure');
      } else {
-       console.log('You are not sure');
+       //console.log('You are not sure');
      }
    });
  };
@@ -1037,7 +2435,7 @@ $scope.showPopup = function() {
      template: 'It might taste good'
    });
    alertPopup.then(function(res) {
-     console.log('Thank you for not eating my delicious ice cream cone');
+     //console.log('Thank you for not eating my delicious ice cream cone');
    });
  };
 }]);

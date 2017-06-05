@@ -9,9 +9,11 @@
     'ngCordova',
     'starter.controller',
     'starter.services',
+    'ui.utils.masks',
     'ionic-datepicker'
   ])
-  .run(function($ionicPlatform, $state, $timeout) {
+
+  .run(function($rootScope, $ionicPlatform, $state, $timeout) {
     
     $ionicPlatform.onHardwareBackButton(function () {
         if ($state.is('signin')) { // here to check whether the home page, if yes, exit the application
@@ -25,19 +27,26 @@
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-      
+      // verificar se é melhor true ou false.
+      cordova.plugins.Keyboard.disableScroll(false);
+
+
       if (window.StatusBar) {
           if (ionic.Platform.isAndroid()) {
             StatusBar.backgroundColorByHexString("#010042");
             $cordovaStatusbar.styleHex('#010042') //azul mestra
           } else {
-            console.log(StatusBar);
+            //console.log(StatusBar);
             StatusBar.overlaysWebView(false);
             StatusBar.styleBlackTranslucent();
             StatusBar.backgroundColorByHexString("#010042");
           }
         }
+
+      
     });
+
+    
 
      document.addEventListener("deviceReady", function () {
         document.addEventListener("resume", function () {
@@ -197,7 +206,97 @@
       url: '/sign-in',
       templateUrl: "templates/sign-in.html",
     })
+//MEUS STATES
+    .state('simulacaorendamensalvitalicia', {
+      cache: false,
+      url: '/simulacao-renda-mensal-vitalicia',
+      templateUrl: "templates/simulacao-ativo/simulacao-rmv.html",
+    })
 
+    .state('simulacaorendamensalvitaliciabeneficiarios', {
+      cache: false,
+      url: '/simulacao-renda-mensal-vitalicia-beneficiarios',
+      templateUrl: "templates/simulacao-ativo/simulacao-rmv-beneficiarios.html",
+    })
+
+    .state('simulacaorendamensalvitaliciaresultado', {
+      cache: false,
+      url: '/simulacao-renda-mensal-vitalicia-resultado',
+      templateUrl: "templates/simulacao-ativo/simulacao-rmv-resultado.html",
+    })
+
+    .state('simulacaosaqueprogramado', {
+      cache: false,
+      url: '/simulacao-saque-programado',
+      templateUrl: "templates/simulacao-ativo/simulacao-sp.html",
+    })
+
+    .state('simulacaosaqueprogramadoresultado', {
+      cache: false,
+      url: '/simulacao-saque-programado-resultado',
+      templateUrl: "templates/simulacao-ativo/simulacao-sp-resultado.html",
+    })
+
+    .state('simulacaormvsaqueprogramado', {
+      cache: false,
+      url: '/simulacao-rmv-saque-programado',
+      templateUrl: "templates/simulacao-ativo/simulacao-rmvsp.html",
+    })
+
+    .state('simulacaormvsaqueprogramadoresultado', {
+      cache: false,
+      url: '/simulacao-rmv-saque-programado-resultado',
+      templateUrl: "templates/simulacao-ativo/simulacao-rmvsp-resultado.html",
+    })
+
+    .state('alteracaopercentualretirada', {
+      cache: false,
+      url: '/alteracao-percentual-retirada',
+      templateUrl: "templates/simulacao-assistido/alteracao-percentual-retirada.html",
+    })
+
+    .state('alteracaopercentualretiradaresultado', {
+      cache: false,
+      url: '/alteracao-percentual-retirada-resultado',
+      templateUrl: "templates/simulacao-assistido/alteracao-percentual-retirada-resultado.html",
+    })
+
+    .state('simulacaormvaposentado', {
+      cache: false,
+      url: '/simulacao-rmv-aposentado',
+      templateUrl: "templates/simulacao-assistido/simulacao-rmv.html",
+    })
+
+    .state('simulacaormvaposentadoresultado', {
+      cache: false,
+      url: '/simulacao-rmv-aposentado-resultado',
+      templateUrl: "templates/simulacao-assistido/simulacao-rmv-resultado.html",
+    })
+
+    .state('alteracaormvsaque', {
+      cache: false,
+      url: '/alteracao-rmv-saque',
+      templateUrl: "templates/simulacao-assistido/alteracao-beneficio-rmv-saque.html",
+    })
+
+    .state('alteracaormvsaqueresultado', {
+      cache: false,
+      url: '/alteracao-rmv-saque-resultado',
+      templateUrl: "templates/simulacao-assistido/alteracao-beneficio-rmv-saque-resultado.html",
+    })
+
+    .state('simulacaoresgatenovo', {
+      cache: false,
+      url: '/simulacao-resgate-novo',
+      templateUrl: "templates/simulacao-resgate-novo.html",
+    })
+
+    .state('saldocontas', {
+      cache: false,
+      url: '/saldo-contas',
+      templateUrl: "templates/saldo-contas.html",
+    })
+//END MEUS STATES
     .state('menu', {
       cache: false,
       url: "/menu",
@@ -209,5 +308,6 @@
     $urlRouterProvider.otherwise('/sign-in');
     
   })
+
 
 
