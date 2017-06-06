@@ -39,7 +39,7 @@
 	/* STYLE CANVAS OPENED */
 	#hm-syscall-canvas.open{
 		width: 345px;
-		bottom:10px;
+		bottom:0px;
 	}	
 	#hm-syscall-canvas.open a.title{
 		display: block;
@@ -59,13 +59,13 @@
 		border: 1px solid #dcdcdc;
 	}
 
-	#hm-syscall-canvas.open .content p{
+	#hm-syscall-canvas.open p{
 		font-size: 14px;
 		margin-bottom: 15px;
 		line-height: 1.2em;
 	}
 	
-	#hm-syscall-canvas.open .content .msg.form-control{
+	#hm-syscall-canvas.open .msg.form-control{
 		/* Rectangle 7 Copy 3: */
 		background: #fff !important;
 		border: 1px solid #CECECE !important;
@@ -82,16 +82,10 @@
 		text-align:center;
 	}
 
+	
+
 	#hm-syscall-canvas.open .footer .btn[type="submit"]{
 		width: 100%;
-		/* Rectangle 4 Copy 2: */
-		background: #1F4F8D;
-		border: 1px solid #979797;
-		border-radius: 8px;
-		/* Iniciar Chat: */
-		font-size: 14px;
-		color: #FFFFFF;
-		padding: 10px 20px;
 		margin-bottom: 25px;
 	}
 
@@ -100,7 +94,7 @@
 	}
 
 	#hm-syscall-canvas .conversation .head{
-		padding: 10px 20px 0;
+		padding: 10px 20px 10px;
 		background: #fff;
 	}
 	
@@ -142,17 +136,43 @@
 	}
 
 	#hm-syscall-canvas .messages{
-		height: 285px;
+		height: 250px;
 		overflow-y:scroll;
 		overflow-x:hidden; 
-		margin-bottom: 15px;
+		padding-bottom: 15px;
 		border-top:1px solid #efefef;
 		border-bottom:1px solid #efefef;
-		margin-left: -20px;
 	    padding-left: 20px;
-	    margin-right: -20px;
 	    padding-right: 20px;
 	    padding-top: 15px;
+	    background: #fff;
+	}
+
+	#hm-syscall-canvas .send{
+		padding: 5px 20px 10px;
+		background: #fff;
+	}
+
+	#hm-syscall-canvas .conversation.closed-conversation .send .btn{
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	
+	#hm-syscall-canvas .conversation .action-buttons{
+		display: none;
+	}
+
+	#hm-syscall-canvas .conversation.closed-conversation .action-buttons{
+		display: block;
+	}
+
+	#hm-syscall-canvas .conversation.closed-conversation .send .btn:last-child{
+		margin-bottom: 0;
+	}
+
+	#hm-syscall-canvas .conversation.closed-conversation .send{
+		background: #EEEEEE;
+		padding:35px 60px;
 	}
 
 	#hm-syscall-canvas .messages p.chat-return{
@@ -250,8 +270,31 @@
 	}
 	
 
-	
+	#hm-syscall-canvas.open form{
+		margin-bottom: 0;
+	}
 
 	
+	#hm-syscall-canvas.open .btn.btn-custom-2{
+		/* Rectangle 4 Copy 2: */
+		background: transparent !important;
+		border: 1px solid #1F4F8D;
+		border-radius: 8px;
+		/* Iniciar Chat: */
+		font-size: 14px;
+		color: #1F4F8D;
+		padding: 10px 20px;
+	}
+
+	#hm-syscall-canvas.open .btn.btn-custom{
+		/* Rectangle 4 Copy 2: */
+		background: #1F4F8D !important;
+		border: 1px solid #979797;
+		border-radius: 8px;
+		/* Iniciar Chat: */
+		font-size: 14px;
+		color: #FFFFFF;
+		padding: 10px 20px;
+	}
 	
 </style>
