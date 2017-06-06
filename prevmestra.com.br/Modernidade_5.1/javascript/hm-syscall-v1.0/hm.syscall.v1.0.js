@@ -48,7 +48,7 @@ $(document).ready(function()
 				return false;
 			});
 
-			var msgHTML = '<div class="chat-msg"><div class="arrow"></div><div class="txt"></div><div class="img"></div></div>';
+			var msgHTML = '<div class="chat-msg"><div class="arrow"></div><div class="txt"></div><div class="img"><img src="" alt=""></div></div>';
 
 			$('textarea.msg').keydown(function(e){
 				if (event.keyCode == 13) {
@@ -67,7 +67,7 @@ $(document).ready(function()
 
 			];
 
-			$('form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+messages[0]+'</div><div class="img"></div></div>');
+			$('form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+messages[0]+'</div><div class="img"><img src="" alt=""></div></div>');
 		
 			// var loading = '<div class="chat-msg receptor loading"><div class="arrow"></div><div class="txt">...</div><div class="img"></div></div>';
 
@@ -84,13 +84,13 @@ $(document).ready(function()
 
 					$('.conversation textarea.msg[name="send-msg"]').val('');
 
-					$(this).find('.messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+senderMsg+'</div><div class="img"></div></div>');
+					$(this).find('.messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+senderMsg+'</div><div class="img"><img src="" alt=""></div></div>');
 					
 					scrollChat($(this).find('.messages'));
 
 					setTimeout(function() {
 						// $('#hm-syscall-canvas .chat-msg.loading').remove();
-						$('form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"></div></div>');
+						$('form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img src="" alt=""></div></div>');
 						scrollChat($('form.conversation .messages'));
 					}, 2000);
 

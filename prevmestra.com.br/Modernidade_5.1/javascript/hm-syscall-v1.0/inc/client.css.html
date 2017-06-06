@@ -23,7 +23,7 @@
 	#hm-syscall-canvas a.title:hover , #hm-syscall-canvas a.title:focus{text-decoration: none;}
 	
 	#hm-syscall-canvas .content{
-		padding: 20px;
+		padding: 10px 20px 20px;
 		background: #fff;
 		border-bottom:0;
 	}
@@ -100,14 +100,59 @@
 	}
 
 	#hm-syscall-canvas .conversation .head{
-		
+		padding: 10px 20px 0;
+		background: #fff;
+	}
+	
+	#hm-syscall-canvas .conversation .head p{
+		font-size: 14px;
+		margin-bottom: 0;
+		font-weight: 400;
+	}
+	#hm-syscall-canvas .conversation .head p.user-name{
+		color: #1F4F8D;
+		margin-top: 8px;
+	}
+	#hm-syscall-canvas .conversation .head p.user-function{
+		color: #A1A1A1;
+	}
+	#hm-syscall-canvas .conversation .head .box-img{
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		background: #FFFFFF;
+		border: 1px solid #DCDCDC;
+		box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+		float: left;
+		margin-right: 10px;
+		padding: 4.3px;
+	}
+
+	#hm-syscall-canvas .conversation .head .box-img .circle-img{
+		width:50px;
+		height: 50px;
+		background: #ccc;
+		overflow: hidden;
+		border-radius: 50%;
+	}
+	
+	#hm-syscall-canvas .conversation .head .box-img img{
+		height: 100%;
+		width: auto;
 	}
 
 	#hm-syscall-canvas .messages{
-		height: 315px;
+		height: 285px;
 		overflow-y:scroll;
 		overflow-x:hidden; 
 		margin-bottom: 15px;
+		border-top:1px solid #efefef;
+		border-bottom:1px solid #efefef;
+		margin-left: -20px;
+	    padding-left: 20px;
+	    margin-right: -20px;
+	    padding-right: 20px;
+	    padding-top: 15px;
 	}
 
 	#hm-syscall-canvas .messages p.chat-return{
