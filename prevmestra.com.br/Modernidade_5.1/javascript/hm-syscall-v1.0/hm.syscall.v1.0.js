@@ -6,6 +6,8 @@ $(document).ready(function()
 
 	$('body').append('<div id="hm-syscall-canvas"></div>');
 
+
+
 	var updateDOM = function($html){
 		$('#hm-syscall-canvas').html($html); 
 	}
@@ -23,6 +25,12 @@ $(document).ready(function()
 
 	  		content.css = data;
 			updateDOM(content.css+content.html);
+
+			var images = $('#hm-syscall-canvas .img-path');
+			$.each(images, function(k,v){
+				var atualSrc = $(v).attr('src');
+				$(v).attr('src', URL+atualSrc);
+			});
 
 			canvas = $('#hm-syscall-canvas');
 
@@ -63,6 +71,10 @@ $(document).ready(function()
 				}
 			}
 
+			var scrollChat = function($this){
+				$this.animate({scrollTop:$this.get(0).scrollHeight});
+			}
+
 			$('#hm-syscall-canvas #new-call').on('click', function(){
 				restartChat();
 				
@@ -97,7 +109,6 @@ $(document).ready(function()
 				return false;
 			});
 
-			
 
 			$('#hm-syscall-canvas textarea.msg').keydown(function(e){
 				if (event.keyCode == 13) {
@@ -105,14 +116,6 @@ $(document).ready(function()
 			        return false;
 			     }
 			});
-
-
-			
-		
-
-			var scrollChat = function($this){
-				$this.animate({scrollTop:$this.get(0).scrollHeight});
-			}
 
 			$('#hm-syscall-canvas form.conversation').on('submit', function(){
 
