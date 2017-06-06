@@ -6,8 +6,6 @@ $(document).ready(function()
 
 	$('body').append('<div id="hm-syscall-canvas"></div>');
 
-
-
 	var updateDOM = function($html){
 		$('#hm-syscall-canvas').html($html); 
 	}
@@ -91,12 +89,12 @@ $(document).ready(function()
 
 			$('#hm-syscall-canvas .init-chat').on('submit', function(){
 
-				$(this).fadeOut();
+				$(this).hide();
 
 				$('#hm-syscall-canvas .conversation .head .user-name').html(adminUsers[0].name);
 				$('#hm-syscall-canvas .conversation .head .user-function').html(adminUsers[0].function);
 
-				$('#hm-syscall-canvas .conversation').fadeIn();
+				$('#hm-syscall-canvas .conversation').show();
 
 				$('#hm-syscall-canvas .conversation .form-control').focus();
 

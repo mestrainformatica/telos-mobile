@@ -44,8 +44,7 @@
 <script src="modernidade/lib/tooltipster/js/jquery.tooltipster.min.js"></script> 
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
-<script src="javascript/hm-syscall-v1.0/hm.syscall.v1.0.js" type="text/javascript"></script>
-
+<script src="javascript/hm-syscall-v1.0/hm.syscall.admin.v1.0.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="css/AppGeral.css" type="text/css">
 
