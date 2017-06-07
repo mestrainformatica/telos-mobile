@@ -161,6 +161,14 @@ $(document).ready(function(){
 					$('#hm-syscall-canvas .protocol .form').show();
 				});
 
+				$('#hm-syscall-canvas #close-service').on('click', function(){
+					$('#hm-syscall-canvas .confirm-close').show();
+				});
+
+				$('#hm-syscall-canvas .confirm-close .back-form').on('click', function(){
+					$('#hm-syscall-canvas .confirm-close').hide();
+				});
+
 		  	},
 			dataType: 'html'
 		});
