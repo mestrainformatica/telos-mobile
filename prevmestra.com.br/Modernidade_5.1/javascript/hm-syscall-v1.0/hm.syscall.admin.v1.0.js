@@ -66,12 +66,7 @@ $(document).ready(function(){
 
 				var restartChat = function(){
 					$('#hm-syscall-canvas form.conversation .messages').html('');
-					$('#hm-syscall-canvas form.conversation .action-buttons').hide();
 					$('#hm-syscall-canvas form.conversation .send .msg.form-control').show();
-
-					$('#hm-syscall-canvas form.conversation').removeClass('closed-conversation').hide();
-
-					$('#hm-syscall-canvas form.init-chat').show();
 
 					$('#hm-syscall-canvas .form-control').val('');
 					cont = 0;
@@ -167,6 +162,12 @@ $(document).ready(function(){
 
 				$('#hm-syscall-canvas .confirm-close .back-form').on('click', function(){
 					$('#hm-syscall-canvas .confirm-close').hide();
+				});
+
+				$('#hm-syscall-canvas .confirm-close .button-close').on('click', function(){
+					$('#hm-syscall-canvas .confirm-close').hide();
+					restartChat();
+					toggleChat();
 				});
 
 		  	},
