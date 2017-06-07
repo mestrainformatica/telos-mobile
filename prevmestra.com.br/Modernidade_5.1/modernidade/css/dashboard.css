@@ -52,9 +52,19 @@
     width: 40%;
   }
 }
+#dashboard-content .table.atendimento-table tr td {
+  padding: 15px 8px;
+}
 #dashboard-content .table.atendimento-table thead tr td {
   font-size: 12px;
   color: #1F4F8D;
+}
+#dashboard-content .table.atendimento-table tbody tr td {
+  border-top: 1px solid #F0F0F0;
+}
+#dashboard-content .table.atendimento-table .name {
+  font-size: 14px;
+  color: #3C4144;
 }
 #dashboard-content .underline {
   text-decoration: underline;

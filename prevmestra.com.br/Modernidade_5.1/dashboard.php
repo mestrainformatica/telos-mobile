@@ -213,7 +213,7 @@
 							<thead>
 								<tr>
 									<td class="col-2">Nome</td>
-									<td>Tipo</td>
+									<td class="col-1">Tipo</td>
 									<td>Situação</td>
 									<td>Prazo</td>
 									<td>Urgência</td>
@@ -221,8 +221,8 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>Alessandra Borges Filho</td>
-									<td> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
+									<td class="col-2 name">Alessandra Borges Filho</td>
+									<td class="col-1"> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
 									<td> <span class="type type-default">3 - A RESPONDER</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
 									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
@@ -244,7 +244,7 @@
 								<tr>
 									<td class="col-1">Nome</td>
 									<td class="col-1">Responsável</td>
-									<td>Tipo</td>
+									<td class="col-1">Tipo</td>
 									<td>Situação</td>
 									<td>Prazo</td>
 									<td>Urgência</td>
@@ -252,10 +252,18 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>Alessandra Borges Filho</td>
-									<td><b class="underline">Adriano Cardoso Domiciano</b></td>
-									<td> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
+									<td class="col-1 name">Alessandra Borges Filho</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
 									<td> <span class="type type-default">3 - A RESPONDER</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">Alessandra Borges Filho</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
 									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
 								</tr>

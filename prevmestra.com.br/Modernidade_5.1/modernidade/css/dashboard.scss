@@ -58,6 +58,11 @@
 				width: 40%;
 			}
 		}
+		tr{
+			td{
+				padding:15px 8px;
+			}
+		}
 		thead{
 			tr{
 				td{
@@ -65,6 +70,18 @@
 					color: #1F4F8D;
 				}
 			}
+		}
+		tbody{
+			tr{
+				td{
+					border-top:1px solid #F0F0F0;
+				}
+			}
+		}
+
+		.name{
+			font-size: 14px;
+			color: #3C4144;
 		}
 		
 	}
