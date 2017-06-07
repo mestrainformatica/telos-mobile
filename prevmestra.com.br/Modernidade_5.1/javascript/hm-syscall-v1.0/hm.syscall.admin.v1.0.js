@@ -122,7 +122,7 @@ $(document).ready(function(){
 
 						var element = $(this);
 						setTimeout(function() {
-							$('#hm-syscall-canvas .typing-load').fadeIn();
+							$('#hm-syscall-canvas .typing-load').show();
 
 							setTimeout(function() {
 								$('#hm-syscall-canvas .typing-load').hide();
