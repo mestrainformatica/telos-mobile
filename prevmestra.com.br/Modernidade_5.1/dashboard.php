@@ -195,7 +195,7 @@
 				<div class="charts-section section">
 					<div class="row">
 						<div class="col-sm-8">
-							oi
+							
 						</div>
 						<div class="col-sm-16">
 							
