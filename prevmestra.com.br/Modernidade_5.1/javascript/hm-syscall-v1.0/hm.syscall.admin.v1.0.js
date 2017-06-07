@@ -1,8 +1,9 @@
 $(document).ready(function(){  
 
 	var content = new Object;
-	var URL = "http://www/mestrainfo.com.br/development/prevmestra.com.br/Modernidade_5.1/javascript/hm-syscall-v1.0/";
-
+	// var URL = "http://www/mestrainfo.com.br/development/prevmestra.com.br/Modernidade_5.1/javascript/hm-syscall-v1.0/";
+	var URL = "javascript/hm-syscall-v1.0/";
+	
 	$('body').append('<div id="hm-syscall-canvas"></div>');
 
 	var updateDOM = function($html){

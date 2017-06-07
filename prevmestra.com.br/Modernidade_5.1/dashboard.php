@@ -27,6 +27,9 @@
 
 <link rel="stylesheet" href="modernidade/css/custom.responsive.css">
 
+<link rel="stylesheet" href="modernidade/css/dashboard.css">
+
+
 <script src="javascript/loading.js" type="text/javascript"></script>
 <script src="javascript/MestraAjax.js" type="text/javascript"></script>
 <script src="modernidade/js/jquery-2.1.4.min.js" type="text/javascript"></script>
@@ -186,6 +189,35 @@
 
 		<div id="main-content" class="container" role="main">
 			<?php // include("includes/conteudo.php"); ?>
+
+			<div id="dashboard-content">
+				
+				<div class="charts-section section">
+					<div class="row">
+						<div class="col-sm-8">
+							oi
+						</div>
+						<div class="col-sm-16">
+							
+						</div>
+					</div>
+				</div>
+
+
+				<div class="section atendimento">
+					
+				</div>
+
+				<div class="section atendimento">
+					
+				</div>
+				
+				<div class="section">
+					
+				</div>
+				
+			</div>
+
 		</div>
 		<div class="clear-fix"></div>
 	</div>
