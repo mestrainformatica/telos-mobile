@@ -32,6 +32,7 @@
   padding: 2px 8px;
   font-size: 10px;
   color: #3C4144;
+  display: inline-block;
 }
 #dashboard-content .type.type-6 {
   background: #C9E5F2;
@@ -40,9 +41,23 @@
   background: #ABDBDA;
 }
 #dashboard-content .prazo-danger {
-  /* Atrasado: */
   font-size: 13px;
   color: #E70000;
+}
+@media (min-width: 768px) {
+  #dashboard-content .table.atendimento-table .col-1 {
+    width: 20%;
+  }
+  #dashboard-content .table.atendimento-table .col-2 {
+    width: 40%;
+  }
+}
+#dashboard-content .table.atendimento-table thead tr td {
+  font-size: 12px;
+  color: #1F4F8D;
+}
+#dashboard-content .underline {
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=dashboard.css.map */

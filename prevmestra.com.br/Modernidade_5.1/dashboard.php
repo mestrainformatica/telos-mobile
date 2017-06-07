@@ -206,6 +206,32 @@
 
 				<div class="section atendimento">
 					<h3 class="title">Atendimento em aberto a vencer</h3>
+					
+					<div class="table-responsive">
+
+						<table class="table atendimento-table">
+							<thead>
+								<tr>
+									<td class="col-2">Nome</td>
+									<td>Tipo</td>
+									<td>Situação</td>
+									<td>Prazo</td>
+									<td>Urgência</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Alessandra Borges Filho</td>
+									<td> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
+									<td> <span class="type type-default">3 - A RESPONDER</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
 				</div>
 
 				<div class="section atendimento">
@@ -216,7 +242,8 @@
 						<table class="table atendimento-table">
 							<thead>
 								<tr>
-									<td>Nome</td>
+									<td class="col-1">Nome</td>
+									<td class="col-1">Responsável</td>
 									<td>Tipo</td>
 									<td>Situação</td>
 									<td>Prazo</td>
@@ -226,6 +253,7 @@
 							<tbody>
 								<tr>
 									<td>Alessandra Borges Filho</td>
+									<td><b class="underline">Adriano Cardoso Domiciano</b></td>
 									<td> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
 									<td> <span class="type type-default">3 - A RESPONDER</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
