@@ -27,7 +27,7 @@
   border: 0;
 }
 #dashboard-content .type {
-  background: #ccc;
+  background: #D9D9D9;
   border-radius: 8px;
   padding: 2px 8px;
   font-size: 10px;
@@ -35,7 +35,9 @@
 }
 #dashboard-content .type.type-6 {
   background: #C9E5F2;
-  color: #3C4144;
+}
+#dashboard-content .type.type-7 {
+  background: #ABDBDA;
 }
 #dashboard-content .prazo-danger {
   /* Atrasado: */
