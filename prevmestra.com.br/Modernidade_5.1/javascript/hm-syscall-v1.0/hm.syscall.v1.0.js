@@ -103,7 +103,21 @@ $(document).ready(function()
 				$('#hm-syscall-canvas .conversation .messages').append('<p class="chat-return">Chat Iniciado</p>')
 				// $('#hm-syscall-canvas .conversation .chat-msg.sender .txt').html($(this).find('.msg-init').val());
 				
-				$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[0]+'</div><div class="img"><img src="" alt=""></div></div>');
+				
+				
+				setTimeout(function() {
+
+					$('#hm-syscall-canvas .typing-load').show();
+
+					setTimeout(function() {
+
+						$('#hm-syscall-canvas .typing-load').hide();
+
+						$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[0]+'</div><div class="img"><img src="" alt=""></div></div>');
+					}, 2000);
+
+				}, 2000);
+
 				return false;
 			});
 
