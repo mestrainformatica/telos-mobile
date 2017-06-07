@@ -119,19 +119,30 @@ $(document).ready(function(){
 						
 						scrollChat($(this).find('.messages'));
 
+
 						var element = $(this);
 						setTimeout(function() {
-							// $('#hm-syscall-canvas .chat-msg.loading').remove();
-							$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img src="" alt=""></div></div>');
-							scrollChat($('form.conversation .messages'));
+							$('#hm-syscall-canvas .typing-load').fadeIn();
 
-							if(cont+1 < clientUsers[0].messages.length-1){
-								cont++;
-							}else{
-								cont=0;
-							}
+							setTimeout(function() {
+								$('#hm-syscall-canvas .typing-load').hide();
+								// $('#hm-syscall-canvas .chat-msg.loading').remove();
+								$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img src="" alt=""></div></div>');
+								scrollChat($('form.conversation .messages'));
+
+								if(cont+1 < clientUsers[0].messages.length-1){
+									cont++;
+								}else{
+									cont=0;
+								}
+
+							}, 2000);
 
 						}, 2000);
+						
+
+						
+						
 
 					}
 
@@ -139,9 +150,6 @@ $(document).ready(function(){
 				});
 
 				$('#hm-syscall-canvas form.admin').on('submit', function(){
-
-
-
 					return false;
 				});
 				

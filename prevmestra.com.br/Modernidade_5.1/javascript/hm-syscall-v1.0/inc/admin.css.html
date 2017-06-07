@@ -136,6 +136,7 @@
 	    padding-right: 20px;
 	    padding-top: 15px;
 	    background: #fff;
+	    position: relative;
 	}
 
 	#hm-syscall-canvas .send{
@@ -236,7 +237,36 @@
 		float: left;
 		margin-right: 20px;
 	}
-	
+
+
+	#hm-syscall-canvas .chat-msg.receptor.typing{
+		margin-bottom: 0;
+	}
+	#hm-syscall-canvas .chat-msg.receptor.typing .txt{
+		padding:0 10px;
+		min-height: 0;
+		background: transparent;
+	}
+	#hm-syscall-canvas .chat-msg.receptor.typing .txt img{
+	    height: 20px;
+	    width: auto;
+	    margin-left: -15px;
+	}
+	#hm-syscall-canvas .chat-msg.receptor.typing .img{
+		width: 15px;
+		height:15px;
+		margin-top: 2px;
+	}
+	#hm-syscall-canvas .typing-load{
+	    padding: 0px 20px;
+	    margin-top: -20px;
+	    width: 100%;
+	    position: absolute;
+	    background: #fff!important;
+	    height: 20px;
+	    display: none;
+	}
+
 
 	#hm-syscall-canvas.open form{
 		margin-bottom: 0;

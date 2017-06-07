@@ -129,25 +129,32 @@ $(document).ready(function()
 					scrollChat($(this).find('.messages'));
 
 					var element = $(this);
+					
+						
 					setTimeout(function() {
-						// $('#hm-syscall-canvas .chat-msg.loading').remove();
-						$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img src="" alt=""></div></div>');
-						scrollChat($('form.conversation .messages'));
+						$('#hm-syscall-canvas .typing-load').fadeIn();
 
-						if(cont+1 < adminUsers[0].messages.length-1){
-							cont++;
-						}else{
-							
-							element.addClass('closed-conversation');
-							element.find('.send .msg.form-control').hide();
+						setTimeout(function() {
+							$('#hm-syscall-canvas .typing-load').hide();
+							$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img src="" alt=""></div></div>');
+							scrollChat($('form.conversation .messages'));
 
-							element.find('.messages').append('<p class="chat-return">'+adminUsers[0].name+' encerrou este atendimento</p>')
+							if(cont+1 < adminUsers[0].messages.length-1){
+								cont++;
+							}else{
+								
+								element.addClass('closed-conversation');
+								element.find('.send .msg.form-control').hide();
 
-							element.find('.action-buttons').fadeIn();
-							
-						}
+								element.find('.messages').append('<p class="chat-return">'+adminUsers[0].name+' encerrou este atendimento</p>')
+
+								element.find('.action-buttons').fadeIn();
+							}
+						}, 2000);
 
 					}, 2000);
+
+					
 
 				}
 
