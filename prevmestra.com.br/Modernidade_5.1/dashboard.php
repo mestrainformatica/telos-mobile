@@ -276,6 +276,18 @@
 				
 				<div class="section">
 					<h3 class="title">Pesquisa de satisfação - Junho/17</h3>
+
+					<div class="row">
+						<div class="col-sm-4">
+							
+						</div>
+						<div class="col-sm-4">
+							
+						</div>
+						<div class="col-sm-4">
+							
+						</div>
+					</div>
 				</div>
 				
 			</div>
