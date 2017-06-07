@@ -1,0 +1,85 @@
+<ion-view title="Saldo de Contas">
+ <ion-content class="has-header" ng-controller="SaldoCtrl">
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">        
+    <div class="item item-divider softrow">
+      Saldo de Contas
+    </div>
+    <div class="item">
+    <form>
+      
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Data de Atualização
+        </div>
+        <select  class="ion-input-select" ng-model="formData.data_atualizacao" ng-change="submit()">
+          <option value="">- Selecione -</option>
+          <option 
+             ng-repeat="(key, value) in saldo"
+             value="{{ value.data_atualizacao }}" ng-show="value.data_atualizacao">{{value.data_atualizacao}}</option>
+        </select>
+      </label>
+      <div class="the_error">
+        <p ng-show="errorMsg" class="errorMsg assertive">{{errorMsg}}</p>
+      </div>
+      <!-- <div class="button-bar" padding="true">
+        <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Visualizar Saldo">      
+        <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
+      </div> -->
+    </form>
+    </div>
+    <div ng-show="saldo.detalhesSaldoContas">
+    <div class="item item-divider subitem">
+      <div class="col col-33" style="padding-left: 0;">Saldo de Contas</div>
+      <div class="col col2" style="margin-top: -23px;">{{saldo.dados_atualizadoEm[0].desc_atualizadoem}} {{saldo.dados_atualizadoEm[0].data_atualizadoem}}</div>
+    </div>
+    
+    <div class="item" id="">   
+      
+      <div class="label row">
+        <h4 class="col-67" style="padding: 0 0.4em; font-weight: 400">TOTAL</h4>
+        <h4 class="col valor">{{saldo.total_financeiro}}</h4>
+      </div>
+    </div>
+    <div class="item item-divider subitem">
+      Saldo Detalhado
+    </div>
+        <div class="item" id="saldoEmitido">   
+  <div class="" ng-repeat="(key,value) in saldo.detalhesSaldoContas">
+      <h4 class="upper" style="font-weight: 400">{{value.conta}}</h4>
+      
+      <div class="label row">
+        <div class="softcolor col col-50 upper" class="title_label">Fundo</div>
+        <div class="col valor">{{value.fundo}}</div>
+      </div>
+      <div class="label row">
+        <div class="softcolor col col-50 upper" class="title_label">Data do Índice</div>
+        <div class="col valor">{{value.data_indice}}</div>
+      </div>
+      <div class="label row">
+        <div class="softcolor col col-50 upper" class="title_label">Valor do Índice</div>
+        <div class="col valor">{{value.valor_indice}}</div>
+      </div>
+      <div class="label row">
+        <div class="softcolor col col-50 upper" class="title_label">Qtd. Cotas</div>
+        <div class="col valor">{{value.quantidade_cotas}}</div>
+      </div>
+      <div class="label row">
+        <div class="softcolor col col-50 upper" class="title_label">Vr. Financeiro</div>
+        <div class="col valor">{{value.valor_financeiro}}</div>
+      </div>
+      <hr>
+     </div>
+      
+    </div><div class="padding">
+      <div class="button-bar">
+        <input ng-hide="loading" type="button" class="button button-positive button-block" value="Receber por email" ng-click="sendMail()" ng-disabled="hasEmail">      
+      </div>
+    </div>
+    </div> 
+  </div>
+  </ion-content>
+</ion-view>

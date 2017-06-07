@@ -1,0 +1,187 @@
+<ion-view title="Simulação" ng-controller="AlteracaoRmvSaqueCtrl" has-bouncing="false" padding="false" >
+ <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list alteracao" id="mainMenu">        
+    <div class="item item-divider softrow">
+      <div class="row">
+        <div class="col">
+         Alteração de benefício para RMV e Saque
+        </div>
+      </div>
+    </div>
+
+    <div class="item resultados-title">
+      <div class="row">
+        <div class="col">
+          Escolha os percentuais de distribuição do saldo
+        </div>
+      </div> 
+    </div>
+
+        <form id="formCampos" class="formCampo">
+          <div class="item">
+
+            <label class="no-border item item-input item-stacked-label">
+              <div class="row">
+                <div class="col">
+                  <span class="input-label">SAQUE PROGRAMADO</span>
+                </div>
+                <div class="col col-20">
+                  <label class="item item-input">
+
+                    <input type="tel" name="saque_programado" ng-model="formData.saque_programado" ng-init="formData.saque_programado='0'" ui-number-mask="0">
+                  </label>
+                </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
+              </div>
+              </div>
+            
+            </label>
+
+            <label class="no-border item item-input item-stacked-label">
+            
+              <div class="row">
+                <div class="col">
+                  <span class="input-label">RENDA MENSAL VITALÍCIA</span>
+                </div>
+                <div class="col col-20">
+                  <label class="item item-input">
+
+                     <input type="tel" name="renda_mensal_vitalicia" ng-model="formData.renda_mensal_vitalicia" ng-init="formData.renda_mensal_vitalicia='0'" ui-number-mask="0">
+                  </label>
+                </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
+              </div>
+              </div>
+
+            </label>
+
+            <label class="no-border item item-input item-stacked-label" ng-show="cod_opcao_tributacao != '02'">
+              <div class="row">
+                <div class="col">
+                  <span class="input-label">Dependentes para fins de IR</span>
+                </div>
+                <div class="col col-20">
+                  <label class="item item-input">
+                    <input type="tel" name="dependentes_ir" ng-model="formData.dependentes_ir" ui-number-mask="0" mask-restrict='reject'>
+                  </label>
+                </div>
+              <div class="col col-05">
+                <span class="input-label box "></span>
+              </div>
+              </div>
+            
+            </label>
+          
+          </div>
+
+          <div class="item item-divider softrow">
+            <div class="row">
+              <div class="col">
+                Premissas Específicas de saque programado
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+
+              <label class="no-border item item-input item-stacked-label">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Renda mensal</span>
+                  </div>
+                  <div class="col col-20">
+                    <label class="item item-input">
+                      <input type="tel" name="renda_mensal" placeholder="" ng-model="formData.renda_mensal" ui-number-mask="1">
+                    </label>
+                  </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
+              </div>
+                </div>
+              </label>
+
+              <label class="no-border item item-input item-stacked-label">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Estimativa de rentabilidade <small>(Entre a simulação e início do benefício)</small></span>
+                  </div>
+                  <div class="col col-20">
+                    <label class="item item-input">
+                        <input type="tel" name="estimativa_rent_apos" placeholder="" ng-model="formData.estimativa_rent_apos" ui-number-mask="1"  ng-init="formData.estimativa_rent_apos = '3.0'">
+                    </label>
+                  </div>
+              <div class="col col-05">
+                <span class="input-label box ">%</span>
+              </div>
+                </div>
+              </label>
+
+              <label class="abonoselect item item-input item-select">
+                <div class="input-label">
+                    Abono Anual?
+                </div>
+                <select class="ion-input-select" ng-model="formData.abono_anual" ng-init="formData.abono_anual = 'S'">
+                   <option value="N">NÃO</option>
+                   <option value="S">SIM</option>
+                </select>
+              </label>
+
+
+          </div>
+          
+          <div class="item item-divider softrow">
+            <div class="row">
+              <div class="col">
+                Premissas específicas de RMV
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <label class="item item-input item-select">
+              <div class="input-label">
+                  Tipo de Reajuste
+              </div>
+              <select class="ion-input-select" ng-model="formData.tipo_reajuste" ng-options="key as value for (key , value) in tipoReajuste">
+               <option value="{{key}}">{{value}}</option>
+
+              </select>
+            </label>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                  Com pensão?
+              </div>
+              <select class="ion-input-select" ng-model="formData.pensao" ng-init="formData.pensao = 'N'">
+                 <option value="N">NÃO</option>
+                 <option value="S">SIM</option>
+              </select>
+            </label>
+
+            <div class="the_error">
+              <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+            </div>
+            <div class="padding">
+         
+             <div class="button-bar" ng-show="formData.pensao == 'S'">
+                <input ng-hide="loading" type="submit" class="button icon-right ion-chevron-right button-positive button-block" ng-model="submitExtrato" value="Definir Beneficiários..." ng-click="goBeneficiarios(formData)">      
+                <!-- <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a> -->
+              </div>
+              <div class="button-bar">
+                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+              </div>
+            </div>
+          </div>
+
+          
+        </form>
+    </div>
+  </div>
+
+  </ion-content>
+</ion-view>
