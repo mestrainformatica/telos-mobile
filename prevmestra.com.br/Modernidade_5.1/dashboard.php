@@ -293,23 +293,23 @@
 								<tr>
 									<td class="col-1 name">adriana conceicao parente</td>
 									<td class="col-1"> <span class="type type-1">1 - SOLICITAÇÃO</span> </td>
-									<td> <span class="type type-default">2 - AGENDADO</span> </td>
-									<td><span class="prazo">Hoje</span></td>
-									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+									<td> <span class="type type-default">6 - RESPONDIDO E NÃO SOLUCIONADO</span> </td>
+									<td><span class="prazo">Quinta-feira</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 80%"></div></div> </td>
 								</tr>
 								<tr>
 									<td class="col-1 name">alessandro ferreira </td>
 									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
-									<td> <span class="type type-default">2 - AGENDADO</span> </td>
-									<td><span class="prazo">Hoje</span></td>
-									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+									<td> <span class="type type-default">4 - RESPONDIDO</span> </td>
+									<td><span class="prazo">23 de Julho</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 20%"></div></div> </td>
 								</tr>
 								<tr>
 									<td class="col-1 name">ciro lucas mendes</td>
 									<td class="col-1"> <span class="type type-2">2 - PEDIDO DE INFORMAÇÃO</span> </td>
 									<td> <span class="type type-default">2 - AGENDADO</span> </td>
-									<td><span class="prazo">Hoje</span></td>
-									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+									<td><span class="prazo">23 de Julho</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 20%"></div></div> </td>
 								</tr>
 							</tbody>
 						</table>
@@ -340,9 +340,9 @@
 									<td class="col-1 name">rafael carvalho alves</td>
 									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
 									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
-									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td> <span class="type type-default">3 - A RESPONDER</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
-									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 100%"></div></div> </td>
 								</tr>
 								<tr>
 									<td class="col-1 name">armando furtuoso filho leal </td>
@@ -350,15 +350,15 @@
 									<td class="col-1"> <span class="type type-3">3 - RECLAMAÇÃO</span> </td>
 									<td> <span class="type type-default">2 - AGENDADO</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
-									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 100%"></div></div> </td>
 								</tr>
 								<tr>
 									<td class="col-1 name">washington gabriel pacheco</td>
 									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
 									<td class="col-1"> <span class="type type-2">2 - PEDIDO DE INFORMAÇÃO</span> </td>
-									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td> <span class="type type-default">6 - RESPONDIDO E NÃO SOLUCIONADO</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
-									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 100%"></div></div> </td>
 								</tr>
 								
 							</tbody>
