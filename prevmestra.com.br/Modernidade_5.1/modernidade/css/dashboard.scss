@@ -36,9 +36,8 @@
 					border-right:1px solid #F0F0F0;
 				}
 				
-				img.chart{
-					display: block;
-					margin:0 auto;
+				.chart{
+					text-align: center;
 				}
 
 				@extend %clearfix;

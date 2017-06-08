@@ -47,6 +47,10 @@
 <script src="modernidade/lib/tooltipster/js/jquery.tooltipster.min.js"></script> 
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
+
+<script src="modernidade/js/chart.js"></script>
+<script src="modernidade/js/dashboard.js"></script>
+
 <script src="javascript/hm-syscall-v1.0/hm.syscall.admin.v1.0.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="css/AppGeral.css" type="text/css">
@@ -220,7 +224,11 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-24">
-										<img class="chart" src="modernidade/img/pie-chart.jpg" alt="">
+										<!-- <img class="chart" src="modernidade/img/pie-chart.jpg" alt=""> -->
+										<div class="chart">
+											<canvas id="pie-chart" height="200" width="200"></canvas>
+										</div>
+										
 									</div>
 								</div>
 								<div class="row">

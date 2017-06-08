@@ -32,9 +32,8 @@
     border-right: 1px solid #F0F0F0;
   }
 }
-#dashboard-content .section.charts-section .pie img.chart {
-  display: block;
-  margin: 0 auto;
+#dashboard-content .section.charts-section .pie .chart {
+  text-align: center;
 }
 #dashboard-content .section.charts-section .pie .count {
   margin: 5px 0;
