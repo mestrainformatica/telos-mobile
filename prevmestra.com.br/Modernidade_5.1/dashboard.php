@@ -204,7 +204,7 @@
 									<div class="col-sm-12">
 										<div class="count">
 											<span class="num">
-												7
+												25
 											</span>
 											<span class="name">
 												Abertos <img src="modernidade/img/chart-icon.svg" alt="">
@@ -214,7 +214,7 @@
 									<div class="col-sm-12">
 										<div class="count col-right">
 											<span class="num">
-												0
+												3.722
 											</span>
 											<span class="name">
 												Resolvidos <img src="modernidade/img/chart-icon.svg" alt="">
@@ -348,7 +348,7 @@
 								</tr>
 								<tr>
 									<td class="col-1 name">armando furtuoso filho leal </td>
-									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"><b class="underline">Marisa Alves Reis</b></td>
 									<td class="col-1"> <span class="type type-3">3 - RECLAMAÇÃO</span> </td>
 									<td> <span class="type type-default">2 - AGENDADO</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
@@ -356,7 +356,7 @@
 								</tr>
 								<tr>
 									<td class="col-1 name">washington gabriel pacheco</td>
-									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"><b class="underline">Antônio Salim Lisboa</b></td>
 									<td class="col-1"> <span class="type type-2">2 - PEDIDO DE INFORMAÇÃO</span> </td>
 									<td> <span class="type type-default">6 - RESPONDIDO E NÃO SOLUCIONADO</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
@@ -378,7 +378,7 @@
 							<div class="av">
 								<div class="text">
 									<b>Avaliação Atendente</b>
-									<p>Lorem ipsum sit dolro amet</p>
+									<p>&nbsp;</p>
 								</div>
 								<div class="prog">
 									<div class="custom-progress-bars">
@@ -395,7 +395,7 @@
 										<div class="custom-bar"></div>
 									</div>
 
-									<div class="percent">70%</div>
+									<div class="percent">85%</div>
 								</div>
 							</div>
 						</div>
@@ -403,7 +403,7 @@
 							<div class="av">
 								<div class="text">
 									<b>Conhecimento Atendente</b>
-									<p>Lorem ipsum sit dolro amet</p>
+									<p>&nbsp;</p>
 								</div>
 								<div class="prog">
 									<div class="custom-progress-bars">
@@ -420,7 +420,7 @@
 										<div class="custom-bar"></div>
 									</div>
 
-									<div class="percent">70%</div>
+									<div class="percent">88%</div>
 								</div>
 							</div>
 						</div>
@@ -428,7 +428,7 @@
 							<div class="av">
 								<div class="text">
 									<b>Resolvido</b>
-									<p>Lorem ipsum sit dolro amet</p>
+									<p>&nbsp;</p>
 								</div>
 								<div class="prog">
 									<div class="custom-progress-bars">
@@ -445,7 +445,7 @@
 										<div class="custom-bar"></div>
 									</div>
 
-									<div class="percent">70%</div>
+									<div class="percent">92%</div>
 								</div>
 							</div>
 						</div>
@@ -453,7 +453,7 @@
 							<div class="av">
 								<div class="text">
 									<b>Canais</b>
-									<p>Lorem ipsum sit dolro amet</p>
+									<p>&nbsp;</p>
 								</div>
 								<div class="prog">
 									<div class="custom-progress-bars">
@@ -470,7 +470,7 @@
 										<div class="custom-bar"></div>
 									</div>
 
-									<div class="percent">70%</div>
+									<div class="percent">98%</div>
 								</div>
 							</div>
 						</div>
