@@ -1,7 +1,17 @@
+%clearfix{
+	&:after{
+		clear: both;
+		display: block;
+		content: "";
+	}	
+}
+
 #dashboard-content{
-		
-	margin-left:-35px;
+	
+	@media(min-width:768px){
+		margin-left:-35px;
 	margin-right:-35px;
+	}
 	
 	.section{
 		border-bottom:1px solid #F0F0F0;
@@ -15,8 +25,7 @@
 			margin-bottom: 15px;
 		}
 	}
-
-
+	
 	.custom-progress-bar {
 	    width: 100%;
 	    background: #d2d2d2;
@@ -37,11 +46,11 @@
 		border-radius: 8px;
 		padding: 2px 8px;
 		font-size: 10px;
-		color: #3C4144;
+		color: #7f7f7f;
 		display: inline-block;
 		
-		&.type-6{background: #C9E5F2;}
-		&.type-7{background:#ABDBDA;}
+		&.type-6{background: #C9E5F2;color: #2b7a9e;}
+		&.type-7{background:#ABDBDA;color: #1f8482;}
 	}
 
 	.prazo-danger{
@@ -90,6 +99,68 @@
 
 	.underline{
 		text-decoration: underline;
+	}
+
+	.av{
+		@extend %clearfix;
+		.text{
+			float: left;
+			b{
+				display: block;
+				margin:0;
+				padding:0;
+				font-size: 14px;
+				color: #000000;
+			}
+			p{
+				font-size: 12px;
+				color: #B1B1B1;
+				margin:0;
+			}
+		}
+
+		.prog{
+			float: right;
+			margin: 10px 0;
+			.custom-progress-bars{
+				float: left;
+				margin-right: 5px;
+			}
+			.percent{
+				float: left;
+				font-size: 10px;
+				color: #000000;
+				margin:2px 0;
+				font-weight: 600;
+			}
+		}
+	}
+	
+	.custom-progress-bars{
+		background:#ccc;
+		position: relative;
+		@extend %clearfix;
+		height: 17.6px;
+		.custom-bar{
+		    float: left;
+		    width: 5px;
+		    height: 20px;
+		    margin-top: -19px;
+		    background: transparent;
+		    border: 1px solid #fff;
+		    border-radius: 8px;
+			&.active{
+
+			}
+		}
+
+		.custom-progress {
+		    background: #1D67C5;
+		    height: 100%;
+		    z-index: 10;
+		    width: 0;
+		}
+			
 	}
 
 }

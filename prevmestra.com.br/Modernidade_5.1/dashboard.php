@@ -278,14 +278,80 @@
 					<h3 class="title">Pesquisa de satisfação - Junho/17</h3>
 
 					<div class="row">
-						<div class="col-sm-4">
-							
+						<div class="col-sm-8">
+							<div class="av">
+								<div class="text">
+									<b>Avaliação Xxxx</b>
+									<p>Lorem ipsum sit dolro amet</p>
+								</div>
+								<div class="prog">
+									<div class="custom-progress-bars">
+										<div style="width:70%;" class="custom-progress"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+									</div>
+
+									<div class="percent">70%</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-sm-4">
-							
+						<div class="col-sm-8">
+							<div class="av">
+								<div class="text">
+									<b>Avaliação Xxxx</b>
+									<p>Lorem ipsum sit dolro amet</p>
+								</div>
+								<div class="prog">
+									<div class="custom-progress-bars">
+										<div style="width:70%;" class="custom-progress"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+									</div>
+
+									<div class="percent">70%</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-sm-4">
-							
+						<div class="col-sm-8">
+							<div class="av">
+								<div class="text">
+									<b>Avaliação Xxxx</b>
+									<p>Lorem ipsum sit dolro amet</p>
+								</div>
+								<div class="prog">
+									<div class="custom-progress-bars">
+										<div style="width:70%;" class="custom-progress"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+										<div class="custom-bar"></div>
+									</div>
+
+									<div class="percent">70%</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
