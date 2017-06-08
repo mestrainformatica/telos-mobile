@@ -2,33 +2,51 @@ $(document).ready(function(){
 
 	var pieData = [
 		{
-          value: 1,
-          color:"#7FBDFA"
+          value: 14,
+          color:"#C9E5F2"
         },
+		{
+          value: 14,
+          color:"#ff8271"
+        },
+		{
+          value: 28,
+          color:"#F0BE73"
+        },
+		{
+          value: 28,
+          color:"#ABDBDA",
+          label: "6 - Teste de Solicitação"
+        },
+		{
+          value: 14,
+          color:"#8fc7ff"
+        }
+        /*
         {
-          value : 1,
+          value : 28,
           color : "#78A0EF"
         },
         {
-          value: 1,
+          value: 14,
           color:"#F78979"
         },
         {
-          value : 1,
+          value : 14,
           color : "#F0BE73"
         },
         {
-          value: 1,
+          value: 14,
           color:"#A4ECA4"
         },
         {
-        	value: 1,
+        	value: 14,
         	color: "#ABDBDA"
         },
         {
-          value : 1,
+          value : 14,
           color : "#6ED9D7"
-        }
+        }*/
 	];
         
 	var optionsPie = { 
@@ -37,6 +55,12 @@ $(document).ready(function(){
 		labelTxt: true,
 		animation: false,
 		labelFontSize : 50,
+// 		tooltipEvents: [],
+// 		showTooltips: true,
+// 		onAnimationComplete: function() {
+// 		this.showTooltip(this.segments, true);
+// 		},
+// tooltipTemplate: "<%= label %> - <%= value %>"
 	};
 
 	var ctxPie = document.getElementById("pie-chart").getContext("2d");
