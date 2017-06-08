@@ -385,7 +385,7 @@
 								</div>
 								<div class="prog">
 									<div class="custom-progress-bars">
-										<div style="width:70%;" class="custom-progress"></div>
+										<div class="custom-progress"></div>
 										<div class="custom-bar"></div>
 										<div class="custom-bar"></div>
 										<div class="custom-bar"></div>
@@ -410,7 +410,7 @@
 								</div>
 								<div class="prog">
 									<div class="custom-progress-bars">
-										<div style="width:70%;" class="custom-progress"></div>
+										<div class="custom-progress"></div>
 										<div class="custom-bar"></div>
 										<div class="custom-bar"></div>
 										<div class="custom-bar"></div>
@@ -435,7 +435,7 @@
 								</div>
 								<div class="prog">
 									<div class="custom-progress-bars">
-										<div style="width:70%;" class="custom-progress"></div>
+										<div class="custom-progress"></div>
 										<div class="custom-bar"></div>
 										<div class="custom-bar"></div>
 										<div class="custom-bar"></div>
@@ -460,7 +460,7 @@
 								</div>
 								<div class="prog">
 									<div class="custom-progress-bars">
-										<div style="width:70%;" class="custom-progress"></div>
+										<div class="custom-progress"></div>
 										<div class="custom-bar"></div>
 										<div class="custom-bar"></div>
 										<div class="custom-bar"></div>

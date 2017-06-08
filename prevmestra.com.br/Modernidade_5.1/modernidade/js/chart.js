@@ -766,7 +766,7 @@ window.Chart = function(context){
                     countData += data[i].value;
                 }
 
-                ctx.fillText("", width/2 - 20, width/2, 200);
+                ctx.fillText(countData, width/2 - 20, width/2, 200);
             }else{
                 ctx.fillText(data[0].value + "%", width/2 - 20, width/2, 200);
             }

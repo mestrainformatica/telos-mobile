@@ -1,25 +1,54 @@
 $(document).ready(function(){  
 
+  if($('#dashboard-content .custom-progress-bars').length > 0){
+    var progs = $('#dashboard-content .custom-progress-bars');
+    $.each(progs, function(k,v){
+      $(v).find('.custom-progress').css('width', $(v).parent().find('.percent').html());
+    });
+  }
+    
+
 	var pieData = [
-		{
-      value: 14,
+		// {
+  //     value: 15,
+  //     color:"#C9E5F2"
+  //   },
+		// {
+  //     value: 15,
+  //     color:"#ff8271"
+  //   },
+		// {
+  //     value: 28,
+  //     color:"#F0BE73"
+  //   },
+		// {
+  //     value: 28,
+  //     color:"#ABDBDA",
+  //     label: "6 - Teste de Solicitação"
+  //   },
+		// {
+  //     value: 14,
+  //     color:"#8fc7ff"
+  //   }
+  {
+      value: 3.75,
       color:"#C9E5F2"
     },
-		{
-      value: 14,
+    {
+      value: 3.75,
       color:"#ff8271"
     },
-		{
-      value: 28,
+    {
+      value: 7,
       color:"#F0BE73"
     },
-		{
-      value: 28,
+    {
+      value: 7,
       color:"#ABDBDA",
       label: "6 - Teste de Solicitação"
     },
-		{
-      value: 14,
+    {
+      value: 3.5,
       color:"#8fc7ff"
     }
 	];
@@ -29,7 +58,7 @@ $(document).ready(function(){
 		percentageInnerCutout : 50,
 		labelTxt: true,
 		animation: false,
-		labelFontSize : 50,
+		labelFontSize : 38,
 // 		tooltipEvents: [],
 // 		showTooltips: true,
 // 		onAnimationComplete: function() {

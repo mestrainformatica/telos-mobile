@@ -2,6 +2,17 @@ $(document).ready(function(){
 
 	$('#menuDiv #menuList .menubar').first().prepend('<li class="hm-chat-menu"><label class="text" for="">Status Chat: <b>Online</b></label><div class="onoffswitch"><input type="checkbox" checked name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch"><label class="onoffswitch-label" for="myonoffswitch"></label></div></li>')
 
+	$('#myonoffswitch').change(function() {
+        if($(this).is(":checked")) {
+          $('#hm-syscall-canvas').removeClass('offline');
+          $('.hm-chat-menu label.text b').html('Online');
+        }else{
+        	$('#hm-syscall-canvas').addClass('offline');
+        	 $('.hm-chat-menu label.text b').html('Offline');
+        }
+        
+    });
+
 	var content = new Object;
 	// var URL = "http://www/mestrainfo.com.br/development/prevmestra.com.br/Modernidade_5.1/javascript/hm-syscall-v1.0/";
 	var URL = "javascript/hm-syscall-v1.0/";
