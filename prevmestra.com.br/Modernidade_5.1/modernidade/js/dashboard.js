@@ -1,5 +1,9 @@
 $(document).ready(function(){  
 
+
+
+
+
   if($('#dashboard-content .custom-progress-bars').length > 0){
     var progs = $('#dashboard-content .custom-progress-bars');
     $.each(progs, function(k,v){
@@ -8,30 +12,60 @@ $(document).ready(function(){
   }
     
 
-	var pieData = [
-		{
-      value: 15,
-      color:"#C9E5F2"
-    },
-		{
-      value: 15,
-      color:"#ff8271"
-    },
-		{
-      value: 28,
-      color:"#F0BE73"
-    },
-		{
-      value: 28,
-      color:"#ABDBDA",
-      label: "6 - Teste de Solicitação"
-    },
-		{
-      value: 14,
-      color:"#8fc7ff"
-    }
+	var dataPie = {
+    datasets: [{
+        data: [1,1,2,2,1],backgroundColor: [
+                '#C9E5F2',
+                '#ff8271',
+                '#F0BE73',
+                '#ABDBDA',
+                '#8fc7ff'
+                ]
+    }],
 
-  /*    
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        ' Atendimento Ativo',
+        ' Reclamação',
+        ' Pedido de Informação',
+        ' Negociação de Empréstimos',
+        ' Solicitação'
+    ]
+};
+
+	var optionsPie = {
+  cutoutPercentage: 40,
+  legend: {
+                display: false,
+                position: 'bottom-right',
+                labels: {
+                    fontColor: 'rgb(255, 99, 132)'
+                }
+            },
+            tooltip :{
+            	CaretSize: 22 
+           },
+            	maintainAspectRatio: false,
+    responsive: true
+}
+
+
+	// {
+	//     	labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+	//     	datasets: {
+	//     		data: [15,15,28,28,14,14],
+	//     		backgroundColor: [
+ //                '#C9E5F2',
+ //                '#ff8271',
+ //                '#F0BE73',
+ //                '#ABDBDA',
+ //                '#C9E5F2',
+ //                '#8fc7ff'
+ //                ]
+ //           }
+ //         }
+ //         var optionsPie = {}
+           /*    
   {
       value: 3.75,
       color:"#C9E5F2"
@@ -54,59 +88,61 @@ $(document).ready(function(){
       color:"#8fc7ff"
     }
     */
-	];
-        
-	var optionsPie = { 
-		segmentShowStroke : false,
-		percentageInnerCutout : 50,
-		labelTxt: '7',
-		animation: false,
-		labelFontSize : 50,
-// 		tooltipEvents: [],
-// 		showTooltips: true,
-// 		onAnimationComplete: function() {
-// 		this.showTooltip(this.segments, true);
-// 		},
-// tooltipTemplate: "<%= label %> - <%= value %>"
-	};
+var myDoughnutChart = new Chart(document.getElementById("pie-chart").getContext("2d"), {
+    type: 'doughnut',
+    data: dataPie,
+    options: optionsPie
+});
 
-	var ctxPie = document.getElementById("pie-chart").getContext("2d");
-	var myPie = new Chart(ctxPie).Doughnut(pieData,optionsPie);
+	
 
-	var lineCharts = new Array();
-
-	lineCharts[0] = {
+	var lineCharts = {
+		type: 'line',
 		data:{
-			labels : ["01/Jan","06/Jan","10/Jan","15/Jan","18/Jan","20/Jan","23/Jan","28/Jan"],
+			labels : ["01/Jun","06/Jun","10/Jun","15/Jun","18/Jun","20/Jun","23/Jun","28/Jun"],
 			datasets : [
 				{
-					fillColor : "rgba(239,120,120,0)",
-					strokeColor : "rgba(239,120,120,1)",  //laranja
-					pointColor : "rgba(239,120,120,1)",
-					pointStrokeColor : "transparent",
-					data : [50,55,53,52,60,65,60,55],
-				},
-				{
-					fillColor : "rgba(0,173,164,0)",
-					strokeColor : "rgba(0,173,164,1)",
+					backgroundColor: "rgba(0,173,164,0.1)", 
+					borderColor: "rgba(0,173,164,1)",
 					pointColor : "rgba(0,173,164,1)",
 					pointStrokeColor : "transparent",
-					data : [45,40,43,48,50,50,55, 45]
+					data : [2,5,5,5,4,4,5,6],
+					label: "Resolvidos"
+				},
+				{
+					backgroundColor: "rgba(83,133,197,0.1)",  //laranja
+					borderColor: "rgba(83,133,197,1)",  //laranja
+					pointColor : "rgba(83,133,197,1)",
+					pointStrokeColor : "transparent",
+					data : [8,9,8,8,7,7,8,8],
+					label: "Abertos"
 				}
 			]
 		},
-		ctx: document.getElementById("line-chart-1").getContext("2d"),
-		options: {
-			bezierCurve : false, 
-			label: false, 
-			animation: false,
-			scaleShowGridLines: false,
-			scaleFontSize: 8,
-			scaleFontStyle: 'normal'
-		}
+	options: {
+
+        scales: {
+            yAxes: [{
+                stacked: true
+            }]
+        
+    },
+  legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: 'rgba(0, 0, 0,0.8)'
+                }
+            },
+            tooltip :{
+            	CaretSize: 22 
+           },
+     maintainAspectRatio: false,
+	responsive: true
+}
 	};
 
 
-	var myLineChart = new Chart(lineCharts[0].ctx).Line(lineCharts[0].data, lineCharts[0].options);
+	var myLineChart = new Chart(document.getElementById("line-chart-1").getContext("2d"), lineCharts);
 
 });

@@ -208,7 +208,7 @@
 												25
 											</span>
 											<span class="name">
-												Abertos <img src="modernidade/img/chart-icon.svg" alt="">
+												Total Abertos <img src="modernidade/img/chart-icon.svg" alt="">
 											</span>
 										</div>
 									</div>
@@ -218,7 +218,7 @@
 												3.722
 											</span>
 											<span class="name">
-												Resolvidos <img src="modernidade/img/chart-icon.svg" alt="">
+												Total Resolvidos <img src="modernidade/img/chart-icon.svg" alt="">
 											</span>
 										</div>
 									</div>
@@ -235,20 +235,27 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-sm-12">
-										<div class="count">
+								<div class="col-sm-12">
+										<div class="count col-left" style="font-size: 26px;">
 											<span class="num">
-												3
+												07
+											</span>
+											<span class="name">
+												Abertos <img src="modernidade/img/chart-icon.svg" alt="">
+											</span>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="count col-right">
+											<span class="num">
+												03
 											</span>
 											<span class="name">
 												Atrasados <img src="modernidade/img/chart-icon.svg" alt="">
 											</span>
 										</div>
 
-									</div>
-									<div class="col-sm-12 ">
-										
-									</div>
+									</div>					
 								</div>
 								
 							</div>
@@ -262,24 +269,24 @@
 										<!-- <h3 class="title">Visão geral dos chamados</h3> -->
 										<div class="btn-group">
 										  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    <h3 class="title">Visão geral dos chamados</h3>  <span class="caret"></span>
+										    <h3 class="title">Visão geral relacionamento</h3><!--   <span class="caret"></span> -->
 										  </a>
 										  <ul class="dropdown-menu">
-										    <li><a href="#">Visão geral dos chamados</a></li>
-										    <li><a href="#">Visão geral dos chamados</a></li>
+										    <li><a href="#">Visão geral todos os chamados</a></li>
+										    <li><a href="#">Visão geral meus chamados</a></li>
 										  </ul>
 										</div>
 
 										<div class="pull-right">
 											<ul class="legendas">
-												<li>Resolvidos</li>
-												<li>Abertos</li>
+											<!-- 	<li>Resolvidos</li>
+												<li>Abertos</li> -->
 											</ul>
 										</div>
 									</div>
-								</div>
+								</div><br />
 								<div class="chart">
-									<canvas width="500" height="250" id="line-chart-1"></canvas>
+									<canvas width="600" height="200" id="line-chart-1"></canvas>
 								</div>
 								
 							</div>
