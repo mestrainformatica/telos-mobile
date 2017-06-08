@@ -277,7 +277,7 @@
 					
 					<div class="table-responsive atendimento">
 
-						<table class="table atendimento-table">
+						<table class="table table-hover atendimento-table">
 							<thead>
 								<tr>
 									<td class="col-2">Nome</td>
@@ -328,7 +328,7 @@
 		
 					<div class="table-responsive atendimento">
 
-						<table class="table atendimento-table">
+						<table class="table table-hover atendimento-table">
 							<thead>
 								<tr>
 									<td class="col-1">Nome</td>
