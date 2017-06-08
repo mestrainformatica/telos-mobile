@@ -49,6 +49,7 @@
 
 
 <script src="modernidade/js/chart.js"></script>
+<script src="modernidade/js/highcharts.js"></script>
 <script src="modernidade/js/dashboard.js"></script>
 
 <script src="javascript/hm-syscall-v1.0/hm.syscall.admin.v1.0.js" type="text/javascript"></script>
@@ -226,7 +227,9 @@
 									<div class="col-sm-24">
 										<!-- <img class="chart" src="modernidade/img/pie-chart.jpg" alt=""> -->
 										<div class="chart">
-											<canvas id="pie-chart" height="200" width="200"></canvas>
+											<canvas id="pie-chart" height="200" width="200">
+												<p>10</p>
+											</canvas>
 										</div>
 										
 									</div>
@@ -260,7 +263,7 @@
 									</div>
 								</div>
 								<div class="chart">
-									<canvas id="line-chart-1"></canvas>
+									<canvas width="500" height="250" id="line-chart-1"></canvas>
 								</div>
 								
 							</div>

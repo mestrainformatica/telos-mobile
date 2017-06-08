@@ -75,6 +75,12 @@
 #dashboard-content .section.charts-section .line .chart {
   margin: 25px 0;
 }
+#dashboard-content .section.charts-section .line .chart #line-chart-1 {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 250px !important;
+  max-width: 500px !important;
+}
 #dashboard-content .section.charts-section .line img.chart {
   width: 100%;
   height: auto;
@@ -115,8 +121,8 @@
   color: #13508c;
 }
 #dashboard-content .type.type-2 {
-  background: #C6D7F9;
-  color: #2b7a9e;
+  background: #ffeed4;
+  color: #ab9676;
 }
 #dashboard-content .type.type-3 {
   background: #FFCCC5;
@@ -209,13 +215,6 @@
   height: 100%;
   z-index: 10;
   width: 0;
-}
-#dashboard-content .table-responsive.atendimento {
-  height: 230px;
-  overflow-y: auto;
-}
-#dashboard-content #line-chart-1 {
-  width: 100% !important;
 }
 
 li.hm-chat-menu {

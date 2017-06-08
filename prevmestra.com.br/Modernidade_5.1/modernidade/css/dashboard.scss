@@ -85,6 +85,13 @@
 
 				.chart{
 					margin:25px 0;
+					// padding:0px 5%;
+					#line-chart-1{
+						width: 100% !important;
+						height: auto !important;
+						max-height: 250px !important;
+						max-width: 500px !important;
+					}
 				}
 
 				img.chart{
@@ -123,7 +130,7 @@
 		&.type-6{background: #C9E5F2;color: #2b7a9e;}
 		&.type-7{background:#ABDBDA;color: #1f8482;}
 		&.type-1{background:#C7E3FF;color:#13508c}
-		&.type-2{background:#C6D7F9;color:#2b7a9e;}
+		&.type-2{background: #ffeed4;color: #ab9676 ;}
 		&.type-3{background:#FFCCC5;color:#bd6d62;}
 	}
 
@@ -242,12 +249,8 @@
 	}
 
 	.table-responsive.atendimento {
-	    height: 230px;
-	    overflow-y: auto;
-	}
-
-	#line-chart-1{
-		width: 100% !important;
+	    // height: 230px;
+	    // overflow-y: auto;
 	}
 
 }
