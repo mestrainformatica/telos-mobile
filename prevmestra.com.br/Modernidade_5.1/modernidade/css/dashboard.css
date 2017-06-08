@@ -1,4 +1,4 @@
-#dashboard-content .section.charts-section .pie:after, #dashboard-content .section.charts-section .pie .count:after, #dashboard-content .section.charts-section .line:after, #dashboard-content .av:after, #dashboard-content .custom-progress-bars:after {
+#dashboard-content .section.charts-section .pie:after, #dashboard-content .section.charts-section .pie .count:after, #dashboard-content .section.charts-section .line:after, #dashboard-content .av:after, #dashboard-content .custom-progress-bars:after, li.hm-chat-menu:after {
   clear: both;
   display: block;
   content: "";
@@ -210,6 +210,69 @@
 #dashboard-content .table-responsive.atendimento {
   height: 230px;
   overflow-y: auto;
+}
+
+li.hm-chat-menu {
+  padding: 10px 15px !important;
+  display: block;
+  font-size: 1.4em;
+}
+li.hm-chat-menu .onoffswitch {
+  float: right;
+}
+
+.onoffswitch {
+  position: relative;
+  width: 45px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  display: inline-block;
+}
+
+.onoffswitch-checkbox {
+  display: none;
+}
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  height: 22px;
+  padding: 0;
+  line-height: 22px;
+  border: 2px solid #999999;
+  border-radius: 22px;
+  background-color: #FFFFFF;
+  transition: background-color 0.3s ease-in;
+}
+
+.onoffswitch-label:before {
+  content: "";
+  height: 22px;
+  display: block;
+  width: 22px;
+  margin: 0px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 21px;
+  border: 2px solid #999999;
+  border-radius: 22px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+  background-color: #1F4F8D;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+  border-color: #1F4F8D;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+  right: 0px;
 }
 
 /*# sourceMappingURL=dashboard.css.map */

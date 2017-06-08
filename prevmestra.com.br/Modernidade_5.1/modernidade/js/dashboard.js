@@ -39,6 +39,7 @@ $(document).ready(function(){
 		labelFontSize : 50,
 	};
 
+
 	var ctxPie = document.getElementById("pie-chart").getContext("2d");
 	var myPie = new Chart(ctxPie).Doughnut(pieData,optionsPie);
 

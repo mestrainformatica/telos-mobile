@@ -9,7 +9,8 @@
       
         
                         
-          <li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Previdenciario/plc/midia/minus.gif);">
+          <!--<li class="menubar" style="background-image: url(http://www.prevmestra.com.br/Mestra_Previdenciario/plc/midia/minus.gif);"> -->
+          <li class="menubar" >
 
   <a href="http://www.prevmestra.com.br/Mestra_Previdenciario/funcionariosman.do?evento=x&idRotina=731#" id="M00000Actuator" class="actuator">Cadastro</a>
     <ul id="M00000Menu" class="menu" style="display: block;">

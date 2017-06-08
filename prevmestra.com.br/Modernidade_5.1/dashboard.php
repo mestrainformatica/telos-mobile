@@ -188,6 +188,8 @@
 
 	<div id="conteudo">
 		<div id="left-column" role="complementary">
+		
+
 			<?php include("includes/menu.php"); ?>	
 		</div>
 
