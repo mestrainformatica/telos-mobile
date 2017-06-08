@@ -43,9 +43,9 @@ $(document).ready(function()
 						// 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 						'Bom dia, senhor Adair! Em que podemos ajudar?',
 						'Seu Adair, será nos dias 21, 22 e 23.',
-						'Até dois dias úteis antes da abertura da janela.',
-						'Mais alguma dúvida?',
-						'A Fundação Mestra agradece pelo contato. Tenha um ótimo dia!'
+						'At&eacute; dois dias &uacute;teis antes da abertura da janela.',
+						'Mais alguma d&uacute;vida?',
+						'A Funda&ccedil;&atilde;o Mestra agradece pelo contato. Tenha um &oacute;timo dia!'
 					]
 				}
 			];
