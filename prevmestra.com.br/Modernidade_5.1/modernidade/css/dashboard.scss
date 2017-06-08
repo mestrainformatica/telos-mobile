@@ -9,8 +9,8 @@
 #dashboard-content{
 	
 	@media(min-width:768px){
-		margin-left:-35px;
-	margin-right:-35px;
+		margin-left:-25px;
+		margin-right:-25px;
 	}
 	
 	.section{
@@ -120,6 +120,7 @@
 		&.type-7{background:#ABDBDA;color: #1f8482;}
 		&.type-1{background:#C7E3FF;color:#13508c}
 		&.type-2{background:#C6D7F9;color:#2b7a9e;}
+		&.type-3{background:#FFCCC5;color:#bd6d62;}
 	}
 
 	.prazo-danger{
@@ -233,6 +234,11 @@
 		    width: 0;
 		}
 			
+	}
+
+	.table-responsive.atendimento {
+	    height: 230px;
+	    overflow-y: auto;
 	}
 
 }

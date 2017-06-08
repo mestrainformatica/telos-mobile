@@ -757,8 +757,20 @@ window.Chart = function(context){
             ctx.font = config.labelFontStyle + " " + config.labelFontSize+"px " + config.labelFontFamily;
             ctx.fillStyle = 'black';
             ctx.textBaseline = 'middle';
-            ctx.fillText(data[0].value + "", width/2 - 20, width/2, 200);
 
+            /* @HM */
+            if(config.labelTxt){
+
+                var countData = 0;
+                for(var i = 0;i<data.length;i++){
+                    countData += data[i].value;
+                }
+
+                ctx.fillText( "", width/2 - 20, width/2, 200);
+            }else{
+                ctx.fillText(data[0].value + "%", width/2 - 20, width/2, 200);
+            }
+            
             var cumulativeAngle = -Math.PI/2,
                 scaleAnimation = 1,
                 rotateAnimation = 1;
