@@ -9,27 +9,29 @@ $(document).ready(function(){
     
 
 	var pieData = [
-		// {
-  //     value: 15,
-  //     color:"#C9E5F2"
-  //   },
-		// {
-  //     value: 15,
-  //     color:"#ff8271"
-  //   },
-		// {
-  //     value: 28,
-  //     color:"#F0BE73"
-  //   },
-		// {
-  //     value: 28,
-  //     color:"#ABDBDA",
-  //     label: "6 - Teste de Solicitação"
-  //   },
-		// {
-  //     value: 14,
-  //     color:"#8fc7ff"
-  //   }
+		{
+      value: 15,
+      color:"#C9E5F2"
+    },
+		{
+      value: 15,
+      color:"#ff8271"
+    },
+		{
+      value: 28,
+      color:"#F0BE73"
+    },
+		{
+      value: 28,
+      color:"#ABDBDA",
+      label: "6 - Teste de Solicitação"
+    },
+		{
+      value: 14,
+      color:"#8fc7ff"
+    }
+
+  /*    
   {
       value: 3.75,
       color:"#C9E5F2"
@@ -51,14 +53,15 @@ $(document).ready(function(){
       value: 3.5,
       color:"#8fc7ff"
     }
+    */
 	];
         
 	var optionsPie = { 
 		segmentShowStroke : false,
 		percentageInnerCutout : 50,
-		labelTxt: true,
+		labelTxt: '7',
 		animation: false,
-		labelFontSize : 38,
+		labelFontSize : 50,
 // 		tooltipEvents: [],
 // 		showTooltips: true,
 // 		onAnimationComplete: function() {

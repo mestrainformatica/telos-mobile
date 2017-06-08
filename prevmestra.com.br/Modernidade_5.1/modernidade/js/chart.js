@@ -761,12 +761,12 @@ window.Chart = function(context){
             /* @HM */
             if(config.labelTxt){
 
-                var countData = 0;
-                for(var i = 0;i<data.length;i++){
-                    countData += data[i].value;
-                }
+                // var countData = 0;
+                // for(var i = 0;i<data.length;i++){
+                //     countData += data[i].value;
+                // }
 
-                ctx.fillText(countData, width/2 - 20, width/2, 200);
+                ctx.fillText(config.labelTxt, width/2 - 20, width/2, 200);
             }else{
                 ctx.fillText(data[0].value + "%", width/2 - 20, width/2, 200);
             }
