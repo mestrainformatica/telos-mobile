@@ -35,12 +35,17 @@ $(document).ready(function()
 			var cont = 0;
 			var adminUsers = [
 				{
-					name: 'Marcelo',
+					name: 'Jorge Celso Pinto',
 					function: 'Atendimento ao Cliente',
 					messages: [
-						'Olá',
-						'Praesent accumsan gravida massa, eget placerat ex viverra non. Vestibulum eu aliquam libero. Sed auctor mollis lobortis. Mauris egestas facilisis orci',
-						'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+						// 'Olá',
+						// 'Praesent accumsan gravida massa, eget placerat ex viverra non. Vestibulum eu aliquam libero. Sed auctor mollis lobortis. Mauris egestas facilisis orci',
+						// 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+						'Bom dia, senhor Adair! Em que podemos ajudar?',
+						'Seu Adair, será nos dias 21, 22 e 23.',
+						'Até dois dias úteis antes da abertura da janela.',
+						'Mais alguma dúvida?',
+						'A Fundação Mestra agradece pelo contato. Tenha um ótimo dia!'
 					]
 				}
 			];
@@ -122,7 +127,7 @@ $(document).ready(function()
 			});
 
 
-			$('#hm-syscall-canvas textarea.msg').keydown(function(e){
+			$('#hm-syscall-canvas textarea.msg').keydown(function(event){
 				if (event.keyCode == 13) {
 			        $(this.form).submit();
 			        return false;

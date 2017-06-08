@@ -275,10 +275,38 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
+								<!-- <tr>
 									<td class="col-2 name">Alessandra Borges Filho</td>
 									<td class="col-1"> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
 									<td> <span class="type type-default">3 - A RESPONDER</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr> -->
+								<tr>
+									<td class="col-1 name">adalea tatiana furtado</td>
+									<td class="col-1"> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
+									<td> <span class="type type-default">3 - A RESPONDER</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">adriana conceicao parente</td>
+									<td class="col-1"> <span class="type type-1">1 - SOLICITAÇÃO</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">alessandro ferreira </td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">ciro lucas mendes</td>
+									<td class="col-1"> <span class="type type-2">2 - PEDIDO DE INFORMAÇÃO</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
 									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
 								</tr>
@@ -290,7 +318,7 @@
 				</div>
 
 				<div class="section atendimento">
-					<h3 class="title">Atendimento em aberto a vencer</h3>
+					<h3 class="title">Atendimento designado em aberto a vencer</h3>
 		
 					<div class="table-responsive">
 
@@ -306,16 +334,81 @@
 								</tr>
 							</thead>
 							<tbody>
+								
 								<tr>
-									<td class="col-1 name">Alessandra Borges Filho</td>
+									<td class="col-1 name">rafael carvalho alves</td>
 									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
-									<td class="col-1"> <span class="type type-6">6 - ATENDIMENTO ATIVO</span> </td>
-									<td> <span class="type type-default">3 - A RESPONDER</span> </td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
 									<td><span class="prazo-danger">Atrasado</span></td>
 									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
 								</tr>
 								<tr>
-									<td class="col-1 name">Alessandra Borges Filho</td>
+									<td class="col-1 name">armando furtuoso filho leal </td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">washington gabriel pacheco</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">renan crivellari formagio</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">andre akira paes</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">angelica lucia lins</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">wagner ademir costa</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">jose rodrigo ferreira</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">monica ines pinto</td>
+									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
+									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
+									<td> <span class="type type-default">2 - AGENDADO</span> </td>
+									<td><span class="prazo-danger">Atrasado</span></td>
+									<td> <div class="custom-progress-bar"><div class="progress" style="width: 90%"></div></div> </td>
+								</tr>
+								<tr>
+									<td class="col-1 name">aline alves weirich</td>
 									<td class="col-1"><b class="underline">Adriano Cardoso Domiciano</b></td>
 									<td class="col-1"> <span class="type type-7">7 - NEGOCIAÇÃO DE EMPRÉSTIMOS</span> </td>
 									<td> <span class="type type-default">2 - AGENDADO</span> </td>

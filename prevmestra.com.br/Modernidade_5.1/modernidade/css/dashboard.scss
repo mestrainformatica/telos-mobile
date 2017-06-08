@@ -119,6 +119,8 @@
 		
 		&.type-6{background: #C9E5F2;color: #2b7a9e;}
 		&.type-7{background:#ABDBDA;color: #1f8482;}
+		&.type-1{background:#C7E3FF;color:#13508c}
+		&.type-2{background:#C6D7F9;color:#2b7a9e;}
 	}
 
 	.prazo-danger{
@@ -154,6 +156,9 @@
 			tr{
 				td{
 					border-top:1px solid #F0F0F0;
+					&.name{
+						text-transform: capitalize;
+					}
 				}
 			}
 		}

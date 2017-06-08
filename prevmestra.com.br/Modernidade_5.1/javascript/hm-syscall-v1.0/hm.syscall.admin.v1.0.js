@@ -44,15 +44,17 @@ $(document).ready(function(){
 				var cont = 0;
 				var clientUsers = [
 					{
-						name: 'Alessandra Borges Filho',
+						name: 'Adair Lima Pestana',
 						code: '0000000342-6',
 						fundo: 'MESTRA - FUNDAÇÃO DE PREVIDÊNCIA COMPLEMENTAR',
 						patrocinadora: '001 - MESTRA EQUIPAMENTOS',
 						plano: '01 - PBD - PLANO DE BENEFÍCIO DEFINIDO',
 						messages: [
-							'Olá',
-							'Praesent accumsan gravida massa, eget placerat ex viverra non. Vestibulum eu aliquam libero. Sed auctor mollis lobortis. Mauris egestas facilisis orci',
-							'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+							'Bom dia! Gostaria de tirar uma dúvida.',
+							'Quando será aberta a janela de concessão de empréstimo este mês?',
+							'Até quando posso enviar o contrato?',
+							'Obrigado Jorge.',
+							'Não só isso msm.'
 						]
 					}
 				];
@@ -96,7 +98,7 @@ $(document).ready(function(){
 				});
 
 
-				$('#hm-syscall-canvas textarea.msg').keydown(function(e){
+				$('#hm-syscall-canvas textarea.msg').keydown(function(event){
 					if (event.keyCode == 13) {
 				        $(this.form).submit();
 				        return false;
@@ -109,7 +111,7 @@ $(document).ready(function(){
 
 				$('#hm-syscall-canvas form.conversation').on('submit', function(){
 
-					if($('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val() != ''){
+					if($('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val() != '' && cont != -1){
 
 						var senderMsg = $('.conversation textarea.msg[name="send-msg"]').val();
 						var receptorMsg = clientUsers[0].messages[cont+1];
@@ -134,17 +136,13 @@ $(document).ready(function(){
 								if(cont+1 < clientUsers[0].messages.length-1){
 									cont++;
 								}else{
-									cont=0;
+									cont = -1;
 								}
 
 							}, 2000);
 
 						}, 2000);
-						
-
-						
-						
-
+					
 					}
 
 					return false;

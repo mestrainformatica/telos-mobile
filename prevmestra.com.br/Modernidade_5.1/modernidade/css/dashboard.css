@@ -108,6 +108,14 @@
   background: #ABDBDA;
   color: #1f8482;
 }
+#dashboard-content .type.type-1 {
+  background: #C7E3FF;
+  color: #13508c;
+}
+#dashboard-content .type.type-2 {
+  background: #C6D7F9;
+  color: #2b7a9e;
+}
 #dashboard-content .prazo-danger {
   font-size: 13px;
   color: #E70000;
@@ -132,6 +140,9 @@
 }
 #dashboard-content .table.atendimento-table tbody tr td {
   border-top: 1px solid #F0F0F0;
+}
+#dashboard-content .table.atendimento-table tbody tr td.name {
+  text-transform: capitalize;
 }
 #dashboard-content .table.atendimento-table .name {
   font-size: 14px;
