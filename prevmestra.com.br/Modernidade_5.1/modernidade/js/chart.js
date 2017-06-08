@@ -17219,3 +17219,23 @@ module.exports = function(Chart) {
 },{"6":6}]},{},[7])(7)
 });
 
+// Chart.plugins.register({
+//     beforeDraw: function(chart) {
+//         var data = chart.data.datasets[0].data;
+//         var sum = data.reduce(function(a, b) {
+//             return a + b;
+//         }, 0);
+//         var width = chart.chart.width,
+//             height = chart.chart.height,
+//             ctx = chart.chart.ctx;
+//         ctx.restore();
+//         var fontSize = (height / 10).toFixed(2);
+//         ctx.font = fontSize-8 + "px Arial";
+//         ctx.textBaseline = "middle";
+//         var text = sum,
+//             textX = Math.round((width - ctx.measureText(text).width) / 2),
+//             textY = height / 2;
+//         ctx.fillText(text+" abertos", textX-20, textY);
+//         ctx.save();
+//     }
+// });

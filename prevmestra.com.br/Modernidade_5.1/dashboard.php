@@ -199,7 +199,7 @@
 				
 				<div class="charts-section section">
 					<div class="row">
-						<div class="col-md-12 col-lg-10">
+						<div class="col-md-11 col-lg-9">
 							<div class="pie">
 								<div class="row">
 									<div class="col-sm-12">
@@ -218,7 +218,7 @@
 												3.722
 											</span>
 											<span class="name">
-												Total Resolvidos <img src="modernidade/img/chart-icon.svg" alt="">
+												Resolvidos <img src="modernidade/img/chart-icon.svg" alt="">
 											</span>
 										</div>
 									</div>
@@ -261,7 +261,7 @@
 							</div>
 
 						</div>
-						<div class="col-lg-14 col-md-12">
+						<div class="col-lg-15 col-md-13">
 							<div class="line">
 
 								<div class="row">

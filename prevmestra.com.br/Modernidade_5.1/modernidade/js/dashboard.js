@@ -99,14 +99,14 @@ var myDoughnutChart = new Chart(document.getElementById("pie-chart").getContext(
 	var lineCharts = {
 		type: 'line',
 		data:{
-			labels : ["01/Jun","06/Jun","10/Jun","15/Jun","18/Jun","20/Jun","23/Jun","28/Jun"],
+			labels : ["01/Jun","06/Jun","10/Jun","15/Jun","18/Jun"],
 			datasets : [
 				{
 					backgroundColor: "rgba(0,173,164,0.1)", 
 					borderColor: "rgba(0,173,164,1)",
 					pointColor : "rgba(0,173,164,1)",
 					pointStrokeColor : "transparent",
-					data : [2,5,5,5,4,4,5,6],
+					data : [2,3,3,5,4],
 					label: "Resolvidos"
 				},
 				{
@@ -114,14 +114,19 @@ var myDoughnutChart = new Chart(document.getElementById("pie-chart").getContext(
 					borderColor: "rgba(83,133,197,1)",  //laranja
 					pointColor : "rgba(83,133,197,1)",
 					pointStrokeColor : "transparent",
-					data : [8,9,8,8,7,7,8,8],
+					data : [4,4,5,6,7],
 					label: "Abertos"
 				}
 			]
 		},
 	options: {
 
-        scales: {
+        scales: { 
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }],
             yAxes: [{
                 stacked: true
             }]
@@ -142,7 +147,8 @@ var myDoughnutChart = new Chart(document.getElementById("pie-chart").getContext(
 }
 	};
 
-
+document.getElementById("line-chart-1").style.height = '500px';
+document.getElementById("line-chart-1").style.width = '100%';
 	var myLineChart = new Chart(document.getElementById("line-chart-1").getContext("2d"), lineCharts);
 
 });
