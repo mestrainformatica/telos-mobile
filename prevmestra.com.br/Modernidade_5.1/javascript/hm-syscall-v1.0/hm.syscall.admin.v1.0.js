@@ -118,7 +118,7 @@ $(document).ready(function(){
 
 						$('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val('');
 
-						$(this).find('.messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+senderMsg+'</div><div class="img"><img src="" alt=""></div></div>');
+						$(this).find('.messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+senderMsg+'</div><div class="img"><img src="'+URL+'img/67.jpg'+'" alt=""></div></div>');
 						
 						scrollChat($(this).find('.messages'));
 
