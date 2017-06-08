@@ -72,6 +72,9 @@
   letter-spacing: 0;
   margin-top: 10px;
 }
+#dashboard-content .section.charts-section .line .chart {
+  margin: 25px 0;
+}
 #dashboard-content .section.charts-section .line img.chart {
   width: 100%;
   height: auto;
@@ -210,6 +213,9 @@
 #dashboard-content .table-responsive.atendimento {
   height: 230px;
   overflow-y: auto;
+}
+#dashboard-content #line-chart-1 {
+  width: 100% !important;
 }
 
 li.hm-chat-menu {

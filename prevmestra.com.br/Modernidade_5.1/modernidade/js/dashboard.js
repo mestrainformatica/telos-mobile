@@ -39,7 +39,6 @@ $(document).ready(function(){
 		labelFontSize : 50,
 	};
 
-
 	var ctxPie = document.getElementById("pie-chart").getContext("2d");
 	var myPie = new Chart(ctxPie).Doughnut(pieData,optionsPie);
 
@@ -47,25 +46,29 @@ $(document).ready(function(){
 
 	lineCharts[0] = {
 		data:{
-			labels : ["label1","label2","label3","label4","label5","label6","label7", "label8"],
+			labels : ["","","","","","","", ""],
 			datasets : [
 				{
-					fillColor : "rgba(220,220,220,0.5)",
+					fillColor : "rgba(220,220,220,0.0)",
 					strokeColor : "rgba(220,220,220,1)",
-					pointColor : "rgba(220,220,220,1)",
-					pointStrokeColor : "#fff",
-					data : [20,45,25,10,30,60,50]
+					pointColor : "rgba(220,220,220,0)",
+					pointStrokeColor : "transparent",
+					data : [20,45,25,10,30,60,50],
 				},
 				{
-					fillColor : "rgba(151,187,205,0.5)",
+					fillColor : "rgba(151,187,205,0.0)",
 					strokeColor : "rgba(151,187,205,1)",
-					pointColor : "rgba(151,187,205,1)",
-					pointStrokeColor : "#fff",
+					pointColor : "rgba(151,187,205,0)",
+					pointStrokeColor : "transparent",
 					data : [30,20,15,10,20,45,60]
 				}
 			]
 		},
-		// ctx: document.getElementById("line-chart-1").getContext("2d")
+		ctx: document.getElementById("line-chart-1").getContext("2d"),
+		options: {bezierCurve : false, label: false, animation: false}
 	};
+
+
+	var myLineChart = new Chart(lineCharts[0].ctx).Line(lineCharts[0].data, lineCharts[0].options);
 
 });

@@ -188,8 +188,6 @@
 
 	<div id="conteudo">
 		<div id="left-column" role="complementary">
-		
-
 			<?php include("includes/menu.php"); ?>	
 		</div>
 
@@ -261,8 +259,10 @@
 										<h3 class="title">Visão geral dos chamados</h3>
 									</div>
 								</div>
-
-								<img class="chart" src="modernidade/img/line-chart.jpg" alt="">
+								<div class="chart">
+									<canvas id="line-chart-1"></canvas>
+								</div>
+								
 							</div>
 						</div>
 					</div>

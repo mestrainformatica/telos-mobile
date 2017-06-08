@@ -83,6 +83,10 @@
 					margin-top: 10px;
 				}
 
+				.chart{
+					margin:25px 0;
+				}
+
 				img.chart{
 					width: 100%;
 					height: auto;
@@ -242,7 +246,9 @@
 	    overflow-y: auto;
 	}
 
-	
+	#line-chart-1{
+		width: 100% !important;
+	}
 
 }
 
