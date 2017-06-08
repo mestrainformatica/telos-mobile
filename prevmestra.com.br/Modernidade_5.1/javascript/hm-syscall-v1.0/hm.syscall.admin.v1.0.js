@@ -111,7 +111,7 @@ $(document).ready(function(){
 
 				$('#hm-syscall-canvas form.conversation').on('submit', function(){
 
-					if($('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val() != '' && cont != -1){
+					if($('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val() != ''){
 
 						var senderMsg = $('.conversation textarea.msg[name="send-msg"]').val();
 						var receptorMsg = clientUsers[0].messages[cont+1];
@@ -122,26 +122,29 @@ $(document).ready(function(){
 						
 						scrollChat($(this).find('.messages'));
 
-
-						var element = $(this);
-						setTimeout(function() {
-							$('#hm-syscall-canvas .typing-load').show();
-
+						if(cont != -1){
+							var element = $(this);
 							setTimeout(function() {
-								$('#hm-syscall-canvas .typing-load').hide();
-								// $('#hm-syscall-canvas .chat-msg.loading').remove();
-								$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img src="" alt=""></div></div>');
-								scrollChat($('form.conversation .messages'));
+								$('#hm-syscall-canvas .typing-load').show();
 
-								if(cont+1 < clientUsers[0].messages.length-1){
-									cont++;
-								}else{
-									cont = -1;
-								}
+								setTimeout(function() {
+									$('#hm-syscall-canvas .typing-load').hide();
+									// $('#hm-syscall-canvas .chat-msg.loading').remove();
+									$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img src="" alt=""></div></div>');
+									scrollChat($('form.conversation .messages'));
+
+									if(cont+1 < clientUsers[0].messages.length-1){
+										cont++;
+									}else{
+										cont = -1;
+									}
+
+								}, 2000);
 
 							}, 2000);
+						}
 
-						}, 2000);
+						
 					
 					}
 
@@ -173,7 +176,7 @@ $(document).ready(function(){
 
 				$('#hm-syscall-canvas .confirm-close .button-close').on('click', function(){
 					$('#hm-syscall-canvas .confirm-close').hide();
-					restartChat();
+					// restartChat();
 					toggleChat();
 				});
 
