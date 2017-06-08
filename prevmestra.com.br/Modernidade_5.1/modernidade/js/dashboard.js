@@ -37,11 +37,11 @@ $(document).ready(function(){
  //    }
         
 	var options = { 
+		segmentShowStroke : false,
 		percentageInnerCutout : 50,
 		labelTxt: true,
-		animation: false
-		// labelFontSize: 16
-		
+		animation: false,
+		labelFontSize : 50,
 	};
 
 
@@ -59,7 +59,7 @@ $(document).ready(function(){
  //    	}
 	// });
 
-	var ctx= document.getElementById("pie-chart").getContext("2d");
+	var ctx = document.getElementById("pie-chart").getContext("2d");
 	var myPie = 
 	// new Chart(ctx).Doughnut(pieData, options);
 
