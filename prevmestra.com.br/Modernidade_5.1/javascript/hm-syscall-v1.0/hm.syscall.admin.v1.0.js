@@ -46,15 +46,15 @@ $(document).ready(function(){
 					{
 						name: 'Adair Lima Pestana',
 						code: '0000000342-6',
-						fundo: 'MESTRA - FUNDAÇÃO DE PREVIDÊNCIA COMPLEMENTAR',
+						fundo: 'MESTRA - FUNDA&Ccedil;&Atilde;O DE PREVID&Ecirc;NCIA COMPLEMENTAR',
 						patrocinadora: '001 - MESTRA EQUIPAMENTOS',
-						plano: '01 - PBD - PLANO DE BENEFÍCIO DEFINIDO',
+						plano: '01 - PBD - PLANO DE BENEF&Iacute;CIO DEFINIDO',
 						messages: [
-							'Bom dia! Gostaria de tirar uma dúvida.',
-							'Quando será aberta a janela de concessão de empréstimo este mês?',
-							'Até quando posso enviar o contrato?',
+							'Bom dia! Gostaria de tirar uma d&uacute;vida.',
+							'Quando ser&aacute; aberta a janela de concess&atilde;o de empr&eacute;stimo este m&ecirc;s?',
+							'At&eacute; quando posso enviar o contrato?',
 							'Obrigado Jorge.',
-							'Não só isso msm.'
+							'N&atilde;o s&oacute; isso msm.'
 						]
 					}
 				];
