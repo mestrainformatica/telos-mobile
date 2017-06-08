@@ -259,7 +259,16 @@
 
 								<div class="row">
 									<div class="col-sm-24">
-										<h3 class="title">Visão geral dos chamados</h3>
+										<!-- <h3 class="title">Visão geral dos chamados</h3> -->
+										<div class="btn-group">
+  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <h3 class="title">Visão geral dos chamados</h3>  <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Visão geral dos chamados</a></li>
+    <li><a href="#">Visão geral dos chamados</a></li>
+  </ul>
+</div>
 									</div>
 								</div>
 								<div class="chart">

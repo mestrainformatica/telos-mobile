@@ -66,11 +66,19 @@
   padding: 20px;
   padding-left: 0;
 }
-#dashboard-content .section.charts-section .line .title {
+#dashboard-content .section.charts-section .line a.dropdown-toggle {
+  color: #656D78;
+}
+#dashboard-content .section.charts-section .line a.dropdown-toggle .title {
   font-size: 18px;
   color: #656D78;
   letter-spacing: 0;
   margin-top: 10px;
+  display: inline-block;
+}
+#dashboard-content .section.charts-section .line a.dropdown-toggle:hover, #dashboard-content .section.charts-section .line a.dropdown-toggle:focus {
+  text-decoration: none;
+  box-shadow: none;
 }
 #dashboard-content .section.charts-section .line .chart {
   margin: 25px 0;
