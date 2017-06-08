@@ -39,6 +39,9 @@ $(document).ready(function()
 					function: 'Atendimento ao Cliente',
 					image: 'img/67.jpg',
 					messages: [
+						// 'Olá',
+						// 'Praesent accumsan gravida massa, eget placerat ex viverra non. Vestibulum eu aliquam libero. Sed auctor mollis lobortis. Mauris egestas facilisis orci',
+						// 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 						'Bom dia, senhor Adair! Em que podemos ajudar?',
 						'Seu Adair, será nos dias 21, 22 e 23.',
 						'At&eacute; dois dias &uacute;teis antes da abertura da janela.',
@@ -48,7 +51,7 @@ $(document).ready(function()
 				}
 			];
 
-			$('.conversation .head .box-img .circle-img').append('<img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/>');
+			$('.conversation .head .box-img .circle-img').append('<img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/>')
 
 			var msgHTML = '<div class="chat-msg"><div class="arrow"></div><div class="txt"></div><div class="img"><img src="" alt=""></div></div>';
 
@@ -103,10 +106,10 @@ $(document).ready(function()
 
 				$('#hm-syscall-canvas .conversation .form-control').focus();
 
-				$('#hm-syscall-canvas .conversation .messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+$(this).find('.msg-init').val()+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
+				$('#hm-syscall-canvas .conversation .messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+$(this).find('.msg-init').val()+'</div><div class="img"><img src="" alt=""></div></div>');
 
-				$('#hm-syscall-canvas .conversation .messages').append('<p class="chat-return">Chat Iniciado</p>');
-			
+				$('#hm-syscall-canvas .conversation .messages').append('<p class="chat-return">Chat Iniciado</p>')
+				// $('#hm-syscall-canvas .conversation .chat-msg.sender .txt').html($(this).find('.msg-init').val());
 				
 				
 				
@@ -118,7 +121,7 @@ $(document).ready(function()
 
 						$('#hm-syscall-canvas .typing-load').hide();
 
-						$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[0]+'</div><div class="img"><img src="" alt=""></div></div>');
+						$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[0]+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
 					}, 2000);
 
 				}, 2000);
@@ -143,7 +146,7 @@ $(document).ready(function()
 
 					$('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val('');
 
-					$(this).find('.messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+senderMsg+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
+					$(this).find('.messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+senderMsg+'</div><div class="img"><img src="" alt=""></div></div>');
 					
 					scrollChat($(this).find('.messages'));
 
@@ -155,7 +158,7 @@ $(document).ready(function()
 
 						setTimeout(function() {
 							$('#hm-syscall-canvas .typing-load').hide();
-							$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img src="" alt=""></div></div>');
+							$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
 							scrollChat($('form.conversation .messages'));
 
 							if(cont+1 < adminUsers[0].messages.length-1){
