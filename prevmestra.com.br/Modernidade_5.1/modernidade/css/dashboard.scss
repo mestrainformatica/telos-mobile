@@ -24,6 +24,74 @@
 			margin:0;
 			margin-bottom: 15px;
 		}
+
+		&.charts-section{
+			
+			padding:0;
+
+			.pie{
+				@extend %clearfix;
+				padding:20px;
+				@media(min-width:992px){
+					border-right:1px solid #F0F0F0;
+				}
+				
+				img.chart{
+					display: block;
+					margin:0 auto;
+				}
+
+				@extend %clearfix;
+				
+				.count{
+					margin:5px 0;
+					&.col-right{
+						@media(min-width:768px){
+							float: right;
+						}
+					}
+					@extend %clearfix;
+					span.num{
+						font-size: 24px;
+						color: #212121;
+						font-weight: 500;
+						float: left;
+						margin-right: 5px;
+					}
+					span.name{
+						font-size: 14px;
+						color: #727272;
+						font-weight: 300;
+						display: inline-block;
+						float: left;
+						margin-top: 7px;
+						img{
+							margin-left: 5px;
+							margin-top: -5px;
+						}
+					}
+				}
+			}
+
+			.line{
+				@extend %clearfix;
+				padding:20px;padding-left:0;
+				
+				.title{
+					font-size: 18px;
+					color: #656D78;
+					letter-spacing: 0;
+					margin-top: 10px;
+				}
+
+				img.chart{
+					width: 100%;
+					height: auto;
+					display: block;
+					margin:0 auto;
+				}
+			}
+		}
 	}
 	
 	.custom-progress-bar {

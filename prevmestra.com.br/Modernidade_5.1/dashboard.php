@@ -194,11 +194,66 @@
 				
 				<div class="charts-section section">
 					<div class="row">
-						<div class="col-sm-8">
-							
+						<div class="col-md-12 col-lg-10">
+							<div class="pie">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="count">
+											<span class="num">
+												150
+											</span>
+											<span class="name">
+												Abertos <img src="modernidade/img/chart-icon.svg" alt="">
+											</span>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="count col-right">
+											<span class="num">
+												4.501
+											</span>
+											<span class="name">
+												Resolvidos <img src="modernidade/img/chart-icon.svg" alt="">
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-24">
+										<img class="chart" src="modernidade/img/pie-chart.jpg" alt="">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<div class="count">
+											<span class="num">
+												10
+											</span>
+											<span class="name">
+												Atrasados <img src="modernidade/img/chart-icon.svg" alt="">
+											</span>
+										</div>
+
+									</div>
+									<div class="col-sm-12 ">
+										
+									</div>
+								</div>
+								
+							</div>
+
 						</div>
-						<div class="col-sm-16">
-							
+						<div class="col-lg-14 col-md-12">
+							<div class="line">
+
+								<div class="row">
+									<div class="col-sm-24">
+										<h3 class="title">Visão geral dos chamados</h3>
+									</div>
+								</div>
+
+								<img class="chart" src="modernidade/img/line-chart.jpg" alt="">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -243,7 +298,7 @@
 							<thead>
 								<tr>
 									<td class="col-1">Nome</td>
-									<td class="col-1">Responsável</td>
+									<td class="col-1">Retaguarda</td>
 									<td class="col-1">Tipo</td>
 									<td>Situação</td>
 									<td>Prazo</td>
@@ -278,7 +333,7 @@
 					<h3 class="title">Pesquisa de satisfação - Junho/17</h3>
 
 					<div class="row">
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<div class="av">
 								<div class="text">
 									<b>Avaliação Xxxx</b>
@@ -303,7 +358,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<div class="av">
 								<div class="text">
 									<b>Avaliação Xxxx</b>
@@ -328,7 +383,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-8">
+						<div class="col-md-8">
 							<div class="av">
 								<div class="text">
 									<b>Avaliação Xxxx</b>

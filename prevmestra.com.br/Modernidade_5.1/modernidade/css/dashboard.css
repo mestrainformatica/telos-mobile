@@ -1,4 +1,4 @@
-#dashboard-content .av:after, #dashboard-content .custom-progress-bars:after {
+#dashboard-content .section.charts-section .pie:after, #dashboard-content .section.charts-section .pie .count:after, #dashboard-content .section.charts-section .line:after, #dashboard-content .av:after, #dashboard-content .custom-progress-bars:after {
   clear: both;
   display: block;
   content: "";
@@ -20,6 +20,64 @@
   padding: 0;
   margin: 0;
   margin-bottom: 15px;
+}
+#dashboard-content .section.charts-section {
+  padding: 0;
+}
+#dashboard-content .section.charts-section .pie {
+  padding: 20px;
+}
+@media (min-width: 992px) {
+  #dashboard-content .section.charts-section .pie {
+    border-right: 1px solid #F0F0F0;
+  }
+}
+#dashboard-content .section.charts-section .pie img.chart {
+  display: block;
+  margin: 0 auto;
+}
+#dashboard-content .section.charts-section .pie .count {
+  margin: 5px 0;
+}
+@media (min-width: 768px) {
+  #dashboard-content .section.charts-section .pie .count.col-right {
+    float: right;
+  }
+}
+#dashboard-content .section.charts-section .pie .count span.num {
+  font-size: 24px;
+  color: #212121;
+  font-weight: 500;
+  float: left;
+  margin-right: 5px;
+}
+#dashboard-content .section.charts-section .pie .count span.name {
+  font-size: 14px;
+  color: #727272;
+  font-weight: 300;
+  display: inline-block;
+  float: left;
+  margin-top: 7px;
+}
+#dashboard-content .section.charts-section .pie .count span.name img {
+  margin-left: 5px;
+  margin-top: -5px;
+}
+#dashboard-content .section.charts-section .line {
+  padding: 20px;
+  padding-left: 0;
+}
+#dashboard-content .section.charts-section .line .title {
+  font-size: 18px;
+  color: #656D78;
+  letter-spacing: 0;
+  margin-top: 10px;
+}
+#dashboard-content .section.charts-section .line img.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 #dashboard-content .custom-progress-bar {
   width: 100%;
