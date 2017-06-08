@@ -43,7 +43,26 @@ $(document).ready(function(){
 		// labelFontSize: 16
 		
 	};
+
+
+	// Chart.types.Doughnut.extend({
+	// 	name: "DoughnutAlt",
+	// 	draw: function () {
+ //        Chart.types.Doughnut.prototype.draw.apply(this, arguments);
+	//         this.chart.ctx.textBaseline = "middle";
+	//         this.chart.ctx.fillStyle = 'black'
+	//         this.chart.ctx.font = "50px Roboto";
+	//         this.chart.ctx.textAlign = "center";
+	//         this.chart.ctx.fillText(distributionChartData[3] + " %", 135, 120);
+	//         this.chart.ctx.font = "20px Roboto";
+	//         this.chart.ctx.fillText((distributionChartData[0] + distributionChartData[1] + distributionChartData[2]) + " Responses", 135, 160);
+ //    	}
+	// });
+
 	var ctx= document.getElementById("pie-chart").getContext("2d");
 	var myPie = 
-	new Chart(ctx).Doughnut(pieData, options);
+	// new Chart(ctx).Doughnut(pieData, options);
+
+	new Chart(ctx).Doughnut(pieData,options);
+
 });

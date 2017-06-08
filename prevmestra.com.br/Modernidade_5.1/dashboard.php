@@ -375,7 +375,7 @@
 						<div class="col-md-12">
 							<div class="av">
 								<div class="text">
-									<b>Avaliação Xxxx</b>
+									<b>Avaliação Atendente</b>
 									<p>Lorem ipsum sit dolro amet</p>
 								</div>
 								<div class="prog">
@@ -400,7 +400,7 @@
 						<div class="col-md-12">
 							<div class="av">
 								<div class="text">
-									<b>Avaliação Xxxx</b>
+									<b>Conhecimento Atendente</b>
 									<p>Lorem ipsum sit dolro amet</p>
 								</div>
 								<div class="prog">
@@ -425,7 +425,7 @@
 						<div class="col-md-12">
 							<div class="av">
 								<div class="text">
-									<b>Avaliação Xxxx</b>
+									<b>Resolvido</b>
 									<p>Lorem ipsum sit dolro amet</p>
 								</div>
 								<div class="prog">
@@ -450,7 +450,7 @@
 						<div class="col-md-12">
 							<div class="av">
 								<div class="text">
-									<b>Avaliação Xxxx</b>
+									<b>Canais</b>
 									<p>Lorem ipsum sit dolro amet</p>
 								</div>
 								<div class="prog">
