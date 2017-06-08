@@ -2,33 +2,26 @@ $(document).ready(function(){
 
 	var pieData = [
 		{
-          value: 1,
-          color:"#7FBDFA" //1
-        },
-        {
-          value : 2,
-          color : "#C9E5F2" //2
-        },
-        {
-          value: 1,
-          color:"#F78979" //3
-        },
-        {
-          value : 0,
-          color : "#F0BE73" //4
-        },
-        {
-          value: 0,
-          color:"#A4ECA4" //5
-        },
-        {
-        	value: 1,
-        	color: "#ABDBDA" //6 
-        },
-        {
-          value : 2,
-          color : "#6ED9D7" //7
-        }
+      value: 14,
+      color:"#C9E5F2"
+    },
+		{
+      value: 14,
+      color:"#ff8271"
+    },
+		{
+      value: 28,
+      color:"#F0BE73"
+    },
+		{
+      value: 28,
+      color:"#ABDBDA",
+      label: "6 - Teste de Solicitação"
+    },
+		{
+      value: 14,
+      color:"#8fc7ff"
+    }
 	];
         
 	var optionsPie = { 
@@ -37,6 +30,12 @@ $(document).ready(function(){
 		labelTxt: true,
 		animation: false,
 		labelFontSize : 50,
+// 		tooltipEvents: [],
+// 		showTooltips: true,
+// 		onAnimationComplete: function() {
+// 		this.showTooltip(this.segments, true);
+// 		},
+// tooltipTemplate: "<%= label %> - <%= value %>"
 	};
 
 	var ctxPie = document.getElementById("pie-chart").getContext("2d");
@@ -50,7 +49,7 @@ $(document).ready(function(){
 			datasets : [
 				{
 					fillColor : "rgba(239,120,120,0)",
-					strokeColor : "rgba(239,120,120,1)",  //laranjao
+					strokeColor : "rgba(239,120,120,1)",  //laranja
 					pointColor : "rgba(239,120,120,1)",
 					pointStrokeColor : "transparent",
 					data : [50,55,53,52,60,65,60,55],
