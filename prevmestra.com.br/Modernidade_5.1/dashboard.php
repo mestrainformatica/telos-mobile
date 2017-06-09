@@ -261,7 +261,7 @@
 								
 								<div class="btn-group selects">
 								  <a class="dropdown-toggle title" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								 Visão geral relacionamento <span class="caret"></span>
+								 Visão geral todos os chamados <span class="caret"></span>
 								  </a>
 								  <ul class="dropdown-menu">
 								    <li><a data-select="#chart-1" href="#">Visão geral todos os chamados</a></li>

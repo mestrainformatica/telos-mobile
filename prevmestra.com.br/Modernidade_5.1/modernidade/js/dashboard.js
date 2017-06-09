@@ -57,14 +57,14 @@ var myDoughnutChart = new Chart(document.getElementById("pie-chart").getContext(
     {
       type: 'line',
       data:{
-        labels : ["01/Jun","06/Jun","10/Jun","15/Jun","18/Jun"],
+        labels : ["01/Jun","06/Jun","10/Jun","15/Jun","18/Jun","22/Jun","24/Jun","26/Jun","28/Jun","30/Jun"],
         datasets : [
           {
             backgroundColor: "rgba(0,173,164,0.1)", 
             borderColor: "rgba(0,173,164,1)",
             pointColor : "rgba(0,173,164,1)",
             pointStrokeColor : "transparent",
-            data : [2,3,3,5,4],
+            data : [12,13,12,17,12,14,12,15,13,18],
             label: "Resolvidos"
           },
           {
@@ -72,7 +72,7 @@ var myDoughnutChart = new Chart(document.getElementById("pie-chart").getContext(
             borderColor: "rgba(83,133,197,1)",  //laranja
             pointColor : "rgba(83,133,197,1)",
             pointStrokeColor : "transparent",
-            data : [4,4,5,6,7],
+            data : [10,11,11,15,10,10,11,13,10,15],
             label: "Abertos"
           }
         ]
@@ -182,11 +182,16 @@ document.getElementById("line-chart-1").style.width = '100%';
 
     $('.selects .dropdown-menu a').on('click', function(){
 
-      
-
       var selectTabs = $(this).parent().parent().parent().parent();
 
+     
       var target = $(this).attr('data-select');
+
+      if(target == '#chart-1'){
+        selectTabs.find('.dropdown-toggle.title').html('Visão geral todos os chamados <span class="caret"></span>');
+      }else if(target == '#chart-2'){
+        selectTabs.find('.dropdown-toggle.title').html('Visão geral meus chamados <span class="caret"></span>');
+      }
 
       selectTabs.find('.select-tab').hide();
 
