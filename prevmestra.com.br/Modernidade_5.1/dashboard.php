@@ -227,8 +227,12 @@
 									<div class="col-sm-24">
 										<!-- <img class="chart" src="modernidade/img/pie-chart.jpg" alt=""> -->
 										<div class="chart">
+												<div class="number">
+													<span class="num">07</span>
+													<label for="">Abertos</label>
+												</div>
 											<canvas id="pie-chart" height="200" width="200">
-												<p>10</p>
+												
 											</canvas>
 										</div>
 										
@@ -277,15 +281,11 @@
 										  </ul>
 										</div>
 
-										<div class="pull-right">
-											<ul class="legendas">
-											<!-- 	<li>Resolvidos</li>
-												<li>Abertos</li> -->
-											</ul>
-										</div>
 									</div>
-								</div><br />
+								</div>
+								<br />
 								<div class="chart">
+
 									<canvas width="600" height="200" id="line-chart-1"></canvas>
 								</div>
 								

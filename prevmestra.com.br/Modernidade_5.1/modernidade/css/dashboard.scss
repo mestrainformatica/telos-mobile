@@ -37,7 +37,29 @@
 				}
 				
 				.chart{
-					text-align: center;
+					// text-align: center;
+					position: relative !important;
+					.number{
+						position: absolute;
+					    top: 80px;
+					    display: block;
+					    text-align: center;
+					    width: 100%;
+					    color: #1F4F8D;
+
+					    .num{
+					    	font-size: 24px;
+					    	display: block;
+					    	clear:both;
+					    	margin:0;
+					    	line-height:1em;
+					    }
+					    .label{
+							font-size: 14px;
+							color: #1F4F8D;
+							margin:0;
+					    }
+					}
 				}
 
 				@extend %clearfix;
@@ -103,7 +125,7 @@
 
 				.chart{
 					margin:25px 0;
-					// padding:0px 5%;
+					
 					#line-chart-1{
 						width: 100% !important; 
 						height: auto !important;
