@@ -39,6 +39,7 @@
 				.chart{
 					// text-align: center;
 					position: relative !important;
+					margin:20px 0;
 					.number{
 						position: absolute;
 					    top: 80px;
@@ -97,10 +98,15 @@
 			.line{
 				@extend %clearfix;
 				padding:20px;padding-left:0;
+
+				.btn-group.open .dropdown-toggle{
+					box-shadow:none;
+				}
 				
 				a.dropdown-toggle{
 					color: #656D78;
-					.title{
+					&.title{
+						cursor:pointer;
 						font-size: 18px;
 						color: #656D78;
 						letter-spacing: 0;
@@ -126,6 +132,12 @@
 				.chart{
 					margin:25px 0;
 					
+					#line-chart-0{
+						width: 100% !important; 
+						height: auto !important;
+						max-height: 210px !important;/*
+						max-width: 500px !important;*/
+					}
 					#line-chart-1{
 						width: 100% !important; 
 						height: auto !important;
@@ -290,6 +302,16 @@
 	.table-responsive.atendimento {
 	    // height: 230px;
 	    // overflow-y: auto;
+	}
+	
+	.select-tabs{
+		.select-tab{
+			display: none;
+
+			&.active{
+				display: block;
+			}
+		}
 	}
 
 }

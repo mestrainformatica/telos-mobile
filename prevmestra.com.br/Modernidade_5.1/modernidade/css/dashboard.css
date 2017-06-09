@@ -34,6 +34,7 @@
 }
 #dashboard-content .section.charts-section .pie .chart {
   position: relative !important;
+  margin: 20px 0;
 }
 #dashboard-content .section.charts-section .pie .chart .number {
   position: absolute;
@@ -86,10 +87,14 @@
   padding: 20px;
   padding-left: 0;
 }
+#dashboard-content .section.charts-section .line .btn-group.open .dropdown-toggle {
+  box-shadow: none;
+}
 #dashboard-content .section.charts-section .line a.dropdown-toggle {
   color: #656D78;
 }
-#dashboard-content .section.charts-section .line a.dropdown-toggle .title {
+#dashboard-content .section.charts-section .line a.dropdown-toggle.title {
+  cursor: pointer;
   font-size: 18px;
   color: #656D78;
   letter-spacing: 0;
@@ -110,6 +115,13 @@
 }
 #dashboard-content .section.charts-section .line .chart {
   margin: 25px 0;
+}
+#dashboard-content .section.charts-section .line .chart #line-chart-0 {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 210px !important;
+                             /*
+max-width: 500px !important;*/
 }
 #dashboard-content .section.charts-section .line .chart #line-chart-1 {
   width: 100% !important;
@@ -251,6 +263,12 @@ max-width: 500px !important;*/
   height: 100%;
   z-index: 10;
   width: 0;
+}
+#dashboard-content .select-tabs .select-tab {
+  display: none;
+}
+#dashboard-content .select-tabs .select-tab.active {
+  display: block;
 }
 
 li.hm-chat-menu {
