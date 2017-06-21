@@ -166,7 +166,7 @@
 
 	<div class="header-modernidade">
 		<div class="logo-div">
-			<img class="logo" src="modernidade/img/logo-provisoria.png">
+			<img class="logo" src="midia/cifrao-vector-logo.svg">
 		</div>
 		<div class="inner">
 			<div class="navbar-left">

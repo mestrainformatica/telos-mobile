@@ -1,0 +1,297 @@
+body
+{
+	background-color: #1F56A7;
+	font-family: 'Lato', helvetica, arial, sans-serif;
+}
+
+body .background-full
+{
+	background-image: url(../img/bg-hi.jpg);
+	background-size: cover;
+	background-position: center center;
+	position: fixed;
+    top: -60px;
+    left: 0;
+    right: 0;
+    bottom: -60px;
+	z-index: -1;
+}
+
+body .header p
+{
+    color: #fff;
+    font-weight: 300;
+    font-size: 16px;
+    padding-top: 40px;
+    margin: 0;
+    font-weight: 100;
+}
+
+body .header p a
+{
+    color: #fff;
+}
+
+body .modulos .container
+{
+	margin-top: 10px;
+    max-width: 1100px;
+    min-width: 992px;
+}
+
+body .modulos .modulos-box
+{
+    padding: 50px 70px;
+	border-radius: 1px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+    background-color: #fff;
+    height: 620px;
+}
+
+body .modulos .modulos-box .logo
+{
+	margin: 0;
+	background-image: url(../img/logo-color.png);
+	text-indent: -999%;
+	background-size: 100%;
+    height: 48px;
+    width: 200px;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+body .modulos .modulos-box h3
+{
+    margin: 0;
+    font-weight: 300;
+}
+
+body .modulos .modulos-box h3 strong
+{
+    font-weight: 400;
+}
+
+body .modulos .modulos-box .menu-modulos
+{
+    margin-top: 60px;
+    padding: 0;
+    list-style-type: none;
+}
+
+body .modulos .modulos-box .menu-modulos li
+{
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+    font-size: 15px;
+}
+
+body .modulos .modulos-box .menu-modulos li a
+{
+    text-decoration: none;
+}
+
+body .modulos .modulos-box .menu-modulos li a.active ~ .sub-menu
+{
+    display: block;
+    padding: 0;
+}
+
+body .modulos .modulos-box .menu-modulos li .sub-menu
+{
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    padding: 0;
+    border: 1px solid #dadada;
+    box-shadow: 0px 2px 8px -3px rgba(50, 50, 50, 0.5);
+    padding: 22px;
+    padding-bottom: 0;
+    box-sizing: content-box;
+    border-radius: 7px;
+    background-color: #fff;
+    padding: 0 15px;
+    padding-bottom: 0;
+    max-width: 470px;
+}
+
+body .modulos .modulos-box .menu-modulos li:nth-last-child(1) .sub-menu, body .modulos .modulos-box .menu-modulos li:nth-last-child(2) .sub-menu
+{
+    left: auto;
+    right: 0;
+}
+
+body .modulos .modulos-box .menu-modulos li:nth-last-child(1) .sub-menu:before, body .modulos .modulos-box .menu-modulos li:nth-last-child(2) .sub-menu:before
+{
+    left: auto;
+    right: 38px;
+}
+
+body .modulos .modulos-box .menu-modulos li:nth-last-child(1) .sub-menu:after, body .modulos .modulos-box .menu-modulos li:nth-last-child(2) .sub-menu:after
+{
+    left: auto;
+    right: 40px;
+}
+
+body .modulos .modulos-box .sub-menu li
+{
+    padding-top: 22px;
+    width: 92px;
+    float: left;
+    height: 120px;
+    padding-top: 13px;
+    overflow: hidden;
+}
+
+body .modulos .modulos-box .sub-menu li:hover, body .modulos .modulos-box .sub-menu li:active
+{
+    background-color: #f6f6f6;
+    border-color: #dadada;
+}
+
+body .modulos .modulos-box .menu-modulos li .sub-menu:before
+{
+    content: "";
+    border-width: 20px 20px 0;
+    border-style: solid;
+    border-color: #dadada transparent;
+    display: block;
+    width: 0;
+    position: absolute;
+    left: 38px;
+    top: -15px;
+    bottom: auto;
+    border-width: 0 15px 15px;
+}
+
+body .modulos .modulos-box .menu-modulos li .sub-menu:after
+{
+    content: "";
+    position: absolute;
+    left: 40px;
+    border-width: 13px 13px 0;
+    border-style: solid;
+    border-color: #fff transparent;
+    display: block;
+    width: 0;
+    top: -13px;
+    bottom: auto;
+    border-width: 0 13px 13px;
+}
+
+body .modulos .modulos-box .menu-modulos li .sub-menu li
+{
+    margin: 0;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+body .modulos .modulos-box .menu-modulos li .sub-menu li a
+{
+    font-size: 13px;
+}
+
+body .modulos .modulos-box .menu-modulos li .sub-menu li p
+{
+    line-height: 1.1em;
+    color: #555;
+    font-weight: 300;
+}
+
+body .modulos .modulos-box .menu-modulos li .sub-menu li .box-button
+{
+    padding: 18px 21px;
+    border: 1px solid #dadada;
+    box-shadow: 0px 2px 8px -3px rgba(50, 50, 50, 0.5);
+    margin: auto;
+    display: block;
+    background-image: linear-gradient(to bottom, #fff, #ececec);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    outline: none;
+}
+
+body .modulos .modulos-box .menu-modulos .sub-menu li.disabled
+{
+    background-color: #fff;
+}
+
+body .modulos .modulos-box .menu-modulos .sub-menu li.disabled a
+{
+    cursor: default;
+}
+
+body .modulos .modulos-box .menu-modulos .sub-menu li.disabled .box-button
+{
+    background-color: #fafafa;
+    box-shadow: none;
+    background-image: none;
+    border-color: #ebebeb;
+    cursor: default;
+}
+
+body .modulos .modulos-box .menu-modulos .sub-menu li.disabled p
+{
+    color: #ccc;
+}
+
+body .modulos .modulos-box .menu-modulos .sub-menu li.disabled .box-button span
+{
+    color: #ccc;
+}
+
+body .modulos .modulos-box .menu-modulos li .sub-menu li .box-button span
+{
+    font-size: 24px;
+    color: #444;
+}
+
+body .modulos .footer .menu-footer
+{
+    display: inline-block;
+    padding: 0;
+    list-style-type: none;
+}
+
+body .modulos .footer .menu-footer li
+{
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 15px;
+}
+
+body .modulos .footer .menu-footer li a:link, body .modulos .footer .menu-footer li a:visited
+{
+    color: #fff;
+    text-decoration: underline;
+    font-weight: 100;
+}
+
+body .modulos .footer .menu-footer li a:hover, body .modulos .footer .menu-footer li a:active
+{
+    color: #ddd;
+}
+
+body .modulos .footer p
+{
+    color: #fff;
+    font-weight: 100;
+}
+
+@media (max-height: 700px)
+{
+    body .modulos .container 
+    {
+        margin-top: 5px;
+    }
+}
+
+/*body .modulos .alert
+{
+	border-radius: 2px;
+    color: #FF625F;
+    background-color: #FFDBDB;
+    border-color: #FFDBDB;
+}*/

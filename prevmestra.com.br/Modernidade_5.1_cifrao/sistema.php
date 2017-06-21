@@ -5,6 +5,7 @@
 <!-- saved from url=(0091)http://www.prevmestra.com.br/Mestra_Previdenciario/funcionariosman.do?evento=x&idRotina=731 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
 
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,100,300,600,700' rel='stylesheet' type='text/css'>
@@ -43,6 +44,7 @@
 <script src="modernidade/lib/tooltipster/js/jquery.tooltipster.min.js"></script> 
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
+<script src="javascript/hm-syscall-v1.0/hm.syscall.v1.0.js" type="text/javascript"></script>
 
 
 <link rel="stylesheet" href="css/AppGeral.css" type="text/css">
@@ -176,9 +178,6 @@
 				<p><span class="txt">Conectado como </span> Luiz Cláudio &nbsp;  <a href="#"><span class="txt">Desconectar</span> <img src="modernidade/img/off.png"></a></p>
 			</div>
 		</div>
-		<!-- <a class="navbar-toggle" href="javascript://">
-			<span class="glyphicon glyphicon-menu-hamburger"></span>
-		</a> -->
 	</div>
 
 	<div id="conteudo">
@@ -187,7 +186,7 @@
 		</div>
 
 		<div id="main-content" class="container" role="main">
-			<?php  include("includes/conteudo.php"); ?>sadsdafdsf
+			<?php // include("includes/conteudo.php"); ?>
 		</div>
 		<div class="clear-fix"></div>
 	</div>
