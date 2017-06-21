@@ -22,11 +22,11 @@ $(document).ready(function(){
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
-        ' Atendimento Ativo',
-        ' Reclamação',
-        ' Pedido de Informação',
-        ' Negociação de Empréstimos',
-        ' Solicitação'
+	     ' Atendimento Ativo',
+	     ' Reclama'+String.fromCharCode(231)+String.fromCharCode(227)+'o',
+	     ' Pedido de Informa'+String.fromCharCode(231)+String.fromCharCode(227)+'o',
+	     ' Negocia'+String.fromCharCode(231)+String.fromCharCode(227)+'o de Empr'+String.fromCharCode(233)+'stimos',
+	     ' Solicita'+String.fromCharCode(231)+String.fromCharCode(227)+'o'
     ]
 };
 
