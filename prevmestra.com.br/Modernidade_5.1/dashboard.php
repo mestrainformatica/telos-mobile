@@ -227,7 +227,7 @@
 									<div class="col-sm-24">
 										<!-- <img class="chart" src="modernidade/img/pie-chart.jpg" alt=""> -->
 										<div class="chart">
-											<canvas id="pie-chart" height="200" width="200">
+											<canvas id="pie-chart" height="260" style="width: content-box;">
 												<p>10</p>
 											</canvas>
 										</div>
