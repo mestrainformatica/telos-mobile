@@ -227,26 +227,20 @@
 									<div class="col-sm-24">
 										<!-- <img class="chart" src="modernidade/img/pie-chart.jpg" alt=""> -->
 										<div class="chart">
-											<canvas id="pie-chart" height="260" style="width: content-box;">
-												<p>10</p>
+												<div class="number">
+													<span class="num">07</span>
+													<label for="">Abertos</label>
+												</div>
+											<canvas id="pie-chart" height="200" width="200">
+												
 											</canvas>
 										</div>
 										
 									</div>
 								</div>
 								<div class="row">
-								<div class="col-sm-12">
-										<div class="count col-left" style="font-size: 26px;">
-											<span class="num">
-												07
-											</span>
-											<span class="name">
-												Abertos <img src="modernidade/img/chart-icon.svg" alt="">
-											</span>
-										</div>
-									</div>
 									<div class="col-sm-12">
-										<div class="count col-right">
+										<div class="count col-left">
 											<span class="num">
 												03
 											</span>
@@ -262,30 +256,28 @@
 
 						</div>
 						<div class="col-lg-15 col-md-13">
-							<div class="line">
+							<div class="line select-tabs">
 
-								<div class="row">
-									<div class="col-sm-24">
-										<!-- <h3 class="title">Visão geral dos chamados</h3> -->
-										<div class="btn-group">
-										  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    <h3 class="title">Visão geral relacionamento</h3><!--   <span class="caret"></span> -->
-										  </a>
-										  <ul class="dropdown-menu">
-										    <li><a href="#">Visão geral todos os chamados</a></li>
-										    <li><a href="#">Visão geral meus chamados</a></li>
-										  </ul>
-										</div>
+								
+								<div class="btn-group selects">
+								  <a class="dropdown-toggle title" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								 Visão geral todos os chamados <span class="caret"></span>
+								  </a>
+								  <ul class="dropdown-menu">
+								    <li><a data-select="#chart-1" href="#">Visão geral todos os chamados</a></li>
+								    <li><a data-select="#chart-2" href="#">Visão geral meus chamados</a></li>
+								  </ul>
+								</div>
 
-										<div class="pull-right">
-											<ul class="legendas">
-											<!-- 	<li>Resolvidos</li>
-												<li>Abertos</li> -->
-											</ul>
-										</div>
-									</div>
-								</div><br />
-								<div class="chart">
+								<br />
+
+								<div id="chart-1" class="select-tab active chart">
+									<canvas width="600" height="200" id="line-chart-0"></canvas>
+
+
+								</div>
+
+								<div id="chart-2" class="select-tab chart">
 									<canvas width="600" height="200" id="line-chart-1"></canvas>
 								</div>
 								
