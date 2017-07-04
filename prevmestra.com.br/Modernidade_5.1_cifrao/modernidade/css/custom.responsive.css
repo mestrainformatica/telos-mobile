@@ -9,7 +9,7 @@ body.responsive {
     clear: both; }
   @media (min-width: 767px) {
     body.responsive #left-column {
-      height: 100%;
+      height: 100vh;
       overflow: auto; } }
   @media (max-width: 767px) {
     body.responsive {
