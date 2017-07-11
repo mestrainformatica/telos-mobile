@@ -169,7 +169,7 @@
 		</div>
 		<div class="inner">
 			<div class="navbar-left">
-				<h1>Módulo Contabilidade</h1>
+				<h1>chatbot</h1>
 			</div>
 			<div class="navbar-right">
 				<p><span class="txt">Conectado como </span> Luiz Cláudio &nbsp;  <a href="#"><span class="txt">Desconectar</span> <img src="modernidade/img/off.png"></a></p>
@@ -183,7 +183,37 @@
 		</div>
 
 		<div id="main-content" class="container" role="main">
-			<?php // include("includes/conteudo.php"); ?>
+			<h3>Chatbot > preferências</h3>
+
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="form-group col-xl-12">
+						<label for="">Nome do atendente virtual</label>
+						<input type="text" class="form-control">
+					</div>
+				</div>
+
+				<div class="col-xl-12">
+					<div class="form-group col-xl-12">
+						<label for="">Mensagem de boas vindas</label>
+						<textarea class="form-control" rows="4" cols=""></textarea>
+					</div>
+				</div>
+
+				<div class="col-xl-12">
+					<div class="form-group col-xl-12">
+						<label for="">Mensagem padrão</label>
+						<textarea class="form-control" rows="4" cols=""></textarea>
+					</div>
+				</div>
+
+				<div class="col-xl-12">
+					<div class="form-group col-xl-12">
+						<label for="">Texto de introdução às opções de atendimento</label>
+						<textarea class="form-control" rows="4" cols=""></textarea>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="clear-fix"></div>
 	</div>
