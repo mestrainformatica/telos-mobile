@@ -45,7 +45,7 @@
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
 <!--<script src="javascript/hm-syscall-v1.0/hm.syscall.v1.0.js" type="text/javascript"></script>-->
-<!--<script src="javascript/hm-chatbot-v1.1/hm.chatbot.v1.1.js" type="text/javascript"></script>-->
+<script src="javascript/hm-chatbot-v1.1/hm.chatbot.v1.1.js" type="text/javascript"></script>
 
 <link href="./bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="./bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
@@ -185,107 +185,8 @@
 		<div id="left-column" role="complementary">
 			<?php include("includes/menu.php"); ?>	
 		</div>
+		
 
-		<div id="main-content" class="container" role="main">
-			<h3>Chatbot > preferências</h3>
-
-			<div class="row">
-				<div class="row">
-					
-					<div class="form-group col-md-6">
-						<label for="">Avatar do atendente virtual</label>
-						<img src="./javascript/hm-syscall-v1.0/img/67.jpg" alt="">
-					</div>
-
-					<div class="form-group col-md-6">
-						
-						<input style="margin-top:120px" type="file" class="form-control" value="/img/67.jpg">
-					</div>
-					
-				</div>
-				
-
-				<div class="col-xl-12">
-					<div class="form-group col-xl-12">
-						<label for="">Nome do atendente virtual</label>
-						<input type="text" class="form-control" value="Joana">
-					</div>
-				</div>
-
-				<div class="col-xl-12">
-					<div class="form-group col-xl-12">
-						<label for="">Mensagem de boas vindas</label>
-						<textarea class="form-control" rows="4" cols="">Oi, meu nome é Joana sou uma atendente virtual! Minha especialidade é ajudar e tirar dúvidas de participantes da Fundação Mestra. Agora que já me apresentei, eu adoraria saber um pouco mais sobre você. Qual sua inscrição?</textarea>
-					</div>
-				</div>
-
-				<div class="col-xl-12">
-					<div class="form-group col-xl-12">
-						<label for="">Mensagem padrão</label>
-						<textarea class="form-control" rows="4" cols="">Não tenho uma resposta programada esta pergunta.</textarea>
-					</div>
-				</div>
-
-				<div class="col-xl-12">
-					<div class="form-group col-xl-12">
-						<label for="">Texto de introdução às opções de atendimento</label>
-						<textarea class="form-control" rows="4" cols="">Preciso entender sobre sua dúvida. Sobre o que deseja saber?</textarea>
-					</div>
-				</div>
-
-				<div class="col-xl-12">
-					<table class="table table-striped" border="0" cellspacing="0" cellpadding="0" width="100%" style="">
-						<thead>
-						<tr>
-							<th>ID</th>  
-							<th>Opção de atendimento</th>
-							<th></th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<td>1</td>
-							<td>Atualização cadastral</td>
-							<td><div class="pull-right"><input type="checkbox" data-toggle="toggle" data-on="Habilitado" data-off="Desabilitado" data-size="normal" ></div></td>
-						</tr>
-						
-						<tr>
-							<td>2</td>
-							<td>Calendário de Empréstimos</td>
-							<td><div class="pull-right"><input type="checkbox" data-toggle="toggle" data-on="Habilitado" data-off="Desabilitado" data-size="normal" ></div></td>
-						</tr>
-						
-						<tr>
-							<td>3</td>
-							<td>Simulação de Empréstimos</td>
-							<td><div class="pull-right"><input type="checkbox" checked data-toggle="toggle" data-on="Habilitado" data-off="Desabilitado" data-size="normal" ></div></td>
-						</tr>
-						
-						<tr>
-							<td>4</td>
-							<td>Simulação de Benefício</td>
-							<td><div class="pull-right"><input type="checkbox" data-toggle="toggle" data-on="Habilitado" data-off="Desabilitado" data-size="normal" ></div></td>
-						</tr>
-						
-						<tr>
-							<td>5</td>
-							<td>Alteração de Contribuições</td>
-							<td><div class="pull-right"><input type="checkbox" data-toggle="toggle" data-on="Habilitado" data-off="Desabilitado" data-size="normal" ></div></td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="row pull-right">
-				<a class="title" href="testar_chat.php"><button class="btn btn-large btn-primary">
-					<i class="icon-online"></i> Testar chat
-				</button></a>
-
-				<button style="background-color: #204d74;" class="btn btn-large btn-primary">
-					Salvar ajustes
-				</button>
-			</div>
-		</div>
 		<div class="clear-fix"></div>
 	</div>
 
