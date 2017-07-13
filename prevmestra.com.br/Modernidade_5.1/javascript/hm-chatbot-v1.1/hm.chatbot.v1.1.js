@@ -3,6 +3,7 @@ $(document).ready(function()
 
 	var content = new Object;
 	var URL = "javascript/hm-chatbot-v1.1/";
+	var messageIndex = 0;
 
 	$('body').append('<div id="hm-syscall-canvas"></div>');
 
@@ -42,12 +43,25 @@ $(document).ready(function()
 						// 'Olá',
 						// 'Praesent accumsan gravida massa, eget placerat ex viverra non. Vestibulum eu aliquam libero. Sed auctor mollis lobortis. Mauris egestas facilisis orci',
 						// 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-						'Oi, meu nome é Joana sou uma atendente virtual! Minha especialidade é ajudar e tirar dúvidas de participantes da Fundação Mestra.',
-						"[nome], sobre o que deseja saber? selecione a opção desejada:\n\n <p><a class='btn btn-default' >1. Atualização Cadastral</a></p>\n<p><a class='btn btn-default' >2. Calendário de Empréstimo\n</a></p>\n<p><a class='btn btn-default' >3. Simulação de Empréstimo\n</a></p><p><a class='btn btn-default' >4. Simulação de Benefício\n</a></p><p><a class='btn btn-default' >5. Alteração de contribuições</a></p>\n",
-						'Não tenho uma resposta programada esta pergunta.',
-						'Preciso entender sobre sua dúvida. Sobre o que deseja saber?',
-						'Mais alguma d&uacute;vida?',
-						'A Funda&ccedil;&atilde;o Mestra agradece pelo contato. Tenha um &oacute;timo dia!'
+						'Oi, meu nome &eacute; Joana sou uma atendente virtual! Minha especialidade &eacute; ajudar e tirar d&uacute;vidas de participantes da Funda&ccedil;&atilde;o Mestra.',
+						'[nome], sobre o que deseja saber? selecione a op&ccedil;&atilde;o desejada:',
+						'Voc&ecirc; j&aacute; tem um empr&eacute;stimo vigente. Seu saldo devedor &eacute; de R$ 3.456,00 e est&aacute; faltando 6 parcelas.',
+						'Gostaria de fazer um refinancimento?',
+						'Qual seria o valor do empr&eacute;stimo?',
+						'E a quantidade de parcelas?',
+						'S&oacute; um minuto, &eacute; muito dinheiro...',
+						'Brincadeira.. Rs...',
+						'Seu empr&eacute;stimo fica em 12x R$ 757,23',
+						'Posso te ajudar em mais alguma coisa?',
+						'Foi um prazer conversar com voc&ecirc;. Volte sempre!'
+					],
+
+					options: [
+						'1. Atualiza&ccedil;&atilde;o Cadastral',
+						'2. Calend&aacute;rio de Empr&eacute;stimo',
+						'3. Simula&ccedil;&atilde;o de Empr&eacute;stimo',
+						'4. Simula&ccedil;&atilde;o de Benef&iacute;cio',
+						'5. Altera&ccedil;&atilde;o de contribui&ccedil;&otilde;es'
 					]
 				}
 			];
@@ -105,7 +119,7 @@ $(document).ready(function()
 
 				$('#hm-syscall-canvas .conversation').show();
 
-				$('#hm-syscall-canvas .conversation .form-control').focus();
+				$('#hm-syscall-canvas .conversation .form-control').hide();
 
 				// $('#hm-syscall-canvas .conversation .messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+$(this).find('.msg-init').val()+'</div><div class="img"><img src="" alt=""></div></div>');
 
@@ -122,7 +136,44 @@ $(document).ready(function()
 
 						$('#hm-syscall-canvas .typing-load').hide();
 
-						$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[0]+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
+						for(var i=0; i<2; i++) {
+							$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[i]+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
+							
+							messageIndex = i;
+
+							// scrollChat($(this).find('.messages'));
+
+							if(messageIndex == 1) {
+								for(var j=0; j<5; j++) {
+									$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor options"><div class="txt option"><a>'+adminUsers[0].options[j]+'</a></div></div>');
+								}
+
+								scrollChat($('#hm-syscall-canvas form.conversation').find('.messages'));
+
+								//select option
+								$('#hm-syscall-canvas form.conversation div.options div.option').on('click', function() {
+									var option = $(this);
+									// alert('selecionou né moisés');
+									$('#hm-syscall-canvas form.conversation div.options div.option').attr('disabled', true).off('click');
+
+									$('#hm-syscall-canvas .conversation .form-control').show();
+
+									// $('#hm-syscall-canvas .conversation .messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+$(this).find('.msg-init').val()+'</div><div class="img"><img src="" alt=""></div></div>');
+
+									// $('#hm-syscall-canvas .conversation .chat-msg.sender .txt').html($(this).find('a').html());
+
+									//iniciar chat
+									$('#hm-syscall-canvas .conversation .form-control').val(option.find('a').html())
+									
+									
+									conversation($('#hm-syscall-canvas form.conversation'));
+
+									$('#hm-syscall-canvas form.conversation').submit();
+									// console.log('submitou?');
+									return false;
+								});
+							}
+						}
 					}, 2000);
 
 				}, 2000);
@@ -135,23 +186,24 @@ $(document).ready(function()
 				if (event.keyCode == 13) {
 			        $(this.form).submit();
 			        return false;
-			     }
+				}
 			});
 
-			$('#hm-syscall-canvas form.conversation').on('submit', function(){
-
-				if($('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val() != ''){
+			var conversation = function(e, force=false) {
+				if($('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val() != '' || force){
 
 					var senderMsg = $('.conversation textarea.msg[name="send-msg"]').val();
-					var receptorMsg = adminUsers[0].messages[cont+1];
+					var receptorMsg = adminUsers[0].messages[messageIndex+1];
 
 					$('#hm-syscall-canvas .conversation textarea.msg[name="send-msg"]').val('');
 
-					$(this).find('.messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+senderMsg+'</div><div class="img"><img src="" alt=""></div></div>');
-					
-					scrollChat($(this).find('.messages'));
+					if(!force) {
+						e.find('.messages').append('<div class="chat-msg sender"><div class="arrow"></div><div class="txt">'+senderMsg+'</div><div class="img"><img src="" alt=""></div></div>');
+						
+						scrollChat(e.find('.messages'));
+					}
 
-					var element = $(this);
+					var element = e;
 					
 						
 					setTimeout(function() {
@@ -159,11 +211,15 @@ $(document).ready(function()
 
 						setTimeout(function() {
 							$('#hm-syscall-canvas .typing-load').hide();
+
+							console.log(messageIndex);
+
 							$('#hm-syscall-canvas form.conversation .messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+receptorMsg+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
+							
 							scrollChat($('form.conversation .messages'));
 
-							if(cont+1 < adminUsers[0].messages.length-1){
-								cont++;
+							if(messageIndex+1 < adminUsers[0].messages.length-1){
+								messageIndex++;
 							}else{
 								
 								element.addClass('closed-conversation');
@@ -173,13 +229,19 @@ $(document).ready(function()
 
 								element.find('.action-buttons').fadeIn();
 							}
+
+							if(messageIndex == 2 || messageIndex == 6 || messageIndex == 7) {
+								conversation(e, true);
+							}
 						}, 2000);
 
 					}, 2000);
 
-					
-
 				}
+			}
+
+			$('#hm-syscall-canvas form.conversation').on('submit', function(){
+				conversation($(this));
 
 				return false;
 			});
