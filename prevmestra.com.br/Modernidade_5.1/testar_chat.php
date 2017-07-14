@@ -44,7 +44,7 @@
 <script src="modernidade/lib/tooltipster/js/jquery.tooltipster.min.js"></script> 
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
-<!--<script src="javascript/hm-syscall-v1.0/hm.syscall.v1.0.js" type="text/javascript"></script>-->
+<!-- <script src="javascript/hm-syscall-v1.0/hm.syscall.v1.0.js" type="text/javascript"></script> -->
 <script src="javascript/hm-chatbot-v1.1/hm.chatbot.v1.1.js" type="text/javascript"></script>
 
 <link href="./bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
