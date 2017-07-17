@@ -62,8 +62,8 @@ console.log($('.test-chat'));
 								// 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 								'Oi, meu nome &eacute; Joana sou uma atendente virtual! Minha especialidade &eacute; ajudar e tirar d&uacute;vidas de participantes da Funda&ccedil;&atilde;o Mestra.',
 								'[nome], sobre o que deseja saber? selecione a op&ccedil;&atilde;o desejada:',
-								'Voc&ecirc; j&aacute; tem um empr&eacute;stimo vigente. Seu saldo devedor &eacute; de R$ 3.456,00 e est&aacute; faltando 6 parcelas.',
-								'Gostaria de fazer um refinancimento?',
+								'Voc&ecirc; j&aacute; tem um empr&eacute;stimo vigente. Seu saldo devedor &eacute; de R$ 3.456,00 e est&atilde;o faltando 6 parcelas.',
+								'Gostaria de fazer um refinanciamento ?',
 								'Qual seria o valor do empr&eacute;stimo?',
 								'E a quantidade de parcelas?',
 								'S&oacute; um minuto, &eacute; muito dinheiro...',
