@@ -173,7 +173,7 @@
 		</div>
 		<div class="inner">
 			<div class="navbar-left">
-				<h1>chatbot</h1>
+				<h1>Chatbot</h1>
 			</div>
 			<div class="navbar-right">
 				<p><span class="txt">Conectado como </span> Luiz Cláudio &nbsp;  <a href="#"><span class="txt">Desconectar</span> <img src="modernidade/img/off.png"></a></p>

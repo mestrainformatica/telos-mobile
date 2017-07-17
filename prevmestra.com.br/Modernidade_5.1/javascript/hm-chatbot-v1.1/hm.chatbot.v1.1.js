@@ -1,14 +1,20 @@
-$(document).ready(function() {  
+$(document).ready(function() {
 
-console.log($('.test-chat'));	
-	if($('.test-chat').length > 0) {
+console.log($('.test-chat'));
+
+	var chatStatus = false;
+
+	if($('.test-chat').length > 0 && !chatStatus) {
 
 		$('.test-chat').on('click', function() {
 
+			chatStatus = true;
+			var buttonTestChat = $(this);
 			var content = new Object;
 			var URL = "javascript/hm-chatbot-v1.1/";
 			var messageIndex = 0;
 			
+			buttonTestChat.html("<i class='icon-online'></i> Recarregar Chatbot");
 
 			$('body').append('<div id="hm-syscall-canvas"></div>');
 
@@ -21,13 +27,13 @@ console.log($('.test-chat'));
 			success: function(data){
 
 				content.html = data;
-// console.log(data)
 				$.ajax({
 				url: URL+'inc/client.css.html',
 				data: {},
 				dataType: 'html',
 				cache: false,
 				success: function(data_css){
+
 
 					content.css = data_css;
 					// var updateDOM = function(html_a){
@@ -42,7 +48,6 @@ console.log($('.test-chat'));
 					});
 
 					canvas = $('#hm-syscall-canvas');
-					// $('#hm-syscall-canvas .init-chat .content').show();
 					
 
 					var cont = 0;
@@ -83,7 +88,13 @@ console.log($('.test-chat'));
 					var msgHTML = '<div class="chat-msg"><div class="arrow"></div><div class="txt"></div><div class="img"><img src="" alt=""></div></div>';
 
 					var restartChat = function(){
+						console.log(timeout);
+						while (timeout--) {
+							window.clearTimeout(timeout); // will do nothing if no timeout with id is present
+						}
+
 						$('#hm-syscall-canvas form.conversation .messages').html('');
+
 						$('#hm-syscall-canvas form.conversation .action-buttons').hide();
 						$('#hm-syscall-canvas form.conversation .send .msg.form-control').show();
 
@@ -93,9 +104,14 @@ console.log($('.test-chat'));
 
 						$('#hm-syscall-canvas .form-control').val('');
 						cont = 0;
+						messageIndex = 0;
+						
+						toggleChat();
+						return false;
 					}
 
 					var restartOptions = function(){
+
 						$('#hm-syscall-canvas form.conversation .messages').html('');
 						$('#hm-syscall-canvas form.conversation .action-buttons').hide();
 						$('#hm-syscall-canvas form.conversation .send .msg.form-control').show();
@@ -142,6 +158,7 @@ console.log($('.test-chat'));
 							canvas.addClass("open");
 							canvas.find('.form-control').first().focus();
 						}
+						return false;
 					}
 
 					var scrollChat = function($this){
@@ -156,10 +173,19 @@ console.log($('.test-chat'));
 					$('#hm-syscall-canvas #close-window').on('click', function(){
 						restartChat();
 						toggleChat();
+						return false;
 					});
 
 					$('#hm-syscall-canvas').find('a.title').on('click', function(){
+						// restartChat();
 						toggleChat();
+						return false;
+					});
+
+					buttonTestChat.on('click', function() {
+						toggleChat();
+						location.reload(true);
+						return false;
 					});
 
 					$('#hm-syscall-canvas .init-chat').on('submit', function(){
@@ -180,11 +206,11 @@ console.log($('.test-chat'));
 						
 						
 						
-						setTimeout(function() {
+						timeout = setTimeout(function() {
 
 							$('#hm-syscall-canvas .typing-load').show();
 
-							setTimeout(function() {
+							timeout = setTimeout(function() {
 
 								$('#hm-syscall-canvas .typing-load').hide();
 
@@ -260,7 +286,8 @@ console.log($('.test-chat'));
 								if(parseInt(senderMsg) > 7346 || parseInt(senderMsg) < 0) {
 									messageIndex = 4;
 									printMessage(e, 'Infelizmente, este valor ultrapassa sua margem.', false);
-									printMessage(e, 'Voc&ecirc; s&oacute; pode solicitar at&eacute; R$ 7.345,98', false, 4500, 1500);			
+									printMessage(e, 'Voc&ecirc; s&oacute; pode solicitar at&eacute; R$ 7.345,98', false, 4500, 1500);		
+									printMessage(e, 'Voc&ecirc; poderia informar novamente?', false, 8500, 1500);		
 									return false;
 								}
 							}
@@ -271,6 +298,7 @@ console.log($('.test-chat'));
 									messageIndex = 5;
 									printMessage(e, 'Infelizmente, esta parcela ultrapassa sua margem.', false);							
 									printMessage(e, 'Voc&ecirc; pode parcelar em at&eacute; 12x', false, 4500, 1500);
+									printMessage(e, 'Voc&ecirc; poderia informar novamente?', false, 8500, 1500);
 									return false;
 								}
 							}
@@ -278,15 +306,15 @@ console.log($('.test-chat'));
 							receptorMsg = adminUsers[0].messages[messageIndex+1];
 
 							printMessage(e, receptorMsg);
-
+							return false;
 						}
 					}
 
 					var printMessage = function(element, message, increment=true, delay=2000, typingDelay=2000) {				
-						setTimeout(function() {
+						timeout = setTimeout(function() {
 							$('#hm-syscall-canvas .typing-load').show();
 
-							setTimeout(function() {
+							timeout = setTimeout(function() {
 								$('#hm-syscall-canvas .typing-load').hide();
 
 
@@ -313,6 +341,7 @@ console.log($('.test-chat'));
 							}, typingDelay);
 
 						}, delay);
+						return false;
 					}
 
 					$('#hm-syscall-canvas form.conversation').on('submit', function(event){
@@ -341,7 +370,9 @@ console.log($('.test-chat'));
 				's',
 			];
 
+			return false;
 		});
+		return false;
 	}
 
 });

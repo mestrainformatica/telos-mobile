@@ -231,7 +231,7 @@
 				<div class="col-xl-12">
 					<div class="form-group col-xl-12">
 						<label for="">Mensagem de boas vindas</label>
-						<textarea class="form-control" rows="4" cols="">Oi, meu nome é Joana sou uma atendente virtual! Minha especialidade é ajudar e tirar dúvidas de participantes da Fundação Mestra. Agora que já me apresentei, eu adoraria saber um pouco mais sobre você. Qual sua inscrição?</textarea>
+						<textarea class="form-control" rows="4" cols="">Oi, meu nome &eacute; Joana sou uma atendente virtual! Minha especialidade &eacute; ajudar e tirar d&uacute;vidas de participantes da Funda&ccedil;&atilde;o Mestra.</textarea>
 					</div>
 				</div>
 
@@ -245,7 +245,7 @@
 				<div class="col-xl-12">
 					<div class="form-group col-xl-12">
 						<label for="">Texto de introdução às opções de atendimento</label>
-						<textarea class="form-control" rows="4" cols="">Preciso entender sobre sua dúvida. Sobre o que deseja saber?</textarea>
+						<textarea class="form-control" rows="4" cols="">[nome], sobre o que deseja saber? selecione a op&ccedil;&atilde;o desejada:</textarea>
 					</div>
 				</div>
 
