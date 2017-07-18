@@ -214,27 +214,32 @@ console.log($('.test-chat'));
 
 								$('#hm-syscall-canvas .typing-load').hide();
 
-								for(var i=0; i<2; i++) {
-									$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[i]+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
-									
-									messageIndex = i;
+								// for(var i=0; i<2; i++) {
+									$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[messageIndex]+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
+									$('#hm-syscall-canvas .typing-load').show();
 
-									// scrollChat($(this).find('.messages'));
+									messageIndex++;
+									timeout = setTimeout(function() {
+										// scrollChat($(this).find('.messages'));
+										$('#hm-syscall-canvas .typing-load').hide();
+										$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor"><div class="arrow"></div><div class="txt">'+adminUsers[0].messages[messageIndex]+'</div><div class="img"><img class="img-path" src="'+URL+adminUsers[0].image+'" alt=""/></div></div>');
+										
 
-									if(messageIndex == 1) {
-										for(var j=0; j<5; j++) {
-											$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor options"><div class="txt option"><a>'+adminUsers[0].options[j]+'</a></div></div>');
+										if(messageIndex == 1) {
+											for(var j=0; j<5; j++) {
+												$('#hm-syscall-canvas form.conversation').find('.messages').append('<div class="chat-msg receptor options"><div class="txt option"><a>'+adminUsers[0].options[j]+'</a></div></div>');
+											}
+
+											scrollChat($('#hm-syscall-canvas form.conversation').find('.messages'));
+
+											//select option
+											$('#hm-syscall-canvas form.conversation div.options div.option').on('click', function() {
+												selectOption($(this));
+												return false;
+											});
 										}
-
-										scrollChat($('#hm-syscall-canvas form.conversation').find('.messages'));
-
-										//select option
-										$('#hm-syscall-canvas form.conversation div.options div.option').on('click', function() {
-											selectOption($(this));
-											return false;
-										});
-									}
-								}
+									}, 3000);
+								// }
 							}, 2000);
 
 						}, 2000);
@@ -275,30 +280,32 @@ console.log($('.test-chat'));
 
 							//se ainda rpecisa de ajuda
 							if(positives.indexOf(senderMsg) >= 0 && messageIndex == 9) {
-								messageIndex = 1;
+								messageIndex = 0;
 								restartOptions();
 								return false;
 							}
 
 							//se o valor é aceito
 							if(messageIndex == 4) {
-		console.log(parseInt(senderMsg));
-								if(parseInt(senderMsg) > 7346 || parseInt(senderMsg) < 0) {
+		console.log(parseInt(senderMsg, 10));
+								if(!($.isNumeric(senderMsg)) || (parseInt(senderMsg, 10) > 7346 || parseInt(senderMsg, 10) < 0)) {
 									messageIndex = 4;
 									printMessage(e, 'Infelizmente, este valor ultrapassa sua margem.', false);
-									printMessage(e, 'Voc&ecirc; s&oacute; pode solicitar at&eacute; R$ 7.345,98', false, 4500, 1500);		
-									printMessage(e, 'Voc&ecirc; poderia informar novamente?', false, 8500, 1500);		
+									$('#hm-syscall-canvas .typing-load').show();
+									printMessage(e, 'Voc&ecirc; s&oacute; pode solicitar at&eacute; R$ 7.345,98', false, 4000, 2500);		
+									printMessage(e, 'Voc&ecirc; poderia informar novamente?', false, 6000, 2000);		
 									return false;
 								}
 							}
 
 							//se as parcelas são aceitas
 							if(messageIndex == 5) {
-								if(parseInt(senderMsg) > 12 || parseInt(senderMsg) < 1) {
+								if(!($.isNumeric(senderMsg)) || (parseInt(senderMsg, 10) > 12 || parseInt(senderMsg, 10) < 1)) {
 									messageIndex = 5;
-									printMessage(e, 'Infelizmente, esta parcela ultrapassa sua margem.', false);							
-									printMessage(e, 'Voc&ecirc; pode parcelar em at&eacute; 12x', false, 4500, 1500);
-									printMessage(e, 'Voc&ecirc; poderia informar novamente?', false, 8500, 1500);
+									printMessage(e, 'Infelizmente, esta parcela ultrapassa sua margem.', false);
+									$('#hm-syscall-canvas .typing-load').show();						
+									printMessage(e, 'Voc&ecirc; pode parcelar em at&eacute; 12x', false, 4000, 2500);
+									printMessage(e, 'Voc&ecirc; poderia informar novamente?', false, 6000, 2000);
 									return false;
 								}
 							}
