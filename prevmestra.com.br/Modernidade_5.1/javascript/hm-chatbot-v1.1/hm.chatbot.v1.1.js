@@ -287,8 +287,9 @@ console.log($('.test-chat'));
 
 							//se o valor é aceito
 							if(messageIndex == 4) {
-		console.log(parseInt(senderMsg, 10));
-								if(!($.isNumeric(senderMsg)) || (parseInt(senderMsg, 10) > 7346 || parseInt(senderMsg, 10) < 0)) {
+								var regex = new RegExp(/^[0-9.,]+$/);
+
+								if(!regex.test(senderMsg) || (parseInt(senderMsg, 10) > 7346 || parseInt(senderMsg, 10) < 0)) {
 									messageIndex = 4;
 									printMessage(e, 'Infelizmente, este valor ultrapassa sua margem.', false);
 									$('#hm-syscall-canvas .typing-load').show();
