@@ -1,0 +1,82 @@
+<ion-view title="Simulação" ng-controller="SimulacaoRmvAposentadoCtrl" has-bouncing="false" padding="false" >
+ <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list alteracao" id="mainMenu">        
+
+    <div class="item item-divider softrow header-page">
+      <div class="row">
+        <div class="col col-100">
+           Simulação de alteração para RMV
+        </div>
+      </div>
+      
+    </div>
+
+        <form id="formCampos" class="formCampo">
+          <div class="item">
+            
+            <div class="separador">
+              <label class="item item-input item-select">
+                <div class="input-label">
+                  Tipo de Reajuste
+                </div>
+                <select class="ion-input-select" ng-model="formData.tipo_reajuste" ng-options="key as value for (key , value) in tipoReajuste">
+                     <option value="{{key}}">{{value}}</option>
+                </select>
+              </label>
+
+
+              <label class="item item-input item-select">
+                <div class="input-label">
+                  Com pensão
+                </div>
+                <select class="ion-input-select" ng-model="formData.pensao" ng-init="formData.pensao = 'N'">
+                   <option value="N">NÃO</option>
+                    <option value="S">SIM</option>
+                </select>
+              </label>
+          </div>
+
+           <label class="no-border item item-input item-stacked-label" ng-show="cod_opcao_tributacao != '02'">
+              <div class="row">
+                <div class="col">
+                  <span class="input-label">Dependentes para fins de IR:</span>
+                </div>
+                
+                <div class="col col-20">
+                  <label class="item item-input">
+                     <input type="tel" name="dependentes_ir" placeholder="0" ng-model="formData.dependentes_ir" mask="999" mask-restrict='reject'>
+                  </label>
+                </div>
+
+              </div>
+            
+            </label>
+
+          </div>
+
+          <div class="item footer noborder">
+            <div class="the_error">
+              <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+            </div>
+            <div class="padding">
+             <div class="button-bar" ng-show="formData.pensao == 'S'">
+                <input ng-hide="loading" type="submit" class="button icon-right ion-chevron-right button-positive button-block" ng-model="submitExtrato" value="Definir Beneficiários..." ng-click="goBeneficiarios(formData)">      
+                <!-- <a href="#/simulacao-renda-mensal-vitalicia-beneficiarios" class="button button-positive button-block">Beneficiários</a> -->
+              </div>
+              <div class="button-bar">
+                <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Calcular Simulação" ng-click="submit(formData)">      
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+    </div>
+  </div>
+
+  </ion-content>
+</ion-view>

@@ -44,6 +44,7 @@
 <script src="modernidade/lib/tooltipster/js/jquery.tooltipster.min.js"></script> 
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
+<script src="javascript/hm-syscall-v1.0/hm.syscall.v1.0.js" type="text/javascript"></script>
 
 
 <link rel="stylesheet" href="css/AppGeral.css" type="text/css">
@@ -51,9 +52,6 @@
 <script src="javascript/PlcGeral.js" type="text/javascript"></script><style type="text/css">.expandeRetraiPlc{display:none;}</style>
 
 <script src="javascript/AppGeral.js" type="text/javascript"></script>
-
-
-
 
 
 <title>:: Sysprev Web ::
@@ -185,7 +183,7 @@
 		</div>
 
 		<div id="main-content" class="container" role="main">
-			<?php // include("includes/conteudo.php"); ?>CONTEUDO
+			<?php // include("includes/conteudo.php"); ?>
 		</div>
 		<div class="clear-fix"></div>
 	</div>
