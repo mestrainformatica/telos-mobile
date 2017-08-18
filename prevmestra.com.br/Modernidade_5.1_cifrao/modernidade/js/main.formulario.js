@@ -1,6 +1,18 @@
 $(document).ready(function()
 {   
 
+	iniciarMenu();
+
+    $('input.datepicker').parent().addClass('right-addon').addClass('inner-addon').append('<i class="icon icon-calendar3"></i>');
+
+});
+// fim do document.ready()
+
+$(document).scroll(function () {
+    $("#conteudo.menu-collapsed #left-column .menu-title").affix({offset: 80});
+});
+
+function iniciarMenu() {
     if($(window).width() < 991){
         $('.header-modernidade .navbar-right span.txt').hide();
     }

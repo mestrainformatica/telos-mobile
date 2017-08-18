@@ -1,39 +1,49 @@
 <ion-view title="Consulta" ng-controller="EmprestimoConsultaCtrl">
- <ion-content class="has-header" id="consultaEmprestimo">
-    <div class="headerInfo" >
-        <div ng-include="'js/directives/userInfo.html'"></div> 
-    </div>
+    <ion-content class="has-header" id="consultaEmprestimo">
+        <div class="headerInfo">
+            <div ng-include="'js/directives/userInfo.html'"></div>
+        </div>
 
-  <div class="list" id="mainMenu">        
+        <div class="list" id="mainMenu">
 
-  <div class="item item-divider softrow">
-      Consulta Empréstimo
-  </div>
+            <div class="item item-divider softrow">
+                Consulta Empréstimo
+            </div>
 
-  <div class="padding" ng-hide="consultaEmprestimo[0]">
-  <h4>Não há contrato vigente</h4>
-  </div>
-  <div class="item" ng-repeat="(key,value) in consultaEmprestimo">
-  <h4 style="color: #909090; border-bottom: solid 1px #eee; margin-bottom: .75em;">Contrato {{value.contrato}}</h4>
-  
-  <div class="label row">
-         <div class="col col-25 softcolor upper">Data</div>
-         <div class="col valor upper">{{value.data}}</div>
-    </div>
-    <div class="label row">
-        <div class="col col-25 softcolor upper">Prazo</div>
-        <div class="col valor upper">{{value.prazo}}</div>
-  </div>
-    <div class="label row">
-        <div class="col col-25 softcolor upper">Tipo</div>
-        <div class="col valor upper">{{value.tipo_emprestimo}}</div>
-  </div>
-    <div class="label row">
-        <div class="col col-25 softcolor upper">Saldo Devedor</div>
-        <div class="col valor upper">{{value.saldo_devedor}}</div>
-  </div>
-  </div>
-  
-     
-  </ion-content>
+            <div class="padding" ng-hide="consultaEmprestimo[0]">
+                <h4>Não há contrato vigente</h4>
+            </div>
+
+            <div class="item" ng-repeat="(key,value) in consultaEmprestimo">
+                <h4 style="color: #909090; border-bottom: solid 1px #eee; margin-bottom: .75em;">
+                    Contrato {{value.contrato}}</h4>
+
+                <div class="label row">
+                    <div class="col col-25 softcolor upper">Data</div>
+                    <div class="col valor upper">{{value.data}}</div>
+                </div>
+                <div class="label row">
+                    <div class="col col-25 softcolor upper">Prazo</div>
+                    <div class="col valor upper">{{value.prazo}}</div>
+                </div>
+                <div class="label row">
+                    <div class="col col-25 softcolor upper">Tipo</div>
+                    <div class="col valor upper">{{value.tipo_emprestimo}}</div>
+                </div>
+                <div class="label row">
+                    <div class="col col-25 softcolor upper">Saldo Devedor</div>
+                    <div class="col valor upper">{{value.saldo_devedor}}</div>
+                </div>
+
+                <form>
+                    <div class="button-bar">
+                        <input ng-hide="loading" type="submit"
+                               class="button button-positive button-block"
+                               ng-model="submitExtrato"
+                               value="Enviar Formulário por E-mail">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>

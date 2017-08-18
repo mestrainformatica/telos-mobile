@@ -156,12 +156,11 @@ ion-content {  }
 	font-weight: 400;
 }
 
+.item#docConcessaoAviso,
 .item#emprestimoAnterior {
 	padding: 0;
 }
-.button.button-positive {
 
-}
 .item#emprestimoAnterior h4 {
 	background: #fefcf1;
 	padding: 1em 1.5em;
@@ -925,4 +924,62 @@ small.legend{
 .alteracao .resultados-title{
 	padding-top:5px;
 	padding-bottom: 5px;
+}
+
+.reset-white-space {
+	white-space: initial !important;
+}
+
+.reset-height {
+    height: initial !important;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+/* == == == == == == == =*/
+.item.no-border {
+	border: none;
+}
+
+p.errorColor {
+	color: red
+}
+
+p.successColor {
+	color: limegreen;
+}
+
+.spaced .row.label {
+	margin: 0.5rem 0;
+}
+
+#docConcessaoAvisoView h4 {
+	margin: 0;
+	padding: 1em 1.5em;
+	font-size: 18px;
+	background: #fefcf1;
+	font-weight: 400;
+}
+
+#docConcessaoView .smallHeader {
+	font-size: 10px;
+	margin-bottom: 1rem;
+}
+
+#docConcessaoView input:not([type="submit"]) {
+	text-align: right;
+}
+
+#docConcessaoAviso .textoPrincipal {
+	padding: 1em 1.5em;
+}
+
+#docConcessaoAviso .textoPrincipal > p {
+	margin-bottom: 1rem;
+}
+
+#docConcessaoAviso .textoPrincipal > form > *:not(:last-child) {
+	margin-bottom: 1rem;
 }

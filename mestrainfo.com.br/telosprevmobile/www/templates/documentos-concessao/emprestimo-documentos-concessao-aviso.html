@@ -1,0 +1,47 @@
+<ion-view title="Documentos de Concessão" ng-controller="DocConcessaoAviso">
+    <ion-content class="has-header" has-bouncing="false" padding="false"
+                 id="docConcessaoAvisoView">
+        <div class="headerInfo">
+            <div ng-include="'js/directives/userInfo.html'"></div>
+        </div>
+
+        <div class="list">
+            <div class="item item-divider softrow no-border">
+                Aviso - Documentos de concessão
+            </div>
+            <section class="item no-border" id="docConcessaoAviso">
+                <h4 class="title emprestimoInfo">{{docConcessao.tituloPaginaCttDps}}</h4>
+
+                <div class="item no-border textoPrincipal">
+                    <p class="reset-white-space">
+                        {{docConcessao.textoPaginaCttDps}}
+                    </p>
+
+                    <form>
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Deseja Contratar?
+                            </div>
+                            <select class="ion-input-select" id="docConcessaoAvisoSelect">
+                                <option value="N" selected>NÃO</option>
+                                <option value="S">SIM</option>
+                            </select>
+                        </label>
+
+                        <div class="the_error">
+                            <p ng-show="errorMsg" class="errorMsg assertive"
+                               ng-bind="errorMsg"></p>
+                        </div>
+
+                        <div class="button-bar">
+                            <input ng-hide="loading" type="submit"
+                                   class="button button-positive button-block"
+                                   ng-model="submitExtrato"
+                                   value="Confirmar Envio">
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </ion-content>
+</ion-view>

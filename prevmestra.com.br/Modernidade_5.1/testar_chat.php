@@ -44,7 +44,11 @@
 <script src="modernidade/lib/tooltipster/js/jquery.tooltipster.min.js"></script> 
 <script src="modernidade/js/main.formulario.js" type="text/javascript"></script>
 
-<script src="javascript/hm-syscall-v1.0/hm.syscall.v1.0.js" type="text/javascript"></script>
+<!-- <script src="javascript/hm-syscall-v1.0/hm.syscall.v1.0.js" type="text/javascript"></script> -->
+<script src="javascript/hm-chatbot-v1.1/hm.chatbot.v1.1.js" type="text/javascript"></script>
+
+<link href="./bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="./bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
 
 
 <link rel="stylesheet" href="css/AppGeral.css" type="text/css">
@@ -169,7 +173,7 @@
 		</div>
 		<div class="inner">
 			<div class="navbar-left">
-				<h1>Módulo Contabilidade</h1>
+				<h1>Chatbot</h1>
 			</div>
 			<div class="navbar-right">
 				<p><span class="txt">Conectado como </span> Luiz Cláudio &nbsp;  <a href="#"><span class="txt">Desconectar</span> <img src="modernidade/img/off.png"></a></p>
@@ -181,10 +185,8 @@
 		<div id="left-column" role="complementary">
 			<?php include("includes/menu.php"); ?>	
 		</div>
+		
 
-		<div id="main-content" class="container" role="main">
-			<?php // include("includes/conteudo.php"); ?>
-		</div>
 		<div class="clear-fix"></div>
 	</div>
 

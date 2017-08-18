@@ -9,7 +9,7 @@ body.responsive {
     clear: both; }
   @media (min-width: 767px) {
     body.responsive #left-column {
-      height: 100%;
+      height: 100vh;
       overflow: auto; } }
   @media (max-width: 767px) {
     body.responsive {
@@ -46,7 +46,7 @@ body.responsive {
               box-shadow: -5px 0px 10px rgba(0, 0, 0, 0.1);
               height: 100%;
               overflow: auto; }
-            body.responsive #conteudo #left-column #menuDiv a#M00000Actuator {
+            body.responsive #conteudo #left-column #menuDiv a#M1Actuator {
               margin-top: 60px; }
             body.responsive #conteudo #left-column #menuDiv ul {
               list-style: none; }
