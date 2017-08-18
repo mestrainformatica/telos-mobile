@@ -1,7 +1,8 @@
-//var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+//Mestra
+//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+//Telos - Prod
+var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
+//Telos - Hom
 //var url_base = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 var stageMap = {}
 var logged = false;
