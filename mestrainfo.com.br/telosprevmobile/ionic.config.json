@@ -1,0 +1,9 @@
+{
+  "name": "prevmobile",
+  "app_id": "",
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*"
+  ],
+  "integrations": {}
+}
