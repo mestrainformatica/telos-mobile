@@ -166,7 +166,8 @@ var app = angular
       .state('emprestimodocumentosconcessaoaviso', {
         cache: false,
         url: '/emprestimo-documentos-concessao-aviso',
-        templateUrl: 'templates/documentos-concessao/emprestimo-documentos-concessao-aviso.html'
+        templateUrl: 'templates/documentos-concessao/emprestimo-documentos-concessao-aviso.html',
+        // params: ['docConcessao']
       })
       .state('faleconosco', {
         cache: false,

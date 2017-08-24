@@ -114,14 +114,6 @@ var controller = angular
         $scope.stageMap = stageMap
       }
 
-      $scope.goDocConcessao = function (event) {
-        'use strict'
-        if ($rootScope.lastRequest.result.documentosConcessao[0].exibePaginaCttDps === 'S') {
-          event.preventDefault()
-          return $state.go('emprestimodocumentosconcessaoaviso')
-        }
-      }
-
       $scope.logout = function () {
         $ionicLoading.show({
           content: 'Carregando',
@@ -2953,7 +2945,7 @@ var controller = angular
 
       var contrato = consultaEmprestimo.contrato
 
-      scope.docConcessao = docConcessao
+      scope.docConcessao = Object.assign(docConcessao, rootScope.cache.docConcessao || {})
       scope.docConcessao.contrato = contrato ? ' (Contrato: ' + contrato + ')' : ''
 
       scope.docConcessao.statusDocumentoConcessao = scope.docConcessao.statusDocumentoConcessao.map(function (value) {
@@ -2972,24 +2964,32 @@ var controller = angular
 
         Object.assign(docConcessao, docConcessaoModified)
 
+        if (!rootScope.cache) rootScope.cache = {}
+
+        var param = rootScope.cache.docConcessao = {
+          acao: 'enviarDocumentosConcessao',
+          matricula: informacoesParticipante.matricula,
+          cod_fundo: dadosCadastrais.cod_fundo,
+          cod_emprestimo: docConcessao.cod_emprestimo,
+          contratoComDps: rootScope.cache.contratoComDps || 'N',
+          dc_estado_civil: docConcessao.dc_estado_civil,
+          dc_nacionalidade: docConcessao.dc_nacionalidade,
+          cod_patrocinadora: dadosCadastrais.cod_patrocinadora,
+          dc_ramo_atividade: docConcessao.dc_ramo_atividade,
+          dc_numero_telefone: docConcessao.dc_numero_telefone,
+          dc_orgao_expedidor: docConcessao.dc_orgao_expedidor,
+          dc_descricao_cargo: docConcessao.dc_descricao_cargo,
+          dc_numero_identidade: docConcessao.dc_numero_identidade,
+          dc_data_emissao_identidade: docConcessao.dc_data_emissao_identidade
+        }
+
+        if (docConcessao.exibePaginaCttDps === 'S') {
+          return state.go('emprestimodocumentosconcessaoaviso')
+        }
+
         http
           .post(url_base + ';jsessionid=' + rootScope.lastRequest.login.s, {
-            param: {
-              acao: 'enviarDocumentosConcessao',
-              matricula: informacoesParticipante.matricula,
-              cod_fundo: dadosCadastrais.cod_fundo,
-              cod_emprestimo: docConcessao.cod_emprestimo,
-              contratoComDps: rootScope.cache.contratoComDps || 'N',
-              dc_estado_civil: docConcessao.dc_estado_civil,
-              dc_nacionalidade: docConcessao.dc_nacionalidade,
-              cod_patrocinadora: dadosCadastrais.cod_patrocinadora,
-              dc_ramo_atividade: docConcessao.dc_ramo_atividade,
-              dc_numero_telefone: docConcessao.dc_numero_telefone,
-              dc_orgao_expedidor: docConcessao.dc_orgao_expedidor,
-              dc_descricao_cargo: docConcessao.dc_descricao_cargo,
-              dc_numero_identidade: docConcessao.dc_numero_identidade,
-              dc_data_emissao_identidade: docConcessao.dc_data_emissao_identidade
-            },
+            param: param,
             login: { u: userInfo.u, s: userInfo.s }
           })
           .then(
@@ -3036,32 +3036,14 @@ var controller = angular
 
       scope.submit = function (event) {
         event.preventDefault()
-        var docConcessao = rootScope.lastRequest.result.documentosConcessao[0]
-        var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
         var docConcessaoAvisoSelect = document.getElementById('docConcessaoAvisoSelect')
-        var informacoesParticipante = rootScope.lastRequest.result.informacoesParticipante[0]
 
-        rootScope.cache.contratoComDps =
+        rootScope.cache.docConcessao.contratoComDps =
           docConcessaoAvisoSelect.options[docConcessaoAvisoSelect.selectedIndex].value || 'N'
 
         http
           .post(url_base + ';jsessionid=' + rootScope.lastRequest.login.s, {
-            param: {
-              acao: 'enviarDocumentosConcessao',
-              matricula: informacoesParticipante.matricula,
-              cod_fundo: dadosCadastrais.cod_fundo,
-              cod_emprestimo: docConcessao.cod_emprestimo,
-              contratoComDps: rootScope.cache.contratoComDps,
-              dc_estado_civil: docConcessao.dc_estado_civil,
-              dc_nacionalidade: docConcessao.dc_nacionalidade,
-              cod_patrocinadora: dadosCadastrais.cod_patrocinadora,
-              dc_ramo_atividade: docConcessao.dc_ramo_atividade,
-              dc_numero_telefone: docConcessao.dc_numero_telefone,
-              dc_orgao_expedidor: docConcessao.dc_orgao_expedidor,
-              dc_descricao_cargo: docConcessao.dc_descricao_cargo,
-              dc_numero_identidade: docConcessao.dc_numero_identidade,
-              dc_data_emissao_identidade: docConcessao.dc_data_emissao_identidade
-            },
+            param: rootScope.cache.docConcessao,
             login: { u: userInfo.u, s: userInfo.s }
           })
           .then(
