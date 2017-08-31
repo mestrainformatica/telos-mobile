@@ -8,12 +8,6 @@
             Documentos de Concessão
         </div>
 
-        <!--<pre>-->
-            <!--<code onclick="pretty(this)">-->
-                <!--{{docConcessao}}-->
-            <!--</code>-->
-        <!--</pre>-->
-
         <div class="item">
             <h5 class="smallHeader"><span
                     class="softcolor upper">Formulário</span>{{docConcessao.contrato}}
@@ -156,7 +150,10 @@
                         <span class="softcolor upper">Ocupação</span>
                     </div>
                     <div class="col valor reset-white-space">
-                        <span class="">{{docConcessao.dc_descricao_cargo}}</span>
+                        <span ng-if="docConcessao.dc_descricao_cargo">{{docConcessao.dc_descricao_cargo}}</span>
+                        <label class="item item-input" ng-if="!docConcessao.dc_descricao_cargo">
+                            <input type="tel" class="reset-height" data-type="dc_data_emissao_identidade" value="{{docConcessao.dc_descricao_cargo}}">
+                        </label>
                     </div>
                 </div>
 
@@ -218,6 +215,9 @@
                     </div>
                 </div>
 
+                <div class="the_error">
+                    <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+                </div>
                 <div class="button-bar" padding="true">
                     <input ng-hide="loading" type="submit"
                            class="button button-positive button-block ng-pristine ng-untouched ng-valid"

@@ -2999,7 +2999,7 @@ var controller = angular
               ionicLoading.hide()
 
               // TODO: Debug, remove in production
-              console.log(resp)
+              // console.log(resp)
 
               if (!resp.data.success) {
                 rootScope.errorMsg = resp.data.msg
