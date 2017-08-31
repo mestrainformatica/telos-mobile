@@ -464,6 +464,7 @@ h4.title_label {
 	display:block;
 	padding-top:.5em;
 	text-align: center;
+	white-space: normal;
 	color: #DE3829 !important;
 
 }
