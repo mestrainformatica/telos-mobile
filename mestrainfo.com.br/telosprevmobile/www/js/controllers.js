@@ -1411,6 +1411,8 @@ var controller = angular
                 userInfo.u = resp.data.login.u
                 userInfo.s = resp.data.login.s
 
+                console.log(resp)
+
                 if (!resp.data.success) {
                   $rootScope.errorMsg = resp.data.msg
                   $state.go('signin')
@@ -1457,9 +1459,11 @@ var controller = angular
     '$ionicLoading',
     '$filter',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $filter) {
+      console.log($rootScope.lastRequest)
       $scope.formData = {}
       $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.esmprestimoSimulacaoCampos
-      $scope.emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido
+      $scope.emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido.result
+      console.log($scope.emprestimoSimulacaoCamposEmitido)
       $scope.emitido = $scope.emprestimoSimulacaoCamposEmitido
 
       /// /console.log($scope);
