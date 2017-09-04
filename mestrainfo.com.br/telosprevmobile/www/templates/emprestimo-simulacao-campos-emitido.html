@@ -11,18 +11,17 @@
             </div>
 
             <div class="item">
-
-                <div class="label row ng-cloak" ng-show="emitido.result.data_credito" ng-cloak>
+                <div class="label row ng-cloak" ng-show="emprestimoSimulacaoCamposEmitido.data_credito" ng-cloak>
                     <div class="col col-25 upper">Data de Crédito</div>
-                    <div class="col valor">{{emitido.result.data_credito}}</div>
+                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.data_credito}}</div>
                 </div>
                 <div class="label row">
                     <div class="col col-25  upper">Saldo Devedor Inicial</div>
-                    <div class="col valor">{{emitido.result.saldo_devedor_inicial}}</div>
+                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.saldo_devedor_inicial}}</div>
                 </div>
                 <div class="label row">
                     <div class="col col-25  upper">Prestação Inicial</div>
-                    <div class="col valor">{{emitido.result.prestacao_inicial}}</div>
+                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.prestacao_inicial}}</div>
                 </div>
                 <div class="label row" ng-show="naotemainda">
                     <div class="col col-25  upper">Vencimento 1a Prestação</div>
@@ -30,24 +29,28 @@
                 </div>
                 <div class="label row">
                     <div class="col col-25  upper">Seguro Prestamista</div>
-                    <div class="col valor">{{emitido.result.seguro_prestamista}}</div>
+                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.seguro_prestamista}}</div>
                 </div>
                 <div class="label row">
                     <div class="col col-25  upper">IOF</div>
-                    <div class="col valor">{{emitido.result.iof}}</div>
+                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.iof}}</div>
                 </div>
                 <div class="label row">
                     <div class="col col-25  upper">Valor Líquido a Receber</div>
-                    <div class="col valor">{{emitido.result.valor_liquido_a_receber}}</div>
+                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.valor_liquido_a_receber}}</div>
                 </div>
+            </div>
 
-                <div class="warning-background" style="margin: 14px 0;">
-                    <div class="deep-warning-background" ng-if="!emprestimoSimulacaoCamposEmitido.exibe_botao_confirmacao">
-                        <p class="errorColor">Solicitação so sera possivel se confirmada apos a aprovacao do termo de adesao</p>
-                    </div>
-                    <p class="errorColor">{{emprestimoSimulacaoCamposEmitido.texto_simulacao}}</p>
-                </div>
+            <div class="item deep-warning-background">
+                <p class="errorColor" ng-bind-html="emprestimoSimulacaoCamposEmitido.msg_critica_quadro_1 + emprestimoSimulacaoCamposEmitido.msg_critica_quadro_2"></p>
+            </div>
 
+            <div class="item warning-background">
+                <!--<div class="deep-warning-background" ng-if="!emprestimoSimulacaoCamposEmitido.exibe_botao_confirmacao">-->
+                <p class="errorColor">{{emprestimoSimulacaoCamposEmitido.texto_simulacao}}</p>
+            </div>
+
+            <div class="item" style="border-top: none">
                 <div ng-if="emprestimoSimulacaoCamposEmitido.exibe_botao_confirmacao">
                     <div class="the_error">
                         <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>

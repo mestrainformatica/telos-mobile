@@ -986,13 +986,12 @@ p.successColor {
 }
 
 .warning-background {
-	margin: 0;
-	padding: 1em 1.5em;
+	border: none;
 	background: #fefcf1;
 }
 
 .deep-warning-background {
-	margin: 0;
-	padding: 1em 1.5em;
-	background-color: #fefcf1;
+	border: none;
+	text-align: center;
+	background-color: #fbf0d0;
 }

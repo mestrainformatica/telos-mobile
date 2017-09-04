@@ -1130,7 +1130,7 @@ var controller = angular
 
       $scope.buttonText = '- Selecione -'
       $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0].matricula
-      $rootScope.lastRequest.esmprestimoSimulacaoCampos = []
+      $rootScope.lastRequest.emprestimoSimulacaoCampos = []
       $scope.disableddates = []
       $scope.disableCalendar = true
       $scope.dataInicial = new Date()
@@ -1227,8 +1227,8 @@ var controller = angular
                 userInfo.s = resp.data.login.s
 
                 $ionicLoading.hide()
-                $rootScope.lastRequest.esmprestimoSimulacaoCampos = resp.data.result
-                $rootScope.lastRequest.esmprestimoSimulacaoCampos.cod_emprestimo = cod_emprestimo
+                $rootScope.lastRequest.emprestimoSimulacaoCampos = resp.data.result
+                $rootScope.lastRequest.emprestimoSimulacaoCampos.cod_emprestimo = cod_emprestimo
                 $scope.errorMsg = false
                 $state.go('emprestimosimulacaocampos')
                 // console.log(resp.data.result);
@@ -1260,10 +1260,10 @@ var controller = angular
     '$filter',
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $filter, $ionicPopup) {
-      /// /console.log($rootScope.lastRequest.esmprestimoSimulacaoCampos);
+      /// /console.log($rootScope.lastRequest.emprestimoSimulacaoCampos);
       $scope.formData = {}
-      $scope.contrato = $rootScope.lastRequest.esmprestimoSimulacaoCampos.saldos_dados_simulacao
-      $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.esmprestimoSimulacaoCampos
+      $scope.contrato = $rootScope.lastRequest.emprestimoSimulacaoCampos.saldos_dados_simulacao
+      $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.emprestimoSimulacaoCampos
       $scope.tipos_emprestimo = $rootScope.lastRequest.result.simulacaoEmprestimo
       $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0].matricula
       $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
@@ -1420,16 +1420,16 @@ var controller = angular
                   if (resp.data.msg.length > 0) {
                     $rootScope.errorMsg = resp.data.msg
                   } else {
-                    $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido = {}
-                    $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido.json = jsonData
-                    $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido.result = resp.data.result
+                    $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido = {}
+                    $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido.json = jsonData
+                    $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido.result = resp.data.result
 
                     for (k in $scope.lastRequest.result.simulacaoEmprestimo) {
                       if (
                         $rootScope.lastRequest.result.simulacaoEmprestimo[k].cod_emprestimo ==
                         $scope.emprestimoSimulacaoCampos.cod_emprestimo
                       ) {
-                        $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido.tipo_emprestimo =
+                        $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido.tipo_emprestimo =
                           $rootScope.lastRequest.result.simulacaoEmprestimo[k].desc_emprestimo
                       }
                     }
@@ -1456,17 +1456,90 @@ var controller = angular
     '$state',
     '$rootScope',
     '$http',
+    '$ionicPopup',
     '$ionicLoading',
-    '$filter',
-    function ($scope, $state, $rootScope, $http, $ionicLoading, $filter) {
-      console.log($rootScope.lastRequest)
-      $scope.formData = {}
-      $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.esmprestimoSimulacaoCampos
-      $scope.emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.esmprestimoSimulacaoCamposEmitido.result
-      console.log($scope.emprestimoSimulacaoCamposEmitido)
-      $scope.emitido = $scope.emprestimoSimulacaoCamposEmitido
+    function ($scope, $state, $rootScope, $http, $ionicPopup, $ionicLoading) {
+      var dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
+      var documentosConcessao = $rootScope.lastRequest.result.documentosConcessao[0]
+      var informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0]
+      var emprestimoSimulacaoCampos = $rootScope.lastRequest.emprestimoSimulacaoCampos
+      var emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido
 
-      /// /console.log($scope);
+      var saldosDadosSimulacao = emprestimoSimulacaoCampos.saldos_dados_simulacao[0]
+
+      $scope.emprestimoSimulacaoCampos = emprestimoSimulacaoCampos
+      $scope.emprestimoSimulacaoCamposEmitido = emprestimoSimulacaoCamposEmitido.result
+
+      console.log(emprestimoSimulacaoCamposEmitido)
+
+      $scope.submit = function () {
+        $http
+          .post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+            param: {
+              acao: 'confirmacaoEmprestimo',
+              saldo_devedor_total: saldosDadosSimulacao.saldo_devedor_total,
+              percentual_seguro_qqm: emprestimoSimulacaoCamposEmitido.result.percentual_seguro_qqm,
+              prazo_selecionado_salario: emprestimoSimulacaoCamposEmitido.result.prazo_selecionado_salario,
+              saldo_devedor_inicial: emprestimoSimulacaoCamposEmitido.result.saldo_devedor_inicial,
+              prestacao_inicial: emprestimoSimulacaoCamposEmitido.result.prestacao_inicial,
+              cod_prazo_inicial: emprestimoSimulacaoCamposEmitido.json.cod_prazo_inicial,
+              cod_emprestimo: emprestimoSimulacaoCamposEmitido.json.cod_emprestimo,
+              cod_fundo: emprestimoSimulacaoCamposEmitido.json.cod_fundo,
+              cod_patrocinadora: emprestimoSimulacaoCamposEmitido.json.cod_patrocinadora,
+              numero_inscricao: dadosCadastrais.numero_inscricao,
+              matricula: emprestimoSimulacaoCamposEmitido.json.matricula,
+              sequencial_bnf: dadosCadastrais.sequencial_bnf,
+              valor_coeficiente_prazo: emprestimoSimulacaoCamposEmitido.result.valor_coeficiente_prazo,
+              val_salario: emprestimoSimulacaoCamposEmitido.json.val_salario,
+              iof: emprestimoSimulacaoCamposEmitido.result.iof,
+              sit_par: dadosCadastrais.sit_par,
+              dc_numero_agencia: documentosConcessao.dc_numero_agencia,
+              dc_numero_conta_corrente: documentosConcessao.dc_numero_conta_corrente,
+              nome: informacoesParticipante.nome,
+              dc_numero_cpf: documentosConcessao.dc_numero_cpf,
+              numero_contrato: saldosDadosSimulacao.numero_contrato,
+              idade: informacoesParticipante.idade_prev_apo, // TODO
+              seguro_prestamista: emprestimoSimulacaoCamposEmitido.result.seguro_prestamista,
+              seguro_prestamista_bruto: emprestimoSimulacaoCamposEmitido.result.seguro_prestamista_bruto,
+              codigo_indice_correcao: emprestimoSimulacaoCamposEmitido.result.codigo_indice_correcao,
+              data_credito: emprestimoSimulacaoCamposEmitido.result.data_credito, // TODO
+              valor_parcela: emprestimoSimulacaoCamposEmitido.result.valor_parcela,
+              numero_parcela: emprestimoSimulacaoCamposEmitido.result.numero_parcela,
+              data_credito_ept: emprestimoSimulacaoCamposEmitido.result.data_credito_ept,
+              valor_taxa: emprestimoSimulacaoCamposEmitido.result.valor_taxa,
+              email: dadosCadastrais.email // TODO
+            },
+            login: { u: userInfo.u, s: userInfo.s }
+          })
+          .then(
+            function (resp) {
+              userInfo.u = resp.data.login.u
+              userInfo.s = resp.data.login.s
+              $ionicLoading.hide()
+
+              // TODO: Debug, remove in production
+              console.log(resp)
+
+              if (!resp.data.success) {
+                $rootScope.errorMsg = resp.data.msg
+                $state.go('signin')
+              } else {
+                if (resp.data.msg.length > 0) {
+                  $rootScope.errorMsg = resp.data.msg
+                } else {
+                  $state.go('emprestimodocumentosconcessao')
+                }
+              }
+            },
+            function () {
+              $ionicLoading.hide()
+              $ionicPopup.alert({
+                title: 'Falha de conexão',
+                template: timeoutMsg
+              })
+            }
+          )
+      }
     }
   ])
   // MEUS CONTROLLERS
