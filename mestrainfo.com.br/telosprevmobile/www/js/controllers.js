@@ -106,12 +106,27 @@ var controller = angular
     '$ionicLoading',
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
+      'use strict'
       // Setup the loader
 
       if (logged == false) {
         // $state.go('signin');
       } else {
         $scope.stageMap = stageMap
+      }
+
+      // TODO: Cadastro TouchID
+      var touchId = $rootScope.lastRequest.result.preferencias[0].touch_ID
+      if (window.cordova && window.cordova.plugins.touchId && touchId === 'No') {
+        window.plugins.touchid.isAvailable(
+          function () {
+            return $state.go('cadastrarTouchId')
+          },
+
+          function () {
+            console.log('Device doesn\'t support finderprint.')
+          }
+        )
       }
 
       $scope.logout = function () {
@@ -228,11 +243,108 @@ var controller = angular
     '$rootScope',
     '$timeout',
     '$ionicLoading',
-    '$cordovaTouchID',
     '$ionicPlatform',
     '$ionicPopup',
-    function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $cordovaTouchID, $ionicPlatform, $ionicPopup) {
+    function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $ionicPlatform, $ionicPopup) {
+      'use strict'
+
       $scope.formData = {}
+      $scope.loginWithTouchId = 0
+      var touchId = $rootScope.lastRequest.result.preferencias[0].touch_ID
+
+      // TODO: Login TouchID
+      if (window.cordova && window.cordova.plugins.touchId && touchId !== 'Yes') {
+        window.plugins.touchid.isAvailable(
+          function () {
+            window.plugins.touchid.has(
+              'FingerPrintAuth_telosPrevMobile',
+              function () {
+                $scope.loginWithTouchId = 1
+              },
+              function () {
+                $scope.loginWithTouchId = -1
+                console.log('Key isn\'t saved, request it again...')
+              }
+            )
+          },
+
+          function () {
+            console.log('Device doesn\'t support finderprint.')
+          }
+        )
+      }
+
+      $scope.loginWithFingerprint = function () {
+        stageMap = {}
+        logged = false
+        userInfo = new Object()
+        $rootScope.lastRequest = {}
+
+        $ionicLoading.show({
+          content: 'Carregando',
+          animation: 'fade-in',
+          showBackdrop: true,
+          maxWidth: 300,
+          showDelay: 0
+        })
+
+        window.plugins.touchid.verify(
+          'FingerPrintAuth_telosPrevMobile',
+          'Use sua digital para acessar',
+          function (kid) {
+            $http
+              .post(url_base, {
+                param: {
+                  imei: '000000000000000', // TODO get device IMEI
+                  kid: kid,
+                  acao: 'autenticarTouchID'
+                },
+                login: { u: '', s: '' }
+              })
+              .then(
+                function (resp) {
+                  var k
+
+                  $ionicLoading.hide()
+                  $rootScope.lastRequest = resp.data
+                  $rootScope.cache = {}
+
+                  if ($rootScope.lastRequest.result.simuladorBeneficios) {
+                    for (k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
+                      $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true
+                      $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S'
+                    }
+                  }
+
+                  if (resp.data.msg.length > 0) {
+                    $rootScope.errorMsg = resp.data.msg
+                  } else {
+                    logged = true
+                    userInfo.u = resp.data.login.u
+                    userInfo.s = resp.data.login.s
+                    userInfo.cpf = resp.result.cpf // TODO: check if this is correct
+
+                    // TODO: removed certain parts of the login logic, check if they occur besides first login
+                    if (resp.data.result.dadosView) {
+                      for (k in resp.data.result.dadosView[0]) {
+                        stageMap[k] = resp.data.result.dadosView[0][k]
+                      }
+
+                      $state.go('menu')
+                    } else {
+                      $rootScope.errorMsg = 'Erro ao logar, tente denovo'
+                    }
+                  }
+                },
+                function (err) {
+                  console.error(err)
+                  $ionicLoading.hide()
+                  $rootScope.errorMsg = 'Erro ao conectar com o servidor. Tente novamente mais tarde'
+                }
+              )
+          }
+        )
+      }
 
       $scope.submit = function () {
         stageMap = {}
@@ -249,7 +361,7 @@ var controller = angular
             showDelay: 0
           })
 
-          $this = this
+          var $this = this
           $http
             .post(url_base, {
               param: {
@@ -328,19 +440,6 @@ var controller = angular
           $rootScope.errorMsg = 'Por favor preencha os campos acima'
         }
       }
-      // $ionicPlatform.ready(function() {
-      //       $cordovaTouchID.checkSupport().then(function() {
-      //         $cordovaTouchID.authenticate("Faça a autenticação").then(function() {
-      //           $scope.formData.cpf = "08275049776";
-      //           $scope.formData.sen = "123456";
-      //           $scope.submit();
-      //           // success
-      //         }, function () {
-      //           // error
-      //           //alert('Autenticação falhou. Tente Novamente.');
-      //         });
-      //       })
-      //     })
     }
   ])
   .controller('termosDeUso', [
@@ -1498,16 +1597,16 @@ var controller = angular
               nome: informacoesParticipante.nome,
               dc_numero_cpf: documentosConcessao.dc_numero_cpf,
               numero_contrato: saldosDadosSimulacao.numero_contrato,
-              idade: informacoesParticipante.idade_prev_apo, // TODO
+              idade: informacoesParticipante.idade_prev_apo,
               seguro_prestamista: emprestimoSimulacaoCamposEmitido.result.seguro_prestamista,
               seguro_prestamista_bruto: emprestimoSimulacaoCamposEmitido.result.seguro_prestamista_bruto,
               codigo_indice_correcao: emprestimoSimulacaoCamposEmitido.result.codigo_indice_correcao,
-              data_credito: emprestimoSimulacaoCamposEmitido.result.data_credito, // TODO
+              data_credito: emprestimoSimulacaoCamposEmitido.result.data_credito,
               valor_parcela: emprestimoSimulacaoCamposEmitido.result.valor_parcela,
               numero_parcela: emprestimoSimulacaoCamposEmitido.result.numero_parcela,
               data_credito_ept: emprestimoSimulacaoCamposEmitido.result.data_credito_ept,
               valor_taxa: emprestimoSimulacaoCamposEmitido.result.valor_taxa,
-              email: dadosCadastrais.email // TODO
+              email: dadosCadastrais.email
             },
             login: { u: userInfo.u, s: userInfo.s }
           })
