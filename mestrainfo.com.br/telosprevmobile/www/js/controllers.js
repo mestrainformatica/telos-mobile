@@ -1,24 +1,27 @@
-// var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
-// var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-// var url_base = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+// var urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
+// var urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+var urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+// var urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+// var urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+// var urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 
-// var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+var angular = window.angular
+var cordova = window.cordova
 var stageMap = {}
 var logged = false
-var userInfo = new Object()
+var userInfo = {}
 var timeoutMsg = 'Rede indisponível'
 var map = {}
-map.vinculo = new Array()
+map.vinculo = []
 map.vinculo['V'] = 'Vitalício'
 map.vinculo['I'] = 'Indicado'
 map.vinculo['T'] = 'Temporário'
 
-map.sexo = new Array()
+map.sexo = []
 map.sexo['M'] = 'Masculino'
 map.sexo['F'] = 'Feminino'
 
-map.parentesco = new Array()
+map.parentesco = []
 map.parentesco['01'] = 'Cônjuge'
 map.parentesco['02'] = 'Ex-Cônjuge'
 map.parentesco['03'] = 'Companheiro(a)'
@@ -32,25 +35,19 @@ map.parentesco['10'] = 'Menor sob Guarda'
 map.parentesco['11'] = 'Sogro(a)'
 map.parentesco['12'] = 'Filho > 24 anos'
 
-var toGuid = function (str) {
-  return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase()
-}
+// var toGuid = function (str) {
+//   return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase()
+// }
 
-var controller = angular
+window.controller = angular
   .module('starter.controller', ['ionic', 'angular-datepicker', 'ngMask', 'ngSanitize'])
   .controller('topMenu', function ($scope, $ionicHistory, $rootScope, $ionicPopup) {
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-      if (
-        toState.name == 'menu' ||
-        toState.name == 'termosdeuso' ||
-        toState.name == 'splitmatriculas' ||
-        toState.name == 'termodeuso'
-      ) {
-        $scope.isNotHome = false
-      } else {
-        $scope.isNotHome = true
-      }
-      if (toState.name != 'signin') {
+      $scope.isNotHome = !(toState.name === 'menu' ||
+        toState.name === 'termosdeuso' ||
+        toState.name === 'splitmatriculas' ||
+        toState.name === 'termodeuso')
+      if (toState.name !== 'signin') {
         $rootScope.errorMsg = false
       } else {
         $rootScope.loginPage = true
@@ -58,15 +55,15 @@ var controller = angular
       }
     })
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-      if (window.cordova && window.cordova.plugins.Keyboard) {
+      if (cordova && cordova.plugins.Keyboard) {
         // return to keyboard default scroll state
         cordova.plugins.Keyboard.disableScroll(false)
       }
       if (
-        toState.name == 'menu' ||
-        toState.name == 'termosdeuso' ||
-        toState.name == 'splitmatriculas' ||
-        toState.name == 'termodeuso'
+        toState.name === 'menu' ||
+        toState.name === 'termosdeuso' ||
+        toState.name === 'splitmatriculas' ||
+        toState.name === 'termodeuso'
       ) {
         $scope.isNotHome = false
       } else {
@@ -75,29 +72,33 @@ var controller = angular
     })
     $rootScope.$on('$ionicView.afterEnter', function () {
       // Handle iOS-specific issue with jumpy viewport when interacting with input fields.
-      if (window.cordova && window.cordova.plugins.Keyboard) {
+      if (cordova && cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.disableScroll(true)
       }
     })
     $rootScope.$on('$ionicView.beforeLeave', function () {
-      if (window.cordova && window.cordova.plugins.Keyboard) {
+      if (cordova && cordova.plugins.Keyboard) {
         // return to keyboard default scroll state
         cordova.plugins.Keyboard.disableScroll(false)
       }
     })
   })
-  .controller('Inicio', function ($scope, $http, $state, $rootScope) {
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: true,
-      maxWidth: 200,
-      showDelay: 0
-    })
-    $scope.abrirMenu = true
-    $scope.$on('$stateChangeSuccess', function () {})
-    $ionicLoading.hide()
-  })
+  .controller('Inicio', [
+    '$scope',
+    '$ionicLoading',
+    function ($scope, $ionicLoading) {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 200,
+        showDelay: 0
+      })
+      $scope.abrirMenu = true
+      $scope.$on('$stateChangeSuccess', function () {})
+      $ionicLoading.hide()
+    }
+  ])
   .controller('initMenu', [
     '$scope',
     '$state',
@@ -109,15 +110,15 @@ var controller = angular
       'use strict'
       // Setup the loader
 
-      if (logged == false) {
+      if (!logged) {
         // $state.go('signin');
       } else {
         $scope.stageMap = stageMap
       }
 
       // TODO: Cadastro TouchID
-      var touchId = $rootScope.lastRequest.result.preferencias[0].touch_ID
-      if (window.cordova && window.cordova.plugins.touchId && touchId === 'No') {
+      var touchId = window.localStorage.getItem('touchId') || 'No' // TODO: $rootScope.lastRequest.result.preferencias[0].touch_ID
+      if (cordova && window.plugins.touchId && touchId === 'No') {
         window.plugins.touchid.isAvailable(
           function () {
             return $state.go('cadastrarTouchId')
@@ -138,7 +139,7 @@ var controller = angular
           showDelay: 0
         })
         $http
-          .post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
             param: { acao: 'logout' },
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -146,7 +147,7 @@ var controller = angular
             function (resp) {
               stageMap = {}
               logged = false
-              userInfo = new Object()
+              userInfo = {}
               $rootScope.cache = {}
               $rootScope.lastRequest = {}
               delete $rootScope.beneficiariosOriginal
@@ -155,6 +156,7 @@ var controller = angular
               $state.go('signin')
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -184,9 +186,8 @@ var controller = angular
           showDelay: 0
         })
 
-        $this = this
         $http
-          .post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
             param: {
               cpf: userInfo.cpf,
               cod_fundo: $scope.matriculas[item].cod_fundo,
@@ -198,6 +199,8 @@ var controller = angular
           })
           .then(
             function (resp) {
+              var k
+
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
 
@@ -226,6 +229,7 @@ var controller = angular
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -250,98 +254,93 @@ var controller = angular
 
       $scope.formData = {}
       $scope.loginWithTouchId = 0
-      var touchId = $rootScope.lastRequest.result.preferencias[0].touch_ID
+      var touchId = window.localStorage.getItem('touchId')
 
       // TODO: Login TouchID
-      if (window.cordova && window.cordova.plugins.touchId && touchId !== 'Yes') {
+      if (window.plugins && window.plugins.touchid && touchId === 'Yes') {
+        console.log('TouchID Enabled')
         window.plugins.touchid.isAvailable(
           function () {
             window.plugins.touchid.has(
               'FingerPrintAuth_telosPrevMobile',
               function () {
-                $scope.loginWithTouchId = 1
+                stageMap = {}
+                logged = false
+                userInfo = {}
+                $rootScope.lastRequest = {}
+
+                $ionicLoading.show({
+                  content: 'Carregando',
+                  animation: 'fade-in',
+                  showBackdrop: true,
+                  maxWidth: 300,
+                  showDelay: 0
+                })
+
+                window.plugins.touchid.verify(
+                  'FingerPrintAuth_telosPrevMobile',
+                  'Use sua digital para acessar',
+                  function (kid) {
+                    $http
+                      .post(urlBase, {
+                        param: {
+                          imei: '000000000000000', // TODO get device IMEI
+                          kid: kid,
+                          acao: 'autenticarTouchID'
+                        },
+                        login: { u: '', s: '' }
+                      })
+                      .then(
+                        function (resp) {
+                          var k
+
+                          $ionicLoading.hide()
+                          $rootScope.lastRequest = resp.data
+                          $rootScope.cache = {}
+
+                          if ($rootScope.lastRequest.result.simuladorBeneficios) {
+                            for (k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
+                              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true
+                              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S'
+                            }
+                          }
+
+                          if (resp.data.msg.length > 0) {
+                            $rootScope.errorMsg = resp.data.msg
+                          } else {
+                            logged = true
+                            userInfo.u = resp.data.login.u
+                            userInfo.s = resp.data.login.s
+                            userInfo.cpf = resp.result.cpf // TODO: check if this is correct
+
+                            // TODO: removed certain parts of the login logic, check if they occur besides first login
+                            if (resp.data.result.dadosView) {
+                              for (k in resp.data.result.dadosView[0]) {
+                                stageMap[k] = resp.data.result.dadosView[0][k]
+                              }
+
+                              $state.go('menu')
+                            } else {
+                              $rootScope.errorMsg = 'Erro ao logar, tente denovo'
+                            }
+                          }
+                        },
+                        function (err) {
+                          console.error(err)
+                          $ionicLoading.hide()
+                          $rootScope.errorMsg = 'Erro ao conectar com o servidor. Tente novamente mais tarde'
+                        }
+                      )
+                  }
+                )
               },
               function () {
-                $scope.loginWithTouchId = -1
-                console.log('Key isn\'t saved, request it again...')
+                $scope.errorMsg = 'Erro ao acessar dados de cadastro com digital. Por favor entre com seu CPF e senha.'
               }
             )
           },
-
           function () {
-            console.log('Device doesn\'t support finderprint.')
-          }
-        )
-      }
-
-      $scope.loginWithFingerprint = function () {
-        stageMap = {}
-        logged = false
-        userInfo = new Object()
-        $rootScope.lastRequest = {}
-
-        $ionicLoading.show({
-          content: 'Carregando',
-          animation: 'fade-in',
-          showBackdrop: true,
-          maxWidth: 300,
-          showDelay: 0
-        })
-
-        window.plugins.touchid.verify(
-          'FingerPrintAuth_telosPrevMobile',
-          'Use sua digital para acessar',
-          function (kid) {
-            $http
-              .post(url_base, {
-                param: {
-                  imei: '000000000000000', // TODO get device IMEI
-                  kid: kid,
-                  acao: 'autenticarTouchID'
-                },
-                login: { u: '', s: '' }
-              })
-              .then(
-                function (resp) {
-                  var k
-
-                  $ionicLoading.hide()
-                  $rootScope.lastRequest = resp.data
-                  $rootScope.cache = {}
-
-                  if ($rootScope.lastRequest.result.simuladorBeneficios) {
-                    for (k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
-                      $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true
-                      $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S'
-                    }
-                  }
-
-                  if (resp.data.msg.length > 0) {
-                    $rootScope.errorMsg = resp.data.msg
-                  } else {
-                    logged = true
-                    userInfo.u = resp.data.login.u
-                    userInfo.s = resp.data.login.s
-                    userInfo.cpf = resp.result.cpf // TODO: check if this is correct
-
-                    // TODO: removed certain parts of the login logic, check if they occur besides first login
-                    if (resp.data.result.dadosView) {
-                      for (k in resp.data.result.dadosView[0]) {
-                        stageMap[k] = resp.data.result.dadosView[0][k]
-                      }
-
-                      $state.go('menu')
-                    } else {
-                      $rootScope.errorMsg = 'Erro ao logar, tente denovo'
-                    }
-                  }
-                },
-                function (err) {
-                  console.error(err)
-                  $ionicLoading.hide()
-                  $rootScope.errorMsg = 'Erro ao conectar com o servidor. Tente novamente mais tarde'
-                }
-              )
+            console.log('Device doesn\'t support fingerprint.')
           }
         )
       }
@@ -349,7 +348,7 @@ var controller = angular
       $scope.submit = function () {
         stageMap = {}
         logged = false
-        userInfo = new Object()
+        userInfo = {}
         $rootScope.lastRequest = {}
 
         if (typeof this.formData.cpf !== 'undefined' && typeof this.formData.sen !== 'undefined') {
@@ -363,7 +362,7 @@ var controller = angular
 
           var $this = this
           $http
-            .post(url_base, {
+            .post(urlBase, {
               param: {
                 cpf: $this.formData.cpf,
                 sen: $this.formData.sen,
@@ -373,6 +372,7 @@ var controller = angular
             })
             .then(
               function (resp) {
+                var k
                 // Se conseguiu conectar com o servidor
                 $ionicLoading.hide()
 
@@ -407,28 +407,26 @@ var controller = angular
                       stageMap[k] = resp.data.result.dadosView[0][k]
                     }
 
-                    if (typeof resp.data.result.termo_de_uso !== 'undefined') {
+                    if (resp.data.result.termo_de_uso) {
                       // Ainda não aceitou os termos de uso
                       $state.go('termosdeuso')
-                    } else if (typeof resp.data.result.dadosView) {
-                      /// /console.log(stageMap);
+                    } else if (resp.data.result.dadosView) {
                       // Ao definir as variáveis, vai pro menu principal
                       $state.go('menu')
                     } else {
                       $state.go('signin')
                     }
                   }
-                  // alert('passou');
-                  /// /console.log(resp);
-                  // $state.go('menu');
                 }
               },
               function (err) {
+                console.error(err)
                 // Se deu erro na conexão ou no processo de busca do JSON
                 $ionicLoading.hide()
                 $rootScope.errorMsg = 'Erro ao conectar com o servidor. Tente novamente mais tarde'
               },
               function (err) {
+                console.error(err)
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -450,7 +448,6 @@ var controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicPopup) {
       $rootScope.erroMsg = false
-      /// /console.log($rootScope.lastRequest.result);
       $scope.termosText = $rootScope.lastRequest.result.termo_de_uso[0].descricao_termo_uso
     }
   ])
@@ -472,7 +469,7 @@ var controller = angular
       })
 
       $http
-        .post(url_base, {
+        .post(urlBase, {
           param: { acao: 'termoUsoInicial' },
           login: { u: '', s: '' }
         })
@@ -484,10 +481,10 @@ var controller = angular
             } else {
               $ionicLoading.hide()
               $scope.termosText = resp.data.result.termo_de_uso[0].descricao_termo_uso
-              /// /console.log($scope.termosText);
             }
           },
           function (err) {
+            console.error(err)
             $ionicLoading.hide()
             $ionicPopup.alert({
               title: 'Falha de conexão',
@@ -509,7 +506,7 @@ var controller = angular
 
       $ionicLoading.show()
       $http
-        .post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+        .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
           param: { acao: 'simulacaoResgate' },
           login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
         })
@@ -527,6 +524,7 @@ var controller = angular
             }
           },
           function (err) {
+            console.error(err)
             $ionicLoading.hide()
             $ionicPopup.alert({
               title: 'Falha de conexão',
@@ -558,7 +556,7 @@ var controller = angular
         })
 
         $http
-          .post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
             param: { aceite: true, acao: 'termoUso', cpf: userInfo.cpf },
             login: {
               u: $rootScope.lastRequest.login.u,
@@ -584,6 +582,7 @@ var controller = angular
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -601,7 +600,7 @@ var controller = angular
           showDelay: 0
         })
         $http
-          .post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
             param: { acao: 'logout' },
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -609,7 +608,7 @@ var controller = angular
             function (resp) {
               stageMap = {}
               logged = false
-              userInfo = new Object()
+              userInfo = {}
               $rootScope.lastRequest = {}
               delete $rootScope.beneficiariosOriginal
               $ionicLoading.hide()
@@ -617,6 +616,7 @@ var controller = angular
               $state.go('signin')
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -625,7 +625,6 @@ var controller = angular
             }
           )
       }
-      /// /console.log($rootScope.lastRequest.result);
       $scope.termosText = $rootScope.lastRequest.result.termo_de_uso[0].descricao_termo_uso
     }
   ])
@@ -638,9 +637,9 @@ var controller = angular
       $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0]
 
       // Mantem o headerInfo sempre aberto no menu
-      if ($state.current.name == 'menu') {
+      if ($state.current.name === 'menu') {
         $scope.abrirMenu = true
-      } else if ($scope.abrirMenu == true) {
+      } else if ($scope.abrirMenu) {
         // Mantem o headerInfo sempre fechado nas demais páginas
         $scope.abrirMenu = false
       }
@@ -707,7 +706,7 @@ var controller = angular
         }
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: $scope.postData,
             login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
           })
@@ -728,6 +727,7 @@ var controller = angular
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -750,7 +750,6 @@ var controller = angular
       $scope.extrato = $rootScope.lastRequest.result.extratoContas
       $scope.formData = {}
 
-      // console.log($scope.extrato);
       $scope.submit = function () {
         if (!$scope.formData.cod_ano_mes) {
           $rootScope.errorMsg = 'Por favor preencha todos os campos'
@@ -764,7 +763,7 @@ var controller = angular
           })
 
           $http
-            .post(url_base + ';jsessionid=' + userInfo.s, {
+            .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
                 cod_ano_mes: $scope.formData.cod_ano_mes,
                 acao: 'extratoContas'
@@ -787,12 +786,12 @@ var controller = angular
                     $rootScope.lastRequest.extratoEmitido = resp.data.result
                     $rootScope.lastRequest.extratoEmitido.mes_atual = $scope.cod_ano_mes
                     $rootScope.cache.cod_ano_mes = $scope.formData.cod_ano_mes
-                    // console.log(resp.data.result);
                     $state.go('extratoemitido')
                   }
                 }
               },
               function (err) {
+                console.error(err)
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -810,13 +809,12 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
-      console.log($rootScope)
-
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $rootScope.erroMsg = false
       $scope.extrato = $rootScope.lastRequest.extratoEmitido
 
-      if ($rootScope.lastRequest.result.dadosCadastrais.email == '') {
+      if ($rootScope.lastRequest.result.dadosCadastrais.email === '') {
         $scope.hasEmail = true
       } else $scope.hasEmail = false
 
@@ -830,7 +828,7 @@ var controller = angular
         })
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               descricaoEmail: $rootScope.lastRequest.result.dadosCadastrais[0].email,
               acao: 'extratoContasEnvioEmail',
@@ -851,12 +849,14 @@ var controller = angular
                 if (resp.data.msg.length > 0) {
                   $rootScope.errorMsg = resp.data.msg
                 } else {
-                  // console.log(resp.data.result);
-                  alert('Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email)
+                  $ionicPopup.alert({
+                    template: 'Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email
+                  })
                 }
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -891,7 +891,6 @@ var controller = angular
         if (!$scope.formData.data_atualizacao) {
           $rootScope.errorMsg = 'Por favor preencha todos os campos'
         } else {
-          // console.log('clicou');
           $ionicLoading.show({
             content: 'Carregando',
             animation: 'fade-in',
@@ -901,7 +900,7 @@ var controller = angular
           })
 
           $http
-            .post(url_base + ';jsessionid=' + userInfo.s, {
+            .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
                 data_atualizacao: $scope.formData.data_atualizacao,
                 acao: 'saldoContas'
@@ -921,7 +920,6 @@ var controller = angular
                   if (resp.data.msg.length > 0) {
                     $rootScope.errorMsg = resp.data.msg
                   } else {
-                    console.log(resp.data.result)
                     $rootScope.lastRequest.saldoEmitido = resp.data.result
                     $scope.saldo.detalhesSaldoContas = resp.data.result.detalhesSaldoContas
                     $scope.saldo.total_financeiro = resp.data.result.total_financeiro
@@ -933,6 +931,7 @@ var controller = angular
                 }
               },
               function (err) {
+                console.error(err)
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -951,7 +950,7 @@ var controller = angular
           })
 
           $http
-            .post(url_base + ';jsessionid=' + userInfo.s, {
+            .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
                 descricaoEmail: $rootScope.lastRequest.result.dadosCadastrais[0].email,
                 acao: 'saldoContasEnvioEmail',
@@ -972,12 +971,14 @@ var controller = angular
                   if (resp.data.msg.length > 0) {
                     $rootScope.errorMsg = resp.data.msg
                   } else {
-                    // console.log(resp.data.result);
-                    alert('Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email)
+                    $ionicPopup.alert({
+                      template: 'Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email
+                    })
                   }
                 }
               },
               function (err) {
+                console.error(err)
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -998,9 +999,8 @@ var controller = angular
     function ($scope, $state, $rootScope, $http, $ionicLoading) {
       $rootScope.erroMsg = false
       $scope.saldo = $rootScope.lastRequest.saldoEmitido
-      // console.log($scope.saldo);
 
-      if ($rootScope.lastRequest.result.dadosCadastrais.email == '') {
+      if ($rootScope.lastRequest.result.dadosCadastrais.email === '') {
         $scope.hasEmail = true
       } else $scope.hasEmail = false
     }
@@ -1030,7 +1030,7 @@ var controller = angular
           })
 
           $http
-            .post(url_base + ';jsessionid=' + userInfo.s, {
+            .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
                 data_pagamento: $scope.formData.data_pagamento,
                 acao: 'demonstrativoPagamento'
@@ -1059,6 +1059,7 @@ var controller = angular
                 }
               },
               function (err) {
+                console.error(err)
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1100,7 +1101,7 @@ var controller = angular
           })
 
           $http
-            .post(url_base + ';jsessionid=' + userInfo.s, {
+            .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
                 acao: 'faleConosco',
                 nome: $scope.matricula.nome,
@@ -1134,6 +1135,7 @@ var controller = angular
                 }
               },
               function (err) {
+                console.error(err)
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1151,11 +1153,12 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $rootScope.erroMsg = false
       $scope.demonstrativo = $rootScope.demonstrativoEmitido
 
-      if ($rootScope.lastRequest.result.dadosCadastrais.email == '') {
+      if ($rootScope.lastRequest.result.dadosCadastrais.email === '') {
         $scope.hasEmail = true
       } else $scope.hasEmail = false
 
@@ -1169,7 +1172,7 @@ var controller = angular
         })
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               descricaoEmail: $rootScope.lastRequest.result.dadosCadastrais[0].email,
               acao: 'demonstrativoPagamentoEmail',
@@ -1190,12 +1193,14 @@ var controller = angular
                 if (resp.data.msg.length > 0) {
                   $rootScope.errorMsg = resp.data.msg
                 } else {
-                  // console.log(resp.data.result);
-                  alert('Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email)
+                  $ionicPopup.alert({
+                    template: 'Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email
+                  })
                 }
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -1233,7 +1238,7 @@ var controller = angular
       $scope.disableddates = []
       $scope.disableCalendar = true
       $scope.dataInicial = new Date()
-      $scope.update = function (cod_emprestimo) {
+      $scope.update = function (codEmprestimo) {
         $ionicLoading.show({
           content: 'Loading',
           animation: 'fade-in',
@@ -1243,9 +1248,9 @@ var controller = angular
         })
         // Atualiza as datas de crédito
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
-              cod_emprestimo: cod_emprestimo,
+              cod_emprestimo: codEmprestimo,
               matricula: $scope.matricula,
               acao: 'emprestimos'
             },
@@ -1257,22 +1262,19 @@ var controller = angular
               userInfo.s = resp.data.login.s
               $ionicLoading.hide()
 
-              dataInicial = new Date(resp.data.result.data_inicial)
+              var dataInicial = new Date(resp.data.result.data_inicial)
               $scope.dataInicial = dataInicial.getTime()
-              // console.log(dataInicial);
-              // console.log($scope.dataInicial);
               $scope.disableCalendar = false
 
-              datasIndisponiveis = resp.data.result.datas_credito
+              var datasIndisponiveis = resp.data.result.datas_credito
 
               for (var k in datasIndisponiveis) {
-                if (datasIndisponiveis[k].disponivel == 'N') {
-                  currentDate = new Date(datasIndisponiveis[k].data)
+                if (datasIndisponiveis[k].disponivel === 'N') {
+                  var currentDate = new Date(datasIndisponiveis[k].data)
 
                   $scope.disableddates.push(currentDate.getTime())
                 }
               }
-              // console.log($scope.disableddates);
               if (!resp.data.success) {
                 $rootScope.errorMsg = resp.data.msg
                 $state.go('signin')
@@ -1285,6 +1287,7 @@ var controller = angular
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -1297,11 +1300,10 @@ var controller = angular
       $scope.formData.tipo = $rootScope.lastRequest.result.simulacaoEmprestimo[0].cod_emprestimo
       $scope.update($scope.formData.tipo)
 
-      $scope.submit = function (cod_emprestimo) {
+      $scope.submit = function (codEmprestimo) {
         if (!$scope.formData.tipo || !$scope.formData.data) {
           $scope.errorMsg = 'Por favor preencha todos os campos'
         } else {
-          // console.log('click');
           $ionicLoading.show({
             content: 'Carregando',
             animation: 'fade-in',
@@ -1312,9 +1314,9 @@ var controller = angular
 
           // Atualiza as datas de crédito
           $http
-            .post(url_base + ';jsessionid=' + userInfo.s, {
+            .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
-                cod_emprestimo: cod_emprestimo,
+                cod_emprestimo: codEmprestimo,
                 dataCredito: $scope.formData.data,
                 acao: 'simulacaoEmprestimo'
               },
@@ -1327,12 +1329,12 @@ var controller = angular
 
                 $ionicLoading.hide()
                 $rootScope.lastRequest.emprestimoSimulacaoCampos = resp.data.result
-                $rootScope.lastRequest.emprestimoSimulacaoCampos.cod_emprestimo = cod_emprestimo
+                $rootScope.lastRequest.emprestimoSimulacaoCampos.cod_emprestimo = codEmprestimo
                 $scope.errorMsg = false
                 $state.go('emprestimosimulacaocampos')
-                // console.log(resp.data.result);
               },
               function (err) {
+                console.error(err)
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1359,7 +1361,6 @@ var controller = angular
     '$filter',
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $filter, $ionicPopup) {
-      /// /console.log($rootScope.lastRequest.emprestimoSimulacaoCampos);
       $scope.formData = {}
       $scope.contrato = $rootScope.lastRequest.emprestimoSimulacaoCampos.saldos_dados_simulacao
       $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.emprestimoSimulacaoCampos
@@ -1368,11 +1369,11 @@ var controller = angular
       $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
 
       $scope.currency = function (valor, e) {
-        milSep = '.'
-        decSep = ','
-        casas = 3
+        var milSep = '.'
+        var decSep = ','
+        var casas = 3
 
-        campo = new Object()
+        var campo = {}
         campo.value = $scope.formData.valor
         campo.maxLength = 12
         $scope.formData.valor = $scope.formData.valor.replace(',', '').replace('.', '')
@@ -1384,15 +1385,15 @@ var controller = angular
           $scope.formData.valor = $scope.formData.valor.replace(/\D+/g, '')
           return false
         }
-        if (code == 8) {
+        if (code === 8) {
           $scope.formData.valor = '0,00'
           return false
         }
 
         switch (code) { // caso seja...
-          case 0: // Delete
           // case 8: //backspace
-          case 13: // Enter
+          // 0 = Delete
+          case 0: case 13: // Enter
             return true // sai da funcao, validando a tecla
         }
 
@@ -1400,16 +1401,18 @@ var controller = angular
         if (isNaN(key)) return false // N?o ? numero, sai da funcao
         if (campo.maxLength <= campo.value.length) return false // trata erro decasas
 
-        var i = (j = 0)
+        var j = 0
+        var i = 0
         var len = campo.value.length
         var len2 = 0
-        var aux = (aux2 = '')
+        var aux2 = ''
+        var aux = ''
 
         milSep = typeof milSep !== 'undefined' ? milSep : '.' // se separadoresforem nulos,
         decSep = typeof decSep !== 'undefined' ? decSep : ',' // especificaseparadores padr?es
 
         for (i = 0; i < len; i++) {
-          if (campo.value.charAt(i) != '0' && campo.value.charAt(i) != decSep) {
+          if (campo.value.charAt(i) !== '0' && campo.value.charAt(i) !== decSep) {
             break
           }
         }
@@ -1425,7 +1428,7 @@ var controller = angular
         aux += key // adiciona tecla digitada
         len = aux.length
 
-        if (len == 0) campo.value = ''
+        if (len === 0) campo.value = ''
 
         // se o numero do campo for menor q a quantidade de casas decimais
         if (len > 0 && len <= casas) {
@@ -1433,7 +1436,7 @@ var controller = angular
           campo.value = '0' + decSep
 
           /* trecho acrescentado devido ao bug do 1 centavo */
-          if (len == 1 && casas == 2) campo.value += '0' /* fim trecho */
+          if (len === 1 && casas === 2) campo.value += '0' /* fim trecho */
           else for (i = 1; i <= casas - len; i++) campo.value += '0'
 
           campo.value += aux
@@ -1443,7 +1446,7 @@ var controller = angular
           aux2 = ''
 
           for (j = 0, i = len - (casas + 1); i >= 0; i--) {
-            if (milSep != '' && j == 3) {
+            if (milSep !== '' && j === 3) {
               aux2 += milSep
               j = 0
             }
@@ -1474,10 +1477,6 @@ var controller = angular
         if (!$scope.formData.tipo || !$scope.formData.prazoInicial || !$scope.formData.valor) {
           $scope.errorMsg = 'Por favor preencha todos os campos'
         } else {
-          // //console.log($scope.formData);
-          // //console.log($scope.emprestimoSimulacaoCampos);
-          // //console.log($scope.tipos_emprestimo);
-          // //console.log($scope.matricula);
           $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
@@ -1485,7 +1484,7 @@ var controller = angular
             maxWidth: 300,
             showDelay: 0
           })
-          jsonData = {
+          var jsonData = {
             cod_emprestimo: $scope.emprestimoSimulacaoCampos.cod_emprestimo,
             cod_patrocinadora: $scope.dadosCadastrais.cod_patrocinadora,
             cod_fundo: $scope.dadosCadastrais.cod_fundo,
@@ -1500,17 +1499,16 @@ var controller = angular
           }
 
           $http
-            .post(url_base + ';jsessionid=' + userInfo.s, {
+            .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: jsonData,
               login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
             })
             .then(
               function (resp) {
+                var k
                 $ionicLoading.hide()
                 userInfo.u = resp.data.login.u
                 userInfo.s = resp.data.login.s
-
-                console.log(resp)
 
                 if (!resp.data.success) {
                   $rootScope.errorMsg = resp.data.msg
@@ -1525,7 +1523,7 @@ var controller = angular
 
                     for (k in $scope.lastRequest.result.simulacaoEmprestimo) {
                       if (
-                        $rootScope.lastRequest.result.simulacaoEmprestimo[k].cod_emprestimo ==
+                        $rootScope.lastRequest.result.simulacaoEmprestimo[k].cod_emprestimo ===
                         $scope.emprestimoSimulacaoCampos.cod_emprestimo
                       ) {
                         $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido.tipo_emprestimo =
@@ -1534,11 +1532,11 @@ var controller = angular
                     }
                     $scope.errorMsg = false
                     $state.go('emprestimosimulacaocamposemitido')
-                    /// /console.log(resp.data.result);
                   }
                 }
               },
               function (err) {
+                console.error(err)
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1569,11 +1567,9 @@ var controller = angular
       $scope.emprestimoSimulacaoCampos = emprestimoSimulacaoCampos
       $scope.emprestimoSimulacaoCamposEmitido = emprestimoSimulacaoCamposEmitido.result
 
-      console.log(emprestimoSimulacaoCamposEmitido)
-
       $scope.submit = function () {
         $http
-          .post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
             param: {
               acao: 'confirmacaoEmprestimo',
               saldo_devedor_total: saldosDadosSimulacao.saldo_devedor_total,
@@ -1616,9 +1612,6 @@ var controller = angular
               userInfo.s = resp.data.login.s
               $ionicLoading.hide()
 
-              // TODO: Debug, remove in production
-              console.log(resp)
-
               if (!resp.data.success) {
                 $rootScope.errorMsg = resp.data.msg
                 $state.go('signin')
@@ -1654,17 +1647,16 @@ var controller = angular
     '$rootScope',
     '$ionicLoading',
     '$http',
-    function ($scope, $state, $rootScope, $ionicLoading, $http) {
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $ionicLoading, $http, $ionicPopup) {
       $scope.formData = {}
       $scope.contribuicao_participante =
         $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante
       $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao
-      $scope.years = new Array()
+      $scope.years = []
       for (var year = 20; year <= 120; year++) {
         $scope.years.push(year)
       }
-
-      console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios)
 
       $scope.data_elegibilidade_prevista =
         $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista
@@ -1686,9 +1678,6 @@ var controller = angular
       // seta o valor do form como o default do ws.
       $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT
 
-      // console.log('default do tipo_reajuste: ');
-      // console.log($scope.formData.tipo_reajuste);
-
       // se existe lastForm
       if (typeof $rootScope.cache.lastFormRMV !== 'undefined') {
         // se mes ano ta preenchido
@@ -1702,8 +1691,6 @@ var controller = angular
       }
 
       $scope.goBeneficiarios = function (formData) {
-        // console.log('teste');
-        // console.log(formData);
         $rootScope.cache.formToBeneficiarios = {}
         $rootScope.cache.formToBeneficiarios = formData
         $rootScope.cache.routeToBeneficiarios = 'simulacaorendamensalvitaliciaresultado'
@@ -1749,8 +1736,6 @@ var controller = angular
         }
       }
       $scope.submit = function (formData) {
-        // console.log('teste');
-        // console.log(formData);
         $rootScope.cache.formToBeneficiarios = {}
         $rootScope.cache.formToBeneficiarios = formData
         $rootScope.cache.routeParams = {}
@@ -1760,7 +1745,6 @@ var controller = angular
         $rootScope.cache.lastFormRMV = {}
         $rootScope.cache.lastFormRMV = $scope.getParams(formData)
         console.log('lastFormRMV no submit: ' + $rootScope.cache.lastFormRMV)
-        // console.log($rootScope.lastRequest.result);
 
         $ionicLoading.show({
           content: 'Carregando',
@@ -1771,7 +1755,7 @@ var controller = angular
         })
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: $scope.getParams(formData),
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -1795,6 +1779,7 @@ var controller = angular
               $ionicLoading.hide()
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -1812,14 +1797,8 @@ var controller = angular
     '$ionicModal',
     '$ionicLoading',
     '$http',
-    function ($scope, $state, $rootScope, $ionicModal, $ionicLoading, $http) {
-      console.log($rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios)
-
-      console.log('scope: ')
-      console.log($scope)
-      console.log('rootScope: ')
-      console.log($rootScope)
-
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $ionicModal, $ionicLoading, $http, $ionicPopup) {
       // se já existe um beneficiariosOriginal, não sobrescrever.
       if (typeof $rootScope.beneficiariosOriginal === 'undefined') {
         $rootScope.beneficiariosOriginal = angular.copy(
@@ -1841,10 +1820,10 @@ var controller = angular
 
       $scope.beneficiarios.forEach(function (v, k) {
         $scope.beneficiarios[k].fromDB = true
-        if ($scope.beneficiarios[k].selecionado == 'S') {
+        if ($scope.beneficiarios[k].selecionado === 'S') {
           $scope.beneficiarios[k].checked = true
         }
-        if ($scope.beneficiarios[k].habilitado == 'N') {
+        if ($scope.beneficiarios[k].habilitado === 'N') {
           $scope.beneficiarios[k].readonly = true
         }
       })
@@ -1852,11 +1831,8 @@ var controller = angular
       $scope.map = map
       $scope.formAddBeneficiario = {}
       $scope.changeSelecionado = function () {
-        console.log('scope beneficiarios: ')
-        console.log($scope.beneficiarios)
-
         $scope.beneficiarios.forEach(function (v, k) {
-          if ($scope.beneficiarios[k].checked || $scope.beneficiarios[k].habilitado == 'N') {
+          if ($scope.beneficiarios[k].checked || $scope.beneficiarios[k].habilitado === 'N') {
             $scope.beneficiarios[k].selecionado = 'S'
             $scope.beneficiarios[k].checked = true
           } else {
@@ -1922,8 +1898,6 @@ var controller = angular
       })
 
       $scope.submit = function () {
-        // console.log('teste');
-        // console.log(formData);
         $scope.matricula = $rootScope.lastRequest.result
 
         $ionicLoading.show({
@@ -1937,7 +1911,7 @@ var controller = angular
         $rootScope.cache.routeParams.beneficiarios = $scope.beneficiarios
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: $rootScope.cache.routeParams,
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -1962,6 +1936,7 @@ var controller = angular
               $ionicLoading.hide()
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -1995,12 +1970,6 @@ var controller = angular
         $scope.formData = $rootScope.cache.formToBeneficiarios
       }
 
-      // $scope.beneficiarios = $scope.beneficiarios;
-      console.log('scope: ')
-      console.log($scope)
-      console.log('rootScope: ')
-      console.log($rootScope)
-
       $scope.toggleChild = function () {
         if ($scope.showChild) $scope.showChild = false
         else $scope.showChild = true
@@ -2028,8 +1997,9 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
-      $scope.formData = new Object()
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
+      $scope.formData = {}
 
       if ('lastFormDataSP' in $rootScope.cache) {
         $scope.formData = $rootScope.cache.lastFormDataSP
@@ -2048,7 +2018,7 @@ var controller = angular
       }
 
       $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo)
-      $scope.years = new Array()
+      $scope.years = []
       for (var year = 20; year <= 120; year++) {
         $scope.years.push(year)
       }
@@ -2074,7 +2044,7 @@ var controller = angular
         }
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               acao: 'simulaSP',
               cod_fundo: $scope.matricula.dadosCadastrais[0].cod_fundo,
@@ -2120,6 +2090,7 @@ var controller = angular
               $ionicLoading.hide()
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2136,14 +2107,14 @@ var controller = angular
     '$http',
     '$rootScope',
     '$ionicLoading',
-    function ($scope, $state, $http, $rootScope, $ionicLoading) {
-      $scope.formData = new Object()
-      console.log($rootScope)
+    '$ionicPopup',
+    function ($scope, $state, $http, $rootScope, $ionicLoading, $ionicPopup) {
+      $scope.formData = {}
       if (typeof $rootScope.cache.lastFormDataSP !== 'undefined') {
         $scope.formData = $rootScope.cache.lastFormDataSP
       }
       $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo)
-      $scope.years = new Array()
+      $scope.years = []
       for (var year = 20; year <= 120; year++) {
         $scope.years.push(year)
       }
@@ -2172,7 +2143,7 @@ var controller = angular
         }
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               acao: 'simulaSP',
               cod_fundo: $scope.matricula.dadosCadastrais[0].cod_fundo,
@@ -2219,6 +2190,7 @@ var controller = angular
               $ionicLoading.hide()
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2240,16 +2212,17 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.formData = {}
 
-      // if (typeof($rootScope.cache.formSimulaRMVSP) != 'undefined'){
+      // if (typeof($rootScope.cache.formSimulaRMVSP) !== 'undefined'){
       //   $scope.formData = $rootScope.cache.formSimulaRMVSP;
       // }
 
       $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
       $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo)
-      $scope.years = new Array()
+      $scope.years = []
       for (var year = 20; year <= 120; year++) {
         $scope.years.push(year)
       }
@@ -2289,8 +2262,6 @@ var controller = angular
       }
 
       $scope.goBeneficiarios = function (formData) {
-        // console.log('teste');
-        // console.log(formData);
         $rootScope.cache.formToBeneficiarios = {}
         $rootScope.cache.formToBeneficiarios = formData
         $rootScope.cache.routeToBeneficiarios = 'simulacaormvsaqueprogramadoresultado'
@@ -2324,7 +2295,6 @@ var controller = angular
           abono_anual: formData.abono_anual,
           saque_programado: formData.saque_programado,
           renda_mensal_vitalicia: formData.renda_mensal_vitalicia,
-          abono_anual: formData.abono_anual,
           dependentes_ir: formData.dependentes_ir,
           data_elegibilidade_prevista: $scope.data_elegibilidade_prevista,
           idade: formData.idade,
@@ -2350,7 +2320,7 @@ var controller = angular
         $rootScope.cache.formSimulaRMVSP = formData
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: $scope.getParams(formData),
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -2374,6 +2344,7 @@ var controller = angular
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2390,7 +2361,8 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.showChild = false
 
       $scope.formData = {}
@@ -2403,16 +2375,10 @@ var controller = angular
         $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista
       $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios
 
-      console.log($scope)
-      console.log($rootScope)
-
       $scope.map = map
       $scope.value = $rootScope.cache.simulaRmvSp
       $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao
       $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido
-
-      console.log($rootScope)
-      console.log($scope)
 
       $scope.toggleChild = function (key) {
         if ($scope.showChild) $scope.showChild = false
@@ -2452,7 +2418,6 @@ var controller = angular
           abono_anual: formData.abono_anual,
           saque_programado: formData.saque_programado,
           renda_mensal_vitalicia: formData.renda_mensal_vitalicia,
-          abono_anual: formData.abono_anual,
           dependentes_ir: formData.dependentes_ir,
           data_elegibilidade_prevista: $scope.data_elegibilidade_prevista,
           idade: formData.idade,
@@ -2461,10 +2426,7 @@ var controller = angular
         }
       }
       $scope.submit = function (formData) {
-        // console.log('teste');
-        // console.log(formData);
         $scope.matricula = $rootScope.lastRequest.result
-        // console.log($scope.matricula);
 
         $ionicLoading.show({
           content: 'Carregando',
@@ -2475,7 +2437,7 @@ var controller = angular
         })
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: $scope.getParams(formData),
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -2501,6 +2463,7 @@ var controller = angular
               $ionicLoading.hide()
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2520,8 +2483,8 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
-      console.log($rootScope.lastRequest.result)
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.formData = {}
       $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
       $scope.formData.percentual_renda_mensal = $rootScope.lastRequest.result.simuladorBeneficios[0].percentual_saque.replace(
@@ -2548,7 +2511,7 @@ var controller = angular
         })
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               acao: 'simulaBeneficioSP',
               cod_fundo: $scope.matricula.dadosCadastrais[0].cod_fundo,
@@ -2583,6 +2546,7 @@ var controller = angular
               $ionicLoading.hide()
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2599,10 +2563,9 @@ var controller = angular
     '$http',
     '$rootScope',
     '$ionicLoading',
-    function ($scope, $state, $http, $rootScope, $ionicLoading) {
+    '$ionicPopup',
+    function ($scope, $state, $http, $rootScope, $ionicLoading, $ionicPopup) {
       $scope.value = $rootScope.lastRequest.result.simulaBeneficioSP
-
-      console.log($scope.value)
 
       $scope.matricula = $rootScope.lastRequest.result
       $scope.value.texto_alteracao_percentual_retirada =
@@ -2627,7 +2590,7 @@ var controller = angular
         })
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               acao: 'simulaBeneficioSP',
               cod_fundo: $scope.matricula.dadosCadastrais[0].cod_fundo,
@@ -2662,6 +2625,7 @@ var controller = angular
               $ionicLoading.hide()
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2678,7 +2642,8 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.formData = {}
       $scope.matricula = $rootScope.lastRequest.result
       $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao
@@ -2696,9 +2661,6 @@ var controller = angular
 
       // seta o valor do form como o default do ws.
       $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT
-
-      // console.log('default do tipo_reajuste: ');
-      // console.log($scope.formData.tipo_reajuste);
 
       // se existe lastForm
       if (typeof $rootScope.cache.lastFormAposentadoRVM !== 'undefined') {
@@ -2718,8 +2680,6 @@ var controller = angular
       //   $scope.formData = $rootScope.cache.lastFormAposentadoRVM;
       // }
       $scope.goBeneficiarios = function (formData) {
-        // console.log('teste');
-        // console.log(formData);
         $rootScope.cache.formToBeneficiarios = {}
         $rootScope.cache.formToBeneficiarios = formData
         $rootScope.cache.routeToBeneficiarios = 'simulacaormvaposentadoresultado'
@@ -2751,7 +2711,7 @@ var controller = angular
         $rootScope.cache.lastFormAposentadoRVM = formData
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: $scope.getParams(formData),
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -2777,6 +2737,7 @@ var controller = angular
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2792,9 +2753,6 @@ var controller = angular
     '$state',
     '$rootScope',
     function ($scope, $state, $rootScope) {
-      console.log($rootScope)
-      console.log($scope)
-
       if (typeof $rootScope.cache.simulaRMV !== 'undefined') {
         $scope.value = $rootScope.cache.simulaRMV
       }
@@ -2812,7 +2770,6 @@ var controller = angular
       $scope.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv
 
       $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao
-      // console.log($scope.value.desc_opcao_tributaca);
 
       // depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
       $rootScope.resetBeneficiarios = true
@@ -2824,7 +2781,8 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.formData = {}
       $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
       $scope.formData.renda_mensal = $rootScope.lastRequest.result.simuladorBeneficios[0].percentual_saque.replace(
@@ -2852,9 +2810,6 @@ var controller = angular
       // seta o valor do form como o default do ws.
       $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT
 
-      // console.log('default do tipo_reajuste: ');
-      // console.log($scope.formData.tipo_reajuste);
-
       // se existe lastForm
       if (typeof $rootScope.cache.formRecalcular !== 'undefined') {
         // se mes ano ta preenchido
@@ -2868,8 +2823,6 @@ var controller = angular
       }
 
       $scope.goBeneficiarios = function (formData) {
-        // console.log('teste');
-        // console.log(formData);
         $rootScope.cache.formToBeneficiarios = {}
         $rootScope.cache.formToBeneficiarios = formData
         $rootScope.cache.routeToBeneficiarios = 'alteracaormvsaqueresultado'
@@ -2903,7 +2856,7 @@ var controller = angular
         $rootScope.cache.formRecalcular = formData
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: $scope.getParams(formData),
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -2938,6 +2891,7 @@ var controller = angular
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2954,7 +2908,8 @@ var controller = angular
     '$rootScope',
     '$http',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
+    '$ionicPopup',
+    function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.matricula = $rootScope.lastRequest.result
 
       if (typeof $rootScope.cache.routeParams !== 'undefined') {
@@ -2963,8 +2918,6 @@ var controller = angular
         $scope.value.pensao = $rootScope.cache.routeParams.pensao
       }
 
-      console.log($scope)
-      console.log($rootScope)
       $scope.map = map
 
       $scope.beneficiarios = $rootScope.cache.routeParams.beneficiarios
@@ -2978,7 +2931,7 @@ var controller = angular
         $rootScope.cache.formToBeneficiarios = formData
 
         $http
-          .post(url_base + ';jsessionid=' + userInfo.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               acao: 'simulaBeneficioRmvSp',
               cod_fundo: $scope.matricula.dadosCadastrais[0].cod_fundo,
@@ -3002,9 +2955,6 @@ var controller = angular
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
 
-              // console.log(resp);
-              // console.log($rootScope);
-
               $ionicLoading.hide()
 
               $rootScope.errorMsg = resp.data.msg
@@ -3023,6 +2973,7 @@ var controller = angular
               }
             },
             function (err) {
+              console.error(err)
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -3072,7 +3023,6 @@ var controller = angular
           ]
         })
         myPopup.then(function (res) {
-          // console.log('Tapped!', res);
         })
         $timeout(function () {
           myPopup.close() // close the popup after 3 seconds for some reason
@@ -3086,9 +3036,7 @@ var controller = angular
         })
         confirmPopup.then(function (res) {
           if (res) {
-            // console.log('You are sure');
           } else {
-            // console.log('You are not sure');
           }
         })
       }
@@ -3100,7 +3048,6 @@ var controller = angular
           template: 'It might taste good'
         })
         alertPopup.then(function (res) {
-          // console.log('Thank you for not eating my delicious ice cream cone');
         })
       }
     }
@@ -3164,7 +3111,7 @@ var controller = angular
         }
 
         http
-          .post(url_base + ';jsessionid=' + rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + rootScope.lastRequest.login.s, {
             param: param,
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -3175,7 +3122,6 @@ var controller = angular
               ionicLoading.hide()
 
               // TODO: Debug, remove in production
-              // console.log(resp)
 
               if (!resp.data.success) {
                 rootScope.errorMsg = resp.data.msg
@@ -3195,9 +3141,6 @@ var controller = angular
             }
           )
       }
-
-      // TODO: Debug, remove in production
-      console.log(scope, state, rootScope)
     }
   ])
   .controller('DocConcessaoAviso', [
@@ -3218,7 +3161,7 @@ var controller = angular
           docConcessaoAvisoSelect.options[docConcessaoAvisoSelect.selectedIndex].value || 'N'
 
         http
-          .post(url_base + ';jsessionid=' + rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + rootScope.lastRequest.login.s, {
             param: rootScope.cache.docConcessao,
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -3227,9 +3170,6 @@ var controller = angular
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
               ionicLoading.hide()
-
-              // TODO: Debug, remove in production
-              console.log(resp)
 
               if (!resp.data.success) {
                 rootScope.errorMsg = resp.data.msg
@@ -3260,9 +3200,10 @@ angular
     return {
       restrict: 'A',
       link: function ($scope, $element, $attrs) {
-        var handleTap = function (e) {
-          var inAppBrowser = window.open(encodeURI($attrs.browseTo), '_system')
+        var handleTap = function () {
+          window.open(encodeURI($attrs.browseTo), '_system')
         }
+
         var tapGesture = $ionicGesture.on('tap', handleTap, $element)
         $scope.$on('$destroy', function () {
           // Clean up - unbind drag gesture handler

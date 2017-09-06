@@ -5,7 +5,7 @@
 //      alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
 // }
 var app = angular
-  .module('starter', [
+  .module('TelosApp', [
     'ionic',
     'ngCordova',
     'starter.controller',
@@ -45,6 +45,7 @@ var app = angular
     })
 
     document.addEventListener('deviceReady', function () {
+      console.log('TESTE IONIC DEVICE READY')
       document.addEventListener(
         'resume',
         function () {
@@ -58,7 +59,7 @@ var app = angular
             })
             $http
               .post(
-                url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+                urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s,
               {
                 param: { acao: 'logout' },
                 login: { u: userInfo.u, s: userInfo.s }
@@ -166,7 +167,7 @@ var app = angular
       .state('emprestimodocumentosconcessaoaviso', {
         cache: false,
         url: '/emprestimo-documentos-concessao-aviso',
-        templateUrl: 'templates/documentos-concessao/emprestimo-documentos-concessao-aviso.html',
+        templateUrl: 'templates/documentos-concessao/emprestimo-documentos-concessao-aviso.html'
         // params: ['docConcessao']
       })
       .state('faleconosco', {
@@ -296,3 +297,7 @@ var app = angular
 
     $urlRouterProvider.otherwise('/sign-in')
   })
+
+document.addEventListener('deviceready', function () {
+  angular.bootstrap(document, ['TelosApp'])
+}, false)
