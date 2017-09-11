@@ -114,6 +114,17 @@ var controller = angular
         $scope.stageMap = stageMap
       }
 
+      $scope.goDocConcessao = function (event) {
+        var critica = $rootScope.lastRequest.result.documentosConcessao[0].critica_documento_concessao
+        if (critica) {
+          event.preventDefault()
+          $ionicPopup.alert({
+            title: 'Documentos de Concessão',
+            template: critica
+          })
+        }
+      }
+
       $scope.logout = function () {
         $ionicLoading.show({
           content: 'Carregando',
