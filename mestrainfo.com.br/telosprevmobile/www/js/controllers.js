@@ -111,6 +111,17 @@ window.controller = angular
         $scope.stageMap = stageMap
       }
 
+      $scope.goDocConcessao = function (event) {
+        var critica = $rootScope.lastRequest.result.documentosConcessao[0].critica_documento_concessao
+        if (critica) {
+          event.preventDefault()
+          $ionicPopup.alert({
+            title: 'Documentos de Concessão',
+            template: critica
+          })
+        }
+      }
+
       // TODO: Cadastro TouchID
       $scope.touchId = window.localStorage.getItem('touchId') || $rootScope.lastRequest.result.preferencias[0].touch_ID || 'NAO'
       if (cordova && window.plugins['touchId'] && $scope.touchId === 'NAO') {
