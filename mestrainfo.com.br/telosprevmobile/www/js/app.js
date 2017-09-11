@@ -1,10 +1,5 @@
-// window.alert = function (txt) {
-//    navigator.notification.alert(txt, null, "Aviso", "Fechar");
-// }
-// window.onerror = function (errorMsg, url, lineNumber) {
-//      alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
-// }
-var app = angular
+
+window.app = window.angular
   .module('TelosApp', [
     'ionic',
     'ngCordova',
@@ -26,12 +21,13 @@ var app = angular
       if (window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false)
+        window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false)
         // verificar se é melhor true ou false.
-        cordova.plugins.Keyboard.disableScroll(false)
+        window.cordova.plugins.Keyboard.disableScroll(false)
       }
 
       if (window.StatusBar) {
+        console.log(window.StatusBar)
         if (ionic.Platform.isAndroid()) {
           StatusBar.backgroundColorByHexString('#0080a5')
           $cordovaStatusbar.styleHex('#0080a5') // azul mestra
@@ -298,6 +294,6 @@ var app = angular
     $urlRouterProvider.otherwise('/sign-in')
   })
 
-document.addEventListener('deviceready', function () {
-  angular.bootstrap(document, ['TelosApp'])
+window.ionic.Platform.ready(function () {
+  window.angular.bootstrap(document, ['TelosApp'])
 }, false)

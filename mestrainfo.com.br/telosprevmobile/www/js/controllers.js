@@ -1,10 +1,9 @@
 // var urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
 // var urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
-var urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // var urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-// var urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 // var urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
-
+var urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+var inspect = window.inspect
 var angular = window.angular
 var cordova = window.cordova
 var stageMap = {}
@@ -16,11 +15,9 @@ map.vinculo = []
 map.vinculo['V'] = 'Vitalício'
 map.vinculo['I'] = 'Indicado'
 map.vinculo['T'] = 'Temporário'
-
 map.sexo = []
 map.sexo['M'] = 'Masculino'
 map.sexo['F'] = 'Feminino'
-
 map.parentesco = []
 map.parentesco['01'] = 'Cônjuge'
 map.parentesco['02'] = 'Ex-Cônjuge'
@@ -41,34 +38,32 @@ map.parentesco['12'] = 'Filho > 24 anos'
 
 window.controller = angular
   .module('starter.controller', ['ionic', 'angular-datepicker', 'ngMask', 'ngSanitize'])
-  .controller('topMenu', function ($scope, $ionicHistory, $rootScope, $ionicPopup) {
-    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-      $scope.isNotHome = !(toState.name === 'menu' ||
-        toState.name === 'termosdeuso' ||
-        toState.name === 'splitmatriculas' ||
-        toState.name === 'termodeuso')
-      if (toState.name !== 'signin') {
+  .controller('topMenu', function ($scope, $ionicHistory, $rootScope) {
+    $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+      $scope.isNotHome = !(
+        toState['name'] === 'menu' ||
+        toState['name'] === 'termosdeuso' ||
+        toState['name'] === 'splitmatriculas' ||
+        toState['name'] === 'termodeuso'
+      )
+      if (toState['name'] !== 'signin') {
         $rootScope.errorMsg = false
       } else {
         $rootScope.loginPage = true
         $rootScope.bodyStyle = { 'background-color': '#dbdbdb' }
       }
     })
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
       if (cordova && cordova.plugins.Keyboard) {
         // return to keyboard default scroll state
         cordova.plugins.Keyboard.disableScroll(false)
       }
-      if (
-        toState.name === 'menu' ||
-        toState.name === 'termosdeuso' ||
-        toState.name === 'splitmatriculas' ||
-        toState.name === 'termodeuso'
-      ) {
-        $scope.isNotHome = false
-      } else {
-        $scope.isNotHome = true
-      }
+      $scope.isNotHome = !(
+        toState['name'] === 'menu' ||
+        toState['name'] === 'termosdeuso' ||
+        toState['name'] === 'splitmatriculas' ||
+        toState['name'] === 'termodeuso'
+      )
     })
     $rootScope.$on('$ionicView.afterEnter', function () {
       // Handle iOS-specific issue with jumpy viewport when interacting with input fields.
@@ -108,8 +103,8 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       'use strict'
-      // Setup the loader
 
+      // Setup the loader
       if (!logged) {
         // $state.go('signin');
       } else {
@@ -117,15 +112,34 @@ window.controller = angular
       }
 
       // TODO: Cadastro TouchID
-      var touchId = window.localStorage.getItem('touchId') || 'No' // TODO: $rootScope.lastRequest.result.preferencias[0].touch_ID
-      if (cordova && window.plugins.touchId && touchId === 'No') {
-        window.plugins.touchid.isAvailable(
+      $scope.touchId = window.localStorage.getItem('touchId') || $rootScope.lastRequest.result.preferencias[0].touch_ID || 'NAO'
+      if (cordova && window.plugins['touchId'] && $scope.touchId === 'NAO') {
+        window.plugins['touchid'].isAvailable(
           function () {
-            return $state.go('cadastrarTouchId')
+            $ionicPopup.show({
+              title: 'Você deseja ativar o login usando sua digital?',
+              buttons: [
+                {
+                  text: 'Não',
+                  type: 'button-negative',
+                  onTap: function () {
+                    $scope.touchId = 'Never'
+                  }
+                },
+                {
+                  text: '<b>Sim</b>',
+                  type: 'button-positive',
+                  onTap: function () {
+                    $scope.touchId = 'Sim'
+                  }
+                }
+              ]
+            }).then(function (res) {
+              console.log(res)
+            })
           },
-
           function () {
-            console.log('Device doesn\'t support finderprint.')
+            console.log("Device doesn't have a fingerprint reader.")
           }
         )
       }
@@ -144,7 +158,7 @@ window.controller = angular
             login: { u: userInfo.u, s: userInfo.s }
           })
           .then(
-            function (resp) {
+            function () {
               stageMap = {}
               logged = false
               userInfo = {}
@@ -212,15 +226,16 @@ window.controller = angular
                 // Se conseguiu conectar com o servidor
                 $rootScope.lastRequest = resp.data
                 logged = true
-                for (k in resp.data.result.dadosView[0]) {
+                for (k in resp.data.result['dadosView'][0]) {
+                  if (!resp.data.result['dadosView'][0].hasOwnProperty(k)) continue
                   // Define quais telas serão mostradas para o usuário
-                  stageMap[k] = resp.data.result.dadosView[0][k]
+                  stageMap[k] = resp.data.result['dadosView'][0][k]
                 }
 
-                if (typeof resp.data.result.termo_de_uso !== 'undefined') {
+                if (typeof resp.data.result['termo_de_uso'] !== 'undefined') {
                   // Ainda não aceitou os termos de uso
                   $state.go('termosdeuso')
-                } else if (typeof resp.data.result.dadosView !== 'undefined') {
+                } else if (typeof resp.data.result['dadosView'] !== 'undefined') {
                   // Ao definir as variáveis, vai pro menu principal
                   $state.go('menu')
                 } else if (resp.data.msg.length > 0) {
@@ -251,96 +266,95 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $ionicPlatform, $ionicPopup) {
       'use strict'
+      var touchId
 
       $scope.formData = {}
       $scope.loginWithTouchId = 0
-      var touchId = window.localStorage.getItem('touchId')
+
+      touchId = window.localStorage.getItem('touchId') || 'NAO'
+      console.log('TouchId State: ' + touchId)
 
       // TODO: Login TouchID
-      if (window.plugins && window.plugins.touchid && touchId === 'Yes') {
+      if (window.plugins && window.plugins['touchid'] && touchId === 'SIM') {
         console.log('TouchID Enabled')
-        window.plugins.touchid.isAvailable(
+        window.plugins['touchid'].has(
+          'FingerPrintAuth_telosPrevMobile',
           function () {
-            window.plugins.touchid.has(
+            console.log('TouchId has Key')
+            stageMap = {}
+            logged = false
+            userInfo = {}
+            $rootScope.lastRequest = {}
+
+            $ionicLoading.show({
+              content: 'Carregando',
+              animation: 'fade-in',
+              showBackdrop: true,
+              maxWidth: 300,
+              showDelay: 0
+            })
+
+            window.plugins['touchid'].verify(
               'FingerPrintAuth_telosPrevMobile',
-              function () {
-                stageMap = {}
-                logged = false
-                userInfo = {}
-                $rootScope.lastRequest = {}
-
-                $ionicLoading.show({
-                  content: 'Carregando',
-                  animation: 'fade-in',
-                  showBackdrop: true,
-                  maxWidth: 300,
-                  showDelay: 0
+              'Use sua digital para acessar',
+              function (kid) {
+                $http
+                .post(urlBase, {
+                  param: {
+                    uuid: window.device.uuid,
+                    kid: kid,
+                    acao: 'autenticarTouchID'
+                  },
+                  login: { u: '', s: '' }
                 })
+                .then(
+                  function (resp) {
+                    var k
 
-                window.plugins.touchid.verify(
-                  'FingerPrintAuth_telosPrevMobile',
-                  'Use sua digital para acessar',
-                  function (kid) {
-                    $http
-                      .post(urlBase, {
-                        param: {
-                          imei: '000000000000000', // TODO get device IMEI
-                          kid: kid,
-                          acao: 'autenticarTouchID'
-                        },
-                        login: { u: '', s: '' }
-                      })
-                      .then(
-                        function (resp) {
-                          var k
+                    $ionicLoading.hide()
+                    $rootScope.lastRequest = resp.data
+                    $rootScope.cache = {}
 
-                          $ionicLoading.hide()
-                          $rootScope.lastRequest = resp.data
-                          $rootScope.cache = {}
+                    if ($rootScope.lastRequest.result['simuladorBeneficios']) {
+                      for (k in $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios) {
+                        if (!$rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios.hasOwnProperty(k)) { continue }
+                        $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios[k].checked = true
+                        $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios[k].selecionado = 'S'
+                      }
+                    }
 
-                          if ($rootScope.lastRequest.result.simuladorBeneficios) {
-                            for (k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
-                              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true
-                              $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S'
-                            }
-                          }
+                    if (resp.data.msg.length > 0) {
+                      $rootScope.errorMsg = resp.data.msg
+                    } else {
+                      logged = true
+                      userInfo.u = resp.data.login.u
+                      userInfo.s = resp.data.login.s
+                      userInfo.cpf = resp.result.cpf // TODO: check if this is correct
 
-                          if (resp.data.msg.length > 0) {
-                            $rootScope.errorMsg = resp.data.msg
-                          } else {
-                            logged = true
-                            userInfo.u = resp.data.login.u
-                            userInfo.s = resp.data.login.s
-                            userInfo.cpf = resp.result.cpf // TODO: check if this is correct
-
-                            // TODO: removed certain parts of the login logic, check if they occur besides first login
-                            if (resp.data.result.dadosView) {
-                              for (k in resp.data.result.dadosView[0]) {
-                                stageMap[k] = resp.data.result.dadosView[0][k]
-                              }
-
-                              $state.go('menu')
-                            } else {
-                              $rootScope.errorMsg = 'Erro ao logar, tente denovo'
-                            }
-                          }
-                        },
-                        function (err) {
-                          console.error(err)
-                          $ionicLoading.hide()
-                          $rootScope.errorMsg = 'Erro ao conectar com o servidor. Tente novamente mais tarde'
+                      // TODO: removed certain parts of the login logic, check if they occur besides first login
+                      if (resp.data.result['dadosView']) {
+                        for (k in resp.data.result['dadosView'][0]) {
+                          if (!resp.data.result['dadosView'][0].hasOwnProperty(k)) continue
+                          stageMap[k] = resp.data.result['dadosView'][0][k]
                         }
-                      )
+
+                        $state.go('menu')
+                      } else {
+                        $rootScope.errorMsg = 'Erro ao logar, tente novamente.'
+                      }
+                    }
+                  },
+                  function (err) {
+                    console.error(err)
+                    $ionicLoading.hide()
+                    $rootScope.errorMsg = 'Erro ao conectar com o servidor. Tente novamente mais tarde.'
                   }
                 )
-              },
-              function () {
-                $scope.errorMsg = 'Erro ao acessar dados de cadastro com digital. Por favor entre com seu CPF e senha.'
-              }
-            )
+              })
           },
           function () {
-            console.log('Device doesn\'t support fingerprint.')
+            console.log('Device kid isn\'t available')
+            $scope.errorMsg = 'Erro ao acessar dados de cadastro com digital. Por favor entre com seu CPF e senha.'
           }
         )
       }
@@ -376,15 +390,14 @@ window.controller = angular
                 // Se conseguiu conectar com o servidor
                 $ionicLoading.hide()
 
-                // resp.data.result.termo_de_uso = [ { descricao_termo_uso: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"} ];
-
                 $rootScope.lastRequest = resp.data
                 $rootScope.cache = {}
 
-                if (typeof $rootScope.lastRequest.result.simuladorBeneficios !== 'undefined') {
-                  for (k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
-                    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true
-                    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S'
+                if (typeof $rootScope.lastRequest.result['simuladorBeneficios'] !== 'undefined') {
+                  for (k in $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios) {
+                    if (!$rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios.hasOwnProperty(k)) { continue }
+                    $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios[k].checked = true
+                    $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios[k].selecionado = 'S'
                   }
                 }
 
@@ -402,15 +415,16 @@ window.controller = angular
                     $state.go('splitmatriculas')
                   } else {
                     logged = true
-                    for (k in resp.data.result.dadosView[0]) {
+                    for (k in resp.data.result['dadosView'][0]) {
+                      if (!resp.data.result['dadosView'][0].hasOwnProperty(k)) continue
                       // Define quais telas serão mostradas para o usuário
-                      stageMap[k] = resp.data.result.dadosView[0][k]
+                      stageMap[k] = resp.data.result['dadosView'][0][k]
                     }
 
-                    if (resp.data.result.termo_de_uso) {
+                    if (resp.data.result['termo_de_uso']) {
                       // Ainda não aceitou os termos de uso
                       $state.go('termosdeuso')
-                    } else if (resp.data.result.dadosView) {
+                    } else if (resp.data.result['dadosView']) {
                       // Ao definir as variáveis, vai pro menu principal
                       $state.go('menu')
                     } else {
@@ -444,11 +458,9 @@ window.controller = angular
     '$scope',
     '$state',
     '$rootScope',
-    '$http',
-    '$ionicPopup',
-    function ($scope, $state, $rootScope, $http, $ionicPopup) {
+    function ($scope, $state, $rootScope) {
       $rootScope.erroMsg = false
-      $scope.termosText = $rootScope.lastRequest.result.termo_de_uso[0].descricao_termo_uso
+      $scope.termosText = $rootScope.lastRequest.result['termo_de_uso'][0]['descricao_termo_uso']
     }
   ])
   .controller('termoDeUso', [
@@ -480,7 +492,7 @@ window.controller = angular
               $state.go('signin')
             } else {
               $ionicLoading.hide()
-              $scope.termosText = resp.data.result.termo_de_uso[0].descricao_termo_uso
+              $scope.termosText = resp.data.result['termo_de_uso'][0]['descricao_termo_uso']
             }
           },
           function (err) {
@@ -605,7 +617,7 @@ window.controller = angular
             login: { u: userInfo.u, s: userInfo.s }
           })
           .then(
-            function (resp) {
+            function () {
               stageMap = {}
               logged = false
               userInfo = {}
@@ -625,7 +637,7 @@ window.controller = angular
             }
           )
       }
-      $scope.termosText = $rootScope.lastRequest.result.termo_de_uso[0].descricao_termo_uso
+      $scope.termosText = $rootScope.lastRequest.result['termo_de_uso'][0]['descricao_termo_uso']
     }
   ])
   .controller('headerInfo', [
@@ -637,7 +649,7 @@ window.controller = angular
       $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0]
 
       // Mantem o headerInfo sempre aberto no menu
-      if ($state.current.name === 'menu') {
+      if ($state.current['name'] === 'menu') {
         $scope.abrirMenu = true
       } else if ($scope.abrirMenu) {
         // Mantem o headerInfo sempre fechado nas demais páginas
@@ -655,12 +667,9 @@ window.controller = angular
     function ($scope, $state, $rootScope) {
       $rootScope.erroMsg = false
       $scope.dados = $rootScope.lastRequest.result.dadosCadastrais[0]
-      $scope.dados.habilitarBotao = !$scope.dados.exibe_botao_editar
-      // Para testar com botão habilitado
-      // $scope.dados.exibe_botao_editar = $scope.dados.exibe_botao_editar;
-
-      $scope.infoprev = $rootScope.lastRequest.result.informacoesPrevidenciarias
-      $scope.infobenef = $rootScope.lastRequest.result.informacoesDependentes
+      $scope.dados.habilitarBotao = !$scope.dados['exibe_botao_editar']
+      $scope.infoprev = $rootScope.lastRequest.result['informacoesPrevidenciarias']
+      $scope.infobenef = $rootScope.lastRequest.result['informacoesDependentes']
     }
   ])
   .controller('DadosCtrl.form', [
@@ -721,7 +730,6 @@ window.controller = angular
                 $state.go('signin')
               } else {
                 if (resp.data.msg.length > 0) {
-                  // $rootScope.errorMsg = resp.data.msg;
                   $rootScope.errorMsg = resp.data.msg
                 }
               }
@@ -747,7 +755,7 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $rootScope.erroMsg = false
-      $scope.extrato = $rootScope.lastRequest.result.extratoContas
+      $scope.extrato = $rootScope.lastRequest.result['extratoContas']
       $scope.formData = {}
 
       $scope.submit = function () {
@@ -813,11 +821,7 @@ window.controller = angular
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $rootScope.erroMsg = false
       $scope.extrato = $rootScope.lastRequest.extratoEmitido
-
-      if ($rootScope.lastRequest.result.dadosCadastrais.email === '') {
-        $scope.hasEmail = true
-      } else $scope.hasEmail = false
-
+      $scope.hasEmail = $rootScope.lastRequest.result.dadosCadastrais.email === ''
       $scope.sendMail = function () {
         $ionicLoading.show({
           content: 'Carregando',
@@ -876,7 +880,7 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $rootScope.erroMsg = false
-      $scope.saldo = $rootScope.lastRequest.result.saldoContas
+      $scope.saldo = $rootScope.lastRequest.result['saldoContas']
       $scope.formData = {}
       $scope.saldo.detalhesSaldoContas = false
 
@@ -923,7 +927,7 @@ window.controller = angular
                     $rootScope.lastRequest.saldoEmitido = resp.data.result
                     $scope.saldo.detalhesSaldoContas = resp.data.result.detalhesSaldoContas
                     $scope.saldo.total_financeiro = resp.data.result.total_financeiro
-                    $scope.formData.data_atualizacao = $scope.formData.data_atualizacao
+                    // TODO: Check correct way => $scope.formData.data_atualizacao = $scope.formData.data_atualizacao
                     $scope.saldo.dados_atualizadoEm = resp.data.result.dados_atualizadoEm
                     $rootScope.cache.data_atualizacao = $scope.formData.data_atualizacao
                     // $state.go('saldoemitido');
@@ -994,15 +998,10 @@ window.controller = angular
     '$scope',
     '$state',
     '$rootScope',
-    '$http',
-    '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicLoading) {
+    function ($scope, $state, $rootScope) {
       $rootScope.erroMsg = false
       $scope.saldo = $rootScope.lastRequest.saldoEmitido
-
-      if ($rootScope.lastRequest.result.dadosCadastrais.email === '') {
-        $scope.hasEmail = true
-      } else $scope.hasEmail = false
+      $scope.hasEmail = $rootScope.lastRequest.result.dadosCadastrais.email === ''
     }
   ])
   .controller('DemonstrativoCtrl', [
@@ -1014,7 +1013,7 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $rootScope.erroMsg = false
-      $scope.demonstrativo = $rootScope.lastRequest.result.demonstrativoPagamento
+      $scope.demonstrativo = $rootScope.lastRequest.result['demonstrativoPagamento']
       $scope.formData = {}
 
       $scope.submit = function () {
@@ -1080,7 +1079,6 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0]
-      // {'login':{'u':u, 's':s}, 'param':{'acao':'', 'nome' : '', 'email' : '', 'telefone' : '', 'mensagem': '', 'patrocinador': '', 'matricula': ''}}
       $rootScope.erroMsg = false
       $scope.formData = {}
 
@@ -1125,7 +1123,7 @@ window.controller = angular
                 if (!resp.data.success) {
                   $state.go('signin')
                 } else {
-                  if (resp.data.result.emailEnviado) {
+                  if (resp.data.result['emailEnviado']) {
                     $scope.formData = {}
                     setTimeout(function () {
                       $state.go('menu')
@@ -1158,9 +1156,7 @@ window.controller = angular
       $rootScope.erroMsg = false
       $scope.demonstrativo = $rootScope.demonstrativoEmitido
 
-      if ($rootScope.lastRequest.result.dadosCadastrais.email === '') {
-        $scope.hasEmail = true
-      } else $scope.hasEmail = false
+      $scope.hasEmail = $rootScope.lastRequest.result.dadosCadastrais.email === ''
 
       $scope.sendMail = function () {
         $ionicLoading.show({
@@ -1230,8 +1226,7 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $filter, $ionicPopup) {
       $scope.formData = {}
-      $scope.tipos_emprestimo = $rootScope.lastRequest.result.simulacaoEmprestimo
-
+      $scope.tipos_emprestimo = $rootScope.lastRequest.result['simulacaoEmprestimo']
       $scope.buttonText = '- Selecione -'
       $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0].matricula
       $rootScope.lastRequest.emprestimoSimulacaoCampos = []
@@ -1258,23 +1253,22 @@ window.controller = angular
           })
           .then(
             function (resp) {
+              var k, currentDate, datasIndisponiveis
+
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
               $ionicLoading.hide()
 
-              var dataInicial = new Date(resp.data.result.data_inicial)
-              $scope.dataInicial = dataInicial.getTime()
+              $scope.dataInicial = new Date(resp.data.result['data_inicial']).getTime()
               $scope.disableCalendar = false
 
-              var datasIndisponiveis = resp.data.result.datas_credito
-
-              for (var k in datasIndisponiveis) {
-                if (datasIndisponiveis[k].disponivel === 'N') {
-                  var currentDate = new Date(datasIndisponiveis[k].data)
-
-                  $scope.disableddates.push(currentDate.getTime())
-                }
+              datasIndisponiveis = resp.data.result['datas_credito']
+              for (k in datasIndisponiveis) {
+                if (!datasIndisponiveis.hasOwnProperty(k) || datasIndisponiveis[k]['disponivel'] !== 'N') continue
+                currentDate = new Date(datasIndisponiveis[k].data)
+                $scope.disableddates.push(currentDate.getTime())
               }
+
               if (!resp.data.success) {
                 $rootScope.errorMsg = resp.data.msg
                 $state.go('signin')
@@ -1282,7 +1276,8 @@ window.controller = angular
                 if (resp.data.msg.length > 0) {
                   $rootScope.errorMsg = resp.data.msg
                 } else {
-                  // atualizar o dados indisponiveis talvez?
+                  // TODO: atualizar o dados indisponiveis talvez?
+                  console.log('TODO: Atualizar os dados disponiveis: ' + inspect(resp))
                 }
               }
             },
@@ -1296,8 +1291,9 @@ window.controller = angular
             }
           )
       }
+
       // carreagar o tipo logo de cara
-      $scope.formData.tipo = $rootScope.lastRequest.result.simulacaoEmprestimo[0].cod_emprestimo
+      $scope.formData.tipo = $rootScope.lastRequest.result['simulacaoEmprestimo'][0].cod_emprestimo
       $scope.update($scope.formData.tipo)
 
       $scope.submit = function (codEmprestimo) {
@@ -1349,7 +1345,7 @@ window.controller = angular
         $scope.formData.data = $filter('date')(data, 'dd/MM/yyyy', false)
         $scope.buttonText = $scope.formData.data
       }
-      $scope.simulacao = $rootScope.lastRequest.result.simulacaoEmprestimo
+      $scope.simulacao = $rootScope.lastRequest.result['simulacaoEmprestimo']
     }
   ])
   .controller('emprestimoSimulacaoCamposCtrl', [
@@ -1364,7 +1360,7 @@ window.controller = angular
       $scope.formData = {}
       $scope.contrato = $rootScope.lastRequest.emprestimoSimulacaoCampos.saldos_dados_simulacao
       $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.emprestimoSimulacaoCampos
-      $scope.tipos_emprestimo = $rootScope.lastRequest.result.simulacaoEmprestimo
+      $scope.tipos_emprestimo = $rootScope.lastRequest.result['simulacaoEmprestimo']
       $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0].matricula
       $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
 
@@ -1393,7 +1389,8 @@ window.controller = angular
         switch (code) { // caso seja...
           // case 8: //backspace
           // 0 = Delete
-          case 0: case 13: // Enter
+          case 0:
+          case 13: // Enter
             return true // sai da funcao, validando a tecla
         }
 
@@ -1402,7 +1399,7 @@ window.controller = angular
         if (campo.maxLength <= campo.value.length) return false // trata erro decasas
 
         var j = 0
-        var i = 0
+        var i
         var len = campo.value.length
         var len2 = 0
         var aux2 = ''
@@ -1521,13 +1518,14 @@ window.controller = angular
                     $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido.json = jsonData
                     $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido.result = resp.data.result
 
-                    for (k in $scope.lastRequest.result.simulacaoEmprestimo) {
+                    for (k in $scope.lastRequest.result['simulacaoEmprestimo']) {
+                      if (!$scope.lastRequest.result['simulacaoEmprestimo'].hasOwnProperty(k)) continue
                       if (
-                        $rootScope.lastRequest.result.simulacaoEmprestimo[k].cod_emprestimo ===
+                        $rootScope.lastRequest.result['simulacaoEmprestimo'][k].cod_emprestimo ===
                         $scope.emprestimoSimulacaoCampos.cod_emprestimo
                       ) {
                         $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido.tipo_emprestimo =
-                          $rootScope.lastRequest.result.simulacaoEmprestimo[k].desc_emprestimo
+                          $rootScope.lastRequest.result['simulacaoEmprestimo'][k].desc_emprestimo
                       }
                     }
                     $scope.errorMsg = false
@@ -1662,7 +1660,7 @@ window.controller = angular
         $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista
       $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo)
       $scope.formData.dependentes_para_fins_ir =
-        $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
+        $rootScope.lastRequest.result['simuladorBeneficios'][0].dependentes_para_fins_ir
 
       // $scope.formData.tipo_reajuste = angular.copy($rootScope.lastRequest.result.tipoReajuste[0].DEFAULT);
       // $scope.tipoReajuste = $rootScope.lastRequest.result.tipoReajuste[0];
@@ -1732,7 +1730,7 @@ window.controller = angular
           estimativa_rent_entre: formData.estimativa_rent_entre,
           dependentes_para_fins_ir: formData.dependentes_para_fins_ir,
           cod_opcao_tributacao: $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao,
-          beneficiario: $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+          beneficiario: $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
         }
       }
       $scope.submit = function (formData) {
@@ -1740,7 +1738,8 @@ window.controller = angular
         $rootScope.cache.formToBeneficiarios = formData
         $rootScope.cache.routeParams = {}
         $rootScope.cache.routeParams = formData
-        $rootScope.cache.routeParams.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+        $rootScope.cache.routeParams.beneficiarios =
+          $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
 
         $rootScope.cache.lastFormRMV = {}
         $rootScope.cache.lastFormRMV = $scope.getParams(formData)
@@ -1802,7 +1801,7 @@ window.controller = angular
       // se já existe um beneficiariosOriginal, não sobrescrever.
       if (typeof $rootScope.beneficiariosOriginal === 'undefined') {
         $rootScope.beneficiariosOriginal = angular.copy(
-          $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+          $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
         )
       }
 
@@ -1810,12 +1809,12 @@ window.controller = angular
         console.log('aqui resetou os beneficiarios')
         delete $scope.beneficiarios
         $scope.beneficiarios = angular.copy($rootScope.beneficiariosOriginal)
-        $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios = angular.copy(
+        $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios = angular.copy(
           $rootScope.beneficiariosOriginal
         )
         $rootScope.resetBeneficiarios = false
       } else {
-        $scope.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+        $scope.beneficiarios = $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
       }
 
       $scope.beneficiarios.forEach(function (v, k) {
@@ -1962,7 +1961,7 @@ window.controller = angular
       $scope.value = $rootScope.cache.simulaRMV
 
       $scope.texto_simulacao_renda_mensal_vitalicia =
-        $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv
+        $rootScope.lastRequest.result['simuladorBeneficios'][0].desc_texto_rmv
       $scope.data_elegibilidade_prevista =
         $rootScope.lastRequest.result.informacoesParticipante[0].data_elegibilidade_prevista
 
@@ -2022,7 +2021,7 @@ window.controller = angular
       for (var year = 20; year <= 120; year++) {
         $scope.years.push(year)
       }
-      $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
+      $scope.formData.dependentes_ir = $rootScope.lastRequest.result['simuladorBeneficios'][0].dependentes_para_fins_ir
       $scope.contribuicao_participante =
         $rootScope.lastRequest.result.informacoesParticipante[0].contribuicao_participante
       $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao
@@ -2121,7 +2120,7 @@ window.controller = angular
       $scope.value = $rootScope.lastRequest.result.simulaSP
 
       $scope.texto_simulacao_saque_programado =
-        $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_saque_prog
+        $rootScope.lastRequest.result['simuladorBeneficios'][0].desc_texto_saque_prog
       $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao
 
       $scope.data_elegibilidade_prevista =
@@ -2220,7 +2219,7 @@ window.controller = angular
       //   $scope.formData = $rootScope.cache.formSimulaRMVSP;
       // }
 
-      $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
+      $scope.formData.dependentes_ir = $rootScope.lastRequest.result['simuladorBeneficios'][0].dependentes_para_fins_ir
       $scope.formData.idade = parseInt($rootScope.lastRequest.result.informacoesParticipante[0].idade_prev_apo)
       $scope.years = []
       for (var year = 20; year <= 120; year++) {
@@ -2299,7 +2298,7 @@ window.controller = angular
           data_elegibilidade_prevista: $scope.data_elegibilidade_prevista,
           idade: formData.idade,
           mes_ano: formData.mes_ano,
-          beneficiario: $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+          beneficiario: $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
         }
       }
 
@@ -2307,7 +2306,8 @@ window.controller = angular
         $rootScope.cache.formToBeneficiarios = {}
         $rootScope.cache.formToBeneficiarios = formData
         $rootScope.cache.routeParams = {}
-        $rootScope.cache.routeParams.beneficiarios = $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+        $rootScope.cache.routeParams.beneficiarios =
+          $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
 
         $ionicLoading.show({
           content: 'Carregando',
@@ -2378,7 +2378,7 @@ window.controller = angular
       $scope.map = map
       $scope.value = $rootScope.cache.simulaRmvSp
       $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao
-      $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_hibrido
+      $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result['simuladorBeneficios'][0].desc_texto_hibrido
 
       $scope.toggleChild = function (key) {
         if ($scope.showChild) $scope.showChild = false
@@ -2388,8 +2388,7 @@ window.controller = angular
       $scope.showChildC = false
 
       $scope.toggleChildC = function () {
-        if ($scope.showChildC) $scope.showChildC = false
-        else $scope.showChildC = true
+        $scope.showChildC = !$scope.showChildC
       }
       $scope.getParams = function (formData) {
         if (typeof formData.mes_ano === 'undefined') {
@@ -2422,7 +2421,7 @@ window.controller = angular
           data_elegibilidade_prevista: $scope.data_elegibilidade_prevista,
           idade: formData.idade,
           mes_ano: formData.mes_ano,
-          beneficiario: $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+          beneficiario: $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
         }
       }
       $scope.submit = function (formData) {
@@ -2473,7 +2472,7 @@ window.controller = angular
           )
       }
 
-      // depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
+      // depois de listar (ou não) os beneficiários, "resetar as configs de beneficiários"
       $rootScope.resetBeneficiarios = true
     }
   ])
@@ -2486,11 +2485,8 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.formData = {}
-      $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
-      $scope.formData.percentual_renda_mensal = $rootScope.lastRequest.result.simuladorBeneficios[0].percentual_saque.replace(
-        /,/g,
-        '.'
-      )
+      $scope.formData.dependentes_ir = $rootScope.lastRequest.result['simuladorBeneficios'][0].dependentes_para_fins_ir
+      $scope.formData.percentual_renda_mensal = $rootScope.lastRequest.result['simuladorBeneficios'][0].percentual_saque.replace(/,/g, '.')
 
       $scope.matricula = $rootScope.lastRequest.result
       $scope.cod_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].cod_opcao_tributacao
@@ -2569,7 +2565,7 @@ window.controller = angular
 
       $scope.matricula = $rootScope.lastRequest.result
       $scope.value.texto_alteracao_percentual_retirada =
-        $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_benf_saque
+        $rootScope.lastRequest.result['simuladorBeneficios'][0].desc_texto_benf_saque
 
       if ('lastFormAlteracaoRVM' in $rootScope.cache) {
         $scope.formData = $rootScope.cache.lastFormAlteracaoRVM
@@ -2674,7 +2670,7 @@ window.controller = angular
         }
       }
 
-      $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
+      $scope.formData.dependentes_ir = $rootScope.lastRequest.result['simuladorBeneficios'][0].dependentes_para_fins_ir
 
       // if ('lastFormAposentadoRVM' in $rootScope.cache) {
       //   $scope.formData = $rootScope.cache.lastFormAposentadoRVM;
@@ -2728,7 +2724,7 @@ window.controller = angular
                 } else {
                   $rootScope.cache.routeParams = $scope.getParams(formData)
                   $rootScope.cache.routeParams.beneficiarios =
-                    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+                    $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
 
                   $rootScope.cache.simulaRMV = resp.data.result
                   $rootScope.lastRequest.result.simulaAlteracaoRMV = resp.data.result
@@ -2767,7 +2763,7 @@ window.controller = angular
 
       $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao
       // add o texto de alyteracao rmv aposentado
-      $scope.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_rmv
+      $scope.texto_alteracao_rmv_aposentado = $rootScope.lastRequest.result['simuladorBeneficios'][0].desc_texto_rmv
 
       $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao
 
@@ -2784,8 +2780,8 @@ window.controller = angular
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
       $scope.formData = {}
-      $scope.formData.dependentes_ir = $rootScope.lastRequest.result.simuladorBeneficios[0].dependentes_para_fins_ir
-      $scope.formData.renda_mensal = $rootScope.lastRequest.result.simuladorBeneficios[0].percentual_saque.replace(
+      $scope.formData.dependentes_ir = $rootScope.lastRequest.result['simuladorBeneficios'][0].dependentes_para_fins_ir
+      $scope.formData.renda_mensal = $rootScope.lastRequest.result['simuladorBeneficios'][0].percentual_saque.replace(
         /,/g,
         '.'
       )
@@ -2883,7 +2879,7 @@ window.controller = angular
                 } else {
                   $rootScope.cache.routeParams = $scope.getParams(formData)
                   $rootScope.cache.routeParams.beneficiarios =
-                    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios
+                    $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios
                   $rootScope.cache.simulaRmvSp = resp.data.result
                   $rootScope.lastRequest.result.simulaBeneficioRmvSp = resp.data.result
                   $state.go('alteracaormvsaqueresultado')
@@ -2924,7 +2920,7 @@ window.controller = angular
       // $scope.value = $rootScope.lastRequest.result.simulaBeneficioRmvSp;
       $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao
       $scope.texto_alteracao_rmv_saque =
-        $rootScope.lastRequest.result.simuladorBeneficios[0].desc_texto_alteracao_hibrido
+        $rootScope.lastRequest.result['simuladorBeneficios'][0].desc_texto_alteracao_hibrido
 
       $scope.submit = function (formData) {
         $ionicLoading.show()
@@ -2989,69 +2985,6 @@ window.controller = angular
   ])
   .controller('SimulacaoResgateNovoCtrl', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {}])
   .controller('SaldoContasCtrl', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {}])
-  // END MEUS CONTROLLERS
-
-  .controller('PopupCtrl', [
-    '$scope',
-    '$ionicPopup',
-    '$timeout',
-    function ($scope, $ionicPopup, $timeout) {
-      // Triggered on a button click, or some other target
-      $scope.showPopup = function () {
-        $scope.data = {}
-
-        // An elaborate, custom popup
-        var myPopup = $ionicPopup.show({
-          template: '<input type="password" ng-model="data.wifi">',
-          title: 'Enter Wi-Fi Password',
-          subTitle: 'Please use normal things',
-          scope: $scope,
-          buttons: [
-            { text: 'Cancel' },
-            {
-              text: '<b>Save</b>',
-              type: 'button-positive',
-              onTap: function (e) {
-                if (!$scope.data.wifi) {
-                  // don't allow the user to close unless he enters wifi password
-                  e.preventDefault()
-                } else {
-                  return $scope.data.wifi
-                }
-              }
-            }
-          ]
-        })
-        myPopup.then(function (res) {
-        })
-        $timeout(function () {
-          myPopup.close() // close the popup after 3 seconds for some reason
-        }, 3000)
-      }
-      // A confirm dialog
-      $scope.showConfirm = function () {
-        var confirmPopup = $ionicPopup.confirm({
-          title: 'Consume Ice Cream',
-          template: 'Are you sure you want to eat this ice cream?'
-        })
-        confirmPopup.then(function (res) {
-          if (res) {
-          } else {
-          }
-        })
-      }
-
-      // An alert dialog
-      $scope.showAlert = function () {
-        var alertPopup = $ionicPopup.alert({
-          title: "Don't eat that!",
-          template: 'It might taste good'
-        })
-        alertPopup.then(function (res) {
-        })
-      }
-    }
-  ])
   .controller('DocConcessao', [
     '$scope',
     '$state',
@@ -3079,7 +3012,9 @@ window.controller = angular
         var docConcessaoModified = Array.prototype.reduce.call(
           document.getElementsByTagName('input'),
           function (obj, inputElem) {
-            if (inputElem.dataset.type) obj[inputElem.dataset.type] = inputElem.value
+            if (inputElem.dataset.type) {
+              obj[inputElem.dataset.type] = inputElem.value
+            }
             return obj
           },
           {}
@@ -3089,7 +3024,7 @@ window.controller = angular
 
         if (!rootScope.cache) rootScope.cache = {}
 
-        var param = rootScope.cache.docConcessao = {
+        var param = (rootScope.cache.docConcessao = {
           acao: 'enviarDocumentosConcessao',
           matricula: informacoesParticipante.matricula,
           cod_fundo: dadosCadastrais.cod_fundo,
@@ -3104,7 +3039,7 @@ window.controller = angular
           dc_descricao_cargo: docConcessao.dc_descricao_cargo,
           dc_numero_identidade: docConcessao.dc_numero_identidade,
           dc_data_emissao_identidade: docConcessao.dc_data_emissao_identidade
-        }
+        })
 
         if (docConcessao.exibePaginaCttDps === 'S') {
           return state.go('emprestimodocumentosconcessaoaviso')
