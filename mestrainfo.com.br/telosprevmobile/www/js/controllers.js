@@ -1,3 +1,5 @@
+'use strict'
+
 // var urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
 // var urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 // var urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
@@ -102,8 +104,6 @@ window.controller = angular
     '$ionicLoading',
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
-      'use strict'
-
       // Setup the loader
       if (!logged) {
         // $state.go('signin');
@@ -124,7 +124,9 @@ window.controller = angular
 
       // TODO: Cadastro TouchID
       $scope.touchId = window.localStorage.getItem('touchId') || $rootScope.lastRequest.result.preferencias[0].touch_ID || 'NAO'
-      if (cordova && window.plugins['touchId'] && $scope.touchId === 'NAO') {
+      console.log('TouchId State: ' + $scope.touchId)
+      if (cordova && window.plugins['touchid'] && $scope.touchId === 'NAO') {
+        console.log('TouchID Show Activation Popup')
         window.plugins['touchid'].isAvailable(
           function () {
             $ionicPopup.show({
@@ -134,19 +136,19 @@ window.controller = angular
                   text: 'Não',
                   type: 'button-negative',
                   onTap: function () {
-                    $scope.touchId = 'Never'
+                    window.localStorage.setItem('touchId', ($scope.touchId = 'NUNCA'))
                   }
                 },
                 {
                   text: '<b>Sim</b>',
                   type: 'button-positive',
                   onTap: function () {
-                    $scope.touchId = 'Sim'
+                    window.localStorage.setItem('touchId', ($scope.touchId = 'SIM'))
                   }
                 }
               ]
-            }).then(function (res) {
-              console.log(res)
+            }).then(function () {
+              // TODO: make request to server informing new TouchID setting
             })
           },
           function () {
@@ -276,7 +278,6 @@ window.controller = angular
     '$ionicPlatform',
     '$ionicPopup',
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $ionicPlatform, $ionicPopup) {
-      'use strict'
       var touchId
 
       $scope.formData = {}
@@ -3004,7 +3005,6 @@ window.controller = angular
     '$ionicPopup',
     '$ionicLoading',
     function (scope, state, rootScope, http, ionicPopup, ionicLoading) {
-      'use strict'
       var docConcessao = angular.copy(rootScope.lastRequest.result.documentosConcessao[0])
       var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
       var consultaEmprestimo = rootScope.lastRequest.result.consultaEmprestimo[0]
@@ -3097,8 +3097,6 @@ window.controller = angular
     '$ionicPopup',
     '$ionicLoading',
     function (scope, state, rootScope, http, ionicPopup, ionicLoading) {
-      'use strict'
-
       scope.submit = function (event) {
         event.preventDefault()
         var docConcessaoAvisoSelect = document.getElementById('docConcessaoAvisoSelect')
