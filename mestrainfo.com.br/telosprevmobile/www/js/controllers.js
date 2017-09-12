@@ -150,8 +150,7 @@ window.controller = angular
               .then(function (touchId) {
                 var dadosCadastrais
 
-                window.localStorage.setItem('touchId', ($scope.touchId = touchId ? 'SIM' : 'NUNCA'))
-
+                $scope.touchId = touchId ? 'SIM' : 'NUNCA'
                 if (!touchId) return
                 dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
 
@@ -161,7 +160,7 @@ window.controller = angular
                 $http
                   .post(urlBase + ';jsessionid=' + userInfo.s, {
                     param: {
-                      acao: 'cadastrarTouchID',
+                      acao: 'cadastrarTouchId',
                       imei: (window.device.uuid + '').slice(0, 16), // TODO: Temporary, this should change to correctly use UUID
                       fundo: dadosCadastrais.cod_fundo,
                       touch_ID: $scope.touchId,
@@ -186,6 +185,7 @@ window.controller = angular
                     }
                   )
                   .then(function () {
+                    window.localStorage.setItem('touchId', $scope.touchId = touchId)
                     $ionicLoading.hide()
                     $ionicPopup.alert({
                       title: 'Sucesso',
@@ -194,7 +194,6 @@ window.controller = angular
                   })
                   .catch(function (err) {
                     console.error(err.stack + '')
-                    window.localStorage.setItem('touchId', 'NAO')
                     $ionicLoading.hide()
                     $ionicPopup.alert({
                       title: 'Falha',
