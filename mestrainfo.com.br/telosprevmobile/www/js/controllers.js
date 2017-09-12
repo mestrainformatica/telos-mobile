@@ -1,9 +1,9 @@
 // var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+// var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 // var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-// var url_base = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-
+var url_base = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 // var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+
 var stageMap = {}
 var logged = false
 var userInfo = new Object()
@@ -1476,7 +1476,7 @@ var controller = angular
       var emprestimoSimulacaoCampos = $rootScope.lastRequest.emprestimoSimulacaoCampos
       var emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido
 
-      var saldosDadosSimulacao = emprestimoSimulacaoCampos.saldos_dados_simulacao[0]
+      // var saldosDadosSimulacao = emprestimoSimulacaoCampos.saldos_dados_simulacao[0]
 
       $scope.emprestimoSimulacaoCampos = emprestimoSimulacaoCampos
       $scope.emprestimoSimulacaoCamposEmitido = emprestimoSimulacaoCamposEmitido.result
@@ -1488,7 +1488,7 @@ var controller = angular
           .post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s, {
             param: {
               acao: 'confirmacaoEmprestimo',
-              saldo_devedor_total: saldosDadosSimulacao.saldo_devedor_total,
+              // saldo_devedor_total: saldosDadosSimulacao.saldo_devedor_total,
               percentual_seguro_qqm: emprestimoSimulacaoCamposEmitido.result.percentual_seguro_qqm,
               prazo_selecionado_salario: emprestimoSimulacaoCamposEmitido.result.prazo_selecionado_salario,
               saldo_devedor_inicial: emprestimoSimulacaoCamposEmitido.result.saldo_devedor_inicial,
@@ -1508,7 +1508,7 @@ var controller = angular
               dc_numero_conta_corrente: documentosConcessao.dc_numero_conta_corrente,
               nome: informacoesParticipante.nome,
               dc_numero_cpf: documentosConcessao.dc_numero_cpf,
-              numero_contrato: saldosDadosSimulacao.numero_contrato,
+              // numero_contrato: saldosDadosSimulacao.numero_contrato,
               idade: informacoesParticipante.idade_prev_apo, // TODO
               seguro_prestamista: emprestimoSimulacaoCamposEmitido.result.seguro_prestamista,
               seguro_prestamista_bruto: emprestimoSimulacaoCamposEmitido.result.seguro_prestamista_bruto,
