@@ -1,10 +1,10 @@
 'use strict'
 
-// var urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-// var urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 // var urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 // var urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
-var urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+// var urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+// var urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
+var urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 var inspect = window.inspect
 var angular = window.angular
 var cordova = window.cordova
@@ -123,33 +123,85 @@ window.controller = angular
       }
 
       // TODO: Cadastro TouchID
-      $scope.touchId = window.localStorage.getItem('touchId') || $rootScope.lastRequest.result.preferencias[0].touch_ID || 'NAO'
+      console.log(window.localStorage.getItem('touchId'), $rootScope.lastRequest.result.preferencias[0].touch_ID, 'NAO')
+      $scope.touchId =
+        window.localStorage.getItem('touchId') || $rootScope.lastRequest.result.preferencias[0].touch_ID || 'NAO'
       console.log('TouchId State: ' + $scope.touchId)
       if (cordova && window.plugins['touchid'] && $scope.touchId === 'NAO') {
         console.log('TouchID Show Activation Popup')
         window.plugins['touchid'].isAvailable(
           function () {
-            $ionicPopup.show({
-              title: 'Você deseja ativar o login usando sua digital?',
-              buttons: [
-                {
-                  text: 'Não',
-                  type: 'button-negative',
-                  onTap: function () {
-                    window.localStorage.setItem('touchId', ($scope.touchId = 'NUNCA'))
+            $ionicPopup
+              .show({
+                title: 'Você deseja ativar o login usando sua digital?',
+                buttons: [
+                  {
+                    text: 'Não',
+                    type: 'button-negative',
+                    onTap: function () { return false }
+                  },
+                  {
+                    text: '<b>Sim</b>',
+                    type: 'button-positive',
+                    onTap: function () { return true }
                   }
-                },
-                {
-                  text: '<b>Sim</b>',
-                  type: 'button-positive',
-                  onTap: function () {
-                    window.localStorage.setItem('touchId', ($scope.touchId = 'SIM'))
-                  }
-                }
-              ]
-            }).then(function () {
-              // TODO: make request to server informing new TouchID setting
-            })
+                ]
+              })
+              .then(function (touchId) {
+                var dadosCadastrais
+
+                window.localStorage.setItem('touchId', ($scope.touchId = touchId ? 'SIM' : 'NUNCA'))
+
+                if (!touchId) return
+                dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
+
+                $ionicLoading.show()
+
+                // TODO: make request to server informing new TouchID setting
+                $http
+                  .post(urlBase + ';jsessionid=' + userInfo.s, {
+                    param: {
+                      acao: 'cadastrarTouchID',
+                      imei: (window.device.uuid + '').slice(0, 16), // TODO: Temporary, this should change to correctly use UUID
+                      fundo: dadosCadastrais.cod_fundo,
+                      touch_ID: $scope.touchId,
+                      matricula: $rootScope.lastRequest.result.informacoesParticipante[0].matricula,
+                      patrocinadora: dadosCadastrais.cod_patrocinadora
+                    },
+                    login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
+                  })
+                  .then(
+                    function (resp) {
+                      console.log(window.inspect(resp))
+
+                      if (!(resp['data'] && resp['data']['sucess'] && !resp['data']['msg'])) {
+                        throw new Error((resp['data'] && resp['data']['msg']) || 'Server Error')
+                      }
+
+                      // TODO: cadastrar KID no keychain do aparelho
+                      return new Promise(function (resolve, reject) {
+                        if (!(resp['data']['result'] && resp['data']['k'])) reject(new Error('Invalid Server answer, missing kID parameter'))
+                        window.plugins['touchid'].save('FingerPrintAuth_telosPrevMobile', resp['data']['k'], false, resolve, reject)
+                      })
+                    }
+                  )
+                  .then(function () {
+                    $ionicLoading.hide()
+                    $ionicPopup.alert({
+                      title: 'Sucesso',
+                      template: '<p style="color: lightgreen">O login com digital está ativo.</p>'
+                    })
+                  })
+                  .catch(function (err) {
+                    console.error(err.stack + '')
+                    window.localStorage.setItem('touchId', 'NAO')
+                    $ionicLoading.hide()
+                    $ionicPopup.alert({
+                      title: 'Falha',
+                      template: '<p style="color: lightcoral">Error ao ativar o login pela digital.</p>'
+                    })
+                  })
+              })
           },
           function () {
             console.log("Device doesn't have a fingerprint reader.")
@@ -306,14 +358,11 @@ window.controller = angular
               showDelay: 0
             })
 
-            window.plugins['touchid'].verify(
-              'FingerPrintAuth_telosPrevMobile',
-              'Use sua digital para acessar',
-              function (kid) {
-                $http
+            window.plugins['touchid'].verify('FingerPrintAuth_telosPrevMobile', 'Use sua digital para acessar', function (kid) {
+              $http
                 .post(urlBase, {
                   param: {
-                    uuid: window.device.uuid,
+                    imei: (window.device.uuid + '').slice(0, 16), // TODO: Temporary, this should change to correctly use UUID
                     kid: kid,
                     acao: 'autenticarTouchID'
                   },
@@ -329,7 +378,9 @@ window.controller = angular
 
                     if ($rootScope.lastRequest.result['simuladorBeneficios']) {
                       for (k in $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios) {
-                        if (!$rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios.hasOwnProperty(k)) { continue }
+                        if (!$rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios.hasOwnProperty(k)) {
+                          continue
+                        }
                         $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios[k].checked = true
                         $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios[k].selecionado = 'S'
                       }
@@ -362,10 +413,10 @@ window.controller = angular
                     $rootScope.errorMsg = 'Erro ao conectar com o servidor. Tente novamente mais tarde.'
                   }
                 )
-              })
+            })
           },
           function () {
-            console.log('Device kid isn\'t available')
+            console.log("Device kid isn't available")
             $scope.errorMsg = 'Erro ao acessar dados de cadastro com digital. Por favor entre com seu CPF e senha.'
           }
         )
@@ -398,6 +449,7 @@ window.controller = angular
             })
             .then(
               function (resp) {
+                console.log('NORMAL LOGIN: ' + inspect(resp))
                 var k
                 // Se conseguiu conectar com o servidor
                 $ionicLoading.hide()
@@ -407,7 +459,9 @@ window.controller = angular
 
                 if (typeof $rootScope.lastRequest.result['simuladorBeneficios'] !== 'undefined') {
                   for (k in $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios) {
-                    if (!$rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios.hasOwnProperty(k)) { continue }
+                    if (!$rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios.hasOwnProperty(k)) {
+                      continue
+                    }
                     $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios[k].checked = true
                     $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios[k].selecionado = 'S'
                   }
