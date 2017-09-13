@@ -41,13 +41,13 @@
                 </div>
             </div>
 
-            <div class="item deep-warning-background">
-                <p class="errorColor" ng-bind-html="emprestimoSimulacaoCamposEmitido.msg_critica_quadro_1 + emprestimoSimulacaoCamposEmitido.msg_critica_quadro_2"></p>
+            <div class="item deep-warning-background" ng-cloak ng-hide="!(emprestimoSimulacaoCamposEmitido.msg_critica_quadro_1 || emprestimoSimulacaoCamposEmitido.msg_critica_quadro_2)">
+                <p class="errorColor" ng-bind-html="(emprestimoSimulacaoCamposEmitido.msg_critica_quadro_1 + '') + (emprestimoSimulacaoCamposEmitido.msg_critica_quadro_2 + '')"></p>
             </div>
 
-            <div class="item warning-background">
+            <div class="item warning-background" ng-cloak ng-hide="!emprestimoSimulacaoCamposEmitido.texto_simulacao">
                 <!--<div class="deep-warning-background" ng-if="!emprestimoSimulacaoCamposEmitido.exibe_botao_confirmacao">-->
-                <p class="errorColor">{{emprestimoSimulacaoCamposEmitido.texto_simulacao}}</p>
+                <p class="errorColor" style="white-space: initial;">{{emprestimoSimulacaoCamposEmitido.texto_simulacao}}</p>
             </div>
 
             <div class="item" style="border-top: none">
