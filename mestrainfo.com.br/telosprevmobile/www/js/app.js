@@ -1,11 +1,6 @@
-// window.alert = function (txt) {
-//    navigator.notification.alert(txt, null, "Aviso", "Fechar");
-// }
-// window.onerror = function (errorMsg, url, lineNumber) {
-//      alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
-// }
-var app = angular
-  .module('starter', [
+
+window.app = window.angular
+  .module('TelosApp', [
     'ionic',
     'ngCordova',
     'starter.controller',
@@ -26,12 +21,13 @@ var app = angular
       if (window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false)
+        window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false)
         // verificar se é melhor true ou false.
-        cordova.plugins.Keyboard.disableScroll(false)
+        window.cordova.plugins.Keyboard.disableScroll(false)
       }
 
       if (window.StatusBar) {
+        console.log(window.StatusBar)
         if (ionic.Platform.isAndroid()) {
           StatusBar.backgroundColorByHexString('#0080a5')
           $cordovaStatusbar.styleHex('#0080a5') // azul mestra
@@ -45,6 +41,7 @@ var app = angular
     })
 
     document.addEventListener('deviceReady', function () {
+      console.log('TESTE IONIC DEVICE READY')
       document.addEventListener(
         'resume',
         function () {
@@ -58,7 +55,7 @@ var app = angular
             })
             $http
               .post(
-                url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+                urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s,
               {
                 param: { acao: 'logout' },
                 login: { u: userInfo.u, s: userInfo.s }
@@ -166,7 +163,7 @@ var app = angular
       .state('emprestimodocumentosconcessaoaviso', {
         cache: false,
         url: '/emprestimo-documentos-concessao-aviso',
-        templateUrl: 'templates/documentos-concessao/emprestimo-documentos-concessao-aviso.html',
+        templateUrl: 'templates/documentos-concessao/emprestimo-documentos-concessao-aviso.html'
         // params: ['docConcessao']
       })
       .state('faleconosco', {
@@ -296,3 +293,7 @@ var app = angular
 
     $urlRouterProvider.otherwise('/sign-in')
   })
+
+window.ionic.Platform.ready(function () {
+  window.angular.bootstrap(document, ['TelosApp'])
+}, false)
