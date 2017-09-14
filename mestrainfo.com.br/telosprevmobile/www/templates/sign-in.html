@@ -1,39 +1,42 @@
-<ion-view hide-nav-bar="true" id="signin" overflow-scroll="true" has-bouncing="false" >
-   <ion-content overflow-scroll="true" has-bouncing="false" padding="false" id="signin">
-    <form ng-controller="signin" ng-submit="submit()" class="list list-inset" id="login-form">
-      
-    <div class="list">
-        
-      <div id="logo-login">
-      <img src="img/logo-login.png" class="img-login">
-      </div>
-    </div>
+<ion-view hide-nav-bar="true" id="signin" overflow-scroll="true" has-bouncing="false">
+    <ion-content overflow-scroll="true" has-bouncing="false" padding="false" id="signin">
+        <form ng-controller="signin" ng-submit="submit()" class="list list-inset" id="login-form">
 
-      <p>Preencha seus dados pessoais para entrar</p>
-      <label class="item item-input">
-       
-        <input type="tel" placeholder="CPF" class="cpfField" ng-change="cpfControl(this)" ng-model="formData.cpf" mask="99999999999" mask-restrict='reject'>
-      </label>
-      <label class="item item-input">
-        <input type="password" placeholder="Senha" mask="99999999999999999999" mask-restrict='reject' ng-model="formData.sen" id="passwordField">
-      </label> 
- 
-      <!-- <input type="hidden" ng-model="formData.acao" ng-init="formData.acao = 'logar'"> -->
+            <div class="list">
 
-      <div class="the_error">
-        <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
-      </div>
-      
-      <input ng-hide="loading" type="submit" ng-click="console.log(formData)" class="button button-positive button-block" ng-model="submitLogin" value="Entrar">      
-      <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
+                <div id="logo-login">
+                    <img src="img/logo-login.png" class="img-login">
+                </div>
+            </div>
 
-    </form>
-  
+            <p>Preencha seus dados pessoais para entrar</p>
+            <label class="item item-input">
+
+                <input type="tel" placeholder="CPF" class="cpfField" ng-change="cpfControl(this)"
+                       ng-model="formData.cpf" mask="99999999999" mask-restrict='reject'>
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Senha" mask="99999999999999999999" mask-restrict='reject'
+                       ng-model="formData.sen" id="passwordField">
+            </label>
+
+            <div class="the_error">
+                <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
+            </div>
+
+            <input ng-hide="loading" type="submit" ng-click="console.log(formData)"
+                   class="button button-positive button-block" ng-model="submitLogin" value="Entrar">
+            <div ng-show="loading" class="button button-positive button-block" id="loading">
+                <ion-spinner icon="android"></ion-spinner>
+            </div>
+
+        </form>
+
     </ion-content>
 
     <ion-footer-bar align-title="left" class="bar-light footerTermos">
-      <div class="title" align-title="center">
-        <a class="button button-clear" href="#/termo-de-uso">Termo de Uso</a>
-      </div>
+        <div class="title" align-title="center">
+            <a class="button button-clear" href="#/termo-de-uso">Termo de Uso</a>
+        </div>
     </ion-footer-bar>
 </ion-view>
