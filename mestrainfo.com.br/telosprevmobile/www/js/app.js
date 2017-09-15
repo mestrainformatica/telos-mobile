@@ -284,6 +284,11 @@ window.app = window.angular
         url: '/saldo-contas',
         templateUrl: 'templates/saldo-contas.html'
       })
+      .state('preferencias', {
+        cache: false,
+        url: '/preferencias',
+        templateUrl: 'templates/preferencias.html'
+      })
       // END MEUS STATES
       .state('menu', {
         cache: false,
