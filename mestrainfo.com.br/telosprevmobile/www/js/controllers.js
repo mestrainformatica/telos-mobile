@@ -269,7 +269,7 @@ window.controller = angular
             touchId = touchId ? 'SIM' : 'NUNCA'
 
             // Se tudo estiver consistente continuamos
-            if (!(localTouchId === null && touchId)) return touchId
+            if (!(localTouchId === '' && touchId)) return touchId
 
             /**
              * Se o login do TouchID tiver falhado ou no caso de inconsistencia com a configuração local e do servidor
@@ -279,6 +279,7 @@ window.controller = angular
               .post(urlBase + ';jsessionid=' + userInfo.s, {
                 param: {
                   acao: 'cadastrarTouchId',
+                  imei: uuid(),
                   fundo: dadosCadastrais.cod_fundo,
                   touch_ID: 'NAO',
                   matricula: matricula,
@@ -463,7 +464,7 @@ window.controller = angular
             touchId = retrieve(result, 'preferencias', 'touch_ID')
             console.log('TOUCHID LOCAL: ' + localTouchId)
             console.log('TOUCHID SERVER: ' + touchId)
-            window.localStorage.setItem('touchId', localTouchId !== touchId && touchId === 'SIM' ? null : touchId)
+            window.localStorage.setItem('touchId', localTouchId !== touchId && touchId === 'SIM' ? '' : touchId)
 
             if (result['simuladorBeneficios']) {
               beneficiarios = retrieve(result, 'simuladorBeneficios', 'beneficiarios')
@@ -554,7 +555,7 @@ window.controller = angular
           })
           .catch(function () {
             console.error("Device kid isn't available, next time it will reset...")
-            window.localStorage.setItem('touchId', null)
+            window.localStorage.setItem('touchId', '')
             $scope.errorMsg =
               'Erro ao acessar dados de cadastro com digital. Por favor entre com seu CPF e senha e reative o login com a digital.'
           })
