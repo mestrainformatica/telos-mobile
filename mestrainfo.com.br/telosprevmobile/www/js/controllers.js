@@ -244,13 +244,14 @@ window.controller = angular
 
       // Cadastro do TouchID
       touchId = localTouchId || 'NAO'
-      console.log('TouchId State: ' + touchId)
+      console.log('Menu TouchId State: ' + touchId)
+      // Se estivermos em um ambiente mobile e o TouchID não tiver sido definido ainda...
       if (cordova && window.plugins.touchid && touchId === 'NAO') {
-        console.log('TouchID Show Activation Popup')
-
         new Promise(function (resolve, reject) {
+          // Verificamos se o telefone tem leitor de digital
           window.plugins.touchid.isAvailable(function () {
             resolve(
+              // Perguntamos se o usuário quer cadastrar a digital
               (globalPopup = $ionicPopup.show({
                 title: 'Você deseja ativar o login usando sua digital?',
                 buttons: [
@@ -262,12 +263,18 @@ window.controller = angular
           }, reject)
         })
           .then(function (touchId) {
+            if (typeof touchId === 'undefined') throw new Error('Usuario está deslogado')
+
             $ionicLoading.show()
             touchId = touchId ? 'SIM' : 'NUNCA'
 
+            // Se tudo estiver consistente continuamos
             if (!(localTouchId === null && touchId)) return touchId
 
-            // reset server's TouchID settings, when TouchID failed
+            /**
+             * Se o login do TouchID tiver falhado ou no caso de inconsistencia com a configuração local e do servidor
+             * fazemos um request resetando a configuração do servidor
+             */
             return $http
               .post(urlBase + ';jsessionid=' + userInfo.s, {
                 param: {
@@ -285,7 +292,7 @@ window.controller = angular
               })
           })
           .then(function (touchId) {
-            // make request to server informing new TouchID setting
+            // Request para o servidor com as novas configurações do TouchID
             return $http
               .post(urlBase + ';jsessionid=' + userInfo.s, {
                 param: {
@@ -301,33 +308,35 @@ window.controller = angular
               .then(function (resp) {
                 checkIfServerAnswerIsValid(resp)
 
-                if (!(touchId && window.plugins && window.plugins.touchid)) return
-
                 // cadastra KID no keychain do aparelho
                 return new Promise(function (resolve, reject) {
-                  window.plugins['touchid'].save(
-                    'FingerPrintAuth_telosPrevMobile',
-                    JSON.stringify({
-                      k: retrieve(resp, 'data', 'result', 'k'),
-                      cpf: userInfo.cpf
-                    }),
-                    false,
-                    resolve,
-                    reject
-                  )
+                  /*
+                   * Se o usuario quiser touchID, salvamos o KID no keychain do aparelho, caso contrario, removemos o
+                   * mesmo do keychain
+                   */
+                  if (touchId === 'SIM') {
+                    window.plugins['touchid'].save(
+                      'FingerPrintAuth_telosPrevMobile',
+                      JSON.stringify({ k: retrieve(resp, 'data', 'result', 'k'), cpf: userInfo.cpf }),
+                      false,
+                      resolve,
+                      reject
+                    )
+                  } else {
+                    window.plugins.touchid.delete('FingerPrintAuth_telosPrevMobile', resolve)
+                  }
                 })
               })
               .then(function () {
+                // Salvamos localmente a nova configuração do TouchID
                 window.localStorage.setItem('touchId', touchId)
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Sucesso',
                   template:
                     '<p style="color: lightgreen">' +
-                    'O login com digital foi ' +
-                    (touchId ? 'ativado' : 'desativado') +
-                    '.' + // prettier-ignore
-                    '</p>'
+                      'O login com digital foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
+                    '</p>' // prettier-ignore
                 })
               })
               .catch(function (error) {
@@ -428,6 +437,11 @@ window.controller = angular
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading) {
       var localTouchId
 
+      /**
+       * Lida com o resulta da requisição de login, seja ela com TouchID ou Normal
+       * @param request
+       * @param cpf
+       */
       function loginPostAction (request, cpf) {
         return request
           .catch(function (error) {
