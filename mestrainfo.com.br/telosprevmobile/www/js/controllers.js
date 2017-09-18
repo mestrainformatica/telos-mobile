@@ -1,6 +1,6 @@
 'use strict'
 
-var map, urlBase, inspect, angular, cordova, stageMap, userInfo, timeoutErrorMsg, defaultErrorMessage
+var map, urlBase, inspect, angular, cordova, stageMap, userInfo, globalPopup, timeoutErrorMsg, defaultErrorMessage
 
 // Cache de algumas propriedades da window
 inspect = window.inspect
@@ -188,7 +188,7 @@ window.controller = angular
     '$ionicLoading',
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
-      var result, matricula, localTouchId, dadosCadastrais
+      var result, matricula, touchId, localTouchId, dadosCadastrais
       result = retrieve($rootScope, 'lastRequest', 'result')
       matricula = retrieve(result, 'informacoesParticipante', 'matricula')
       localTouchId = window.localStorage.getItem('touchId')
@@ -200,7 +200,7 @@ window.controller = angular
         var critica = retrieve(result, 'documentosConcessao', 'critica_documento_concessao')
         if (critica) {
           event.preventDefault()
-          $ionicPopup.alert({
+          globalPopup = $ionicPopup.alert({
             title: 'Documentos de Concessão',
             template: critica
           })
@@ -216,7 +216,7 @@ window.controller = angular
           showDelay: 0
         })
         $http
-          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: { acao: 'logout' },
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -234,7 +234,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -243,27 +243,27 @@ window.controller = angular
       }
 
       // Cadastro do TouchID
-      $scope.touchId = localTouchId || retrieve(result, 'preferencias', 'touch_ID') || 'NAO'
-      console.log('TouchId State: ' + $scope.touchId)
-      if (cordova && window.plugins.touchid && $scope.touchId === 'NAO') {
+      touchId = localTouchId || 'NAO'
+      console.log('TouchId State: ' + touchId)
+      if (cordova && window.plugins.touchid && touchId === 'NAO') {
         console.log('TouchID Show Activation Popup')
 
         new Promise(function (resolve, reject) {
           window.plugins.touchid.isAvailable(function () {
             resolve(
-              $ionicPopup.show({
+              (globalPopup = $ionicPopup.show({
                 title: 'Você deseja ativar o login usando sua digital?',
                 buttons: [
                   { text: 'Não', type: 'button-negative', onTap: function () { return false } }, // prettier-ignore
                   { text: '<b>Sim</b>', type: 'button-positive', onTap: function () { return true } } // prettier-ignore
                 ]
-              })
+              }))
             )
           }, reject)
         })
           .then(function (touchId) {
             $ionicLoading.show()
-            $scope.touchId = touchId ? 'SIM' : 'NUNCA'
+            touchId = touchId ? 'SIM' : 'NUNCA'
 
             if (!(localTouchId === null && touchId)) return touchId
 
@@ -292,7 +292,7 @@ window.controller = angular
                   acao: 'cadastrarTouchId',
                   imei: uuid(),
                   fundo: dadosCadastrais.cod_fundo,
-                  touch_ID: $scope.touchId,
+                  touch_ID: touchId,
                   matricula: matricula,
                   patrocinadora: dadosCadastrais.cod_patrocinadora
                 },
@@ -318,9 +318,9 @@ window.controller = angular
                 })
               })
               .then(function () {
-                window.localStorage.setItem('touchId', $scope.touchId)
+                window.localStorage.setItem('touchId', touchId)
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Sucesso',
                   template:
                     '<p style="color: lightgreen">' +
@@ -333,7 +333,7 @@ window.controller = angular
               .catch(function (error) {
                 console.error(inspect(error))
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Falha',
                   template: '<p style="color: lightcoral">Error ao ativar o login pela digital.</p>'
                 })
@@ -365,7 +365,7 @@ window.controller = angular
         })
 
         $http
-          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               cpf: userInfo.cpf,
               cod_fundo: $scope.matriculas[item].cod_fundo,
@@ -409,7 +409,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -426,6 +426,8 @@ window.controller = angular
     '$timeout',
     '$ionicLoading',
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading) {
+      var localTouchId
+
       function loginPostAction (request, cpf) {
         return request
           .catch(function (error) {
@@ -433,7 +435,7 @@ window.controller = angular
             throw new Error(defaultErrorMessage)
           })
           .then(function (resp) {
-            var dados, result, dadosView, beneficiarios
+            var dados, result, touchId, dadosView, beneficiarios
 
             $ionicLoading.hide()
             checkIfServerAnswerIsValid(resp)
@@ -444,8 +446,10 @@ window.controller = angular
             $rootScope.lastRequest = retrieve(resp, 'data')
 
             result = retrieve($rootScope.lastRequest, 'result')
-            console.log('SERVER TOUCHID: ' + retrieve(result, 'preferencias', 'touch_ID'))
-            window.localStorage.setItem('touchId', retrieve(result, 'preferencias', 'touch_ID'))
+            touchId = retrieve(result, 'preferencias', 'touch_ID')
+            console.log('TOUCHID LOCAL: ' + localTouchId)
+            console.log('TOUCHID SERVER: ' + touchId)
+            window.localStorage.setItem('touchId', localTouchId !== touchId && touchId === 'SIM' ? null : touchId)
 
             if (result['simuladorBeneficios']) {
               beneficiarios = retrieve(result, 'simuladorBeneficios', 'beneficiarios')
@@ -481,16 +485,18 @@ window.controller = angular
           })
       }
 
-      var touchId
-
       $scope.formData = {}
       $scope.loginWithTouchId = 0
 
-      touchId = window.localStorage.getItem('touchId') || 'NAO'
-      console.log('SignIn TouchId State: ' + touchId)
+      localTouchId = window.localStorage.getItem('touchId') || 'NAO'
+      console.log('SignIn TouchId State: ' + localTouchId)
+
+      // Clear any old popup or loading
+      if (globalPopup) globalPopup.close()
+      $ionicLoading.hide()
 
       // Login TouchID
-      if (window.plugins && window.plugins.touchid && touchId === 'SIM') {
+      if (window.plugins && window.plugins.touchid && localTouchId === 'SIM') {
         console.log('TouchID Enabled')
 
         new Promise(function (resolve, reject) {
@@ -542,10 +548,6 @@ window.controller = angular
 
       $scope.submit = function () {
         var formData = this.formData
-
-        stageMap = {}
-        userInfo = {}
-        $rootScope.lastRequest = {}
 
         if (!(formData.cpf && formData.sen)) {
           $rootScope.errorMsg = 'Por favor preencha os campos acima'
@@ -618,7 +620,7 @@ window.controller = angular
           function (err) {
             console.error(inspect(err))
             $ionicLoading.hide()
-            $ionicPopup.alert({
+            globalPopup = $ionicPopup.alert({
               title: 'Falha de conexão',
               template: timeoutErrorMsg
             })
@@ -638,7 +640,7 @@ window.controller = angular
 
       $ionicLoading.show()
       $http
-        .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+        .post(urlBase + ';jsessionid=' + userInfo.s, {
           param: { acao: 'simulacaoResgate' },
           login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
         })
@@ -658,7 +660,7 @@ window.controller = angular
           function (err) {
             console.error(inspect(err))
             $ionicLoading.hide()
-            $ionicPopup.alert({
+            globalPopup = $ionicPopup.alert({
               title: 'Falha de conexão',
               template: timeoutErrorMsg
             })
@@ -688,11 +690,11 @@ window.controller = angular
         })
 
         $http
-          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: { aceite: true, acao: 'termoUso', cpf: userInfo.cpf },
             login: {
-              u: $rootScope.lastRequest.login.u,
-              s: $rootScope.lastRequest.login.s
+              u: userInfo.u,
+              s: userInfo.s
             }
           })
           .then(
@@ -705,7 +707,7 @@ window.controller = angular
                 userInfo.s = resp.data.login.s
                 $rootScope.lastRequest.success = resp.data.success
                 $rootScope.lastRequest.msg = resp.data.msg
-                $rootScope.lastRequest.login = resp.data.login
+                userInfo = resp.data.login
 
                 // $rootScope.lastRequest = resp.data;
                 $ionicLoading.hide()
@@ -715,7 +717,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -731,7 +733,7 @@ window.controller = angular
           showDelay: 0
         })
         $http
-          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: { acao: 'logout' },
             login: { u: userInfo.u, s: userInfo.s }
           })
@@ -748,7 +750,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -855,7 +857,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -919,7 +921,7 @@ window.controller = angular
               function (err) {
                 console.error(inspect(err))
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
                   template: timeoutErrorMsg
                 })
@@ -971,7 +973,7 @@ window.controller = angular
                 if (resp.data.msg.length > 0) {
                   $rootScope.errorMsg = resp.data.msg
                 } else {
-                  $ionicPopup.alert({
+                  globalPopup = $ionicPopup.alert({
                     template: 'Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email
                   })
                 }
@@ -980,7 +982,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -1055,7 +1057,7 @@ window.controller = angular
               function (err) {
                 console.error(inspect(err))
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
                   template: timeoutErrorMsg
                 })
@@ -1093,7 +1095,7 @@ window.controller = angular
                   if (resp.data.msg.length > 0) {
                     $rootScope.errorMsg = resp.data.msg
                   } else {
-                    $ionicPopup.alert({
+                    globalPopup = $ionicPopup.alert({
                       template: 'Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email
                     })
                   }
@@ -1102,7 +1104,7 @@ window.controller = angular
               function (err) {
                 console.error(inspect(err))
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
                   template: timeoutErrorMsg
                 })
@@ -1178,7 +1180,7 @@ window.controller = angular
               function (err) {
                 console.error(inspect(err))
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
                   template: timeoutErrorMsg
                 })
@@ -1253,7 +1255,7 @@ window.controller = angular
               function (err) {
                 console.error(inspect(err))
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
                   template: timeoutErrorMsg
                 })
@@ -1307,7 +1309,7 @@ window.controller = angular
                 if (resp.data.msg.length > 0) {
                   $rootScope.errorMsg = resp.data.msg
                 } else {
-                  $ionicPopup.alert({
+                  globalPopup = $ionicPopup.alert({
                     template: 'Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email
                   })
                 }
@@ -1316,7 +1318,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -1402,7 +1404,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -1450,7 +1452,7 @@ window.controller = angular
               function (err) {
                 console.error(inspect(err))
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
                   template: timeoutErrorMsg
                 })
@@ -1656,7 +1658,7 @@ window.controller = angular
               function (err) {
                 console.error(inspect(err))
                 $ionicLoading.hide()
-                $ionicPopup.alert({
+                globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
                   template: timeoutErrorMsg
                 })
@@ -1687,7 +1689,7 @@ window.controller = angular
 
       $scope.submit = function () {
         $http
-          .post(urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s, {
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               acao: 'confirmacaoEmprestimo',
               // saldo_devedor_total: saldosDadosSimulacao.saldo_devedor_total,
@@ -1743,7 +1745,7 @@ window.controller = angular
             },
             function () {
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -1900,7 +1902,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -2055,7 +2057,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -2209,7 +2211,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -2309,7 +2311,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -2464,7 +2466,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -2582,7 +2584,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -2662,7 +2664,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -2741,7 +2743,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -2853,7 +2855,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -3007,7 +3009,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -3089,7 +3091,7 @@ window.controller = angular
             function (err) {
               console.error(inspect(err))
               $ionicLoading.hide()
-              $ionicPopup.alert({
+              globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -3186,7 +3188,7 @@ window.controller = angular
             },
             function () {
               ionicLoading.hide()
-              ionicPopup.alert({
+              globalPopup = ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -3234,7 +3236,7 @@ window.controller = angular
             },
             function () {
               ionicLoading.hide()
-              ionicPopup.alert({
+              globalPopup = ionicPopup.alert({
                 title: 'Falha de conexão',
                 template: timeoutErrorMsg
               })
@@ -3262,6 +3264,7 @@ window.controller = angular
         action: function () {
           var checked = toggle.checked
           var touchId = checked ? 'SIM' : 'NUNCA'
+          ionicLoading.show()
           return http
             .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
@@ -3296,7 +3299,7 @@ window.controller = angular
             .then(function () {
               window.localStorage.setItem('touchId', touchId)
               ionicLoading.hide()
-              ionicPopup.alert({
+              globalPopup = ionicPopup.alert({
                 title: 'Sucesso',
                 template:
                   '<p style="color: lightgreen">O login com digital ' +
@@ -3307,7 +3310,7 @@ window.controller = angular
             .catch(function (error) {
               console.error(inspect(error))
               ionicLoading.hide()
-              ionicPopup.alert({
+              globalPopup = ionicPopup.alert({
                 title: 'Falha',
                 template: '<p style="color: lightcoral">Error ao ativar o login pela digital.</p>'
               })
