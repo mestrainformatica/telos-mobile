@@ -1,27 +1,23 @@
 'use strict'
 
-// var urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
-// var urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
-// var urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
-// var urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-var urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
-var inspect = window.inspect
-var angular = window.angular
-var cordova = window.cordova
-var stageMap = {}
-var logged = false
-var userInfo = {}
-var timeoutMsg = 'Rede indisponível'
-var map = {
-  vinculo: {
-    V: 'Vitalício',
-    I: 'Indicado',
-    T: 'Temporário'
-  },
-  sexo: {
-    M: 'Masculino',
-    F: 'Feminino'
-  },
+var map, urlBase, inspect, angular, cordova, stageMap, userInfo, timeoutErrorMsg, defaultErrorMessage
+
+// Cache de algumas propriedades da window
+inspect = window.inspect
+angular = window.angular
+cordova = window.cordova
+
+// URL Base para conexão aos servidor TELOS
+// urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+// urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+// urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+// urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
+urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+
+// Variaveis Globais
+map = {
+  vinculo: { V: 'Vitalício', I: 'Indicado', T: 'Temporário' },
+  sexo: { M: 'Masculino', F: 'Feminino' },
   parentesco: [
     '',
     'Cônjuge',
@@ -38,40 +34,94 @@ var map = {
     'Filho > 24 anos'
   ]
 }
+stageMap = {}
+userInfo = {}
+timeoutErrorMsg = 'Rede indisponível'
+defaultErrorMessage = 'Erro ao conectar com o servidor. Tente novamente mais tarde'
 
-// var toGuid = function (str) {
-//   return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase()
-// }
-
-var defaultErrorMessage = 'Erro ao conectar com o servidor. Tente novamente mais tarde'
+/**
+ * Verifica se a resposta retornada pelo servidor é válida
+ * @param {object} resp
+ * @returns {boolean}
+ */
 function checkIfServerAnswerIsValid (resp) {
   console.log(inspect(resp))
-  if (!(resp['data'] && resp['data']['success'] && !resp['data']['msg'] && resp['data']['result'])) {
-    throw new Error((resp['data'] && resp['data']['msg']) || defaultErrorMessage)
+  var msg, data
+  if (resp && resp['data']) {
+    data = resp['data']
+    msg = data['msg']
+    userInfo.u = resp.data.login.u
+    userInfo.s = resp.data.login.s
+
+    if (data['success'] && !msg && data['result']) return true
   }
+
+  throw new Error(msg || defaultErrorMessage)
 }
 
-function uuid (n, r) {
-  for (r = n = ''; n++ < 36; r += 51 * n & 52 ? (15 ^ n ? 8 ^ Math.random() * (20 ^ n ? 16 : 4) : 4).toString(16) : '') {} // prettier-ignore
-  return r
+/**
+ * Retorna ou gera identificador único do aparelho
+ * Modified from: https://gist.github.com/LeverOne/1308368
+ * @returns {String}
+ */
+function uuid () {
+  var n, r, u
+
+  if (window.device && window.device.uuid) {
+    return (window.device.uuid + '').slice(0, 256)
+  } else {
+    u = window.localStorage.getItem('uuid')
+    if (u) return u
+  }
+
+  // Magic
+  r = n = ''
+  while (n++ < 36) {
+    if ((51 * n) & 52) r += (15 ^ n ? 8 ^ (Math.random() * (20 ^ n ? 16 : 4)) : 4).toString(16)
+  }
+
+  u = r.slice(0, 256)
+  window.localStorage.set('uuid', u)
+  return u
 }
 
-function retrieve (resp, field, getFirst) {
-  if (arguments.length < 3) getFirst = true
+/**
+ * Recupera propriedade de um objeto
+ * @param {object} obj
+ * @param {string...} key
+ * @returns {*}
+ */
+function retrieve (obj, key) {
+  var i, field, length
 
-  if (!resp || !resp[field]) {
-    throw new Error('Tentativa de acesso a um campo inválido: ' + field + ' em ' + inspect(resp))
-  } else if (Array.isArray(resp[field])) {
-    if (resp[field].length === 0) {
-      throw new Error('Tentativa de acesso a um campo vazio: ' + field + ' em ' + inspect(resp))
-    } else if (resp[field].length === 1 && getFirst) {
-      return resp[field][0]
+  length = arguments.length
+  if (!key) throw new Error('Falta argumento da chave do campo')
+
+  i = 0
+  while (++i < length) {
+    key = arguments[i] + ''
+
+    if (!obj) throw new Error('Acesso à propriedade ' + key + ' em um objecto inválido')
+    if (!obj.hasOwnProperty(key)) throw new Error('Acesso à propriedade inválida: ' + key + ' em ' + inspect(obj))
+
+    field = obj[key]
+    if (Array.isArray(field)) {
+      switch (field.length) {
+        case 0:
+          throw new Error('Tentativa de acesso a um campo vazio: ' + key + ' em ' + inspect(obj))
+        case 1:
+          obj = field[0]
+          continue
+      }
     }
+
+    obj = field
   }
 
-  return resp[field]
+  return obj
 }
 
+/* === ANGULAR CONTROLLERS === */
 window.controller = angular
   .module('starter.controller', ['ionic', 'angular-datepicker', 'ngMask', 'ngSanitize'])
   .controller('topMenu', function ($scope, $ionicHistory, $rootScope) {
@@ -138,19 +188,16 @@ window.controller = angular
     '$ionicLoading',
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
-      var matricula = $rootScope.lastRequest.result.informacoesParticipante[0].matricula
-      var localTouchId = window.localStorage.getItem('touchId')
-      var dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
+      var result, matricula, localTouchId, dadosCadastrais
+      result = retrieve($rootScope, 'lastRequest', 'result')
+      matricula = retrieve(result, 'informacoesParticipante', 'matricula')
+      localTouchId = window.localStorage.getItem('touchId')
+      dadosCadastrais = retrieve(result, 'dadosCadastrais')
 
-      // Setup the loader
-      if (!logged) {
-        // $state.go('signin');
-      } else {
-        $scope.stageMap = stageMap
-      }
+      $scope.stageMap = stageMap
 
       $scope.goDocConcessao = function (event) {
-        var critica = $rootScope.lastRequest.result.documentosConcessao[0].critica_documento_concessao
+        var critica = retrieve(result, 'documentosConcessao', 'critica_documento_concessao')
         if (critica) {
           event.preventDefault()
           $ionicPopup.alert({
@@ -158,123 +205,6 @@ window.controller = angular
             template: critica
           })
         }
-      }
-
-      // TODO: Cadastro TouchID
-      $scope.touchId = localTouchId || $rootScope.lastRequest.result.preferencias[0].touch_ID || 'NAO'
-      console.log('TouchId State: ' + $scope.touchId)
-      if (cordova && window.plugins.touchid && $scope.touchId === 'NAO') {
-        console.log('TouchID Show Activation Popup')
-
-        new Promise(function (resolve, reject) {
-          window.plugins.touchid.isAvailable(function () {
-            resolve(
-              $ionicPopup.show({
-                title: 'Você deseja ativar o login usando sua digital?',
-                buttons: [
-                  {
-                    text: 'Não',
-                    type: 'button-negative',
-                    onTap: function () {
-                      return false
-                    }
-                  },
-                  {
-                    text: '<b>Sim</b>',
-                    type: 'button-positive',
-                    onTap: function () {
-                      return true
-                    }
-                  }
-                ]
-              })
-            )
-          }, reject)
-        })
-          .then(function (touchId) {
-            $ionicLoading.show()
-            $scope.touchId = touchId ? 'SIM' : 'NUNCA'
-
-            if (!(localTouchId === null && touchId)) {
-              return touchId
-            }
-
-            return $http
-              .post(urlBase + ';jsessionid=' + userInfo.s, {
-                param: {
-                  acao: 'cadastrarTouchId',
-                  fundo: dadosCadastrais.cod_fundo,
-                  touch_ID: 'NAO',
-                  matricula: matricula,
-                  patrocinadora: dadosCadastrais.cod_patrocinadora
-                },
-                login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
-              })
-              .then(function (resp) {
-                userInfo.u = resp.data.login.u
-                userInfo.s = resp.data.login.s
-                checkIfServerAnswerIsValid(resp)
-                return touchId
-              })
-          })
-          .then(function (touchId) {
-            // TODO: make request to server informing new TouchID setting
-            return $http
-              .post(urlBase + ';jsessionid=' + userInfo.s, {
-                param: {
-                  acao: 'cadastrarTouchId',
-                  imei: (((window.device && window.device.uuid) || uuid()) + '').slice(0, 256),
-                  fundo: dadosCadastrais.cod_fundo,
-                  touch_ID: $scope.touchId,
-                  matricula: matricula,
-                  patrocinadora: dadosCadastrais.cod_patrocinadora
-                },
-                login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
-              })
-              .then(function (resp) {
-                userInfo.u = resp.data.login.u
-                userInfo.s = resp.data.login.s
-                checkIfServerAnswerIsValid(resp)
-
-                if (!(touchId && window.plugins && window.plugins.touchid)) return
-
-                // TODO: cadastrar KID no keychain do aparelho
-                return new Promise(function (resolve, reject) {
-                  window.plugins['touchid'].save(
-                    'FingerPrintAuth_telosPrevMobile',
-                    JSON.stringify({
-                      k: retrieve(retrieve(retrieve(resp, 'data'), 'result'), 'k'),
-                      cpf: userInfo.cpf
-                    }),
-                    false,
-                    resolve,
-                    reject
-                  )
-                })
-              })
-              .then(function () {
-                window.localStorage.setItem('touchId', $scope.touchId)
-                $ionicLoading.hide()
-                $ionicPopup.alert({
-                  title: 'Sucesso',
-                  template:
-                    '<p style="color: lightgreen">O login com digital ' +
-                    (touchId ? 'está ativo.' : 'foi desativado.') +
-                    '</p>'
-                })
-              })
-              .catch(function (err) {
-                console.error(err.stack + '')
-                $ionicLoading.hide()
-                $ionicPopup.alert({
-                  title: 'Falha',
-                  template: '<p style="color: lightcoral">Error ao ativar o login pela digital.</p>'
-                })
-              })
-          })
-          .catch(function (error) {
-            console.error(inspect(error))
-          })
       }
 
       $scope.logout = function () {
@@ -293,24 +223,125 @@ window.controller = angular
           .then(
             function () {
               stageMap = {}
-              logged = false
               userInfo = {}
               $rootScope.cache = {}
               $rootScope.lastRequest = {}
-              delete $rootScope.beneficiariosOriginal
+              $rootScope.beneficiariosOriginal = undefined
               $ionicLoading.hide()
 
               $state.go('signin')
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
+      }
+
+      // Cadastro do TouchID
+      $scope.touchId = localTouchId || retrieve(result, 'preferencias', 'touch_ID') || 'NAO'
+      console.log('TouchId State: ' + $scope.touchId)
+      if (cordova && window.plugins.touchid && $scope.touchId === 'NAO') {
+        console.log('TouchID Show Activation Popup')
+
+        new Promise(function (resolve, reject) {
+          window.plugins.touchid.isAvailable(function () {
+            resolve(
+              $ionicPopup.show({
+                title: 'Você deseja ativar o login usando sua digital?',
+                buttons: [
+                  { text: 'Não', type: 'button-negative', onTap: function () { return false } }, // prettier-ignore
+                  { text: '<b>Sim</b>', type: 'button-positive', onTap: function () { return true } } // prettier-ignore
+                ]
+              })
+            )
+          }, reject)
+        })
+          .then(function (touchId) {
+            $ionicLoading.show()
+            $scope.touchId = touchId ? 'SIM' : 'NUNCA'
+
+            if (!(localTouchId === null && touchId)) return touchId
+
+            // reset server's TouchID settings, when TouchID failed
+            return $http
+              .post(urlBase + ';jsessionid=' + userInfo.s, {
+                param: {
+                  acao: 'cadastrarTouchId',
+                  fundo: dadosCadastrais.cod_fundo,
+                  touch_ID: 'NAO',
+                  matricula: matricula,
+                  patrocinadora: dadosCadastrais.cod_patrocinadora
+                },
+                login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
+              })
+              .then(function (resp) {
+                checkIfServerAnswerIsValid(resp)
+                return touchId
+              })
+          })
+          .then(function (touchId) {
+            // make request to server informing new TouchID setting
+            return $http
+              .post(urlBase + ';jsessionid=' + userInfo.s, {
+                param: {
+                  acao: 'cadastrarTouchId',
+                  imei: uuid(),
+                  fundo: dadosCadastrais.cod_fundo,
+                  touch_ID: $scope.touchId,
+                  matricula: matricula,
+                  patrocinadora: dadosCadastrais.cod_patrocinadora
+                },
+                login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
+              })
+              .then(function (resp) {
+                checkIfServerAnswerIsValid(resp)
+
+                if (!(touchId && window.plugins && window.plugins.touchid)) return
+
+                // cadastra KID no keychain do aparelho
+                return new Promise(function (resolve, reject) {
+                  window.plugins['touchid'].save(
+                    'FingerPrintAuth_telosPrevMobile',
+                    JSON.stringify({
+                      k: retrieve(resp, 'data', 'result', 'k'),
+                      cpf: userInfo.cpf
+                    }),
+                    false,
+                    resolve,
+                    reject
+                  )
+                })
+              })
+              .then(function () {
+                window.localStorage.setItem('touchId', $scope.touchId)
+                $ionicLoading.hide()
+                $ionicPopup.alert({
+                  title: 'Sucesso',
+                  template:
+                    '<p style="color: lightgreen">' +
+                    'O login com digital foi ' +
+                    (touchId ? 'ativado' : 'desativado') +
+                    '.' + // prettier-ignore
+                    '</p>'
+                })
+              })
+              .catch(function (error) {
+                console.error(inspect(error))
+                $ionicLoading.hide()
+                $ionicPopup.alert({
+                  title: 'Falha',
+                  template: '<p style="color: lightcoral">Error ao ativar o login pela digital.</p>'
+                })
+              })
+          })
+          .catch(function (error) {
+            console.error(inspect(error))
+          })
       }
     }
   ])
@@ -358,7 +389,6 @@ window.controller = angular
               } else {
                 // Se conseguiu conectar com o servidor
                 $rootScope.lastRequest = resp.data
-                logged = true
                 for (k in resp.data.result['dadosView'][0]) {
                   if (!resp.data.result['dadosView'][0].hasOwnProperty(k)) continue
                   // Define quais telas serão mostradas para o usuário
@@ -377,11 +407,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -399,34 +429,31 @@ window.controller = angular
       function loginPostAction (request, cpf) {
         return request
           .catch(function (error) {
-            console.log(error.stack + '')
+            console.error(inspect(error))
             throw new Error(defaultErrorMessage)
           })
           .then(function (resp) {
-            var data, dados, result, dadosView
+            var dados, result, dadosView, beneficiarios
 
             $ionicLoading.hide()
             checkIfServerAnswerIsValid(resp)
 
-            data = retrieve(resp, 'data')
-            result = retrieve(data, 'result')
-
-            window.localStorage.setItem('touchId', retrieve(retrieve(result, 'preferencias'), 'touch_ID'))
-
-            if (result['simuladorBeneficios']) {
-              retrieve(retrieve(result, 'simuladorBeneficios'), 'beneficiarios', false).forEach(function (beneficiario) {
-                beneficiario.checked = true
-                beneficiario.selecionado = 'S'
-              })
-            }
-
-            logged = true
-            userInfo.u = resp.data.login.u
-            userInfo.s = resp.data.login.s
             userInfo.cpf = cpf
             $scope.formData = {}
             $rootScope.cache = {}
-            $rootScope.lastRequest = data
+            $rootScope.lastRequest = retrieve(resp, 'data')
+
+            result = retrieve($rootScope.lastRequest, 'result')
+            console.log('SERVER TOUCHID: ' + retrieve(result, 'preferencias', 'touch_ID'))
+            window.localStorage.setItem('touchId', retrieve(result, 'preferencias', 'touch_ID'))
+
+            if (result['simuladorBeneficios']) {
+              beneficiarios = retrieve(result, 'simuladorBeneficios', 'beneficiarios')
+              ;((Array.isArray(beneficiarios) && beneficiarios) || [beneficiarios]).forEach(function (beneficiario) {
+                beneficiario['checked'] = true
+                beneficiario['selecionado'] = 'S'
+              })
+            }
 
             if (result['matriculas']) {
               // Possui mais de uma matrícula e ainda não escolheu qual será carregada
@@ -479,29 +506,25 @@ window.controller = angular
             console.log('Success retrieving key with TouchId')
 
             auth = JSON.parse(auth)
-
-            if (!(auth.k && auth.cpf)) {
-              throw new Error('Invalid KID.')
-            }
+            if (!(auth.k && auth.cpf)) throw new Error('Invalid KID.')
 
             stageMap = {}
-            logged = false
             userInfo = {}
             $rootScope.lastRequest = {}
 
             $ionicLoading.show({
               content: 'Carregando',
-              animation: 'fade-in',
-              showBackdrop: true,
               maxWidth: 300,
-              showDelay: 0
+              showDelay: 0,
+              animation: 'fade-in',
+              showBackdrop: true
             })
 
             return loginPostAction(
               $http.post(urlBase, {
                 param: {
-                  imei: (window.device.uuid + '').slice(0, 256),
                   k: auth.k,
+                  imei: uuid(),
                   acao: 'autenticarTouchId'
                 },
                 login: { u: '', s: '' }
@@ -520,7 +543,6 @@ window.controller = angular
       $scope.submit = function () {
         var formData = this.formData
 
-        logged = false
         stageMap = {}
         userInfo = {}
         $rootScope.lastRequest = {}
@@ -594,11 +616,11 @@ window.controller = angular
             }
           },
           function (err) {
-            console.error(err)
+            console.error(inspect(err))
             $ionicLoading.hide()
             $ionicPopup.alert({
               title: 'Falha de conexão',
-              template: timeoutMsg
+              template: timeoutErrorMsg
             })
           }
         )
@@ -634,11 +656,11 @@ window.controller = angular
             }
           },
           function (err) {
-            console.error(err)
+            console.error(inspect(err))
             $ionicLoading.hide()
             $ionicPopup.alert({
               title: 'Falha de conexão',
-              template: timeoutMsg
+              template: timeoutErrorMsg
             })
           }
         )
@@ -679,7 +701,6 @@ window.controller = angular
                 $rootScope.errorMsg = resp.data.msg
                 $state.go('signin')
               } else {
-                logged = true
                 userInfo.u = resp.data.login.u
                 userInfo.s = resp.data.login.s
                 $rootScope.lastRequest.success = resp.data.success
@@ -692,11 +713,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -717,20 +738,19 @@ window.controller = angular
           .then(
             function () {
               stageMap = {}
-              logged = false
               userInfo = {}
               $rootScope.lastRequest = {}
-              delete $rootScope.beneficiariosOriginal
+              $rootScope.beneficiariosOriginal = undefined
               $ionicLoading.hide()
 
               $state.go('signin')
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -833,11 +853,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -897,11 +917,11 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(err)
+                console.error(inspect(err))
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
-                  template: timeoutMsg
+                  template: timeoutErrorMsg
                 })
               }
             )
@@ -958,11 +978,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -1033,11 +1053,11 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(err)
+                console.error(inspect(err))
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
-                  template: timeoutMsg
+                  template: timeoutErrorMsg
                 })
               }
             )
@@ -1080,11 +1100,11 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(err)
+                console.error(inspect(err))
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
-                  template: timeoutMsg
+                  template: timeoutErrorMsg
                 })
               }
             )
@@ -1156,11 +1176,11 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(err)
+                console.error(inspect(err))
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
-                  template: timeoutMsg
+                  template: timeoutErrorMsg
                 })
               }
             )
@@ -1231,11 +1251,11 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(err)
+                console.error(inspect(err))
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
-                  template: timeoutMsg
+                  template: timeoutErrorMsg
                 })
               }
             )
@@ -1294,11 +1314,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -1380,11 +1400,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -1428,11 +1448,11 @@ window.controller = angular
                 $state.go('emprestimosimulacaocampos')
               },
               function (err) {
-                console.error(err)
+                console.error(inspect(err))
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
-                  template: timeoutMsg
+                  template: timeoutErrorMsg
                 })
               }
             )
@@ -1455,14 +1475,19 @@ window.controller = angular
     '$filter',
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $filter, $ionicPopup) {
-      $scope.formData = {}
-      $scope.contrato = $rootScope.lastRequest.emprestimoSimulacaoCampos.saldos_dados_simulacao
-      $scope.emprestimoSimulacaoCampos = $rootScope.lastRequest.emprestimoSimulacaoCampos
-      $scope.tipos_emprestimo = $rootScope.lastRequest.result['simulacaoEmprestimo']
-      $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0].matricula
-      $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
+      var lastRequest, lastRequestResult, emprestimoSimulacaoCampos
+      lastRequest = retrieve($rootScope, 'lastRequest')
+      lastRequestResult = retrieve(lastRequest, 'result')
+      emprestimoSimulacaoCampos = retrieve(lastRequest, 'emprestimoSimulacaoCampos')
 
-      $scope.currency = function (valor, e) {
+      $scope.formData = {}
+      $scope.contrato = retrieve(emprestimoSimulacaoCampos, 'saldos_dados_simulacao')
+      $scope.matricula = retrieve(lastRequestResult, 'informacoesParticipante', 'matricula')
+      $scope.dadosCadastrais = retrieve(lastRequestResult, 'dadosCadastrais')
+      $scope.tipos_emprestimo = retrieve(lastRequestResult, 'simulacaoEmprestimo')
+      $scope.emprestimoSimulacaoCampos = emprestimoSimulacaoCampos
+
+      $scope.currency = function (valor, event) {
         var milSep = '.'
         var decSep = ','
         var casas = 3
@@ -1472,8 +1497,8 @@ window.controller = angular
         campo.maxLength = 12
         $scope.formData.valor = $scope.formData.valor.replace(',', '').replace('.', '')
 
-        var code = e.keyCode
-        // pega codigo datecla digitada
+        var code = event.keyCode
+        // pega codigo da tecla digitada
 
         if (code >= 65 && code <= 90) {
           $scope.formData.valor = $scope.formData.valor.replace(/\D+/g, '')
@@ -1551,11 +1576,8 @@ window.controller = angular
           campo.value = ''
           len2 = aux2.length
 
-          for (
-            i = len2 - 1;
-            i >= 0;
-            i-- // coloca numero com ou sem separadores no campo
-          ) {
+          for (i = len2 - 1; i >= 0; i--) {
+            // coloca numero com ou sem separadores no campo
             campo.value += aux2.charAt(i)
           }
 
@@ -1632,11 +1654,11 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(err)
+                console.error(inspect(err))
                 $ionicLoading.hide()
                 $ionicPopup.alert({
                   title: 'Falha de conexão',
-                  template: timeoutMsg
+                  template: timeoutErrorMsg
                 })
               }
             )
@@ -1723,7 +1745,7 @@ window.controller = angular
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -1769,7 +1791,7 @@ window.controller = angular
       $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0]
 
       // remove default do tipo de reajuste
-      delete $scope.tipoReajuste.DEFAULT
+      $scope.tipoReajuste.DEFAULT = undefined
 
       // seta o valor do form como o default do ws.
       $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT
@@ -1876,11 +1898,11 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -1904,8 +1926,6 @@ window.controller = angular
       }
 
       if ($rootScope.resetBeneficiarios && typeof $rootScope.beneficiariosOriginal !== 'undefined') {
-        console.log('aqui resetou os beneficiarios')
-        delete $scope.beneficiarios
         $scope.beneficiarios = angular.copy($rootScope.beneficiariosOriginal)
         $rootScope.lastRequest.result['simuladorBeneficios'][0].beneficiarios = angular.copy(
           $rootScope.beneficiariosOriginal
@@ -2033,11 +2053,11 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -2187,11 +2207,11 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -2287,11 +2307,11 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -2338,7 +2358,7 @@ window.controller = angular
       $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0]
 
       // remove default do tipo de reajuste
-      delete $scope.tipoReajuste.DEFAULT
+      $scope.tipoReajuste.DEFAULT = undefined
 
       // seta o valor do form como o default do ws.
       $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT
@@ -2442,11 +2462,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -2560,11 +2580,11 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -2640,11 +2660,11 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -2719,11 +2739,11 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -2751,7 +2771,7 @@ window.controller = angular
       $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0]
 
       // remove default do tipo de reajuste
-      delete $scope.tipoReajuste.DEFAULT
+      $scope.tipoReajuste.DEFAULT = undefined
 
       // seta o valor do form como o default do ws.
       $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT
@@ -2831,11 +2851,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -2899,7 +2919,7 @@ window.controller = angular
       $scope.tipoReajusteDefault = $rootScope.lastRequest.result.tipoReajuste[0]
 
       // remove default do tipo de reajuste
-      delete $scope.tipoReajuste.DEFAULT
+      $scope.tipoReajuste.DEFAULT = undefined
 
       // seta o valor do form como o default do ws.
       $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT
@@ -2985,11 +3005,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -3067,11 +3087,11 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(err)
+              console.error(inspect(err))
               $ionicLoading.hide()
               $ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -3091,17 +3111,21 @@ window.controller = angular
     '$ionicPopup',
     '$ionicLoading',
     function (scope, state, rootScope, http, ionicPopup, ionicLoading) {
-      var docConcessao = angular.copy(rootScope.lastRequest.result.documentosConcessao[0])
-      var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
-      var consultaEmprestimo = rootScope.lastRequest.result.consultaEmprestimo[0]
-      var informacoesParticipante = rootScope.lastRequest.result.informacoesParticipante[0]
-
+      var result = retrieve(rootScope, 'lastRequest', 'result')
+      var docConcessao = angular.copy(retrieve(result, 'documentosConcessao'))
+      var dadosCadastrais = retrieve(result, 'dadosCadastrais')
+      var consultaEmprestimo = retrieve(result, 'consultaEmprestimo')
       var contrato = consultaEmprestimo.contrato
+      var informacoesParticipante = retrieve(result, 'informacoesParticipante')
+
+      if (!rootScope.cache) rootScope.cache = {}
 
       scope.docConcessao = Object.assign(docConcessao, rootScope.cache.docConcessao || {})
       scope.docConcessao.contrato = contrato ? ' (Contrato: ' + contrato + ')' : ''
 
-      scope.docConcessao.statusDocumentoConcessao = scope.docConcessao.statusDocumentoConcessao.map(function (value) {
+      scope.docConcessao.statusDocumentoConcessao = (scope.docConcessao.statusDocumentoConcessao || []).map(function (
+        value
+      ) {
         return '<h4>' + value.formulario + '</h4>' + value.status + '<hr>'
       })
 
@@ -3118,8 +3142,6 @@ window.controller = angular
         )
 
         Object.assign(docConcessao, docConcessaoModified)
-
-        if (!rootScope.cache) rootScope.cache = {}
 
         var param = (rootScope.cache.docConcessao = {
           acao: 'enviarDocumentosConcessao',
@@ -3138,9 +3160,7 @@ window.controller = angular
           dc_data_emissao_identidade: docConcessao.dc_data_emissao_identidade
         })
 
-        if (docConcessao.exibePaginaCttDps === 'S') {
-          return state.go('emprestimodocumentosconcessaoaviso')
-        }
+        if (docConcessao.exibePaginaCttDps === 'S') return state.go('emprestimodocumentosconcessaoaviso')
 
         http
           .post(urlBase + ';jsessionid=' + rootScope.lastRequest.login.s, {
@@ -3168,7 +3188,7 @@ window.controller = angular
               ionicLoading.hide()
               ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -3216,7 +3236,7 @@ window.controller = angular
               ionicLoading.hide()
               ionicPopup.alert({
                 title: 'Falha de conexão',
-                template: timeoutMsg
+                template: timeoutErrorMsg
               })
             }
           )
@@ -3246,7 +3266,7 @@ window.controller = angular
             .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
                 acao: 'cadastrarTouchId',
-                imei: (((window.device && window.device.uuid) || uuid()) + '').slice(0, 256),
+                imei: uuid(),
                 fundo: dadosCadastrais.cod_fundo,
                 touch_ID: touchId,
                 matricula: matricula,
@@ -3255,8 +3275,6 @@ window.controller = angular
               login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
             })
             .then(function (resp) {
-              userInfo.u = resp.data.login.u
-              userInfo.s = resp.data.login.s
               checkIfServerAnswerIsValid(resp)
 
               if (!(checked && window.plugins && window.plugins.touchid)) return
@@ -3281,13 +3299,13 @@ window.controller = angular
               ionicPopup.alert({
                 title: 'Sucesso',
                 template:
-                '<p style="color: lightgreen">O login com digital ' +
-                (checked ? 'está ativo.' : 'foi desativado.') +
-                '</p>'
+                  '<p style="color: lightgreen">O login com digital ' +
+                  (checked ? 'está ativo.' : 'foi desativado.') +
+                  '</p>'
               })
             })
-            .catch(function (err) {
-              console.error(err.stack + '')
+            .catch(function (error) {
+              console.error(inspect(error))
               ionicLoading.hide()
               ionicPopup.alert({
                 title: 'Falha',
@@ -3299,14 +3317,11 @@ window.controller = angular
 
       if (window.plugins && window.plugins.touchid) {
         console.log('TouchID Enabled')
-        new Promise(
-          function (resolve, reject) {
-            window.plugins.touchid.has('FingerPrintAuth_telosPrevMobile', resolve, reject)
-          }
-        )
-          .then(function () {
-            scope.settingsList.push(toggle)
-          })
+        new Promise(function (resolve, reject) {
+          window.plugins.touchid.isAvailable(resolve, reject)
+        }).then(function () {
+          scope.settingsList.push(toggle)
+        })
       }
     }
   ])

@@ -24,8 +24,13 @@
         "bower": "^1.8.0",
         "gulp-sass": "^2.3.2",
         "gulp-util": "^2.2.14",
-        "ionic": "3.9.2",
+        "ionic": "3.10.3",
         "shelljs": "^0.3.0"
+    },
+    "prettier": {
+        "semi": false,
+        "printWidth": 120,
+        "singleQuote": true
     },
     "cordova": {
         "plugins": {
