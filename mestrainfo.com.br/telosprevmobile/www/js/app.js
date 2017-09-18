@@ -1,4 +1,3 @@
-
 window.app = window.angular
   .module('TelosApp', [
     'ionic',
@@ -49,6 +48,8 @@ window.app = window.angular
           'resume',
           function () {
             $timeout(function () {
+              if ($state.current.name === 'signin') return
+
               $ionicLoading.show({
                 content: 'Carregando',
                 animation: 'fade-in',
@@ -56,9 +57,9 @@ window.app = window.angular
                 maxWidth: 300,
                 showDelay: 0
               })
-              $http.post(
-                window.urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s,
-                {
+
+              $http
+                .post(window.urlBase + ';jsessionid=' + window.userInfo.s, {
                   param: { acao: 'logout' },
                   login: { u: window.userInfo.u, s: window.userInfo.s }
                 })
@@ -72,7 +73,7 @@ window.app = window.angular
                   $state.go('signin')
                 })
                 .catch(function (err) {
-                  console.error(err)
+                  console.error(window.inspect(err))
                   $ionicLoading.hide()
                   $state.go('signin')
                 })
@@ -211,8 +212,7 @@ window.app = window.angular
       .state('simulacaorendamensalvitaliciabeneficiarios', {
         cache: false,
         url: '/simulacao-renda-mensal-vitalicia-beneficiarios',
-        templateUrl:
-          'templates/simulacao-ativo/simulacao-rmv-beneficiarios.html'
+        templateUrl: 'templates/simulacao-ativo/simulacao-rmv-beneficiarios.html'
       })
       .state('simulacaorendamensalvitaliciaresultado', {
         cache: false,
@@ -242,14 +242,12 @@ window.app = window.angular
       .state('alteracaopercentualretirada', {
         cache: false,
         url: '/alteracao-percentual-retirada',
-        templateUrl:
-          'templates/simulacao-assistido/alteracao-percentual-retirada.html'
+        templateUrl: 'templates/simulacao-assistido/alteracao-percentual-retirada.html'
       })
       .state('alteracaopercentualretiradaresultado', {
         cache: false,
         url: '/alteracao-percentual-retirada-resultado',
-        templateUrl:
-          'templates/simulacao-assistido/alteracao-percentual-retirada-resultado.html'
+        templateUrl: 'templates/simulacao-assistido/alteracao-percentual-retirada-resultado.html'
       })
       .state('simulacaormvaposentado', {
         cache: false,
@@ -259,20 +257,17 @@ window.app = window.angular
       .state('simulacaormvaposentadoresultado', {
         cache: false,
         url: '/simulacao-rmv-aposentado-resultado',
-        templateUrl:
-          'templates/simulacao-assistido/simulacao-rmv-resultado.html'
+        templateUrl: 'templates/simulacao-assistido/simulacao-rmv-resultado.html'
       })
       .state('alteracaormvsaque', {
         cache: false,
         url: '/alteracao-rmv-saque',
-        templateUrl:
-          'templates/simulacao-assistido/alteracao-beneficio-rmv-saque.html'
+        templateUrl: 'templates/simulacao-assistido/alteracao-beneficio-rmv-saque.html'
       })
       .state('alteracaormvsaqueresultado', {
         cache: false,
         url: '/alteracao-rmv-saque-resultado',
-        templateUrl:
-          'templates/simulacao-assistido/alteracao-beneficio-rmv-saque-resultado.html'
+        templateUrl: 'templates/simulacao-assistido/alteracao-beneficio-rmv-saque-resultado.html'
       })
       .state('simulacaoresgatenovo', {
         cache: false,
@@ -283,6 +278,11 @@ window.app = window.angular
         cache: false,
         url: '/saldo-contas',
         templateUrl: 'templates/saldo-contas.html'
+      })
+      .state('preferencias', {
+        cache: false,
+        url: '/preferencias',
+        templateUrl: 'templates/preferencias.html'
       })
       // END MEUS STATES
       .state('menu', {
