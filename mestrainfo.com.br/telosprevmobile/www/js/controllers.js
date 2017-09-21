@@ -10,9 +10,9 @@ cordova = window.cordova
 // URL Base para conexão aos servidor TELOS
 // urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
-// urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+// urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -45,7 +45,7 @@ defaultErrorMessage = 'Erro ao conectar com o servidor. Tente novamente mais tar
  * @returns {boolean}
  */
 function checkIfServerAnswerIsValid (resp) {
-  console.log(inspect(resp))
+  // console.log(inspect(resp))
   var msg, data
   if (resp && resp['data']) {
     data = resp['data']
@@ -232,7 +232,7 @@ window.controller = angular
               $state.go('signin')
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -244,7 +244,7 @@ window.controller = angular
 
       // Cadastro do TouchID
       touchId = localTouchId || 'NAO'
-      console.log('Menu TouchId State: ' + touchId)
+      // console.log('Menu TouchId State: ' + touchId)
       // Se estivermos em um ambiente mobile e o TouchID não tiver sido definido ainda...
       if (cordova && window.plugins.touchid && touchId === 'NAO') {
         new Promise(function (resolve, reject) {
@@ -341,7 +341,7 @@ window.controller = angular
                 })
               })
               .catch(function (error) {
-                console.error(inspect(error))
+                // console.error(inspect(error))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha',
@@ -350,7 +350,7 @@ window.controller = angular
               })
           })
           .catch(function (error) {
-            console.error(inspect(error))
+            // console.error(inspect(error))
           })
       }
     }
@@ -417,7 +417,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -446,7 +446,7 @@ window.controller = angular
       function loginPostAction (request, cpf) {
         return request
           .catch(function (error) {
-            console.error(inspect(error))
+            // console.error(inspect(error))
             throw new Error(defaultErrorMessage)
           })
           .then(function (resp) {
@@ -462,8 +462,8 @@ window.controller = angular
 
             result = retrieve($rootScope.lastRequest, 'result')
             touchId = retrieve(result, 'preferencias', 'touch_ID')
-            console.log('TOUCHID LOCAL: ' + localTouchId)
-            console.log('TOUCHID SERVER: ' + touchId)
+            // console.log('TOUCHID LOCAL: ' + localTouchId)
+            // console.log('TOUCHID SERVER: ' + touchId)
             window.localStorage.setItem('touchId', localTouchId !== touchId && touchId === 'SIM' ? '' : touchId)
 
             if (result['simuladorBeneficios']) {
@@ -504,7 +504,7 @@ window.controller = angular
       $scope.loginWithTouchId = 0
 
       localTouchId = window.localStorage.getItem('touchId') || 'NAO'
-      console.log('SignIn TouchId State: ' + localTouchId)
+      // console.log('SignIn TouchId State: ' + localTouchId)
 
       // Clear any old popup or loading
       if (globalPopup) globalPopup.close()
@@ -512,7 +512,7 @@ window.controller = angular
 
       // Login TouchID
       if (window.plugins && window.plugins.touchid && localTouchId === 'SIM') {
-        console.log('TouchID Enabled')
+        // console.log('TouchID Enabled')
 
         new Promise(function (resolve, reject) {
           window.plugins.touchid.has(
@@ -524,7 +524,7 @@ window.controller = angular
           )
         })
           .then(function (auth) {
-            console.log('Success retrieving key with TouchId')
+            // console.log('Success retrieving key with TouchId')
 
             auth = JSON.parse(auth)
             if (!(auth.k && auth.cpf)) throw new Error('Invalid KID.')
@@ -554,7 +554,7 @@ window.controller = angular
             )
           })
           .catch(function () {
-            console.error("Device kid isn't available, next time it will reset...")
+            // console.error("Device kid isn't available, next time it will reset...")
             window.localStorage.setItem('touchId', '')
             $scope.errorMsg =
               'Erro ao acessar dados de cadastro com digital. Por favor entre com seu CPF e senha e reative o login com a digital.'
@@ -633,7 +633,7 @@ window.controller = angular
             }
           },
           function (err) {
-            console.error(inspect(err))
+            // console.error(inspect(err))
             $ionicLoading.hide()
             globalPopup = $ionicPopup.alert({
               title: 'Falha de conexão',
@@ -673,7 +673,7 @@ window.controller = angular
             }
           },
           function (err) {
-            console.error(inspect(err))
+            // console.error(inspect(err))
             $ionicLoading.hide()
             globalPopup = $ionicPopup.alert({
               title: 'Falha de conexão',
@@ -730,7 +730,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -763,7 +763,7 @@ window.controller = angular
               $state.go('signin')
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -870,7 +870,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -934,7 +934,7 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(inspect(err))
+                // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -995,7 +995,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -1070,7 +1070,7 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(inspect(err))
+                // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1117,7 +1117,7 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(inspect(err))
+                // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1193,7 +1193,7 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(inspect(err))
+                // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1268,7 +1268,7 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(inspect(err))
+                // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1331,7 +1331,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -1412,12 +1412,12 @@ window.controller = angular
                   $rootScope.errorMsg = resp.data.msg
                 } else {
                   // TODO: atualizar o dados indisponiveis talvez?
-                  console.log('TODO: Atualizar os dados disponiveis: ' + inspect(resp))
+                  // console.log('TODO: Atualizar os dados disponiveis: ' + inspect(resp))
                 }
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -1465,7 +1465,7 @@ window.controller = angular
                 $state.go('emprestimosimulacaocampos')
               },
               function (err) {
-                console.error(inspect(err))
+                // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1671,7 +1671,7 @@ window.controller = angular
                 }
               },
               function (err) {
-                console.error(inspect(err))
+                // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha de conexão',
@@ -1841,7 +1841,7 @@ window.controller = angular
         }
 
         if (formData.idade.length > 0) {
-          console.log('entrou')
+          // console.log('entrou')
           formData.mes_ano = ''
         }
 
@@ -1880,7 +1880,7 @@ window.controller = angular
 
         $rootScope.cache.lastFormRMV = {}
         $rootScope.cache.lastFormRMV = $scope.getParams(formData)
-        console.log('lastFormRMV no submit: ' + $rootScope.cache.lastFormRMV)
+        // console.log('lastFormRMV no submit: ' + $rootScope.cache.lastFormRMV)
 
         $ionicLoading.show({
           content: 'Carregando',
@@ -1915,7 +1915,7 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2070,7 +2070,7 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2224,7 +2224,7 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2324,7 +2324,7 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2380,8 +2380,8 @@ window.controller = angular
       // seta o valor do form como o default do ws.
       $scope.formData.tipo_reajuste = $scope.tipoReajusteDefault.DEFAULT
 
-      console.log('default do tipo_reajuste: ')
-      console.log($scope.formData.tipo_reajuste)
+      // console.log('default do tipo_reajuste: ')
+      // console.log($scope.formData.tipo_reajuste)
 
       // se existe lastForm
       if (typeof $rootScope.cache.formSimulaRMVSP !== 'undefined') {
@@ -2479,7 +2479,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2597,7 +2597,7 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2677,7 +2677,7 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2756,7 +2756,7 @@ window.controller = angular
               $ionicLoading.hide()
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -2868,7 +2868,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -3022,7 +3022,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -3104,7 +3104,7 @@ window.controller = angular
               }
             },
             function (err) {
-              console.error(inspect(err))
+              // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
                 title: 'Falha de conexão',
@@ -3323,7 +3323,7 @@ window.controller = angular
               })
             })
             .catch(function (error) {
-              console.error(inspect(error))
+              // console.error(inspect(error))
               ionicLoading.hide()
               globalPopup = ionicPopup.alert({
                 title: 'Falha',
@@ -3334,7 +3334,7 @@ window.controller = angular
       }
 
       if (window.plugins && window.plugins.touchid) {
-        console.log('TouchID Enabled')
+        // console.log('TouchID Enabled')
         new Promise(function (resolve, reject) {
           window.plugins.touchid.isAvailable(resolve, reject)
         }).then(function () {
