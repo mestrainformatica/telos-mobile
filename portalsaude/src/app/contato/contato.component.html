@@ -1,0 +1,105 @@
+				<div id="menu-2" class="content email-section">
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<div class="box-content">
+								<div class="row">
+									<h3 class="widget-title">Fale com a FAECES</h3>
+								</div>
+								<form class="contatoForm" (ngSubmit)="sendEmail(mail)" #formContato="ngForm">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label for="nome">Matr&iacute;cula</label>
+													<input type="text" class="form-control" placeholder="Matr&iacute;cula" name="matricula" [(ngModel)]="mail.matricula" #nome="ngModel">
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label for="nome">Nome<i style="color:red;"> *</i></label>
+													<input type="text" class="form-control" placeholder="Nome" name="nome" [(ngModel)]="mail.nome" #nome="ngModel">
+													<div *ngIf="formContato.submitted && !mail.nome != ''" class="alert alert-danger">Plano &eacute; obrigat&oacute;rio</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label for="email">E-mail<i style="color:red;"> *</i></label>
+													<input type="text" class="form-control" placeholder="E-mail" name="email" [(ngModel)]="mail.email" #email="ngModel"
+													pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+									        		<div [hidden]="email.valid || email.pristine || !email.hasError('pattern')" class="alert alert-danger">
+									        			<div>E-mail deve seguir o formato <small><b>joao@abc.com</b></small></div>
+													</div>
+													<div *ngIf="formContato.submitted && !mail.email != ''" class="alert alert-danger">E-mail &eacute; obrigat&oacute;rio</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label for="assunto">Assunto<i style="color:red;"> *</i></label>
+													<input type="text" class="form-control" placeholder="Assunto" name="assunto" [(ngModel)]="mail.assunto" #assunto="ngModel">
+													<div *ngIf="formContato.submitted && !mail.assunto != ''" class="alert alert-danger">Assunto &eacute; obrigat&oacute;rio</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>Setor<i style="color:red;"> *</i></label>
+										    		<select class="form-control" [(ngModel)]="mail.setor" [ngModelOptions]="{standalone: true}">
+										    			<option value="">Selecione</option>
+														<option *ngFor="let setor of setores" [ngValue]="setor.valor">{{setor.descricao}}</option>
+										    		</select>
+										    	</div>
+										    	<div *ngIf="formContato.submitted && !mail.setor != ''" class="alert alert-danger">Setor &eacute; obrigat&oacute;rio</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+	 												<label for="selecione">Selecione Arquivo</label>
+													<input type="file" [(ngModel)]="file" [ngModelOptions]="{standalone: true}" (change)="selectFile($event)">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="form-row">
+													<label for="mensagem">Mensagem<i style="color:red;"> *</i></label>
+													<textarea class="form-control" name="messagem" [(ngModel)]="mail.mensagem" #mensagem="ngModel" 
+													cols="30" rows="4" placeholder="Mensagem"></textarea>
+													<div *ngIf="formContato.submitted && !mail.mensagem != ''" class="alert alert-danger">Mensagem &eacute; obrigat&oacute;rio</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="form-row">
+													<button type='submit' class="btn btn-primary">
+														<span class="glyphicon glyphicon-send"></span> Enviar
+													</button>
+													<button type="reset" class="btn btn-secondary">
+														<span class="glyphicon glyphicon-erase"></span> Limpar
+													</button>
+													<button type='reset' id='btn_limpar2' hidden="true"></button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>

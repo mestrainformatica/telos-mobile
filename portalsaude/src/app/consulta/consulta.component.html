@@ -1,0 +1,140 @@
+				<div id="menu-2" class="content consulte-section">
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<div class="box-content">
+								<div class="row">
+									<h3 class="widget-title">Consulte a Rede Credenciada</h3>
+								</div>
+								<form class="consultaForm" (ngSubmit)="getConsulta(consulta)" #formConsulta="ngForm">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>Planos<i style="color:red;"> *</i></label>
+									    			<select class="form-control" name="plano" [(ngModel)]="consulta.plano" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)">
+														<option value="">Selecione</option>
+														<option *ngFor="let plano of planos" [ngValue]="plano.valor">{{plano.descricao}}</option>
+									    			</select>
+									    		</div>
+									    		<div *ngIf="formConsulta.submitted && consulta.plano == ''" class="alert alert-danger">Plano &eacute; obrigat&oacute;rio</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>Produtos<i style="color:red;"> *</i></label>
+									    			<select class="form-control" name="produto" [(ngModel)]="consulta.produto" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeProduto($event)">
+														<option value="">Selecione</option>
+														<option *ngFor="let produto of produtos" [ngValue]="produto.valor">{{produto.descricao}}</option>
+									    			</select>
+									    		</div>
+												<div *ngIf="formConsulta.submitted && !consulta.produto != ''" class="alert alert-danger">Produto &eacute; obrigat&oacute;rio</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>Localidade<i style="color:red;"> *</i></label>
+									    			<select class="form-control" name="localidade" [(ngModel)]="consulta.localidade" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeArea()">
+														<option value="">Selecione</option>
+														<option *ngFor="let localidade of localidades" [ngValue]="localidade.valor">{{localidade.descricao}}</option>
+									    			</select>
+									    		</div>
+									    		<div *ngIf="formConsulta.submitted && !consulta.localidade != ''" class="alert alert-danger">Localidade &eacute; obrigat&oacute;rio</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>&Aacute;rea</label>
+									    			<select class="form-control" name="area" [(ngModel)]="consulta.area" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeEspecialidade($event)">
+														<option value="">Selecione</option>
+														<option *ngFor="let area of areas" [ngValue]="area.valor">{{area.descricao}}</option>
+									    			</select>
+									    		</div>
+									    	</div>
+									    </div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>Especialidade</label>
+									    			<select class="form-control" name="especialidade" [(ngModel)]="consulta.especialidade" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeSubespecialidade($event)">
+														<option value="">Selecione</option>
+														<option *ngFor="let especialidade of especialidades" [ngValue]="especialidade.valor">{{especialidade.descricao}}</option>
+									    			</select>
+									    		</div>
+									    	</div>
+									    </div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>&Aacute;rea Atua&ccedil;&atilde;o</label>
+									    			<select class="form-control" name="subespecialidade" [(ngModel)]="consulta.subespecialidade" [ngModelOptions]="{standalone: true}">
+														<option value="">Selecione</option>
+														<option *ngFor="let subespecialidade of subespecialidades" [ngValue]="subespecialidade.valor">{{subespecialidade.descricao}}</option>
+									    			</select>
+									    		</div>
+									    	</div>
+									    </div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label for="nome">Nome</label>
+													<input type="text" class="form-control" placeholder="Nome" name="nomefantasia" [(ngModel)]="consulta.nomefantasia" #nomefantasia="ngModel">
+									    		</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<button type='submit' class="btn btn-primary">
+														<span class="glyphicon glyphicon-search"></span> Pesquisar
+													</button>
+													<button type='reset' class="btn btn-secondary" (click)="ngOnDestroy()">
+														<span class="glyphicon glyphicon-erase"></span> Limpar
+													</button>
+													<button type='reset' id='btn_limpar1' (click)="ngOnDestroy()" hidden="true"></button>
+									    		</div>
+									    	</div>
+									    </div>
+									</div>
+							    	<div class="row">
+						                <table class="table table-responsive">
+											<thead>
+										    	<tr>
+										      		<th class="bg-primary">Credenciado</th>
+										      		<th class="bg-primary">Especialidade</th>
+										      		<th class="bg-primary">Telefone</th>
+										    	</tr>
+										  	</thead>
+										  	<tbody *ngFor="let credenciado of credenciados | paginate: {itemsPerPage: 20, currentPage:page, id: '1'};">
+						                    	<tr>
+						                        	<td style="width:60%">
+						                        		{{credenciado.razaosocial}} <br> 
+							                        	{{credenciado.nomefantasia}} <br>
+							                        	{{credenciado.endereco}}
+							                        </td>							                        
+						                        	<td style="width:20%">{{credenciado.especialidade}}</td>
+						                        	<td style="width:20%">({{credenciado.ddd}}) {{credenciado.telefone}}</td>
+						                    	</tr>
+						                    </tbody>
+						                </table>
+						                <pagination-controls (pageChange)="page = $event" id="1"
+						                      maxSize="5000"
+						                      directionLinks="true"
+						                      autoHide="true">
+						                </pagination-controls>
+							    	</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
