@@ -1,0 +1,97 @@
+				<div id="menu-3" class="content gallery-section">
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<div class="box-content">
+								<div class="row">
+									<h3 class="widget-title">Substitui&ccedil;&atilde;o de Prestadores</h3>
+								</div>
+								<form class="substituicaoForm" (ngSubmit)="onSubmit()" #formSubstituicao="ngForm">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>Planos<i style="color:red;"> *</i></label>
+									    			<select class="form-control" [(ngModel)]="plano" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChange($event)">
+														<option value="" selected>Selecione</option>
+														<option *ngFor="let plano of planos" [ngValue]="plano.valor">{{plano.descricao}}</option>
+									    			</select>
+									    		</div>
+									    		<div *ngIf="formSubstituicao.submitted && !plano != ''" class="alert alert-danger">Plano &eacute; obrigat&oacute;rio</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<label>Produtos<i style="color:red;"> *</i></label>
+									    			<select class="form-control" [(ngModel)]="produto" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeProduto($event)">
+														<option value="" selected>Selecione</option>
+														<option *ngFor="let produto of produtos" [ngValue]="produto.valor">{{produto.descricao}}</option>
+									    			</select>
+									    		</div>
+									    		<div *ngIf="formSubstituicao.submitted && !produto != ''" class="alert alert-danger">Produto &eacute; obrigat&oacute;rio</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<div class="form-row">
+													<button type='submit' class="btn btn-info" (click)="getValue('1')">Prestadores Inclu&iacute;dos</button>
+													<button type='submit' class="btn btn-info" (click)="getValue('2')">Prestadores Exclu&iacute;dos</button>
+													<button type='reset' id='btn_limpar3' (click)="ngOnDestroy()" hidden="true"></button>
+									    		</div>
+									    	</div>
+									    </div>
+									</div>
+									<table class="table table-striped table-responsive" *ngFor="let prestador of prestadores | paginate: {itemsPerPage: 1, currentPage:p};">
+										  <thead>
+										    <tr>
+										      <th class="bg-primary">Informa&ccedil;&otilde;es</th>
+										      <th class="bg-primary">{{titulo}}</th>
+										    </tr>
+										  </thead>
+										  <tbody>
+									   	  	<tr>
+									        	<td>Raz&atilde;o Social</td>
+									        	<td>{{prestador.razaosocial}}</td>
+									    	</tr>
+									    	<tr>
+									        	<td class="bg-info">Nome Fantasia</td>
+									        	<td class="bg-info">{{prestador.nomefantasia}}</td>
+									    	</tr>
+									    	<tr>
+									        	<td>CPF/CNPJ</td>
+									        	<td>{{prestador.cnpj}}</td>
+									    	</tr>
+									    	<tr>
+									        	<td class="bg-info">Endere&ccedil;o</td>
+									        	<td class="bg-info">{{prestador.endereco}}</td>
+									    	</tr>
+									    	<tr>
+									        	<td>CEP</td>
+									        	<td>{{prestador.cep}}</td>
+									    	</tr>
+									    	<tr>
+									        	<td class="bg-info">Telefone</td>
+									        	<td class="bg-info">{{prestador.ddd}} {{prestador.telefone}}</td>
+									    	</tr>
+									    	<tr>
+									        	<td>Especialidade</td>
+									        	<td>{{prestador.especialidade}}</td>
+									    	</tr>
+									    	<tr>
+									        	<td class="bg-info">Data Credenciamento</td>
+									        	<td class="bg-info">{{prestador.datainicio}}</td>
+									    	</tr>
+									    </tbody>
+									</table>
+									<pagination-controls (pageChange)="p = $event"
+									      maxSize="5000"
+									      directionLinks="true"
+									      autoHide="true">
+									</pagination-controls>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
