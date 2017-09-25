@@ -1498,7 +1498,7 @@ window.controller = angular
       emprestimoSimulacaoCampos = retrieve(lastRequest, 'emprestimoSimulacaoCampos')
 
       $scope.formData = {}
-      $scope.contrato = retrieve(emprestimoSimulacaoCampos, 'saldos_dados_simulacao')
+      $scope.contrato = emprestimoSimulacaoCampos.hasOwnProperty('saldos_dados_simulacao') ? retrieve(emprestimoSimulacaoCampos, 'saldos_dados_simulacao') : ''
       $scope.matricula = retrieve(lastRequestResult, 'informacoesParticipante', 'matricula')
       $scope.dadosCadastrais = retrieve(lastRequestResult, 'dadosCadastrais')
       $scope.tipos_emprestimo = retrieve(lastRequestResult, 'simulacaoEmprestimo')
