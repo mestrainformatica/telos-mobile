@@ -26,7 +26,7 @@ export class PortalSaudeService {
    * private baseUrl = 'http://192.100.100.126:8585/portalsaude-ws';
    */
 
-  private baseUrl = 'http://192.100.100.126:8585/portalsaude-ws';
+  private baseUrl = 'http://localhost:8080';
 
   public email: string;
   public assunto: string;
@@ -104,7 +104,7 @@ export class PortalSaudeService {
           .catch(this.handleError);
     }
 
-    pesquisarCredenciados(consulta: Consulta): Promise<Credenciados> {
+    pesquisarCredenciados(consulta: Consulta): Promise<Credenciados[]> {
       return this.http.post(this.baseUrl + '/api/buscaCredenciados/', consulta)
           .toPromise()
           .then(response => response.json() as Credenciados[])

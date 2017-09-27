@@ -32,8 +32,7 @@ export class ConsultaComponent implements OnInit, OnDestroy {
   especialidades: Especialidades[];
   subespecialidades: Subespecialidades[];
   consulta: Consulta;
-  credenciados: Credenciados;
-  semcredenciados: Credenciados;
+  credenciados: Credenciados[];
   produto;
 
   constructor(private portalsaudeService: PortalSaudeService) {
@@ -42,47 +41,20 @@ export class ConsultaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
   	console.log(`OnInit cons`);
-    this.consulta = {
-      plano: '',
-      localidade: '',
-      especialidade: '',
-      subespecialidade: '',
-      nomefantasia: ''
-    };
-
     this.getPlanos();
-
-    this.credenciados = {
-      razaosocial: '',
-      nomefantasia: '',
-      cnpj: '',
-      endereco: '',
-      cep: '',
-      ddd: '',
-      telefone: '',
-      especialidade: '',
-      datainicio: ''
-    };
     
-    this.semcredenciados = {
-      razaosocial: '',
-      nomefantasia: '',
-      cnpj: '',
-      endereco: '',
-      cep: '',
-      ddd: '',
-      telefone: '',
-      especialidade: '',
-      datainicio: ''
-    };
+    this.consulta = {
+	  plano: '',
+	  localidade: '',
+	  especialidade: '',
+	  subespecialidade: '',
+	  nomefantasia: ''
+	};
   }
   
   ngOnDestroy() { 
   	console.log(`onDestroy cons`);
-  	this.credenciados = this.semcredenciados;
-  	this.produto = '';
-  	this.localidades = [];
-  	console.log(this.credenciados);
+  	this.credenciados = [];
   }
 
   getPlanos(): void {
