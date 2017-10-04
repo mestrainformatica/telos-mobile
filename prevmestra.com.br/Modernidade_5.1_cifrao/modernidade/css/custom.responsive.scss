@@ -20,7 +20,7 @@ body.responsive{
 
 	#left-column{
 		@media(min-width:767px){
-			height:100%;
+			height:100vh;
 			overflow: auto;
 		}
 	}
@@ -87,7 +87,7 @@ body.responsive{
 				    	overflow: auto;
 				    }
 
-					a#M00000Actuator{
+					a#M1Actuator{
 						margin-top: 60px;
 					
 					}
@@ -164,8 +164,6 @@ body.responsive{
 
 			.logo-div{
 				width:145px !important;
-				height: auto !important;
-				margin:6.3px 0;
 			}
 
 			.inner{

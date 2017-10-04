@@ -86,9 +86,7 @@ body.responsive {
       body.responsive .header-modernidade {
         height: 60px; }
         body.responsive .header-modernidade .logo-div {
-          width: 145px !important;
-          height: auto !important;
-          margin: 6.3px 0; }
+          width: 145px !important; }
         body.responsive .header-modernidade .inner h1 {
           margin-top: 25px;
           font-size: 12px;
@@ -108,5 +106,3 @@ body.responsive.login-page {
   box-shadow: none; }
   body.responsive.login-page #conteudo {
     padding-left: 0; }
-
-/*# sourceMappingURL=custom.responsive.css.map */
