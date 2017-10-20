@@ -1746,17 +1746,14 @@ window.controller = angular
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
               $ionicLoading.hide()
-
-              if (!resp.data.success) {
-                $rootScope.errorMsg = resp.data.msg
-                $state.go('signin')
-              } else {
-                if (resp.data.msg.length > 0) {
-                  $rootScope.errorMsg = resp.data.msg
-                } else {
-                  $state.go('emprestimodocumentosconcessao')
-                }
-              }
+              checkIfServerAnswerIsValid(resp)
+              globalPopup = $ionicPopup.show({
+                title: 'Mensagem',
+                template: retrieve(resp, 'data', 'result', 'msg_retorno'),
+                buttons: [
+                  { text: 'Fechar', type: 'button-default', onTap: function () { state.go('menu') } } // prettier-ignore
+                ]
+              })
             },
             function () {
               $ionicLoading.hide()
@@ -1765,7 +1762,9 @@ window.controller = angular
                 template: timeoutErrorMsg
               })
             }
-          )
+          ).catch(function (error) {
+            $rootScope.errorMsg = error.message
+          })
       }
     }
   ])
@@ -3189,17 +3188,15 @@ window.controller = angular
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
               ionicLoading.hide()
-
-              // TODO: Debug, remove in production
-
-              if (!resp.data.success) {
-                rootScope.errorMsg = resp.data.msg
-                state.go('signin')
-              } else {
-                if (resp.data.msg.length > 0) {
-                  rootScope.errorMsg = resp.data.msg
-                }
-              }
+              checkIfServerAnswerIsValid(resp)
+              // Mostra mensagem retorno
+              globalPopup = ionicPopup.show({
+                title: 'Mensagem',
+                template: retrieve(resp, 'data', 'result', 'msg_retorno'),
+                buttons: [
+                  { text: 'Fechar', type: 'button-default', onTap: function () { state.go('menu') } } // prettier-ignore
+                ]
+              })
             },
             function () {
               ionicLoading.hide()
@@ -3208,7 +3205,9 @@ window.controller = angular
                 template: timeoutErrorMsg
               })
             }
-          )
+          ).catch(function (error) {
+            rootScope.errorMsg = error.message
+          })
       }
     }
   ])
