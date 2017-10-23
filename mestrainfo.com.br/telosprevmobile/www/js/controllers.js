@@ -1751,7 +1751,7 @@ window.controller = angular
                 title: 'Mensagem',
                 template: retrieve(resp, 'data', 'result', 'msg_retorno'),
                 buttons: [
-                  { text: 'Fechar', type: 'button-default', onTap: function () { state.go('menu') } } // prettier-ignore
+                  { text: 'Fechar', type: 'button-default', onTap: function () { $state.go('menu') } } // prettier-ignore
                 ]
               })
             },
