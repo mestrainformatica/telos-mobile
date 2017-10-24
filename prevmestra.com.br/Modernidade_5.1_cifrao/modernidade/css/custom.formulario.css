@@ -256,16 +256,8 @@ label, .form-group label {
   {
     /*Provisorio por causa da cor da logo conflitando no MAC*/
     background-color: #fff;
-    width: 242px;
-    height: 104px;
+    height: 100%;
     float: left;
-  }
-
-  body .header-modernidade .logo-div .logo
-  {
-    height: 104px;
-    width: 320px;
-    margin-left: -10px;
   }
 
   body .header-modernidade .navbar-left
