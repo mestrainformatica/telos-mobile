@@ -467,8 +467,9 @@ window.controller = angular
             window.localStorage.setItem('touchId', localTouchId !== touchId && touchId === 'SIM' ? '' : touchId)
 
             if (result['simuladorBeneficios']) {
-              beneficiarios = retrieve(result, 'simuladorBeneficios', 'beneficiarios')
-              ;((Array.isArray(beneficiarios) && beneficiarios) || [beneficiarios]).forEach(function (beneficiario) {
+              beneficiarios = retrieve(result, 'simuladorBeneficios')['beneficiarios']
+              beneficiarios = (Array.isArray(beneficiarios) && beneficiarios) || [beneficiarios]
+              beneficiarios.forEach(function (beneficiario) {
                 beneficiario['checked'] = true
                 beneficiario['selecionado'] = 'S'
               })
