@@ -253,15 +253,30 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	font-weight: 500;
 	text-align: center;
 }
-.ionic-datepicker .left_arrow {
+.ionic-datepicker:not([data-date-exp]) .left_arrow {
 	display: none;
 }
-.ionic-datepicker .right_arrow {
+.ionic-datepicker:not([data-date-exp]) .right_arrow {
 	display: none;
 }
-.ionic-datepicker .drop_down {
+.ionic-datepicker:not([data-date-exp]) .drop_down {
 	display: none;
 }
+
+.ionic-datepicker[data-date-exp] div.row.select_section,
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50,
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list,
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select,
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select > select {
+	height: 100%;
+}
+
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select > select {
+	margin: 0 !important;
+	max-width: 100% !important;
+	padding-bottom: 2px !important;
+}
+
 #splitMatricula p.whatsgoingonmatricula {
 	padding: 1em 1.65em;
 	margin: 0;

@@ -8,11 +8,11 @@ angular = window.angular
 cordova = window.cordova
 
 // URL Base para conexão aos servidor TELOS
-// urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+// urlBase = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
-urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
-// urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
-// urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+// urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+// urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -1349,7 +1349,21 @@ window.controller = angular
     '$rootScope',
     function ($scope, $state, $rootScope) {
       $rootScope.erroMsg = false
-      $scope.consultaEmprestimo = $rootScope.lastRequest.result.consultaEmprestimo
+      $rootScope.erroMsg = false
+      var consultaEmprestimo = $rootScope.lastRequest.result.consultaEmprestimo
+      console.log(consultaEmprestimo)
+
+      if (Array.isArray(consultaEmprestimo)) {
+        consultaEmprestimo = consultaEmprestimo.filter(function (contrato) {
+          return !!contrato.contrato
+        })
+
+        if (consultaEmprestimo.length === 0) {
+          consultaEmprestimo = undefined
+        }
+      }
+
+      $scope.consultaEmprestimo = consultaEmprestimo
     }
   ])
   .controller('EmprestimoSimulacaoCtrl', [
@@ -3127,7 +3141,8 @@ window.controller = angular
     '$http',
     '$ionicPopup',
     '$ionicLoading',
-    function (scope, state, rootScope, http, ionicPopup, ionicLoading) {
+    '$filter',
+    function (scope, state, rootScope, http, ionicPopup, ionicLoading, filter) {
       var result = retrieve(rootScope, 'lastRequest', 'result')
       var docConcessao = angular.copy(retrieve(result, 'documentosConcessao'))
       var dadosCadastrais = retrieve(result, 'dadosCadastrais')
@@ -3146,6 +3161,17 @@ window.controller = angular
         return '<h4>' + value.formulario + '</h4>' + value.status + '<hr>'
       })
 
+      scope.datePickerCallback = function (data) {
+        scope.dc_data_emissao_identidade = filter('date')(data, 'dd/MM/yyyy', false)
+      }
+
+      scope.datePickerClick = function () {
+        setTimeout(function () {
+          console.log(document.querySelector('.ionic-datepicker'))
+          document.querySelector('.ionic-datepicker').dataset.dateExp = true
+        }, 10)
+      }
+
       scope.submit = function () {
         var docConcessaoModified = Array.prototype.reduce.call(
           document.getElementsByTagName('input'),
@@ -3158,7 +3184,7 @@ window.controller = angular
           {}
         )
 
-        Object.assign(docConcessao, docConcessaoModified)
+        scope.docConcessao = Object.assign(docConcessao, docConcessaoModified)
 
         var param = (rootScope.cache.docConcessao = {
           acao: 'enviarDocumentosConcessao',
@@ -3177,7 +3203,12 @@ window.controller = angular
           dc_data_emissao_identidade: docConcessao.dc_data_emissao_identidade
         })
 
-        if (docConcessao.exibePaginaCttDps === 'S') return state.go('emprestimodocumentosconcessaoaviso')
+        console.log(param)
+
+        if (docConcessao.exibePaginaCttDps === 'S') {
+          rootScope.cache.docConcessao = angular.copy(docConcessao)
+          return state.go('emprestimodocumentosconcessaoaviso')
+        }
 
         http
           .post(urlBase + ';jsessionid=' + rootScope.lastRequest.login.s, {
@@ -3186,14 +3217,22 @@ window.controller = angular
           })
           .then(
             function (resp) {
-              userInfo.u = resp.data.login.u
-              userInfo.s = resp.data.login.s
+              var data, result
+
+              data = retrieve(resp, 'data')
+              userInfo.u = data.login.u
+              userInfo.s = data.login.s
+
               ionicLoading.hide()
+
               checkIfServerAnswerIsValid(resp)
+              result = retrieve(data, 'result')
+              scope.docConcessao = Object.assign(docConcessao, rootScope.cache.docConcessao, retrieve(result, 'documentoConcessao'))
+
               // Mostra mensagem retorno
               globalPopup = ionicPopup.show({
                 title: 'Mensagem',
-                template: retrieve(resp, 'data', 'result', 'msg_retorno'),
+                template: retrieve(result, 'msg_retorno'),
                 buttons: [
                   { text: 'Fechar', type: 'button-default', onTap: function () { state.go('menu') } } // prettier-ignore
                 ]
@@ -3220,6 +3259,7 @@ window.controller = angular
     '$ionicPopup',
     '$ionicLoading',
     function (scope, state, rootScope, http, ionicPopup, ionicLoading) {
+      scope.docConcessao = rootScope.cache.docConcessao
       scope.submit = function (event) {
         event.preventDefault()
         var docConcessaoAvisoSelect = document.getElementById('docConcessaoAvisoSelect')
