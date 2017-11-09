@@ -12,7 +12,7 @@ cordova = window.cordova
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // urlBase = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao'
-//urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+// urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
