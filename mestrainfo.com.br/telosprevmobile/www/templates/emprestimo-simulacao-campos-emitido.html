@@ -16,28 +16,36 @@
                     <div class="col valor">{{emprestimoSimulacaoCamposEmitido.data_credito}}</div>
                 </div>
                 <div class="label row">
-                    <div class="col col-25  upper">Saldo Devedor Inicial</div>
+                    <div class="col col-25 upper">Saldo Devedor Inicial</div>
                     <div class="col valor">{{emprestimoSimulacaoCamposEmitido.saldo_devedor_inicial}}</div>
                 </div>
                 <div class="label row">
-                    <div class="col col-25  upper">Prestação Inicial</div>
+                    <div class="col col-25 upper">Prestação Inicial</div>
                     <div class="col valor">{{emprestimoSimulacaoCamposEmitido.prestacao_inicial}}</div>
                 </div>
                 <div class="label row" ng-show="naotemainda">
-                    <div class="col col-25  upper">Vencimento 1a Prestação</div>
+                    <div class="col col-25 upper">Vencimento 1a Prestação</div>
                     <div class="col valor">-</div>
                 </div>
                 <div class="label row">
-                    <div class="col col-25  upper">Seguro Prestamista</div>
+                    <div class="col col-25 upper">Contribuição FGE</div>
                     <div class="col valor">{{emprestimoSimulacaoCamposEmitido.seguro_prestamista}}</div>
                 </div>
                 <div class="label row">
-                    <div class="col col-25  upper">IOF</div>
+                    <div class="col col-25 upper">IOF</div>
                     <div class="col valor">{{emprestimoSimulacaoCamposEmitido.iof}}</div>
                 </div>
                 <div class="label row">
-                    <div class="col col-25  upper">Valor Líquido a Receber</div>
+                    <div class="col col-25 upper">Valor Líquido a Receber</div>
                     <div class="col valor">{{emprestimoSimulacaoCamposEmitido.valor_liquido_a_receber}}</div>
+                </div>
+                <div class="label row">
+                    <div class="col col-25 upper">Vencimento da 1ª Prestação</div>
+                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.vencimento_primeira_prestacao}}</div>
+                </div>
+                <div class="label row">
+                    <div class="col col-25 upper">Prazo</div>
+                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.prazo_simulado}}</div>
                 </div>
             </div>
 
