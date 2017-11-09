@@ -3228,6 +3228,11 @@ window.controller = angular
               checkIfServerAnswerIsValid(resp)
               result = retrieve(data, 'result')
               scope.docConcessao = Object.assign(docConcessao, rootScope.cache.docConcessao, retrieve(result, 'documentoConcessao'))
+              scope.docConcessao.statusDocumentoConcessao = (scope.docConcessao.statusDocumentoConcessao || []).map(function (
+                value
+              ) {
+                return typeof value === 'object' ? '<h4>' + value.formulario + '</h4>' + value.status + '<hr>' : value
+              })
 
               // Mostra mensagem retorno
               globalPopup = ionicPopup.show({
