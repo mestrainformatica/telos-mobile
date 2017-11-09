@@ -268,7 +268,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 .ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list,
 .ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select,
 .ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select > select {
-	height: 100%;
+	height: 30px;
 }
 
 .ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select > select {
