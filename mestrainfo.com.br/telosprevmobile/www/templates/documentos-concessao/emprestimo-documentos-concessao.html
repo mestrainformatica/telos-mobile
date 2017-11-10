@@ -177,7 +177,7 @@
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_data_emissao_identidade">{{docConcessao.dc_data_emissao_identidade}}</span>
                         <label class="item item-input item-select" ng-if="!docConcessao.dc_data_emissao_identidade">
-                            <ionic-datepicker disablepreviousdates="true" style="width: 100%;" callback="datePickerCallback">
+                            <ionic-datepicker disablepreviousdates="false" style="width: 100%;" callback="datePickerCallback">
                                 <button style="border:none;margin:0;padding:0;background:transparent;width:100%" ng-click="datePickerClick()">{{dc_data_emissao_identidade}}</button>
                             </ionic-datepicker>
                             <input disabled type="hidden" data-type="dc_data_emissao_identidade" value="{{dc_data_emissao_identidade}}">
