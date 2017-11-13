@@ -338,6 +338,12 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	    padding-bottom: 0.5em !important;
 	    margin-top: 0.5em;
 }
+.item-select select[data-type] {
+	width: 100%;
+	position: initial;
+	max-width: initial;
+	padding-left: 0;
+}
 #btn-editar { margin-top: 1em; color: #595959;}
 #btn-editar .icon { margin-top: 1px; margin-left: .25em}
 #signin p {
