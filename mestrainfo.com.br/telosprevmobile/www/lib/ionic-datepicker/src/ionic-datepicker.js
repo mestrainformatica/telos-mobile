@@ -45,19 +45,18 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
       mondayFirst: '=?mondayfirst'
     },
     link: function (scope, element, attrs) {
-
-      scope.datePickerTitle = scope.title || 'Select Date';
-
+      if (!scope.ipDate) scope.ipDate = new Date();
       var monthsList = DatepickerService.monthsList;
+      var yearsList = DatepickerService.yearsList;
+      var currentDate = angular.copy(scope.ipDate);
+
+      console.log(scope.disableFutureDates)
+
+      scope.yearsList = yearsList;
       scope.monthsList = monthsList;
-      scope.yearsList = DatepickerService.yearsList;
-
-      scope.currentMonth = '';
       scope.currentYear = '';
-
-      if (!scope.ipDate) {
-        scope.ipDate = new Date();
-      }
+      scope.currentMonth = '';
+      scope.datePickerTitle = scope.title || 'Select Date';
 
       if (!angular.isDefined(scope.mondayFirst) || scope.mondayFirst == "false") {
         scope.mondayFirst = false;
@@ -76,7 +75,6 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
       scope.previousDayEpoch = (+(new Date()) - 86400000);
       scope.nextDayEpoch = (+(new Date()));
 
-      var currentDate = angular.copy(scope.ipDate);
       currentDate.setHours(0);
       currentDate.setMinutes(0);
       currentDate.setSeconds(0);
@@ -215,34 +213,6 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
               text: 'Fechar',
               onTap: function (e) {
                 scope.callback(undefined);
-              }
-            },
-            {
-              text: 'Hoje',
-              onTap: function (e) {
-
-                var today = new Date();
-                today.setHours(0);
-                today.setMinutes(0);
-                today.setSeconds(0);
-                today.setMilliseconds(0);
-
-                var tempEpoch = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-                var todayObj = {
-                  date: today.getDate(),
-                  month: today.getMonth(),
-                  year: today.getFullYear(),
-                  day: today.getDay(),
-                  dateString: today.toString(),
-                  epochLocal: tempEpoch.getTime(),
-                  epochUTC: (tempEpoch.getTime() + (tempEpoch.getTimezoneOffset() * 60 * 1000))
-                };
-
-                scope.selctedDateString = todayObj.dateString;
-                scope.date_selection.selected = true;
-                scope.date_selection.selectedDate = new Date(todayObj.dateString);
-                refreshDateList(new Date());
-                e.preventDefault();
               }
             },
             {
