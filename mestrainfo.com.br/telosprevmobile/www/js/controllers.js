@@ -3146,13 +3146,13 @@ window.controller = angular
       var docConcessao = retrieve(result, 'documentosConcessao')
       var dadosCadastrais = retrieve(result, 'dadosCadastrais')
       var consultaEmprestimo = retrieve(result, 'consultaEmprestimo')
-      var contrato = consultaEmprestimo.contrato
+      // var contrato = consultaEmprestimo.contrato
       var informacoesParticipante = retrieve(result, 'informacoesParticipante')
 
       if (!rootScope.cache) rootScope.cache = {}
 
       scope.docConcessao = docConcessao
-      scope.docConcessao.contrato = contrato ? ' (Contrato: ' + contrato + ')' : ''
+      // scope.docConcessao.contrato = contrato ? ' (Contrato: ' + contrato + ')' : ''
 
       scope.docConcessao.statusDocumentoConcessao = (scope.docConcessao.statusDocumentoConcessao || []).map(function (
           value
