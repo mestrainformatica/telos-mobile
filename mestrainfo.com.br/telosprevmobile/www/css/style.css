@@ -1,5 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
+select:invalid { color: gray; }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -330,7 +332,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	max-width: 100% !important;
 
 }
-.item-select select {
+.item-select select:not([data-type]) {
 	    max-width: 54% !important;
 	    text-align: right !important;
 	    padding-bottom: 0.5em !important;

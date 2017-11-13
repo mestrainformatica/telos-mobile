@@ -3173,7 +3173,7 @@ window.controller = angular
 
       scope.submit = function () {
         var docConcessaoModified = Array.prototype.reduce.call(
-          document.getElementsByTagName('input'),
+          document.querySelectorAll('*[data-type]'),
           function (obj, inputElem) {
             if (inputElem.dataset.type) {
               obj[inputElem.dataset.type] = inputElem.value
