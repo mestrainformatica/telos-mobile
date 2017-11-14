@@ -42,16 +42,12 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
       scope.currentMonth = '';
       scope.datePickerTitle = scope.title || 'Select Date';
 
-      if (!angular.isDefined(scope.mondayFirst) || scope.mondayFirst == "false") {
-        scope.mondayFirst = false;
-      } else {
-        scope.mondayFirst = true;
-      }
+      scope.mondayFirst = !(!angular.isDefined(scope.mondayFirst) || scope.mondayFirst === false);
 
       if (!angular.isDefined(scope.disabledDates)) {
         scope.disabledDates = [];
       } else {
-        for (var i = 0; i < scope.disabledDates.length; i++) {
+        for (i = 0; i < scope.disabledDates.length; i++) {
           scope.disabledDates[i] = scope.disabledDates[i].getTime();
         }
       }
@@ -68,7 +64,7 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
       scope.weekNames = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
       scope.today = {};
 
-      if (scope.mondayFirst == true) {
+      if (scope.mondayFirst === true) {
         var lastWeekDay = scope.weekNames.shift();
         scope.weekNames.push(lastWeekDay);
       }
@@ -114,8 +110,7 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
           });
         }
 
-        //var firstDay = scope.dayList[0].day;
-        var firstDay = scope.dayList[0].day - scope.mondayFirst;
+        firstDay = scope.dayList[0].day - scope.mondayFirst;
 
         scope.currentMonthFirstDayEpoch = scope.dayList[0].epochLocal;
         scope.currentMonthLastDayEpoch = scope.dayList[scope.dayList.length - 1].epochLocal;
@@ -195,7 +190,7 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
           buttons: [
             {
               text: 'Fechar',
-              onTap: function (e) {
+              onTap: function () {
                 scope.callback(undefined);
               }
             },

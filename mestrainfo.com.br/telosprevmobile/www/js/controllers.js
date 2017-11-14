@@ -1408,7 +1408,7 @@ window.controller = angular
               userInfo.s = resp.data.login.s
               $ionicLoading.hide()
 
-              $scope.dataInicial = new Date(resp.data.result['data_inicial']).getTime()
+              $scope.dataInicial = new Date(resp.data.result['data_inicial'])
               $scope.disableCalendar = false
 
               datasIndisponiveis = resp.data.result['datas_credito']
@@ -1491,8 +1491,9 @@ window.controller = angular
       }
 
       $scope.datePickerCallback = function (data) {
-        $scope.formData.data = $filter('date')(data, 'dd/MM/yyyy', false)
-        $scope.buttonText = $scope.formData.data
+        var date = $filter('date')(data, 'dd/MM/yyyy', false)
+        $scope.buttonText = date || '- Selecione -'
+        $scope.formData.data = date
       }
 
       $scope.simulacao = $rootScope.lastRequest.result['simulacaoEmprestimo']
