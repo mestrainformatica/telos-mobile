@@ -46,17 +46,23 @@ defaultErrorMessage = 'Erro ao conectar com o servidor. Tente novamente mais tar
  */
 function checkIfServerAnswerIsValid (resp) {
   // console.log(inspect(resp))
-  var msg, data
+  var msg, data, error
   if (resp && resp['data']) {
     data = resp['data']
     msg = data['msg']
-    userInfo.u = resp.data.login.u
-    userInfo.s = resp.data.login.s
+
+    if (data.login && data.login.u && data.login.s) {
+      userInfo.u = data.login.u
+      userInfo.s = data.login.s
+    }
 
     if (data['success'] && !msg && data['result']) return true
   }
 
-  throw new Error(msg || defaultErrorMessage)
+  error = new Error(msg || defaultErrorMessage)
+  error.isLoginError = !!(data && !data['success'])
+
+  throw error
 }
 
 /**
@@ -231,7 +237,7 @@ window.controller = angular
 
               $state.go('signin')
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -340,7 +346,7 @@ window.controller = angular
                     '</p>' // prettier-ignore
                 })
               })
-              .catch(function (error) {
+              .catch(function () {
                 // console.error(inspect(error))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
@@ -349,7 +355,7 @@ window.controller = angular
                 })
               })
           })
-          .catch(function (error) {
+          .catch(function () {
             // console.error(inspect(error))
           })
       }
@@ -378,45 +384,15 @@ window.controller = angular
           .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
               cpf: userInfo.cpf,
+              acao: 'dados',
               cod_fundo: $scope.matriculas[item].cod_fundo,
-              cod_patrocinadora: $scope.matriculas[item].cod_patrocinadora,
               matricula: $scope.matriculas[item].matricula,
-              acao: 'dados'
+              cod_patrocinadora: $scope.matriculas[item].cod_patrocinadora
             },
             login: { u: userInfo.u, s: userInfo.s }
           })
-          .then(
-            function (resp) {
-              var k
-
-              userInfo.u = resp.data.login.u
-              userInfo.s = resp.data.login.s
-
-              $ionicLoading.hide()
-              if (!resp.data.success) {
-                $rootScope.errorMsg = resp.data.msg
-                $state.go('signin')
-              } else {
-                // Se conseguiu conectar com o servidor
-                $rootScope.lastRequest = resp.data
-                for (k in resp.data.result['dadosView'][0]) {
-                  if (!resp.data.result['dadosView'][0].hasOwnProperty(k)) continue
-                  // Define quais telas serão mostradas para o usuário
-                  stageMap[k] = resp.data.result['dadosView'][0][k]
-                }
-
-                if (typeof resp.data.result['termo_de_uso'] !== 'undefined') {
-                  // Ainda não aceitou os termos de uso
-                  $state.go('termosdeuso')
-                } else if (typeof resp.data.result['dadosView'] !== 'undefined') {
-                  // Ao definir as variáveis, vai pro menu principal
-                  $state.go('menu')
-                } else if (resp.data.msg.length > 0) {
-                  $rootScope.errorMsg = resp.data.msg
-                }
-              }
-            },
-            function (err) {
+          .catch(
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -425,6 +401,36 @@ window.controller = angular
               })
             }
           )
+          .then(
+            function (resp) {
+              var dados, result, dadosView
+
+              $ionicLoading.hide()
+              checkIfServerAnswerIsValid(resp)
+
+              $rootScope.lastRequest = retrieve(resp, 'data')
+
+              result = retrieve($rootScope.lastRequest, 'result')
+              dadosView = retrieve(result, 'dadosView')
+              for (dados in dadosView) {
+                if (dadosView.hasOwnProperty(dados)) {
+                  // Define quais telas serão mostradas para o usuário
+                  stageMap[dados] = dadosView[dados]
+                }
+              }
+
+              if (result['termo_de_uso']) {
+                // Ainda não aceitou os termos de uso
+                $state.go('termosdeuso')
+                return
+              }
+
+              $state.go('menu')
+            }
+          ).catch(function (error) {
+            $rootScope.errorMsg = error.message
+            if (error.isLoginError) $state.go('signin')
+          })
       }
     }
   ])
@@ -438,6 +444,24 @@ window.controller = angular
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading) {
       var localTouchId
 
+      // We got redirect because of a error
+      console.log($rootScope.errorMsg, userInfo.u, userInfo.s)
+      if ($rootScope.errorMsg && userInfo.u && userInfo.s) {
+        $http
+          .post(urlBase + ';jsessionid=' + userInfo.s, {
+            param: { acao: 'logout' },
+            login: { u: userInfo.u, s: userInfo.s }
+          })
+          .then(function () {
+            stageMap = {}
+            userInfo = {}
+            $rootScope.cache = {}
+            $rootScope.lastRequest = {}
+            $rootScope.beneficiariosOriginal = undefined
+            $ionicLoading.hide()
+          })
+      }
+
       /**
        * Lida com o resulta da requisição de login, seja ela com TouchID ou Normal
        * @param request
@@ -445,7 +469,7 @@ window.controller = angular
        */
       function loginPostAction (request, cpf) {
         return request
-          .catch(function (error) {
+          .catch(function () {
             // console.error(inspect(error))
             throw new Error(defaultErrorMessage)
           })
@@ -462,8 +486,6 @@ window.controller = angular
 
             result = retrieve($rootScope.lastRequest, 'result')
             touchId = retrieve(result, 'preferencias', 'touch_ID')
-            // console.log('TOUCHID LOCAL: ' + localTouchId)
-            // console.log('TOUCHID SERVER: ' + touchId)
             window.localStorage.setItem('touchId', localTouchId !== touchId && touchId === 'SIM' ? '' : touchId)
 
             if (result['simuladorBeneficios']) {
@@ -478,22 +500,25 @@ window.controller = angular
             if (result['matriculas']) {
               // Possui mais de uma matrícula e ainda não escolheu qual será carregada
               $state.go('splitmatriculas')
-            } else {
-              dadosView = retrieve(result, 'dadosView')
-              for (dados in dadosView) {
-                if (dadosView.hasOwnProperty(dados)) {
-                  // Define quais telas serão mostradas para o usuário
-                  stageMap[dados] = dadosView[dados]
-                }
-              }
-
-              if (result['termo_de_uso']) {
-                // Ainda não aceitou os termos de uso
-                $state.go('termosdeuso')
-              }
-
-              $state.go('menu')
+              return
             }
+
+            dadosView = retrieve(result, 'dadosView')
+            for (dados in dadosView) {
+              if (dadosView.hasOwnProperty(dados)) {
+                // Define quais telas serão mostradas para o usuário
+                stageMap[dados] = dadosView[dados]
+              }
+            }
+
+            console.log(result['termo_de_uso'])
+            if (result['termo_de_uso']) {
+              // Ainda não aceitou os termos de uso
+              $state.go('termosdeuso')
+              return
+            }
+
+            $state.go('menu')
           })
           .catch(function (error) {
             $ionicLoading.hide()
@@ -592,15 +617,7 @@ window.controller = angular
       }
     }
   ])
-  .controller('termosDeUso', [
-    '$scope',
-    '$state',
-    '$rootScope',
-    function ($scope, $state, $rootScope) {
-      $rootScope.erroMsg = false
-      $scope.termosText = $rootScope.lastRequest.result['termo_de_uso'][0]['descricao_termo_uso']
-    }
-  ])
+
   .controller('termoDeUso', [
     '$scope',
     '$state',
@@ -623,27 +640,26 @@ window.controller = angular
           param: { acao: 'termoUsoInicial' },
           login: { u: '', s: '' }
         })
-        .then(
-          function (resp) {
-            if (!resp.data.success) {
-              $rootScope.errorMsg = resp.data.msg
-              $state.go('signin')
-            } else {
-              $ionicLoading.hide()
-              $scope.termosText = resp.data.result['termo_de_uso'][0]['descricao_termo_uso']
-            }
-          },
-          function (err) {
-            // console.error(inspect(err))
-            $ionicLoading.hide()
-            globalPopup = $ionicPopup.alert({
-              title: 'Falha de conexão',
-              template: timeoutErrorMsg
-            })
-          }
-        )
+        .catch(function () {
+          // console.error(inspect(err))
+          $ionicLoading.hide()
+          globalPopup = $ionicPopup.alert({
+            title: 'Falha de conexão',
+            template: timeoutErrorMsg
+          })
+        })
+        .then(function (resp) {
+          checkIfServerAnswerIsValid(resp)
+          $ionicLoading.hide()
+          $scope.termosText = retrieve(resp, 'data', 'result', 'termo_de_uso', 'descricao_termo_uso')
+        })
+        .catch(function (error) {
+          $rootScope.errorMsg = error.message
+          if (error.isLoginError) $state.go('signin')
+        })
     }
   ])
+
   .controller('SimulacaoResgateCtrl', [
     '$scope',
     '$state',
@@ -660,20 +676,8 @@ window.controller = angular
           param: { acao: 'simulacaoResgate' },
           login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
         })
-        .then(
-          function (resp) {
-            userInfo.u = resp.data.login.u
-            userInfo.s = resp.data.login.s
-            $ionicLoading.hide()
-            if (!resp.data.success) {
-              $rootScope.errorMsg = resp.data.msg
-              $state.go('signin')
-            } else {
-              $scope.resgate = resp.data.result
-              $ionicLoading.hide()
-            }
-          },
-          function (err) {
+        .catch(
+          function () {
             // console.error(inspect(err))
             $ionicLoading.hide()
             globalPopup = $ionicPopup.alert({
@@ -682,11 +686,21 @@ window.controller = angular
             })
           }
         )
+        .then(
+          function (resp) {
+            $ionicLoading.hide()
+            checkIfServerAnswerIsValid(resp)
+            $scope.resgate = resp.data.result
+            $ionicLoading.hide()
+          }
+        )
+        .catch(function (error) {
+          $rootScope.errorMsg = error.message
+          if (error.isLoginError) $state.go('signin')
+        })
     }
   ])
-  /**
-   * aceitarTermos: Aceitar Termos de Uso
-   */
+
   .controller('aceitarTermos', [
     '$scope',
     '$state',
@@ -695,7 +709,8 @@ window.controller = angular
     '$ionicLoading',
     '$ionicPopup',
     function ($scope, $state, $rootScope, $http, $ionicLoading, $ionicPopup) {
-      $rootScope.erroMsg = false
+      $rootScope.erroMsg = ''
+
       $scope.aceitar = function () {
         $ionicLoading.show({
           content: 'Carregando',
@@ -713,24 +728,8 @@ window.controller = angular
               s: userInfo.s
             }
           })
-          .then(
-            function (resp) {
-              if (!resp.data.success) {
-                $rootScope.errorMsg = resp.data.msg
-                $state.go('signin')
-              } else {
-                userInfo.u = resp.data.login.u
-                userInfo.s = resp.data.login.s
-                $rootScope.lastRequest.success = resp.data.success
-                $rootScope.lastRequest.msg = resp.data.msg
-                userInfo = resp.data.login
-
-                // $rootScope.lastRequest = resp.data;
-                $ionicLoading.hide()
-                $state.go('menu')
-              }
-            },
-            function (err) {
+          .catch(
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -739,7 +738,19 @@ window.controller = angular
               })
             }
           )
+          .then(
+            function (resp) {
+              $ionicLoading.hide()
+              checkIfServerAnswerIsValid(resp)
+              $state.go('menu')
+            }
+          )
+          .catch(function (error) {
+            $rootScope.errorMsg = error.message
+            if (error.isLoginError) $state.go('signin')
+          })
       }
+
       $scope.recusar = function () {
         $ionicLoading.show({
           content: 'Carregando',
@@ -753,17 +764,8 @@ window.controller = angular
             param: { acao: 'logout' },
             login: { u: userInfo.u, s: userInfo.s }
           })
-          .then(
+          .catch(
             function () {
-              stageMap = {}
-              userInfo = {}
-              $rootScope.lastRequest = {}
-              $rootScope.beneficiariosOriginal = undefined
-              $ionicLoading.hide()
-
-              $state.go('signin')
-            },
-            function (err) {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -772,10 +774,27 @@ window.controller = angular
               })
             }
           )
+          .then(
+            function () {
+              $ionicLoading.hide()
+
+              stageMap = {}
+              userInfo = {}
+              $rootScope.lastRequest = {}
+              $rootScope.beneficiariosOriginal = undefined
+              $state.go('signin')
+            }
+          )
+          .catch(function (error) {
+            $rootScope.errorMsg = error.message
+            if (error.isLoginError) $state.go('signin')
+          })
       }
-      $scope.termosText = $rootScope.lastRequest.result['termo_de_uso'][0]['descricao_termo_uso']
+
+      $scope.termosText = retrieve($rootScope, 'lastRequest', 'result', 'termo_de_uso', 'descricao_termo_uso')
     }
   ])
+
   .controller('headerInfo', [
     '$scope',
     '$state',
@@ -870,7 +889,7 @@ window.controller = angular
                 }
               }
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -934,7 +953,7 @@ window.controller = angular
                   }
                 }
               },
-              function (err) {
+              function () {
                 // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
@@ -995,7 +1014,7 @@ window.controller = angular
                 }
               }
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -1070,7 +1089,7 @@ window.controller = angular
                   }
                 }
               },
-              function (err) {
+              function () {
                 // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
@@ -1117,7 +1136,7 @@ window.controller = angular
                   }
                 }
               },
-              function (err) {
+              function () {
                 // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
@@ -1172,36 +1191,26 @@ window.controller = angular
               },
               login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
             })
-            .then(
-              function (resp) {
-                userInfo.u = resp.data.login.u
-                userInfo.s = resp.data.login.s
-
-                $ionicLoading.hide()
-
-                if (!resp.data.success) {
-                  $rootScope.errorMsg = resp.data.msg
-                  $state.go('signin')
-                } else {
-                  if (resp.data.msg.length > 0) {
-                    $rootScope.errorMsg = resp.data.msg
-                  } else {
-                    $rootScope.demonstrativoEmitido = resp.data.result
-                    $rootScope.errorMsg = false
-                    $rootScope.cache.data_pagamento = $scope.formData.data_pagamento
-                    $state.go('demonstrativoemitido')
-                  }
-                }
-              },
-              function (err) {
-                // console.error(inspect(err))
-                $ionicLoading.hide()
-                globalPopup = $ionicPopup.alert({
-                  title: 'Falha de conexão',
-                  template: timeoutErrorMsg
-                })
-              }
-            )
+            .catch(function () {
+              // console.error(inspect(err))
+              $ionicLoading.hide()
+              globalPopup = $ionicPopup.alert({
+                title: 'Falha de conexão',
+                template: timeoutErrorMsg
+              })
+            })
+            .then(function (resp) {
+              $ionicLoading.hide()
+              checkIfServerAnswerIsValid(resp)
+              $rootScope.demonstrativoEmitido = resp.data.result
+              $rootScope.errorMsg = false
+              $rootScope.cache.data_pagamento = $scope.formData.data_pagamento
+              $state.go('demonstrativoemitido')
+            })
+            .catch(function (error) {
+              $rootScope.errorMsg = error.message
+              if (error.isLoginError) $state.go('signin')
+            })
         }
       }
     }
@@ -1268,7 +1277,7 @@ window.controller = angular
                   }
                 }
               },
-              function (err) {
+              function () {
                 // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
@@ -1312,34 +1321,28 @@ window.controller = angular
             },
             login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
           })
-          .then(
-            function (resp) {
-              userInfo.u = resp.data.login.u
-              userInfo.s = resp.data.login.s
-              $ionicLoading.hide()
+          .catch(function () {
+            // console.error(inspect(err))
+            $ionicLoading.hide()
+            globalPopup = $ionicPopup.alert({
+              title: 'Falha de conexão',
+              template: timeoutErrorMsg
+            })
+          })
+          .then(function (resp) {
+            userInfo.u = resp.data.login.u
+            userInfo.s = resp.data.login.s
+            $ionicLoading.hide()
 
-              if (!resp.data.success) {
-                $rootScope.errorMsg = resp.data.msg
-                $state.go('signin')
-              } else {
-                if (resp.data.msg.length > 0) {
-                  $rootScope.errorMsg = resp.data.msg
-                } else {
-                  globalPopup = $ionicPopup.alert({
-                    template: 'Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email
-                  })
-                }
-              }
-            },
-            function (err) {
-              // console.error(inspect(err))
-              $ionicLoading.hide()
-              globalPopup = $ionicPopup.alert({
-                title: 'Falha de conexão',
-                template: timeoutErrorMsg
-              })
-            }
-          )
+            checkIfServerAnswerIsValid(resp)
+            globalPopup = $ionicPopup.alert({
+              template: 'Enviado para ' + $rootScope.lastRequest.result.dadosCadastrais[0].email
+            })
+          })
+          .catch(function (error) {
+            $rootScope.errorMsg = error.message
+            if (error.isLoginError) $state.go('signin')
+          })
       }
     }
   ])
@@ -1430,7 +1433,7 @@ window.controller = angular
                 }
               }
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -1478,7 +1481,7 @@ window.controller = angular
                 $scope.errorMsg = false
                 $state.go('emprestimosimulacaocampos')
               },
-              function (err) {
+              function () {
                 // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
@@ -1514,7 +1517,9 @@ window.controller = angular
       emprestimoSimulacaoCampos = retrieve(lastRequest, 'emprestimoSimulacaoCampos')
 
       $scope.formData = {}
-      $scope.contrato = emprestimoSimulacaoCampos.hasOwnProperty('saldos_dados_simulacao') ? retrieve(emprestimoSimulacaoCampos, 'saldos_dados_simulacao') : ''
+      $scope.contrato = emprestimoSimulacaoCampos.hasOwnProperty('saldos_dados_simulacao')
+        ? retrieve(emprestimoSimulacaoCampos, 'saldos_dados_simulacao')
+        : ''
       $scope.matricula = retrieve(lastRequestResult, 'informacoesParticipante', 'matricula')
       $scope.dadosCadastrais = retrieve(lastRequestResult, 'dadosCadastrais')
       $scope.tipos_emprestimo = retrieve(lastRequestResult, 'simulacaoEmprestimo')
@@ -1686,7 +1691,7 @@ window.controller = angular
                   }
                 }
               },
-              function (err) {
+              function () {
                 // console.error(inspect(err))
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
@@ -1778,7 +1783,8 @@ window.controller = angular
                 template: timeoutErrorMsg
               })
             }
-          ).catch(function (error) {
+          )
+          .catch(function (error) {
             $rootScope.errorMsg = error.message
           })
       }
@@ -1929,7 +1935,7 @@ window.controller = angular
 
               $ionicLoading.hide()
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -2084,7 +2090,7 @@ window.controller = angular
 
               $ionicLoading.hide()
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -2120,15 +2126,13 @@ window.controller = angular
       }
 
       $scope.toggleChild = function () {
-        if ($scope.showChild) $scope.showChild = false
-        else $scope.showChild = true
+        $scope.showChild = !$scope.showChild
       }
 
       $scope.showChildC = false
 
       $scope.toggleChildC = function () {
-        if ($scope.showChildC) $scope.showChildC = false
-        else $scope.showChildC = true
+        $scope.showChildC = !$scope.showChildC
       }
 
       // depois de listar (ou não) os beneficiários, "resetar as configs de beneficários"
@@ -2238,7 +2242,7 @@ window.controller = angular
 
               $ionicLoading.hide()
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -2338,7 +2342,7 @@ window.controller = angular
 
               $ionicLoading.hide()
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -2493,7 +2497,7 @@ window.controller = angular
                 }
               }
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -2530,9 +2534,8 @@ window.controller = angular
       $scope.desc_opcao_tributacao = $rootScope.lastRequest.result.informacoesParticipante[0].desc_opcao_tributacao
       $scope.texto_simulacao_rmv_saque = $rootScope.lastRequest.result['simuladorBeneficios'][0].desc_texto_hibrido
 
-      $scope.toggleChild = function (key) {
-        if ($scope.showChild) $scope.showChild = false
-        else $scope.showChild = true
+      $scope.toggleChild = function () {
+        $scope.showChild = !$scope.showChild
       }
 
       $scope.showChildC = false
@@ -2611,7 +2614,7 @@ window.controller = angular
 
               $ionicLoading.hide()
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -2691,7 +2694,7 @@ window.controller = angular
 
               $ionicLoading.hide()
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -2770,7 +2773,7 @@ window.controller = angular
 
               $ionicLoading.hide()
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -2882,7 +2885,7 @@ window.controller = angular
                 }
               }
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -3036,7 +3039,7 @@ window.controller = angular
                 }
               }
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -3118,7 +3121,7 @@ window.controller = angular
                 $state.reload()
               }
             },
-            function (err) {
+            function () {
               // console.error(inspect(err))
               $ionicLoading.hide()
               globalPopup = $ionicPopup.alert({
@@ -3147,7 +3150,7 @@ window.controller = angular
       var result = retrieve(rootScope, 'lastRequest', 'result')
       var docConcessao = retrieve(result, 'documentosConcessao')
       var dadosCadastrais = retrieve(result, 'dadosCadastrais')
-      var consultaEmprestimo = retrieve(result, 'consultaEmprestimo')
+      // var consultaEmprestimo = retrieve(result, 'consultaEmprestimo')
       // var contrato = consultaEmprestimo.contrato
       var informacoesParticipante = retrieve(result, 'informacoesParticipante')
 
@@ -3157,10 +3160,10 @@ window.controller = angular
       // scope.docConcessao.contrato = contrato ? ' (Contrato: ' + contrato + ')' : ''
 
       scope.docConcessao.statusDocumentoConcessao = (scope.docConcessao.statusDocumentoConcessao || []).map(function (
-          value
-        ) {
-          return typeof value === 'object' ? '<h4>' + value.formulario + '</h4>' + value.status + '<hr>' : value
-        })
+        value
+      ) {
+        return typeof value === 'object' ? '<h4>' + value.formulario + '</h4>' + value.status + '<hr>' : value
+      })
 
       scope.datePickerCallback = function (data) {
         scope.dc_data_emissao_identidade = filter('date')(data, 'dd/MM/yyyy', false)
@@ -3228,9 +3231,8 @@ window.controller = angular
               Object.assign(rootScope.cache.docConcessao, retrieve(result, 'documentoConcessao'))
               Object.assign(docConcessao, retrieve(result, 'documentoConcessao'))
 
-              scope.docConcessao.statusDocumentoConcessao = (scope.docConcessao.statusDocumentoConcessao || []).map(function (
-                value
-              ) {
+              scope.docConcessao.statusDocumentoConcessao = (scope.docConcessao.statusDocumentoConcessao || []
+              ).map(function (value) {
                 return typeof value === 'object' ? '<h4>' + value.formulario + '</h4>' + value.status + '<hr>' : value
               })
 
@@ -3250,7 +3252,8 @@ window.controller = angular
                 template: timeoutErrorMsg
               })
             }
-          ).catch(function (error) {
+          )
+          .catch(function (error) {
             rootScope.errorMsg = error.message
           })
       }
@@ -3367,7 +3370,7 @@ window.controller = angular
                   '</p>'
               })
             })
-            .catch(function (error) {
+            .catch(function () {
               // console.error(inspect(error))
               ionicLoading.hide()
               globalPopup = ionicPopup.alert({
