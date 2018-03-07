@@ -31,23 +31,23 @@
             </div>
             <div class="item ng-cloak" ng-show="contrato"
                  id="emprestimoAnterior">
-                <h4 class="title emprestimoInfo">Liquidação de Empréstimo por
-                    Nova Contratação<br/>
-                    Contrato N. {{contrato[0].numero_contrato}}</h4>
+                <h4 class="title emprestimoInfo">
+                    Liquidação de Empréstimo por Nova Contratação
+                    <br/>
+                    Contrato N. {{contrato.numero_contrato}}
+                </h4>
 
                 <div class="label row">
                     <div class="col col-50 upper ">Saldo Devedor</div>
-                    <div class="col valor">{{contrato[0].saldo_devedor}}</div>
+                    <div class="col valor">{{contrato.saldo_devedor}}</div>
                 </div>
                 <div class="label row">
                     <div class="col col-50  upper">Taxa de Administração</div>
-                    <div class="col valor">{{contrato[0].taxa_administracao}}
-                    </div>
+                    <div class="col valor">{{contrato.taxa_administracao}}</div>
                 </div>
                 <div class="label row">
                     <div class="col col-50  upper">Saldo Devedor Total</div>
-                    <div class="col valor">{{contrato[0].saldo_devedor_total}}
-                    </div>
+                    <div class="col valor">{{contrato.saldo_devedor_total}}</div>
                 </div>
             </div>
 

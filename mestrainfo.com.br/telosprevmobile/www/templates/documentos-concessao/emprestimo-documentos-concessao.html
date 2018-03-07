@@ -8,9 +8,9 @@
             Documentos de Concessão
         </div>
 
-        <div class="item">
-            <h5 class="smallHeader"><span
-                    class="softcolor upper">Formulário</span>{{docConcessao.contrato}}
+        <div class="item" style="white-space: normal">
+            <h5 class="smallHeader">
+                <span class="softcolor upper">Formulário</span>
             </h5>
             <div ng-repeat="(key,value) in docConcessao.statusDocumentoConcessao track by $index">
                 <div ng-bind-html="value"></div>
@@ -75,7 +75,7 @@
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_numero_telefone">{{docConcessao.dc_numero_telefone}}</span>
                         <label class="item item-input" ng-if="!docConcessao.dc_numero_telefone">
-                            <input type="tel" class="reset-height" data-type="dc_numero_telefone"
+                            <input type='tel' class="reset-height" data-type="dc_numero_telefone"
                                    value="{{docConcessao.dc_numero_telefone}}">
                         </label>
                     </div>
@@ -87,9 +87,17 @@
                     </div>
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_estado_civil">{{docConcessao.dc_estado_civil}}</span>
-                        <label class="item item-input" ng-if="!docConcessao.dc_estado_civil">
-                            <input type="tel" class="reset-height" data-type="dc_estado_civil"
-                                   value="{{docConcessao.dc_estado_civil}}">
+                        <label class="item item-input item-select" ng-if="!docConcessao.dc_estado_civil">
+                            <select class="ion-input-select reset-height" data-type="dc_estado_civil">
+                                <option value="" disabled selected hidden>- Selecione -</option>
+                                <option value="SOLTEIRO">SOLTEIRO</option>
+                                <option value="CASADO">CASADO</option>
+                                <option value="VIUVO">VIUVO</option>
+                                <option value="DESQUITADO">DESQUITADO</option>
+                                <option value="DIVORCIADO">DIVORCIADO</option>
+                                <option value="VIVE MARITALMENTE">VIVE MARITALMENTE</option>
+                                <option value="SEPARADO">SEPARADO</option>
+                            </select>
                         </label>
                     </div>
                 </div>
@@ -100,9 +108,14 @@
                     </div>
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_nacionalidade">{{docConcessao.dc_nacionalidade}}</span>
-                        <label class="item item-input" ng-if="!docConcessao.dc_nacionalidade">
-                            <input type="tel" class="reset-height" data-type="dc_nacionalidade"
-                                   value="{{docConcessao.dc_nacionalidade}}">
+                        <label class="item item-input item-select" ng-if="!docConcessao.dc_nacionalidade">
+                            <select class="ion-input-select reset-height" data-type="dc_nacionalidade">
+                                <option value="" disabled selected hidden>- Selecione -</option>
+                                <option value="BRASILEIRO NATO">BRASILEIRO NATO</option>
+                                <option value="NATURALIZADO">NATURALIZADO</option>
+                                <option value="EQUIPARADO">EQUIPARADO</option>
+                                <option value="ESTRANGEIRO">ESTRANGEIRO</option>
+                            </select>
                         </label>
                     </div>
                 </div>
@@ -114,7 +127,7 @@
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_ramo_atividade">{{docConcessao.dc_ramo_atividade}}</span>
                         <label class="item item-input" ng-if="!docConcessao.dc_ramo_atividade">
-                            <input type="tel" class="reset-height" data-type="dc_ramo_atividade"
+                            <input type="text" class="reset-height" data-type="dc_ramo_atividade"
                                    value="{{docConcessao.dc_ramo_atividade}}">
                         </label>
                     </div>
@@ -138,7 +151,7 @@
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_numero_identidade">{{docConcessao.dc_numero_identidade}}</span>
                         <label class="item item-input" ng-if="!docConcessao.dc_numero_identidade">
-                            <input type="tel" class="reset-height" data-type="dc_numero_identidade"
+                            <input type="text" class="reset-height" data-type="dc_numero_identidade"
                                    value="{{docConcessao.dc_numero_identidade}}">
                         </label>
                     </div>
@@ -151,7 +164,7 @@
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_orgao_expedidor">{{docConcessao.dc_orgao_expedidor}}</span>
                         <label class="item item-input" ng-if="!docConcessao.dc_orgao_expedidor">
-                            <input type="tel" class="reset-height" data-type="dc_orgao_expedidor"
+                            <input type="text" class="reset-height" data-type="dc_orgao_expedidor"
                                    value="{{docConcessao.dc_orgao_expedidor}}">
                         </label>
                     </div>
@@ -164,7 +177,7 @@
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_descricao_cargo">{{docConcessao.dc_descricao_cargo}}</span>
                         <label class="item item-input" ng-if="!docConcessao.dc_descricao_cargo">
-                            <input type="tel" class="reset-height" data-type="dc_descricao_cargo"
+                            <input type="text" class="reset-height" data-type="dc_descricao_cargo"
                                    value="{{docConcessao.dc_descricao_cargo}}">
                         </label>
                     </div>
@@ -176,9 +189,11 @@
                     </div>
                     <div class="col valor reset-white-space">
                         <span ng-if="docConcessao.dc_data_emissao_identidade">{{docConcessao.dc_data_emissao_identidade}}</span>
-                        <label class="item item-input" ng-if="!docConcessao.dc_data_emissao_identidade">
-                            <input type="tel" class="reset-height" data-type="dc_data_emissao_identidade"
-                                   value="{{docConcessao.dc_data_emissao_identidade}}">
+                        <label class="item item-input item-select" ng-if="!docConcessao.dc_data_emissao_identidade">
+                            <ionic-datepicker disablepreviousdates="false" disablefuturedates="true" style="width: 100%;" callback="datePickerCallback">
+                                <button style="border:none;margin:0;padding:0;background:transparent;margin-right: 48px;" ng-click="datePickerClick()">{{dc_data_emissao_identidade}}</button>
+                            </ionic-datepicker>
+                            <input disabled type="hidden" data-type="dc_data_emissao_identidade" value="{{dc_data_emissao_identidade}}">
                         </label>
                     </div>
                 </div>
@@ -231,10 +246,11 @@
                 </div>
 
                 <div class="the_error">
-                    <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+                    <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
                 </div>
+
                 <div class="button-bar" padding="true">
-                    <input ng-hide="loading" type="submit"
+                    <input type="submit" ng-hide="loading"
                            class="button button-positive button-block ng-pristine ng-untouched ng-valid"
                            ng-click="submit()"
                            value="{{docConcessao.nomeBotaoAcao}}">

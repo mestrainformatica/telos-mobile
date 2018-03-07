@@ -1,5 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
+select:invalid { color: gray; }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -253,15 +255,30 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	font-weight: 500;
 	text-align: center;
 }
-.ionic-datepicker .left_arrow {
+.ionic-datepicker:not([data-date-exp]) .left_arrow {
 	display: none;
 }
-.ionic-datepicker .right_arrow {
+.ionic-datepicker:not([data-date-exp]) .right_arrow {
 	display: none;
 }
-.ionic-datepicker .drop_down {
+.ionic-datepicker:not([data-date-exp]) .drop_down {
 	display: none;
 }
+
+.ionic-datepicker[data-date-exp] div.row.select_section,
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50,
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list,
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select,
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select > select {
+	height: 30px;
+}
+
+.ionic-datepicker[data-date-exp] div.row.select_section > div.col-50 > div.list > label.item.item-input.item-select > select {
+	margin: 0 !important;
+	max-width: 100% !important;
+	padding-bottom: 2px !important;
+}
+
 #splitMatricula p.whatsgoingonmatricula {
 	padding: 1em 1.65em;
 	margin: 0;
@@ -315,11 +332,17 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	max-width: 100% !important;
 
 }
-.item-select select {
+.item-select select:not([data-type]) {
 	    max-width: 54% !important;
 	    text-align: right !important;
 	    padding-bottom: 0.5em !important;
 	    margin-top: 0.5em;
+}
+.item-select select[data-type] {
+	width: 100%;
+	position: initial;
+	max-width: initial;
+	padding-left: 0;
 }
 #btn-editar { margin-top: 1em; color: #595959;}
 #btn-editar .icon { margin-top: 1px; margin-left: .25em}

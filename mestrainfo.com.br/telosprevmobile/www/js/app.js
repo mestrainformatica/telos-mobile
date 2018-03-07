@@ -1,4 +1,3 @@
-
 window.app = window.angular
   .module('TelosApp', [
     'ionic',
@@ -8,80 +7,83 @@ window.app = window.angular
     'ui.utils.masks',
     'ionic-datepicker'
   ])
-  .run(function ($rootScope, $ionicPlatform, $state, $timeout) {
-    $ionicPlatform.onHardwareBackButton(function () {
-      if ($state.is('signin')) {
-        // here to check whether the home page, if yes, exit the application
-        navigator.app.exitApp()
-      } else {
-      }
-    })
-
-    $ionicPlatform.ready(function () {
-      if (window.cordova && window.cordova.plugins.Keyboard) {
-        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-        // for form inputs)
-        window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false)
-        // verificar se é melhor true ou false.
-        window.cordova.plugins.Keyboard.disableScroll(false)
-      }
-
-      if (window.StatusBar) {
-        console.log(window.StatusBar)
-        if (ionic.Platform.isAndroid()) {
-          StatusBar.backgroundColorByHexString('#0080a5')
-          $cordovaStatusbar.styleHex('#0080a5') // azul mestra
+  .run([
+    '$state',
+    '$rootScope',
+    '$timeout',
+    '$http',
+    '$ionicLoading',
+    '$ionicPlatform',
+    function ($state, $rootScope, $timeout, $http, $ionicLoading, $ionicPlatform) {
+      $ionicPlatform.onHardwareBackButton(function () {
+        if ($state.is('signin')) {
+          // here to check whether the home page, if yes, exit the application
+          navigator.app.exitApp()
         } else {
-          // console.log(StatusBar);
-          StatusBar.overlaysWebView(false)
-          StatusBar.styleBlackTranslucent()
-          StatusBar.backgroundColorByHexString('#0080a5')
         }
-      }
-    })
+      })
 
-    document.addEventListener('deviceReady', function () {
-      console.log('TESTE IONIC DEVICE READY')
-      document.addEventListener(
-        'resume',
-        function () {
-          $timeout(function () {
-            $ionicLoading.show({
-              content: 'Carregando',
-              animation: 'fade-in',
-              showBackdrop: true,
-              maxWidth: 300,
-              showDelay: 0
-            })
-            $http
-              .post(
-                urlBase + ';jsessionid=' + $rootScope.lastRequest.login.s,
-              {
-                param: { acao: 'logout' },
-                login: { u: userInfo.u, s: userInfo.s }
-              }
-              )
-              .then(
-                function (resp) {
-                  stageMap = {}
-                  logged = false
-                  userInfo = new Object()
+      $ionicPlatform.ready(function () {
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+          // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+          // for form inputs)
+          window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false)
+          // verificar se é melhor true ou false.
+          window.cordova.plugins.Keyboard.disableScroll(false)
+        }
+
+        if (window.StatusBar) {
+          if (window.ionic.Platform.isIOS()) {
+            window.StatusBar.overlaysWebView(false)
+            window.StatusBar.styleBlackTranslucent()
+          }
+
+          window.StatusBar.backgroundColorByHexString('#0080a5')
+        }
+      })
+
+      document.addEventListener('deviceReady', function () {
+        console.log('TESTE IONIC DEVICE READY')
+        document.addEventListener(
+          'resume',
+          function () {
+            $timeout(function () {
+              if ($state.current.name === 'signin') return
+
+              $ionicLoading.show({
+                content: 'Carregando',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 300,
+                showDelay: 0
+              })
+
+              $http
+                .post(window.urlBase + ';jsessionid=' + window.userInfo.s, {
+                  param: { acao: 'logout' },
+                  login: { u: window.userInfo.u, s: window.userInfo.s }
+                })
+                .then(function () {
+                  window.stageMap = {}
+                  window.logged = false
+                  window.userInfo = {}
                   $rootScope.lastRequest = {}
                   $ionicLoading.hide()
 
                   $state.go('signin')
-                },
-                function (err) {
+                })
+                .catch(function (err) {
+                  console.error(window.inspect(err))
                   $ionicLoading.hide()
                   $state.go('signin')
-                }
-              )
-          }, 0)
-        },
-        false
-      )
-    })
-  })
+                })
+            }, 0)
+          },
+          false
+        )
+      })
+    }
+  ])
   .config([
     '$httpProvider',
     function ($httpProvider) {
@@ -210,8 +212,7 @@ window.app = window.angular
       .state('simulacaorendamensalvitaliciabeneficiarios', {
         cache: false,
         url: '/simulacao-renda-mensal-vitalicia-beneficiarios',
-        templateUrl:
-          'templates/simulacao-ativo/simulacao-rmv-beneficiarios.html'
+        templateUrl: 'templates/simulacao-ativo/simulacao-rmv-beneficiarios.html'
       })
       .state('simulacaorendamensalvitaliciaresultado', {
         cache: false,
@@ -241,14 +242,12 @@ window.app = window.angular
       .state('alteracaopercentualretirada', {
         cache: false,
         url: '/alteracao-percentual-retirada',
-        templateUrl:
-          'templates/simulacao-assistido/alteracao-percentual-retirada.html'
+        templateUrl: 'templates/simulacao-assistido/alteracao-percentual-retirada.html'
       })
       .state('alteracaopercentualretiradaresultado', {
         cache: false,
         url: '/alteracao-percentual-retirada-resultado',
-        templateUrl:
-          'templates/simulacao-assistido/alteracao-percentual-retirada-resultado.html'
+        templateUrl: 'templates/simulacao-assistido/alteracao-percentual-retirada-resultado.html'
       })
       .state('simulacaormvaposentado', {
         cache: false,
@@ -258,20 +257,17 @@ window.app = window.angular
       .state('simulacaormvaposentadoresultado', {
         cache: false,
         url: '/simulacao-rmv-aposentado-resultado',
-        templateUrl:
-          'templates/simulacao-assistido/simulacao-rmv-resultado.html'
+        templateUrl: 'templates/simulacao-assistido/simulacao-rmv-resultado.html'
       })
       .state('alteracaormvsaque', {
         cache: false,
         url: '/alteracao-rmv-saque',
-        templateUrl:
-          'templates/simulacao-assistido/alteracao-beneficio-rmv-saque.html'
+        templateUrl: 'templates/simulacao-assistido/alteracao-beneficio-rmv-saque.html'
       })
       .state('alteracaormvsaqueresultado', {
         cache: false,
         url: '/alteracao-rmv-saque-resultado',
-        templateUrl:
-          'templates/simulacao-assistido/alteracao-beneficio-rmv-saque-resultado.html'
+        templateUrl: 'templates/simulacao-assistido/alteracao-beneficio-rmv-saque-resultado.html'
       })
       .state('simulacaoresgatenovo', {
         cache: false,
@@ -282,6 +278,11 @@ window.app = window.angular
         cache: false,
         url: '/saldo-contas',
         templateUrl: 'templates/saldo-contas.html'
+      })
+      .state('preferencias', {
+        cache: false,
+        url: '/preferencias',
+        templateUrl: 'templates/preferencias.html'
       })
       // END MEUS STATES
       .state('menu', {

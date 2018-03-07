@@ -23,8 +23,8 @@
               <div class="input-label">
                 Data de Crédito
               </div>
-              <ionic-datepicker  class="ion-input-select ng-pristine ng-valid ng-touched" idate="datepickerObject.inputDate" disablepreviousdates="true"  disablefuturedates="false" ng-model="datepickerObject.inputDate" callback="datePickerCallback" disableddates="disableddates" title="title" mondayfirst="false">
-                <button id="dataCredito" class="button button-block button-small button-clear" style="width: 100%; text-align:right;" ng-disabled="disableCalendar" value="" ng-value="datepickerObject.inputDate | date:'dd/MM/yyyy'" placeholder="- Selecione -" ng-model="dataInicial">{{buttonText}}</button>
+              <ionic-datepicker  class="ion-input-select ng-pristine ng-valid ng-touched" disableddates="disableddates" idate="dataInicial" disablepreviousdates="true"  disablefuturedates="false" callback="datePickerCallback">
+                <button id="dataCredito" class="button button-block button-small button-clear" style="width: 100%; text-align:right;" ng-disabled="disableCalendar">{{buttonText}}</button>
               </ionic-datepicker>
           </label>
         </div>
