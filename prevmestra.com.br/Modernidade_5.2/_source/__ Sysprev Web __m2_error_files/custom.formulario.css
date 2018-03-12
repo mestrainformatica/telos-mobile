@@ -839,7 +839,7 @@ table.table.no-lines tr td {border-bottom: none !important;}
 
 
 /***
- * Alterações de 9 de março de 2018
+ * Alterações de 9 e 12 de março de 2018
  * Ajustes no comportamento do menu para ficar Fixed e Stickyheader
  * 
  * Author: Madalena Pessanha @homemmaquina;
@@ -864,10 +864,13 @@ body .header-modernidade
   padding-bottom: 5em;
 }
 
-#main-content {
-margin-top: 155;
+.smaller-margin {
+margin-top: 155px;
 }
 
+.bigger-margin {
+  margin-top: 230px;
+}
 #main-content h3 {
   position: fixed;
   top: 60px;
@@ -877,9 +880,13 @@ margin-top: 155;
   z-index: 100;
   vertical-align: middle;
   align-self: center;
-  padding-top: 30px;
   left: 246;
-  padding-left: 30px;
+  padding-top: 35px;
+  padding-left: 37px;
+  color: #337ab7;
+  font-size: 21px;
+  font-weight: 100;
+  border-bottom: 1px solid rgb(224, 224, 224);
 }
 
 #rodape {
@@ -891,4 +898,17 @@ margin-top: 155;
   padding-bottom: 2em; 
 }
 
+#DIV_MENSAGEM_FLUTUANTE {
+  position: fixed !important;
+  top: 165px !important;
+  width: 81% !important;
+  left: 259px !important;
+  margin-bottom: 75px !important;
+}
 
+#main-content .menu_acoes {
+  position: fixed;
+  right: 35px;
+  top: 93px;
+  z-index: 1000;
+}

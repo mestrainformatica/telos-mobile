@@ -1,0 +1,599 @@
+/*RESERVADO PARA REFACTORING DE ESTILOS*/
+body,table,td,select,input,textarea,div {
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	font-family: verdana;
+	/*Retirado por causar problemas de alinhamento*/ /*text-align: left;*/
+	font-size: 11px;
+	font-style: normal;
+	font-weight: normal;
+}
+
+a,a:hover,a:visited {
+	text-decoration: none;
+}
+
+.t2,.destaque1 {
+	font-weight: bold;
+}
+
+.t2 {
+	text-align: left;
+	font-family: verdana;
+	font-size: 17px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+hr {
+	height: 1px;;
+	line-height: 5px;;
+	line-break: normal;
+}
+
+pre {
+	text-align: left;
+	font-family: "courier new";
+	font-size: 12px;
+}
+
+pre.preFormato {
+	font: 11px verdana, arial, sans-serif;
+}
+
+INPUT {
+	height: 17px;;
+	vertical-align: middle;;
+	padding-left: 3px;
+	margin: 0;
+}
+
+TEXTAREA {
+	padding-left: 3px;
+}
+
+tr.linhaimpar,tr.linhapar {
+	padding: 2px 10px 2px 4px;;
+	vertical-align: middle
+}
+
+#botao_menu,#botao_menu2 {
+	font: 11px verdana, sans-serif;;
+	height: 17px;;
+	text-align: center;;
+	margin-top: 0px;;
+	margin-bottom: 0px;;
+	cursor: hand;
+}
+
+#botao_menu_aprova,#botao_menu_reprova,#botao_menu_aprova2,#botao_menu_reprova2
+	{
+	color: #ffffff;
+	font: 11px verdana, sans-serif;;
+	height: 17px;;
+	text-align: center;;
+	margin-top: 0px;;
+	margin-bottom: 0px;;
+	cursor: hand;;
+	vertical-align: middle;
+	border: 0;
+}
+
+#botao_menu_aprova
+,
+{
+background
+:
+ 
+#0434AA
+}
+#botao_menu_aprova2
+,
+{
+background
+:
+ 
+#5588BF
+}
+#botao_menu_reprova {
+	background: #ac0f08
+}
+
+#botao_menu_reprova2 {
+	background: #ff0000
+}
+
+#botaoQuiosque,#botaoQuiosque2 {
+	width: 350px;
+	padding: 5px 5px 5px 43px;
+	margin: 3px;
+	font: bold 23px arial, tahoma, sans-serif;
+	text-decoration: none;
+	display: block;
+}
+
+#botao_secao,#botao_secao2 {
+	height: 17px;
+	text-align: center;
+	margin: 0 0 0 2px;
+	cursor: hand;
+}
+
+.botao,.bt,.bt_secao_texto,.bt_secao_icone {
+	height: 17px;
+	text-align: center;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.botao {
+	position: relative;
+	top: 1px;
+	z-index: 0;
+}
+
+.bt {
+	padding: 0 5px 0 5px;
+	vertical-align: middle;
+}
+
+/* solução encontrada para a barrinha do portlet sem ter q alterar o class bt criada uma classe só para o texto que fica com as funções do portlet ela tem as mesmas propriedades do bt_secao_icone,mas a fonte muda. As cores são iguais ao .bt*/
+.bt_secao_texto {
+	font: 10px verdana;
+	line-height: 14px;
+	vertical-align: middle;
+	margin: 0 0 0 2px;
+	padding: 0px;
+	padding-top: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	float: left;
+}
+
+.bt_secao_icone {
+	font: 12px courier;
+	line-height: 10px;
+	margin: 0px;
+	margin-left: 3px;
+	margin-right: 3px;
+	padding: 0px;
+	padding-top: 3px;
+	padding-left: 2px;
+	padding-right: 2px;
+	width: 17px;
+}
+
+.linha_ajuda {
+	text-align: left;
+	vertical-align: top;
+	padding: 4px;
+	padding-bottom: 15px;
+	font: normal 11px verdana;
+}
+
+/* CONTAINERS DE ELEMENTOS */
+	/* Componente Retrátil (+ -):segue padrão de cores do delimitador */
+table.componenteRetratil {
+	margin-bottom: 0;
+	margin-top: 2px;
+	padding: 2px;
+}
+
+table.conteudoComponenteRetratil {
+	margin: 0;
+	padding: 2px;
+}
+
+table.delimitador {
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-bottom: 0px;
+	margin-top: 2px;
+}
+
+table.menu {
+	margin: 0 0 10px 0;
+	padding: 3px;
+}
+
+table.menu_acoes {
+	padding: 0px;
+	float: right;
+	clear: left;
+	text-align: right;
+	vertical-align: middle;
+	height: 20px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+
+td.secao {
+	height: 23px;
+	vertical-align: middle;
+	font-weight: bold;
+	padding: 2px;
+	padding-right: 10px;
+}
+
+td.subsecao {
+	font: 10px/ 17px verdana, sans-serif;;
+	font-weight: bold;;
+	height: 17px;;
+	padding: 0 4px 0 4px;
+}
+
+td.titulo {
+	vertical-align: middle;;
+	padding: 2px;;
+	padding-right: 10px;
+}
+
+td.subtitulo {
+	font-weight: bold;
+}
+
+td.campo,td.normal {
+	vertical-align: middle;;
+	padding: 2px;;
+	padding-right: 10px;
+}
+
+td.linha_treeview {
+	font: 10px/ 12px verdana;;
+	vertical-align: middle;;
+	padding: 0 0 0 0;;
+	height: 15px;;
+	white-space: nowrap;
+}
+
+td.menu_titulo {
+	height: 20px;
+	padding: 2px;
+}
+
+td.menu_item,td.submenu_titulo,td.submenu_item {
+	height: 15px;
+}
+
+td.menu_item {
+	padding: 2px 2px 2px 4px;
+}
+
+td.menu_titulo,td.menu_item,td.submenu_titulo,td.submenu_item {
+	font-size: 10px;
+	vertical-align: middle;
+}
+
+/* Início tabela de lista */
+table.lista {
+	margin-top: 2px;
+}
+
+td.cabecalho {
+	font: bold 11px/ 13px verdana;
+	padding: 2px 2px 2px 2px;
+	vertical-align: middle;
+	text-align: left;
+	height: 20px;
+}
+
+td.linha {
+	font: 11px/ 13px verdana;
+	text-align: left;
+	vertical-align: middle;
+	padding: 2px 2px 2px 2px;
+}
+
+/* Fim tabela de lista */ /* TAB FOLDER */
+td.portaTabs {
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 0px;
+	background: transparent;
+}
+
+td.rodape {
+	text-align: center;
+	height: 20px;
+	vertical-align: middle;
+	padding: 2px;
+	font: normal normal 10px verdana;
+}
+
+table.tabs {
+	padding: 0px 0px 0px 0px;
+	z-index: 10;
+	position: relative;
+	top: 1px;
+}
+
+td.tab_ativada {
+	top: -1px;
+	margin-left: 2px;
+	margin-right: 2px;
+	font: bold 11px verdana;
+}
+
+/* Resolver problema com link nas tabs */
+	/* Usa a mesma cor da tab_ativada */
+td.tab_desativada {
+	position: relative;
+	margin-left: 2px;
+	margin-right: 2px;
+	font: bold 11px verdana;
+}
+
+img.tab_aba {
+	vertical-align: top;;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+/* Resolver problema com link nas tabs */
+	/* Usa a mesma cor da tab_desativada */
+td.tab_separador {
+	width: 3px;
+}
+
+td.corpoTabFolder {
+	padding: 4px;
+	padding-top: 5px;
+}
+
+td.porta_portlet {
+	text-align: left;
+	width: 185px;
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: middle;
+}
+
+td.sobre {
+	text-align: left;
+	font: normal normal 10px verdana;
+	padding: 10 5px;
+}
+
+.layout_col_menu {
+	width: 18%
+}
+
+.layout_col_principal {
+	width: 82%;
+	padding-left: 5px;
+}
+
+/* Topo aplicação */
+div.topo {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	font-size: 1px;
+	background-color: transparent;
+	background-repeat: repeat-x;
+}
+
+div.nomeEmpresa {
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 10;
+	width: 180px;
+	height: 30px;
+	padding-top: 2px;
+	padding-left: 2px;
+	padding-right: 0px;
+	text-align: left;
+	overflow: hidden;
+	font: bold 20px arial, verdana;
+}
+
+div.tituloPagina {
+	z-index: 1;
+	position: absolute;
+	top: 0px;
+	left: 190px;
+	width: 400px;
+	height: 30px;
+	padding-top: 8px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: center;
+	overflow: hidden;
+	font-weight: bold;
+}
+
+div.nomeAplicacao {
+	z-index: 1;
+	position: absolute;
+	top: 0px;
+	left: 610px;
+	width: 180px;
+	height: 30px;
+	padding-top: 1px;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-align: left;
+	overflow: hidden;
+	font: bold 20px arial, verdana;
+}
+
+/* Usado apenas no topo do layout Sistema */
+div.portaMenuSistema {
+	font-size: 1px;
+	height: 19px;
+	width: 100%;
+	z-index: 0;
+}
+
+/* cor padrão:não alterar */
+div.balao {
+	z-index: 1;
+	height: 80px;
+	padding: 5px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 63px;
+	font: 10px verdana;
+	vertical-align: top;
+}
+
+/* WIZARD */
+img.assistente {
+	z-index: 2;
+	position: relative;
+	left: 4px;
+	top: 10px;
+	float: left;
+	margin: 0;
+}
+
+/* Definição da janelinha de Mensagens */
+.janela_msg {
+	z-index: 11;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+}
+
+.janela_msg_tit {
+	text-align: left;
+	height: 20px;
+	vertical-align: middle;
+	padding: 2px;
+	font: normal bold 11px verdana;
+}
+
+.janela_msg_sub_tit {
+	text-align: left;
+	height: 15px;
+	vertical-align: middle;
+	padding: 2px;
+	font: normal normal 11px verdana;
+}
+
+.janela_msg_conteudo {
+	text-align: left;
+	vertical-align: top;
+	padding: 2px;
+	font: normal normal 10px verdana;
+}
+
+td.col_hierarq {
+	width: 17px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.botao_mais,.botao_menos {
+	font: bold 0px verdana;
+	height: 11px;
+	width: 11px;
+	z-index: 0;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.botao_subdetalhe {
+	font: bold 0px verdana;
+	height: 11px;
+	width: 11px;
+	z-index: 0;
+	cursor: hand;
+	cursor: pointer;
+}
+
+td.titulo,td.campo,td.normal {
+	vertical-align: middle;
+	padding: 2px;
+	padding-right: 10px;
+}
+
+.botao_tabfolder {
+	background: transparent;
+	border: hidden;
+	font: bold 11px verdana;
+	font-weight: bold;
+	height: 12px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: hand;
+	cursor: pointer;
+	border-bottom: 0px;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+img.canto_tab {
+	position: relative;
+	top: -3px;
+}
+/* ESTILO DAS DIV DAS TABFOLDER AGIL (VISÍVEL/OCULTA)*/
+div.tabOculta {
+ display:none;
+}
+div.tabVisivel {
+ display:inline;
+}
+
+/* ESTILO MENU COM ABAS */
+.menuAbas{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000033;
+	background-color: #FFFFFF;
+	border-right: 1px solid #085660;
+	border-top: 1px solid #085660;
+	border-bottom: 1px solid #085660;
+	padding: 5px;
+	cursor: hand;
+}
+
+.menuAbas-sel {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #085660;
+	background-color: #F2FAFE;
+	border-right: 1px solid #085660;
+	border-top: 1px solid #085660;
+	padding: 5px;
+	cursor: hand;
+}
+
+.tb-conteudoAbas {
+	border-right: 1px solid #085660;
+	border-bottom: 1px solid #085660;
+}
+
+.conteudoAbas {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #085660;
+	background-color: #F2FAFE;
+	padding: 5px;
+	width: 760px;
+	height: 460px;
+	overflow: auto;
+}
+
+.conteudoAbasSmall {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #085660;
+	background-color: #F2FAFE;
+	padding: 5px;
+	width: 780px;
+	height: 260px;
+	overflow: auto;
+}
