@@ -682,6 +682,12 @@ body .rodape td:last-child, body #rodape td:last-child
         top: 181px  !important;
     }
 
+    /**
+ * Alterações de 12 de março de 2018
+ 
+ * Author: Madalena Pessanha @homemmaquina;
+ */
+
     .bigger-margin {
         margin-top: 296px !important;
     }
