@@ -676,18 +676,12 @@ body .rodape td:last-child, body #rodape td:last-child
         height: 120px;
     }
     
-    #DIV_MENSAGEM_FLUTUANTE .msg_erro {
-        position: fixed;
-        width: 69%;
-        top: 188px;
-        background-color: #f2dede;
-        border-color: #ebccd1;
-        color: #a94442;
+    table table form #DIV_MENSAGEM_FLUTUANTE {
+        width: 80% !important;
+        position: fixed  !important;
+        top: 181px  !important;
     }
 
-    #DIV_MENSAGEM_FLUTUANTE #idTemMenssagemExibida {
-        position: fixed;
-        top: 200;
-        right: 144px;
+    .bigger-margin {
+        margin-top: 296px !important;
     }
-

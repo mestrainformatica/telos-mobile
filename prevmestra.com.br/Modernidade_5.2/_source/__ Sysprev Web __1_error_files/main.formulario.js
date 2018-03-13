@@ -44,4 +44,15 @@ $(document).ready(function()
     $thisStickyTitle.addClass('stickyTitle');
     $thisStickyTitle.parent().prepend('<div class="stickyTitleClone"></div>');
 
+    if ($('#DIV_MENSAGEM_FLUTUANTE').is(':visible')){
+        $('.delimitador').addClass('bigger-margin')
+    }
+    if($('.delimitador')) {
+        $('#idTemMenssagemExibida').on('click', function(){
+            $('#DIV_MENSAGEM_FLUTUANTE').remove();
+            $('.delimitador').removeClass('bigger-margin');
+            // $('.delimitador').addClass('smaller-margin');
+    });
+    }
+
 });
