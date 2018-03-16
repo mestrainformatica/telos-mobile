@@ -54,5 +54,6 @@ $(document).ready(function()
             // $('.delimitador').addClass('smaller-margin');
     });
     }
-
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:first-child > img').remove();
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > img').remove();
 });
