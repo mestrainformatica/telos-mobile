@@ -43,15 +43,18 @@ $(document).ready(function()
     $thisStickyTitle = $('#layout_col_principal .titulo.first').parent().parent().parent();
     $thisStickyTitle.addClass('stickyTitle');
     $thisStickyTitle.parent().prepend('<div class="stickyTitleClone"></div>');
-
-    if ($('#DIV_MENSAGEM_FLUTUANTE').is(':visible')){
-        $('.delimitador').addClass('bigger-margin')
-    }
-    if($('.delimitador')) {
+    if($('#botaoRecuperaParticipante')) {
         $('#idTemMenssagemExibida').on('click', function(){
-            $('#DIV_MENSAGEM_FLUTUANTE').remove();
-            $('.delimitador').removeClass('bigger-margin');
-            // $('.delimitador').addClass('smaller-margin');
+            $('#DIV_MENSAGEM_FLUTUANTE').remove(); 
     });
     }
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:first-child > img').remove();
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td > img').remove();
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(1)').remove();
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(1)').remove();
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2)').remove();
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2)').remove();
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(1)').remove();
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2)').addClass('close-btn');
+    // swal("Hello world!");
 });

@@ -9,21 +9,6 @@ $(document).ready(function()
 
 	iniciarMenu();
 
-    /***
-     * Alterações de 9 e 12 de março de 2018
-     * Ajustes no comportamento do menu para ficar Fixed e Stickyheader
-     * 
-     * Author: Madalena Pessanha @homemmaquina;
-    */
-    if ($('#DIV_MENSAGEM_FLUTUANTE').is(':visible')){
-        $('#main-content').addClass('bigger-margin')
-    }
-    if($('#main-content')) {
-        $('.alert').on('close.bs.alert', function(){
-        $('#main-content').removeClass('bigger-margin');
-        $('#main-content').addClass('smaller-margin');
-    });
-    }
 
     // $('#DIV_MENSAGEM_FLUTUANTE').remove();
 });
