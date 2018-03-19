@@ -45,13 +45,13 @@ $(document).ready(function()
     $thisStickyTitle.parent().prepend('<div class="stickyTitleClone"></div>');
 
     if ($('#DIV_MENSAGEM_FLUTUANTE').is(':visible')){
-        $('.delimitador').addClass('bigger-margin')
+        $('#botaoRecuperaParticipante').addClass('bigger-margin')
     }
-    if($('.delimitador')) {
+    if($('#botaoRecuperaParticipante')) {
         $('#idTemMenssagemExibida').on('click', function(){
             $('#DIV_MENSAGEM_FLUTUANTE').remove();
-            $('.delimitador').removeClass('bigger-margin');
-            // $('.delimitador').addClass('smaller-margin');
+            $('#botaoRecuperaParticipante').removeClass('bigger-margin');
+            // $('#botaoRecuperaParticipante').addClass('smaller-margin');
     });
     }
     $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:first-child > img').remove();
