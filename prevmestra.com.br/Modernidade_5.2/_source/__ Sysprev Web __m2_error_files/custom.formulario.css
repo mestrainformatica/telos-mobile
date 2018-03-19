@@ -882,7 +882,7 @@ margin-top: 155px;
   align-self: center;
   left: 246;
   padding-top: 35px;
-  padding-left: 37px;
+  margin-left: 33px;
   color: #337ab7;
   font-size: 21px;
   font-weight: 100;
@@ -902,7 +902,6 @@ margin-top: 155px;
   position: fixed !important;
   top: 165px !important;
   width: 81% !important;
-  left: 259px !important;
   margin-bottom: 75px !important;
 }
 
