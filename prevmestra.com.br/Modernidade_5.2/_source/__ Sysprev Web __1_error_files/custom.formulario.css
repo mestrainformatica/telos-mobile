@@ -689,5 +689,21 @@ body .rodape td:last-child, body #rodape td:last-child
  */
 
     .bigger-margin {
-        margin-top: 296px !important;
+        margin-top: 394px !important;
+    }
+
+    td.msg_erro {
+        padding: 15px;
+        background-color: #f2dede !important;
+        border: 1px solid #ebccd1 !important;
+        color: #a94442 !important;
+        font-family: 'Open Sans', helvetica, arial, sans-serif !important;
+        font-size: 13px !important;
+        font-weight: normal !important;
+    }
+
+    .close-btn {
+        right: 16px;
+        top: 16px;
+        position: absolute;
     }
