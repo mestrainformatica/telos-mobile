@@ -723,6 +723,12 @@ body .rodape td:last-child, body #rodape td:last-child
     td.header-modernidade {
         z-index: 1000;
     }
+    td.rodape {
+        width: 100%;
+    }
+    body .rodape td, body #rodape span {
+    padding-right: 30px;
+    }
     /* = SweetAlert
     ========================= */
 
