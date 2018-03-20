@@ -681,7 +681,7 @@ body .rodape td:last-child, body #rodape td:last-child
  
  * Author: Madalena Pessanha @homemmaquina;
  */
- 
+
     td.msg_erro {
         padding: 15px;
         background-color: #f2dede !important;
@@ -690,10 +690,51 @@ body .rodape td:last-child, body #rodape td:last-child
         font-family: 'Open Sans', helvetica, arial, sans-serif !important;
         font-size: 13px !important;
         font-weight: normal !important;
+        max-height: 100px !important;
+        overflow: auto;
+        width: 78.5%;
+        max-width: 1500px;
+        position: fixed;
+        top: 175px;
+        left: 299px;
+
     }
 
     .close-btn {
         right: 16px;
         top: 16px;
         position: absolute;
+    }
+
+    .error-wrapper {
+        display: block;
+        max-height: 100px;
+        overflow: auto;
+        text-align: left;
+        position: absolute;
+    }
+    
+    td.header-modernidade {
+        z-index: 1000;
+    }
+    /* = SweetAlert
+    ========================= */
+
+    .sweet-alert {
+      padding: 5px !important;
+    }
+    .sweet-alert h2 {
+      font-size: 15px;
+      margin: 1em 0;
+      color:#2e6da4;
+      font-weight: bold;
+    }
+    .sweet-alert p {
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 1em;
+    }
+
+    td.rodape {
+        z-index: 1000;
     }

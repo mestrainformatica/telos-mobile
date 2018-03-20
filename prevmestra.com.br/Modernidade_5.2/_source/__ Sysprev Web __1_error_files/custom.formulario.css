@@ -691,15 +691,19 @@ body .rodape td:last-child, body #rodape td:last-child
     td.msg_erro {
         padding: 15px;
         background-color: #f2dede !important;
-        /* border: 1px solid #ebccd1 !important; */
+        border: 1px solid #ebccd1 !important;
         color: #a94442 !important;
         font-family: 'Open Sans', helvetica, arial, sans-serif !important;
         font-size: 13px !important;
         font-weight: normal !important;
         max-height: 100px !important;
         overflow: auto;
-        width: 1900px;
-        max-width: 1900px;
+        width: 78.5%;
+        max-width: 1500px;
+        position: fixed;
+        top: 175px;
+        left: 299px;
+
     }
 
     .close-btn {
@@ -712,14 +716,13 @@ body .rodape td:last-child, body #rodape td:last-child
         display: block;
         max-height: 100px;
         overflow: auto;
-        width: 108%;
-        max-width: 300%;
-        border: 1px solid #ebccd1;
         text-align: left;
         position: absolute;
-        left: -50px;
     }
-
+    
+    td.header-modernidade {
+        z-index: 1000;
+    }
     /* = SweetAlert
     ========================= */
 
