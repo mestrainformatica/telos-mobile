@@ -8,7 +8,6 @@ $(document).ready(function()
 
 	iniciarMenu();
 
-    swal('teste');
 });
 // fim do document.ready()
 

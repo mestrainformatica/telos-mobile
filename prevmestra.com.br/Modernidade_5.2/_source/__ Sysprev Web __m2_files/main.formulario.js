@@ -9,8 +9,6 @@ $(document).ready(function()
 
 	iniciarMenu();
 
-
-    // $('#DIV_MENSAGEM_FLUTUANTE').remove();
 });
 // fim do document.ready()
 

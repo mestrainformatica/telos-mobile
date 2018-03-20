@@ -56,5 +56,6 @@ $(document).ready(function()
     $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2)').remove();
     $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(1)').remove();
     $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(2)').addClass('close-btn');
+    $('#DIV_MENSAGEM_FLUTUANTE > table > tbody > tr > td:nth-child(1) > table > tbody').addClass('error-wrapper') 
     swal("Hello world!");
 });
