@@ -4,7 +4,7 @@
   "description": "prevmobile: An Ionic project",
   "dependencies": {
     "cordova-android": "^6.3.0",
-    "cordova-ios": "^4.5.3",
+    "cordova-ios": "^4.5.4",
     "cordova-plugin-device": "^1.1.6",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-keychain-touch-id": "git+https://github.com/MobilidadeBPI/cordova-plugin-keychain-touch-id.git",
@@ -24,7 +24,7 @@
     "cordova-check-plugins": "^3.1.1",
     "gulp-sass": "^3.1.0",
     "gulp-util": "^3.0.8",
-    "ionic": "^3.16.0",
+    "ionic": "3.20.0",
     "shelljs": "^0.7.8"
   },
   "prettier": {
