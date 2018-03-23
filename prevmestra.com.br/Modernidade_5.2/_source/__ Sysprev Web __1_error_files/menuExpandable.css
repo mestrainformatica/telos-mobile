@@ -1,0 +1,59 @@
+@import url(global.css);
+
+/* These id's are static, so keep the same names */
+#menuDiv {
+  border: 0px;
+  width: 200px;
+}
+
+#menuList {
+  margin: 0px;
+  padding: 10px 0px 10px 5px;
+}
+
+li.menubar {
+  font: 10px Verdana;
+  line-height: 1.5em;
+  list-style: none outside;
+}
+
+.menu, .submenu {
+  display: none;
+  margin-left: 15px;
+  padding: 0px;
+}
+
+.menu li, .submenu li  {
+  list-style: none outside;
+}
+
+li.menubar a.standalone {
+
+}
+
+a.actuator, a.standalone {
+  background-color: transparent;
+  font-size: 11px;
+  padding-left: 15px;
+  text-decoration: none;
+}
+
+.menu li a, .submenu li a {
+  background-color: transparent;
+  font-size: 11px;
+  padding-left: 15px;
+  text-decoration: none;
+}
+
+a.actuator:hover, .menu li a:hover, submenu li a:hover, li a.standalone:hover {
+  text-decoration: underline;
+}
+
+span.key {
+  text-decoration: underline;
+}
+
+a.highlight {
+    color: #879EBD !important;
+    font-weight: bold;
+}

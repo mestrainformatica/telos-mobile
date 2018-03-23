@@ -1,0 +1,364 @@
+%clearfix{
+	&:after{
+		clear: both;
+		display: block;
+		content: "";
+	}	
+}
+
+#dashboard-content{
+	
+	@media(min-width:768px){
+		margin-left:-25px;
+		margin-right:-25px;
+	}
+	
+	.section{
+		border-bottom:1px solid #F0F0F0;
+		padding:20px;
+
+		h3.title{
+			font-size: 17px;
+			color: #3C4144;
+			padding:0;
+			margin:0;
+			margin-bottom: 15px;
+		}
+
+		&.charts-section{
+			
+			padding:0;
+
+			.pie{
+				@extend %clearfix;
+				padding:20px;
+				@media(min-width:992px){
+					border-right:1px solid #F0F0F0;
+				}
+				
+				.chart{
+					// text-align: center;
+					position: relative !important;
+					margin:20px 0;
+					.number{
+						position: absolute;
+					    top: 80px;
+					    display: block;
+					    text-align: center;
+					    width: 100%;
+					    color: #212121;
+
+					    .num{
+					    	font-size: 24px;
+					    	display: block;
+					    	clear:both;
+					    	margin:0;
+					    	line-height:1em;
+					    }
+					    .label{
+							font-size: 14px;
+							color: #1F4F8D;
+							margin:0;
+					    }
+					}
+				}
+
+				@extend %clearfix;
+				
+				.count{
+					margin:5px 0;
+					&.col-right{
+						@media(min-width:768px){
+							float: right;
+						}
+					}
+					@extend %clearfix;
+					span.num{
+						font-size: 24px;
+						color: #212121;
+						font-weight: 500;
+						float: left;
+						margin-right: 5px;
+					}
+					span.name{
+						font-size: 14px;
+						color: #727272;
+						font-weight: 300;
+						display: inline-block;
+						float: left;
+						margin-top: 7px;
+						img{
+							margin-left: 5px;
+							margin-top: -5px;
+						}
+					}
+				}
+			}
+
+			.line{
+				@extend %clearfix;
+				padding:20px;padding-left:0;
+
+				.btn-group.open .dropdown-toggle{
+					box-shadow:none;
+				}
+				
+				a.dropdown-toggle{
+					color: #656D78;
+					&.title{
+						cursor:pointer;
+						font-size: 18px;
+						color: #656D78;
+						letter-spacing: 0;
+						margin-top: 10px;
+						display: inline-block;
+					}
+
+					&:hover, &:focus{
+						text-decoration: none;
+						box-shadow:none;
+					}
+				}
+				
+				.legendas{
+					list-style: none;
+					margin-top: 12px;
+					li{
+						float:left;
+						margin-left: 15px;
+					}
+				}
+
+				.chart{
+					margin:25px 0;
+					
+					#line-chart-0{
+						width: 100% !important; 
+						height: auto !important;
+						max-height: 210px !important;/*
+						max-width: 500px !important;*/
+					}
+					#line-chart-1{
+						width: 100% !important; 
+						height: auto !important;
+						max-height: 210px !important;/*
+						max-width: 500px !important;*/
+					}
+				}
+
+				img.chart{
+					width: 100%;
+					height: auto;
+					display: block;
+					margin:0 auto;
+				}
+			}
+		}
+	}
+	
+	.custom-progress-bar {
+	    width: 100%;
+	    background: #d2d2d2;
+	    height: 9px;
+
+	    .progress{
+	    	height: 100%;
+	    	background: #1F4F8D;
+	    	border-radius: 0;
+	    	margin:0;
+	    	padding:0;
+	    	border:0;
+	    }
+	}
+	
+	.type{
+		background: #D9D9D9;
+		border-radius: 8px;
+		padding: 2px 8px;
+		font-size: 10px;
+		color: #7f7f7f;
+		display: inline-block;
+		
+		&.type-6{background: #C9E5F2;color: #2b7a9e;}
+		&.type-7{background:#ABDBDA;color: #1f8482;}
+		&.type-1{background:#C7E3FF;color:#13508c}
+		&.type-2{background: #ffeed4;color: #ab9676 ;}
+		&.type-3{background:#FFCCC5;color:#bd6d62;}
+	}
+
+	.prazo-danger{
+		font-size: 13px;
+		color: #E70000;
+	}
+
+	.table.atendimento-table{
+		margin-bottom: 0;
+
+		@media(min-width:768px){
+			.col-1{
+				width: 20%;
+			}
+			.col-2{
+				width: 40%;
+			}
+		}
+		tr{
+			td{
+				padding:15px 10px 15px 0;
+			}
+		}
+		thead{
+			tr{
+				td{
+					font-size: 12px;
+					color: #1F4F8D;
+				}
+			}
+		}
+		tbody{
+			tr{
+				td{
+					border-top:1px solid #F0F0F0;
+					&.name{
+						text-transform: capitalize;
+					}
+				}
+			}
+		}
+
+		.name{
+			font-size: 14px;
+			color: #3C4144;
+		}
+		
+	}
+
+	.underline{
+		text-decoration: underline;
+	}
+
+	.av{
+		margin:10px 0;
+		@extend %clearfix;
+		.text{
+			float: left;
+			b{
+				display: block;
+				margin:0;
+				padding:0;
+				font-size: 14px;
+				color: #000000;
+			}
+			p{
+				font-size: 12px;
+				color: #B1B1B1;
+				margin:0;
+			}
+		}
+
+		.prog{
+			float: right;
+			.custom-progress-bars{
+				float: left;
+				margin-right: 5px;
+			}
+			.percent{
+				float: left;
+				font-size: 10px;
+				color: #000000;
+				margin:2px 0;
+				font-weight: 600;
+			}
+		}
+	}
+	
+	.custom-progress-bars{
+		background:#ccc;
+		position: relative;
+		@extend %clearfix;
+		height: 17.6px;
+		.custom-bar{
+		    float: left;
+		    width: 5px;
+		    height: 20px;
+		    margin-top: -19px;
+		    background: transparent;
+		    border: 1px solid #fff;
+		    border-radius: 8px;
+			&.active{
+
+			}
+		}
+
+		.custom-progress {
+		    background: #1D67C5;
+		    height: 100%;
+		    z-index: 10;
+		    width: 0;
+		}
+			
+	}
+
+	.table-responsive.atendimento {
+	    // height: 230px;
+	    // overflow-y: auto;
+	}
+	
+	.select-tabs{
+		.select-tab{
+			display: none;
+
+			&.active{
+				display: block;
+			}
+		}
+	}
+
+}
+
+li.hm-chat-menu {
+    padding: 10px 15px !important;
+    display: block;
+    font-size:1.4em;
+  	@extend %clearfix;
+
+	.onoffswitch {
+		float: right;
+	}
+
+}
+
+.onoffswitch {
+    position: relative; width: 45px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    display: inline-block;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 22px; padding: 0; line-height: 22px;
+    border: 2px solid #999999; border-radius: 22px;
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    height: 22px;
+    display: block; width: 22px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 21px;
+    border: 2px solid #999999; border-radius: 22px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #1F4F8D;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: #1F4F8D;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px; 
+}

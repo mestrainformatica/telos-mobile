@@ -1,0 +1,2090 @@
+
+<!-- saved from url=(0071)http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+
+
+
+<link href="./__ Sysprev Web __1_error_files/css" rel="stylesheet" type="text/css">
+<link href="./__ Sysprev Web __1_error_files/css(1)" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="./__ Sysprev Web __1_error_files/PlcGeral.css" type="text/css">
+<link rel="stylesheet" href="./__ Sysprev Web __1_error_files/PlcPele.css" type="text/css">
+<link rel="stylesheet" href="./__ Sysprev Web __1_error_files/jquery-ui.structure.css" type="text/css">
+<link rel="stylesheet" href="./__ Sysprev Web __1_error_files/jquery-ui.theme.css" type="text/css">
+<link rel="stylesheet" href="./__ Sysprev Web __1_error_files/custom.formulario.css">
+<script src="./__ Sysprev Web __1_error_files/jquery-1.11.2.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/jquery-migrate-1.2.1.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/jquery-ui.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/priceformat.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/monetary.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/numericMask.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/jquery.maskedinput-1.3.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/jquery.qtip-1.0.0-rc3.min.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/menuExpandable.js" type="text/javascript"></script>
+
+<script src="./__ Sysprev Web __1_error_files/main.formulario.js" type="text/javascript"></script>
+
+<script src="./__ Sysprev Web __1_error_files/loading.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/MestraAjax.js" type="text/javascript"></script>
+<script src="./__ Sysprev Web __1_error_files/uploadMestra.js"></script>
+
+
+
+	
+
+
+<link rel="stylesheet" href="./__ Sysprev Web __1_error_files/AppGeral.css" type="text/css">
+
+<script src="./__ Sysprev Web __1_error_files/PlcGeral.js" type="text/javascript"></script><style type="text/css">.expandeRetraiPlc{display:none;}</style>
+<style type="text/css">.expandeRetraiPlc{display:none;}</style>
+
+<script src="./__ Sysprev Web __1_error_files/AppGeral.js" type="text/javascript"></script>
+
+
+<script src="./__ Sysprev Web __1_error_files/DateMask.js" type="text/javascript"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<title>:: Sysprev Web ::
+			
+		</title>	
+		<link rel="stylesheet" href="./__ Sysprev Web __1_error_files/PlcPele.css" type="text/css">
+		<link rel="stylesheet" href="./__ Sysprev Web __1_error_files/loading.css" type="text/css">
+		<link rel="stylesheet" type="text/css" media="screen" href="./__ Sysprev Web __1_error_files/global.css">  
+   		<link rel="stylesheet" type="text/css" media="screen" href="./__ Sysprev Web __1_error_files/menuExpandable.css">   
+  		<script>
+  			function redimensionaMenu(){
+				var tabelaMenu = document.getElementById('tabelaMenu');
+				var telaWidth = window.innerWidth;
+				tabelaMenu.style.width = telaWidth / 4.8;
+			}
+	
+			function menuFlex(estadoMenu){	
+				if (estadoMenu == "aberto"){
+					setNamedCookie('controleMenuFlex','aberto','');
+					document.getElementById('tabelaMenu').style.display = "none";
+					document.getElementById('tabelaMenu').style.widthantes = document.getElementById('tabelaMenu').style.width;
+					document.getElementById('botao1').style.display = "none";	
+					document.getElementById('botao2').style.display = "";
+				}else{
+					setNamedCookie('controleMenuFlex','fechado','');
+					document.getElementById('tabelaMenu').style.display = "";
+					document.getElementById('tabelaMenu').style.width = document.getElementById('tabelaMenu').style.widthantes;
+					document.getElementById('botao1').style.display = "";	
+					document.getElementById('botao2').style.display = "none";
+				}
+			}
+			
+			
+			function setDocumentCookie( oDoc, sName, sValue, sExpDate ){	
+				//para evitar erro no FIREFOX
+				if ( sValue == undefined){    	
+			    	sValue = "";
+			    }
+			    
+			    if ( sName.length < 1 )
+			        return;
+			 
+			    if (  0 < sValue.length ){
+			    	
+			    	if(sExpDate != ''){	    	
+						var expDate = new Date();
+			    	    expDate.setTime( expDate.getTime() + 365*24*60*60*1000 );
+						 oDoc.cookie = ""
+			                        + sName + "=" + sValue + "; "
+			                        + "expires=" + expDate.toGMTString();
+			    	}else{
+			    		oDoc.cookie = ""
+			                        + sName + "=" + sValue + "; ";
+			    	}               
+			    }else{
+			        //  this will cause the named cookie to be deleted.
+			        oDoc.cookie = sName + "=";
+			    }
+			}
+			function deleteDocumentCookie( oDoc, sName ){
+				 oDoc.cookie = sName + "=";
+			}
+			function fetchDocumentCookie( oDoc, sName ) {
+				var sValue = ""; 
+				var index = 0;
+			    if( oDoc.cookie )
+			        index = oDoc.cookie.indexOf( sName + "=" );
+			    else
+			        index = -1;
+			 
+			    if ( index < 0 ){
+			        sValue = "";
+			    }
+			    else{
+			        var countbegin = (oDoc.cookie.indexOf( "=", index ) + 1);
+			        if ( 0 < countbegin ) {
+			            var countend = oDoc.cookie.indexOf( ";", countbegin );
+			            if ( countend < 0 )
+			                countend = oDoc.cookie.length;
+			            sValue = oDoc.cookie.substring( countbegin, countend );
+			        }else{
+			            sValue = "";
+			        }
+			    }
+			    return sValue;
+			}
+			
+			function setNamedCookie( sName, sValue, sExpDate ) {
+				setDocumentCookie( document, sName, sValue, sExpDate );
+			}
+			function fetchNamedCookie( sName ) {
+				return fetchDocumentCookie( document, sName );
+			}
+			function deleteCookie( sName ) {
+				deleteDocumentCookie( document, sName );
+			}
+		</script>
+	</head>
+	
+	<body onload="iniciarPagina();" onkeydown="return executarAcaoFuncoes(event);" bgcolor="#ffffff" text="#000000" link="#023264" alink="#023264" vlink="#023264" topmargin="0" leftmargin="0">
+		<table width="100%" border="0" bordercolor="#beccdf" style="border-width:0mm" cellpadding="0" cellspacing="0" height="100%">
+		<tbody>
+	
+		
+			<tr height="11%" bordercolor="#BECCDF" bgcolor="#879EBD">
+		  		<td colspan="4" bordercolor="#BECCDF" bgcolor="879EBD">
+		  			
+		  				
+		  			
+
+
+
+
+
+
+
+
+
+
+<!-- asdasd -->
+
+		<table id="localTesteiraTable" bgcolor="#beccdf" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0" style="z-index:500;">
+			<tbody><tr>
+				<td class="header-modernidade">                    
+                    <div class="logo-div" style="width: 245px;">
+                        <img class="logo" src="./__ Sysprev Web __1_error_files/logo-provisoria.png">
+                    </div>
+                    <div class="inner">
+                        <div class="navbar-left">
+                            <h1>Módulo Empréstimo
+								
+									
+									
+									
+									
+									
+								
+                            </h1>
+                        </div>
+                        <div class="navbar-right">
+                            <p>Conectado como administrador. &nbsp; 
+						
+						
+						<a href="http://prevmestra.com.br/Mestra_Emprestimo/plc/desconectaPlc.do?evento=Desconectar" style="cursor:hand;" onclick="return executarEventoAplicacao(getBotaoArray(&#39;DESCONECTAR&#39;));">
+							</a><a href="http://prevmestra.com.br/Mestra_Emprestimo/plc/desconectaPlc.do?evento=Desconectar">Desconectar <img src="./__ Sysprev Web __1_error_files/off.png"></a>
+						
+						
+						
+                            </p>
+                        </div>
+                    </div>
+				</td>
+			</tr>
+		</tbody></table>		
+
+<script>
+
+	function 	Mestra() { 
+	Mestra.Cookie = {
+		date: new Date(),
+		set: function(name, content, days) {
+			var expires = "";
+			if(days) {
+				this.date.setTime(this.date.getTime()+(days*24*60*60*1000));
+				expires = this.date.toGMTString() + "; ";
+			}
+			document.cookie = name + "=" + content + "; " + expires + "path=/";
+			return true;
+		},
+		
+		get: function( name ) {
+			var nameE = name + "=";
+			var cookies = document.cookie.split(";");
+			for(var i = 0, Cookie; Cookie = cookies[i]; i++) {
+				while(Cookie.charAt(0) == " ") {
+					Cookie = Cookie.substring(1,Cookie.length);
+				}
+				if(Cookie.indexOf(nameE) == 0) {
+					return Cookie.substring(nameE.length,Cookie.length);
+				}
+			}
+			return false;
+		},
+		
+		unset: function( name ) {
+			this.set(name, "", -1);
+			return true;
+		}
+	}
+	}
+	
+	new Mestra();
+
+</script>
+		  		</td>
+			</tr>
+		
+			<tr>
+		
+		
+	<!-- INICIO MENU -->
+	<td id="tabelaMenu" valign="top" class="layout_col_menu" style="padding-left:5px;background-repeat:repeat-x" bgcolor="#e4ecf7">
+
+									
+
+		<div id="menuDiv"><ul id="menuList"><li class="menu-title">Menu</li>
+
+			            
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00000Actuator" class="actuator">Tabelas</a>
+		<ul id="M00000Menu" class="menu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/categoriaemprestimosman.do?evento=x&amp;idRotina=662" title="Categorias de Empréstimo">Categorias de Empréstimo</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/tipoEmprestimo.do?evento=x&amp;idRotina=663" title="Tipos de Empréstimos">Tipos de Empréstimos</a></li>
+<li>
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00001Actuator" class="actuator">Parâmetros</a>
+		<ul id="M00001Menu" class="submenu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametroscobrancaparcelasman.do?evento=x&amp;idRotina=665" title="Cobrança de Parcelas">Cobrança de Parcelas</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrossituacaoplanoman.do?evento=x&amp;idRotina=667" title="Situações no Plano">Situações no Plano</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/formacobrancaparticipanteman.do?evento=x&amp;idRotina=3106" title="Formas de cobrança por participante">Formas de cobrança por participante</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrosseguroman.do?evento=x&amp;idRotina=669" title="Seguros">Seguros</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/calendariocreditoman.do?evento=x&amp;idRotina=2972" title="Calendários de Crédito">Calendários de Crédito</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrizacaoprovisaodevedoresduvidososman.do?evento=x&amp;idRotina=3152" title="Provisões de Devedores Duvidosos">Provisões de Devedores Duvidosos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/criteriogeracaoarquivointegracaosiapeman.do?evento=x&amp;idRotina=3194" title="Critério geração arquivo integração SIAPE">Critério geração arquivo integração SIAPE</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrizacaovencimentocobrancaemprestimoman.do?evento=x&amp;idRotina=3226" title="Vencimentos da Cobrança">Vencimentos da Cobrança</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametroemprestimoman.do?evento=x&amp;idRotina=666" title="Gerais do Sistema">Gerais do Sistema</a></li>
+		</ul>
+	</li>
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrossuspensaocobrancaman.do?evento=x&amp;idRotina=673" title="Suspensões de Cobrança">Suspensões de Cobrança</a></li>
+</ul>
+	</li>
+
+
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00002Actuator" class="actuator">Cadastros</a>
+		<ul id="M00002Menu" class="menu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/indiceinvestimentoman.do?evento=x&amp;idRotina=675" title="Índices de Correção">Índices de Correção</a></li>
+<li>
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00003Actuator" class="actuator">Vencimentos de Cobranças</a>
+		<ul id="M00003Menu" class="submenu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/vencimentocobrancaman.do?evento=x&amp;idRotina=676" title="Manual">Manual</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/geracaovencimentocobrancaman.do?evento=x&amp;idRotina=3225" title="Automática">Automática</a></li>
+		</ul>
+	</li>
+
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/motivosuspensaoman.do?evento=x&amp;idRotina=678" title="Motivos de Suspensão">Motivos de Suspensão</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/suspensosman.do?evento=x&amp;idRotina=677" title="Suspensos">Suspensos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/faixassaldodevedorman.do?evento=x&amp;idRotina=680" title="Faixas Saldo Devedor">Faixas Saldo Devedor</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/cadastroprestacoesfixasemprestimoman.do?evento=x&amp;idRotina=3158" title="Prestações Fixas">Prestações Fixas</a></li>
+</ul>
+	</li>
+
+
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00004Actuator" class="actuator active">Concessão</a>
+		<ul id="M00004Menu" class="menu" style="display: block;">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do?evento=x&amp;idRotina=682" title="Requerimento" class=" highlight">Requerimento</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/simulacaoemprestimoman.do?evento=x&amp;idRotina=3280&amp;tipo=SIMU" title="Simulação">Simulação</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/cancelamentorequerimentoman.do?evento=x&amp;idRotina=683" title="Cancelamento de Requerimento">Cancelamento de Requerimento</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/concessaoemprestimosman.do?evento=x&amp;idRotina=684" title="Concessão">Concessão</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/cancelamentoconcessaoman.do?evento=x&amp;idRotina=685" title="Cancelamento de Concessão">Cancelamento de Concessão</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/acordoJudicialman.do?evento=x&amp;idRotina=3159" title="Acordo Judicial">Acordo Judicial</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/emissaocartaspositivasnegativasemprestimoman.do?evento=x&amp;idRotina=3224" title="Emissão de Cartas Positivas e Negativas de Empréstimo">Emissão de Cartas Positivas e Negativas de Empréstimo</a></li>
+</ul>
+	</li>
+
+
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00005Actuator" class="actuator active">Prestações</a>
+		<ul id="M00005Menu" class="menu" style="display: block;">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/calculoprestacaoman.do?evento=x&amp;idRotina=687" title="Cálculo">Cálculo</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/confirmacaoprestacaoman.do?evento=x&amp;idRotina=688" title="Confirmação de Cálculo">Confirmação de Cálculo</a></li>
+<li>
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00006Actuator" class="actuator">Envio de Cobrança de Prestações</a>
+		<ul id="M00006Menu" class="submenu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/cadastroprestacoesfixasemprestimoman.do?evento=x&amp;idRotina=3165" title="Prestações Fixas">Prestações Fixas</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/integracaofolhaativosman.do?evento=x&amp;idRotina=690" title="Folha de Ativos">Folha de Ativos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/integracaofolhabeneficiosman.do?evento=x&amp;idRotina=692" title="Folha de Benefícios">Folha de Benefícios</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/integracaocobrancaprestacaoboletoman.do?evento=x&amp;idRotina=3113" title="Boletos">Boletos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/integracaocontacorrenteman.do?evento=x&amp;idRotina=691" title="Débito Automático ">Débito Automático </a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/importacaosiapeman.do?evento=x&amp;idRotina=3193" title="Importação de Dados - SIAPE">Importação de Dados - SIAPE</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/reenviosiapeboletoman.do?evento=x&amp;idRotina=3112" title="Reenvio do SIAPE para Boleto">Reenvio do SIAPE para Boleto</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/reenviosiapedebitoautomaticoman.do?evento=x&amp;idRotina=3114" title="Reenvio do SIAPE para Débito Automático">Reenvio do SIAPE para Débito Automático</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/reenviodebitoautomaticoboletoman.do?evento=x&amp;idRotina=3115" title="Reenvio do Débito Automático para Boleto">Reenvio do Débito Automático para Boleto</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/geracaosiapeman.do?evento=x&amp;idRotina=3167" title="Geração Arquivo de Consignação ( Empréstimo )">Geração Arquivo de Consignação ( Empréstimo )</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/cobrancamanual.do?evento=x&amp;idRotina=3192" title="Cobrança Manual">Cobrança Manual</a></li>
+		</ul>
+	</li>
+
+</ul>
+	</li>
+
+
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00007Actuator" class="actuator">Rentabilidade</a>
+		<ul id="M00007Menu" class="menu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/calculotirman.do?evento=x&amp;idRotina=694" title="Taxa Interna de Retorno (TIR)">Taxa Interna de Retorno (TIR)</a></li>
+</ul>
+	</li>
+
+
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00008Actuator" class="actuator">Recebimentos</a>
+		<ul id="M00008Menu" class="menu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/devolucaosaldoemprestimoman.do?evento=x&amp;idRotina=3125" title="Devolução Crédito">Devolução Crédito</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/estornomovimentacaoman.do?evento=x&amp;idRotina=3121" title="Estorno de Movimentação">Estorno de Movimentação</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/baixamanualprestacoes.do?evento=x&amp;idRotina=696" title="Liquidação/Amortização">Liquidação/Amortização</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/baixamanualparcelas2man.do?evento=x&amp;idRotina=3120" title="Baixa Manual de Parcelas">Baixa Manual de Parcelas</a></li>
+<li>
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00009Actuator" class="actuator">Retorno de Cobrança de Prestações</a>
+		<ul id="M00009Menu" class="submenu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/arquivofolhaativoman.do?evento=x&amp;idRotina=702" title="Importação Arquivo Folha Ativos">Importação Arquivo Folha Ativos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/importacaoarquivosiapeman.do?evento=x&amp;idRotina=3109" title="Arquivo SIAPE(D8)">Arquivo SIAPE(D8)</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/retornoCobrancaAtivos.do?evento=x&amp;idRotina=699" title="Folha de Ativos">Folha de Ativos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/baixarprestacoessiapeman.do?evento=x&amp;idRotina=3110" title="SIAPE">SIAPE</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/retornocobrancabeneficiosman.do?evento=x&amp;idRotina=700" title="Folha de Benefícios">Folha de Benefícios</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/retornoCobrancaPrestacoesBoletos.do?evento=x&amp;idRotina=3111" title="Boletos">Boletos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/retornoCobrancaPrestacoes.do?evento=x&amp;idRotina=698" title="Débito Automático ">Débito Automático </a></li>
+		</ul>
+	</li>
+
+<li>
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00010Actuator" class="actuator">Controle de Inadimplentes</a>
+		<ul id="M00010Menu" class="submenu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrizacaocontroleinadimplenciaman.do?evento=x&amp;idRotina=3206" title="Parametrização do Controle de Inadimplentes">Parametrização do Controle de Inadimplentes</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/historicosituacaoinadimplenciaman.do?evento=x&amp;idRotina=3210" title="Histórico de Situação de Inadimplência">Histórico de Situação de Inadimplência</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/historicoparticipanteserasaman.do?evento=x&amp;idRotina=3213" title="Histórico de Participante no SERASA">Histórico de Participante no SERASA</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/emissaocartaman.do?evento=x&amp;idRotina=3212" title="Emissão de Cartas">Emissão de Cartas</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/controleinadimplentesman.do?evento=x&amp;idRotina=3218" title="Controle de Inadimplentes">Controle de Inadimplentes</a></li>
+<li>
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00011Actuator" class="actuator">Relatórios</a>
+		<ul id="M00011Menu" class="submenu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relemissaoparticipantesserasaman.do?evento=x&amp;idRotina=3208" title="Emissão de Participantes à 90 dias no SERASA">Emissão de Participantes à 90 dias no SERASA</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/emissaoparticipantesincluidosserasaman.do?evento=x&amp;idRotina=3210" title="Emissão de participantes a serem incluídos no SERASA">Emissão de participantes a serem incluídos no SERASA</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relmovimentacaoserasaman.do?evento=x&amp;idRotina=3211" title="Emissão de Movimentação no SERASA ">Emissão de Movimentação no SERASA </a></li>
+		</ul>
+	</li>
+
+		</ul>
+	</li>
+
+
+</ul>
+	</li>
+
+
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00012Actuator" class="actuator">Relatórios</a>
+		<ul id="M00012Menu" class="menu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/consultaatrasadosman.do?evento=x&amp;idRotina=704" title="Atrasados">Atrasados</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relcartasinadimplentesman.do?evento=x&amp;idRotina=4123" title="Carta de Inadimplentes">Carta de Inadimplentes</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relconcedidocanceladoliquidadoman.do?evento=x&amp;idRotina=705" title="Concedidos">Concedidos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relparcelasgeradasman.do?evento=x&amp;idRotina=3117" title="Parcelas Geradas">Parcelas Geradas</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relparcelasintegradasnaopagasman.do?evento=x&amp;idRotina=707" title="Parcelas Integradas e Não Pagas">Parcelas Integradas e Não Pagas</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relparcelasgeradasnaointegradasman.do?evento=x&amp;idRotina=708" title="Parcelas Geradas e Não Integradas">Parcelas Geradas e Não Integradas</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relgerencialinadimplentesman.do?evento=x&amp;idRotina=709" title="Relatório Gerencial de Inadimplentes">Relatório Gerencial de Inadimplentes</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relgerencialinadimplentesfaixasaldodevedorman.do?evento=x&amp;idRotina=710" title="Relatório Gerencial de Inadimplentes por Faixa de Saldo Devedor">Relatório Gerencial de Inadimplentes por Faixa de Saldo Devedor</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relgerencialliquidacoesman.do?evento=x&amp;idRotina=711" title="Relatório Gerencial de Liquidações">Relatório Gerencial de Liquidações</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relgerencialrenovacoesman.do?evento=x&amp;idRotina=712" title="Relatório Gerencial de Renovações">Relatório Gerencial de Renovações</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relextratoemprestimoman.do?evento=x&amp;idRotina=2943" title="Extrato">Extrato</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relprestacoesatrasoman.do?evento=x&amp;idRotina=3119" title="Prestações em Atraso">Prestações em Atraso</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/geracaoplanilharecebimentomensalemprestimosman.do?evento=x&amp;idRotina=3044" title="Recebimento Mensal">Recebimento Mensal</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relcobrancasbaixadassiapeman.do?evento=x&amp;idRotina=3107" title="Relatório Cobranças Baixadas via SIAPE">Relatório Cobranças Baixadas via SIAPE</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relcobrancasrecomandadasparaboletosman.do?evento=x&amp;idRotina=3108" title="Cobranças SIAPE Recomandadas para Boletos">Cobranças SIAPE Recomandadas para Boletos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relcobrancasrecomandadasparadebitoautomaticoman.do?evento=x&amp;idRotina=3116" title="Cobranças SIAPE Recomandadas para Debito Automático">Cobranças SIAPE Recomandadas para Debito Automático</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relmudancacobrancaparcelaman.do?evento=x&amp;idRotina=3122" title="Mudança Forma Cobrança Parcela">Mudança Forma Cobrança Parcela</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relprovisaoduvidososman.do?evento=x&amp;idRotina=3123" title="Provisão Duvidosos">Provisão Duvidosos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/informerendimentosman.do?evento=x&amp;idRotina=3126" title="Informe de Rendimentos">Informe de Rendimentos</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relcriticapreviaintegracaocontabilman.do?evento=x&amp;idRotina=3147" title="Crítica Saldo Prévia x Extrato empréstimo">Crítica Saldo Prévia x Extrato empréstimo</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relcriticasemprestimoparcelasgeradasman.do?evento=x&amp;idRotina=3149" title="Crítica empréstimos vigentes e parcelas não geradas">Crítica empréstimos vigentes e parcelas não geradas</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relacordojudicialfinalizadoman.do?evento=x&amp;idRotina=3163" title="Relatório de Acordo Judicial Finalizado">Relatório de Acordo Judicial Finalizado</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relcobrancasrecomandadasparadebitoautomaticoboletoman.do?evento=x&amp;idRotina=3164" title="Relatório de Cobranças Recomandadas de Débito Automático para Boleto">Relatório de Cobranças Recomandadas de Débito Automático para Boleto</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relpreviaintegracaocontabilman.do?evento=x&amp;idRotina=2977" title="Prévia da Integração Contábil">Prévia da Integração Contábil</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/relespelhointegracaoemprestimocontabilman.do?evento=x&amp;idRotina=3227" title="Espelho da Integração Contábil ">Espelho da Integração Contábil </a></li>
+</ul>
+	</li>
+
+
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00013Actuator" class="actuator">Integração</a>
+		<ul id="M00013Menu" class="menu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/manutencaoemprestimoswebman.do?evento=x&amp;idRotina=714" title="Manutenção Empréstimos Web">Manutenção Empréstimos Web</a></li>
+<li>
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00014Actuator" class="actuator">Parâmetros</a>
+		<ul id="M00014Menu" class="submenu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametroliquidacaoamortizacaoman.do?evento=x&amp;idRotina=668" title="Liquidação Amortização">Liquidação Amortização</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrointegracaocobrancaman.do?evento=x&amp;idRotina=670" title="Cobranças (Contas a Receber)">Cobranças (Contas a Receber)</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrointegracaocontasapagarman.do?evento=x&amp;idRotina=671" title="Contas a Pagar">Contas a Pagar</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/parametrocontascontabeisman.do?evento=x&amp;idRotina=672" title="Contabilidade">Contabilidade</a></li>
+		</ul>
+	</li>
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/confirmapreviadeintegracaocontabilman.do?evento=x&amp;idRotina=3124" title="Confirma Prévia de Integração Contábil">Confirma Prévia de Integração Contábil</a></li>
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/fechamentocontabilman.do?evento=x&amp;idRotina=3041" title="Fechamento Contábil">Fechamento Contábil</a></li>
+</ul>
+	</li>
+
+
+			
+				
+					       	      
+					<li class="menubar">
+
+	<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" id="M00015Actuator" class="actuator">Fechamento</a>
+		<ul id="M00015Menu" class="menu">
+
+	<li><a href="http://prevmestra.com.br/Mestra_Emprestimo/fechamentomesman.do?evento=x&amp;idRotina=716" title="Mensal">Mensal</a></li>
+</ul>
+	</li>
+
+
+			                  
+		</ul></div>
+		
+	</td>
+	<!-- FIM MENU -->
+		
+		
+		<td id="botao1" style="top:50%;" align="left">
+			<img src="./__ Sysprev Web __1_error_files/anteriorMenu.gif" onclick="javascript:menuFlex(&#39;aberto&#39;)" style="cursor:hand">
+		</td>
+		<td id="botao2" style="display:none;top:50%" align="left">
+			<img src="./__ Sysprev Web __1_error_files/proximoMenu.gif" onclick="javascript:menuFlex(&#39;fechado&#39;)" style="cursor:hand">
+		</td>
+	  	<td width="100%" align="left" id="layout_col_principal" valign="top">
+	  		<table width="99%" align="right"><tbody><tr><td>
+		  	
+				
+
+
+
+
+
+
+
+
+
+
+
+
+<form name="requerimentoemprestimoForm" method="post" action="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do" enctype="text/html" onsubmit="return executarAcaoFuncoes(event)"><input type="hidden" name="org.apache.struts.taglib.html.TOKEN" value="69f0d73fbb96f0c4694465335ca15a97">
+
+
+
+<input type="hidden" name="modoPlc" value="inclusaoPlc">
+<input type="hidden" name="usuarioUltAlteracao" value="administrador">
+<!-- Retornar se nao houver melhor forma de identificar portlets em uma mesma pagina -->
+<!-- html:hidden property="< %=PlcConstantes.PORTLET_KEY% >" /> -->
+<!-- Controle de submissao duplicada utilizando token da Struts -->
+
+
+
+
+
+<input type="hidden" name="detCorrPlc" value="">
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+td.msg_confirma{background:#D8E5ED;color:#144888;font:bold 11px Verdana}
+td.msg_erro{background:#FFDBDB;color:#AB3838;font:normal bold 11px Verdana;height:auto}
+td.msg_erro_ver{background:#89B39C;color:#FFFFFF;font:normal bold 11px Verdana;height:auto}
+td.msg_erro_am{background:#FFFEAF;color:#413A01;font:normal bold 11px Verdana;height:auto}
+</style>
+
+<iframe id="FRAME_MENSAGEM_FLUTUANTE" src="./__ Sysprev Web __1_error_files/saved_resource.html" style="width:0;height:0;position:absolute;top:55;z-index:600;filter:alpha(opacity=0);"></iframe>
+<div id="DIV_MENSAGEM_FLUTUANTE" style="width:700;height:1;position:absolute;top:58;z-index:800;filter:alpha(opacity=70); -moz-opacity:0.7;">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td width="40" valign="top"><img alt="Erros nesta página" src="./__ Sysprev Web __1_error_files/erro_ico.gif"></td>
+<td>
+<!-- TABELA DE MENSAGENS -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr><td width="7" height="7"><img height="7" hspace="0" src="./__ Sysprev Web __1_error_files/erro_se.gif" vspace="0" width="7"></td><td height="7" background="./__ Sysprev Web __1_error_files/erro_s.gif"></td><td width="7" height="7"><img height="7" src="./__ Sysprev Web __1_error_files/erro_sd.gif" width="7"></td></tr>
+<tr><td width="7" background="./__ Sysprev Web __1_error_files/erro_e.gif"></td><td class="msg_erro">
+<!-- INÍCIO MENSAGENS -->
+
+<script>
+//Coloca foco automático no primeiro campo com erro de validação
+setCampoFocus('codigoFundo');
+</script>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Fundo é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Patrocinadora é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Plano é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Matrícula é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Nome do Participante é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Plano é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Numero de Inscrição  é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Tipo de Empréstimos é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Tipo de Operação é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Salário Bruto é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Salário Líquido é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Valor Máximo Permitido é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Saldo Reserva Líquida é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Data de Crédito é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Valor Solicitado é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Valor da Parcela  é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Comp. Renda(%) é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Prazo é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Forma de Concessão é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Valor a Creditar é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Situação do Plano é obrigatório(a).
+			
+			<br>
+
+			
+			<img align="ABSMIDDLE" alt="Erro" height="11" hspace="4" src="./__ Sysprev Web __1_error_files/erro_li.gif" vspace="4" width="11">
+				
+				Forma de Cobrança é obrigatório(a).
+			
+			<br>
+
+
+<!-- FIM MENSAGENS --></td><td width="7" background="./__ Sysprev Web __1_error_files/erro_d.gif"></td></tr>
+<tr><td width="7" height="7"><img height="7" src="./__ Sysprev Web __1_error_files/erro_ie.gif" width="7"></td><td height="7" background="./__ Sysprev Web __1_error_files/erro_i.gif"></td><td width="7" height="7"><img height="7" src="./__ Sysprev Web __1_error_files/erro_id.gif" width="7"></td>
+</tr>
+</tbody></table>
+<!-- FIM TABELA DE MENSAGENS -->
+</td>
+	<td valign="top">
+		<img id="idTemMenssagemExibida" onclick="econderMgsExibida()" src="./__ Sysprev Web __1_error_files/ico_fechar.gif" width="16" height="16">
+	</td>
+</tr>
+</tbody></table>
+
+
+
+</div>
+<script>
+		function econderMgsExibida() {
+			var obj = window.document.getElementById("DIV_MENSAGEM_FLUTUANTE");
+			var objFrame = window.document.getElementById("FRAME_MENSAGEM_FLUTUANTE");
+			obj.style.visibility = "hidden";
+			objFrame.style.visibility = "hidden";
+		}
+</script>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- INÍCIO ANIMAÇÃO LOADING -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr style="border-bottom: 1px solid rgb(224, 224, 224);">
+	<td class="titulo first" valign="bottom" align="right"><strong><font size="3" color="red">
+			
+				
+				Requerimento
+			
+			
+		</font></strong></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="menu_acoes">
+<tbody><tr><td>
+
+
+
+
+
+
+
+
+
+
+	
+
+
+<!-- 
+		<input type="button" name="evento" value="Calcular" onclick="disparaAcaoBotaoCritica('botaoProcedure')" onmouseover="animar(event , '2')" onmouseout="animar(event, '')" id="botao_menu">
+
+	<input type="submit" name="evento" value="Calcular" onclick="setBotaoAcao(getBotaoArray('GERAR_ARQUIVO'));" onmouseover="animar(event , '2')" onmouseout="animar(event, '')" id="botao_menu">
+	<script>
+	setBotaoAcaoEnter('Calcular');
+	regBotaoEvento('Calcular','CALCULAR');
+	</script>
+ -->
+
+
+
+
+
+
+    
+   
+   	 
+     
+    
+   
+   
+	
+		
+		
+		
+		
+		
+		
+
+
+
+		
+		
+	    	
+
+		
+
+		
+
+	
+				
+		
+		
+		<input type="button" name="evento" value="F7-Novo" onclick="setBotaoAcao(getBotaoArray(&#39;INCLUIR&#39;)); redirect(&#39;/Mestra_Emprestimo/requerimentoemprestimoman.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Emprestimo/midia/mestra/evt_incluir.gif)" title="Novo">
+		<script>
+		
+		</script>
+		
+
+
+		
+
+		
+		<input type="submit" name="evento" value="F10-Gravar" onclick="setBotaoAcao(getBotaoArray(&#39;GRAVAR&#39;));" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Emprestimo/midia/mestra/evt_gravar.gif)" title="Gravar">
+		<script>
+		setBotaoAcaoEnter('F10-Gravar');
+		
+		</script>
+		
+
+		
+
+		
+		
+		
+
+		
+		<input type="button" name="evento" value="F8-Abrir" onclick="setBotaoAcao(getBotaoArray(&#39;ABRIR&#39;)); redirect(&#39;/Mestra_Emprestimo/requerimentoemprestimosel.do?evento=x&#39;);" onmouseover="animar(event , &#39;2&#39;)" onmouseout="animar(event, &#39;&#39;)" id="botao_menu" style="text-align:center; background-position: &#39;left center&#39;;  height: 28px; width: 28px; margin-right:5px; background-repeat: &#39;no-repeat&#39;; padding-left: &#39;5px&#39;; font-size: 0px; background-color: transparent; border: 0px; background: url(/Mestra_Emprestimo/midia/mestra/evt_abrir.gif)" title="Abrir">
+		<script>
+		
+		</script>
+		
+		
+		
+
+		
+
+		
+
+		
+
+		
+		
+		
+	
+		
+		
+	
+		
+		<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" onclick="janelaAjudaHtml(); return false"><img align="ABSMIDDLE" border="0" height="20" hspace="3" src="./__ Sysprev Web __1_error_files/g_botao_ajuda.gif" vspace="0" width="20"></a>
+		
+	</td>
+</tr>
+</tbody></table>
+
+<!-- JANELA DE AJUDA -->
+<style>
+	div#ajuda{
+		width: 200px;
+		background: #F8D1CB;
+		border-bottom: 2px solid #DC3823;
+		margin: 0;
+		padding: 0 0 15px 0;
+		z-index: 5;
+		position: absolute;
+		right: 10px;
+		
+	}
+	div#ajuda h1{
+		position: relative;
+		height: 30px;
+		color: #FFF;
+		margin: 0 0 5px 0;
+		font: bold 18px/30px Tahoma, Arial, Verdana, sans-serif;
+		padding: 0 5px 0 10px;
+		background: #DC3823;
+		border-bottom: 2px solid #FFF;
+	}
+	div#ajuda h1 span{
+		height: 20px;
+		font: bold 11px/16px Verdana, Tahoma, Arial, sans-serif;
+		padding: 0 5px 0 5px;
+		position: absolute;
+		cursor: pointer;
+		right: 5px;
+		top: 5px;
+		color: #FFF;
+		background: #CA230D;
+		border-top: 1px solid #F04933;
+		border-right: 1px solid #A41C0B;
+		border-bottom: 1px solid #A41C0B;
+		border-left: 1px solid #F04933;	
+	}
+	div#ajuda h2{
+		height: 28px;
+		font: bold 18px/28px Tahoma, Arial, Verdana, sans-serif;
+		margin: 10px 5px 10px 20px;
+		padding: 0 0 0 5px;
+		color: #DC3823;
+		background: #FFF;
+		letter-spacing: 0px;
+	}
+	div#ajuda p{
+		font: 11px/14px Verdana, Tahoma, Arial, sans-serif;
+		color: #DC3823;
+		margin: 0 5px 10px 35px;
+	}
+	div#ajuda input{
+		height: 20px;
+		font: bold 11px/15px Verdana, Tahoma, Arial, sans-serif;
+		padding: 0;
+		margin: 0 5px 0 35px;
+		cursor: pointer;
+		color: #FFF;
+		background: #CA230D;
+		border-top: 1px solid #F04933;
+		border-right: 1px solid #A41C0B;
+		border-bottom: 1px solid #A41C0B;
+		border-left: 1px solid #F04933;	
+	}
+</style>
+<div id="ajuda" style="visibility: hidden">
+	<h1>Ajuda <span class="fechar" onclick="janelaAjuda(ajuda);">X</span></h1>
+	
+	<h2>Operação</h2>
+	<p>Em caso de dúvidas sobre como operar este sistema, utilize esta opção.</p>
+	
+	<input type="button" value="Quero Ajuda!" onclick="window.open(&#39;/Mestra_Emprestimo/doc/operacao/operacao_viewlet_swf.html&#39;,&#39;Ajuda&#39;,&#39;&#39;)">
+	
+	
+	
+	<h2>Glossário</h2>
+	<p>Para uma relação com explicação sobre os principais termos utilizados neste sistema, utilize esta opção.</p>
+	
+	<input type="button" value="Quero Ajuda!" onclick="window.open(&#39;/Mestra_Emprestimo/plc/layouts/PlcGlossarioLayout.jsp&#39;,&#39;Ajuda&#39;,&#39;&#39;)">
+	
+	
+	
+</div>
+<!-- FIM JANELA DE AJUDA -->
+</td></tr></tbody></table>
+<script>
+function janelaAjudaHtml() {
+
+    }
+</script>
+
+<script src="./__ Sysprev Web __1_error_files/ConnectPrevMestra.js"></script>
+
+ 
+
+
+
+
+
+
+
+
+
+<!--  <div style="height:580px;witdh:100%;overflow-Y:auto;"> -->
+	<!-- INI -->
+	
+		
+
+
+
+
+
+
+<input type="submit" name="evento" value="RecuperaCustoFinanceiro" id="botaoRecuperaCustoFinanceiro" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="evento Recupera Data Credito" id="recuperaDataCredito" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="evento Disparado Pela Forma Concessao" id="eventoDisparadoPelaFormaConcessao" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="evento Disparado Pelo Valor Solicitado" id="eventoDisparadoPeloValorSolicitado" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="Calcula Financiamento" id="botaoCalculaFinanciamento" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="recuperaDadosContratoVigente" id="recuperaDadosContratoVigente" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="Evento disparador pelo Plano" id="eventoDisparadoPeloPlano" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="Recupera dados do Participante Avalista" id="botaoRecuperaDadosParticipanteAvalista" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="recalcularSalarioLiquido" id="botaoRecalcularSalarioLiquido" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="geraListaEmprestimos" id="eventoDisparadoPeloTipoOperacao" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="eventoDisparadoPeloBeneficiario" id="eventoDisparadoPeloBeneficiario" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="Recupera Dados Bancarios" id="recuperaDadosBancarios" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="recuperaComboDataAcordo" id="recuperaComboDataAcordo" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<input type="submit" name="evento" value="A" id="eventoRefresh" style="visibility:hidden;width:0;height:0">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input type="hidden" name="valorAlterado" value="">
+<input type="hidden" name="situacaoInscricao" value="">
+<input type="hidden" name="identificadorParticipantePlano" value="">
+<input type="hidden" name="codigoSituacaoPlano" value="" id="codigoSituacaoPlano">
+
+<table class="delimitador" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr> 
+		<td class="secao" style="display: none;">
+			
+				
+				Requerimento
+			
+			
+		</td>
+	</tr>
+</tbody></table>
+
+	
+
+
+
+
+
+
+
+<!-- Tira para padronizar a consulta de participantes -->
+
+
+
+
+
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+
+<input type="submit" name="evento" value="recuperaParticipante" id="botaoRecuperaParticipante" style="visibility:hidden;width:0;height:0">
+
+
+
+
+
+
+
+
+
+	
+
+
+<table border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td class="titulo">Fundo&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="campo">
+			<select name="codigoFundo" onchange="disparaAcaoBotao(&#39;botaoComboPatrocinadoraPlano&#39;)" class="campoComErro" title="Escolha a Fundo" autocomplete="off"><option value="" selected="selected">[Selecione...]</option>
+				<option value="001">001 - MESTRA - FUNDAÇÃO DE PREVIDÊNCIA COMPLEMENTAR</option>
+<option value="002">002 - MESTRA - CAIXA DE ASSISTÊNCIA</option></select>
+		</td>
+	</tr>	
+	<tr>
+		<td class="titulo">Patrocinadora&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="campo">
+			<select name="codigoPatrocinadora" onchange="disparaAcaoBotao(&#39;botaoComboPatrocinadoraPlano&#39;)" class="campoComErro" title="Escolha a Patrocinadora"><option value="" selected="selected">[Selecione...]</option></select>
+		</td>
+	</tr>
+	
+	
+	<tr>	
+		<td class="titulo">Plano&nbsp;</td>
+	</tr>
+	<tr>					
+		<td class="campo">
+			<select name="codigoPlano" onchange="disparaAcaoBotao(&#39;botaoEventoDisparadoPeloPlano&#39;);" class="campoComErro" title="Escolha o Plano"><option value="" selected="selected">[Selecione...]</option></select>
+		</td>
+	</tr>
+	
+</tbody></table>
+
+<!-- botao de submit associado ao botaoComboPatrocinadoraPlano -->
+<input type="submit" name="evento" value="Recupera Combo PatrocinadoraPlano" id="botaoComboPatrocinadoraPlano" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<!-- botao de submit associado ao botaoComboPatrocinadoraPlano -->
+<input type="submit" name="evento" value="Evento disparador pelo Plano" id="botaoEventoDisparadoPeloPlano" style="visibility:hidden;width:0px;height:0px;font-size:0px;">
+
+<table>
+	<tbody><tr>
+		<td class="titulo">Matrícula
+			<font color="red">&nbsp;*</font>
+		</td>
+		<td class="titulo">Inscrição
+			<font color="red">&nbsp;*</font>
+		</td>
+		<td class="titulo">Nome do Participante
+		
+		</td>
+	</tr>
+	<tr>
+		<td class="campo"> 
+			<input type="text" name="numeroMatricula" maxlength="10" size="11" value="" onkeypress="return sonumero(event)" onblur="recParticipante(this)" class="campoComErro" title="Informe a matrícula para pesquisa">
+		 <input type="text" name="dgvMatricula" size="2" value="" readonly="readonly" class="texto_obrigatorio"></td>
+		<td class="campo">
+			<input type="text" name="numeroInscricao" maxlength="9" size="10" value="" onblur="recuperaParticipante(this)" class="texto_obrigatorio campoComErro">
+		 </td>
+		<td class="campo"><input type="text" name="nomeParticipante" size="60" value="" readonly="readonly" class="texto_obrigatorio campoComErro"> <input type="hidden" name="identificadorParticipante" value=""></td>
+	</tr>
+</tbody></table>
+
+
+
+
+
+<script>
+	f = document.forms[0];
+	
+	function recParticipante(obj) {
+		f.numeroInscricao.value = '';
+		f.botaoRecuperaParticipante.click();
+	}
+
+	function recuperaParticipante(obj) {
+		f.numeroMatricula.value = '';
+		f.botaoRecuperaParticipante.click();
+	}
+
+</script>
+<input type="hidden" name="id" value="" id="identificadorRequerimento">
+<table>
+	
+</table>
+
+<table>
+	<tbody><tr>
+		<td>
+			<fieldset>
+			<legend style="color: #325D82;">Base de Cálculo</legend>
+				<table>
+					<tbody><tr>
+						<td class="titulo">Tipo de Empréstimos<font color="red">&nbsp;*</font></td>
+						<td class="titulo">Tipo de Operação<font color="red">&nbsp;*</font></td>
+						<td class="titulo">
+							
+						</td>
+						
+						
+						
+						<td class="titulo">Forma de Concessão<font color="red">&nbsp;*</font></td>
+					</tr>
+					<tr>
+						<td>
+							<select name="identificadorTipoEmprestimo" onchange="disparaAcaoBotao(&#39;recuperaDataCredito&#39;);  " class="campoComErro"><option value="" selected="selected">[Selecione...]</option></select>
+						</td>
+						<td>
+							<select name="tipoOperacao" onchange="disparaAcaoBotao(&#39;eventoDisparadoPeloTipoOperacao&#39;);" id="tipoOperacao" class="campoComErro"><option value="" selected="selected">[Selecione...]</option>
+								<option value="1">Requerimento</option>
+								<option value="2">Reforma</option>
+								<option value="3">Refinanciamento</option></select>
+						</td>
+						<td>
+							
+							
+						</td>
+						
+						
+						
+						
+						<td>
+							<select name="tipoFormaConcessao" class="campoComErro"><option value="" selected="selected">[Selecione...]</option>
+								<option value="1">Via Internet</option>
+								<option value="2">Atendimento Pessoal</option>
+								<option value="3">MESTRA CARD</option></select>
+						</td>
+					</tr>
+				</tbody></table>
+				<table>
+					<tbody><tr>
+						<td class="titulo">Salário Bruto<font color="red">&nbsp;*</font></td>
+						<td class="titulo">Pensão Alimentícia</td>
+						<td class="titulo">Empréstimos Outras Instituições</td>
+						<td class="titulo">Outras Deduções</td>
+						<td class="titulo">Salário Líquido<font color="red">&nbsp;*</font></td>
+					</tr>
+					<tr>
+					   <td>
+							<input type="text" name="valorSalarioBrutoFormatado" maxlength="16" size="18" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" onchange="copiaParaLiquido(this);" id="valorSalarioBrutoFormatado" style="text-align:right" class="texto_obrigatorio campoComErro">
+						</td>
+						<td><input type="text" name="valorPensaoAlimenticiaFormatado" maxlength="9" size="11" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" onchange="recalcularSL(this)" style="text-align:right" class="texto"></td>
+						<td><input type="text" name="valorEmprestimoOutrasInstituicoesFormatado" maxlength="9" size="11" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" onchange="recalcularSL(this)" style="text-align:right" class="texto"></td>
+  					
+  					<td><input type="text" name="valorOutrasDeducoesFormatado" maxlength="9" size="11" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" onchange="recalcularSL(this)" style="text-align:right" class="texto"></td>
+  					<td> 
+							<input type="text" name="valorSalarioLiquidacaoFormatado" maxlength="16" size="18" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" onchange="disparaAcaoBotao(&#39;eventoDisparadoPelaFormaConcessao&#39;);" id="valorSalarioLiquidacaoFormatado" style="text-align:right" class="texto_obrigatorio campoComErro">
+					</td>
+					</tr>
+					<tr>
+						<td class="titulo">Valor Máximo Permitido<font color="red">&nbsp;*</font></td>
+						<td class="titulo">Saldo Reserva<font color="red">&nbsp;*</font></td>
+						
+						
+						
+						
+						
+							
+					</tr>
+					<tr>
+						<td><input type="text" name="valorMaximoPermitidoFormatado" maxlength="16" size="18" value="" readonly="readonly" style="text-align:right" class="texto_obrigatorio campoComErro"></td>
+						<td><input type="text" name="valorSaldoReservaLiquidacaoFormatado" maxlength="16" size="18" value="" readonly="readonly" style="text-align:right" class="texto_obrigatorio campoComErro"></td>
+						
+						
+						                 
+							                    
+						
+	                    
+					</tr>
+				</tbody></table>
+				<table>
+					<tbody><tr>
+						<td class="titulo">Data de Solicitação</td>
+						<td class="titulo">Data de Crédito<font color="red">&nbsp;*</font></td>
+						<td class="titulo">Valor Solicitado<font color="red">&nbsp;*</font></td>
+						<td class="titulo">Parcela Inicial<font color="red">&nbsp;*</font></td>
+						<td class="titulo">Percentual sobre o salário<font color="red">&nbsp;*</font></td>
+						<td class="titulo">Prazo<font color="red">&nbsp;*</font></td>
+					</tr>
+					<tr>
+						<td class="campo">
+							<input type="text" name="dataSolicitacaoFormatado" maxlength="10" size="11" value="12/03/2018" onkeyup="DateFormat(this,this.value,event,false)" onfocus="javascript:vDateType=&#39;3&#39;" class="texto" title="Data de Crédito">
+							<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" onclick="abrirCalendario(&#39;/Mestra_Emprestimo/recursos/calendario.jsp&#39;,&#39;dataSolicitacaoFormatado&#39;); return false;">
+							<span class="bt">...</span></a>
+						</td>						
+						<td class="campo">
+						  
+						  
+						  
+						  	
+								<select name="dataCredito" onchange="disparaAcaoBotao(&#39;recuperaDadosContratoVigente&#39;)" class="campoComErro"><option value="" selected="selected">[Selecione...]</option></select>
+							
+							
+							
+						  
+							
+						</td>
+						<td>
+							
+						
+						
+						
+						<input type="text" name="valorSolicitadoFormatado" maxlength="16" size="18" value="" id="valorSolicitadoFormatado" style="text-align:right" class="texto_obrigatorio campoComErro">
+						
+						
+						
+			           
+						</td>
+						<td>
+							<input type="text" name="valorParcelaFormatado" maxlength="16" size="18" value="" readonly="readonly" id="valorParcelaFormatado" style="text-align:right" class="campoComErro">
+						</td>
+						<td>
+							<input type="text" name="percentualRendaFormatado" maxlength="16" size="18" value="" readonly="readonly" id="percentualRendaFormatado" style="text-align:right" class="texto_obrigatorio campoComErro">
+						</td>
+						<td>
+							<select name="quantidadePrazo" onchange="disparaAcaoBotao(&#39;eventoDisparadoPeloValorSolicitado&#39;)" class="campoComErro"><option value="" selected="selected">[Selecione...]</option></select>
+						</td>
+					</tr>
+				</tbody></table>
+			</fieldset>
+		</td>
+	</tr>
+</tbody></table>
+
+<table>
+	<tbody><tr>
+		<td>
+			<fieldset>
+			<legend style="color: #325D82;">Outros Empréstimos<font color="red">&nbsp;*</font></legend>
+				<table>
+					<tbody><tr>
+						<td class="titulo">Fundação</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" name="valorSaldoOutrosEmprestimosFormatado" maxlength="16" size="18" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" style="text-align:right" class="texto">
+						</td>
+					</tr>
+				</tbody></table>
+			</fieldset>
+		</td>
+		
+		<td>
+						
+		
+		</td><td>
+				<table>
+				<tbody><tr>
+				<td class="titulo">Valor Base da Parcela</td>
+				<td class="titulo">FQM</td>
+				<td class="titulo">Valor de Fundo de Liquidez</td>
+				
+				</tr>
+				<tr><td>
+						<input type="text" name="valorBaseParcelaFormatado" maxlength="16" size="16" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" readonly="readonly" style="text-align:right" class="texto">
+						</td>
+						<td>
+							<input type="text" name="valorFQMFormatado" maxlength="16" size="16" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" readonly="readonly" style="text-align:right" class="texto">
+						</td>
+						<td>
+							<input type="text" name="valorTaxaLiquidezFormatado" maxlength="16" size="16" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" readonly="readonly" style="text-align:right" class="texto">
+						</td>
+				</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+<a name="ancoraCalcular">
+<table class="delimitador" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr> 
+		<td align="center" class="secao">
+			<input type="button" name="Calcular" value="Calcular" onclick="disparaAcaoBotao(&#39;botaoCalculaFinanciamento&#39;)" id="botao_menu">
+		</td>
+	</tr>
+</tbody></table>
+
+
+<table border="0" width="100%">
+	<tbody><tr>
+		<td>
+			<fieldset>
+			<legend style="color: #325D82;">Resultado do Cálculo - Dados do Financiamento</legend>
+				<table border="0">
+					<tbody><tr>  
+						<td class="titulo" width="185">Valor Solicitado</td>
+						<td><input type="text" name="valorSolicitadoCalculadoFormatado" maxlength="12" size="20" value="" readonly="readonly" style="text-align:right" class="texto_obrigatorio"></td>
+						<td rowspan="6">&nbsp;</td>
+						<td class="titulo" width="185">Número de Reciclagens</td>
+						<td>
+							<input type="text" name="numeroRecalculo" maxlength="12" size="20" value="" readonly="readonly" style="text-align:right" class="texto_obrigatorio">
+						</td>
+					</tr>
+					<tr>
+						<td class="titulo">IOF</td>
+						<td>
+							<input type="text" name="valorIofFormatado" maxlength="12" size="20" value="" readonly="readonly" style="text-align:right" class="texto_obrigatorio">
+						</td>
+						<td class="titulo">Taxa Administrativa</td>
+						<td>
+							<input type="text" name="valorTaxaAdministracaoFormatado" maxlength="12" size="20" value="" readonly="readonly" style="text-align:right" class="texto_obrigatorio">
+						</td>
+					</tr>
+					<tr>
+						<td class="titulo">Reciclagem</td>
+						<td>
+							<input type="text" name="valorRecalculoFormatado" maxlength="12" size="20" value="" onkeypress="return(formataDecimalPatch(this, event,&#39;.&#39;,&#39;,&#39;, 2))" readonly="readonly" style="text-align:right" class="texto_obrigatorio">
+						</td>
+						<td class="titulo">Valor a Creditar<font color="red">&nbsp;*</font></td>
+						<td>
+							<input type="text" name="valorCreditoFormatado" maxlength="12" size="20" value="" readonly="readonly" style="text-align:right" class="texto_obrigatorio campoComErro">
+						</td>
+					</tr>
+					<tr>
+						<td class="titulo">Número do Contrato</td>
+						<td><input type="text" name="numeroContrato" maxlength="12" size="20" value="" readonly="readonly" class="texto_obrigatorio"></td>
+						<td class="titulo">Índice de Atualização</td>
+						<td><input type="text" name="descricaoIndiceAtualizacao" size="45" value="" readonly="readonly" class="texto_obrigatorio"></td>
+					</tr>
+
+				
+
+				</tbody></table>
+			</fieldset>
+		</td>
+	</tr>
+</tbody></table>
+
+<table border="0" width="100%">
+	<tbody><tr>
+		<td>
+			<fieldset>
+			<legend style="color: #325D82;">Dados Bancários</legend>
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr>
+					<td class="titulo">Banco</td>
+					<td class="titulo">
+						Agência
+						<input type="hidden" name="identificadorConta" value="">
+						<input type="hidden" name="identificadorAgencia" value="">
+						<input type="hidden" name="identificadorBanco" value="">
+					</td>
+				</tr>
+				<tr>
+					<td class="campo">
+						<input type="text" name="numeroBanco" maxlength="3" size="8" value="" readonly="readonly" class="texto" title="???pt_BR.ajuda.numero.banco???">
+						<input type="text" name="nomeBanco" maxlength="30" size="40" value="" readonly="readonly" class="texto" title="???pt_BR.ajuda.nome.banco???">
+					</td>
+					<td class="campo">
+						<input type="text" name="numeroAgencia" maxlength="7" size="8" value="" readonly="readonly" class="texto" title="Informe o Numero da Agência">
+						<input type="text" name="numeroDigitoverificadorAgencia" maxlength="7" size="8" value="" readonly="readonly" class="texto" title="Informe o Numero da Agência">
+						<input type="text" name="nomeAgencia" maxlength="30" size="30" value="" readonly="readonly" class="texto" title="Informe o Nome da Agência">
+					</td>
+				</tr>
+				<tr>
+					<td class="titulo" colspan="2">
+						Conta Corrente
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						Dígito Verificador
+					</td>
+				</tr>
+				<tr>
+					<td class="campo" colspan="2">
+						<input type="text" name="numeroContaCorrente" maxlength="15" size="17" value="" readonly="readonly" class="texto" title="???pt_BR.ajuda.numero.conta???">
+						<input type="text" name="numeroDigitoverificadorContacorrente" maxlength="2" size="7" value="" readonly="readonly" class="texto" title="???pt_BR.ajuda.numero.conta???">
+					</td>
+				</tr>	
+			</tbody></table>
+	</fieldset>
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+<table class="delimitador" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr> 
+		<td class="secao">
+			Dados Cadastrais do Mutuário
+		</td>
+	</tr>
+</tbody></table>
+	
+	<table>
+		<tbody><tr>
+			<td class="titulo">
+					Matrícula<font color="red">&nbsp;*</font>
+				</td>
+				<td class="titulo">
+					Grupo<font color="red">&nbsp;*</font>
+				</td>
+				<td class="titulo">
+				   Lotação<font color="red">&nbsp;*</font>
+				</td>
+			</tr>
+			<tr>
+				<td class="campo">
+				</td>						
+		    	<td class="campo">
+		    		
+				</td>
+				<td class="campo">
+					
+				</td>
+				<td class="campo">
+					
+				</td>
+			</tr>
+			<tr>
+				<td class="titulo">	
+					Nome do Mutuário<font color="red">&nbsp;*</font>
+				</td>
+			</tr>
+			<tr>							
+		    	<td class="campo" colspan="2">
+					
+				</td>
+			</tr>
+			<tr>
+				<td class="titulo">
+					Endereço Residencial<font color="red">&nbsp;*</font>
+				</td>
+			</tr>
+			<tr>							
+		    	<td class="campo" colspan="2">
+					 - 
+					
+				</td>
+			</tr>
+			<tr>
+				<td class="titulo">
+					CEP<font color="red">&nbsp;*</font>
+				</td>
+				<td class="titulo">
+					Bairro<font color="red">&nbsp;*</font>
+				</td>
+				<td class="titulo">
+					Cidade<font color="red">&nbsp;*</font>
+				</td>
+			</tr>
+			<tr>							
+		    	<td class="campo">
+					
+				</td>
+				<td class="campo">
+					
+				</td>
+				<td class="campo">
+					
+				</td>
+			</tr>
+			<tr>
+				<td class="titulo">
+					DDD<font color="red">&nbsp;*</font>
+				</td>
+				<td class="titulo">
+					Telefone<font color="red">&nbsp;*</font>
+				</td>
+				<td class="titulo">
+					RG<font color="red">&nbsp;*</font>
+				</td>
+				<td class="titulo">
+					CPF<font color="red">&nbsp;*</font>
+				</td>
+				<td class="titulo">
+					Data de Nascimento<font color="red">&nbsp;*</font>
+				</td>
+			</tr>
+			<tr>			
+				<td class="campo">
+					
+				</td>				
+		    	<td class="campo">
+					
+				</td>
+				<td class="campo">
+					
+				</td>
+				<td class="campo">
+					
+				</td>
+				<td class="campo">
+					
+				</td>
+			</tr>
+			<tr>
+				<td class="titulo" colspan="4">E-mail para Recebimento de Informações<font color="red">&nbsp;*</font></td>
+			</tr>
+			<tr>
+				<td class="campo" colspan="4">
+					<input type="text" name="descricaoEmail" maxlength="45" size="45" value="" class="texto">
+				</td>
+			</tr>
+	</tbody></table>
+
+
+
+
+</a><a name="ancoraDetalhe2">
+
+<script>
+	function disparaAcaoBotaoEx(strEvento, obj){
+		if (obj.value != '')
+			disparaAcaoBotao(strEvento);
+	}
+
+   if ('' != '') {
+		document.location.hash='';
+	}
+	
+	function localizarNovo() {
+			var theForm = document.forms[0];
+			if (theForm.evento) {
+				var eventos = theForm.evento;
+				for (i = 0; i < eventos.length; i++) {
+					if (eventos[i].value == 'Novo') {
+						
+						eventos[i].style.display = 'none'
+						}
+					}
+				}
+		}
+
+	function recalcularSL(campo) {
+		if (campo.name == 'valorPensaoAlimenticiaFormatado') {
+			document.forms[0].valorAlterado.value = "PA";
+		} else if (campo.name == 'valorEmprestimoOutrasInstituicoesFormatado') {
+			document.forms[0].valorAlterado.value = "OI";
+		}
+
+		document.getElementById('botaoRecalcularSalarioLiquido').click();
+	}
+
+	function recalcularSLAlt(campo) {
+		//document.forms[0].valorSalarioLiquidacaoOriginalFormatado.value = campo.value;
+		document.getElementById('botaoRecalcularSalarioLiquido').click();
+	}
+
+	function copiaParaLiquido(campo) {
+		document.forms[0].valorSalarioLiquidacaoFormatado.value = campo.value;
+		recalcularSL(campo);
+	}
+
+	function trocarBeneficiario() {
+		var obj = document.getElementById("tipoOperacao");
+		var campo = document.getElementById("valorSalarioBrutoFormatado");
+		if ((obj && obj.value != '') || (campo && campo.value != '')) {
+			obj.value = "";
+			disparaAcaoBotao('eventoDisparadoPeloBeneficiario');
+		}
+	}
+
+	function verificaSituacao(){
+		if(document.forms[0].codigoSituacaoPlano.value == '03'){
+			document.getElementById('tipoOperacao').disabled = true;
+		}
+	}
+
+	verificaSituacao();
+
+
+	
+function recuperaValorMargemAjax(){
+
+
+
+	
+   var valorMargem = $.ajax({
+        
+	    type:"GET",
+	    dataType:"JSON",
+	    url:"requerimentoemprestimoman.do?evento=recuperaValorMargem",
+	    data:{teste:"teste"},
+	    cache:false
+
+   }).done(function(html){
+
+	   alert("FUNFO!");
+
+   }).fail(function(html){
+
+		   alert("ERRO!");
+   });
+
+   
+	
+}
+
+function verificaCampos(){
+	var valorSolicitado = document.getElementById('valorSolicitadoFormatado').value;
+
+	if(valorSolicitado!=''){
+		disparaAcaoBotao('eventoDisparadoPeloValorSolicitado');
+	}
+}
+
+function calculaValorMargemFinal(){
+	var url   = '?evento=calculaValorMargemFinal';
+	jQuery.ajax({
+		type : 'POST',
+		dataType : 'json',
+		url : url,
+		data : {
+					valorMargemDigitadaFormatado : $('#valorMargemDigitadaFormatado').val(),
+					valorUltimaPrestacaoFormatado : $('#valorUltimaPrestacaoFormatado').val() 
+			   },
+		success : function(retorno) {
+			if(retorno != null && retorno != undefined && retorno != 'undefined'){
+				
+				
+				$('#valorMargemFinal').val(retorno.valorMargem);
+			}else{
+				$('#valorMargemFinal').val('');
+			}
+
+			validaCampoValorSolicitante();
+		},
+		error : function(xhr, status, error) {
+			
+		}
+	});	
+}
+
+function validaCampoValorSolicitante(){
+	var valorSolicitadoFormatado = $('#valorSolicitadoFormatado').val();
+	if(valorSolicitadoFormatado != null && valorSolicitadoFormatado != '' && valorSolicitadoFormatado != 'undefined'){
+		disparaAcaoBotao('eventoDisparadoPeloValorSolicitado');
+	}
+}
+</script>
+
+
+
+
+
+		
+		
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+<fmt:setbundle basename="ApplicationResources">
+
+
+
+
+</fmt:setbundle></a><a name="detalhe2Plc_Det"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var ancora 	= "";
+	var pos 		= -1;
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		
+		<td class="col_hierarq">
+			<!-- Botao de + - -->
+			
+				
+				<script>
+					ancora 	= document.location.hash
+					ancora	= ancora.substring(ancora.indexOf("#")+1, ancora.length);
+					pos = ancora.lastIndexOf("#");
+					if(pos == ancora.length)
+						ancora = ancora.substring(0,pos);
+				</script>
+					<input type="button" name="evento" value="-" onclick="redirect(&#39;/Mestra_Emprestimo/requerimentoemprestimoman.do;jsessionid=8E2A998BEA8723FF783CE4D7E741A495?evento=portlet&amp;pIdPlc=detalhe2Plc_Det&amp;acao=retrai&amp;pBPlc=0&amp;pOPlc=0#detalhe2Plc_Det&#39;); return false;" class="botao_menos">
+					
+					
+			<!-- Fim botao + - -->
+			
+			
+		</td>
+		
+				
+		<td>
+		<!-- Barra de funções do navegador -->
+		
+			<table class="componenteRetratil" width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tbody><tr>
+					<td class="secao">
+						<!-- Título - Sempre Aparece -->
+						
+						Cobrança&nbsp;
+						
+						
+						<!-- Fim titulo -->
+					</td>
+					<!-- Função ... -->
+					<!-- Controles do topo -->
+					
+					<!-- Controles específicos - programação livre -->
+					<td class="secao">
+					&nbsp;
+					
+					
+					
+					
+					
+					
+					</td>
+					 
+					
+					
+					
+					
+					<!-- Fim Controles do topo -->
+				</tr>
+			</tbody></table>
+			
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td class="col_hierarq">&nbsp;</td>
+		<td>
+			<table class="conteudoComponenteRetratil" width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tbody><tr>
+					<td>
+						
+						
+						
+						
+
+
+
+
+	<table border="0" cellspacing="0" cellpadding="0">
+		<tbody><tr>
+			<td>
+			
+			
+				
+				</td></tr><tr>
+					<td class="titulo">
+						&nbsp;
+					</td>
+					<td class="titulo">
+						Data Inicial
+					</td>
+					<td class="titulo">
+						Data Final
+					</td>
+					<td class="titulo">
+						Situação do Plano<font color="red">&nbsp;*</font>
+					</td>
+					<td class="titulo">
+					   Forma de Cobrança<font color="red">&nbsp;*</font>
+					</td>
+				</tr>
+				
+			
+  						
+					<tr>
+						<td class="titulo"> 
+							1
+							<input type="hidden" name="detalhe2Plc_Det[0].idAux" value="">
+							
+						</td>
+						<td class="campo">
+							
+								<input type="text" name="detalhe2Plc_Det[0].dataInicioVigenciaFormatado" maxlength="10" size="10" value="12/03/2018" onkeyup="DateFormat(this,this.value,event,false)" onfocus="javascript:vDateType=&#39;3&#39;" class="texto" title="Informe a Data de Cobrança">
+									<a href="http://prevmestra.com.br/Mestra_Emprestimo/requerimentoemprestimoman.do#" onclick="abrirCalendario(&#39;/Mestra_Emprestimo/recursos/calendario.jsp&#39;,&#39;detalhe2Plc_Det[0].dataInicioVigenciaFormatado&#39;); return false;">
+											<span class="bt">...</span>
+									</a>
+							
+							
+					    </td>
+					    
+					    <td class="campo">
+							<input type="text" name="detalhe2Plc_Det[0].dataFimVigenciaFormatado" maxlength="10" size="10" value="" onkeyup="DateFormat(this,this.value,event,false)" onfocus="javascript:vDateType=&#39;3&#39;" readonly="readonly" class="texto_obrigatorio" title="Informe a Data de Cobrança">
+						</td>
+						<td class="campo">
+							<select name="detalhe2Plc_Det[0].identificadorSituacaoPlanoFormatado" disabled="disabled" class="campoComErro"><option value="" selected="selected">[Selecione...]</option>
+								<option value="1">01 - ATIVO</option>
+<option value="2">02 - CANCELADO</option>
+<option value="3">03 - AUXÍLIO-DOENÇA</option>
+<option value="4">04 - AUTOPATROCINADO</option>
+<option value="5">05 - AFASTADO</option>
+<option value="6">06 - CANCELADO SEM RESGATE</option>
+<option value="8">08 - PENSÃO</option>
+<option value="9">09 - APOSENTADORIA-INVALIDEZ</option>
+<option value="10">10 - APOSENTADORIA-IDADE</option>
+<option value="11">11 - APOS-TEMPO DE CONTRIBUIÇÃO</option>
+<option value="12">12 - APOSENTADORIA ESPECIAL</option>
+<option value="13">13 - APOS-TEMPO DE CONTR.ANTECIPADA</option>
+<option value="14">14 - APOS-ESPECIAL ANTECIPADA</option>
+<option value="15">15 - AGUARDANDO BEN PROP DIF</option>
+<option value="16">16 - AGUARDANDO RESPOSTA</option>
+<option value="17">17 - FALECIDO</option>
+<option value="18">18 - INVALIDEZ S/ CARÊNCIA SUPL</option>
+<option value="19">19 - AGUARDANDO OPÇÃO</option>
+<option value="20">20 - PORTABILIDADE</option>
+<option value="21">21 - BPD - BENEF.PROP.DIFERIDO</option>
+<option value="22">22 - LICENÇA SEM VENCIMENTOS</option>
+<option value="23">23 - AUTOPATROCINIO PARCIAL</option>
+<option value="24">24 - MIGRADO</option>
+<option value="25">25 - ASSISTIDO FALECIDO</option>
+<option value="26">26 - AUXILIO-DOENÇA S/CARENCIA SUPL</option>
+<option value="27">27 - APOSENTADO</option>
+<option value="30">55 - RERERER</option>
+<option value="31">28 - ATIVO / 1 CONTRIB</option></select>
+						</td>
+					    <td class="campo">
+							
+							
+								<select name="detalhe2Plc_Det[0].identificadorFormaCobrancaFormatado" class="campoComErro"><option value="" selected="selected">[Selecione...]</option></select>
+							
+								
+						</td>
+					</tr>			
+				
+				
+		
+		
+</tbody></table>
+
+
+
+
+
+<script>
+if('' != '') {
+   location.hash='';
+}
+
+
+
+
+</script>
+						
+					</td>
+				</tr>
+			</tbody></table>
+
+		</td>
+	</tr>
+</tbody></table>
+
+		
+	<!-- FIM -->
+<!--  </div> -->
+
+
+<script>
+//script que varre todos os forms da tela e em cada form varre todos os campos(deste form) para colocar o css correto quando obrigatorio
+for(var i = 0; i < document.forms.length; i++){
+	for(var j = 0; j < document.forms[i].elements.length; j++){
+		if(document.forms[i].elements[j].className == 'texto campoComErro' || document.forms[i].elements[j].className == 'valor campoComErro'){
+			document.forms[i].elements[j].className = 'campoComErro';
+		}
+	}
+}
+</script>
+
+</form>
+
+			
+			</td></tr></tbody></table>
+		</td>
+	</tr>
+	
+	<tr height="1%">
+		<td colspan="4">
+	    	
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tbody><tr height="10px">     
+		<td align="center" class="rodape" colspan="3">	
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr>
+					<td align="left" colspan="3">&nbsp;</td>
+					<td align="right" style="color:#2D7991;font:normal bold 10px Verdana;">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+					<td align="right" style="color:#2D7991;font:normal bold 10px Verdana;">
+						v5.0.0 
+								
+									
+									
+									
+									
+									
+								
+						- Copyright Mestra Informática e Tecnologia Ltda. &nbsp;&nbsp;
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+<script>
+regBotaoEvento('Desconectar','DESCONECTAR');
+regEvento('Desconectar','MENSAGEM','');
+regMensagem('Desconectar','CONFIRMACAO','Tem certeza que deseja desconectar?');
+</script>
+		</td>
+	</tr>
+	
+	</tbody></table>
+	<!-- INICIO ANIMACAO LOADING //Felipe Reis -->
+	
+		<div id="carregador_geral" style="display: none; visibility: hidden;"></div>
+			<div id="carregador_pai" style="display: none; visibility: hidden;">
+				<div id="carregador">
+				<div id="titulo_loading" align="center">Aguarde carregando ...</div>
+				<div id="carregador_fundo"><div id="barra_progresso"> </div></div>
+			</div>
+		</div>
+		<script>
+				iniciaEventos(document.forms[0]);
+		</script>
+		
+	
+	<!-- FIM ANIMACAO LOADING //Felipe Reis -->
+	
+
+<div style="visibility: hidden; position: absolute; left: 70%; top: 4%; z-index: 999;"><img src="./__ Sysprev Web __1_error_files/logo_conectprevS1.gif"></div><div style="visibility: hidden; position: absolute; left: 70%; top: 4%; z-index: 999;"><img src="./__ Sysprev Web __1_error_files/logo_conectprevS1.gif"></div><span style="border-radius: 3px; text-indent: 20px; width: auto; padding: 0px 4px 0px 0px; text-align: center; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; font-size: 11px; line-height: 20px; font-family: &quot;Helvetica Neue&quot;, Helvetica, sans-serif; color: rgb(255, 255, 255); background: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMzBweCIgd2lkdGg9IjMwcHgiIHZpZXdCb3g9Ii0xIC0xIDMxIDMxIj48Zz48cGF0aCBkPSJNMjkuNDQ5LDE0LjY2MiBDMjkuNDQ5LDIyLjcyMiAyMi44NjgsMjkuMjU2IDE0Ljc1LDI5LjI1NiBDNi42MzIsMjkuMjU2IDAuMDUxLDIyLjcyMiAwLjA1MSwxNC42NjIgQzAuMDUxLDYuNjAxIDYuNjMyLDAuMDY3IDE0Ljc1LDAuMDY3IEMyMi44NjgsMC4wNjcgMjkuNDQ5LDYuNjAxIDI5LjQ0OSwxNC42NjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIj48L3BhdGg+PHBhdGggZD0iTTE0LjczMywxLjY4NiBDNy41MTYsMS42ODYgMS42NjUsNy40OTUgMS42NjUsMTQuNjYyIEMxLjY2NSwyMC4xNTkgNS4xMDksMjQuODU0IDkuOTcsMjYuNzQ0IEM5Ljg1NiwyNS43MTggOS43NTMsMjQuMTQzIDEwLjAxNiwyMy4wMjIgQzEwLjI1MywyMi4wMSAxMS41NDgsMTYuNTcyIDExLjU0OCwxNi41NzIgQzExLjU0OCwxNi41NzIgMTEuMTU3LDE1Ljc5NSAxMS4xNTcsMTQuNjQ2IEMxMS4xNTcsMTIuODQyIDEyLjIxMSwxMS40OTUgMTMuNTIyLDExLjQ5NSBDMTQuNjM3LDExLjQ5NSAxNS4xNzUsMTIuMzI2IDE1LjE3NSwxMy4zMjMgQzE1LjE3NSwxNC40MzYgMTQuNDYyLDE2LjEgMTQuMDkzLDE3LjY0MyBDMTMuNzg1LDE4LjkzNSAxNC43NDUsMTkuOTg4IDE2LjAyOCwxOS45ODggQzE4LjM1MSwxOS45ODggMjAuMTM2LDE3LjU1NiAyMC4xMzYsMTQuMDQ2IEMyMC4xMzYsMTAuOTM5IDE3Ljg4OCw4Ljc2NyAxNC42NzgsOC43NjcgQzEwLjk1OSw4Ljc2NyA4Ljc3NywxMS41MzYgOC43NzcsMTQuMzk4IEM4Ljc3NywxNS41MTMgOS4yMSwxNi43MDkgOS43NDksMTcuMzU5IEM5Ljg1NiwxNy40ODggOS44NzIsMTcuNiA5Ljg0LDE3LjczMSBDOS43NDEsMTguMTQxIDkuNTIsMTkuMDIzIDkuNDc3LDE5LjIwMyBDOS40MiwxOS40NCA5LjI4OCwxOS40OTEgOS4wNCwxOS4zNzYgQzcuNDA4LDE4LjYyMiA2LjM4NywxNi4yNTIgNi4zODcsMTQuMzQ5IEM2LjM4NywxMC4yNTYgOS4zODMsNi40OTcgMTUuMDIyLDYuNDk3IEMxOS41NTUsNi40OTcgMjMuMDc4LDkuNzA1IDIzLjA3OCwxMy45OTEgQzIzLjA3OCwxOC40NjMgMjAuMjM5LDIyLjA2MiAxNi4yOTcsMjIuMDYyIEMxNC45NzMsMjIuMDYyIDEzLjcyOCwyMS4zNzkgMTMuMzAyLDIwLjU3MiBDMTMuMzAyLDIwLjU3MiAxMi42NDcsMjMuMDUgMTIuNDg4LDIzLjY1NyBDMTIuMTkzLDI0Ljc4NCAxMS4zOTYsMjYuMTk2IDEwLjg2MywyNy4wNTggQzEyLjA4NiwyNy40MzQgMTMuMzg2LDI3LjYzNyAxNC43MzMsMjcuNjM3IEMyMS45NSwyNy42MzcgMjcuODAxLDIxLjgyOCAyNy44MDEsMTQuNjYyIEMyNy44MDEsNy40OTUgMjEuOTUsMS42ODYgMTQuNzMzLDEuNjg2IiBmaWxsPSIjYmQwODFjIj48L3BhdGg+PC9nPjwvc3ZnPg==&quot;) 3px 50% / 14px 14px no-repeat rgb(189, 8, 28); position: absolute; opacity: 1; z-index: 8675309; display: none; cursor: pointer; border: none; -webkit-font-smoothing: antialiased;">Salvar</span><span style="width: 24px; height: 24px; background: url(&quot;data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxtYXNrIGlkPSJtIj48cmVjdCBmaWxsPSIjZmZmIiB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI2IiByeT0iNiIvPjxyZWN0IGZpbGw9IiMwMDAiIHg9IjUiIHk9IjUiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgcng9IjEiIHJ5PSIxIi8+PHJlY3QgZmlsbD0iIzAwMCIgeD0iMTAiIHk9IjAiIHdpZHRoPSI0IiBoZWlnaHQ9IjI0Ii8+PHJlY3QgZmlsbD0iIzAwMCIgeD0iMCIgeT0iMTAiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0Ii8+PC9tYXNrPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IiNmZmYiIG1hc2s9InVybCgjbSkiLz48L3N2Zz4=&quot;) 50% 50% / 14px 14px no-repeat rgba(0, 0, 0, 0.4); position: absolute; opacity: 1; z-index: 8675309; display: none; cursor: pointer; border: none; border-radius: 12px;"></span></body></html>

@@ -1,0 +1,100 @@
+
+/* ############################# LOADING ##############################################################################################
+	############################ .css responsável pela animação do loading #############################################################
+	############################ extraído e modificado do google por Felipe Reis 09-02-2009 09:30 ###################################### */
+#barra_progresso
+{
+    FONT-SIZE: 1px;
+    LEFT: 0px;
+    WIDTH: 1px;
+    POSITION: relative;
+    TOP: 0px;
+    HEIGHT: 10px;
+    BACKGROUND-COLOR:#beccdf;
+    Z-INDEX: 9999;
+}
+#carregador_geral
+{
+    WIDTH: 100%;
+    HEIGHT: 100%;
+    POSITION: absolute;
+    TOP: 1px;
+    TEXT-ALIGN: center;
+    Z-INDEX: 9999;
+    background-color: #beccdf;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.7;
+    opacity: 0.7;
+}
+#carregador_pai
+{
+    WIDTH: 100%;
+    POSITION: absolute;
+    TOP: 40%;
+    TEXT-ALIGN: center;
+    Z-INDEX: 9999;
+}
+#carregador_fundo
+{
+    FONT-SIZE: 1px;
+    LEFT: 8px;
+    WIDTH: 170px;
+    POSITION: relative;
+    TOP: 8px;
+    HEIGHT: 8px;
+    BACKGROUND-COLOR: #ebebe4;
+    Z-INDEX: 9999;
+    border-top:1px solid #226D91;
+    border-left:1px solid #226D91;
+    border-bottom:1px solid #91C4E3;
+    border-right:1px solid #91C4E3;
+}
+
+#titulo_loading{
+	FONT-FAMILY: Tahoma, Helvetica, sans;
+	color:#325D82;
+	font-size: 14px;
+	PADDING-LEFT: 50%;
+}
+#carregador
+{
+    PADDING-RIGHT: 0px;
+    DISPLAY: block;
+    PADDING-LEFT: 0px;
+    FONT-SIZE: 11px;
+    Z-INDEX: 9999;
+    PADDING-BOTTOM: 16px;
+    MARGIN: 0px auto;
+    WIDTH: 100px;
+    COLOR: #000000;
+    PADDING-TOP: 10px;
+    FONT-FAMILY: Tahoma, Helvetica, sans;
+    TEXT-ALIGN: left;
+}
+
+/*Estilo do novo loading que foi recuperado do projeto FAPES_Simulador*/
+.load_carregar {
+	width: 100%; 
+    height: 100%; 
+	position: fixed;
+    background-color: gray;
+ 	/* for IE */
+ 	filter: alpha(opacity=80);
+ 	/* css standard */
+	opacity: 0.8;
+    text-align: center;
+    top: 0;
+    left: 0;
+    display: none;
+    visibility: hidden;
+    z-index: 1200;
+}
+
+.load_carregar img {
+	background: transparent; 
+	width: 70px;
+	z-index: 1201;
+	position: absolute;
+	top: 45%;
+	left: 45%;
+}

@@ -1,0 +1,349 @@
+<style>
+
+	/* STYLE BASE CANVAS */
+	#hm-syscall-canvas{
+		position: fixed;
+		right: 15px;
+		bottom:20px;
+		z-index: 9999;
+		font-weight: 300;
+		font-family: 'Open Sans', sans-serif;
+	}
+	#hm-syscall-canvas a.title{
+		padding: 10px 20px;
+		/*background: #1F4F8D;*/
+		background: #2d60a2;
+		border-radius: 100px;
+		font-weight: 400;
+		font-size: 14px;
+		color: #FFFFFF;
+		display: block;
+		cursor: pointer;
+	}
+	#hm-syscall-canvas a.title:hover , #hm-syscall-canvas a.title:focus{text-decoration: none;}
+
+	#hm-syscall-canvas a.title img.icon{
+		margin: 0 15px;
+		width: 20px;
+		height: 20px;
+		margin-top: -2px;
+	}
+
+	#hm-syscall-canvas a.title i.icon-online{
+		float: left;
+		display: block;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		background: #55ED00;
+		margin: 4px 0;
+	}
+	
+	#hm-syscall-canvas .content{
+		padding: 10px 20px 20px;
+		background: #fff;
+		border-bottom:0;
+	}
+
+	#hm-syscall-canvas .syscall-content{
+		display: none;
+	}
+
+	#hm-syscall-canvas .conversation , #hm-syscall-canvas .init-chat{
+		display: none;
+	}
+
+	/* STYLE CANVAS OPENED */
+	#hm-syscall-canvas.open{
+		width: 345px;
+		bottom:0px;
+	}	
+	#hm-syscall-canvas.open a.title{
+		display: block;
+		width: 100%;
+		/*text-align: center;*/
+		border-radius:0;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+	}
+
+	#hm-syscall-canvas.open .syscall-content{
+		display: block;
+	}
+
+	#hm-syscall-canvas.open form.init-chat{
+		display: block;
+		border: 1px solid #dcdcdc;
+	}
+
+	#hm-syscall-canvas.open p{
+		font-size: 14px;
+		margin-bottom: 15px;
+		line-height: 1.2em;
+	}
+	
+	#hm-syscall-canvas.open .msg.form-control{
+		/* Rectangle 7 Copy 3: */
+		background: #fff !important;
+		border: 1px solid #CECECE !important;
+		height: 106px;
+		border-radius: 0;
+		padding:15px 20px;
+	}
+
+	#hm-syscall-canvas.open .footer{
+		padding: 10px 20px;
+		background: #fff;
+		/*border:1px solid #DCDCDC;*/
+		border-top: 1px solid #D8D8D8;
+		text-align:center;
+	}
+
+	#hm-syscall-canvas.open .footer .btn[type="submit"]{
+		width: 100%;
+		margin-bottom: 25px;
+	}
+
+	#hm-syscall-canvas .conversation{
+		border: 1px solid #dcdcdc;
+	}
+
+	#hm-syscall-canvas .conversation .head{
+		padding: 10px 20px 10px;
+		background: #fff;
+	}
+	
+	#hm-syscall-canvas .conversation .head p{
+		font-size: 14px;
+		margin-bottom: 0;
+		font-weight: 400;
+	}
+	#hm-syscall-canvas .conversation .head p.user-name{
+		color: #1F4F8D;
+		margin-top: 8px;
+	}
+	#hm-syscall-canvas .conversation .head p.user-function{
+		color: #A1A1A1;
+	}
+	#hm-syscall-canvas .conversation .head .box-img{
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		background: #FFFFFF;
+		border: 1px solid #DCDCDC;
+		box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+		float: left;
+		margin-right: 10px;
+		padding: 4.3px;
+	}
+
+	#hm-syscall-canvas .conversation .head .box-img .circle-img{
+		width:50px;
+		height: 50px;
+		background: #ccc;
+		overflow: hidden;
+		border-radius: 50%;
+	}
+	
+	#hm-syscall-canvas .conversation .head .box-img img{
+		height: 100%;
+		width: auto;
+	}
+
+	#hm-syscall-canvas .messages{
+		height: 250px;
+		overflow-y:scroll;
+		overflow-x:hidden; 
+		padding-bottom: 15px;
+		border-top:1px solid #efefef;
+		border-bottom:1px solid #efefef;
+	    padding-left: 20px;
+	    padding-right: 20px;
+	    padding-top: 15px;
+	    background: #fff;
+	    position: relative;
+	}
+
+	#hm-syscall-canvas .send{
+		padding: 5px 20px 10px;
+		background: #fff;
+	}
+
+	#hm-syscall-canvas .conversation.closed-conversation .send .btn{
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	
+	#hm-syscall-canvas .conversation .action-buttons{
+		display: none;
+	}
+
+	#hm-syscall-canvas .conversation.closed-conversation .action-buttons{
+		display: block;
+	}
+
+	#hm-syscall-canvas .conversation.closed-conversation .send .btn:last-child{
+		margin-bottom: 0;
+	}
+
+	#hm-syscall-canvas .conversation.closed-conversation .send{
+		background: #EEEEEE;
+		padding:35px 60px;
+	}
+
+	#hm-syscall-canvas .messages p.chat-return{
+		/* Chat iniciado: */
+		font-size: 12px;
+		color: #A1A1A1;
+		font-weight: 300;
+		display: block;
+		clear: both;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	
+	#hm-syscall-canvas .chat-msg{
+		/*width: 255px;*/
+		width: auto;
+		display: block;
+		clear: both;
+		margin-bottom: 10px;
+		position: relative;
+	}
+	#hm-syscall-canvas .chat-msg .img img{
+		width: 100%;
+		height: auto;
+	}
+	#hm-syscall-canvas .chat-msg .img{
+		width: 25px;
+		height: 25px;
+		/* Oval 3: */
+		background: #D8D8D8;
+		border-radius: 50%;
+		overflow: hidden;
+		margin-top: 8px;
+	}
+	#hm-syscall-canvas .chat-msg .txt{
+		width: auto;
+		max-width: 210px;
+		padding: 10px;
+		border-radius: 7px;
+		font-size: 14px;
+		letter-spacing: 0;
+		min-height: 40px;
+		height: auto !important;
+		word-wrap: break-word;
+	}
+
+	#hm-syscall-canvas .chat-msg.sender{
+		float: right;
+	}
+
+	#hm-syscall-canvas .chat-msg.sender .arrow {
+	    width: 0;
+	    height: 0;
+	    border-top: 10px solid transparent;
+	    border-bottom: 10px solid transparent;
+	    border-left: 10px solid #1f4f8d;
+	    position: absolute;
+	    margin-top: 10px;
+	    /* margin-left: 210px; */
+	    right: 0;
+	    margin-right: 35px;
+	}
+	#hm-syscall-canvas .chat-msg.sender .txt{
+		background: #1F4F8D;
+		color: #FFFFFF;
+		float: left;
+	}
+	#hm-syscall-canvas .chat-msg.sender .img{
+		float: right;
+		margin-left: 20px;
+	}
+	#hm-syscall-canvas .chat-msg.loading{
+		display: none;
+	}
+	#hm-syscall-canvas .chat-msg.receptor{
+		float: left;
+	}
+	#hm-syscall-canvas .chat-msg.receptor .txt{
+		/* Rectangle 7: */
+		background: #D8D8D8;
+		border-radius: 7px;
+		background: #D8D8D8;
+		border-radius: 3px;
+		float: right;
+	}
+	#hm-syscall-canvas .chat-msg.receptor .arrow {
+	    width: 0;
+	    height: 0;
+	    border-top: 10px solid transparent;
+	    border-bottom: 10px solid transparent;
+	    border-right: 10px solid #d8d8d8;
+	    position: absolute;
+	    margin-top: 10px;
+	    margin-left: 35px;
+	}
+	#hm-syscall-canvas .chat-msg.receptor .img{
+		float: left;
+		margin-right: 20px;
+	}
+	
+
+	#hm-syscall-canvas.open form{
+		margin-bottom: 0;
+	}
+
+	
+	#hm-syscall-canvas.open .btn.btn-custom-2{
+		/* Rectangle 4 Copy 2: */
+		background: transparent !important;
+		border: 1px solid #1F4F8D;
+		border-radius: 8px;
+		/* Iniciar Chat: */
+		font-size: 14px;
+		color: #1F4F8D;
+		padding: 10px 20px;
+	}
+
+	#hm-syscall-canvas.open .btn.btn-custom{
+		/* Rectangle 4 Copy 2: */
+		background: #1F4F8D !important;
+		border: 1px solid #979797;
+		border-radius: 8px;
+		/* Iniciar Chat: */
+		font-size: 14px;
+		color: #FFFFFF;
+		padding: 10px 20px;
+	}
+
+
+	#hm-syscall-canvas .chat-msg.receptor.typing{
+		margin-bottom: 0;
+	}
+	#hm-syscall-canvas .chat-msg.receptor.typing .txt{
+		padding:0 10px;
+		min-height: 0;
+		background: transparent;
+	}
+	#hm-syscall-canvas .chat-msg.receptor.typing .txt img{
+	    height: 20px;
+	    width: auto;
+	    margin-left: -15px;
+	}
+	#hm-syscall-canvas .chat-msg.receptor.typing .img{
+		width: 15px;
+		height:15px;
+		margin-top: 2px;
+	}
+	#hm-syscall-canvas .typing-load{
+	    padding: 0px 20px;
+	    margin-top: -20px;
+	    width: 100%;
+	    position: absolute;
+	    background: #fff!important;
+	    height: 20px;
+	    display: none;
+	}
+	
+</style>
