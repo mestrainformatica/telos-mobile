@@ -954,3 +954,14 @@ body .header-modernidade .logo-div .logo {
     left: 11px;
     padding-left: 34px;}
 }
+
+/***
+ * Alterações de 19 de abril de 2018
+ * Ajustes na popup
+ * 
+ * Author: Madalena Pessanha @homemmaquina;
+*/
+
+.conteudo-popup #main-content form {
+    padding-top: 30px;
+}
