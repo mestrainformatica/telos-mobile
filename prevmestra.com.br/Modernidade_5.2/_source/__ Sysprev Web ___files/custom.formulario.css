@@ -738,3 +738,22 @@ body .rodape td:last-child, body #rodape td:last-child
     td.rodape {
         z-index: 1000;
     }
+
+/**
+ * Alterações de 17 de abril de 2018
+ 
+ fix no header da pop-up
+ * Author: Madalena Pessanha @homemmaquina;
+ */
+
+ #pop .stickyTitle  {
+    top: 0;
+    }
+
+#pop td#layout_col_principal {
+    padding-left: 0;
+}
+
+#pop .stickyTitle tr > td:nth-child(2) {
+    top: 0;
+}

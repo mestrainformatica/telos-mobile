@@ -831,6 +831,13 @@ table.table.no-lines tr td {border-bottom: none !important;}
     }
 }
 
+
+
+
+
+
+
+
 /***
  * Alterações de 9 e 12 de março de 2018
  * Ajustes no comportamento do menu para ficar Fixed e Stickyheader
@@ -896,4 +903,65 @@ body .header-modernidade
   right: 35px;
   top: 93px;
   z-index: 1000;
+}
+
+/***
+ * Alterações de 11 e 12 de abril de 2018
+ * Ajustes no responsivo
+ * 
+ * Author: Madalena Pessanha @homemmaquina;
+*/
+
+#main-content form {
+  padding-top: 180px;
+}
+
+body .header-modernidade .logo-div .logo {
+    height: 100%;
+    width: auto;
+    margin: auto;
+    display: block;
+}
+
+@media (max-width: 767px) {
+  body.responsive .header-modernidade .logo-div {
+    margin: 0 !important;
+  }
+
+  body.responsive .header-modernidade .inner h1 {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 0;
+    margin-left: 60px !important;
+    font-weight: 300;
+  }
+
+  #main-content h3 {
+    left: 0;
+    padding-left: 15px;
+    top: 40px;
+    margin-left: 0;
+  }
+
+  #main-content .menu_acoes {
+    top: 72px;
+  }
+}
+
+@media (min-width: 768px) {
+  #conteudo.menu-collapsed #main-content h3 {
+    left: 11px;
+    padding-left: 34px;}
+}
+
+/***
+ * Alterações de 19 de abril de 2018
+ * Ajustes na popup
+ * 
+ * Author: Madalena Pessanha @homemmaquina;
+*/
+
+.conteudo-popup #main-content form {
+    padding-top: 30px;
 }
