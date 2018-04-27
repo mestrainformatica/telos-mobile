@@ -1,0 +1,19 @@
+<ion-view title='Termos de Uso' cache-view="false" animation="slide-left-right" hide-back-button="true">
+    <ion-content has-header="false" padding="false" class="has-header" ng-controller="aceitarTermos">
+        <div class="list">
+            <div class="list card termosdeuso">
+                <div class="item item-body" id="termosdeuso" ng-bind-html="termosText"></div>
+            </div>
+
+            <form class="padding row">
+                <button type="submit" class="button button-block button-clear col col-50" ng-click="recusar()">
+                    Recusar
+                </button>
+
+                <button type="submit" class="button button-block button-positive col col-50" ng-click="aceitar()">
+                    Aceitar
+                </button>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

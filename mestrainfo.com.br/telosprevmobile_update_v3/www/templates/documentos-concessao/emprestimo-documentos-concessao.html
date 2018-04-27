@@ -1,0 +1,276 @@
+<ion-view title="Documentos de Concessão" ng-controller="DocConcessao">
+    <ion-content class="has-header" id="docConcessaoView">
+        <div class="headerInfo">
+            <div ng-include="'js/directives/userInfo.html'"></div>
+        </div>
+
+        <div class="item item-divider softrow">
+            Documentos de Concessão
+        </div>
+
+        <div class="item" style="white-space: normal">
+            <h5 class="smallHeader">
+                <span class="softcolor upper">Formulário</span>
+            </h5>
+            <div ng-repeat="(key,value) in docConcessao.statusDocumentoConcessao track by $index">
+                <div ng-bind-html="value"></div>
+            </div>
+        </div>
+
+        <div class="item item-divider softrow">
+            Dados do Participante
+        </div>
+
+        <form>
+            <div class="item spaced">
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Endereço</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_endereco}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Bairro</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_bairro}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">CEP</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_cep}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Cidade</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_cidade}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">U.F</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_uf}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor">TELEFONE</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span ng-if="docConcessao.dc_numero_telefone">{{docConcessao.dc_numero_telefone}}</span>
+                        <label class="item item-input" ng-if="!docConcessao.dc_numero_telefone">
+                            <input type='tel' class="reset-height" data-type="dc_numero_telefone"
+                                   value="{{docConcessao.dc_numero_telefone}}">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Est. Civil</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span ng-if="docConcessao.dc_estado_civil">{{docConcessao.dc_estado_civil}}</span>
+                        <label class="item item-input item-select" ng-if="!docConcessao.dc_estado_civil">
+                            <select class="ion-input-select reset-height" data-type="dc_estado_civil">
+                                <option value="" disabled selected hidden>- Selecione -</option>
+                                <option value="SOLTEIRO">SOLTEIRO</option>
+                                <option value="CASADO">CASADO</option>
+                                <option value="VIUVO">VIUVO</option>
+                                <option value="DESQUITADO">DESQUITADO</option>
+                                <option value="DIVORCIADO">DIVORCIADO</option>
+                                <option value="VIVE MARITALMENTE">VIVE MARITALMENTE</option>
+                                <option value="SEPARADO">SEPARADO</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Nacionalidade</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span ng-if="docConcessao.dc_nacionalidade">{{docConcessao.dc_nacionalidade}}</span>
+                        <label class="item item-input item-select" ng-if="!docConcessao.dc_nacionalidade">
+                            <select class="ion-input-select reset-height" data-type="dc_nacionalidade">
+                                <option value="" disabled selected hidden>- Selecione -</option>
+                                <option value="BRASILEIRO NATO">BRASILEIRO NATO</option>
+                                <option value="NATURALIZADO">NATURALIZADO</option>
+                                <option value="EQUIPARADO">EQUIPARADO</option>
+                                <option value="ESTRANGEIRO">ESTRANGEIRO</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Ramo de Atividade</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span ng-if="docConcessao.dc_ramo_atividade">{{docConcessao.dc_ramo_atividade}}</span>
+                        <label class="item item-input" ng-if="!docConcessao.dc_ramo_atividade">
+                            <input type="text" class="reset-height" data-type="dc_ramo_atividade"
+                                   value="{{docConcessao.dc_ramo_atividade}}">
+                        </label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">cpf</span>
+                    </div>
+                    <div class="col valor reset-white-space" ng-switch on="video">
+                        <span class="">{{docConcessao.dc_numero_cpf}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">rg/rne</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span ng-if="docConcessao.dc_numero_identidade">{{docConcessao.dc_numero_identidade}}</span>
+                        <label class="item item-input" ng-if="!docConcessao.dc_numero_identidade">
+                            <input type="text" class="reset-height" data-type="dc_numero_identidade"
+                                   value="{{docConcessao.dc_numero_identidade}}">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Orgão Exp.</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span ng-if="docConcessao.dc_orgao_expedidor">{{docConcessao.dc_orgao_expedidor}}</span>
+                        <label class="item item-input" ng-if="!docConcessao.dc_orgao_expedidor">
+                            <input type="text" class="reset-height" data-type="dc_orgao_expedidor"
+                                   value="{{docConcessao.dc_orgao_expedidor}}">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Ocupação</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span ng-if="docConcessao.dc_descricao_cargo">{{docConcessao.dc_descricao_cargo}}</span>
+                        <label class="item item-input" ng-if="!docConcessao.dc_descricao_cargo">
+                            <input type="text" class="reset-height" data-type="dc_descricao_cargo"
+                                   value="{{docConcessao.dc_descricao_cargo}}">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Data Exp.</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span ng-if="docConcessao.dc_data_emissao_identidade">{{docConcessao.dc_data_emissao_identidade}}</span>
+                        <label class="item item-input item-select" ng-if="!docConcessao.dc_data_emissao_identidade">
+                            <ionic-datepicker disablepreviousdates="false" disablefuturedates="true" style="width: 100%;" callback="datePickerCallback">
+                                <button style="border:none;margin:0;padding:0;background:transparent;margin-right: 48px;" ng-click="datePickerClick()">{{dc_data_emissao_identidade}}</button>
+                            </ionic-datepicker>
+                            <input disabled type="hidden" data-type="dc_data_emissao_identidade" value="{{dc_data_emissao_identidade}}">
+                        </label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Data Admis.</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_data_admissao}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Data Nasc.</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_data_nascimento}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Banco</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_descricao_banco}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Agência</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_numero_agencia}}</span>
+                    </div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-40">
+                        <span class="softcolor upper">Conta</span>
+                    </div>
+                    <div class="col valor reset-white-space">
+                        <span class="">{{docConcessao.dc_numero_conta_corrente}}</span>
+                    </div>
+                </div>
+
+                <div class="the_error">
+                    <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
+                </div>
+
+                <div class="button-bar" padding="true">
+                    <input type="submit" ng-hide="loading"
+                           class="button button-positive button-block ng-pristine ng-untouched ng-valid"
+                           ng-click="submit()"
+                           value="{{docConcessao.nomeBotaoAcao}}">
+                    <div ng-show="loading"
+                         class="button button-positive button-block ng-hide"
+                         id="loading" style="">
+                        <ion-spinner icon="android" class="spinner spinner-android">
+                            <svg viewBox="0 0 64 64">
+                                <g transform="rotate(24.6,32,32)">
+                                    <circle stroke-width="6"
+                                            stroke-dasharray="128.99384356121985"
+                                            stroke-dashoffset="0" r="26" cx="32"
+                                            cy="32" fill="none"
+                                            transform="scale(1,1) translate(0,0) rotate(0,32,32)"></circle>
+                                </g>
+                            </svg>
+                        </ion-spinner>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

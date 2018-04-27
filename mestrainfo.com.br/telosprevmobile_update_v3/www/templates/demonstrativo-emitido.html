@@ -1,0 +1,63 @@
+<ion-view title="Demonstrativo" id="demonstrativoEmitido">
+ <ion-content class="has-header">
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu" ng-controller="DemonstrativoCtrl.emitido">        
+    
+    <div class="item">   
+      <div class="label">
+        <h4 class="title_label">Espécie</h4>
+        <p>{{demonstrativo.detalhesDemonstrativoPagamento[0].especie}}</p>
+      </div>
+      <div class="label">
+        <h4 class="title_label">Data de Pagamento</h4>
+        <p>{{demonstrativo.detalhesDemonstrativoPagamento[0].pagamento}}</p>
+      </div>
+  </div>
+  <div class="item item-divider softrow">
+      <div class="label row th">
+           <div class="col col-40">Rúbrica</div>
+           <div class="col valor">Ref.</div>
+           <div class="col valor">Prov.</div>
+           <div class="col valor">Desc.</div>
+      </div>
+    </div>
+    <div class="item">
+    <div  ng-repeat="(key, value) in demonstrativo.detalhesDemonstrativoPagamento">
+      <div class="label row">
+        <div class="col col-40">{{value.rubrica}}</div>
+        <div class="col valor">{{value.referencia}}</div>
+        <div class="col valor">{{value.proventos}}</div>
+        <div class="col valor">{{value.descontos}}</div>
+     </div>
+    </div>
+    <div class="label row total">
+        <div class="col col-40">Total Prov/Desc</div>
+        <div class="col valor"></div>
+        <div class="col valor">{{demonstrativo.total_proventos}}</div>
+        <div class="col valor">{{demonstrativo.total_descontos}}</div>
+     </div>
+     <hr />
+    <div class="label row total">
+        <div class="col col-40"><strong>Total Líquido</strong></div>
+        <div class="col valor"></div>
+        <div class="col valor"></div>
+        <div class="col valor">{{demonstrativo.total_geral_liquido}}</div>
+     </div>
+
+    </div>
+
+    <div class="the_error">
+      <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+    </div>
+
+    <div class="padding">
+      <div class="button-bar">
+        <input ng-hide="loading" type="button" class="button button-positive button-block" value="Receber por email" ng-click="sendMail()" ng-disabled="hasEmail">      
+      </div>
+    </div>
+     
+  </ion-content>
+</ion-view>

@@ -1,0 +1,99 @@
+<ion-view title="Resgate" ng-controller="SimulacaoResgateCtrl">
+    <ion-content class="has-header" id="simulacaoResgate">
+        <div class="headerInfo">
+            <div ng-include="'js/directives/userInfo.html'"></div>
+        </div>
+
+        <div class="list" id="mainMenu">
+            <div class="item item-divider">
+                <h3>Atualizado em {{resgate.atualizado_em}}</h3>
+            </div>
+
+            <div class="item item-divider">Saldos de Contas</div>
+
+            <div class="item">
+                <div class="label row">
+                    <div class="col col-25 softcolor">Participante</div>
+                    <div class="col valor">{{resgate.participante}}</div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-25 softcolor">Patrocinadora</div>
+                    <div class="col valor">{{resgate.patrocinadora}}</div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-25 softcolor">Jóia</div>
+                    <div class="col valor">{{resgate.joia}}</div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-25 softcolor">Outros</div>
+                    <div class="col valor">{{resgate.outros}}</div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-25 softcolor">Portab. Aberta</div>
+                    <div class="col valor">{{resgate.portab_aberta}}</div>
+                </div>
+
+                <hr>
+
+                <div class="label row">
+                    <div class="col col-25">Sub-Total</div>
+                    <div class="col valor">{{resgate.sub_total_saldo}}</div>
+                </div>
+            </div>
+
+            <div class="item item-divider">Descontos</div>
+
+            <div class="item">
+                <div class="label row">
+                    <div class="col col-25 softcolor">Empréstimos</div>
+                    <div class="col valor">{{resgate.emprestimos}}</div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-25 softcolor">Financiamento Imobiliário</div>
+                    <div class="col valor">{{resgate.financ_imobiliario}}</div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-25 softcolor">IRRF</div>
+                    <div class="col valor">{{resgate.irrf}}</div>
+                </div>
+
+                <div class="label row"
+                     ng-hide="resgate.qtd_dependente_irrf == 'N'">
+                    <div class="col col-25 softcolor">Qtd. Dependentes IRRF</div>
+                    <div class="col valor">{{resgate.qtd_dependente_irrf}}</div>
+                </div>
+
+                <div class="label row">
+                    <div class="col col-25 softcolor">Portab. Fechada</div>
+                    <div class="col valor">{{resgate.portab_fechada}}</div>
+                </div>
+
+                <hr>
+
+                <div class="label row">
+                    <div class="col col-25">Sub-Total</div>
+                    <div class="col valor">{{resgate.sub_total_descontos}}</div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="label row">
+                    <div class="col col-25">
+                        <strong>Resgate Líquido</strong>
+                    </div>
+                    <div class="col valor">
+                        <strong>{{resgate.resgate_liquido}}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap assertive" ng-bind-html="resgate.texto_observacao"></div>
+        </div>
+    </ion-content>
+</ion-view>
