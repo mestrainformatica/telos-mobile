@@ -8,13 +8,16 @@ inspect = window.inspect
 angular = window.angular
 cordova = window.cordova
 
+
+
+
 // URL Base para conexão aos servidor TELOS
 // TELOS Produção
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
-urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
-// urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+ urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -307,7 +310,7 @@ window.controller = angular
               globalPopup = $ionicPopup.show({
                 title: 'Você deseja ativar o login usando sua digital?',
                 buttons: [
-                  { text: 'Não', type: 'button-negative', onTap: function () { return false } }, // prettier-ignore
+                  { text: 'Não', type: 'button-negative', onTap: function () { $ionicLoading.hide(); return false } }, // prettier-ignore
                   { text: '<b>Sim</b>', type: 'button-positive', onTap: function () { return true } } // prettier-ignore
                 ]
               })
@@ -348,6 +351,7 @@ window.controller = angular
                 login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
               })
               .then(function (resp) {
+                $ionicLoading.hide()
                 checkIfServerAnswerIsValid(resp)
                 return touchId
               })
@@ -398,6 +402,7 @@ window.controller = angular
                       reject
                     )
                     console.log('salvou');
+                    $ionicLoading.hide()
                     return true;
                   } else {
                     window.plugins.touchid.delete('FingerPrintAuth_telosPrevMobile', resolve)
@@ -406,9 +411,9 @@ window.controller = angular
               })
               .then(function () {
                 // // Salvamos localmente a nova configuração do TouchID
-                // consol.log('salva localmente');
-                // window.localStorage.setItem('touchId', touchId)
-                // $ionicLoading.hide()
+                console.log('salva localmente');
+                window.localStorage.setItem('touchId', touchId)
+                $ionicLoading.hide()
                 // globalPopup = $ionicPopup.alert({
                 //   title: 'Sucesso',
                 //   template:
