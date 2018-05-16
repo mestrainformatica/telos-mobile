@@ -45,6 +45,11 @@ window.app = window.angular
 
       document.addEventListener('deviceReady', function () {
         console.log('TESTE IONIC DEVICE READY')
+        console.log(ionic.Platform.device().model)
+
+        
+        
+
         document.addEventListener(
           'resume',
           function () {

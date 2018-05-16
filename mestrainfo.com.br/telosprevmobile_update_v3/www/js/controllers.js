@@ -15,9 +15,9 @@ cordova = window.cordova
 // TELOS Produção
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
-//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
- urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -262,13 +262,16 @@ window.controller = angular
       console.log('touchId: ' + touchId);
       // console.log('Menu TouchId State: ' + touchId)
       // Se estivermos em um ambiente mobile e o TouchID não tiver sido definido ainda...
-      if (cordova && window.plugins.touchid && touchId === 'NAO') {
+      // && ionic.Platform.device().model !== "iPhone10,6" && ionic.Platform.device().model !== "iPhone10,3"
+        if (cordova && window.plugins.touchid && touchId === 'NAO'){
+        console.log(ionic.Platform.device().model)  
         console.log('oferecer touchid auth primeiro passo');
         new Promise(function (resolve, reject) {
-          // Verificamos se o telefone tem leitor de digital
+          // Verificamos se o telefone tem leitor de biometria
           console.log('antes de verificar');
-          window.plugins.touchid.isAvailable(function () {
-            console.log('tem digital');
+          window.plugins.touchid.isAvailable(function (tipo) {
+            console.log(tipo)
+            console.log('tem biometria');
              $ionicModal.fromTemplateUrl('templates/modal/touchId-cadastro.html', {
                   scope: $scope,
                   animation: 'slide-in-up'
@@ -305,10 +308,10 @@ window.controller = angular
 
 
             resolve(
-              // Perguntamos se o usuário quer cadastrar a digital
+              // Perguntamos se o usuário quer cadastrar a biometria
               (
               globalPopup = $ionicPopup.show({
-                title: 'Você deseja ativar o login usando sua digital?',
+                title: 'Você deseja ativar o login usando sua biometria?',
                 buttons: [
                   { text: 'Não', type: 'button-negative', onTap: function () { $ionicLoading.hide(); return false } }, // prettier-ignore
                   { text: '<b>Sim</b>', type: 'button-positive', onTap: function () { return true } } // prettier-ignore
@@ -394,7 +397,7 @@ window.controller = angular
                           title: 'Sucesso',
                           template:
                             '<p style="color: lightgreen">' +
-                              'O login com digital foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
+                              'O login com biometria foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
                             '</p>' // prettier-ignore
                         })
                       },
@@ -418,7 +421,7 @@ window.controller = angular
                 //   title: 'Sucesso',
                 //   template:
                 //     '<p style="color: lightgreen">' +
-                //       'O login com digital foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
+                //       'O login com biometria foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
                 //     '</p>' // prettier-ignore
                 // })
                 // console.log('enrou na tela de sucesso');
@@ -428,7 +431,7 @@ window.controller = angular
                 $ionicLoading.hide()
                 globalPopup = $ionicPopup.alert({
                   title: 'Falha',
-                  template: '<p style="color: lightcoral">Error ao ativar o login pela digital.</p>'
+                  template: '<p style="color: lightcoral">Error ao ativar o login pela biometria.</p>'
                 })
               })
           })
@@ -703,7 +706,7 @@ window.controller = angular
           window.plugins.touchid.has(
             'FingerPrintAuth_telosPrevMobile',
             function () {
-              $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua digital para acessar', resolve), 800)
+              $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
             },
             reject
           )
@@ -742,7 +745,7 @@ window.controller = angular
             // console.error("Device kid isn't available, next time it will reset...")
             window.localStorage.setItem('touchId', '')
             $scope.errorMsg =
-              'Erro ao acessar dados de cadastro com digital. Por favor entre com seu CPF e senha e reative o login com a digital.'
+              'Erro ao acessar dados de cadastro com biometria. Por favor entre com seu CPF e senha e reative o login com a biometria.'
           })
       }
 
@@ -3486,9 +3489,10 @@ window.controller = angular
       var matricula = rootScope.lastRequest.result.informacoesParticipante[0].matricula
       var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
       var toggle = {
-        text: 'TouchID',
+        text: 'Habilitar Biometria',
         checked: touchId === 'SIM',
         action: function () {
+          console.log("ola 1")
           var checked = toggle.checked
           var touchId = checked ? 'SIM' : 'NUNCA'
           ionicLoading.show()
@@ -3511,6 +3515,7 @@ window.controller = angular
 
               // cadastra KID no keychain do aparelho
               return new Promise(function (resolve, reject) {
+                console.log("ola 2")
                 window.plugins.touchid.save(
                   'FingerPrintAuth_telosPrevMobile',
                   JSON.stringify({
@@ -3527,7 +3532,7 @@ window.controller = angular
                           title: 'Sucesso',
                           template:
                             '<p style="color: lightgreen">' +
-                              'O login com digital foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
+                              'O login com biometria foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
                             '</p>', // prettier-ignore
 
                         })
@@ -3544,7 +3549,7 @@ window.controller = angular
               globalPopup = ionicPopup.alert({
                 title: 'Sucesso',
                 template:
-                  '<p style="color: lightgreen">O login com digital ' +
+                  '<p style="color: lightgreen">O login com biometria ' +
                   (checked ? 'está ativo.' : 'foi desativado.') +
                   '</p>'
               })
@@ -3554,7 +3559,7 @@ window.controller = angular
               ionicLoading.hide()
               globalPopup = ionicPopup.alert({
                 title: 'Falha',
-                template: '<p style="color: lightcoral">Error ao ativar o login pela digital.</p>'
+                template: '<p style="color: lightcoral">Error ao ativar o login pela biometria.</p>'
               })
             })
         }
