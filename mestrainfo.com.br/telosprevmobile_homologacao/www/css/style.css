@@ -1058,11 +1058,11 @@ p.successColor {
     width: 90%;
     border-radius: 2px;
 }
-#touchIdModal {
+#touchIdModal, #termosUsoSimulacaoModal {
 	padding: 1em;
 	text-align: center;
 }
-#touchIdModal h1 {
+#touchIdModal, t#ermosUsoSimulacaoModal h1 {
 	margin-top: .75em;
 	margin-bottom: .25em;
 	color: #2081a5;
@@ -1073,7 +1073,7 @@ p.successColor {
 	width: 80px;
 	margin: .5em 0;
 }
-#touchIdModal p {
+#touchIdModal, #termosUsoSimulacaoModal p {
 	color: #303030;
 	font-size: 16px;
 	width: 70%;
@@ -1088,7 +1088,7 @@ p.successColor {
 	margin: auto;
 	color: #909090;
 }
-#touchIdModal button {
+#touchIdModal, #termosUsoSimulacaoModal button {
 	width: 100%;
 	padding: .1em;
 	bottom: 0em;
@@ -1098,3 +1098,43 @@ p.successColor {
 	background: none;
 	margin-top: 1em;
 }
+
+#termosUsoSimulacaoModal p{
+	text-align: center;
+	font-size: 16px;
+	font-color: gray;
+	color: gray;
+}
+
+#termosUsoSimulacaoModal .btn-primario {
+  font-size: 18px;
+  padding: 10px;
+  color: #fff;
+  background: #42aaf4;
+  border: 2px solid #42a1f4;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+
+#termosUsoSimulacaoModal .btn-secundario {
+  font-size: 18px;
+  padding: 10px;
+  border: 2px solid #42a1f4;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+
+.modal-wrapper #termosUsoSimulacaoModal{
+    top: 10%;
+    bottom: 10%;
+    left: 10%;
+    min-height: 300px;
+    height: 378px;
+    width: 82%;
+    border-radius: 5px;
+}
+
+
+

@@ -15,9 +15,9 @@ cordova = window.cordova
 // TELOS Produção
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
-//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
-urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -575,13 +575,7 @@ window.controller = angular
     console.log('não tem touchid neste aparelho');
   }
 
-  // console.log(window.plugins);
-  // console.log(window.plugins.touchid);
-
-  // window.plugins.touchid.isAvailable(
-  // function(type) {alert(type)}, // type returned to success callback: 'face' on iPhone X, 'touch' on other devices
-  // function(msg) {alert('not available, message: ' + msg)} // error handler: no TouchID available
-  // );
+  
 
 }])
 
@@ -1877,7 +1871,8 @@ window.controller = angular
     '$http',
     '$ionicPopup',
     '$ionicLoading',
-    function ($scope, $state, $rootScope, $http, $ionicPopup, $ionicLoading) {
+    '$ionicModal',
+    function ($scope, $state, $rootScope, $http, $ionicPopup, $ionicLoading, $ionicModal) {
       var dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
       var documentosConcessao = $rootScope.lastRequest.result.documentosConcessao[0]
       var informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0]
@@ -1888,6 +1883,34 @@ window.controller = angular
 
       $scope.emprestimoSimulacaoCampos = emprestimoSimulacaoCampos
       $scope.emprestimoSimulacaoCamposEmitido = emprestimoSimulacaoCamposEmitido.result
+
+     $scope.aceitarTermosSimulacao = function() {
+        console.log("aceitou termos de uso simulação")
+      }
+      console.log($ionicModal)
+
+       $ionicModal
+         .fromTemplateUrl('templates/modal/termos-de-uso-simulacao.html', {
+           scope: $scope,
+           animation: 'slide-in-up'
+        })
+         .then(function (modal) {
+           $scope.modal = modal
+         })
+
+         $scope.$on('$destroy', function () {
+         $scope.modal.remove()
+         })
+        
+
+       $scope.openModal = function () {
+         console.log("abriu modal termos")
+         $scope.modal.show()
+       }
+       $scope.closeModal = function () {
+         console.log("fechou modal termos")
+        $scope.modal.hide()
+       } 
 
       $scope.submit = function () {
         $http

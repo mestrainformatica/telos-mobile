@@ -87,6 +87,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="button-bar" padding="true">
+                        <input ng-hide="loading" type="button"
+                               class="button button-positive button-block ng-pristine ng-untouched ng-valid"
+                               ng-click="openModal()"
+                               value="Abrir Modal">
+                        <div ng-show="loading"
+                             class="button button-positive button-block ng-hide"
+                             id="loading" style="">
+                            <ion-spinner icon="android" class="spinner spinner-android">
+                                <svg viewBox="0 0 64 64">
+                                    <g transform="rotate(24.6,32,32)">
+                                        <circle stroke-width="6"
+                                                stroke-dasharray="128.99384356121985"
+                                                stroke-dashoffset="0" r="26" cx="32"
+                                                cy="32" fill="none"
+                                                transform="scale(1,1) translate(0,0) rotate(0,32,32)"></circle>
+                                    </g>
+                                </svg>
+                            </ion-spinner>
+                        </div>
+                    </div>
             </div>
         </div>
     </ion-content>
