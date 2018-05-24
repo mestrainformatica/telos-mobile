@@ -10,7 +10,7 @@
 
             <p>{{ labelMessage }}</p>
             <label class="item item-input">
-                <input type="tel" placeholder="Digite seu CPF" class="cpfField" ng-model="formData.cpf" mask="99999999999"
+                <input type="tel" placeholder="Digite seu CPF" ng-change="loginPorBiometria()" class="cpfField" ng-model="formData.cpf" mask="99999999999"
                        mask-restrict='reject'>
             </label>
             <label class="item item-input">

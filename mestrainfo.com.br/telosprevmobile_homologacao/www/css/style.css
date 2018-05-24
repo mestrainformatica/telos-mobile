@@ -1088,7 +1088,7 @@ p.successColor {
 	margin: auto;
 	color: #909090;
 }
-#touchIdModal, #termosUsoSimulacaoModal button {
+#touchIdModal button {
 	width: 100%;
 	padding: .1em;
 	bottom: 0em;
@@ -1131,10 +1131,28 @@ p.successColor {
     bottom: 10%;
     left: 10%;
     min-height: 300px;
-    height: 378px;
+    height: 310px;
     width: 82%;
     border-radius: 5px;
+    padding-bottom: 5px;
 }
 
+#termosUsoSimulacaoModal button {
+	max-width: 100%;
+	padding: .1em;
+	bottom: 0em;
+	margin: 0;
+	border: solid 1px #2081a5;
+	color: #2081a5;
+	background: none;
+	margin-top: 1em;
+	display: inline-block;
+}
 
+.btn-bloco {
+	text-align: center;
+}
 
+.teste {
+	display: inline-block;
+}

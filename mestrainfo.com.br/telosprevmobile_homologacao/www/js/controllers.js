@@ -15,9 +15,9 @@ cordova = window.cordova
 // TELOS Produção
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
-urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
-//urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -243,6 +243,7 @@ window.controller = angular
               $rootScope.lastRequest = {}
               $rootScope.beneficiariosOriginal = undefined
               $ionicLoading.hide()
+
               $state.go('signin')
             },
             function () {
@@ -621,6 +622,8 @@ window.controller = angular
        * Lida com o resultado da requisição de login, seja ela com TouchID ou Normal
        * @param request
        * @param cpf
+       * @param modoLogin - descreve se o login será feito com touchId(após digitar o cpf completo) ou com cpf e senha, onde 
+       * "login-por-form" loga com cpf e senha e "login-por-biometria", utiliza a biometria do aparelho
        */
       function loginPostAction (request, cpf) {
         return request
@@ -672,7 +675,6 @@ window.controller = angular
               $state.go('termosdeuso')
               return
             }
-
             $state.go('menu')
           })
           .catch(function (error) {
@@ -692,7 +694,19 @@ window.controller = angular
       $ionicLoading.hide()
 
       // Login TouchID
-      if (window.plugins && window.plugins.touchid && localTouchId === 'SIM') {
+      $scope.loginPorBiometria = function() {
+        var formData = this.formData
+        var executarBiometria = false;
+
+        //essa função é chamada no on change, mas só deve tentar executar a biometria quando o usuário tiver acabado de digitar o cpf
+        if (formData.cpf.length === 11) {
+          console.log("mudou executarBiometria")
+          console.log(localTouchId)
+          executarBiometria = true;
+        }
+
+      if (window.plugins && window.plugins.touchid && localTouchId === 'SIM' && executarBiometria === true) {
+        console.log("entrou no if")
         console.log('TouchID Enabled')
 
         new Promise(function (resolve, reject) {
@@ -731,7 +745,7 @@ window.controller = angular
                 },
                 login: { u: '', s: '' }
               }),
-              auth.cpf
+              formData.cpf
             )
           })
           .catch(function () {
@@ -740,8 +754,10 @@ window.controller = angular
             $scope.errorMsg =
               'Erro ao acessar dados de cadastro com biometria. Por favor entre com seu CPF e senha e reative o login com a biometria.'
           })
+      } else {
+        console.log("entrou no else")
       }
-
+    }
       $scope.submit = function () {
         var formData = this.formData
 
@@ -768,7 +784,7 @@ window.controller = angular
             login: { u: '', s: '' }
           }),
           formData.cpf
-        )
+          )
       }
 
 
