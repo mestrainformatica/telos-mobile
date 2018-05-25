@@ -679,7 +679,7 @@ window.controller = angular
           })
           .catch(function (error) {
             $ionicLoading.hide()
-            $rootScope.errorMsg = error.message + ''
+            $rootScope.errorMsg = "CPF não vinculado a biometria."
           })
       }
 
@@ -695,18 +695,37 @@ window.controller = angular
 
       // Login TouchID
       $scope.loginPorBiometria = function() {
-        var formData = this.formData
-        var executarBiometria = false;
+        var cpf = this.formData.cpf;
 
-        //essa função é chamada no on change, mas só deve tentar executar a biometria quando o usuário tiver acabado de digitar o cpf
-        if (formData.cpf.length === 11) {
-          console.log("mudou executarBiometria")
-          console.log(localTouchId)
-          executarBiometria = true;
+        //Este if verifica se o usuário digitou 11 digitos no CPF, caso sim, chamamos o WS verificarBiometria para verificar se o CPF digitado
+        //possui biometria no banco de dados, caso sim, o app entra no if abaixo e vai requisitar o uso da biometria
+        if (cpf.length === 11) {
+          console.log("vai verificar se o usuário possui biometria cadastrada no banco.")
+        
+          $http.post(urlBase, {
+                param: {
+                  cpf: cpf, 
+                  acao: 'verificarBiometria'
+                },
+                login: { u: '', s: '' }
+          }).then(function (response) {
+            var resposta = retrieve(retrieve(retrieve(response, "data"), "result"), "resposta");
+
+            if (resposta === "OK") {
+                console.log("a resposta sobre a verificação biometrica foi : " + resposta + ". O aplicativo deve requisitar biometria.");
+                ativarBiometria(cpf);
+            } else {
+              console.log("a resposta sobre a verificação biometrica foi : " + resposta + ". O aplicativo não deve requisitar biometria.");
+            }
+          })
+
         }
+    }
 
-      if (window.plugins && window.plugins.touchid && localTouchId === 'SIM' && executarBiometria === true) {
-        console.log("entrou no if")
+    function ativarBiometria(cpf) {
+      console.log("entrou nessa merda")
+      if (window.plugins && window.plugins.touchid && localTouchId === 'SIM') {
+        
         console.log('TouchID Enabled')
 
         new Promise(function (resolve, reject) {
@@ -722,7 +741,7 @@ window.controller = angular
             console.log('Success retrieving key with TouchId')
 
             auth = JSON.parse(auth)
-            if (!(auth.k && auth.cpf)) throw new Error('Invalid KID.')
+            if (!(auth.k && auth.cpf)) throw new Error('Invalid KID.') 
 
             stageMap = {}
             userInfo = {}
@@ -741,23 +760,25 @@ window.controller = angular
                 param: {
                   k: auth.k,
                   imei: uuid(),
+                  cpf: cpf, 
                   acao: 'autenticarTouchId'
                 },
                 login: { u: '', s: '' }
-              }),
-              formData.cpf
+              })
             )
           })
-          .catch(function () {
+          .catch(function (erro) {
             // console.error("Device kid isn't available, next time it will reset...")
             window.localStorage.setItem('touchId', '')
-            $scope.errorMsg =
-              'Erro ao acessar dados de cadastro com biometria. Por favor entre com seu CPF e senha e reative o login com a biometria.'
+            $scope.errorMsg = "Erro ao tentar realizar login com biometria, tente mais tarde ou utilize sua senha."
           })
-      } else {
-        console.log("entrou no else")
-      }
+      } 
     }
+
+
+
+
+
       $scope.submit = function () {
         var formData = this.formData
 
@@ -3354,8 +3375,6 @@ window.controller = angular
     function (scope, state, rootScope, http, ionicPopup, ionicLoading, filter) {
       var result = retrieve(rootScope, 'lastRequest', 'result')
       var docConcessao = retrieve(result, 'documentosConcessao')
-      console.log("OLAAAAAAAA")
-      console.log(docConcessao)
       var dadosCadastrais = retrieve(result, 'dadosCadastrais')
       // var consultaEmprestimo = retrieve(result, 'consultaEmprestimo')
       // var contrato = consultaEmprestimo.contrato
@@ -3555,7 +3574,6 @@ window.controller = angular
 
               // cadastra KID no keychain do aparelho
               return new Promise(function (resolve, reject) {
-                console.log("ola 2")
                 window.plugins.touchid.save(
                   'FingerPrintAuth_telosPrevMobile',
                   JSON.stringify({

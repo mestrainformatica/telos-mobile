@@ -1138,7 +1138,7 @@ p.successColor {
 }
 
 #termosUsoSimulacaoModal button {
-	max-width: 100%;
+	max-width: 50%;
 	padding: .1em;
 	bottom: 0em;
 	margin: 0;
