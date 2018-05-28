@@ -723,10 +723,10 @@ window.controller = angular
     }
 
     function ativarBiometria(cpf) {
-      console.log("entrou nessa merda")
-      if (window.plugins && window.plugins.touchid && localTouchId === 'SIM') {
+      console.log("ativando biometria")
+      if (window.plugins && window.plugins.touchid) {
         
-        console.log('TouchID Enabled')
+        console.log('Aparelho contém biometria')
 
         new Promise(function (resolve, reject) {
           window.plugins.touchid.has(
