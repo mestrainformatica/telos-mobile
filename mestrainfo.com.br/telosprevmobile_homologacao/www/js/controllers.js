@@ -203,11 +203,14 @@ window.controller = angular
     '$ionicPopup',
     '$ionicModal',
     function ($scope, $state, $rootScope, $http, $timeout, $ionicLoading, $ionicPopup, $ionicModal) {
-      var result, matricula, touchId, localTouchId, dadosCadastrais
+      var result, matricula, touchId, dadosCadastrais, cpfParticipante
       result = retrieve($rootScope, 'lastRequest', 'result')
       matricula = retrieve(result, 'informacoesParticipante', 'matricula')
-      localTouchId = window.localStorage.getItem('touchId')
       dadosCadastrais = retrieve(result, 'dadosCadastrais')
+      touchId = retrieve(result, 'preferencias', 'touch_ID')
+      cpfParticipante = retrieve(result, 'documentosConcessao', 'dc_numero_cpf')
+
+      console.log("Valor da biometria para o usuário logado: " + touchId)
 
       $scope.stageMap = stageMap
 
@@ -257,21 +260,15 @@ window.controller = angular
           )
       }
 
-      // Cadastro do TouchID
-      touchId = localTouchId || 'NAO'
-      console.log('touchId: ' + touchId);
-      // console.log('Menu TouchId State: ' + touchId)
+
       // Se estivermos em um ambiente mobile e o TouchID não tiver sido definido ainda...
-      // && ionic.Platform.device().model !== "iPhone10,6" && ionic.Platform.device().model !== "iPhone10,3"
-        if (cordova && window.plugins.touchid && touchId === 'NAO'){
-        console.log(ionic.Platform.device().model)  
-        console.log('oferecer touchid auth primeiro passo');
+        if (cordova && window.plugins.touchid && touchId === 'NAO'){ 
+        console.log('Deve oferecer abrir popup perguntando se o usuário deseja ativar a biometria');
         new Promise(function (resolve, reject) {
           // Verificamos se o telefone tem leitor de biometria
-          console.log('antes de verificar');
-          window.plugins.touchid.isAvailable(function (tipo) {
-            console.log(tipo)
-            console.log('tem biometria');
+          console.log('Verficando se o aparelho possui biometria');
+          window.plugins.touchid.isAvailable(function () {
+            console.log('Aparelho possui biometria');
              $ionicModal.fromTemplateUrl('templates/modal/touchId-cadastro.html', {
                   scope: $scope,
                   animation: 'slide-in-up'
@@ -331,11 +328,10 @@ window.controller = angular
             $ionicLoading.show()
             touchId = touchId ? 'SIM' : 'NUNCA'
 
-            console.log('localTouchId: '+localTouchId);
             console.log('touchId: '+touchId);
 
             // Se tudo estiver consistente continuamos
-            if (!(localTouchId === '' && touchId)) return touchId
+            if (!(touchId)) return touchId
 
             /**
              * Se o login do TouchID tiver falhado ou no caso de inconsistencia com a configuração local e do servidor
@@ -354,6 +350,7 @@ window.controller = angular
                 login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
               })
               .then(function (resp) {
+                $rootScope.lastRequest.result.preferencias[0].touch_ID = "NUNCA"
                 $ionicLoading.hide()
                 checkIfServerAnswerIsValid(resp)
                 return touchId
@@ -375,6 +372,7 @@ window.controller = angular
               })
               .then(function (resp) {
                 checkIfServerAnswerIsValid(resp)
+                $rootScope.lastRequest.result.preferencias[0].touch_ID = "SIM"
 
                 // cadastra KID no keychain do aparelho
                 return new Promise(function (resolve, reject) {
@@ -412,20 +410,6 @@ window.controller = angular
                   }
                 })
               })
-              .then(function () {
-                // // Salvamos localmente a nova configuração do TouchID
-                console.log('salva localmente');
-                window.localStorage.setItem('touchId', touchId)
-                $ionicLoading.hide()
-                // globalPopup = $ionicPopup.alert({
-                //   title: 'Sucesso',
-                //   template:
-                //     '<p style="color: lightgreen">' +
-                //       'O login com biometria foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
-                //     '</p>' // prettier-ignore
-                // })
-                // console.log('enrou na tela de sucesso');
-              })
               .catch(function () {
                 // console.error(inspect(error))
                 $ionicLoading.hide()
@@ -438,6 +422,8 @@ window.controller = angular
           .catch(function () {
             // console.error(inspect(error))
           })
+      } else {
+        console.log("Mensagem de biometria não foi exibida")
       }
     }
   ])
@@ -566,13 +552,9 @@ window.controller = angular
       // Execute action
    });
 
-   console.log('localStorage.touchId: ' + window.localStorage.getItem('touchId'));
-  var localTouchId = window.localStorage.getItem('touchId') || 'NAO';
       
   //   // Login TouchID
-  if (window.plugins && window.plugins.touchid && localTouchId === 'SIM') {
-    // $timeout($scope.openModal, 600);
-  }else {
+  if (!(window.plugins && window.plugins.touchid)) {
     console.log('não tem touchid neste aparelho');
   }
 
@@ -590,7 +572,6 @@ window.controller = angular
     '$ionicLoading',
     '$ionicModal',
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $ionicModal) {
-      var localTouchId
 
       // We got redirect because of a error
       console.log($rootScope.errorMsg, userInfo.u, userInfo.s)
@@ -612,11 +593,6 @@ window.controller = angular
 
       $scope.labelMessage = "Preencha seus dados pessoais para entrar";
       $scope.placeholderPassMessage = "Digite sua senha";
-
-      if(window.plugins && window.plugins.touchid && localTouchId === 'SIM') {
-        $scope.labelMessage = "Preencha seus dados pessoais ou toque no sensor para entrar";
-        $scope.placeholderPassMessage = "Digite sua senha ou toque no sensor";
-      }
 
       /**
        * Lida com o resultado da requisição de login, seja ela com TouchID ou Normal
@@ -644,7 +620,7 @@ window.controller = angular
 
             result = retrieve($rootScope.lastRequest, 'result')
             touchId = retrieve(result, 'preferencias', 'touch_ID')
-            window.localStorage.setItem('touchId', localTouchId !== touchId && touchId === 'SIM' ? '' : touchId)
+            window.localStorage.setItem('touchId', touchId === 'SIM' ? '' : touchId)
 
             if (result['simuladorBeneficios']) {
               beneficiarios = retrieve(result, 'simuladorBeneficios')['beneficiarios']
@@ -684,10 +660,6 @@ window.controller = angular
       }
 
       $scope.formData = {}
-      $scope.loginWithTouchId = 0
-
-      localTouchId = window.localStorage.getItem('touchId') || 'NAO'
-      // console.log('SignIn TouchId State: ' + localTouchId)
 
       // Clear any old popup or loading
       if (globalPopup) globalPopup.close()
@@ -697,30 +669,12 @@ window.controller = angular
       $scope.loginPorBiometria = function() {
         var cpf = this.formData.cpf;
 
-        //Este if verifica se o usuário digitou 11 digitos no CPF, caso sim, chamamos o WS verificarBiometria para verificar se o CPF digitado
-        //possui biometria no banco de dados, caso sim, o app entra no if abaixo e vai requisitar o uso da biometria
+        //Este if verifica se o usuário digitou 11 digitos no CPF, caso sim, chamamos a biometria
         if (cpf.length === 11) {
-          console.log("vai verificar se o usuário possui biometria cadastrada no banco.")
-        
-          $http.post(urlBase, {
-                param: {
-                  cpf: cpf, 
-                  acao: 'verificarBiometria'
-                },
-                login: { u: '', s: '' }
-          }).then(function (response) {
-            var resposta = retrieve(retrieve(retrieve(response, "data"), "result"), "resposta");
-
-            if (resposta === "OK") {
-                console.log("a resposta sobre a verificação biometrica foi : " + resposta + ". O aplicativo deve requisitar biometria.");
-                ativarBiometria(cpf);
-            } else {
-              console.log("a resposta sobre a verificação biometrica foi : " + resposta + ". O aplicativo não deve requisitar biometria.");
-            }
-          })
-
+          console.log("vai verificar se o cpf está cadastrado no celular")
+          ativarBiometria(cpf);
         }
-    }
+      }
 
     function ativarBiometria(cpf) {
       console.log("ativando biometria")
@@ -732,7 +686,29 @@ window.controller = angular
           window.plugins.touchid.has(
             'FingerPrintAuth_telosPrevMobile',
             function () {
-              $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
+
+              // Caso haja uma key ele vai fazer um request para o WS verificaBiometria, o qual, verfifica se a pessoa deve ou não usar a biometria
+
+              $http.post(urlBase, {
+                param: {
+                  cpf: cpf,
+                  imei: uuid(),
+                  acao: 'verificarBiometria'
+                },
+                login: { u: '', s: '' }
+              }).then(function(resultado) {
+
+                var resposta = retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'resposta')
+
+                console.log("a resposta é: " + resposta)
+
+                if (resposta === "OK") {
+                  $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
+                } else {
+                  console.log("Valor da resposta foi: " + resposta + " portanto, não será exibida a biometria.")
+                }
+
+              })
             },
             reject
           )
@@ -741,7 +717,6 @@ window.controller = angular
             console.log('Success retrieving key with TouchId')
 
             auth = JSON.parse(auth)
-            if (!(auth.k && auth.cpf)) throw new Error('Invalid KID.') 
 
             stageMap = {}
             userInfo = {}
@@ -768,9 +743,7 @@ window.controller = angular
             )
           })
           .catch(function (erro) {
-            // console.error("Device kid isn't available, next time it will reset...")
-            window.localStorage.setItem('touchId', '')
-            $scope.errorMsg = "Erro ao tentar realizar login com biometria, tente mais tarde ou utilize sua senha."
+            console.log("Chave de biometria com inválida.")
           })
       } 
     }
@@ -3544,16 +3517,22 @@ window.controller = angular
     function (scope, state, rootScope, http, ionicPopup, ionicLoading) {
       scope.settingsList = []
 
-      var touchId = window.localStorage.getItem('touchId')
+
+      var touchId = rootScope.lastRequest.result.preferencias[0].touch_ID
+      scope.habilitaBiometria;
+
+
+
+
+      console.log("valor da biometria nas preferencias: " + touchId)
       var matricula = rootScope.lastRequest.result.informacoesParticipante[0].matricula
       var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
       var toggle = {
         text: 'Habilitar Biometria',
         checked: touchId === 'SIM',
         action: function () {
-          console.log("ola 1")
           var checked = toggle.checked
-          var touchId = checked ? 'SIM' : 'NUNCA'
+          var touchId = checked ? 'SIM' : 'NAO'
           ionicLoading.show()
           return http
             .post(urlBase + ';jsessionid=' + userInfo.s, {
