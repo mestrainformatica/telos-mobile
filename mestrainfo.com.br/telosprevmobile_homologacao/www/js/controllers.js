@@ -208,7 +208,6 @@ window.controller = angular
       matricula = retrieve(result, 'informacoesParticipante', 'matricula')
       dadosCadastrais = retrieve(result, 'dadosCadastrais')
       touchId = retrieve(result, 'preferencias', 'touch_ID')
-      cpfParticipante = retrieve(result, 'documentosConcessao', 'dc_numero_cpf')
 
       console.log("Valor da biometria para o usuário logado: " + touchId)
 
@@ -261,8 +260,9 @@ window.controller = angular
       }
 
 
+
       // Se estivermos em um ambiente mobile e o TouchID não tiver sido definido ainda...
-        if (cordova && window.plugins.touchid && touchId === 'NAO'){ 
+        if (cordova && window.plugins.touchid && touchId === 'NAO' && window.localStorage.getItem('celularCadastrado') !== 'OK'){ 
         console.log('Deve oferecer abrir popup perguntando se o usuário deseja ativar a biometria');
         new Promise(function (resolve, reject) {
           // Verificamos se o telefone tem leitor de biometria
@@ -328,10 +328,10 @@ window.controller = angular
             $ionicLoading.show()
             touchId = touchId ? 'SIM' : 'NUNCA'
 
-            console.log('touchId: '+touchId);
+            console.log('Valor da Biometria pós escolha: '+touchId);
 
             // Se tudo estiver consistente continuamos
-            if (!(touchId)) return touchId
+            if (touchId) return touchId
 
             /**
              * Se o login do TouchID tiver falhado ou no caso de inconsistencia com a configuração local e do servidor
@@ -372,7 +372,11 @@ window.controller = angular
               })
               .then(function (resp) {
                 checkIfServerAnswerIsValid(resp)
-                $rootScope.lastRequest.result.preferencias[0].touch_ID = "SIM"
+
+
+                console.log("Resposta do request após a pessoa dizer se aceita ou não a habilitar biometria: " + resp)
+
+                $rootScope.lastRequest.result.preferencias[0].touch_ID = touchId
 
                 // cadastra KID no keychain do aparelho
                 return new Promise(function (resolve, reject) {
@@ -405,9 +409,10 @@ window.controller = angular
                     console.log('salvou');
                     $ionicLoading.hide()
                     return true;
-                  } else {
-                    window.plugins.touchid.delete('FingerPrintAuth_telosPrevMobile', resolve)
-                  }
+                  } 
+                  else {
+                     window.plugins.touchid.delete('FingerPrintAuth_telosPrevMobile', resolve)
+                   }
                 })
               })
               .catch(function () {
@@ -699,8 +704,15 @@ window.controller = angular
               }).then(function(resultado) {
 
                 var resposta = retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'resposta')
+                var celular_cadastrado = retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'celular_cadastrado')
+                var cpf_cadastrado = retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'cpf_cadastrado')
 
-                console.log("a resposta é: " + resposta)
+                window.localStorage.setItem('celularCadastrado', celular_cadastrado)
+                window.localStorage.setItem('cpfCadastrado', cpf_cadastrado)
+
+                console.log("A resposta é: " + resposta)
+                console.log("Celular Cadastrado: " + window.localStorage.getItem(celular_cadastrado))
+                console.log("CPF Cadastrado: " + window.localStorage.getItem(cpf_cadastrado))
 
                 if (resposta === "OK") {
                   $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
@@ -715,6 +727,8 @@ window.controller = angular
         })
           .then(function (auth) {
             console.log('Success retrieving key with TouchId')
+
+            console.log("Infos da chave: " + auth)
 
             auth = JSON.parse(auth)
 
@@ -739,11 +753,13 @@ window.controller = angular
                   acao: 'autenticarTouchId'
                 },
                 login: { u: '', s: '' }
-              })
+              }),
+
             )
           })
           .catch(function (erro) {
-            console.log("Chave de biometria com inválida.")
+            console.log("Chave de biometria inválida.")
+            console.log("Erro da chave: " + erro)
           })
       } 
     }
@@ -3519,14 +3535,16 @@ window.controller = angular
 
 
       var touchId = rootScope.lastRequest.result.preferencias[0].touch_ID
-      scope.habilitaBiometria;
+      var cpfCadastrado = window.localStorage.getItem('cpfCadastrado')
+      var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
+      
 
 
 
-
+    function habilitaPreferenciaBiometria() {
       console.log("valor da biometria nas preferencias: " + touchId)
       var matricula = rootScope.lastRequest.result.informacoesParticipante[0].matricula
-      var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
+
       var toggle = {
         text: 'Habilitar Biometria',
         checked: touchId === 'SIM',
@@ -3611,7 +3629,26 @@ window.controller = angular
         })
       }
     }
-  ])
+
+
+    // logica para exibir a opção de biometria
+
+    if (cpfCadastrado === '') {
+      habilitaPreferenciaBiometria()
+    } 
+
+    if (cpfCadastrado === userInfo.cpf && cpfCadastrado !== '') {
+      habilitaPreferenciaBiometria()
+    }
+
+    if (cpfCadastrado !== userInfo.cpf && cpfCadastrado !== '') {
+      console.log('Não habilitou preferencia de biometria)
+    }
+
+
+
+  }
+])
 
 angular
   .module('starter.Directives', [])
