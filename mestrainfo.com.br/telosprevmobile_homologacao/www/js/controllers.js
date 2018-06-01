@@ -208,7 +208,6 @@ window.controller = angular
       matricula = retrieve(result, 'informacoesParticipante', 'matricula')
       dadosCadastrais = retrieve(result, 'dadosCadastrais')
       touchId = retrieve(result, 'preferencias', 'touch_ID')
-      cpfParticipante = retrieve(result, 'documentosConcessao', 'dc_numero_cpf')
 
       console.log("Valor da biometria para o usuário logado: " + touchId)
 
@@ -262,7 +261,9 @@ window.controller = angular
 
 
       // Se estivermos em um ambiente mobile e o TouchID não tiver sido definido ainda...
-        if (cordova && window.plugins.touchid && touchId === 'NAO'){ 
+        if (cordova && window.plugins.touchid && touchId === 'NAO' && window.localStorage.getItem('respostaBiometria') === "INVALIDO" && 
+            window.localStorage.getItem('cpf_cadastrado') === "INVALIDO" && window.localStorage.getItem('celular_cadastrado') === "INVALIDO"
+          ){ 
         console.log('Deve oferecer abrir popup perguntando se o usuário deseja ativar a biometria');
         new Promise(function (resolve, reject) {
           // Verificamos se o telefone tem leitor de biometria
@@ -655,7 +656,7 @@ window.controller = angular
           })
           .catch(function (error) {
             $ionicLoading.hide()
-            $rootScope.errorMsg = "CPF não vinculado a biometria."
+            $rootScope.errorMsg = "CPF ou Senha inválidos."
           })
       }
 
@@ -679,15 +680,9 @@ window.controller = angular
     function ativarBiometria(cpf) {
       console.log("ativando biometria")
       if (window.plugins && window.plugins.touchid) {
-        
         console.log('Aparelho contém biometria')
 
-        new Promise(function (resolve, reject) {
-          window.plugins.touchid.has(
-            'FingerPrintAuth_telosPrevMobile',
-            function () {
-
-              // Caso haja uma key ele vai fazer um request para o WS verificaBiometria, o qual, verfifica se a pessoa deve ou não usar a biometria
+         // Caso haja uma key ele vai fazer um request para o WS verificaBiometria, o qual, verfifica se a pessoa deve ou não usar a biometria
 
               $http.post(urlBase, {
                 param: {
@@ -698,53 +693,64 @@ window.controller = angular
                 login: { u: '', s: '' }
               }).then(function(resultado) {
 
-                var resposta = retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'resposta')
+                window.localStorage.setItem(`respostaBiometria`, retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'resposta'))
+                window.localStorage.setItem(`cpf_cadastrado`, retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'cpf_cadastrado'))
+                window.localStorage.setItem(`celular_cadastrado`, retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'celular_cadastrado'))
+                window.localStorage.setItem('cpf_logado', cpf)
 
-                console.log("a resposta é: " + resposta)
+                console.log("a resposta é: " + window.localStorage.getItem(`respostaBiometria`))
+                console.log("o cpf_cadastrado é: " + window.localStorage.getItem(`cpf_cadastrado`))
+                console.log("o celular_cadastrado é: " + window.localStorage.getItem(`celular_cadastrado`))
 
-                if (resposta === "OK") {
-                  $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
-                } else {
-                  console.log("Valor da resposta foi: " + resposta + " portanto, não será exibida a biometria.")
-                }
+                  new Promise(function (resolve, reject) {
+                    window.plugins.touchid.has(
+                      'FingerPrintAuth_telosPrevMobile',
+                      function () {
 
-              })
-            },
-            reject
-          )
-        })
-          .then(function (auth) {
-            console.log('Success retrieving key with TouchId')
+                         if (window.localStorage.getItem(`respostaBiometria`) === "OK") {
+                            $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
+                          } else {
+                            console.log("Valor da resposta foi: " + resposta + " portanto, não será exibida a biometria.")
+                        }
+                      },
+                      reject
+                    )
+                  })
+                    .then(function (auth) {
+                      console.log('Success retrieving key with TouchId')
 
-            auth = JSON.parse(auth)
+                      auth = JSON.parse(auth)
 
-            stageMap = {}
-            userInfo = {}
-            $rootScope.lastRequest = {}
+                      stageMap = {}
+                      userInfo = {}
+                      $rootScope.lastRequest = {}
 
-            $ionicLoading.show({
-              content: 'Carregando',
-              maxWidth: 300,
-              showDelay: 0,
-              animation: 'fade-in',
-              showBackdrop: true
-            })
+                      $ionicLoading.show({
+                        content: 'Carregando',
+                        maxWidth: 300,
+                        showDelay: 0,
+                        animation: 'fade-in',
+                        showBackdrop: true
+                      })
 
-            return loginPostAction(
-              $http.post(urlBase, {
-                param: {
-                  k: auth.k,
-                  imei: uuid(),
-                  cpf: cpf, 
-                  acao: 'autenticarTouchId'
-                },
-                login: { u: '', s: '' }
-              })
-            )
-          })
-          .catch(function (erro) {
-            console.log("Chave de biometria com inválida.")
-          })
+                      return loginPostAction(
+                        $http.post(urlBase, {
+                          param: {
+                            k: auth.k,
+                            imei: uuid(),
+                            cpf: cpf, 
+                            acao: 'autenticarTouchId'
+                          },
+                          login: { u: '', s: '' }
+                        })
+                      )
+                    })
+                    .catch(function (erro) {
+                      console.log("Chave de biometria com inválida.")
+                    })
+
+
+        }) // fim do then do request  
       } 
     }
 
@@ -3519,7 +3525,6 @@ window.controller = angular
 
 
       var touchId = rootScope.lastRequest.result.preferencias[0].touch_ID
-      scope.habilitaBiometria;
 
 
 
@@ -3527,6 +3532,14 @@ window.controller = angular
       console.log("valor da biometria nas preferencias: " + touchId)
       var matricula = rootScope.lastRequest.result.informacoesParticipante[0].matricula
       var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
+
+
+      console.log("CPF LOGADO: " + window.localStorage.getItem('cpf_logado'))
+      console.log("CPF CADASTRADO: " + window.localStorage.getItem('cpf_cadastrado'))
+
+      var cpfCadastrado = window.localStorage.getItem('cpf_cadastrado')
+      var cpfLogado = window.localStorage.getItem('cpf_logado')
+
       var toggle = {
         text: 'Habilitar Biometria',
         checked: touchId === 'SIM',
@@ -3602,8 +3615,9 @@ window.controller = angular
         }
       }
 
-      if (window.plugins && window.plugins.touchid) {
-        // console.log('TouchID Enabled')
+      if (cpfCadastrado !== cpfLogado && cpfCadastrado !== "INVALIDO") {
+        console.log("preferencia de biometria não habilitada")
+      } else if (window.plugins && window.plugins.touchid) {
         new Promise(function (resolve, reject) {
           window.plugins.touchid.isAvailable(resolve, reject)
         }).then(function () {
