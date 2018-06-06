@@ -1894,16 +1894,43 @@ window.controller = angular
       var informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0]
       var emprestimoSimulacaoCampos = $rootScope.lastRequest.emprestimoSimulacaoCampos
       var emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido
+      var listaBancos = $rootScope.lastRequest.result.listaBancos
+      var tipoConta = $rootScope.lastRequest.result.tipoConta[0]
+
 
       // var saldosDadosSimulacao = emprestimoSimulacaoCampos.saldos_dados_simulacao[0]
 
       $scope.emprestimoSimulacaoCampos = emprestimoSimulacaoCampos
       $scope.emprestimoSimulacaoCamposEmitido = emprestimoSimulacaoCamposEmitido.result
+      $scope.dadosCadastrais = dadosCadastrais
+      $scope.listaBancos = listaBancos
+      $scope.tipoConta = tipoConta
+      $scope.formData = {}
 
-     $scope.aceitarTermosSimulacao = function() {
-        console.log("aceitou termos de uso simulação")
+
+
+
+
+      $scope.formData.bancoSelecionado = documentosConcessao.num_banco
+      $scope.formData.agencia = documentosConcessao.dc_numero_agencia
+      $scope.formData.tipoConta = documentosConcessao.tipo_conta
+      $scope.formData.textoModal = documentosConcessao.texto_conf_dados_bancarios
+
+      var auxiliarConta = documentosConcessao.dc_numero_conta_corrente.split("-")
+
+      $scope.formData.conta = auxiliarConta[0]
+      $scope.formData.digito = auxiliarConta[1]
+
+      if (auxiliarConta[1] === undefined || auxiliarConta[1] === null) {
+        auxiliarConta = auxiliarConta[0]
+      } else {
+        auxiliarConta = auxiliarConta[0] + '-' + auxiliarConta[1]
       }
-      console.log($ionicModal)
+
+
+
+
+
 
        $ionicModal
          .fromTemplateUrl('templates/modal/termos-de-uso-simulacao.html', {
@@ -1919,6 +1946,11 @@ window.controller = angular
          })
         
 
+       $scope.aceitarTermos = function () {
+         console.log("abriu modal termos")
+         $scope.modal.hide()
+         $scope.submit() 
+       }  
        $scope.openModal = function () {
          console.log("abriu modal termos")
          $scope.modal.show()
@@ -1929,6 +1961,32 @@ window.controller = angular
        } 
 
       $scope.submit = function () {
+
+        //validacao para ver se os campos de conta, agencia e etc foram alterados
+
+        var flag_alteracao_dados_bco
+
+        if (  $scope.formData.bancoSelecionado !== documentosConcessao.num_banco ||
+              $scope.formData.agencia !== documentosConcessao.dc_numero_agencia  ||
+              $scope.formData.tipoConta !== documentosConcessao.tipo_conta  ||
+              auxiliarConta !== documentosConcessao.dc_numero_conta_corrente) {
+
+
+          console.log("ANTIGO: " +$scope.formData.bancoSelecionado+ " NOVO: " + documentosConcessao.num_banco)
+          console.log("ANTIGO: " +$scope.formData.agencia + " NOVO: " + documentosConcessao.dc_numero_agencia)
+          console.log("ANTIGO: " +$scope.formData.tipoConta + " NOVO: " + documentosConcessao.tipo_conta)
+          console.log("ANTIGO: " +auxiliarConta+ " NOVO: " + documentosConcessao.dc_numero_conta_corrente)
+
+          console.log("Informacoes de conta corrente foram alteradas")
+          flag_alteracao_dados_bco = "S"
+        } else {
+          console.log("Informacoes de conta corrente NAO foram alteradas")
+          flag_alteracao_dados_bco = "N"
+        }
+
+
+
+
         $http
           .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
@@ -1949,10 +2007,13 @@ window.controller = angular
               val_salario: emprestimoSimulacaoCamposEmitido.json.val_salario,
               iof: emprestimoSimulacaoCamposEmitido.result.iof,
               sit_par: dadosCadastrais.sit_par,
-              dc_numero_agencia: documentosConcessao.dc_numero_agencia,
-              dc_numero_conta_corrente: documentosConcessao.dc_numero_conta_corrente,
+              dc_numero_agencia: $scope.formData.agencia,
+              dc_numero_conta_corrente: $scope.formData.conta,
+              tipo_conta: $scope.formData.tipoConta,
+              num_banco: $scope.formData.bancoSelecionado,
               nome: informacoesParticipante.nome,
               dc_numero_cpf: documentosConcessao.dc_numero_cpf,
+              flag_alteracao_dados_bco: flag_alteracao_dados_bco,
               // numero_contrato: saldosDadosSimulacao.numero_contrato,
               idade: informacoesParticipante.idade_prev_apo,
               seguro_prestamista: emprestimoSimulacaoCamposEmitido.result.seguro_prestamista,
@@ -1971,6 +2032,8 @@ window.controller = angular
             function (resp) {
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
+
+              console.log(resp)
               $ionicLoading.hide()
               checkIfServerAnswerIsValid(resp)
               globalPopup = $ionicPopup.show({

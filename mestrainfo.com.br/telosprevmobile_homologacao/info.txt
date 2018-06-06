@@ -5,7 +5,7 @@ Cordova version: 8.0.0
 Config.xml file: 
 
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="107008" id="com.ionicframework.telosmobile365328" version="1.07" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="107008" id="com.ionicframework.prevmobile320663" version="1.07" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Telos</name>
     <description>Projeto desenvolvido pela Mestra Informática</description>
     <author email="mestra@mestrainfo.com.br" href="http://www.mestrainfo.com.br/">
@@ -64,10 +64,11 @@ Config.xml file:
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
-        <config-file target="*-Info.plist">
+        <config-file parent="NSFaceIDUsageDescription" target="*-Info.plist">
             <key>CFBundleAllowMixedLocalizations</key>
             <key>CFBundleLocalizations</key>
             <key>CFBundleDevelopmentRegion</key>
+            <key>NSFaceIDUsageDescription</key>
             <array>
                 <string>Yes</string>
             </array>
@@ -77,6 +78,12 @@ Config.xml file:
             <array>
                 <string>pt_BR</string>
             </array>
+            <array>
+                <string>Telos FaceId</string>
+            </array>
+        </config-file>
+        <config-file parent="NSFaceIDUsageDescription" target="*-Info.plist">
+            <string>Telos FaceId</string>
         </config-file>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
@@ -127,7 +134,7 @@ Config.xml file:
     <plugin name="cordova-plugin-keychain-touch-id" spec="git+https://github.com/MobilidadeBPI/cordova-plugin-keychain-touch-id.git" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.2.0" />
     <engine name="android" spec="^6.4.0" />
     <engine name="ios" spec="^4.5.4" />
 </widget>
@@ -135,7 +142,7 @@ Config.xml file:
 
 Plugins: 
 
-cordova-plugin-device,cordova-plugin-ionic-keyboard,cordova-plugin-ionic-webview,cordova-plugin-keychain-touch-id,cordova-plugin-splashscreen,cordova-plugin-statusbar,cordova-plugin-whitelist,ionic-plugin-keyboard
+cordova-plugin-app-version,cordova-plugin-device,cordova-plugin-ionic-keyboard,cordova-plugin-ionic-webview,cordova-plugin-keychain-touch-id,cordova-plugin-splashscreen,cordova-plugin-statusbar,cordova-plugin-whitelist,ionic-plugin-keyboard
 
 Error retrieving Android platform information: 
 Android SDK is not set up properly. Make sure that the Android SDK 'tools' and 'platform-tools' directories are in the PATH variable. 

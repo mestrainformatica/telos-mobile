@@ -1118,7 +1118,7 @@ p.successColor {
 }
 
 #termosUsoSimulacaoModal .btn-secundario {
-  font-size: 18px;
+  font-size: 17px;
   padding: 10px;
   border: 2px solid #42a1f4;
   border-radius: 4px;
@@ -1153,6 +1153,3 @@ p.successColor {
 	text-align: center;
 }
 
-.teste {
-	display: inline-block;
-}
