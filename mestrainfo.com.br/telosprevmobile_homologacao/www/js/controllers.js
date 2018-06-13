@@ -15,9 +15,9 @@ cordova = window.cordova
 // TELOS Produção
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
-//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
-urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -203,11 +203,12 @@ window.controller = angular
     '$ionicPopup',
     '$ionicModal',
     function ($scope, $state, $rootScope, $http, $timeout, $ionicLoading, $ionicPopup, $ionicModal) {
-      var result, matricula, touchId, dadosCadastrais, cpfParticipante
+      var result, matricula, touchId, dadosCadastrais, documentosConcessao
       result = retrieve($rootScope, 'lastRequest', 'result')
       matricula = retrieve(result, 'informacoesParticipante', 'matricula')
       dadosCadastrais = retrieve(result, 'dadosCadastrais')
       touchId = retrieve(result, 'preferencias', 'touch_ID')
+      documentosConcessao = retrieve(result, 'documentosConcessao')
 
       console.log("Valor da biometria para o usuário logado: " + touchId)
 
@@ -223,6 +224,16 @@ window.controller = angular
           })
         }
       }
+
+      //$scope.goSimulacaoEmprestimo = function (event) {
+      //  if (!documentosConcessao.tipo_conta) {
+      //    event.preventDefault()
+      //    globalPopup = $ionicPopup.alert({
+      //      title: 'Simulação de Empréstimo',
+      //      template: "Para usar essa funcionalidade, atualize seu aplicativo para a última versão disponível na loja."
+      //    })
+      //  }
+      //}
 
       $scope.logout = function () {
         $ionicLoading.show({
@@ -1888,7 +1899,7 @@ window.controller = angular
     '$ionicPopup',
     '$ionicLoading',
     '$ionicModal',
-    function ($scope, $state, $rootScope, $http, $ionicPopup, $ionicLoading, $ionicModal) {
+    function ($scope, $state, $rootScope, $http, $ionicPopup, $ionicLoading, $ionicModal, $sce) {
       var dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
       var documentosConcessao = $rootScope.lastRequest.result.documentosConcessao[0]
       var informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0]
@@ -1912,25 +1923,16 @@ window.controller = angular
 
 
       $scope.formData.bancoSelecionado = documentosConcessao.num_banco
-      $scope.formData.agencia = documentosConcessao.dc_numero_agencia
+      $scope.formData.agencia = documentosConcessao.dc_numero_agencia.trim()
       $scope.formData.tipoConta = documentosConcessao.tipo_conta
       $scope.formData.textoModal = documentosConcessao.texto_conf_dados_bancarios
 
       var auxiliarConta = documentosConcessao.dc_numero_conta_corrente.split("-")
 
-      $scope.formData.conta = auxiliarConta[0]
-      $scope.formData.digito = auxiliarConta[1]
-
-      if (auxiliarConta[1] === undefined || auxiliarConta[1] === null) {
-        auxiliarConta = auxiliarConta[0]
-      } else {
-        auxiliarConta = auxiliarConta[0] + '-' + auxiliarConta[1]
-      }
-
-
-
-
-
+      $scope.formData.conta = auxiliarConta[0].trim()
+      $scope.formData.digito = auxiliarConta[1].trim()
+      
+      console.log(auxiliarConta)
 
        $ionicModal
          .fromTemplateUrl('templates/modal/termos-de-uso-simulacao.html', {
@@ -1962,20 +1964,30 @@ window.controller = angular
 
       $scope.submit = function () {
 
+        console.log("aisufvaisuyvfiyavfuyafsvufsyvauyfvuyfasvuafys")
+        if (!$scope.formData.agencia.replace(/\s/g, '').length || !$scope.formData.conta.replace(/\s/g, '').length || !$scope.formData.digito.replace(/\s/g, '').length ) {
+          $rootScope.errorMsg = "Preencha todos os campos."
+          console.log("tinha só espaco")
+          return false;
+
+        }
+
         //validacao para ver se os campos de conta, agencia e etc foram alterados
 
         var flag_alteracao_dados_bco
+        
+        console.log(auxiliarConta)
+        var auxiliar = $scope.formData.conta + '-' + $scope.formData.digito
 
         if (  $scope.formData.bancoSelecionado !== documentosConcessao.num_banco ||
-              $scope.formData.agencia !== documentosConcessao.dc_numero_agencia  ||
+              $scope.formData.agencia.trim() !== documentosConcessao.dc_numero_agencia.trim()  ||
               $scope.formData.tipoConta !== documentosConcessao.tipo_conta  ||
-              auxiliarConta !== documentosConcessao.dc_numero_conta_corrente) {
-
-
-          console.log("ANTIGO: " +$scope.formData.bancoSelecionado+ " NOVO: " + documentosConcessao.num_banco)
-          console.log("ANTIGO: " +$scope.formData.agencia + " NOVO: " + documentosConcessao.dc_numero_agencia)
-          console.log("ANTIGO: " +$scope.formData.tipoConta + " NOVO: " + documentosConcessao.tipo_conta)
-          console.log("ANTIGO: " +auxiliarConta+ " NOVO: " + documentosConcessao.dc_numero_conta_corrente)
+              auxiliar.trim() !== documentosConcessao.dc_numero_conta_corrente.trim()) {
+      	
+          console.log($scope.formData.bancoSelecionado !== documentosConcessao.num_banco)	
+          console.log($scope.formData.agencia.trim() !== documentosConcessao.dc_numero_agencia.trim())
+        		  console.log($scope.formData.tipoConta !== documentosConcessao.tipo_conta)
+        				  console.log(auxiliar.trim() !== documentosConcessao.dc_numero_conta_corrente.trim())
 
           console.log("Informacoes de conta corrente foram alteradas")
           flag_alteracao_dados_bco = "S"
@@ -1986,6 +1998,13 @@ window.controller = angular
 
 
 
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 300,
+            showDelay: 0
+          })
 
         $http
           .post(urlBase + ';jsessionid=' + userInfo.s, {
@@ -2007,8 +2026,8 @@ window.controller = angular
               val_salario: emprestimoSimulacaoCamposEmitido.json.val_salario,
               iof: emprestimoSimulacaoCamposEmitido.result.iof,
               sit_par: dadosCadastrais.sit_par,
-              dc_numero_agencia: $scope.formData.agencia,
-              dc_numero_conta_corrente: $scope.formData.conta,
+              dc_numero_agencia: $scope.formData.agencia.trim(),
+              dc_numero_conta_corrente: auxiliar,
               tipo_conta: $scope.formData.tipoConta,
               num_banco: $scope.formData.bancoSelecionado,
               nome: informacoesParticipante.nome,

@@ -1,6 +1,6 @@
 <ion-modal-view class="product edit create" id="termosUsoSimulacaoModal">
 
-         <p>{{formData.textoModal}}</p>
+         <p ng-bind-html="formData.textoModal"></p>
 
           <div class="btn-bloco">
 	         	<button ng-click='aceitarTermos()' class="btn-primario">Aceitar</button>
