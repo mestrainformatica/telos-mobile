@@ -3505,6 +3505,7 @@ window.controller = angular
           })
           .then(
             function (resp) {
+              console.log(resp)
               var data, result
 
               data = retrieve(resp, 'data')
