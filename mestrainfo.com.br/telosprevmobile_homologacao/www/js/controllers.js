@@ -15,9 +15,9 @@ cordova = window.cordova
 // TELOS Produção
 // urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
-//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
-urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -203,11 +203,12 @@ window.controller = angular
     '$ionicPopup',
     '$ionicModal',
     function ($scope, $state, $rootScope, $http, $timeout, $ionicLoading, $ionicPopup, $ionicModal) {
-      var result, matricula, touchId, dadosCadastrais, cpfParticipante
+      var result, matricula, touchId, dadosCadastrais, documentosConcessao
       result = retrieve($rootScope, 'lastRequest', 'result')
       matricula = retrieve(result, 'informacoesParticipante', 'matricula')
       dadosCadastrais = retrieve(result, 'dadosCadastrais')
       touchId = retrieve(result, 'preferencias', 'touch_ID')
+      documentosConcessao = retrieve(result, 'documentosConcessao')
 
       console.log("Valor da biometria para o usuário logado: " + touchId)
 
@@ -223,6 +224,16 @@ window.controller = angular
           })
         }
       }
+
+      //$scope.goSimulacaoEmprestimo = function (event) {
+      //  if (!documentosConcessao.tipo_conta) {
+      //    event.preventDefault()
+      //    globalPopup = $ionicPopup.alert({
+      //      title: 'Simulação de Empréstimo',
+      //      template: "Para usar essa funcionalidade, atualize seu aplicativo para a última versão disponível na loja."
+      //    })
+      //  }
+      //}
 
       $scope.logout = function () {
         $ionicLoading.show({
@@ -260,9 +271,10 @@ window.controller = angular
       }
 
 
-
       // Se estivermos em um ambiente mobile e o TouchID não tiver sido definido ainda...
-        if (cordova && window.plugins.touchid && touchId === 'NAO' && window.localStorage.getItem('celularCadastrado') !== 'OK'){ 
+        if (cordova && window.plugins.touchid && touchId === 'NAO' && window.localStorage.getItem('respostaBiometria') === "INVALIDO" && 
+            window.localStorage.getItem('cpf_cadastrado') === "INVALIDO" && window.localStorage.getItem('celular_cadastrado') === "INVALIDO"
+          ){ 
         console.log('Deve oferecer abrir popup perguntando se o usuário deseja ativar a biometria');
         new Promise(function (resolve, reject) {
           // Verificamos se o telefone tem leitor de biometria
@@ -328,10 +340,10 @@ window.controller = angular
             $ionicLoading.show()
             touchId = touchId ? 'SIM' : 'NUNCA'
 
-            console.log('Valor da Biometria pós escolha: '+touchId);
+            console.log('touchId: '+touchId);
 
             // Se tudo estiver consistente continuamos
-            if (touchId) return touchId
+            if (!(touchId)) return touchId
 
             /**
              * Se o login do TouchID tiver falhado ou no caso de inconsistencia com a configuração local e do servidor
@@ -372,11 +384,7 @@ window.controller = angular
               })
               .then(function (resp) {
                 checkIfServerAnswerIsValid(resp)
-
-
-                console.log("Resposta do request após a pessoa dizer se aceita ou não a habilitar biometria: " + resp)
-
-                $rootScope.lastRequest.result.preferencias[0].touch_ID = touchId
+                $rootScope.lastRequest.result.preferencias[0].touch_ID = "SIM"
 
                 // cadastra KID no keychain do aparelho
                 return new Promise(function (resolve, reject) {
@@ -409,10 +417,9 @@ window.controller = angular
                     console.log('salvou');
                     $ionicLoading.hide()
                     return true;
-                  } 
-                  else {
-                     window.plugins.touchid.delete('FingerPrintAuth_telosPrevMobile', resolve)
-                   }
+                  } else {
+                    window.plugins.touchid.delete('FingerPrintAuth_telosPrevMobile', resolve)
+                  }
                 })
               })
               .catch(function () {
@@ -660,7 +667,7 @@ window.controller = angular
           })
           .catch(function (error) {
             $ionicLoading.hide()
-            $rootScope.errorMsg = "CPF não vinculado a biometria."
+            $rootScope.errorMsg = "CPF ou Senha inválidos."
           })
       }
 
@@ -684,15 +691,9 @@ window.controller = angular
     function ativarBiometria(cpf) {
       console.log("ativando biometria")
       if (window.plugins && window.plugins.touchid) {
-        
         console.log('Aparelho contém biometria')
 
-        new Promise(function (resolve, reject) {
-          window.plugins.touchid.has(
-            'FingerPrintAuth_telosPrevMobile',
-            function () {
-
-              // Caso haja uma key ele vai fazer um request para o WS verificaBiometria, o qual, verfifica se a pessoa deve ou não usar a biometria
+         // Caso haja uma key ele vai fazer um request para o WS verificaBiometria, o qual, verfifica se a pessoa deve ou não usar a biometria
 
               $http.post(urlBase, {
                 param: {
@@ -703,64 +704,64 @@ window.controller = angular
                 login: { u: '', s: '' }
               }).then(function(resultado) {
 
-                var resposta = retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'resposta')
-                var celular_cadastrado = retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'celular_cadastrado')
-                var cpf_cadastrado = retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'cpf_cadastrado')
+                window.localStorage.setItem(`respostaBiometria`, retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'resposta'))
+                window.localStorage.setItem(`cpf_cadastrado`, retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'cpf_cadastrado'))
+                window.localStorage.setItem(`celular_cadastrado`, retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'celular_cadastrado'))
+                window.localStorage.setItem('cpf_logado', cpf)
 
-                window.localStorage.setItem('celularCadastrado', celular_cadastrado)
-                window.localStorage.setItem('cpfCadastrado', cpf_cadastrado)
+                console.log("a resposta é: " + window.localStorage.getItem(`respostaBiometria`))
+                console.log("o cpf_cadastrado é: " + window.localStorage.getItem(`cpf_cadastrado`))
+                console.log("o celular_cadastrado é: " + window.localStorage.getItem(`celular_cadastrado`))
 
-                console.log("A resposta é: " + resposta)
-                console.log("Celular Cadastrado: " + window.localStorage.getItem(celular_cadastrado))
-                console.log("CPF Cadastrado: " + window.localStorage.getItem(cpf_cadastrado))
+                  new Promise(function (resolve, reject) {
+                    window.plugins.touchid.has(
+                      'FingerPrintAuth_telosPrevMobile',
+                      function () {
 
-                if (resposta === "OK") {
-                  $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
-                } else {
-                  console.log("Valor da resposta foi: " + resposta + " portanto, não será exibida a biometria.")
-                }
+                         if (window.localStorage.getItem(`respostaBiometria`) === "OK") {
+                            $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
+                          } else {
+                            console.log("Valor da resposta foi: " + resposta + " portanto, não será exibida a biometria.")
+                        }
+                      },
+                      reject
+                    )
+                  })
+                    .then(function (auth) {
+                      console.log('Success retrieving key with TouchId')
 
-              })
-            },
-            reject
-          )
-        })
-          .then(function (auth) {
-            console.log('Success retrieving key with TouchId')
+                      auth = JSON.parse(auth)
 
-            console.log("Infos da chave: " + auth)
+                      stageMap = {}
+                      userInfo = {}
+                      $rootScope.lastRequest = {}
 
-            auth = JSON.parse(auth)
+                      $ionicLoading.show({
+                        content: 'Carregando',
+                        maxWidth: 300,
+                        showDelay: 0,
+                        animation: 'fade-in',
+                        showBackdrop: true
+                      })
 
-            stageMap = {}
-            userInfo = {}
-            $rootScope.lastRequest = {}
+                      return loginPostAction(
+                        $http.post(urlBase, {
+                          param: {
+                            k: auth.k,
+                            imei: uuid(),
+                            cpf: cpf, 
+                            acao: 'autenticarTouchId'
+                          },
+                          login: { u: '', s: '' }
+                        })
+                      )
+                    })
+                    .catch(function (erro) {
+                      console.log("Chave de biometria com inválida.")
+                    })
 
-            $ionicLoading.show({
-              content: 'Carregando',
-              maxWidth: 300,
-              showDelay: 0,
-              animation: 'fade-in',
-              showBackdrop: true
-            })
 
-            return loginPostAction(
-              $http.post(urlBase, {
-                param: {
-                  k: auth.k,
-                  imei: uuid(),
-                  cpf: cpf, 
-                  acao: 'autenticarTouchId'
-                },
-                login: { u: '', s: '' }
-              }),
-
-            )
-          })
-          .catch(function (erro) {
-            console.log("Chave de biometria inválida.")
-            console.log("Erro da chave: " + erro)
-          })
+        }) // fim do then do request  
       } 
     }
 
@@ -1898,22 +1899,40 @@ window.controller = angular
     '$ionicPopup',
     '$ionicLoading',
     '$ionicModal',
-    function ($scope, $state, $rootScope, $http, $ionicPopup, $ionicLoading, $ionicModal) {
+    function ($scope, $state, $rootScope, $http, $ionicPopup, $ionicLoading, $ionicModal, $sce) {
       var dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0]
       var documentosConcessao = $rootScope.lastRequest.result.documentosConcessao[0]
       var informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0]
       var emprestimoSimulacaoCampos = $rootScope.lastRequest.emprestimoSimulacaoCampos
       var emprestimoSimulacaoCamposEmitido = $rootScope.lastRequest.emprestimoSimulacaoCamposEmitido
+      var listaBancos = $rootScope.lastRequest.result.listaBancos
+      var tipoConta = $rootScope.lastRequest.result.tipoConta[0]
+
 
       // var saldosDadosSimulacao = emprestimoSimulacaoCampos.saldos_dados_simulacao[0]
 
       $scope.emprestimoSimulacaoCampos = emprestimoSimulacaoCampos
       $scope.emprestimoSimulacaoCamposEmitido = emprestimoSimulacaoCamposEmitido.result
+      $scope.dadosCadastrais = dadosCadastrais
+      $scope.listaBancos = listaBancos
+      $scope.tipoConta = tipoConta
+      $scope.formData = {}
 
-     $scope.aceitarTermosSimulacao = function() {
-        console.log("aceitou termos de uso simulação")
-      }
-      console.log($ionicModal)
+
+
+
+
+      $scope.formData.bancoSelecionado = documentosConcessao.num_banco
+      $scope.formData.agencia = documentosConcessao.dc_numero_agencia.trim()
+      $scope.formData.tipoConta = documentosConcessao.tipo_conta
+      $scope.formData.textoModal = documentosConcessao.texto_conf_dados_bancarios
+
+      var auxiliarConta = documentosConcessao.dc_numero_conta_corrente.split("-")
+
+      $scope.formData.conta = auxiliarConta[0].trim()
+      $scope.formData.digito = auxiliarConta[1].trim()
+      
+      console.log(auxiliarConta)
 
        $ionicModal
          .fromTemplateUrl('templates/modal/termos-de-uso-simulacao.html', {
@@ -1929,6 +1948,11 @@ window.controller = angular
          })
         
 
+       $scope.aceitarTermos = function () {
+         console.log("abriu modal termos")
+         $scope.modal.hide()
+         $scope.submit() 
+       }  
        $scope.openModal = function () {
          console.log("abriu modal termos")
          $scope.modal.show()
@@ -1939,6 +1963,49 @@ window.controller = angular
        } 
 
       $scope.submit = function () {
+
+        console.log("aisufvaisuyvfiyavfuyafsvufsyvauyfvuyfasvuafys")
+        if (!$scope.formData.agencia.replace(/\s/g, '').length || !$scope.formData.conta.replace(/\s/g, '').length || !$scope.formData.digito.replace(/\s/g, '').length ) {
+          $rootScope.errorMsg = "Preencha todos os campos."
+          console.log("tinha só espaco")
+          return false;
+
+        }
+
+        //validacao para ver se os campos de conta, agencia e etc foram alterados
+
+        var flag_alteracao_dados_bco
+        
+        console.log(auxiliarConta)
+        var auxiliar = $scope.formData.conta + '-' + $scope.formData.digito
+
+        if (  $scope.formData.bancoSelecionado !== documentosConcessao.num_banco ||
+              $scope.formData.agencia.trim() !== documentosConcessao.dc_numero_agencia.trim()  ||
+              $scope.formData.tipoConta !== documentosConcessao.tipo_conta  ||
+              auxiliar.trim() !== documentosConcessao.dc_numero_conta_corrente.trim()) {
+      	
+          console.log($scope.formData.bancoSelecionado !== documentosConcessao.num_banco)	
+          console.log($scope.formData.agencia.trim() !== documentosConcessao.dc_numero_agencia.trim())
+        		  console.log($scope.formData.tipoConta !== documentosConcessao.tipo_conta)
+        				  console.log(auxiliar.trim() !== documentosConcessao.dc_numero_conta_corrente.trim())
+
+          console.log("Informacoes de conta corrente foram alteradas")
+          flag_alteracao_dados_bco = "S"
+        } else {
+          console.log("Informacoes de conta corrente NAO foram alteradas")
+          flag_alteracao_dados_bco = "N"
+        }
+
+
+
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 300,
+            showDelay: 0
+          })
+
         $http
           .post(urlBase + ';jsessionid=' + userInfo.s, {
             param: {
@@ -1959,10 +2026,13 @@ window.controller = angular
               val_salario: emprestimoSimulacaoCamposEmitido.json.val_salario,
               iof: emprestimoSimulacaoCamposEmitido.result.iof,
               sit_par: dadosCadastrais.sit_par,
-              dc_numero_agencia: documentosConcessao.dc_numero_agencia,
-              dc_numero_conta_corrente: documentosConcessao.dc_numero_conta_corrente,
+              dc_numero_agencia: $scope.formData.agencia.trim(),
+              dc_numero_conta_corrente: auxiliar,
+              tipo_conta: $scope.formData.tipoConta,
+              num_banco: $scope.formData.bancoSelecionado,
               nome: informacoesParticipante.nome,
               dc_numero_cpf: documentosConcessao.dc_numero_cpf,
+              flag_alteracao_dados_bco: flag_alteracao_dados_bco,
               // numero_contrato: saldosDadosSimulacao.numero_contrato,
               idade: informacoesParticipante.idade_prev_apo,
               seguro_prestamista: emprestimoSimulacaoCamposEmitido.result.seguro_prestamista,
@@ -1981,6 +2051,8 @@ window.controller = angular
             function (resp) {
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
+
+              console.log(resp)
               $ionicLoading.hide()
               checkIfServerAnswerIsValid(resp)
               globalPopup = $ionicPopup.show({
@@ -3433,6 +3505,7 @@ window.controller = angular
           })
           .then(
             function (resp) {
+              console.log(resp)
               var data, result
 
               data = retrieve(resp, 'data')
@@ -3535,15 +3608,20 @@ window.controller = angular
 
 
       var touchId = rootScope.lastRequest.result.preferencias[0].touch_ID
-      var cpfCadastrado = window.localStorage.getItem('cpfCadastrado')
-      var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
-      
 
 
 
-    function habilitaPreferenciaBiometria() {
+
       console.log("valor da biometria nas preferencias: " + touchId)
       var matricula = rootScope.lastRequest.result.informacoesParticipante[0].matricula
+      var dadosCadastrais = rootScope.lastRequest.result.dadosCadastrais[0]
+
+
+      console.log("CPF LOGADO: " + window.localStorage.getItem('cpf_logado'))
+      console.log("CPF CADASTRADO: " + window.localStorage.getItem('cpf_cadastrado'))
+
+      var cpfCadastrado = window.localStorage.getItem('cpf_cadastrado')
+      var cpfLogado = window.localStorage.getItem('cpf_logado')
 
       var toggle = {
         text: 'Habilitar Biometria',
@@ -3620,8 +3698,9 @@ window.controller = angular
         }
       }
 
-      if (window.plugins && window.plugins.touchid) {
-        // console.log('TouchID Enabled')
+      if (cpfCadastrado !== cpfLogado && cpfCadastrado !== "INVALIDO") {
+        console.log("preferencia de biometria não habilitada")
+      } else if (window.plugins && window.plugins.touchid) {
         new Promise(function (resolve, reject) {
           window.plugins.touchid.isAvailable(resolve, reject)
         }).then(function () {
@@ -3629,26 +3708,7 @@ window.controller = angular
         })
       }
     }
-
-
-    // logica para exibir a opção de biometria
-
-    if (cpfCadastrado === '') {
-      habilitaPreferenciaBiometria()
-    } 
-
-    if (cpfCadastrado === userInfo.cpf && cpfCadastrado !== '') {
-      habilitaPreferenciaBiometria()
-    }
-
-    if (cpfCadastrado !== userInfo.cpf && cpfCadastrado !== '') {
-      console.log('Não habilitou preferencia de biometria)
-    }
-
-
-
-  }
-])
+  ])
 
 angular
   .module('starter.Directives', [])

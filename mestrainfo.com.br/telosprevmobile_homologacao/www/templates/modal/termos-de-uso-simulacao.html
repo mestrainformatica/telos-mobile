@@ -1,9 +1,9 @@
 <ion-modal-view class="product edit create" id="termosUsoSimulacaoModal">
 
-         <p>Declaro, para todos os fins de direito, que os dados bancários informados são de minha titularidade e por mim confirmados; bem como ressaltar que a conta ora informada <u>não é</u> conta salário. </p>
+         <p ng-bind-html="formData.textoModal"></p>
 
           <div class="btn-bloco">
-	         	<button ng-click='aceitarTermosSimulacao()' class="btn-primario">Aceitar</button>
+	         	<button ng-click='aceitarTermos()' class="btn-primario">Aceitar</button>
 	         	<button ng-click='closeModal()' class="btn-secundario">Cancelar</button>
     	     </div>
 

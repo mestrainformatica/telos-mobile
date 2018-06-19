@@ -59,6 +59,40 @@
                 <p class="errorColor" style="white-space: initial; text-align: justify;">
                     {{emprestimoSimulacaoCamposEmitido.texto_simulacao}}</p>
             </div>
+            <div class="item" ng-if="emprestimoSimulacaoCamposEmitido.exibe_botao_confirmacao">
+                <div class="list">  
+                    <form id="formCampos"> 
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Banco
+                            </div>
+                            <select class="ion-input-select" style="font-size: 10px;" ng-model="formData.bancoSelecionado" ng-options="item.num_banco_lista as item.nome_banco_lista for item in listaBancos">
+                                <option value="">- Selecione -</option>
+                            </select>
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Agência</span>
+                            <input ng-model="formData.agencia" type="tel" id="agencia">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Conta</span>
+                            <input ng-model="formData.conta" type="tel" id="conta">
+                        </label>
+                        <label class="item item-input">
+                            <span class="input-label">Digito</span>
+                            <input ng-model="formData.digito" maxlength="2" type="tel" id="digito">
+                        </label>
+                        <label class="item item-input item-select">
+                            <div class="input-label">
+                                Tipo de Contas
+                            </div>
+                            <select class="ion-input-select" ng-model="formData.tipoConta" ng-options="key as value for (key,value) in tipoConta">
+                                <option value="">- Selecione -</option>
+                            </select>
+                        </label>
+                    </form>
+                </div>
+            </div>            
 
             <div class="item" style="border-top: none">
                 <div ng-if="emprestimoSimulacaoCamposEmitido.exibe_botao_confirmacao">
@@ -68,7 +102,7 @@
                     <div class="button-bar" padding="true">
                         <input ng-hide="loading" type="submit"
                                class="button button-positive button-block ng-pristine ng-untouched ng-valid"
-                               ng-click="submit()"
+                               ng-click="openModal()"
                                value="{{emprestimoSimulacaoCamposEmitido.nome_botao_confirmacao}}">
                         <div ng-show="loading"
                              class="button button-positive button-block ng-hide"
@@ -87,27 +121,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="button-bar" padding="true">
-                        <input ng-hide="loading" type="button"
-                               class="button button-positive button-block ng-pristine ng-untouched ng-valid"
-                               ng-click="openModal()"
-                               value="Confirmar Solicitação">
-                        <div ng-show="loading"
-                             class="button button-positive button-block ng-hide"
-                             id="loading" style="">
-                            <ion-spinner icon="android" class="spinner spinner-android">
-                                <svg viewBox="0 0 64 64">
-                                    <g transform="rotate(24.6,32,32)">
-                                        <circle stroke-width="6"
-                                                stroke-dasharray="128.99384356121985"
-                                                stroke-dashoffset="0" r="26" cx="32"
-                                                cy="32" fill="none"
-                                                transform="scale(1,1) translate(0,0) rotate(0,32,32)"></circle>
-                                    </g>
-                                </svg>
-                            </ion-spinner>
-                        </div>
-                    </div>
             </div>
         </div>
     </ion-content>
