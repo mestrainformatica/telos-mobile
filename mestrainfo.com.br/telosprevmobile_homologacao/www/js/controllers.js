@@ -13,9 +13,9 @@ cordova = window.cordova
 
 // URL Base para conexão aos servidor TELOS
 // TELOS Produção
-// urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
-urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
 //urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
@@ -1924,6 +1924,7 @@ window.controller = angular
 
       $scope.formData.bancoSelecionado = documentosConcessao.num_banco
       $scope.formData.agencia = documentosConcessao.dc_numero_agencia.trim()
+      console.log($scope.formData.agencia)
       $scope.formData.tipoConta = documentosConcessao.tipo_conta
       $scope.formData.textoModal = documentosConcessao.texto_conf_dados_bancarios
 
@@ -1932,7 +1933,7 @@ window.controller = angular
       $scope.formData.conta = auxiliarConta[0].trim()
       $scope.formData.digito = auxiliarConta[1].trim()
       
-      console.log(auxiliarConta)
+      console.log($scope.formData)
 
        $ionicModal
          .fromTemplateUrl('templates/modal/termos-de-uso-simulacao.html', {
@@ -1962,9 +1963,18 @@ window.controller = angular
         $scope.modal.hide()
        } 
 
-      $scope.submit = function () {
 
-        console.log("aisufvaisuyvfiyavfuyafsvufsyvauyfvuyfasvuafys")
+       $scope.limpaForm = function() {
+        console.log("entrou limpa form")
+          $scope.formData.agencia = ""
+          $scope.formData.conta = ""
+          $scope.formData.digito = ""
+       }
+
+      $scope.submit = function () {
+        console.log($scope.formData.agencia)
+
+        console.log($scope.formData)
         if (!$scope.formData.agencia.replace(/\s/g, '').length || !$scope.formData.conta.replace(/\s/g, '').length || !$scope.formData.digito.replace(/\s/g, '').length ) {
           $rootScope.errorMsg = "Preencha todos os campos."
           console.log("tinha só espaco")

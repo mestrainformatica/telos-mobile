@@ -66,25 +66,25 @@
                             <div class="input-label">
                                 Banco
                             </div>
-                            <select class="ion-input-select" style="font-size: 10px;" ng-model="formData.bancoSelecionado" ng-options="item.num_banco_lista as item.nome_banco_lista for item in listaBancos">
+                            <select class="ion-input-select" ng-change="limpaForm()" style="font-size: 10px;" ng-model="formData.bancoSelecionado" ng-options="item.num_banco_lista as item.nome_banco_lista for item in listaBancos">
                                 <option value="">- Selecione -</option>
                             </select>
                         </label>
                         <label class="item item-input">
-                            <span class="input-label">Agência</span>
-                            <input ng-model="formData.agencia" maxlength="4" type="tel" id="agencia">
+                            <span class="input-label">Agência s/ Díg.</span>
+                            <input ng-model="formData.agencia" maxlength="7" type="tel" id="agencia">
                         </label>
                         <label class="item item-input">
                             <span class="input-label">Conta</span>
                             <input ng-model="formData.conta" maxlength="12" type="tel" id="conta">
                         </label>
                         <label class="item item-input">
-                            <span class="input-label">Digito</span>
-                            <input ng-model="formData.digito" maxlength="2" type="tel" id="digito">
+                            <span class="input-label">Dígito</span>
+                            <input ng-model="formData.digito" maxlength="2" type="text" id="digito">
                         </label>
                         <label class="item item-input item-select">
                             <div class="input-label">
-                                Tipo de Contas
+                                Tipo de Conta
                             </div>
                             <select class="ion-input-select" ng-model="formData.tipoConta" ng-options="key as value for (key,value) in tipoConta">
                                 <option value="">- Selecione -</option>
