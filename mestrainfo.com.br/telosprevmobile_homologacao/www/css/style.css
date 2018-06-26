@@ -1153,3 +1153,13 @@ p.successColor {
 	text-align: center;
 }
 
+.item-select-customizado select {
+	border: none;
+	width: 100%;
+	text-align-last: right;
+}
+
+.item-select-customizado .input-label {
+	width: 0% !important;
+
+}

@@ -62,11 +62,11 @@
             <div class="item" ng-if="emprestimoSimulacaoCamposEmitido.exibe_botao_confirmacao">
                 <div class="list">  
                     <form id="formCampos"> 
-                        <label class="item item-input item-select">
+                        <label class="item item-input item-select-customizado">
                             <div class="input-label">
                                 Banco
                             </div>
-                            <select class="ion-input-select" ng-change="limpaForm()" style="font-size: 10px;" ng-model="formData.bancoSelecionado" ng-options="item.num_banco_lista as item.nome_banco_lista for item in listaBancos">
+                            <select class="input-select" ng-change="limpaForm()" ng-model="formData.bancoSelecionado" ng-options="item.num_banco_lista as item.nome_banco_lista for item in listaBancos">
                                 <option value="">- Selecione -</option>
                             </select>
                         </label>
