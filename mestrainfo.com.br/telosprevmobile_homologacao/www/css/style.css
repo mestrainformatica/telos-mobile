@@ -1153,13 +1153,14 @@ p.successColor {
 	text-align: center;
 }
 
-.item-select-customizado select {
-	border: none;
-	width: 100%;
-	text-align-last: right;
+#label-customizado {
+	width: 0% !important;
+	padding-right: 0px;
 }
 
-.item-select-customizado .input-label {
-	width: 0% !important;
-
+#select-customizado {
+	max-width: 80% !important;
+	padding-left: 0px;
+	padding-right: 30px;
+	font-size: 12px;
 }

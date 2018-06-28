@@ -62,11 +62,11 @@
             <div class="item" ng-if="emprestimoSimulacaoCamposEmitido.exibe_botao_confirmacao">
                 <div class="list">  
                     <form id="formCampos"> 
-                        <label class="item item-input item-select-customizado">
-                            <div class="input-label">
+                        <label class="item item-input item-select">
+                            <div id="label-customizado" class="input-label">
                                 Banco
                             </div>
-                            <select class="input-select" ng-change="limpaForm()" ng-model="formData.bancoSelecionado" ng-options="item.num_banco_lista as item.nome_banco_lista for item in listaBancos">
+                            <select id="select-customizado" class="ion-input-select" ng-change="limpaForm()" ng-model="formData.bancoSelecionado" ng-options="item.num_banco_lista as item.nome_banco_lista for item in listaBancos">
                                 <option value="">- Selecione -</option>
                             </select>
                         </label>
@@ -75,18 +75,18 @@
                             <input ng-model="formData.agencia" maxlength="7" type="tel" id="agencia">
                         </label>
                         <label class="item item-input">
-                            <span class="input-label">Conta</span>
+                            <span class="input-label">Conta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <input ng-model="formData.conta" maxlength="12" type="tel" id="conta">
                         </label>
                         <label class="item item-input">
-                            <span class="input-label">Dígito</span>
+                            <span class="input-label">Dígito&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             <input ng-model="formData.digito" maxlength="2" type="text" id="digito">
                         </label>
                         <label class="item item-input item-select">
                             <div class="input-label">
                                 Tipo de Conta
                             </div>
-                            <select class="ion-input-select" ng-model="formData.tipoConta" ng-options="key as value for (key,value) in tipoConta">
+                            <select id="select-customizado" class="ion-input-select" ng-model="formData.tipoConta" ng-options="key as value for (key,value) in tipoConta">
                                 <option value="">- Selecione -</option>
                             </select>
                         </label>
