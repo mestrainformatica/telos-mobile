@@ -1164,3 +1164,10 @@ p.successColor {
 	padding-right: 30px;
 	font-size: 12px;
 }
+
+
+
+.password-class {
+    -webkit-text-security: disc;
+    -moz-text-security: disc;
+}
