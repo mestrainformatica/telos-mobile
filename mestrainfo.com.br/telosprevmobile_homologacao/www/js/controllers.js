@@ -13,11 +13,11 @@ cordova = window.cordova
 
 // URL Base para conexão aos servidor TELOS
 // TELOS Produção
-//urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
 //urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
-urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
 // Variaveis Globais
 map = {
@@ -584,6 +584,52 @@ window.controller = angular
     '$ionicLoading',
     '$ionicModal',
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $ionicModal) {
+      window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+
+      $scope.preferenciasLogin = []
+
+      if (window.localStorage.getItem("opcao_cpf")  === undefined) {
+        console.log("primeira vez com a opcao lembrar")
+        window.localStorage.setItem("opcao_cpf", "NAO");
+      }
+
+      console.log("OPCAO CPF NA TELA DE LOGIN: " + window.localStorage.getItem("opcao_cpf"))
+
+
+      var opcao_cpf = window.localStorage.getItem("opcao_cpf");
+
+      var toggle = {
+        text: 'Guardar Meu CPF',
+        checked: opcao_cpf === "SIM",
+        action: function () {
+          if (toggle.checked === true) {
+            window.localStorage.setItem("opcao_cpf", "SIM");
+            console.log("OPCAO LEMBRA-ME: " + window.localStorage.getItem("opcao_cpf"))
+            console.log("CPF PREFERENCIA: " + window.localStorage.getItem("cpf_preferencia"))
+          } else {
+            window.localStorage.setItem("opcao_cpf", "NAO");
+            window.localStorage.setItem("cpf_preferencia", "");
+            console.log("OPCAO LEMBRA-ME: " + window.localStorage.getItem("opcao_cpf"))
+            console.log("CPF PREFERENCIA: " + window.localStorage.getItem("cpf_preferencia"))
+          }
+          
+        }
+      }
+
+      $scope.preferenciasLogin.push(toggle);
+
+
+     
+        $scope.formData = {};
+        $scope.formData.cpf =  window.localStorage.getItem("cpf_preferencia");
+
+
+        $scope.labelMessage = "Preencha seus dados pessoais para entrar";
+      
+
+
+
+        
 
       // We got redirect because of a error
       console.log($rootScope.errorMsg, userInfo.u, userInfo.s)
@@ -603,8 +649,6 @@ window.controller = angular
           })
       }
 
-      $scope.labelMessage = "Preencha seus dados pessoais para entrar";
-      $scope.placeholderPassMessage = "Digite sua senha";
 
       /**
        * Lida com o resultado da requisição de login, seja ela com TouchID ou Normal
@@ -622,11 +666,13 @@ window.controller = angular
           .then(function (resp) {
             var dados, result, touchId, dadosView, beneficiarios
 
+
+        
+
             $ionicLoading.hide()
             checkIfServerAnswerIsValid(resp)
 
             userInfo.cpf = cpf
-            $scope.formData = {}
             $rootScope.cache = {}
             $rootScope.lastRequest = retrieve(resp, 'data')
 
@@ -657,6 +703,19 @@ window.controller = angular
               }
             }
 
+            console.log("OPCAO CPF PÓS LOGADO: " + window.localStorage.getItem("opcao_cpf"))
+
+
+            // salvando o cpf somente após logado
+            if (window.localStorage.getItem("opcao_cpf") === "SIM") {
+              window.localStorage.setItem("cpf_preferencia", cpf);
+              console.log("CPF PREFENCIA PÓS TENTATIVA DE SALVA-LO: " + window.localStorage.getItem("cpf_preferencia"))
+            } else if (window.localStorage.getItem("opcao_cpf") === "NAO") {
+              window.localStorage.setItem("cpf_preferencia", "");
+              console.log("CPF PREFENCIA PÓS TENTATIVA DE SALVA-LO ELSE: " + window.localStorage.getItem("cpf_preferencia"))
+            }
+
+
             console.log(result['termo_de_uso'])
             if (result['termo_de_uso']) {
               // Ainda não aceitou os termos de uso
@@ -668,10 +727,9 @@ window.controller = angular
           .catch(function (error) {
             $ionicLoading.hide()
             $rootScope.errorMsg = "CPF ou Senha inválidos."
+            
           })
       }
-
-      $scope.formData = {}
 
       // Clear any old popup or loading
       if (globalPopup) globalPopup.close()
@@ -680,12 +738,20 @@ window.controller = angular
       // Login TouchID
       $scope.loginPorBiometria = function() {
         var cpf = this.formData.cpf;
-
+        
         //Este if verifica se o usuário digitou 11 digitos no CPF, caso sim, chamamos a biometria
         if (cpf.length === 11) {
+          window.cordova.plugins.Keyboard.close();
+          document.getElementById("campoCpf").blur();
           console.log("vai verificar se o cpf está cadastrado no celular")
           ativarBiometria(cpf);
         }
+      }
+
+
+      var biometriaComCPfCadastrado = function() {
+        console.log("alo")
+          $scope.loginPorBiometria();
       }
 
     function ativarBiometria(cpf) {
@@ -719,9 +785,14 @@ window.controller = angular
                       function () {
 
                          if (window.localStorage.getItem(`respostaBiometria`) === "OK") {
-                            $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve), 800)
+                          
+                            $timeout(window.plugins.touchid.verify('FingerPrintAuth_telosPrevMobile', 'Use sua biometria para acessar', resolve, function() {
+                              document.getElementById("passwordField").removeEventListener("focus", biometriaComCPfCadastrado, false);
+                            }), 100)
+                            
                           } else {
-                            console.log("Valor da resposta foi: " + resposta + " portanto, não será exibida a biometria.")
+                            console.log("Valor da resposta foi: INVALIDO portanto, não será exibida a biometria.");
+                            document.getElementById("passwordField").removeEventListener("focus", biometriaComCPfCadastrado, false);
                         }
                       },
                       reject
@@ -729,6 +800,7 @@ window.controller = angular
                   })
                     .then(function (auth) {
                       console.log('Success retrieving key with TouchId')
+
 
                       auth = JSON.parse(auth)
 
@@ -753,7 +825,7 @@ window.controller = angular
                             acao: 'autenticarTouchId'
                           },
                           login: { u: '', s: '' }
-                        })
+                        }), cpf
                       )
                     })
                     .catch(function (erro) {
@@ -765,12 +837,38 @@ window.controller = angular
       } 
     }
 
+    if ($scope.formData.cpf != null && $scope.formData.cpf != undefined &&  $scope.formData.cpf.length === 11 && window.localStorage.getItem("opcao_cpf") === "SIM") {
+
+      $http.post(urlBase, {
+        param: {
+          cpf: $scope.formData.cpf,
+          imei: uuid(),
+          acao: 'verificarBiometria'
+        },
+        login: { u: '', s: '' }
+      }).then(function(resultado) {
+
+          if (retrieve(retrieve(retrieve(resultado, 'data'), 'result'), 'resposta') === "OK") {
+            $scope.placeholderPassMessage = "Digite sua senha ou clique para biometria";
+            document.getElementById("passwordField").addEventListener("focus", biometriaComCPfCadastrado, false)
+          } else {
+            $scope.placeholderPassMessage = "Digite sua senha";
+            console.log("CPF não cadastrado, portanto a biometria na tela de login não será ativada.")
+          }
+      });
+
+    } else {
+      $scope.placeholderPassMessage = "Digite sua senha";
+    }
+
+
 
 
 
 
       $scope.submit = function () {
         var formData = this.formData
+        
 
         if (!(formData.cpf && formData.sen)) {
           $rootScope.errorMsg = 'Por favor preencha os campos acima'

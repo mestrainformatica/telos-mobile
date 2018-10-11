@@ -1171,3 +1171,15 @@ p.successColor {
     -webkit-text-security: disc;
     -moz-text-security: disc;
 }
+
+
+.toggle-customizado {
+	font-size: 12px;
+	border-bottom: none;
+	border-right: none;
+	border-left: none;
+}
+
+.toggle-customizado:focus, .toggle-customizado:hover {
+	background-color: white;
+}	

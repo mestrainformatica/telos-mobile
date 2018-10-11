@@ -10,18 +10,22 @@
 
             <p>{{ labelMessage }}</p>
             <label class="item item-input">
-                <input type="tel" placeholder="Digite seu CPF" ng-change="loginPorBiometria()" class="cpfField" ng-model="formData.cpf" mask="99999999999"
+                <input id="campoCpf" type="tel" placeholder="Digite seu CPF"  ng-change="loginPorBiometria()" class="cpfField" ng-model="formData.cpf" mask="99999999999"
                        mask-restrict='reject'>
             </label>
             <label class="item item-input">
-                <input type="tel" class="password-class" placeholder="{{ placeholderPassMessage }}" mask="99999999999999999999" mask-restrict='reject'
+                <input type="tel" class="password-class"  placeholder="{{ placeholderPassMessage }}" mask="99999999999999999999" mask-restrict='reject'
                        ng-model="formData.sen" id="passwordField">
             </label>
-
+                <ion-toggle class="toggle-small toggle-assertive toggle-customizado" ng-repeat="item in preferenciasLogin"
+                            ng-model="item.checked"
+                            ng-checked="item.checked"
+                            ng-click="item.action($event)">
+                    {{ item.text }}
+                </ion-toggle>
             <div class="the_error">
                 <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
             </div>
-
             <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitLogin"
                    value="Entrar">
             <div ng-show="loading" class="button button-positive button-block" id="loading">
