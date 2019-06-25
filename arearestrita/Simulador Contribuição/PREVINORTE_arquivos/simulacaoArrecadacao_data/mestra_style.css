@@ -1,0 +1,271 @@
+body {
+	background-color: #f1f1f1;
+}
+
+#navbarel {
+	width: 1400px;
+	height: 60px;
+	*height: 20px;
+	background: #FFF;
+	margin-left: 0px;
+	border-radius: 2px; 
+	-moz-border-radius: 2px; 
+	-webkit-border-radius: 2px; 
+	float: center;
+}
+#marcarel {
+	width: 275px;
+	height: 100px;
+	margin-bottom: 20px;
+}
+#marcarel h1 { padding-top: 20px; _padding-top: 0; padding-left: 260px;  }
+#marcarel h1 a { 
+	display: block; 
+	width: 255px; 
+	height: 80px; 
+	text-indent: -999em; 
+	outline: none; 
+	background: url(../images/marca.jpg) no-repeat center left;
+	_margin-top: 15px; 
+}
+#navmsg {
+	text-align: center;
+	color: #ececec;
+	font-size: 10pt;
+	letter-spacing: 0.3pt;
+	_letter-spacing: 0.5pt;
+	float: center;
+	padding: 10px;
+	_padding: 10px;
+	_margin: 5px 2px 5px 3px;
+}
+
+.thh {
+	background: #ececec; 
+	padding: 0.5em;
+	padding: 0.25em 0.5em; 
+	border-bottom: solid 1px #DDD;  
+	font-size: 8pt;
+	font-weight:bold
+}
+
+
+
+/* Alterações v2 - Previnorte */
+
+* {
+	font-family: 'Open Sans', open-sans, arial, sans-serif !important;
+}
+
+#conteudo2 {
+	display: none;
+}
+#conteudo {
+	width: auto;
+}
+#conteudo3 {
+	float: none;
+	width: auto;
+}
+
+#conteudo3 li {
+	float: left;
+}
+#menurestrito {
+	width: auto;
+	margin: auto;
+}
+#mainconteudo #conteudo3 ul#menurestrito {
+    padding: 0;
+    margin: 0;
+    width: auto;
+    position: relative;
+    display: inline-block;
+    background: #28446a;
+    width: calc(100% - 40px);
+    padding-left: 40px;
+}
+/*#conteudo div.confirmacao, #conteudo div.checkbox, #conteudo div.radio, #conteudo form label {
+	padding: 10px;
+}*/
+#conteudo input[type="text"] {
+
+	padding: 6px 8px;
+	border-radius: 4px;
+	border: 1px solid #c0c2c3;
+
+}
+#conteudo form label span, #conteudo form div span {
+    display: block;
+    float: left;
+    width: 140px;
+    padding: 0em;
+    font-size: 10pt;
+    padding: 5px 0;
+}
+
+#conteudo form label, #conteudo form div {
+    display: block;
+    background: #f1f1f1;
+}
+#conteudo div.confirmacao, #conteudo div.checkbox, #conteudo div.radio, #conteudo form label {
+    padding: 4px 20px;
+}
+
+#mainconteudo #conteudo3 ul#menurestrito li {
+	background: #28446a;
+	position: relative;
+}
+
+#mainconteudo #conteudo3 ul#menurestrito li a {
+	padding: 15px 12px;
+}
+
+#mainconteudo #conteudo3 ul#menurestrito li.hasmenu ul {
+	left: 0;
+	margin-top: 0;
+	box-shadow: 1px 1px 15px rgba(0,0,0,.15);
+	background: #fff;
+    z-index: 1;
+    margin-top: 1px;
+}
+
+#mainconteudo #conteudo3 ul#menurestrito li.hasmenu ul li {
+	background: #fff;
+	width: 100%;
+	border-bottom: 1px solid #f1f1f1;
+}
+#mainconteudo #conteudo3 ul#menurestrito li.hasmenu ul li a {
+	color: #28446a;
+	padding: 10px 12px;
+}
+#mainconteudo #conteudo3 ul#menurestrito li.hasmenu ul li a:hover {
+	color: #fff;
+	background: #31578b;
+}
+
+#mainconteudo #conteudo3 ul#menurestrito li a:hover {
+	background: #31578b;
+}
+#login a {
+	padding-left: 0;
+	color: #28446a;
+	display: unset;
+	font-size: 12px;
+}
+
+#principal.interna #navbar {
+	background: transparent;
+    border-bottom: 1px solid #ececec;
+    position: absolute;
+    top: 210px;
+}
+
+#navdata {
+	color: #808080;
+	margin-right: 20px;
+}
+
+#topo {
+	height: 140px;
+}
+
+#principal.interna #conteudo {
+	margin-top: 50px;
+	width: 880px;
+    margin-left: 50px;
+}
+
+#conteudo form fieldset legend {
+	width: 98.5%;
+    background: #28446a;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: .7em 0.5em;
+}
+
+#conteudo h3 {
+    padding: 1em 0 1.5em;
+    color: #213857;
+}
+
+#principal{
+	width: 100%;
+}
+
+#navid, #login {
+	top: 28px;
+}
+
+#login .logged {
+	width: 328px;
+	display: flex !important;
+	align-items: start;
+	justify-content: start;
+}
+
+#login .logged span.img-user {
+	background-image: url(../../../userpill.png);
+    margin-right: 15px;
+    margin-left: 10px;
+    width: 33px;
+    height: 33px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 3px;
+}
+#marca h1 {
+	padding-left: 40px;
+}
+
+#marca h1 a {
+	background-image: url('../../../logo-mestra-02.png');
+}
+#conteudo .alerta {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 0.25em 0.55em;
+    margin: 0.25em 0;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: .25rem;
+}
+
+#conteudo .aviso {
+	color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+	padding: 0.25em 0.55em;
+    margin: 0.25em 0;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: .25rem;
+}
+
+#conteudo .sucesso {
+	color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+	padding: 0.25em 0.55em;
+    margin: 0.25em 0;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: .25rem;
+}
+
+#navbar .nav-right {
+	float: left;
+    font-size: 8pt;
+    padding: 10px 10px 10px 50px;
+}
+
+#mainconteudo #conteudo3 ul#menurestrito li.hasmenu {
+	background-image: url('../../../chevron-down.png');
+	background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: right;
+}
