@@ -1,6 +1,6 @@
 body {
 	background-color: #f1f1f1;
-} 
+}
 
 #navbarel {
 	width: 1400px;
@@ -268,4 +268,31 @@ body {
 	background-repeat: no-repeat;
     background-position-y: center;
     background-position-x: right;
+}
+
+#conteudo input[type="submit"], .enviar, #enviar {
+	color: #fff;
+	background-color: #11609d;
+	border-color: #11609d;
+	display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+#conteudo input[type="submit"]:hover, .enviar:hover, #enviar:hover {
+	background-color: #0e5388;
+	border-color: #0c4977;
 }
