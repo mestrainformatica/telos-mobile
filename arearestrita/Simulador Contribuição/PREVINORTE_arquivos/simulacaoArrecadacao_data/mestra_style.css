@@ -270,6 +270,13 @@ body {
     background-position-x: right;
 }
 
+#mainconteudo #conteudo3 ul#menurestrito li.hasmenu a:hover {
+	background-image: url('../../../chevron-down.png');
+	background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: right;
+}
+
 #conteudo input[type="submit"], .enviar, #enviar {
 	color: #fff;
 	background-color: #11609d;
