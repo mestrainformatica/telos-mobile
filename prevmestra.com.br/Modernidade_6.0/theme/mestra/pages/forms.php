@@ -4,8 +4,8 @@
 						<div class="kt-subheader   kt-grid__item" id="kt_subheader">
 							<div class="kt-container  kt-container--fluid ">
 								<div class="kt-subheader__main">
-									<!-- <h3 class="kt-subheader__title">
-										Formulários padrão </h3> -->
+									<h3 class="kt-subheader__title">
+										Entidades de previdência </h3>
 									<span class="kt-subheader__separator kt-hidden"></span>
 									<!-- <div class="kt-subheader__breadcrumbs">
 										<a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
@@ -27,9 +27,9 @@
 								</div>
 								<div class="kt-subheader__toolbar">
 									<div class="kt-subheader__wrapper">
-										<span class="inline mr-3"><h3 class="mr-2"><i class="flaticon-file-1"></i></h3><span>Novo arquivo</span></span>
+										<button class="btn btn-primary"><i class="flaticon-file-1"></i>Novo arquivo</button>
 										
-										<span class="inline"><h3 class="mr-2"><i class="flaticon-interface-5"></i></h3><span>Salvar</span></span>
+										<button class="btn btn-primary"><i class="flaticon-interface-5"></i>Salvar</button>
 									</div>
 								</div>
 							</div>

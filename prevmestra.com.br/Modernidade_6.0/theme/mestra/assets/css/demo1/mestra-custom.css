@@ -86,8 +86,9 @@ body {
 
 .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
 	background-image: linear-gradient(to bottom, #fff, #D9DADF);
-	padding: 50px;
+	padding: 30px;
 	border-radius: 10px;
+	width: 400px;
 }
 
 .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra, .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link, .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__account .kt-login__account-msg,.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__account .kt-login__account-link {
@@ -96,14 +97,29 @@ body {
 .kt-header-menu .kt-menu__nav > .kt-menu__item .kt-menu__submenu > .kt-menu__subnav > .kt-menu__item.kt-menu__item--active > .kt-menu__link .kt-menu__link-text {
 	color: #2a5894;
 }
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head {
+	margin-bottom: 2rem;
+}
 
 .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
 	color: #333;
+	font-size: 1.3rem;
 }
 
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-secondary, .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-primary {
+	height: 40px;
+}
 .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
 	background: #fff;
 	border: 1px solid #ccc;
+}
+
+.kt-aside .kt-aside-menu {
+	margin-top: 0;
+}
+
+.kt-aside-menu .kt-menu__nav {
+	padding-top: 0;
 }
 
 .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__link {
@@ -119,11 +135,19 @@ body {
 	align-items: baseline;
 }
 
-.kt-grid__item .kt-header .kt-header-menu-wrapper .kt-header-menu h3 {
+.kt-grid__item .kt-header .kt-header-menu-wrapper .kt-header-menu h4 {
 	margin: auto;
 	color: #1f4f8d;
 }
 
 form {
 	margin-bottom: 0;
+}
+
+.kt-login__container .kt-login__logo img {
+	width: 200px;
+}
+
+.kt-login;.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__logo {
+	margin-bottom: 3rem
 }

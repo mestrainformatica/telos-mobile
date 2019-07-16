@@ -9,7 +9,7 @@
 					<img alt="Logo" src="mestra/assets/media/logo-branca.png" />
 				</a>
 			</div>
-			<div class="kt-aside__brand-tools">
+			<!-- <div class="kt-aside__brand-tools">
 				<button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler">
 					<span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -27,10 +27,7 @@
 						</svg></span>
 				</button>
 
-				<!--
-<button class="kt-aside__brand-aside-toggler kt-aside__brand-aside-toggler--left" id="kt_aside_toggler"><span></span></button>
--->
-			</div>
+			</div> -->
 		</div>
 
 		<!-- end:: Aside -->

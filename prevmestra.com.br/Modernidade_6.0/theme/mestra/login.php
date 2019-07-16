@@ -117,7 +117,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 							<div class="kt-login__signin">
 								<div class="kt-login__head">
-									<h3 class="kt-login__title">Acesse o sistema</h3>
+									<h4 class="kt-login__title">Acesse o sistema</h4>
 								</div>
 								<form class="kt-form" action="">
 									<div class="input-group">
