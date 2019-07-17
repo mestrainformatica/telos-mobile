@@ -709,3 +709,16 @@ form {
 .kt-header__topbar .kt-header__topbar-item.kt-header__topbar-item--user .kt-header__topbar-welcome {
 	color: #fff;
 }
+
+.kt-login.kt-login--v5 .kt-login__left .kt-login__wrapper {
+	justify-content: center;
+}
+
+.kt-login__head h4 {
+	color: #666;
+	font-size: 1.3rem;
+}
+
+#kt_login_forgot {
+	color: #646c9a;
+}
