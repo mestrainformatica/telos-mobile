@@ -722,3 +722,29 @@ form {
 #kt_login_forgot {
 	color: #646c9a;
 }
+
+.kt-header-mobile {
+    background-color: #2a5894;
+}
+
+.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler span, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler span::before, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toggler span::after {
+    background: #fff;
+}
+
+.kt-header-mobile__logo img {
+    height: 50px;
+}
+
+.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__topbar-toggler i {
+    color: #fff;
+}
+
+.kt-aside-close:hover {
+    background-color: #2e61a2;
+}
+
+@media (max-width: 350px) {
+    .table th, .table td {
+        padding: 0.5rem;
+    }
+}

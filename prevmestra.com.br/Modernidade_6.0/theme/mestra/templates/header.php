@@ -92,7 +92,7 @@
 		<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
 			<div class="kt-header-mobile__logo">
 				<a href="demo1/index.html">
-					<img alt="Logo" src="mestra/assets/media/logos/logo-light.png" />
+					<img alt="Logo" src="mestra/assets/media/logo-branca.png" />
 				</a>
 			</div>
 			<div class="kt-header-mobile__toolbar">
