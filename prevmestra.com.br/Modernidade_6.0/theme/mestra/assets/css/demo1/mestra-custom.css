@@ -88,7 +88,7 @@ body {
 	background-image: linear-gradient(to bottom, #fff, #D9DADF);
 	padding: 30px;
 	border-radius: 10px;
-	width: 400px;
+	max-width: 400px;
 }
 
 .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra, .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link, .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__account .kt-login__account-msg,.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__account .kt-login__account-link {
