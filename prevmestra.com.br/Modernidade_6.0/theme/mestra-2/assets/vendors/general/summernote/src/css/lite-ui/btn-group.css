@@ -1,0 +1,47 @@
+.note-btn-group {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+}
+.note-btn-group > .note-btn-group {
+  margin-right: 0;
+}
+.note-btn-group > .note-btn,
+.note-btn-group > .note-btn-group {
+  margin-left: -4px;
+  border-radius: 0;
+}
+.note-btn-group > .note-btn.focus,
+.note-btn-group > .note-btn-group.focus,
+.note-btn-group > .note-btn.active,
+.note-btn-group > .note-btn-group.active {
+  border-radius: 0;
+}
+.note-btn-group > .note-btn:first-child,
+.note-btn-group > .note-btn-group:first-child {
+  margin-left: 0;
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+}
+.note-btn-group > .note-btn:first-child.focus,
+.note-btn-group > .note-btn-group:first-child.focus,
+.note-btn-group > .note-btn:first-child.active,
+.note-btn-group > .note-btn-group:first-child.active {
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+}
+.note-btn-group > .note-btn:last-child:not(.note-dropdown),
+.note-btn-group > .note-btn-group:last-child:not(.note-dropdown) {
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+}
+.note-btn-group > .note-btn:last-child:not(.note-dropdown).focus,
+.note-btn-group > .note-btn-group:last-child:not(.note-dropdown).focus,
+.note-btn-group > .note-btn:last-child:not(.note-dropdown).active,
+.note-btn-group > .note-btn-group:last-child:not(.note-dropdown).active {
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+}
+.note-btn-group.open > .note-dropdown {
+  display: block;
+}
