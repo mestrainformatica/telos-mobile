@@ -748,3 +748,29 @@ form {
         padding: 0.5rem;
     }
 }
+
+@media (max-width: 565px) {
+    .kt-login__left {
+        padding: 30px;
+    }
+
+    .kt-login.kt-login--v5 .kt-login__right {
+        padding: 65px 0;
+    }
+
+    .kt-login.kt-login--v5 .kt-login__divider {
+        display: none;
+    }
+}
+
+.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-toggler span, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-toggler span::before, .kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-toggler span::after {
+    background: #fff;
+}
+
+.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-topbar-toggler i {
+    color: #fff;
+}
+
+.btn.btn-label-brand {
+    color: #2a5894;
+}
