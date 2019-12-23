@@ -1,0 +1,23 @@
+<ion-view title='Escolha a Matrícula' cache-view="false" animation="slide-left-right" id="splitMatricula" ng-controller="PopupCtrl">
+      <ion-content has-header="false" padding="false" class="has-header">
+      <div class="list" ng-controller="initMenu">      
+          <p class="whatsgoingonmatricula">Foram encontradas múltiplas matrículas.<br />
+          Selecione a matrícula que deseja entrar:</p>
+          <div class="list card" ng-controller="splitMatricula">
+            <a class="item" href="#" ng-repeat="(key, matricula) in matriculas" ng-click="submitMatricula(key)">
+              <h2>{{ matricula.nome }}</h2>
+              <p>{{ matricula.patrocinadora }}</p>
+              <p>Matrícula {{ matricula.matricula }}</p>
+               <i class="icon ion-chevron-right"></i>
+            </a>
+          </div>
+          
+          <div class="the_error">
+            <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
+          </div>
+      
+      </div>
+
+      </div>
+      </ion-content>
+</ion-view>

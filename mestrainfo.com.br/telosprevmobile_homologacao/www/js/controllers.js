@@ -13,9 +13,9 @@ cordova = window.cordova
 
 // URL Base para conexão aos servidor TELOS
 // TELOS Produção
-urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 // TELOS Homologação
-//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
 // MESTRA 
 //urlBase = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
@@ -588,6 +588,8 @@ window.controller = angular
 
       $scope.preferenciasLogin = []
 
+      console.log("ALOOOOOOOOOOOOOOOOOOO")
+
       if (window.localStorage.getItem("opcao_cpf")  === undefined) {
         console.log("primeira vez com a opcao lembrar")
         window.localStorage.setItem("opcao_cpf", "NAO");
@@ -741,7 +743,7 @@ window.controller = angular
         
         //Este if verifica se o usuário digitou 11 digitos no CPF, caso sim, chamamos a biometria
         if (cpf.length === 11) {
-          window.cordova.plugins.Keyboard.close();
+          //window.cordova.plugins.Keyboard.close();
           document.getElementById("campoCpf").blur();
           console.log("vai verificar se o cpf está cadastrado no celular")
           ativarBiometria(cpf);

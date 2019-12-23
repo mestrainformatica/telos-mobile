@@ -1,6 +1,5 @@
 {
   "name": "prevmobile",
-  "app_id": "",
   "integrations": {
     "cordova": {}
   },

@@ -1,0 +1,36 @@
+<ion-view title="Simulação" ng-controller="listaDocumentosCtrl" has-bouncing="false" padding="false">
+    <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false">
+        <div class="headerInfo">
+            <div ng-include="'js/directives/userInfo.html'"></div>
+        </div>
+
+        <div class="list" id="mainMenu">
+            <div class="item item-divider softrow">
+                Lista de Documentos
+            </div>
+            <div class="item">
+                <div class="label row th">
+                    <div class="col col-67 upper font-teste">Teste.jpeg</div>
+                    <div class="col valor font-teste" ng-click="downloadArquivo()"><i class="fa fa-eye"></i></div>
+                </div>
+                <div class="label row th">
+                    <div class="col col-67 upper font-teste">Teste2.jpeg</div>
+                    <div class="col valor font-teste" ng-click="downloadArquivo()"><i class="fa fa-eye"></i></div>
+                </div>
+                <div class="label row th">
+                    <div class="col col-67 upper font-teste">Teste3.jpeg</div>
+                    <div class="col valor font-teste" ng-click="downloadArquivo()"><i class="fa fa-eye"></i></div>
+                </div>
+                <!--div class="div-pai">
+                    <div class="div-infos">
+                        <span>Nome do Arquivo: teste.jpeg</span>
+                        <span>Data do Upload : 26/11/2019</span>
+                    </div>
+                    <div class="div-botao">
+                        <i class="fa fa-eye"></i>
+                    </div>
+                </div--> 
+            </div>    
+        </div>
+    </ion-content>
+</ion-view>

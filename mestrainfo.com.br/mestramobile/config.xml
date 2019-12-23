@@ -94,4 +94,6 @@
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
+    <allow-navigation href="http://192.100.100.71:8100" />
+    <engine name="android" spec="7.0.0" />
 </widget>
