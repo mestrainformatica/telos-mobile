@@ -1,0 +1,84 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>:: PREVINORTE</title>
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-control" content="no-store">
+<script language="Javascript">
+<!--
+/*function initRequest(url) {if (window.XMLHttpRequest) {return new XMLHttpRequest();} else if (window.ActiveXObject) {return new ActiveXObject("Microsoft.XMLHTTP");}}
+function OnLeave()
+{
+		//alert('aaaaaa');
+		var url = "encerraSessao.asp?tipo=2&onleave=ok";
+		//window.open(url);
+		 var req = initRequest(url);
+	//window.open(url);	
+        req.onreadystatechange = function (){
+			if (req.readyState == 4) {
+				if (req.status == 200) {
+						window.close; 
+						}
+				else if (req.status == 204){
+						alert('erro!');
+						}
+				}
+			};
+        req.open("GET", url, true);
+        req.send(null);
+}
+//-->*/
+
+var  req = null;
+	
+	function createObject(){
+		try{
+			req = new XMLHttpRequest();
+		}
+		catch(trymicrosoft){
+				try{
+					req = new ActiveXObject("Msxml2.XMLHTTP");	
+				}
+				catch(othermicrosoft){
+					try{
+						req = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					catch(failed){
+						req = null;
+					}
+				}
+			}
+			
+			if(req == null){
+				//window.alert("Erro ao criar o objeto");
+			}	
+			
+			//alert(req);	
+	}
+	
+	function createRequest(){
+		createObject();
+		var url = "encerraSessao.asp?tipo=2&onleave=ok";
+		//window.alert(url);
+			req.open("GET",url,true);
+			req.onreadystatechange = logOut;
+			req.send(null);
+		
+	}
+	
+	function logOut(){
+		if(req.readyState == 4){
+			if(req.status == 200){
+				window.close; 		
+			}
+		}
+	}
+</script>
+</head>
+
+<frameset border="0" frameborder="0" name="frmLeaveControl" onunload="javascript:createRequest();">
+	<frame src="index.asp" scrolling="YES" name="FrmIB">
+</frameset>
+
+<noframes>O brownser não suporta frames!</noframes>
+</html>
