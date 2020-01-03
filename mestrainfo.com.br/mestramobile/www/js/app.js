@@ -295,6 +295,16 @@
       cache: false,
       url: '/saldo-contas',
       templateUrl: "templates/saldo-contas.html",
+    }) 
+    .state('alteracao-perfil', {
+      cache: false,
+      url: '/alteracao-perfil',
+      templateUrl: 'templates/alteracao-perfil.html'
+    })
+    .state('preferencias', {
+      cache: false,
+      url: '/preferencias',
+      templateUrl: 'templates/preferencias.html'
     })
 //END MEUS STATES
     .state('menu', {

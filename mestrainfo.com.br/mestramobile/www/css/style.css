@@ -627,9 +627,12 @@ div.no-wrap p {
 .extratoDoMes div.col {
 	white-space: normal;
 }
-.contato-form .list {		.top-page .extratoDoMes .valor{
-	background:#FFF;		    color: #333;
-}		}
+.contato-form .list {	
+}
+.top-page .extratoDoMes .valor{
+	background:#FFF;		   
+	 color: #333;
+}	
 .item-divider.dif{
 	color:#333;
 	text-transform: uppercase;
@@ -873,4 +876,9 @@ small.legend{
 
 .contato-form .list {
 	background:#FFF;
+}
+
+
+#btn-altera-perfil {
+	text-align: center;
 }

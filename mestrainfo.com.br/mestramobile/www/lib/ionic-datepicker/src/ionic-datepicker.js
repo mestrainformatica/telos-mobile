@@ -6,7 +6,7 @@ var app = angular.module('ionic-datepicker', ['ionic', 'ionic-datepicker.templat
 
 app.service('DatepickerService', function () {
 
-  this.monthsList = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+  this.monthsList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   this.yearsList = [1900,
     1901, 1902, 1903, 1904, 1905, 1906, 1907, 1908, 1909, 1910,
     1911, 1912, 1913, 1914, 1915, 1916, 1917, 1918, 1919, 1920,
@@ -212,13 +212,13 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
           scope: scope,
           buttons: [
             {
-              text: 'Fechar',
+              text: 'Close',
               onTap: function (e) {
                 scope.callback(undefined);
               }
             },
             {
-              text: 'Hoje',
+              text: 'Today',
               onTap: function (e) {
 
                 var today = new Date();
@@ -246,7 +246,7 @@ app.directive('ionicDatepicker', ['$ionicPopup', 'DatepickerService', function (
               }
             },
             {
-              text: 'Escolher',
+              text: 'Set',
               type: 'button-positive',
               onTap: function (e) {
                 scope.date_selection.submitted = true;
