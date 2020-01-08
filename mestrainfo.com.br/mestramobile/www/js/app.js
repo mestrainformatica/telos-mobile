@@ -301,6 +301,11 @@
       url: '/alteracao-perfil',
       templateUrl: 'templates/alteracao-perfil.html'
     })
+    .state('percentual-contribuicao', {
+      cache: false,
+      url: '/percentual-contribuicao',
+      templateUrl: 'templates/percentual-contribuicao.html'
+    })
     .state('preferencias', {
       cache: false,
       url: '/preferencias',

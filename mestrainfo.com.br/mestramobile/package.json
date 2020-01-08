@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "prevmobile: An Ionic project",
   "dependencies": {
+    "@ionic-native/keyboard": "^5.19.1",
     "ansi-colors": "^1.1.0",
     "arr-flatten": "^1.1.0",
     "arr-union": "^3.1.0",
@@ -12,7 +13,6 @@
     "cordova-ios": "^5.1.1",
     "cordova-plugin-app-version": "^0.1.9",
     "cordova-plugin-device": "^1.1.7",
-    "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.2.0",
     "cordova-plugin-keychain-touch-id": "git+https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id.git",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -46,12 +46,11 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-device": {},
-      "ionic-plugin-keyboard": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-keychain-touch-id": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "ionic-plugin-keyboard": {}
     },
     "platforms": [
       "android",

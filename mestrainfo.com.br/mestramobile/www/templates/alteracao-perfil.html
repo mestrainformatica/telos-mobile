@@ -61,8 +61,9 @@
     </div>
 
   </form>
-  <div class="button-bar">
-    <input ng-hide="loading" type="submit" class="button button-positive button-block" value="Alterar Perfil" ng-click="submit(formData.tipo)">  
+  <div class="button-bar" padding="true">
+      <input ng-hide="loading" type="submit" class="button button-positive button-block" id="btn-altera-perfil" value="Alterar Perfil" ng-click="submit(formData.tipo)">  
+      <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
   </div>
   
     

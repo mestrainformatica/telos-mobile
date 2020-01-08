@@ -2507,6 +2507,7 @@ console.log($scope.formData.tipo_reajuste);
   $scope.simulacao = $rootScope.lastRequest.result.simulacaoEmprestimo;
 
 }])
+
 .controller('AlteracaoRmvSaqueCtrl.resultado', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   $scope.matricula = $rootScope.lastRequest.result;
   
@@ -2659,7 +2660,13 @@ $scope.showPopup = function() {
      //console.log('Thank you for not eating my delicious ice cream cone');
    });
  };
-}]).controller('PreferenciasCtrl', [
+}])
+
+.controller('PercentualContribuicaoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+}])
+
+.controller('PreferenciasCtrl', [
   '$scope',
   '$state',
   '$rootScope',

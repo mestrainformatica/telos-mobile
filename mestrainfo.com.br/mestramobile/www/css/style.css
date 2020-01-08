@@ -156,9 +156,6 @@ ion-content {  }
 	padding: 0;
 }
 .button.button-positive {
-
-}
-.button.button-positive {
     border-color: #2a2b6b;
     background-color: #2a2b6b;
     color: #fff;
@@ -870,10 +867,6 @@ small.legend{
 	padding-top:5px;
 	padding-bottom: 5px;
 }
-
-
-
-
 .contato-form .list {
 	background:#FFF;
 }
@@ -881,4 +874,18 @@ small.legend{
 
 #btn-altera-perfil {
 	text-align: center;
+}
+.align-right{
+	text-align: right;
+}
+.col-7 {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 7%;
+	-moz-box-flex: 0;
+	-moz-flex: 0 0 7%;
+	-ms-flex: 0 0 7%;
+	flex: 0 0 7%;
+	max-width: 7%; }
+.padding-all{
+	padding: 1em 1em 1em 1em;
 }
