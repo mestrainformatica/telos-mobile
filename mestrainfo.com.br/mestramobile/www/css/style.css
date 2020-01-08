@@ -889,3 +889,10 @@ small.legend{
 .padding-all{
 	padding: 1em 1em 1em 1em;
 }
+
+#select-customizado {
+	max-width: 80% !important;
+	padding-left: 0px;
+	padding-right: 30px;
+	font-size: 12px;
+}

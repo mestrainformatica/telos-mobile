@@ -1,4 +1,4 @@
-var url_base = 'http://192.100.100.129:8585/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://192.100.100.82:8080/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
@@ -641,6 +641,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $rootScope.erroMsg = false;
   $scope.dados = $rootScope.lastRequest.result.dadosCadastrais[0];
+
+  
+
+  $scope.listaBancos = $rootScope.lastRequest.result.listaBancos;
+
   $scope.formData = $scope.dados;
   $scope.submit = function(){
 
@@ -665,7 +670,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       telefone_res: $scope.formData.telefone_res,
       telefone_cel: $scope.formData.telefone_cel,
       email: $scope.formData.email,
-      banco: $scope.formData.banco,
+      banco: $scope.dados.banco,
       agencia: $scope.formData.agencia,
       conta: $scope.formData.conta,
       acao: 'alteracao'

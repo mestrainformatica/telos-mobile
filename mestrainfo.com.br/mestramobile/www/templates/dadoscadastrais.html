@@ -18,11 +18,11 @@
       <h4 class="softcolor">E-mail</h4>
       <p>{{ dados.email }}</p>
       <h4 class="softcolor">Banco</h4>
-      <p>Nome banco mockado</p>
+      <p>{{dados.num_banco}} - {{dados.nome_banco}}</p>
       <h4 class="softcolor">Agencia</h4>
-      <p>0123</p>
+      <p>{{dados.agencia}}</p>
       <h4 class="softcolor">Conta</h4>
-      <p>0129-8245-6646-83</p>
+      <p>{{dados.conta}}</p>
       <a class="button button-outline button-medium button-block icon-right ion-chevron-right ng-cloak" href="#/dados-form" id="btn-editar" ng-hide="dados.habilitarBotao"><i class="icon ion-ios-person-outline"></i> Editar dados cadastrais &nbsp;</a>
     </div>
     <div ng-show="infoprev[0]">

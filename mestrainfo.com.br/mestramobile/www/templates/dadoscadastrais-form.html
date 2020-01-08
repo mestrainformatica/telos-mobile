@@ -51,17 +51,22 @@
         <span class="input-label">E-Mail</span>
         <input type="text" placeholder="seu@email.com"  ng-model="formData.email">
       </label>
-      <label class="item item-input">
-        <span class="input-label">Banco</span>
-        <input type="text" placeholder="Nome do Banco"  ng-model="formData.banco">
-      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Banco
+        </div>
+		    <select style="text-align: left;" class="ion-input-select" ng-model="dados.num_banco" ng-options="item.num_banco_lista as item.nome_banco_lista for item in listaBancos">
+          <option value="">- Selecione -</option>
+    		</select>
+    	</label>
+      
       <label class="item item-input">
         <span class="input-label">Agencia</span>
-        <input type="number" placeholder="Número Agência"  ng-model="formData.agencia">
+        <input type="text" placeholder="Número Agência"  ng-model="dados.agencia">
       </label>
       <label class="item item-input">
         <span class="input-label">Conta</span>
-        <input type="number" placeholder="Número Conta"  ng-model="formData.conta">
+        <input type="text" placeholder="Número Conta"  ng-model="dados.conta">
       </label>
       <div class="the_error">
         <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
