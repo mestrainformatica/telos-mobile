@@ -665,6 +665,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       telefone_res: $scope.formData.telefone_res,
       telefone_cel: $scope.formData.telefone_cel,
       email: $scope.formData.email,
+      banco: $scope.formData.banco,
+      agencia: $scope.formData.agencia,
+      conta: $scope.formData.conta,
       acao: 'alteracao'
 
     }
@@ -2677,6 +2680,7 @@ $scope.showPopup = function() {
     scope.settingsList = []
 
     if (window.plugins) {
+      console.log("ALO ALO")
       window.plugins.touchid.has("MyKey", 
         function() {
           window.localStorage.setItem("touchidLocal", true)

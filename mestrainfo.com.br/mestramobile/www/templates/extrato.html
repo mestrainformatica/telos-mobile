@@ -9,8 +9,7 @@
       Extrato de Contas Mensal
     </div>
     <div class="item">
-    <form ng-submit="submit()">
-      
+    <form ng-submit="submit()">     
       <label class="item item-input item-select">
         <div class="input-label">
           Mês
@@ -27,8 +26,7 @@
       </div>
       <div class="button-bar" padding="true">      
         <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Visualizar Extrato">      
-        <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
-      
+        <div ng-show="loading" class="button button-positive button-block padding-all" id="loading"><ion-spinner icon="android"></ion-spinner></div>
       </div>
     </form>
     </div>

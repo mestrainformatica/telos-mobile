@@ -1,71 +1,79 @@
 <ion-view title="Alteração de Perfil" hide-back-button="false">
- <ion-content class="has-header">
-    <div class="headerInfo" >
-        <div ng-include="'js/directives/userInfo.html'"></div> 
+  <ion-content class="has-header">
+    <div class="headerInfo">
+      <div ng-include="'js/directives/userInfo.html'"></div>
     </div>
     <form id="formCampos">
-  <div class="list dadosInfo" id="mainMenu" ng-controller="AlteracaoPerfilCtrl">        
-    <div class="item item-divider softrow">
-      Informações do Perfil Atual
-    </div>
-    
-    <div class="item">
-      <h4 class="softcolor">Data da Opção</h4>
-      <p>22/10/2017</p>
-      <h4 class="softcolor">Vigencia</h4>
-      <p>25/10/2017</p>
-      <h4 class="softcolor">Índice</h4>
-      <p>1 - Teste</p>
-      <h4 class="softcolor">Perfil</h4>
-      <p>Investimento Conservador</p>
-    </div>
+      <div class="list dadosInfo" id="mainMenu" ng-controller="AlteracaoPerfilCtrl">
+        <div class="item item-divider softrow">
+          Informações do Perfil Atual
+        </div>
 
-    <div class="item item-divider softrow">
-      Novo Perfil
-    </div>
-    
-    <div class="item">
-      <label class="item item-input item-select">
-        <div class="input-label">
-            Benefício/Resgate?
+        <div class="item">
+          <h4 class="softcolor">Data da Opção</h4>
+          <p>22/10/2017</p>
+          <h4 class="softcolor">Vigencia</h4>
+          <p>25/10/2017</p>
+          <h4 class="softcolor">Índice</h4>
+          <p>1 - Teste</p>
+          <h4 class="softcolor">Perfil</h4>
+          <p>Investimento Conservador</p>
         </div>
-        <select class="ion-input-select">
-           <option value="S">SIM</option>
-           <option selected value="N">NÃO</option>
-        </select>
-      </label>
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Vigência
-        </div>
-        <ionic-datepicker  class="ion-input-select ng-pristine ng-valid ng-touched" idate="datepickerObject.inputDate" disablepreviousdates="true"  disablefuturedates="false" ng-model="datepickerObject.inputDate" callback="datePickerCallback" disableddates="disableddates" title="title" mondayfirst="false">
-          <button id="dataCredito" class="button button-block button-small button-clear" style="width: 100%; text-align:right;" ng-disabled="disableCalendar" value="" ng-value="datepickerObject.inputDate | date:'dd/MM/yyyy'" placeholder="- Selecione -" ng-model="dataInicial">{{buttonText}}</button>
-        </ionic-datepicker>
-    </label>
-      <label class="item item-input item-select">
-        <div class="input-label">
-            Índice
-        </div>
-        <select class="ion-input-select">
-           <option value="S">Opção 1</option>
-           <option selected value="N">Opção 2</option>
-        </select>
-      </label>
-      <label class="item item-input">
-        <div class="input-label">
-            Perfil
-        </div>
-        <style>.teste {text-align: right;}</style>
-        <input type="text" class="ion-input teste">
-      </label>
-    </div>
 
-  </form>
-  <div class="button-bar" padding="true">
-      <input ng-hide="loading" type="submit" class="button button-positive button-block" id="btn-altera-perfil" value="Alterar Perfil" ng-click="submit(formData.tipo)">  
-      <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
-  </div>
-  
-    
+        <div class="item item-divider softrow">
+          Novo Perfil
+        </div>
+
+        <div class="item">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Benefício/Resgate?
+            </div>
+            <select class="ion-input-select">
+              <option value="S">SIM</option>
+              <option selected value="N">NÃO</option>
+            </select>
+          </label>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Vigência
+            </div>
+            <ionic-datepicker class="ion-input-select ng-pristine ng-valid ng-touched" idate="datepickerObject.inputDate" disablepreviousdates="true"
+              disablefuturedates="false" ng-model="datepickerObject.inputDate" callback="datePickerCallback" disableddates="disableddates"
+              title="title" mondayfirst="false">
+              <button id="dataCredito" class="button button-block button-small button-clear" style="width: 100%; text-align:right;" ng-disabled="disableCalendar"
+                value="" ng-value="datepickerObject.inputDate | date:'dd/MM/yyyy'" placeholder="- Selecione -" ng-model="dataInicial">{{buttonText}}</button>
+            </ionic-datepicker>
+          </label>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Índice
+            </div>
+            <select class="ion-input-select">
+              <option value="S">Opção 1</option>
+              <option selected value="N">Opção 2</option>
+            </select>
+          </label>
+          <label class="item item-input">
+            <div class="input-label">
+              Perfil
+            </div>
+            <style>
+              .teste {
+                text-align: right;
+              }
+            </style>
+            <input type="text" class="ion-input teste">
+          </label>
+          <div class="button-bar" padding="true">
+            <input id="btn-altera-perfil" ng-hide="loading" type="submit" class="button button-positive button-block" value="Alterar Perfil" ng-click="submit(formData.tipo)">
+            </div>
+          </div>
+        </div>
+
+    </form>
+
+
+
   </ion-content>
 </ion-view>
