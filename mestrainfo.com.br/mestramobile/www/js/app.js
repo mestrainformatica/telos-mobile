@@ -93,6 +93,11 @@
 
     $stateProvider
 
+    .state('adesao', {
+      cache: false,
+      url: '/adesao',
+      templateUrl: "templates/adesao.html"
+    })
     .state('dadoscadastrais', {
       cache: false,
       url: '/dados',

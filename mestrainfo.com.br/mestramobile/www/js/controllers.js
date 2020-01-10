@@ -625,6 +625,10 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 /**
  * CONTROLLERS DAS PÁGINAS DE PRIMEIRO NÍVEL
  */
+.controller('AdesaoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+  
+
+}])
 .controller('DadosCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   
   $rootScope.erroMsg = false;

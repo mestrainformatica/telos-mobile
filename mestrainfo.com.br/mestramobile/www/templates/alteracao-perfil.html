@@ -14,8 +14,7 @@
           <p>22/10/2017</p>
           <h4 class="softcolor">Vigencia</h4>
           <p>25/10/2017</p>
-          <h4 class="softcolor">Índice</h4>
-          <p>1 - Teste</p>
+
           <h4 class="softcolor">Perfil</h4>
           <p>Investimento Conservador</p>
         </div>
@@ -36,7 +35,7 @@
           </label>
           <label class="item item-input item-select">
             <div class="input-label">
-              Vigência
+              Data Opção
             </div>
             <ionic-datepicker class="ion-input-select ng-pristine ng-valid ng-touched" idate="datepickerObject.inputDate" disablepreviousdates="true"
               disablefuturedates="false" ng-model="datepickerObject.inputDate" callback="datePickerCallback" disableddates="disableddates"
@@ -47,23 +46,15 @@
           </label>
           <label class="item item-input item-select">
             <div class="input-label">
-              Índice
-            </div>
-            <select class="ion-input-select">
-              <option value="S">Opção 1</option>
-              <option selected value="N">Opção 2</option>
-            </select>
-          </label>
-          <label class="item item-input">
-            <div class="input-label">
               Perfil
             </div>
-            <style>
-              .teste {
-                text-align: right;
-              }
-            </style>
-            <input type="text" class="ion-input teste">
+            <select class="ion-input-select">
+                
+                <option value="C"> CONSERVADOR </option>
+                <option value="M"> MODERADO </option>
+                <option value="A"> AGRESSIVO </option>
+                <option value="S"> SUPER AGRESSIVO </option>
+            </select>
           </label>
           <div class="button-bar" padding="true">
             <input id="btn-altera-perfil" ng-hide="loading" type="submit" class="button button-positive button-block" value="Alterar Perfil" ng-click="submit(formData.tipo)">
