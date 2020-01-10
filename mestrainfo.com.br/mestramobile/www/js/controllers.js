@@ -657,6 +657,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0];
         $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
+        var infoConta = $scope.formData.conta.split("-");;
+
+        var sel = document.getElementById("banco");
+        var nomeBanco = sel.options[sel.selectedIndex].text;
+
     $scope.postData = {
       cod_fundo: $scope.dadosCadastrais.cod_fundo,
       cod_patrocinadora: $scope.dadosCadastrais.cod_patrocinadora,
@@ -674,10 +679,13 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       telefone_res: $scope.formData.telefone_res,
       telefone_cel: $scope.formData.telefone_cel,
       email: $scope.formData.email,
-      banco: $scope.dados.banco,
+      numero_banco: $scope.dados.num_banco,
+      nome_banco: nomeBanco,
       agencia: $scope.formData.agencia,
-      conta: $scope.formData.conta,
-      acao: 'alteracao'
+      conta: infoConta[0],
+      digito: infoConta[1],
+      acao: 'alteracao',
+      cpf: userInfo.cpf
 
     }
     
@@ -2517,6 +2525,46 @@ console.log($scope.formData.tipo_reajuste);
     $scope.buttonText = $scope.formData.data;
   }
   $scope.simulacao = $rootScope.lastRequest.result.simulacaoEmprestimo;
+
+
+  $scope.submit = function(){
+
+    $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0];
+    $scope.informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0];
+        $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $scope.postData = {
+      cod_fundo: $scope.dadosCadastrais.cod_fundo,
+      cod_patrocinadora: $scope.dadosCadastrais.cod_patrocinadora,
+      numero_inscricao: $scope.dadosCadastrais.numero_inscricao,
+      cod_plano: $scope.dadosCadastrais.cod_plano
+
+    }
+    
+
+     $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : $scope.postData, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+          if (resp.data.msg.length > 0){
+            //$rootScope.errorMsg = resp.data.msg; 
+            $rootScope.errorMsg = resp.data.msg; 
+          
+          }
+        }
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+  }
+  
 
 }])
 
