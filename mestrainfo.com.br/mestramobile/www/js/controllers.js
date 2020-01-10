@@ -2517,7 +2517,13 @@ console.log($scope.formData.tipo_reajuste);
   ]; 
   $scope.disableCalendar = false;
   $scope.dataInicial = new Date();
-  
+
+  $scope.perfil = "C";
+  $scope.bnf = "N";  
+
+  $scope.mensagem_erro = "";
+  $scope.sucesso = false;
+  $scope.erro = false;
    
  
   $scope.datePickerCallback = function (data){
@@ -2534,10 +2540,15 @@ console.log($scope.formData.tipo_reajuste);
         $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
     $scope.postData = {
-      cod_fundo: $scope.dadosCadastrais.cod_fundo,
-      cod_patrocinadora: $scope.dadosCadastrais.cod_patrocinadora,
-      numero_inscricao: $scope.dadosCadastrais.numero_inscricao,
-      cod_plano: $scope.dadosCadastrais.cod_plano
+      beneficio_resgate: $scope.bnf,
+      cpf: userInfo.cpf,
+      codigoFundo: $scope.dadosCadastrais.cod_fundo,
+      codigoPatrocinadora: $scope.dadosCadastrais.cod_patrocinadora,
+      numeroInscricao: $scope.dadosCadastrais.numero_inscricao,
+      vigencia: "30/01/2020",
+      dataOpcao: $scope.formData.data ,
+      perfil: $scope.perfil,
+      acao: "alteracaoPerfilInvestimento"
 
     }
     
@@ -2549,13 +2560,13 @@ console.log($scope.formData.tipo_reajuste);
         userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
         
-        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
-          if (resp.data.msg.length > 0){
-            //$rootScope.errorMsg = resp.data.msg; 
-            $rootScope.errorMsg = resp.data.msg; 
+          if (!resp.data.msg.length > 0){
+            $scope.sucesso = true; 
           
+          } else {
+            $scope.erro = true; 
           }
-        }
+        
      }, function(err) {
         $ionicLoading.hide();
         $ionicPopup.alert({
