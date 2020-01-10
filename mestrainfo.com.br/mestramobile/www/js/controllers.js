@@ -2524,6 +2524,8 @@ console.log($scope.formData.tipo_reajuste);
   $scope.mensagem_erro = "";
   $scope.sucesso = false;
   $scope.erro = false;
+
+  $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0];
    
  
   $scope.datePickerCallback = function (data){
@@ -2535,7 +2537,7 @@ console.log($scope.formData.tipo_reajuste);
 
   $scope.submit = function(){
 
-    $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0];
+    
     $scope.informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0];
         $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
