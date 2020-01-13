@@ -950,3 +950,10 @@ input-label-no-top{
     display: inline-block;
     vertical-align: middle;
 }
+
+.input-cs {
+	border: 1px black lightgray !important;
+	width: 50px !important;
+	flex-basis: 50px !important;
+	-webkit-flex: 1 50px !important;
+}

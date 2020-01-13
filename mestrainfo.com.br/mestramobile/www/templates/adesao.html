@@ -6,7 +6,7 @@
 
         <div class="list" id="mainMenu">
             <div class="item item-divider softrow">
-                Dados Gerais
+                Adesäo
             </div>
             <div class="item">
                 <div class="list">
@@ -15,38 +15,39 @@
                             Plano:
                         </div>
                         <select class="ion-input-select">
-                            <option value=""> PCD- PLANO D ECONTRIBUIÇAO DEFINIDO </option>
+                            <option value=""> {{adesao.descricao_plano}} </option>
                         </select>
                     </label>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Data de Adesão:</div>
-                    <div class="col valor"> 09/01/2019 </div>
+                    <div class="col valor"> {{adesao.data_adesao}}</div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Situação do plano:</div>
-                    <div class="col valor"> 01 - Ativo </div>
+                    <div class="col valor"> {{adesao.situacao_plano}} </div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Data Prevista Aposentadoria:</div>
-                    <div class="col valor"> 30/05/2051 </div>
+                    <div class="col valor"> {{adesao.data_aposentadoria}} </div>
                 </div>
                 <div class="list-margin-top">
                     <label class="item item-input item-select">
                         <div class="input-label">
                             Opção IR:
                         </div>
-                        <select class="ion-input-select">
-                            <option value=""> 1 - TABELA PROGRESSIVA </option>
-                            <option value=""> 2 - TABELA REGRESSIVA </option>
+                        <select ng-model="adesao.ir" class="ion-input-select">
+                            <option value=""> - Selecione - </option>
+                            <option value="1"> 1 - TABELA PROGRESSIVA </option>
+                            <option value="2"> 2 - TABELA REGRESSIVA </option>
                         </select>
                     </label>
                     <label class="item item-input item-select">
                         <div class="input-label">
                             Perfil de Investimento:
                         </div>
-                        <select class="ion-input-select">
-                            
+                        <select ng-model="adesao.perfil" class="ion-input-select">
+                            <option value=""> - Selecione - </option>
                             <option value="C"> CONSERVADOR </option>
                             <option value="M"> MODERADO </option>
                             <option value="A"> AGRESSIVO </option>
@@ -60,7 +61,7 @@
                             </div>
                             <div class="col">
                                 <label class="item item-input">
-                                    <input class="align-right" type="text" name="faixa-contribuicao" placeholder="0,00" />
+                                    <input class="align-right" ng-model="adesao.percentual_contribuicao" maxlength="3" type="number" name="faixa-contribuicao" />
                                 </label>
                             </div>
                         </div>
@@ -74,39 +75,45 @@
             <div class="item">
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Pai:</div>
-                    <div class="col valor"> Lorem Ipsum</div>
+                    <div class="col valor"> {{adesao.nome_pai}}</div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Mãe:</div>
-                    <div class="col valor"> Dolor Sit Amet </div>
+                    <div class="col valor"> {{adesao.nome_mae}} </div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Nascimento:</div>
-                    <div class="col valor"> 12/12/1986 </div>
+                    <div class="col valor"> {{adesao.data_nascimento}} </div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">CPF:</div>
-                    <div class="col valor"> 726.752.501-63 </div>
+                    <div class="col valor"> {{adesao.cpf}} </div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">RG:</div>
-                    <div class="col valor"> 709222934-8 </div>
+                    <div class="col valor"> {{adesao.rg}} </div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Órgão:</div>
-                    <div class="col valor"> SJS </div>
+                    <div class="col valor"> {{adesao.orgao}} </div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Estado Civil::</div>
-                    <div class="col valor"> Solteiro(a) </div>
+                    <div class="col valor"> {{adesao.estado_civil}} </div>
                 </div>
             </div>
             <div class="padding">
-                    <div class="button-bar">
-                      <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Solicitar Adesão">      
-                      <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
+                <div class="button-bar">
+                    <input ng-hide="loading" ng-show="adesao.flag_situacao_adesao == 'S'" ng-click="submit()" type="submit" class="button button-positive button-block" value="Solicitar Adesão">
+                    <div ng-show="loading" class="button button-positive button-block" id="loading">
+                        <ion-spinner icon="android"></ion-spinner>
                     </div>
-                  </div>
+                </div>
+            </div>
+            <div class="the_error">
+                <p style="text-align: center; color: #056582; font-size: 1.5em;" ng-show="adesao.flag_situacao_adesao == 'S'">
+                    <strong>Solicitação já realizada.</strong></p>
+            </div>
         </div>
     </ion-content>
 </ion-view>

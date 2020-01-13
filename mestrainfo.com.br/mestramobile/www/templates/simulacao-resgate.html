@@ -123,12 +123,16 @@
   <!-- 
   <div class="item item-text-wrap assertive" ng-bind-html="resgate.texto_observacao">
   </div>
+  ng-show="resgate.flag_botao_resgate"
   -->
   <div class="padding">
-    <div class="button-bar">
-      <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitRequerimento" value="Enviar Requerimentoo">      
+    <div class="button-bar" ng-show="resgate.flag_botao_resgate != 'S'">
+      <input ng-hide="loading" type="submit" class="button button-positive button-block"  ng-click="submit()" value="Enviar Requerimento">      
       <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
     </div>
+  </div>
+  <div class="the_error">
+    <p style="text-align: center; color: #056582; font-size: 1.5em;" ng-show="resgate.flag_botao_resgate == 'S'" ><strong>Resgate já requerido.</strong></p>
   </div>
   </ion-content>
 </ion-view>

@@ -32,17 +32,29 @@
               <option selected value="N">NÃO</option>
             </select>
           </label>
-          <label class="item item-input item-select">
+          <label class="item item-input">
+            <span class="input-label">Vigência</span>
+            <input ng-model="vigencia_input" disabled type="text">
+          </label>
+          <!--label class="item item-input">
+            <span class="input-label">Agencia</span>
+            <input ng-model="perfil-dia" maxlength="2" class="input-cs" type="text">
+            <input ng-model="perfil-mes" disabled class="input-cs" type="text">
+            <input ng-model="perfil-ano" disabled class="input-cs" type="text">
+          </label>
+          <label class="item item-input">
             <div class="input-label">
               Data Opção
             </div>
-            <ionic-datepicker class="ion-input-select ng-pristine ng-valid ng-touched" idate="datepickerObject.inputDate" disablepreviousdates="true"
+            
+            <ionic-datepicker class="ion-input-select ng-pristine ng-valid ng-touched" idate="datepickerObject.inputDate" disablepreviousdates="false"
               disablefuturedates="false" ng-model="datepickerObject.inputDate" callback="datePickerCallback" disableddates="disableddates"
               title="title" mondayfirst="false">
               <button id="dataCredito" class="button button-block button-small button-clear" style="width: 100%; text-align:right;" ng-disabled="disableCalendar"
                 value="" ng-value="datepickerObject.inputDate | date:'dd/MM/yyyy'" placeholder="- Selecione -" ng-model="dataInicial">{{buttonText}}</button>
             </ionic-datepicker>
-          </label>
+          </label-->
+
           <label class="item item-input item-select">
             <div class="input-label">
               Perfil
@@ -55,10 +67,10 @@
             </select>
           </label>
           <div class="the_error">
-            <p ng-show="sucesso" ng-bind-html="sucesso">Perfil Alterado Com Sucesso!</p>
+            <p ng-show="sucesso">Perfil Alterado Com Sucesso!</p>
           </div>
           <div class="the_error">
-            <p ng-show="erro" ng-bind-html="erro">{{mensagem_erro}}</p>
+            <p ng-show="erro" >{{mensagem_erro}}</p>
           </div>
           <div class="button-bar" padding="true">
             <input id="btn-altera-perfil" ng-hide="loading" type="submit" class="button button-positive button-block" value="Alterar Perfil" ng-click="submit(formData.tipo)">

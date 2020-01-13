@@ -546,6 +546,50 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
      });
      });
 
+
+  $scope.submit = function () {
+
+    $ionicLoading.show();
+
+    $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+      { "param": { "acao": "calculaSimulacaoResgate", cpf: userInfo.cpf }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+    ).then(function (resp) {
+      $ionicLoading.hide();
+
+      $scope.resgate = resp.data.result;
+      
+
+      //execucao para pegar os dados da tela denovo
+      $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+        { "param": { "acao": "simulacaoResgate" }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function (resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+
+          $scope.resgate = resp.data.result;
+          $ionicLoading.hide();
+        }
+
+      }, function (err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Falha de conexão',
+          template: timeoutMsg
+        });
+      });
+
+
+    }, function (err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Falha de conexão',
+        template: timeoutMsg
+      });
+    });
+  }
+
 }])
 
 /**
@@ -627,6 +671,72 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
  */
 .controller('AdesaoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   
+
+  $ionicLoading.show();
+  $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
+        { "param" : { "acao": "adesaoInfo" }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+        
+          $scope.adesao = resp.data.result;
+          $ionicLoading.hide();        
+        }
+
+      }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+
+
+  $scope.submit = function () {
+
+    $ionicLoading.show();
+
+    $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+      { "param": { "acao": "solicitarAdesao", cpf: userInfo.cpf,perfil: adesao.perfil, ir: adesao.perfil, percentual_contribuicao: adesao.percentual_contribuicao }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+    ).then(function (resp) {
+      $ionicLoading.hide();
+
+      //$scope.adesao = resp.data.result;
+      
+
+      //execucao para pegar os dados da tela denovo
+      $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+        { "param": { "acao": "adesaoInfo" }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function (resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+
+          $scope.adesao = resp.data.result;
+          $ionicLoading.hide();
+        }
+
+      }, function (err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Falha de conexão',
+          template: timeoutMsg
+        });
+      });
+
+
+    }, function (err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Falha de conexão',
+        template: timeoutMsg
+      });
+    });
+  }
+
 
 }])
 .controller('DadosCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
@@ -2515,8 +2625,16 @@ console.log($scope.formData.tipo_reajuste);
   $rootScope.lastRequest.esmprestimoSimulacaoCampos = [];
   $scope.disableddates = [
   ]; 
-  $scope.disableCalendar = false;
-  $scope.dataInicial = new Date();
+
+  $scope.perfil_ano = "";
+  $scope.perfil_mes = "";
+  $scope.perfil_dia = "";
+
+  //$scope.disableCalendar = false;
+  //$scope.dataInicial = new Date(2020,0,1);
+
+  //$scope.dataInicio = new Date(2020,0,1);
+  //$scope.dataFim = new Date(2020,0,10);
 
   $scope.perfil = "C";
   $scope.bnf = "N";  
@@ -2526,6 +2644,9 @@ console.log($scope.formData.tipo_reajuste);
   $scope.erro = false;
 
   $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0];
+
+  $scope.vigencia_input = $scope.dadosCadastrais.vigencia_input; 
+  $scope.data_opcao_input = $scope.dadosCadastrais.vigencia_input; 
    
  
   $scope.datePickerCallback = function (data){
@@ -2547,8 +2668,8 @@ console.log($scope.formData.tipo_reajuste);
       codigoFundo: $scope.dadosCadastrais.cod_fundo,
       codigoPatrocinadora: $scope.dadosCadastrais.cod_patrocinadora,
       numeroInscricao: $scope.dadosCadastrais.numero_inscricao,
-      vigencia: "30/01/2020",
-      dataOpcao: $scope.formData.data ,
+      vigencia: $scope.vigencia_input,
+      dataOpcao: $scope.data_opcao_input ,
       perfil: $scope.perfil,
       acao: "alteracaoPerfilInvestimento"
 
@@ -2567,6 +2688,7 @@ console.log($scope.formData.tipo_reajuste);
           
           } else {
             $scope.erro = true; 
+            $scope.mensagem_erro = resp.data.msg;
           }
         
      }, function(err) {
