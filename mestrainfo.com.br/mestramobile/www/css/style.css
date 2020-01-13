@@ -957,3 +957,10 @@ input-label-no-top{
 	flex-basis: 50px !important;
 	-webkit-flex: 1 50px !important;
 }
+#logo-graph img {
+	margin-top: 10%;
+	margin-bottom: 15%;
+}
+.img-graph {
+	width: 13px; text-align: center; margin: auto;
+}
