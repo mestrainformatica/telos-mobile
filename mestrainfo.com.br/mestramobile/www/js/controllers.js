@@ -669,12 +669,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 /**
  * CONTROLLERS DAS PÁGINAS DE PRIMEIRO NÍVEL
  */
-.controller('AdesaoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('AdesaoCtrl', ['$scope', '$state', '$rootScope','$ionicLoading','$http', function($scope, $state, $rootScope,$ionicLoading, $http) {
   
 
   $ionicLoading.show();
   $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
-        { "param" : { "acao": "adesaoInfo" }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
+        { "param" : { "acao": "adesaoInfo","cpf": userInfo.cpf }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
       ).then(function(resp) {
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
@@ -708,7 +708,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
       //execucao para pegar os dados da tela denovo
       $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
-        { "param": { "acao": "adesaoInfo" }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+        { "param": { "acao": "adesaoInfo","cpf": userInfo.cpf }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
       ).then(function (resp) {
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
