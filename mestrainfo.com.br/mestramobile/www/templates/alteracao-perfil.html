@@ -9,13 +9,16 @@
           Informações do Perfil Atual
         </div>
 
-        <div class="item">
+        <div class="item-max-width">
           <h4 class="softcolor">Data da Opção</h4>
           <p>{{dadosCadastrais.data_opcao}}</p>
           <h4 class="softcolor">Vigencia</h4>
           <p>{{dadosCadastrais.vigencia}}</p>
           <h4 class="softcolor">Perfil</h4>
-          <p>{{dadosCadastrais.perfil}} <img src="img/icongrafic.png" class="img-graph"></p>
+          <p>{{dadosCadastrais.perfil}} <img ng-click="mostraImg = !mostraImg" src="img/icongrafic.png" class="img-graph"></p>
+          <div id="grafico" ng-show="mostraImg">
+            <img src="img/Comparativo.jpg" class="img-graph-popup">
+          </div>  
         </div>
 
         <div class="item item-divider softrow">

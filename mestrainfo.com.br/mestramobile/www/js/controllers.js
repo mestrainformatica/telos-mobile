@@ -2642,6 +2642,7 @@ console.log($scope.formData.tipo_reajuste);
   $scope.mensagem_erro = "";
   $scope.sucesso = false;
   $scope.erro = false;
+  $scope.mostraImg = false;
 
   $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0];
 
