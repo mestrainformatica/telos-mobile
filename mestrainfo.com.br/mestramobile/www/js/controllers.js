@@ -669,21 +669,25 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 /**
  * CONTROLLERS DAS PÁGINAS DE PRIMEIRO NÍVEL
  */
-.controller('AdesaoCtrl', ['$scope', '$state', '$rootScope','$ionicLoading','$http', function($scope, $state, $rootScope,$ionicLoading, $http) {
+.controller('AdesaoCtrl', ['$scope', '$state', '$rootScope','$ionicLoading','$http','$ionicPopup', function($scope, $state, $rootScope,$ionicLoading, $http,$ionicPopup) {
   
 
   $ionicLoading.show();
   $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
         { "param" : { "acao": "adesaoInfo","cpf": userInfo.cpf }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
       ).then(function(resp) {
-        userInfo.u = resp.data.login.u;
-        userInfo.s = resp.data.login.s;
+       // userInfo.u = resp.data.login.u;
+       // userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
-        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+
+        console.log(resp.data.result.adesao)
+
+
+       
         
-          $scope.adesao = resp.data.result;
+          $scope.adesao = resp.data.result.adesao[0];
           $ionicLoading.hide();        
-        }
+        
 
       }, function(err) {
         $ionicLoading.hide();
@@ -699,7 +703,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $ionicLoading.show();
 
     $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
-      { "param": { "acao": "solicitarAdesao", cpf: userInfo.cpf,perfil: adesao.perfil, ir: adesao.perfil, percentual_contribuicao: adesao.percentual_contribuicao }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+      { "param": { "acao": "solicitarAdesao", cpf: userInfo.cpf, perfil: $scope.adesao.perfil, ir: $scope.adesao.ir, percentual_contribuicao: $scope.adesao.percentual_contribuicao, idpar: $scope.adesao.idpar }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
     ).then(function (resp) {
       $ionicLoading.hide();
 
@@ -713,11 +717,11 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
-        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+        
 
-          $scope.adesao = resp.data.result;
+          $scope.adesao = resp.data.result.adesao;
           $ionicLoading.hide();
-        }
+        
 
       }, function (err) {
         $ionicLoading.hide();
@@ -2857,8 +2861,72 @@ $scope.showPopup = function() {
  };
 }])
 
-.controller('PercentualContribuicaoCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
-  
+.controller('PercentualContribuicaoCtrl', ['$scope', '$state', '$rootScope','$ionicLoading','$http','$ionicPopup', function($scope, $state, $rootScope,$ionicLoading, $http,$ionicPopup) {
+
+  $scope.porcentagem_input = "";
+  $ionicLoading.show();
+  $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
+        { "param" : { "acao": "percentualContribuicaoInfo","cpf": userInfo.cpf }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function(resp) {
+       // userInfo.u = resp.data.login.u;
+       // userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();       
+        
+          $scope.percentual_contribuicao = resp.data.result.percentual_contribuicao[0];
+          $ionicLoading.hide();        
+        
+
+      }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+
+
+  $scope.submit = function () {
+
+    $ionicLoading.show();
+
+    $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+      { "param": { "acao": "calculaPercentualContribuicao", cpf: userInfo.cpf, percentual_contribuicao: $scope.porcentagem_input}, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+    ).then(function (resp) {
+      $ionicLoading.hide();
+
+      //$scope.adesao = resp.data.result;
+      
+
+      //execucao para pegar os dados da tela denovo
+      $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+        { "param": { "acao": "percentualContribuicaoInfo","cpf": userInfo.cpf }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function (resp) {
+        //userInfo.u = resp.data.login.u;
+        //userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        
+
+        $scope.percentual_contribuicao = resp.data.result.percentual_contribuicao[0];
+        $ionicLoading.hide();     
+        
+
+      }, function (err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Falha de conexão',
+          template: timeoutMsg
+        });
+      });
+
+
+    }, function (err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Falha de conexão',
+        template: timeoutMsg
+      });
+    });
+  }
 }])
 
 .controller('PreferenciasCtrl', [

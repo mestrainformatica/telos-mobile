@@ -104,14 +104,14 @@
             </div>
             <div class="padding">
                 <div class="button-bar">
-                    <input ng-hide="loading" ng-show="adesao.flag_situacao_adesao == 'S'" ng-click="submit()" type="submit" class="button button-positive button-block" value="Solicitar Adesão">
+                    <input ng-hide="loading" ng-show="adesao.situacao_adesao != 'S'" ng-click="submit()" type="submit" class="button button-positive button-block" value="Solicitar Adesão">
                     <div ng-show="loading" class="button button-positive button-block" id="loading">
                         <ion-spinner icon="android"></ion-spinner>
                     </div>
                 </div>
             </div>
             <div class="the_error">
-                <p style="text-align: center; color: #056582; font-size: 1.5em;" ng-show="adesao.flag_situacao_adesao == 'S'">
+                <p style="text-align: center; color: #056582; font-size: 1.5em;" ng-show="adesao.situacao_adesao == 'S'">
                     <strong>Solicitação já realizada.</strong></p>
             </div>
         </div>

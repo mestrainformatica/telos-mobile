@@ -1,166 +1,89 @@
-<ion-view title="Percentual de Contribuiçào">
-    <ion-content class="has-header" ng-controller="PercentualContribuicaoCtrl">
-        <div class="headerInfo">
-            <div ng-include="'js/directives/userInfo.html'"></div>
+<ion-view title="Alteração de Perfil" hide-back-button="false">
+  <ion-content class="has-header">
+    <div class="headerInfo">
+      <div ng-include="'js/directives/userInfo.html'"></div>
+    </div>
+    <form id="formCampos">
+      <div class="list dadosInfo" id="mainMenu" ng-controller="PercentualContribuicaoCtrl">
+        <div class="item item-divider softrow">
+          Informações do Perfil Atual
         </div>
 
-        <div class="list" id="mainMenu">
-            <div class="item item-divider softrow">
-                Selecione a Data
-            </div>
-            <div class="item">
-                <div class="list">
-
-                    <label class="item item-input item-select">
-                        <div class="input-label">
-                            Data da Opção
-                        </div>
-                        <select class="ion-input-select">
-                            <option value=""> Selecione </option>
-                        </select>
-                        <!-- option que busca as datas possiveius a serem selecionadas
-                <option 
-                    ng-repeat="(key, value) in saldo"
-                </option>
-                    value="{{ value.data_atualizacao }}" ng-show="value.data_atualizacao">{{value.data_atualizacao}}
-                </option>
-                -->
-                        <!-- Mensagem de erro caso nao escolha data
-                    </label>
-                <div class="the_error">
-                <p ng-show="errorMsg" class="errorMsg assertive">{{errorMsg}}</p>
-                </div>
-                -->
-
-                </div>
-                <div class="label row">
-                    <div class="softcolor col col-50 upper" class="title_label">Vigência</div>
-                    <div class="col valor"> 14/02/2021 </div>
-                </div>
-            </div>
-            <div>
-                <div class="item item-divider subitem">
-                    <div class="col col-33" style="padding-left: 0;">Percentual de contribuição normal</div>
-                </div>
-                <div class="item" id="">
-                    <div class="label row">
-                        <div class="softcolor col col-50 upper" class="title_label">Salário</div>
-                        <div class="col valor">1.200,00</div>
-                    </div>
-                    <div class="label row">
-                        <div class="softcolor col col-50 upper" class="title_label">Valor teto de contribuição</div>
-                        <div class="col valor">10.000,00</div>
-                    </div>
-                    <div class="label row">
-                        <div class="softcolor col col-50 upper" class="title_label">Salário de contribuição</div>
-                        <div class="col valor">5.570,00</div>
-                    </div>
-                    <div class="label row">
-                        <div class="softcolor col col-50 upper" class="title_label">Salário de contribuição</div>
-                        <div class="col valor">2.500,00</div>
-                    </div>
-                    <div class="label row">
-                    </div>
-                </div>
-            </div>
-
-            <div class="item item-divider subitem">
-                Contribuição
-            </div>
-            <div>
-
-                <div class="item">
-                    <div class="list">
-                        <label class="item item-input item-select">
-                            <div class="input-label">
-                                Tipo de Contribuição
-                            </div>
-                            <select class="ion-input-select">
-                                <option value=""> 10 - Normal </option>
-                                <option value=""> 11 - Especial </option>
-                                <option value=""> 12 - Prioritário </option>
-                            </select>
-                            <!-- option que busca as datas possiveius a serem selecionadas
-                                <option 
-                                    ng-repeat="(key, value) in saldo"
-                                </option>
-                                    value="{{ value.data_atualizacao }}" ng-show="value.data_atualizacao">{{value.data_atualizacao}}
-                                </option>
-                                -->
-                            <!-- Mensagem de erro caso nao escolha data
-                                    </label>
-                                <div class="the_error">
-                                <p ng-show="errorMsg" class="errorMsg assertive">{{errorMsg}}</p>
-                                </div>
-                                -->
-                    </div>
-
-                    <label class="no-border item item-input item-stacked-label">
-                        <div class="row">
-                            <div class="col col-50">
-                                <span class="input-label">Faixa de contribuição</span>
-                            </div>
-                            <div class="col">
-                                <label class="item item-input">
-                                    <input class="align-right" type="text" name="faixa-contribuicao" placeholder="0,00" />
-                                </label>
-                            </div>
-                        </div>
-                    </label>
-
-                    <label class="no-border item item-input item-stacked-label">
-                        <div class="row">
-                            <div class="col col-50">
-                                <span class="input-label">% Mínimo da faixa</span>
-                            </div>
-                            <div class="col">
-                                <label class="item item-input">
-                                    <input class="align-right" type="text" min="1" max="100" placeholder="0">
-                                </label>
-                            </div>
-                            <div class="col col-7">
-                                <span class="input-label box">%</span>
-                            </div>
-                        </div>
-                    </label>
-
-                    <label class="no-border item item-input item-stacked-label">
-                        <div class="row">
-                            <div class="col col-50">
-                                <span class="input-label">% Máximo da faixa</span>
-                            </div>
-                            <div class="col">
-                                <label class="item item-input">
-                                    <input class="align-right" type="text" min="1" max="100" placeholder="0">
-                                </label>
-                            </div>
-                            <div class="col col-7">
-                                <span class="input-label box">%</span>
-                            </div>
-                        </div>
-                    </label>
-
-                    <label class="no-border item item-input item-stacked-label">
-                        <div class="row">
-                            <div class="col col-50">
-                                <span class="input-label">% do Participante</span>
-                            </div>
-                            <div class="col">
-                                <label class="item item-input">
-                                    <input class="align-right" type="text" min="1" max="100" placeholder="0">
-                                </label>
-                            </div>
-                            <div class="col col-7">
-                                <span class="input-label box">%</span>
-                            </div>
-                        </div>
-                    </label>
-                    <div class="button-bar" padding="true">
-                        <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Visualizar Extrato">
-                    </div>
-                </div>
-
-            </div>
+        <div class="item">
+          <h4 class="softcolor">Salário de Contribuição</h4>
+          <p>{{percentual_contribuicao.salario_contribuicao}}</p>
+          <h4 class="softcolor">Porcentagem de Contribuição</h4>
+          <p>{{percentual_contribuicao.percentual_contribuicao}}%</p>
+          <h4 class="softcolor">Valor de Contribuição</h4>
+          <p>{{percentual_contribuicao.valor_contribuicao}}</p>
         </div>
-    </ion-content>
+
+        <div class="item item-divider softrow">
+          Novo Perfil
+        </div>
+
+        <div class="item">
+          <label class="item item-input">
+            <span class="input-label">Vigência</span>
+            <input ng-model="percentual_contribuicao.data_vigencia" disabled type="text">
+          </label>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Faixa de Contribuição
+            </div>
+            <select ng-model="bnf" class="ion-input-select">
+              <option value="percentual_contribuicao.faixa_contribuicao">{{percentual_contribuicao.faixa_contribuicao}}</option>
+            </select>
+          </label>
+          <!--label class="item item-input">
+            <span class="input-label">Agencia</span>
+            <input ng-model="perfil-dia" maxlength="2" class="input-cs" type="text">
+            <input ng-model="perfil-mes" disabled class="input-cs" type="text">
+            <input ng-model="perfil-ano" disabled class="input-cs" type="text">
+          </label>
+          <label class="item item-input">
+            <div class="input-label">
+              Data Opção
+            </div>
+            
+            <ionic-datepicker class="ion-input-select ng-pristine ng-valid ng-touched" idate="datepickerObject.inputDate" disablepreviousdates="false"
+              disablefuturedates="false" ng-model="datepickerObject.inputDate" callback="datePickerCallback" disableddates="disableddates"
+              title="title" mondayfirst="false">
+              <button id="dataCredito" class="button button-block button-small button-clear" style="width: 100%; text-align:right;" ng-disabled="disableCalendar"
+                value="" ng-value="datepickerObject.inputDate | date:'dd/MM/yyyy'" placeholder="- Selecione -" ng-model="dataInicial">{{buttonText}}</button>
+            </ionic-datepicker>
+          </label-->
+
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Percentual de Contribuição
+            </div>
+            <select class="ion-input-select" ng-model="porcentagem_input">
+                <option value=""> - Selecione -  </option>
+                <option value="2"> 2% </option>
+                <option value="3"> 3% </option>
+                <option value="4"> 4% </option>
+                <option value="5"> 5% </option>
+                <option value="6"> 6% </option>
+                <option value="7"> 7% </option>
+                <option value="8"> 8% </option>
+            </select>
+          </label>
+          <div class="the_error">
+            <p ng-show="sucesso">Perfil Alterado Com Sucesso!</p>
+          </div>
+          <div class="the_error">
+            <p ng-show="erro" >{{mensagem_erro}}</p>
+          </div>
+          <div class="button-bar" padding="true">
+            <input id="btn-altera-perfil" ng-hide="loading" type="submit" class="button button-positive button-block" value="Alterar Perfil" ng-click="submit()">
+            </div>
+          </div>
+        </div>
+
+    </form>
+
+
+
+  </ion-content>
 </ion-view>
