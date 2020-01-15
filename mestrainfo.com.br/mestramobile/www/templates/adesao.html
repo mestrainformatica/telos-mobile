@@ -23,10 +23,7 @@
                     <div class="softcolor col col-50 upper" class="title_label">Data de Adesão:</div>
                     <div class="col valor"> {{adesao.data_adesao}}</div>
                 </div>
-                <div class="label row">
-                    <div class="softcolor col col-50 upper" class="title_label">Situação do plano:</div>
-                    <div class="col valor"> {{adesao.situacao_plano}} </div>
-                </div>
+               
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">Data Prevista Aposentadoria:</div>
                     <div class="col valor"> {{adesao.data_aposentadoria}} </div>
@@ -61,7 +58,7 @@
                             </div>
                             <div class="col">
                                 <label class="item item-input">
-                                    <input class="align-right" ng-model="adesao.percentual_contribuicao" maxlength="3" type="number" name="faixa-contribuicao" />
+                                    <input class="align-right" ng-model="adesao.percentual_contribuicao" maxlength="3" type="tel" name="faixa-contribuicao" />
                                 </label>
                             </div>
                         </div>
@@ -87,7 +84,7 @@
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">CPF:</div>
-                    <div class="col valor"> {{adesao.cpf}} </div>
+                    <div class="col valor"> {{cpf}}</div>
                 </div>
                 <div class="label row">
                     <div class="softcolor col col-50 upper" class="title_label">RG:</div>

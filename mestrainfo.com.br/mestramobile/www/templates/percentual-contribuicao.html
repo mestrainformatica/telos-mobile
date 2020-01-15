@@ -1,4 +1,4 @@
-<ion-view title="Alteração de Perfil" hide-back-button="false">
+<ion-view title="Percentual Contribuição" hide-back-button="false">
   <ion-content class="has-header">
     <div class="headerInfo">
       <div ng-include="'js/directives/userInfo.html'"></div>
@@ -32,6 +32,7 @@
               Faixa de Contribuição
             </div>
             <select ng-model="bnf" class="ion-input-select">
+              <option value=""> - Selecione -  </option>
               <option value="percentual_contribuicao.faixa_contribuicao">{{percentual_contribuicao.faixa_contribuicao}}</option>
             </select>
           </label>
@@ -69,16 +70,17 @@
                 <option value="8"> 8% </option>
             </select>
           </label>
-          <div class="the_error">
-            <p ng-show="sucesso">Perfil Alterado Com Sucesso!</p>
-          </div>
-          <div class="the_error">
-            <p ng-show="erro" >{{mensagem_erro}}</p>
-          </div>
           <div class="button-bar" padding="true">
             <input id="btn-altera-perfil" ng-hide="loading" type="submit" class="button button-positive button-block" value="Alterar Perfil" ng-click="submit()">
             </div>
+            <div class="the_error">
+              <p ng-show="sucesso" style="text-align: center; color: #056582; font-size: 1.1em; padding-top: px;">Perfil Alterado Com Sucesso!</p>
+            </div>
+            <div class="the_error">
+              <p ng-show="erro" >{{mensagem_erro}}</p>
+            </div>
           </div>
+          
         </div>
 
     </form>
@@ -87,3 +89,5 @@
 
   </ion-content>
 </ion-view>
+
+<!-- altteração title -->

@@ -119,7 +119,9 @@ body {
 }
 #signin {
 	padding: 1em;
-	background: #fff;
+	background-image: url("../img/img-bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 #signin form {
 	padding: 0;
@@ -298,6 +300,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 	font-weight: 200;
 }
 #login-form {
+	background-color:  transparent !important;
 }
 .footerTermos.bar.bar-light {
 	border-color: #ececec !important;
@@ -906,7 +909,7 @@ small.legend{
     top: 0;
     bottom: 0;
     right: 83px;
-    padding: 0 48px 0 16px;
+    padding: 0 20px 0 16px;
     max-width: 65%;
     border: none;
     background: #fff;

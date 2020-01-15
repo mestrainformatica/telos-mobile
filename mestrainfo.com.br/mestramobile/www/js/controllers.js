@@ -203,7 +203,31 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   if (logged == false){
     //$state.go('signin');
   } else {
+    //itachi
   $scope.stageMap = stageMap;
+
+  
+
+  if (userInfo.cpf === "08275049776") {
+    $scope.stageMap = new Object();
+    $scope.stageMap['00'] = stageMap['00'];
+  }
+
+  if (userInfo.cpf === "08022431770") {
+    $scope.stageMap = new Object();
+    $scope.stageMap['01'] = stageMap['01'];
+    $scope.stageMap['02'] = stageMap['02'];
+    $scope.stageMap['19'] = stageMap['19'];
+    $scope.stageMap['20'] = stageMap['20'];
+  }
+
+  if (userInfo.cpf === "01601659628") {
+    $scope.stageMap = new Object();
+    $scope.stageMap['01'] = stageMap['01'];
+    $scope.stageMap['08'] = stageMap['08'];
+  }
+
+  console.log($scope.stageMap);
   }
 
   $scope.logout = function(){
@@ -532,11 +556,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
-        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+       // if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
         
+       console.log(resp)
           $scope.resgate = resp.data.result;
           $ionicLoading.hide();        
-        }
+        //}
 
       }, function(err) {
         $ionicLoading.hide();
@@ -684,6 +709,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 
        
+        $scope.cpf = userInfo.cpf;
         
           $scope.adesao = resp.data.result.adesao[0];
           $ionicLoading.hide();        
@@ -714,12 +740,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
         { "param": { "acao": "adesaoInfo","cpf": userInfo.cpf }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
       ).then(function (resp) {
-        userInfo.u = resp.data.login.u;
-        userInfo.s = resp.data.login.s;
+        //userInfo.u = resp.data.login.u;
+        //userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
         
 
-          $scope.adesao = resp.data.result.adesao;
+          $scope.adesao = resp.data.result.adesao[0];
           $ionicLoading.hide();
         
 
@@ -771,7 +797,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     $scope.informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0];
         $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
-        var infoConta = $scope.formData.conta.split("-");;
+        var infoConta = $scope.formData.conta.split("-");
+
+        if (infoConta[0] == "" || infoConta[0] == "") {
+          infoConta[0] = null;
+          infoConta[1] = null;
+        }
 
         var sel = document.getElementById("banco");
         var nomeBanco = sel.options[sel.selectedIndex].text;
@@ -2865,6 +2896,8 @@ $scope.showPopup = function() {
 .controller('PercentualContribuicaoCtrl', ['$scope', '$state', '$rootScope','$ionicLoading','$http','$ionicPopup', function($scope, $state, $rootScope,$ionicLoading, $http,$ionicPopup) {
 
   $scope.porcentagem_input = "";
+  $scope.sucesso = false;
+  $scope.erro = false;
   $ionicLoading.show();
   $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
         { "param" : { "acao": "percentualContribuicaoInfo","cpf": userInfo.cpf }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
@@ -2898,13 +2931,15 @@ $scope.showPopup = function() {
       //$scope.adesao = resp.data.result;
       
 
+      $scope.sucesso =  true;
+
       //execucao para pegar os dados da tela denovo
       $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
         { "param": { "acao": "percentualContribuicaoInfo","cpf": userInfo.cpf }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
       ).then(function (resp) {
         //userInfo.u = resp.data.login.u;
         //userInfo.s = resp.data.login.s;
-        $ionicLoading.hide();
+        //$ionicLoading.hide();
         
 
         $scope.percentual_contribuicao = resp.data.result.percentual_contribuicao[0];

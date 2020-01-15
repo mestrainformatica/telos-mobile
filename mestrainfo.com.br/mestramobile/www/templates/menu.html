@@ -10,8 +10,8 @@
           Menu
           </div>
         
-        <a class="item" href="#/adesao">
-        <h2><i class="icon ion-ios-compose-outline"></i> Adesão
+        <a class="item" href="#/adesao" ng-show=" stageMap['00'] ">
+        <h2><i class="icon ion-ios-compose-outline"></i> {{ stageMap['00'] }}
         <i class="right-icon icon ion-chevron-right"></i></h2>
         </a>
 
@@ -122,24 +122,24 @@
 
           </div>
 
-          <a class="item" href="#/alteracao-perfil" >
+          <a class="item" href="#/alteracao-perfil" ng-show="stageMap['19']">
                 <h2>
                     <i class="icon ion-ios-person-outline"></i>
-                     Perfil de Investimento
+                    {{ stageMap['19'] }}
                 </h2>
         </a>
 
-        <a class="item" href="#/percentual-contribuicao">
+        <a class="item" href="#/percentual-contribuicao" ng-show="stageMap['20']">
                 <h2>
                     <i class="icon softcolor">%</i>
-                     Perfil de Contribuição
+                    {{ stageMap['20'] }}
                 </h2>
         </a> 
 
-          <a class="item" href="#/preferencias" ng-show="stageMap['19']">
+          <a class="item" href="#/preferencias" ng-show="stageMap['21']">
                 <h2>
                     <i class="icon ion-ios-cog-outline"></i>
-                    {{ stageMap['19'] }}
+                    {{ stageMap['21'] }}
                 </h2>
         </a>
           <a class="item" href="#/fale-conosco" ng-show="stageMap['09']">
