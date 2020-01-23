@@ -332,7 +332,7 @@ hr { height: 0px; border: none; border-bottom: solid 1px #ececec !important; }
 #btn-editar .icon { margin-top: 1px; margin-left: .25em}
 #signin p {
 	text-align: center;
-	color: #404040;
+	color: white;
 }
 #signin .button.button-positive,
 .button.button-positive {

@@ -1,5 +1,5 @@
-var url_base = 'http://192.100.100.82:8080/prevmobile-ws/rest/acesso/padrao';
-//var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://192.100.100.82:8080/prevmobile-ws/rest/acesso/padrao';
+var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
@@ -205,6 +205,9 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   } else {
     //itachi
   $scope.stageMap = stageMap;
+
+
+  console.log(userInfo)
 
   
 
@@ -679,6 +682,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $scope.$state = $state;
   $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0];
+
+  if (userInfo.cpf === "08275049776") {
+    $scope.matricula.plano = "-";
+    $scope.matricula.situacao = "-";
+    $scope.matricula.regimetributario = "-";
+  }
 
   // Mantem o headerInfo sempre aberto no menu
   if ($state.current.name == 'menu'){

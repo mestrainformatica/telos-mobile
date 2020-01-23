@@ -6,7 +6,7 @@
     <form id="formCampos">
       <div class="list dadosInfo" id="mainMenu" ng-controller="PercentualContribuicaoCtrl">
         <div class="item item-divider softrow">
-          Informações do Perfil Atual
+          Informações de Contribuição
         </div>
 
         <div class="item">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="item item-divider softrow">
-          Novo Perfil
+          Novo Percentual de Contribuição
         </div>
 
         <div class="item">
@@ -27,7 +27,7 @@
             <span class="input-label">Vigência</span>
             <input ng-model="percentual_contribuicao.data_vigencia" disabled type="text">
           </label>
-          <label class="item item-input item-select">
+          <!--label class="item item-input item-select">
             <div class="input-label">
               Faixa de Contribuição
             </div>
@@ -35,7 +35,7 @@
               <option value=""> - Selecione -  </option>
               <option value="percentual_contribuicao.faixa_contribuicao">{{percentual_contribuicao.faixa_contribuicao}}</option>
             </select>
-          </label>
+          </label-->
           <!--label class="item item-input">
             <span class="input-label">Agencia</span>
             <input ng-model="perfil-dia" maxlength="2" class="input-cs" type="text">
@@ -71,10 +71,10 @@
             </select>
           </label>
           <div class="button-bar" padding="true">
-            <input id="btn-altera-perfil" ng-hide="loading" type="submit" class="button button-positive button-block" value="Alterar Perfil" ng-click="submit()">
+            <input id="btn-altera-perfil" ng-hide="loading" type="submit" class="button button-positive button-block" value="Alterar Percentual" ng-click="submit()">
             </div>
             <div class="the_error">
-              <p ng-show="sucesso" style="text-align: center; color: #056582; font-size: 1.1em; padding-top: px;">Perfil Alterado Com Sucesso!</p>
+              <p ng-show="sucesso" style="text-align: center; color: #056582; font-size: 1.1em; padding-top: px;">Percentual Alterado Com Sucesso!</p>
             </div>
             <div class="the_error">
               <p ng-show="erro" >{{mensagem_erro}}</p>
