@@ -94,9 +94,8 @@
 
   </head>
   <body padding="true" class="platform-android platform-ios" ng-style="bodyStyle">
-
     <!-- The nav bar that will be updated as we navigate -->
-    <ion-nav-bar class="bar-light" ng-controller="topMenu" align-title="center" ng-show="loginPage" ng-cloak>
+    <ion-nav-bar id="id-nav-bar" class="bar-light classe-nav" ng-controller="topMenu" align-title="center" no-tap-scroll="true" ng-show="loginPage" ng-cloak>
       <ion-nav-back-button class="button button-clear button-positive">
         <i class="ion-chevron-left"></i> Voltar
       </ion-nav-back-button>

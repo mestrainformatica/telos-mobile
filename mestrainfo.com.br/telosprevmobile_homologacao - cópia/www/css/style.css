@@ -1252,3 +1252,11 @@ p.successColor {
 .font-teste {
 	font-size: 15px;
 }
+
+.quebra-texto {
+	word-wrap: break-word; 
+	white-space: pre-wrap;
+	text-align: center;
+}
+
+

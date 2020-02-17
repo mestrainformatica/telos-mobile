@@ -1,5 +1,5 @@
 <ion-view title="Fotos/Documentos"   has-bouncing="false" >
- <ion-content  class="has-header" has-bouncing="false"  ng-controller="FotosDocumentosCtrl">
+ <ion-content id="id-teste-nav"  class="has-header" has-bouncing="false"  ng-controller="FotosDocumentosCtrl">
     <div class="headerInfo" >
         <div ng-include="'js/directives/userInfo.html'"></div> 
     </div>
@@ -13,9 +13,8 @@
         <div class="input-label">
             Tipo de Documento
         </div>
-        <select class="ion-input-select" >
-           <option value="">Comprovante</option>
-           <option value="">Foto</option>
+        <select ng-model="tipoDocumento" class="ion-input-select" ng-options="arquivo.tipo_documento as arquivo.descricao_documento for arquivo in listaTiposDoc" >
+           <option value="">- Selecione - </option>
         </select>
       </label>
       <div class="container-flexbox">
@@ -27,7 +26,7 @@
             <i class="fas fa-images fa-2x"></i>
           <span>Fotos</span>
         </div>
-        <div class="sub-container-flexbox">
+        <div class="sub-container-flexbox" ng-click="abrirChooser()">
           <i class="fas fa-folder-open fa-2x"></i>
           <span>Arquivos</span>
         </div>
@@ -38,8 +37,11 @@
       <div class="button-bar">
         <button ng-hide="loading" ng-click="anexarArquivo()" type="button" class="button button-positive button-block" ><i class="fas fa-paperclip"></i> Anexar Arquivo</button>     
       </div>
-      <p ng-show="estadoOperacao == 'SUCESSO'" style="color: #78fc4c; font-weight: 600;">Upload realizado com sucesso!</p>
-      <p ng-show="estadoOperacao == 'ERRO'" style="color: #f78c8c; font-weight: 600;">Erro ao realizar upload!</p>
+      <div style="word-wrap: break-word; width: 100%; text-align: center;">
+          <span class="quebra-texto" ng-show="estadoOperacao == 'SUCESSO'" style="color: #0a4b5f; font-weight: 600;">Upload realizado com sucesso!</span>
+          <span class="quebra-texto" ng-show="estadoOperacao == 'ERRO'" style="color: #f78c8c; font-weight: 600;">{{mensagemErro}}</span>
+          <span class="quebra-texto" ng-show="estadoValidacao == 'ERRO'" style="color: #f78c8c; font-weight: 600;">{{mensagemValidacao}}</span>
+      </div>
     </div>
   
   </div>

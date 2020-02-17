@@ -13,7 +13,8 @@
             <div class="item">
                 <div class="label row ng-cloak" ng-show="emprestimoSimulacaoCamposEmitido.data_credito" ng-cloak>
                     <div class="col col-25 upper">Data de Crédito</div>
-                    <div class="col valor">{{emprestimoSimulacaoCamposEmitido.data_credito}}</div>
+                    <div ng-show="possuiData"class="col valor">{{emprestimoSimulacaoCamposEmitido.data_credito}}</div>
+                    <div style="font-size: 11px;" ng-show="!possuiData" class="col valor">Sem Data de Crédito disponível</div>
                 </div>
                 <div class="label row">
                     <div class="col col-25 upper">Saldo Devedor Inicial</div>
@@ -39,7 +40,7 @@
                     <div class="col col-25 upper">Valor Líquido a Receber</div>
                     <div class="col valor">{{emprestimoSimulacaoCamposEmitido.valor_liquido_a_receber}}</div>
                 </div>
-                <div class="label row">
+                <div class="label row" ng-show="possuiData">
                     <div class="col col-25 upper">Vencimento da 1ª Prestação</div>
                     <div class="col valor">{{emprestimoSimulacaoCamposEmitido.vencimento_primeira_prestacao}}</div>
                 </div>

@@ -19,13 +19,16 @@
          
               </select>
           </label>
-          <label class="item item-input item-select" disable="{{disableCalendar}}">
+          <label class="item item-input item-select"  disable="{{disableCalendar}}">
               <div class="input-label">
                 Data de Crédito
               </div>
-              <ionic-datepicker  class="ion-input-select ng-pristine ng-valid ng-touched" disableddates="disableddates" idate="dataInicial" disablepreviousdates="true"  disablefuturedates="false" callback="datePickerCallback">
+              <ionic-datepicker ng-show="disableCalendar" class="ion-input-select ng-pristine ng-valid ng-touched" disableddates="disableddates" idate="dataInicial" disablepreviousdates="true"  disablefuturedates="false" callback="datePickerCallback">
                 <button id="dataCredito" class="button button-block button-small button-clear" style="width: 100%; text-align:right;" ng-disabled="disableCalendar">{{buttonText}}</button>
               </ionic-datepicker>
+              <select ng-show="!disableCalendar" class="ion-input-select">
+                <option value="">{{buttonText}}</option>
+              </select>
           </label>
         </div>
         <div class="the_error">

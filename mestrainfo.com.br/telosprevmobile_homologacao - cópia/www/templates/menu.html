@@ -175,6 +175,29 @@
                 </a>
 
             </div>
+            <!--a class="item" ng-click="showSubDoc = !showSubDoc">
+                <h2>
+                    <i class="icon ion-document"></i>
+                    Fotos/Documentos
+                    <i class="right-icon icon ion-chevron-down" ng-hide="showSubDoc"></i>
+                    <i class="right-icon icon ion-chevron-up" ng-show="showSubDoc"></i>
+                </h2>
+            </a>
+            
+            <div class="submenu ng-cloak" ng-show="showSubDoc">
+                <a class="item" href="#/fotos-documentos" ng-show="stageMap['19']">
+                    <h2>
+                        <i class="icon"></i>
+                        Anexar Arquivos
+                    </h2>
+                </a>
+                <a class="item" href="#/lista-documentos" ng-show="stageMap['19']">
+                    <h2>
+                        <i class="icon"></i>
+                        Lista de Fotos/Documentos
+                    </h2>
+                </a>
+            </div-->
 
 
             <a class="item" href="#/fale-conosco" ng-show="stageMap['09']">
@@ -191,27 +214,13 @@
                     {{ stageMap['19'] }}
                 </h2>
             </a>
-
-            <a class="item" href="#/fotos-documentos" ng-show="stageMap['19']">
-                <h2>
-                    <i class="icon ion-ios-cog-outline"></i>
-                    Documentos
-                </h2>
-            </a>
-            <a class="item" href="#/lista-documentos" ng-show="stageMap['19']">
-                <h2>
-                    <i class="icon ion-ios-cog-outline"></i>
-                    Lista de Documentos
-                </h2>
-            </a>
-
             <a class="item" ng-class="confirm" ng-click="logout()">
                 <h2>
                     <i class="icon ion-ios-unlocked-outline"></i>
                     Encerrar
                 </h2>
             </a>
-
+       
         </div>
     </ion-content>
 </ion-view>

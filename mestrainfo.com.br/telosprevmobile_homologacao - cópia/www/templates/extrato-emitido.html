@@ -119,21 +119,21 @@
 
   
     <div class="label row th">
-    	 <div class="col col-50">Descrição</div>
-    	 <div class="col col-25 valor">No Mês</div>
-    	 <div class="col col-25 valor">No Ano</div>
+    	 <div class="col col-60">Descrição</div>
+    	 <div class="col col-20 valor">No Mês</div>
+    	 <div class="col col-20 valor">No Ano</div>
 	 </div>
   
   <div ng-repeat="(key, value) in extrato.detalhesRentabilidade">
    <div class="label row">
-        <div class="col col-50 upper">{{value.descricao}}</div>
-        <div class="col col-25 valor">{{value.no_mes_descricao}}</div>
-        <div class="col col-25 valor">{{value.no_ano_descricao}}</div>
+        <div class="col col-60 upper quebra-texto">{{value.descricao}}</div>
+        <div class="col col-20 valor">{{value.no_mes_descricao}}</div>
+        <div class="col col-20 valor">{{value.no_ano_descricao}}</div>
    </div>
    <div class="label row sub_descricao" ng-show="value.sub_descricao">
-        <div class="col col-50 upper">{{value.sub_descricao}}</div>
-        <div class="col col-25 valor">{{value.no_mes_sub_descricao}}</div>
-        <div class="col col-25 valor">{{value.no_ano_sub_descricao}}</div>
+        <div class="col col-60 upper quebra-texto">{{value.sub_descricao}}</div>
+        <div class="col col-20 valor">{{value.no_mes_sub_descricao}}</div>
+        <div class="col col-20 valor">{{value.no_ano_sub_descricao}}</div>
    </div>
    </div>
 

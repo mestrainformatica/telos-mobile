@@ -1,7 +1,7 @@
 // cordova.exec.setJsToNativeBridgeMode(cordova.exec.jsToNativeModes.XHR_NO_PAYLOAD);
 'use strict'
 
-var map, urlBase, inspect, angular, cordova, stageMap, userInfo, globalPopup, timeoutErrorMsg, defaultErrorMessage
+var map, urlBase, inspect, angular, cordova, stageMap, userInfo, globalPopup, timeoutErrorMsg, defaultErrorMessage,urlServidor
 
 // Cache de algumas propriedades da window
 inspect = window.inspect
@@ -13,11 +13,18 @@ cordova = window.cordova
 
 // URL Base para conexão aos servidor TELOS
 // TELOS Produção
-//urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+urlServidor = "https://telosmobile.fundacaotelos.com.br"
 // TELOS Homologação
-//urlBase = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'https://telosmobile.fundacaotelos.com.br:8446/prevmobile-ws/rest/acesso/padrao'
+//urlServidor = "https://telosmobile.fundacaotelos.com.br:8446"
 // MESTRA 
-urlBase = 'http://sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+//urlBase = 'http://sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
+
+//urlServidor = "http://192.100.100.82:8080"
+//urlBase = 'http://192.100.100.82:8080/prevmobile-ws/rest/acesso/padrao'
+
+
 
 // Variaveis Globais
 map = {
@@ -136,6 +143,7 @@ function retrieve(obj, key) {
 window.controller = angular
   .module('starter.controller', ['ionic', 'angular-datepicker', 'ngMask', 'ngSanitize'])
   .controller('topMenu', function ($scope, $ionicHistory, $rootScope) {
+    
     $rootScope.$on('$stateChangeSuccess', function (event, toState) {
       $scope.isNotHome = !(
         toState['name'] === 'menu' ||
@@ -150,6 +158,11 @@ window.controller = angular
         $rootScope.loginPage = true
         $rootScope.bodyStyle = { 'background-color': '#dbdbdb' }
       }
+    })
+    $rootScope.$on('$stateChangeFailure', function (event, toState) {
+     if (toState['name'] === 'fotos-documentos') {
+      $rootScope.loginPage = false;
+     }
     })
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       if (cordova && cordova.plugins.Keyboard) {
@@ -584,7 +597,10 @@ window.controller = angular
     '$ionicLoading',
     '$ionicModal',
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $ionicModal) {
-      window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      if (window.cordova) {
+        window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+      }
+      
 
       $scope.preferenciasLogin = []
 
@@ -1697,15 +1713,23 @@ window.controller = angular
               $ionicLoading.hide()
 
               $scope.dataInicial = new Date(resp.data.result['data_inicial'])
-              $scope.disableCalendar = false
+              $scope.disableCalendar = false;
+
+              var countDatasDisponiveis = 0;
 
               datasIndisponiveis = resp.data.result['datas_credito']
+
               for (k in datasIndisponiveis) {
-                if (!datasIndisponiveis.hasOwnProperty(k) || datasIndisponiveis[k]['disponivel'] !== 'N') continue
+                if (!datasIndisponiveis.hasOwnProperty(k) || datasIndisponiveis[k]['disponivel'] !== 'N') {
+                  continue
+                } 
                 currentDate = new Date(datasIndisponiveis[k].data)
                 $scope.disableddates.push(currentDate.getTime())
               }
-
+              console.log("ITEM: "+resp.data.result['data_inicial']);
+              if (resp.data.result['data_inicial'] === undefined) {
+                $scope.buttonText = "Sem Calendário"
+              }
               if (!resp.data.success) {
                 $rootScope.errorMsg = resp.data.msg
                 $state.go('signin')
@@ -1733,8 +1757,11 @@ window.controller = angular
       $scope.formData.tipo = $rootScope.lastRequest.result['simulacaoEmprestimo'][0].cod_emprestimo
       $scope.update($scope.formData.tipo)
 
+
+     
+
       $scope.submit = function (codEmprestimo) {
-        if (!$scope.formData.tipo || !$scope.formData.data) {
+        if (!$scope.formData.tipo) {
           $scope.errorMsg = 'Por favor preencha todos os campos'
         } else {
           $ionicLoading.show({
@@ -1745,12 +1772,24 @@ window.controller = angular
             showDelay: 0
           })
 
+
+          //22/01/2020
+          var dataSelecionada;
+          if (!$scope.formData.data) {
+            dataSelecionada = new Date();
+            dataSelecionada = dataSelecionada.toLocaleDateString();
+            window.localStorage.setItem("selecionouDataEmprestimo", "N");
+          } else {
+            dataSelecionada = $scope.formData.data;
+            window.localStorage.setItem("selecionouDataEmprestimo", "S");
+          }
+
           // Atualiza as datas de crédito
           $http
             .post(urlBase + ';jsessionid=' + userInfo.s, {
               param: {
                 cod_emprestimo: codEmprestimo,
-                dataCredito: $scope.formData.data,
+                dataCredito: dataSelecionada,
                 acao: 'simulacaoEmprestimo'
               },
               login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
@@ -2014,7 +2053,12 @@ window.controller = angular
       $scope.dadosCadastrais = dadosCadastrais
       $scope.listaBancos = listaBancos
       $scope.tipoConta = tipoConta
-      $scope.formData = {}
+      $scope.formData = {};
+      $scope.possuiData = true;
+
+      if (window.localStorage.getItem("selecionouDataEmprestimo") == "N") {
+        $scope.possuiData = false;
+      }
 
 
 
@@ -3823,7 +3867,8 @@ window.controller = angular
     '$http',
     '$ionicPopup',
     '$ionicLoading',
-    function (scope, state, rootScope, http, ionicPopup, ionicLoading) {
+    '$ionicNavBarDelegate',
+    function (scope, state, rootScope, http, ionicPopup, ionicLoading, $ionicNavBarDelegate) {
 
       //guarda o nome do arquivo a ser enviado
       scope.nomeArquivo = "";
@@ -3833,9 +3878,74 @@ window.controller = angular
       scope.imagemLiteral = "";
       //guarda as opcoes relacionadas a camera
       scope.options = "";
+      scope.tipoDocumento = "";
+      scope.extensaoArquivo = "";
+      scope.mensagemValidacao = "";
+      scope.estadoValidacao = "";
+      scope.mensagemErro = "";
 
+
+      scope.teste = function () {
+        if($ionicNavBarDelegate.showBar()) {
+          console.log("FUNCIONOU ESSA MERDA")
+        }
+        if($ionicNavBarDelegate.showBackButton()) {
+          console.log("FUNCIONOU ESSA MERDA2")
+        }
+      }
+
+      var listaTiposDoc = rootScope.lastRequest.result.dadosCadastrais[0].listaTiposDoc;
+      console.log(listaTiposDoc);
+
+
+      var obj = {};
+      var arrayFinal = [];
+
+      for (var i = 0; i < listaTiposDoc.length; i++) {
+        var item = listaTiposDoc[i];
+        var valor1 = item[0].split("="); 
+        var valor2 = item[1].split("="); 
+
+        obj[valor1[0]] = valor1[1];
+        obj[valor2[0]] = valor2[1];
+
+        arrayFinal[i] = obj;
+        
+        obj = {};
+      }
+
+      console.log(arrayFinal);
+
+      scope.listaTiposDoc = arrayFinal;
 
       scope.anexarArquivo = function () {
+
+        scope.estadoValidacao = "";
+        if (scope.tipoDocumento === "" || scope.tipoDocumento === undefined) {
+          scope.estadoValidacao = "ERRO"
+          scope.mensagemValidacao = "Por favor, informe um tipo de documento.";
+          return false;
+        }
+
+        if (scope.nomeArquivo === "" || scope.nomeArquivo === undefined) {
+          scope.estadoValidacao = "ERRO"
+          scope.mensagemValidacao = "Por favor, informe um nome para o arquivo.";
+          return false;
+        }
+
+        if (scope.imagemLiteral === "" || scope.imagemLiteral === undefined) {
+          scope.estadoValidacao = "ERRO"
+          scope.mensagemValidacao = "Por favor, selecione um arquivo ou imagem.";
+          return false;
+        }
+
+        var nomeArquivo = scope.nomeArquivo.replace(" ", "_");
+
+        var auxNome = scope.tipoDocumento.split(":");
+        var tipoDocumento = auxNome[1];
+
+       // scope.validaCampos();
+
         ionicLoading.show({
           content: 'Carregando',
           animation: 'fade-in',
@@ -3843,21 +3953,34 @@ window.controller = angular
           maxWidth: 300,
           showDelay: 0
         })
-        http.post("http://192.100.100.82:8080/prevmobile-ws/rest/acesso/padrao" + ';jsessionid=' + userInfo.s, {
+        http.post(urlBase + ';jsessionid=' + userInfo.s, {
           param: {
             acao: 'uploadArquivo',
-            imei: uuid(),
+            cpf: userInfo.cpf,
+            matricula: rootScope.lastRequest.result.informacoesParticipante[0].matricula,
             arquivo: scope.imagemLiteral,
-            nomeArquivo: scope.nomeArquivo
+            tipoDocumento: scope.tipoDocumento,
+            nomeArquivo: nomeArquivo,
+            extensaoArquivo: scope.extensaoArquivo
           },
           login: { u: userInfo.u, s: userInfo.s, cpf: userInfo.cpf }
         }).then(function (resp) {
+
           ionicLoading.hide();
-          scope.estadoOperacao = "SUCESSO";
-          console.log("Request realizado com sucesso. Resposta: " + resp);
+          
+          if (resp.data.result.erro !== undefined) {
+            var erro  = retrieve(retrieve(retrieve(resp, "data"), "result"), "erro");
+            scope.mensagemErro = erro;
+            scope.estadoOperacao = "ERRO";
+          } else {
+            scope.estadoOperacao = "SUCESSO";
+          }
+
+          
         }).catch(function (error) {
           ionicLoading.hide();
           scope.estadoOperacao = "ERRO";
+          scope.mensagemErro = "Erro ao realizar upload.";
           console.log("Erro ao realizar request");
           console.log("erro: " + error);
         });
@@ -3865,6 +3988,7 @@ window.controller = angular
 
 
       scope.abrirGaleria = function () {
+        
         scope.estadoOperacao = "ESPERA";
         console.log("Funcao Galeria");
         if (navigator.camera) {
@@ -3880,12 +4004,42 @@ window.controller = angular
           }
           //chamada do plugin para abrir a galerias
           navigator.camera.getPicture(function cameraSuccess(imageData) {
+            
+            //IphoneX fix pra quando abre camera ou galeria
+            StatusBar.hide();
+            StatusBar.show();
             console.log("Sucesso ao selecionar foto na galeria.");
             scope.imagemLiteral = 'data:image/jpeg;base64,' + imageData;
+            scope.extensaoArquivo = "jpeg";
           }, function cameraError(error) {
+            
+            StatusBar.hide();
+            StatusBar.show();
             console.log("Ocorreu o seguinte erro ao tentar selecionar foto da Galeria: " + error);
           }, scope.options);
         }
+      }
+
+
+
+
+
+      /*console.log("Name: " + file.name);
+      console.log("data: " + file.data);
+      console.log("dataURI: " + file.dataURI);
+      console.log("mediaType: " + file.mediaType);
+      console.log("uri: " + file.uri);*/
+
+      scope.abrirChooser = function() {
+        
+        window.chooser.getFile().then(function(file) {
+          if (file) {
+            scope.imagemLiteral = file.dataURI
+
+            var extensaoArquivo = file.name.split(".");
+            scope.extensaoArquivo = extensaoArquivo[extensaoArquivo.length-1];
+          }
+        });
       }
 
 
@@ -3909,6 +4063,7 @@ window.controller = angular
       }
 
       scope.abrirCamera = function () {
+        
         scope.estadoOperacao = "ESPERA";
         if (navigator.camera) {
 
@@ -3934,15 +4089,29 @@ window.controller = angular
           }
           //chamada do plugin para abrir a camera
           navigator.camera.getPicture(function cameraSuccess(imageUrl) {
+            
             console.log("Sucesso ao capturar foto na camera.");
             console.log("iniciando conversao");
             console.log("path da imagem: " + imageUrl)
+
+            StatusBar.hide();
+            StatusBar.show();
+
+            //document.getElementById("id-teste-nav").style.cssText = "padding-top: 20px !important;";
+            //document.getElementsByTagName("ion-header-bar").style.cssText = "margin-top: 20px !important;";
+            
             transformaArquivoParaBase64(imageUrl, function (arquivoEmBase64) {
               scope.imagemLiteral = arquivoEmBase64;
+              scope.extensaoArquivo = "jpeg";
               console.log("término de conversao");
             });
 
           }, function cameraError(error) {
+            //document.getElementById("id-teste-nav").style.cssText = "padding-top: 20px !important;";
+            //document.getElementsByTagName("ion-header-bar").style.cssText = "margin-top: 20px !important;";
+            StatusBar.hide();
+            StatusBar.show();
+            
             console.log("Ocorreu o seguinte erro ao tentar selecionar foto da Camera: " + error);
           }, scope.options);
         }
@@ -3963,27 +4132,90 @@ window.controller = angular
     '$ionicModal',
     function (scope, state, rootScope, http, ionicPopup, ionicLoading, ionicModal) {
 
-      scope.downloadArquivo = function () {
-        var url = 'http://192.100.100.82:8080/prevmobile-ws/rest/acesso/downloadArquivo';
-        var headers = new Headers();
-        var options = {
-          method: 'POST',
-          headers: headers,
-          mode: 'cors',
-          cache: 'default'
-        };
-        var param ={ 
-          imei: uuid()
-        };
-        var body = JSON.stringify(param);
-        var request = new Request(url);
 
-        fetch(request, options, body).then((response) => {
+      ionicLoading.show()
+      http
+      .post(urlBase + ';jsessionid=' + rootScope.lastRequest.login.s, {
+        param: {acao: "recuperaListaArquivos", cpf: userInfo.cpf},
+        login: { u: userInfo.u, s: userInfo.s }
+      })
+      .then(
+        function (resp) {
+          console.log(resp)
+       
+          //lucifer
+          scope.diretorioTomcat = resp.data.result.diretorioTomcat;
+          var listaArquivos = resp.data.result.listaArquivos;
+          console.log(listaArquivos);
 
-            window.open = window.cordova.InAppBrowser.open;
-            window.open("http://192.100.100.82:8080/prevmobile-ws/rest/acesso/downloadArquivo", "_blank", 'location=yes');
+
+          var obj = {};
+          var arrayFinal = [];
+
+          for (var i = 0; i < listaArquivos.length; i++) {
+            var item = listaArquivos[i];
+            var valor1 = item[0].split("="); 
+            var valor2 = item[1].split("="); 
+
+            obj[valor1[0]] = valor1[1];
+            obj[valor2[0]] = valor2[1];
+
+            arrayFinal[i] = obj;
             
-        });
+            obj = {};
+          }
+
+          console.log(arrayFinal);
+
+          scope.listaArquivos = arrayFinal;
+
+          ionicLoading.hide()
+
+        
+        },
+        function () {
+          ionicLoading.hide()
+          //tratar erro de listagem
+        }
+      )
+      .catch(function (error) {
+        rootScope.errorMsg = error.message
+        ionicLoading.hide()
+      })
+
+      scope.downloadArquivo = function (nomeArquivoUsuario, nomeReal) {
+
+
+            http.post(urlBase + ';jsessionid=' + rootScope.lastRequest.login.s, {
+              param: {acao: "recuperaArquivo", nomeArquivoUsuario: nomeArquivoUsuario, nomeReal: nomeReal, cpf: userInfo.cpf},
+              login: { u: userInfo.u, s: userInfo.s }
+            })
+            .then(
+              function (resp) {
+                ionicLoading.hide();
+
+                var aux = scope.diretorioTomcat.split("\\");
+
+                var extArq = nomeReal.split(".");
+
+                var urlAux = urlServidor + "/" + aux[aux.length-1] + "/" + userInfo.cpf+"/"+nomeArquivoUsuario+"."+extArq[1];
+
+                console.log(urlAux);
+
+                window.open(urlAux, "_blank")
+
+              
+              },
+              function () {
+                ionicLoading.hide()
+                //tratar erro de listagem
+              }
+            )
+            .catch(function (error) {
+              console.log("afsjbasubfasuafsfbasfasfasas")
+              rootScope.errorMsg = error.message
+            })
+
       }
 
     }
