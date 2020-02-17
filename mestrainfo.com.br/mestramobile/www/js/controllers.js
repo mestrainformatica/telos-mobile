@@ -1,8 +1,19 @@
-//var url_base = 'http://192.100.100.253:8181/prevmobile-ws/rest/acesso/padrao';
+//var url_base = 'http://192.100.100.82:8080/prevmobile-ws/rest/acesso/padrao';
 var url_base = 'http://www.sysprev.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://www.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao';
 //var url_base = 'http://telosmobile.fundacaotelos.com.br:8989/prevmobile-ws/rest/acesso/padrao';
+
+
+var inspect, angular, cordova, globalPopup, timeoutErrorMsg, defaultErrorMessage
+
+// Cache de algumas propriedades da window
+inspect = window.inspect
+angular = window.angular
+cordova = window.cordova
+
+
+
 var stageMap = {}
 var logged = false;
 var userInfo = new Object();
@@ -30,6 +41,98 @@ map.parentesco["09"] = "Irmão ou Irmã";
 map.parentesco["10"] = "Menor sob Guarda";
 map.parentesco["11"] = "Sogro(a)";
 map.parentesco["12"] = "Filho > 24 anos";
+
+
+/**
+ * Verifica se a resposta retornada pelo servidor é válida
+ * @param {object} resp
+ * @returns {boolean}
+ */
+function checkIfServerAnswerIsValid (resp) {
+  // console.log(inspect(resp))
+  var msg, data, error
+  if (resp && resp['data']) {
+    data = resp['data']
+    msg = data['msg']
+
+    if (data.login && data.login.u && data.login.s) {
+      userInfo.u = data.login.u
+      userInfo.s = data.login.s
+    }
+
+    if (data['success'] && !msg && data['result']) return true
+  }
+
+  error = new Error(msg || defaultErrorMessage)
+  error.isLoginError = !!(data && !data['success'])
+
+  throw error
+}
+
+/**
+ * Retorna ou gera identificador único do aparelho
+ * Modified from: https://gist.github.com/LeverOne/1308368
+ * @returns {String}
+ */
+function uuid () {
+  var n, r, u
+
+  if (window.device && window.device.uuid) {
+    return (window.device.uuid + '').slice(0, 256)
+  } else {
+    u = window.localStorage.getItem('uuid')
+    if (u) return u
+  }
+
+  // Magic
+  r = n = ''
+  while (n++ < 36) {
+    if ((51 * n) & 52) r += (15 ^ n ? 8 ^ (Math.random() * (20 ^ n ? 16 : 4)) : 4).toString(16)
+  }
+
+  u = r.slice(0, 256)
+  window.localStorage.set('uuid', u)
+  return u
+}
+
+/**
+ * Recupera propriedade de um objeto
+ * @param {object} obj
+ * @param {string...} key
+ * @returns {*}
+ */
+function retrieve (obj, key) {
+  var i, field, length
+
+  length = arguments.length
+  if (!key) throw new Error('Falta argumento da chave do campo')
+
+  i = 0
+  while (++i < length) {
+    key = arguments[i] + ''
+
+    if (!obj) throw new Error('Acesso à propriedade ' + key + ' em um objecto inválido')
+    if (!obj.hasOwnProperty(key)) throw new Error('Acesso à propriedade inválida: ' + key + ' em ' + inspect(obj))
+
+    field = obj[key]
+    if (Array.isArray(field)) {
+      switch (field.length) {
+        case 0:
+          throw new Error('Tentativa de acesso a um campo vazio: ' + key + ' em ' + inspect(obj))
+        case 1:
+          obj = field[0]
+          continue
+      }
+    }
+
+    obj = field
+  }
+
+  return obj
+}
+
+
+
 
 var toGuid = function (str) {
     return str.replace(/[^a-z0-9]+/gi, '-').replace(/^-*|-*$/g, '').toLowerCase();
@@ -100,7 +203,34 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   if (logged == false){
     //$state.go('signin');
   } else {
+    //itachi
   $scope.stageMap = stageMap;
+
+
+  console.log(userInfo)
+
+  
+
+  if (userInfo.cpf === "08275049776") {
+    $scope.stageMap = new Object();
+    $scope.stageMap['00'] = stageMap['00'];
+  }
+
+  if (userInfo.cpf === "08022431770") {
+    $scope.stageMap = new Object();
+    $scope.stageMap['01'] = stageMap['01'];
+    $scope.stageMap['02'] = stageMap['02'];
+    $scope.stageMap['19'] = stageMap['19'];
+    $scope.stageMap['20'] = stageMap['20'];
+  }
+
+  if (userInfo.cpf === "01601659628") {
+    $scope.stageMap = new Object();
+    $scope.stageMap['01'] = stageMap['01'];
+    $scope.stageMap['08'] = stageMap['08'];
+  }
+
+  console.log($scope.stageMap);
   }
 
   $scope.logout = function(){
@@ -181,9 +311,119 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 
 
 .controller('signin', ['$scope', '$state', '$http', '$rootScope','$timeout', '$ionicLoading', '$cordovaTouchID', '$ionicPlatform', '$ionicPopup', function($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $cordovaTouchID, $ionicPlatform, $ionicPopup) {
-
-
+  
   $scope.formData = {};
+
+
+
+  // ***************** CODIGO MOCKADO
+  $scope.onChangeDeBiometriaMockado = function() {
+  if (window.plugins && $scope.formData.cpf.length === 11 && $scope.formData.cpf == "08275049776") {
+
+    stageMap = {}
+    logged = false;
+    userInfo = new Object();
+    $rootScope.lastRequest = {}
+
+    $this = this;
+    window.plugins.touchid.has("MyKey", 
+      function() {
+        if (window.plugins) {
+          window.plugins.touchid.verify("MyKey", "My Message", function(password) {
+            $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+            
+            
+
+            $http.post(url_base, 
+              { "param" : { "cpf": "08275049776", "sen": "123456", "acao": "logar" }, "login" : { "u":"", "s":"" } }
+            ).then(function(resp) {
+              
+                // Se conseguiu conectar com o servidor
+                $ionicLoading.hide();
+        
+                //resp.data.result.termo_de_uso = [ { descricao_termo_uso: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>"} ];
+        
+                $rootScope.lastRequest = resp.data;
+                $rootScope.cache = {} 
+        
+
+                
+
+                if(typeof $rootScope.lastRequest.result.simuladorBeneficios != 'undefined') {
+                  for(k in $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios) {
+                    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].checked = true;
+                    $rootScope.lastRequest.result.simuladorBeneficios[0].beneficiarios[k].selecionado = 'S';
+                  }
+                }
+                console.log("ALO ALO")
+                if (resp.data.msg.length > 0){
+                  $rootScope.errorMsg = resp.data.msg;
+                  console.log("ALO ALO1") 
+                 
+                } else {
+        
+                    logged = true;
+                    userInfo.u = resp.data.login.u;
+                    console.log("ALO ALO")
+                    userInfo.s = resp.data.login.s;
+                    console.log("ALO ALO3")
+                    userInfo.cpf = $this.formData.cpf;
+                    console.log("ALO ALO4")
+                    $scope.formData = {}
+                    
+                  if (typeof(resp.data.result.matriculas) != 'undefined'){
+                    // Possui mais de uma matrícula e ainda não escolheu qual será carregada
+                    $state.go('splitmatriculas');
+                  } 
+                  else {
+                    logged = true;
+                    for (k in resp.data.result.dadosView[0]){
+                      // Define quais telas serão mostradas para o usuário
+                      stageMap[k]=resp.data.result.dadosView[0][k];
+                    }
+        
+                    if (typeof(resp.data.result.termo_de_uso) != 'undefined'){
+                      // Ainda não aceitou os termos de uso
+                      $state.go('termosdeuso');
+                    }
+                    else if (typeof(resp.data.result.dadosView)){
+                      
+                     
+                      ////console.log(stageMap);
+                      // Ao definir as variáveis, vai pro menu principal
+                      $state.go('menu');
+                    } else {
+                      $state.go('signin');   
+                    }
+                  }
+                  //alert('passou');
+                  ////console.log(resp);
+                  //$state.go('menu');
+                }
+                
+              }, function(err) {
+                // Se deu erro na conexão ou no processo de busca do JSON
+                $ionicLoading.hide();
+                $rootScope.errorMsg = "Erro ao conectar com o servidor. Tente novamente mais tarde"; 
+              }, function(err) {
+                  $ionicLoading.hide();
+                  $ionicPopup.alert({
+                    title: 'Falha de conexão',
+                    template: timeoutMsg
+                  });       
+              })
+          });
+        }
+      }, function() {
+        console.log("sem chave salva, fluxo normal");
+      }
+    );
+  }   
+} 
+// FIM CODIGO MOCKADO *****************
+  
+
+
   
   $scope.submit = function(){
     stageMap = {}
@@ -196,6 +436,7 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
 
       $this = this;
+
       $http.post(url_base, 
         { "param" : { "cpf": $this.formData.cpf, "sen": $this.formData.sen, "acao": "logar" }, "login" : { "u":"", "s":"" } }
       ).then(function(resp) {
@@ -270,20 +511,6 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
     }
     
   }
-  // $ionicPlatform.ready(function() {
-  //       $cordovaTouchID.checkSupport().then(function() {
-  //         $cordovaTouchID.authenticate("Faça a autenticação").then(function() {
-  //           $scope.formData.cpf = "08275049776";
-  //           $scope.formData.sen = "123456";
-  //           $scope.submit();
-  //           // success
-  //         }, function () {
-  //           // error
-  //           //alert('Autenticação falhou. Tente Novamente.');
-  //         });
-  //       })
-  //     })
-
 }])
 
 .controller('termosDeUso', ['$scope', '$state', '$rootScope', '$http', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicPopup) {
@@ -332,11 +559,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
         userInfo.u = resp.data.login.u;
         userInfo.s = resp.data.login.s;
         $ionicLoading.hide();
-        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+       // if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
         
+       console.log(resp)
           $scope.resgate = resp.data.result;
           $ionicLoading.hide();        
-        }
+        //}
 
       }, function(err) {
         $ionicLoading.hide();
@@ -345,6 +573,50 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
        template: timeoutMsg
      });
      });
+
+
+  $scope.submit = function () {
+
+    $ionicLoading.show();
+
+    $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+      { "param": { "acao": "calculaSimulacaoResgate", cpf: userInfo.cpf }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+    ).then(function (resp) {
+      $ionicLoading.hide();
+
+      $scope.resgate = resp.data.result;
+      
+
+      //execucao para pegar os dados da tela denovo
+      $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+        { "param": { "acao": "simulacaoResgate" }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function (resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        if (!resp.data.success) { $rootScope.errorMsg = resp.data.msg; $state.go('signin'); } else {
+
+          $scope.resgate = resp.data.result;
+          $ionicLoading.hide();
+        }
+
+      }, function (err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Falha de conexão',
+          template: timeoutMsg
+        });
+      });
+
+
+    }, function (err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Falha de conexão',
+        template: timeoutMsg
+      });
+    });
+  }
 
 }])
 
@@ -411,6 +683,12 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   $scope.$state = $state;
   $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0];
 
+  if (userInfo.cpf === "08275049776") {
+    $scope.matricula.plano = "-";
+    $scope.matricula.situacao = "-";
+    $scope.matricula.regimetributario = "-";
+  }
+
   // Mantem o headerInfo sempre aberto no menu
   if ($state.current.name == 'menu'){
     $scope.abrirMenu = true;
@@ -425,6 +703,81 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
 /**
  * CONTROLLERS DAS PÁGINAS DE PRIMEIRO NÍVEL
  */
+.controller('AdesaoCtrl', ['$scope', '$state', '$rootScope','$ionicLoading','$http','$ionicPopup', function($scope, $state, $rootScope,$ionicLoading, $http,$ionicPopup) {
+  
+
+  $ionicLoading.show();
+  $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
+        { "param" : { "acao": "adesaoInfo","cpf": userInfo.cpf }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function(resp) {
+       // userInfo.u = resp.data.login.u;
+       // userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+
+        console.log(resp.data.result.adesao)
+
+
+       
+        $scope.cpf = userInfo.cpf;
+        
+          $scope.adesao = resp.data.result.adesao[0];
+          $ionicLoading.hide();        
+        
+
+      }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+
+
+  $scope.submit = function () {
+
+    $ionicLoading.show();
+
+    $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+      { "param": { "acao": "solicitarAdesao", cpf: userInfo.cpf, perfil: $scope.adesao.perfil, ir: $scope.adesao.ir, percentual_contribuicao: $scope.adesao.percentual_contribuicao, idpar: $scope.adesao.idpar }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+    ).then(function (resp) {
+      $ionicLoading.hide();
+
+      //$scope.adesao = resp.data.result;
+      
+
+      //execucao para pegar os dados da tela denovo
+      $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+        { "param": { "acao": "adesaoInfo","cpf": userInfo.cpf }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function (resp) {
+        //userInfo.u = resp.data.login.u;
+        //userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        
+
+          $scope.adesao = resp.data.result.adesao[0];
+          $ionicLoading.hide();
+        
+
+      }, function (err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Falha de conexão',
+          template: timeoutMsg
+        });
+      });
+
+
+    }, function (err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Falha de conexão',
+        template: timeoutMsg
+      });
+    });
+  }
+
+
+}])
 .controller('DadosCtrl', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
   
   $rootScope.erroMsg = false;
@@ -441,12 +794,27 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
   
   $rootScope.erroMsg = false;
   $scope.dados = $rootScope.lastRequest.result.dadosCadastrais[0];
+
+  
+
+  $scope.listaBancos = $rootScope.lastRequest.result.listaBancos;
+
   $scope.formData = $scope.dados;
   $scope.submit = function(){
 
     $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0];
     $scope.informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0];
         $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+        var infoConta = $scope.formData.conta.split("-");
+
+        if (infoConta[0] == "" || infoConta[0] == "") {
+          infoConta[0] = null;
+          infoConta[1] = null;
+        }
+
+        var sel = document.getElementById("banco");
+        var nomeBanco = sel.options[sel.selectedIndex].text;
 
     $scope.postData = {
       cod_fundo: $scope.dadosCadastrais.cod_fundo,
@@ -465,7 +833,13 @@ var controller = angular.module('starter.controller', ['ionic', 'angular-datepic
       telefone_res: $scope.formData.telefone_res,
       telefone_cel: $scope.formData.telefone_cel,
       email: $scope.formData.email,
-      acao: 'alteracao'
+      numero_banco: $scope.dados.num_banco,
+      nome_banco: nomeBanco,
+      agencia: $scope.formData.agencia,
+      conta: infoConta[0],
+      digito: infoConta[1],
+      acao: 'alteracao',
+      cpf: userInfo.cpf
 
     }
     
@@ -2285,6 +2659,94 @@ console.log($scope.formData.tipo_reajuste);
    })
   }
 }])
+.controller('AlteracaoPerfilCtrl', ['$scope', '$state', '$rootScope',  '$http', '$ionicLoading', '$filter', '$ionicPopup', function($scope, $state, $rootScope, $http, $ionicLoading, $filter, $ionicPopup) {
+  
+  $scope.formData = {}
+  $scope.tipos_emprestimo = $rootScope.lastRequest.result.simulacaoEmprestimo;
+ 
+  $scope.buttonText = "- Selecione -";
+  $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0].matricula;
+  $rootScope.lastRequest.esmprestimoSimulacaoCampos = [];
+  $scope.disableddates = [
+  ]; 
+
+  $scope.perfil_ano = "";
+  $scope.perfil_mes = "";
+  $scope.perfil_dia = "";
+
+  //$scope.disableCalendar = false;
+  //$scope.dataInicial = new Date(2020,0,1);
+
+  //$scope.dataInicio = new Date(2020,0,1);
+  //$scope.dataFim = new Date(2020,0,10);
+
+  $scope.perfil = "C";
+  $scope.bnf = "N";  
+
+  $scope.mensagem_erro = "";
+  $scope.sucesso = false;
+  $scope.erro = false;
+  $scope.mostraImg = false;
+
+  $scope.dadosCadastrais = $rootScope.lastRequest.result.dadosCadastrais[0];
+
+  $scope.vigencia_input = $scope.dadosCadastrais.vigencia_input; 
+  $scope.data_opcao_input = $scope.dadosCadastrais.vigencia_input; 
+   
+ 
+  $scope.datePickerCallback = function (data){
+    $scope.formData.data = $filter('date')(data, 'dd/MM/yyyy', false)
+    $scope.buttonText = $scope.formData.data;
+  }
+  $scope.simulacao = $rootScope.lastRequest.result.simulacaoEmprestimo;
+
+
+  $scope.submit = function(){
+
+    
+    $scope.informacoesParticipante = $rootScope.lastRequest.result.informacoesParticipante[0];
+        $ionicLoading.show({ content: 'Carregando', animation: 'fade-in', showBackdrop: true, maxWidth: 300, showDelay: 0 });
+
+    $scope.postData = {
+      beneficio_resgate: $scope.bnf,
+      cpf: userInfo.cpf,
+      codigoFundo: $scope.dadosCadastrais.cod_fundo,
+      codigoPatrocinadora: $scope.dadosCadastrais.cod_patrocinadora,
+      numeroInscricao: $scope.dadosCadastrais.numero_inscricao,
+      vigencia: $scope.vigencia_input,
+      dataOpcao: $scope.data_opcao_input ,
+      perfil: $scope.perfil,
+      acao: "alteracaoPerfilInvestimento"
+
+    }
+    
+
+     $http.post(url_base+';jsessionid='+userInfo.s, 
+        { "param" : $scope.postData, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf":userInfo.cpf  } }
+      ).then(function(resp) {
+        userInfo.u = resp.data.login.u;
+        userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();
+        
+          if (!resp.data.msg.length > 0){
+            $scope.sucesso = true; 
+          
+          } else {
+            $scope.erro = true; 
+            $scope.mensagem_erro = resp.data.msg;
+          }
+        
+     }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+  }
+  
+
+}])
 
 .controller('AlteracaoRmvSaqueCtrl.resultado', ['$scope', '$state', '$rootScope', '$http', '$ionicLoading', function($scope, $state, $rootScope, $http, $ionicLoading) {
   $scope.matricula = $rootScope.lastRequest.result;
@@ -2438,7 +2900,172 @@ $scope.showPopup = function() {
      //console.log('Thank you for not eating my delicious ice cream cone');
    });
  };
-}]);
+}])
+
+.controller('PercentualContribuicaoCtrl', ['$scope', '$state', '$rootScope','$ionicLoading','$http','$ionicPopup', function($scope, $state, $rootScope,$ionicLoading, $http,$ionicPopup) {
+
+  $scope.porcentagem_input = "";
+  $scope.sucesso = false;
+  $scope.erro = false;
+  $ionicLoading.show();
+  $http.post(url_base+';jsessionid='+$rootScope.lastRequest.login.s, 
+        { "param" : { "acao": "percentualContribuicaoInfo","cpf": userInfo.cpf }, "login" : { "u":userInfo.u, "s":userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function(resp) {
+       // userInfo.u = resp.data.login.u;
+       // userInfo.s = resp.data.login.s;
+        $ionicLoading.hide();       
+        
+          $scope.percentual_contribuicao = resp.data.result.percentual_contribuicao[0];
+          $ionicLoading.hide();        
+        
+
+      }, function(err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+       title: 'Falha de conexão',
+       template: timeoutMsg
+     });
+     });
+
+
+  $scope.submit = function () {
+
+    $ionicLoading.show();
+
+    $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+      { "param": { "acao": "calculaPercentualContribuicao", cpf: userInfo.cpf, percentual_contribuicao: $scope.porcentagem_input}, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+    ).then(function (resp) {
+      $ionicLoading.hide();
+
+      //$scope.adesao = resp.data.result;
+      
+
+      $scope.sucesso =  true;
+
+      //execucao para pegar os dados da tela denovo
+      $http.post(url_base + ';jsessionid=' + $rootScope.lastRequest.login.s,
+        { "param": { "acao": "percentualContribuicaoInfo","cpf": userInfo.cpf }, "login": { "u": userInfo.u, "s": userInfo.s, "cpf": userInfo.cpf } }
+      ).then(function (resp) {
+        //userInfo.u = resp.data.login.u;
+        //userInfo.s = resp.data.login.s;
+        //$ionicLoading.hide();
+        
+
+        $scope.percentual_contribuicao = resp.data.result.percentual_contribuicao[0];
+        $ionicLoading.hide();     
+        
+
+      }, function (err) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Falha de conexão',
+          template: timeoutMsg
+        });
+      });
+
+
+    }, function (err) {
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Falha de conexão',
+        template: timeoutMsg
+      });
+    });
+  }
+}])
+
+.controller('PreferenciasCtrl', [
+  '$scope',
+  '$state',
+  '$rootScope',
+  '$http',
+  '$ionicPopup',
+  '$ionicLoading',
+  function (scope, state, rootScope, http, ionicPopup, ionicLoading) {
+    scope.settingsList = []
+
+    if (window.plugins) {
+      console.log("ALO ALO")
+      window.plugins.touchid.has("MyKey", 
+        function() {
+          window.localStorage.setItem("touchidLocal", true)
+
+          var toggle = {
+            text: 'Habilitar Biometria',
+            checked: true,
+            action: function () {
+              var checked = toggle.checked
+              var touchId = checked ? 'SIM' : 'NAO'
+            
+      
+              if (checked === true) {
+                if (window.plugins) {
+                  window.plugins.touchid.save("MyKey", "My Password", true, function() {
+                      console.log("Password saved");
+                  });
+              }
+              } else {
+                if (window.plugins) {
+                  window.plugins.touchid.delete("MyKey", function() {
+                      console.log("Password key deleted");
+                  });
+              }
+              }
+      
+              globalPopup = ionicPopup.alert({
+                title: 'Sucesso',
+                template:
+                  '<p style="color: lightgreen">' +
+                    'O login com biometria foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
+                  '</p>', // prettier-ignore
+              })       
+            }
+          }
+          scope.settingsList.push(toggle)
+        }, 
+        function() {
+          window.localStorage.setItem("touchidLocal", false)
+          console.log("tem chave de biometria, mas sem senha.")
+
+          var toggle = {
+            text: 'Habilitar Biometria',
+            checked: false,
+            action: function () {
+              var checked = toggle.checked
+              var touchId = checked ? 'SIM' : 'NAO'
+            
+      
+              if (checked === true) {
+                if (window.plugins) {
+                  window.plugins.touchid.save("MyKey", "My Password", true, function() {
+                      console.log("Password saved");
+                  });
+              }
+              } else {
+                if (window.plugins) {
+                  window.plugins.touchid.delete("MyKey", function() {
+                      console.log("Password key deleted");
+                  });
+              }
+              }
+      
+              globalPopup = ionicPopup.alert({
+                title: 'Sucesso',
+                template:
+                  '<p style="color: lightgreen">' +
+                    'O login com biometria foi ' + (touchId === 'SIM' ? 'ativado' : 'desativado') + '.' +
+                  '</p>', // prettier-ignore
+              })       
+            }
+          }
+          scope.settingsList.push(toggle)
+        });
+    }
+
+    
+    
+  }
+]);
 
 
 angular.module('starter.Directives', [])

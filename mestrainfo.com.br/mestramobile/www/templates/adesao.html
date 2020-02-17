@@ -1,0 +1,116 @@
+<ion-view title="Adesão">
+    <ion-content class="has-header" ng-controller="AdesaoCtrl">
+        <div class="headerInfo">
+            <div ng-include="'js/directives/userInfo.html'"></div>
+        </div>
+
+        <div class="list" id="mainMenu">
+            <div class="item item-divider softrow">
+                Adesäo
+            </div>
+            <div class="item">
+                <div class="list">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Plano:
+                        </div>
+                        <select class="ion-input-select">
+                            <option value=""> {{adesao.descricao_plano}} </option>
+                        </select>
+                    </label>
+                </div>
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">Data de Adesão:</div>
+                    <div class="col valor"> {{adesao.data_adesao}}</div>
+                </div>
+               
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">Data Prevista Aposentadoria:</div>
+                    <div class="col valor"> {{adesao.data_aposentadoria}} </div>
+                </div>
+                <div class="list-margin-top">
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Opção IR:
+                        </div>
+                        <select ng-model="adesao.ir" class="ion-input-select">
+                            <option value=""> - Selecione - </option>
+                            <option value="1"> 1 - TABELA PROGRESSIVA </option>
+                            <option value="2"> 2 - TABELA REGRESSIVA </option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Perfil de Investimento:
+                        </div>
+                        <select ng-model="adesao.perfil" class="ion-input-select">
+                            <option value=""> - Selecione - </option>
+                            <option value="C"> CONSERVADOR </option>
+                            <option value="M"> MODERADO </option>
+                            <option value="A"> AGRESSIVO </option>
+                            <option value="S"> SUPER AGRESSIVO </option>
+                        </select>
+                    </label>
+                    <label class="no-border item item-input item-stacked-label">
+                        <div class="row-no-left-padding">
+                            <div class="col-no-left-padding col-50">
+                                <span class="input-label" >% de Contribuição:</span>
+                            </div>
+                            <div class="col">
+                                <label class="item item-input">
+                                    <input class="align-right" ng-model="adesao.percentual_contribuicao" maxlength="3" type="tel" name="faixa-contribuicao" />
+                                </label>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="item item-divider subitem">
+                Dados Pessoais
+            </div>
+            <div class="item">
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">Pai:</div>
+                    <div class="col valor"> {{adesao.nome_pai}}</div>
+                </div>
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">Mãe:</div>
+                    <div class="col valor"> {{adesao.nome_mae}} </div>
+                </div>
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">Nascimento:</div>
+                    <div class="col valor"> {{adesao.data_nascimento}} </div>
+                </div>
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">CPF:</div>
+                    <div class="col valor"> {{cpf}}</div>
+                </div>
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">RG:</div>
+                    <div class="col valor"> {{adesao.rg}} </div>
+                </div>
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">Órgão:</div>
+                    <div class="col valor"> {{adesao.orgao}} </div>
+                </div>
+                <div class="label row">
+                    <div class="softcolor col col-50 upper" class="title_label">Estado Civil::</div>
+                    <div class="col valor"> {{adesao.estado_civil}} </div>
+                </div>
+            </div>
+            <div class="padding">
+                <div class="button-bar">
+                    <input ng-hide="loading" ng-show="adesao.situacao_adesao != 'S'" ng-click="submit()" type="submit" class="button button-positive button-block" value="Solicitar Adesão">
+                    <div ng-show="loading" class="button button-positive button-block" id="loading">
+                        <ion-spinner icon="android"></ion-spinner>
+                    </div>
+                </div>
+            </div>
+            <div class="the_error">
+                <p style="text-align: center; color: #056582; font-size: 1.5em;" ng-show="adesao.situacao_adesao == 'S'">
+                    <strong>Solicitação já realizada.</strong></p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

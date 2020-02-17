@@ -93,6 +93,11 @@
 
     $stateProvider
 
+    .state('adesao', {
+      cache: false,
+      url: '/adesao',
+      templateUrl: "templates/adesao.html"
+    })
     .state('dadoscadastrais', {
       cache: false,
       url: '/dados',
@@ -295,6 +300,21 @@
       cache: false,
       url: '/saldo-contas',
       templateUrl: "templates/saldo-contas.html",
+    }) 
+    .state('alteracao-perfil', {
+      cache: false,
+      url: '/alteracao-perfil',
+      templateUrl: 'templates/alteracao-perfil.html'
+    })
+    .state('percentual-contribuicao', {
+      cache: false,
+      url: '/percentual-contribuicao',
+      templateUrl: 'templates/percentual-contribuicao.html'
+    })
+    .state('preferencias', {
+      cache: false,
+      url: '/preferencias',
+      templateUrl: 'templates/preferencias.html'
     })
 //END MEUS STATES
     .state('menu', {
