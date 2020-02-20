@@ -1,0 +1,46 @@
+<ion-view title="Simulação">
+ <ion-content class="has-header" ng-controller="EmprestimoSimulacaoCtrl">
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+    <div class="item item-divider softrow">
+          Simulação de Empréstimo
+    </div>
+    <div class="item">
+    <div class="list" id="mainMenu">  
+      <form id="formCampos">      
+        <div>
+          <label class="item item-input item-select">
+              <div class="input-label">
+                Tipo de Empréstimo
+              </div>
+              <select class="ion-input-select" ng-model="formData.tipo" ng-change="update(formData.tipo)" ng-options="value.cod_emprestimo as value.desc_emprestimo for value in tipos_emprestimo">
+                <option value="">- Selecione -</option>
+         
+              </select>
+          </label>
+          <label class="item item-input item-select"  disable="{{disableCalendar}}">
+              <div class="input-label">
+                Data de Crédito
+              </div>
+              <ionic-datepicker ng-show="disableCalendar" class="ion-input-select ng-pristine ng-valid ng-touched" disableddates="disableddates" idate="dataInicial" disablepreviousdates="true"  disablefuturedates="false" callback="datePickerCallback">
+                <button id="dataCredito" class="button button-block button-small button-clear" style="width: 100%; text-align:right;" ng-disabled="disableCalendar">{{buttonText}}</button>
+              </ionic-datepicker>
+              <select ng-show="!disableCalendar" class="ion-input-select">
+                <option value="">{{buttonText}}</option>
+              </select>
+          </label>
+        </div>
+        <div class="the_error">
+          <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+        </div>
+          <div class="button-bar">
+            <input ng-hide="loading" type="submit" class="button button-positive button-block" value="Iniciar Simulação" ng-click="submit(formData.tipo)">      
+            <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
+          </div>
+      </form>
+      </div>
+    </div>
+    </ion-content>
+  </ion-content>
+</ion-view>

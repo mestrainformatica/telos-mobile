@@ -1,0 +1,68 @@
+<ion-view title="Dados Cadastrais">
+ <ion-content class="has-header" ng-controller="DadosCtrl.form">
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">        
+    <div class="item item-divider">
+      Editar Dados Cadastrais
+    </div>
+    
+    <div class="list">
+      <form ng-submit="submit()">
+      <label class="item item-input">
+        <span class="input-label">Logradouro *</span>
+        <input type="text" placeholder="Preencha com seu endereço" ng-model="formData.logradouro" maxlength="55">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Número</span>
+        <input type="text" placeholder="Número"  ng-model="formData.numero" maxlength="5">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Complemento</span>
+        <input type="text" placeholder="Complemento" ng-model="formData.complemento" maxlength="25">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Bairro *</span>
+        <input type="text" placeholder="Bairro" ng-model="formData.bairro" maxlength="30">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Cidade *</span>
+        <input type="text" placeholder="Cidade" ng-model="formData.cidade" maxlength="30">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">CEP *</span>
+        <input type="text" placeholder="CEP" ng-model="formData.cep" maxlength="8">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">UF *</span>
+        <input type="text" placeholder="UF" ng-model="formData.uf" maxlength="2">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Telefone Res..</span>
+        <input type="text" placeholder="" ng-model="formData.telefone_res" maxlength="16">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Telefone Cel..</span>
+        <input type="text" placeholder="" ng-model="formData.telefone_cel" maxlength="16">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">E-Mail</span>
+        <input type="text" placeholder="seu@email.com"  ng-model="formData.email" maxlength="45">
+      </label>
+      <div class="the_error">
+        <p ng-show="errorMsg" class="errorMsg assertive" ng-bind-html="errorMsg"></p>
+      </div>
+      <div class="padding">
+        <div class="button-bar">
+          <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Solicitar Alterações">      
+          <div ng-show="loading" class="button button-positive button-block" id="loading"><ion-spinner icon="android"></ion-spinner></div>
+        </div>
+      </div>
+
+      </form>
+    </div>
+    
+  </ion-content>
+</ion-view>

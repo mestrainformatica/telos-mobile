@@ -1,0 +1,19 @@
+<ion-view title="Simulação" ng-controller="listaDocumentosCtrl" has-bouncing="false" padding="false">
+    <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false">
+        <div class="headerInfo">
+            <div ng-include="'js/directives/userInfo.html'"></div>
+        </div>
+
+        <div class="list" id="mainMenu">
+            <div class="item item-divider softrow">
+                Lista de Documentos
+            </div>
+            <div class="item" ng-repeat="arquivo in listaArquivos">
+                <div class="label row th">
+                    <div class="col col-67 upper font-teste">{{arquivo.nome_usuario}}</div>
+                    <div class="col valor font-teste" ng-click="downloadArquivo(arquivo.nome_usuario,arquivo.nome_original)"><i class="fa fa-eye"></i></div>
+                </div>
+            </div>    
+        </div>
+    </ion-content>
+</ion-view>
