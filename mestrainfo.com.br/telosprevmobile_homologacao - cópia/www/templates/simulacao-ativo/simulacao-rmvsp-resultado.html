@@ -1,0 +1,276 @@
+<ion-view title="Simulação" ng-controller="SimulacaoRmvSaqueProgramadoCtrl.resultado" overflow-scroll="true" has-bouncing="false"  padding="false" >
+<!-- <ion-view title="Simulação" has-bouncing="false" padding="false" > -->
+ <ion-content id="emprestimo" class="has-header" has-bouncing="false" padding="false" >
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">   
+
+    <div class="item item-divider softrow">
+      <div class="row">
+        <div class="col col-100">
+              Resultados da simulação de RMV
+        </div>
+      </div>
+  
+    </div>
+    
+    <div class="item extratoDoMes">
+      <div class="separador">
+        <div class="label row" >
+          <div class="col text col-67">Saldo de conta considerado ({{formData.renda_mensal_vitalicia}}%)</div>
+          <div class="col valor">{{value.saldo_conta_considerado_rmv}}</div>
+        </div>
+      </div>
+      <div class="separador">
+        <div class="label row" >
+          <div class="col text col-67">Saldo de conta total</div>
+          <div class="col valor">{{value.saldo_conta_rmv}}</div>
+        </div>
+      </div>
+      <div class="separador">
+        <div class="label row" >
+          <div class="col text col-67">Renda mensal vitalícia - valor bruto</div>
+          <div class="col valor">{{value.rmv_val_bruto}}</div>
+        </div> 
+      </div>
+      <div class="separador">
+         <div class="label row" >
+          <div class="col text col-67">Unidade previdenciária</div>
+          <div class="col valor">{{value.un_previdenciaria}}</div>
+        </div>
+      </div>
+      <div class="separador">
+        <div class="label row" >
+          <div class="col text col-67">Antecipação do benefício</div>
+          <div class="col valor">{{value.antecipacao_beneficio}}</div>
+        </div> 
+      </div>
+      <div class="separador">
+        <div class="label row" >
+          <div class="col text col-67">Pagamento integral</div>
+          <div class="col valor">{{value.pagt_integral}}</div>
+        </div>
+      </div>
+  </div>
+
+   <div class="item item-divider softrow">
+      <div class="row">
+        <div class="col col-100">
+    Resultado da simulação saque programado
+  </div></div></div>
+
+  <div class="item extratoDoMes">
+    <div class="separador">
+      <div class="label row" >
+        <div class="col text col-67">Saldo de conta considerado na data de início do benefício ({{formData.saque_programado}}%)</div>
+        <div class="col valor">{{value.saldo_conta_considerado}}</div>
+      </div>
+    </div>
+      <div class="separador">
+      
+       <div class="label row" >
+        <div class="col text col-67">Saldo de conta total</div>
+        <div class="col valor">{{value.saldo_conta_total_saq}}</div>
+      </div>
+    </div>
+      <div class="separador">
+        <div class="label row" >
+        <div class="col text col-67">Renda mensal não vitalícia</div>
+        <div class="col valor">{{value.saq_val_bruto}}</div>
+      </div> 
+      </div>
+      <div class="separador">
+      <div class="label row" >
+        <div class="col text col-67">Prazo previsto para manutenção de benefício caso o percentual de saque não seja alterado</div>
+        <div class="col valor">{{value.prazo_prev_manutencao_benef}}</div>
+      </div>
+      </div>
+      <div class="separador">
+      <div class="label row" >
+        <div class="col text col-67">Parcela resgatada à vista - valor bruto</div>
+        <div class="col valor">{{value.antecipacao_beneficio_saq}}</div>
+      </div>
+    </div>
+      <div class="separador">
+      
+
+    <div class="label row" >
+      <div class="col text col-67">Útima renda mensal não vitalícia em <span class="dif">{{value.ultima_renda_data}}</span></div>
+      <div class="col valor">{{value.ultima_renda_valor}}</div>
+    </div> 
+   </div>
+      <div class="separador">
+       <div class="label row" >
+      <div class="col text col-67">Saldo remanescente à ser pago em <span class="dif">{{value.saldo_remanescente_data}}</span></div>
+      <div class="col valor">{{value.saldo_remanescente_valor}}</div>
+    </div>
+  </div></div>
+
+   <div class="item item-divider softrow">
+      <div class="row">
+        <div class="col col-100">
+    Resultados consolidado da Simulação
+  </div></div></div>
+
+  <div class="item extratoDoMes">
+    <div class="separador">
+      <div class="label row" >
+        <div class="col text col-67">Renda mensal total - valor bruto</div>
+        <div class="col valor">{{value.renda_mensal_consolidada}}</div>
+      </div>
+     </div>
+      <div class="separador">
+       <div class="label row" >
+        <div class="col text col-67">Valor do imposto de renda <span class="dif">({{desc_opcao_tributacao}})</span></div>
+        <div class="col valor">{{value.rmv_ir}}</div>
+      </div>
+     </div>
+      <div class="separador">
+       <div class="label row" >
+        <div class="col text col-67">Pagamento único total - valor bruto</div>
+        <div class="col valor">{{value.pgto_unico_consolidado}}</div>
+      </div>
+     </div>
+      <div class="separador">
+       <div class="label row" >
+        <div class="col text col-67">Valor do imposto de renda <span class="dif">({{desc_opcao_tributacao}})</span></div>
+        <div class="col valor">{{value.antecipacao_beneficio_ir}}</div>
+      </div>
+     </div>
+      <div class="separador">
+       <div class="label row" >
+        <div class="col text col-67">Pagamento integral</div>
+        <div class="col valor">{{value.pagt_integral}}</div>
+      </div>
+     </div>
+      <div class="separador">
+       <div class="label row" >
+        <div class="col text col-67">Valor do imposto de renda <span class="dif">({{desc_opcao_tributacao}})</span></div>
+        <div class="col valor">{{value.pagt_integral_ir}}</div>
+      </div>
+    </div>
+  </div>
+
+<div ng-show="formData.pensao == 'S'">
+  <div class="item item-divider softrow">
+    
+    <div class="row">
+      <div class="col col-100">
+          Relação de beneficiários selecionados para pensão
+      </div>
+    </div>
+  </div>
+
+
+  <div id="beneficiarios" ng-repeat="(key, value) in beneficiarios" ng-show="beneficiarios[key].checked == true">
+
+    <div class="menu-item item item-divider softrow">
+
+      <div class="row">
+        <div class="col col-100">
+           Beneficiário {{key+1}}
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="child-dropdown">
+       <div class="extratoDoMes item">
+           <div class="label row">
+              <div class="col col-67 text">
+                Data de nascimento
+              </div>
+              <div class="col valor">
+               {{value.data_nascimento}}
+              </div>
+            </div>
+            <div class="label row">
+              <div class="col col-67 text">
+                Vínculo
+              </div>
+              <div class="col valor">
+                {{map.vinculo[value.vinculo]}}
+              </div>
+            </div>
+            <div class="label row">
+             <div class="col col-67 text">
+                Sexo
+              </div>
+              <div class="col valor">
+                {{map.sexo[value.sexo]}}
+              </div>
+            </div>
+            <div class="label row">
+              <div class="col col-67 text">
+                Parentensco
+              </div>
+              <div class="col valor">
+                {{map.parentesco[value.cod_parentesco]}}
+              </div>
+            </div>
+        </div>
+    </div>
+
+  </div></div>
+
+  
+
+  <div class="list">
+   <form id="formCampos" class="formCampo" ng-submit="submit(formData)">
+      
+      <div class="box-calculo">
+        <div class="item">
+          <div class="row">
+            <div class="col col-70">
+              <span class="input-label">Estimativa de rentabilidade média anual <small>Entre a data de simulação e início de benefício</small></span>
+            </div>
+            <div class="col col-28">
+              <label class="item item-input">
+                <input type="text" name="" ui-number-mask="1" ng-model="formData.estimativa_rent_entre"/> 
+              </label>
+            </div>
+            <div class="col col-05">
+              <span class="input-label box ">%</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-70">
+              <span class="input-label">Estimativa de rentabilidade média anual <small>Após o início do benefício</small></span>
+            </div>
+            <div class="col col-28">
+              <label class="item item-input">
+
+                <input type="text" name="" ui-number-mask="1" ng-model="formData.estimativa_rent_apos" /> 
+
+              </label>
+            </div>
+            <div class="col col-05">
+              <span class="input-label box ">%</span>
+            </div>
+          </div>
+         <div class="the_error">
+              <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+            </div>
+          <div class="button-bar">
+            <input ng-hide="loading" type="submit" class="button button-positive button-block" ng-model="submitExtrato" value="Recalcular Simulação">      
+          </div>
+        </div>
+      </div>
+      <div class="item obs">
+        Atenção:
+        <div class="text-small no-wrap">
+          <p ng-bind-html="texto_simulacao_rmv_saque">
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+  </ion-content>
+</ion-view>

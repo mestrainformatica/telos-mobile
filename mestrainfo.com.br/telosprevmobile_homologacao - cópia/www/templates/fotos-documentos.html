@@ -1,0 +1,49 @@
+<ion-view title="Fotos/Documentos"   has-bouncing="false" >
+ <ion-content id="id-teste-nav"  class="has-header" has-bouncing="false"  ng-controller="FotosDocumentosCtrl">
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">        
+    <div class="item item-divider softrow">
+      Fotos/Documentos
+    </div>
+    <div class="item">
+      <label class="item item-input item-select">
+        <div class="input-label">
+            Tipo de Documento
+        </div>
+        <select ng-model="tipoDocumento" class="ion-input-select" ng-options="arquivo.tipo_documento as arquivo.descricao_documento for arquivo in listaTiposDoc" >
+           <option value="">- Selecione - </option>
+        </select>
+      </label>
+      <div class="container-flexbox">
+        <div class="sub-container-flexbox" ng-click="abrirCamera()">
+          <i class="fas fa-camera fa-2x"></i>
+          <span>Câmera</span>
+        </div>
+        <div class="sub-container-flexbox" ng-click="abrirGaleria()">
+            <i class="fas fa-images fa-2x"></i>
+          <span>Fotos</span>
+        </div>
+        <div class="sub-container-flexbox" ng-click="abrirChooser()">
+          <i class="fas fa-folder-open fa-2x"></i>
+          <span>Arquivos</span>
+        </div>
+      </div>
+      <label class="item item-input">
+          <input type="text" ng-model="nomeArquivo"  placeholder="Digite um nome de arquivo..." >
+        </label>
+      <div class="button-bar">
+        <button ng-hide="loading" ng-click="anexarArquivo()" type="button" class="button button-positive button-block" ><i class="fas fa-paperclip"></i> Anexar Arquivo</button>     
+      </div>
+      <div style="word-wrap: break-word; width: 100%; text-align: center;">
+          <span class="quebra-texto" ng-show="estadoOperacao == 'SUCESSO'" style="color: #0a4b5f; font-weight: 600;">Upload realizado com sucesso!</span>
+          <span class="quebra-texto" ng-show="estadoOperacao == 'ERRO'" style="color: #f78c8c; font-weight: 600;">{{mensagemErro}}</span>
+          <span class="quebra-texto" ng-show="estadoValidacao == 'ERRO'" style="color: #f78c8c; font-weight: 600;">{{mensagemValidacao}}</span>
+      </div>
+    </div>
+  
+  </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,232 @@
+<ion-view title='Menu' cache-view="false"
+          animation="slide-left-right" hide-back-button="true"
+          overflow-scroll="true" class="fade-in">
+    <ion-content has-header="false" padding="false" class="has-header">
+        <div class="headerInfo">
+            <div ng-include="'js/directives/userInfo.html'"></div>
+        </div>
+
+        <div class="list mainMenu" id="mainMenu" ng-controller="initMenu">
+
+            <div style="margin-top: -20px" class="item item-divider softrow">
+                Menu
+            </div>
+
+            <a class="item" href="#/dados" ng-show="stageMap['01']">
+                <h2>
+                    <i class="icon ion-ios-compose-outline"></i>
+                    {{ stageMap['01'] }}
+                    <i class="right-icon icon ion-chevron-right"></i>
+                </h2>
+            </a>
+
+            <a class="item" href="#/extrato" ng-show="stageMap['02']">
+                <h2>
+                    <i class="icon ion-ios-book-outline"></i>
+                    {{ stageMap['02'] }}
+                    <i class="right-icon icon ion-chevron-right"></i>
+                </h2>
+            </a>
+
+            <a class="item" href="#/saldo" ng-show="stageMap['03']">
+                <h2>
+                    <i class="icon ion-ios-browsers-outline"></i>
+                    {{ stageMap['03'] }}
+                    <i class="right-icon icon ion-chevron-right"></i>
+                </h2>
+            </a>
+
+            <a class="item" href="#/demonstrativo" ng-show="stageMap['04']">
+                <h2>
+                    <i class="icon ion-ios-list-outline"></i>
+                    {{ stageMap['04'] }}
+                    <i class="right-icon icon ion-chevron-right"></i>
+                </h2>
+            </a>
+
+            <a class="item" ng-click="showSub = !showSub"
+               ng-show="stageMap['05']">
+                <h2>
+                    <i class="icon ion-ios-calculator-outline"></i>
+                    {{
+                    stageMap['05'] }}
+                    <i class="right-icon icon ion-chevron-down" ng-hide="showSub"></i>
+                    <i class="right-icon icon ion-chevron-up" ng-show="showSub"></i>
+                </h2>
+            </a>
+
+            <div class="submenu ng-cloak" ng-show="showSub">
+                <a class="item" ng-click="goDocConcessao($event)"
+                   href="#/emprestimo-documentos-concessao"
+                   ng-show="stageMap['18']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{ stageMap['18'] }}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+
+                <a class="item" href="#/emprestimo-consulta"
+                   ng-show="stageMap['06']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{ stageMap['06'] }}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+
+                <a class="item" href="#/emprestimo-simulacao"
+                   ng-show="stageMap['07']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{ stageMap['07'] }}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+            </div>
+
+            <a class="item" href="#/simulacao-resgate" ng-show="stageMap['08']">
+                <h2>
+                    <i class="icon ion-ios-list-outline"></i>
+                    {{ stageMap['08']
+                    }}
+                    <i class="right-icon icon ion-chevron-right"></i>
+                </h2>
+            </a>
+
+            <a class="item" ng-click="showSubAtivo = !showSubAtivo"
+               ng-show="stageMap['10']">
+                <h2>
+                    <i class="icon ion-ios-calculator-outline"></i>
+                    {{stageMap['10']}}
+                    <i class="right-icon icon ion-chevron-down" ng-hide="showSubAtivo"></i>
+                    <i class="right-icon icon ion-chevron-up" ng-show="showSubAtivo"></i>
+                </h2>
+            </a>
+
+            <div class="submenu ng-cloak" ng-show="showSubAtivo">
+                <a class="item" href="#/simulacao-renda-mensal-vitalicia"
+                   ng-show="stageMap['11']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{stageMap['11']}}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+
+                <a class="item" href="#/simulacao-saque-programado"
+                   ng-show="stageMap['12']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{stageMap['12']}}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+
+                <a class="item" href="#/simulacao-rmv-saque-programado"
+                   ng-show="stageMap['13']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{stageMap['13']}}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+
+            </div>
+
+
+            <a class="item"
+               ng-click="showSubParticipante = !showSubParticipante"
+               ng-show="stageMap['14']">
+                <h2>
+                    <i class="icon ion-ios-settings"></i>
+                    {{stageMap['14']}}
+                    <i class="right-icon icon ion-chevron-down" ng-hide="showSubParticipante"></i>
+                    <i class="right-icon icon ion-chevron-up" ng-show="showSubParticipante"></i>
+                </h2>
+            </a>
+
+            <div class="submenu ng-cloak" ng-show="showSubParticipante">
+                <a class="item" href="#/alteracao-percentual-retirada"
+                   ng-show="stageMap['15']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{stageMap['15']}}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+
+                <a class="item" href="#/simulacao-rmv-aposentado"
+                   ng-show="stageMap['16']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{stageMap['16']}}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+
+                <a class="item" href="#/alteracao-rmv-saque"
+                   ng-show="stageMap['17']">
+                    <h2>
+                        <i class="icon"></i>
+                        {{stageMap['17']}}
+                        <i class="right-icon icon ion-chevron-right"></i>
+                    </h2>
+                </a>
+
+            </div>
+            <!--a class="item" ng-click="showSubDoc = !showSubDoc">
+                <h2>
+                    <i class="icon ion-document"></i>
+                    Fotos/Documentos
+                    <i class="right-icon icon ion-chevron-down" ng-hide="showSubDoc"></i>
+                    <i class="right-icon icon ion-chevron-up" ng-show="showSubDoc"></i>
+                </h2>
+            </a>
+            
+            <div class="submenu ng-cloak" ng-show="showSubDoc">
+                <a class="item" href="#/fotos-documentos" ng-show="stageMap['19']">
+                    <h2>
+                        <i class="icon"></i>
+                        Anexar Arquivos
+                    </h2>
+                </a>
+                <a class="item" href="#/lista-documentos" ng-show="stageMap['19']">
+                    <h2>
+                        <i class="icon"></i>
+                        Lista de Fotos/Documentos
+                    </h2>
+                </a>
+            </div-->
+            <a class="item" href="#/cartao-assistido" >
+                <h2>
+                    <i class="icon ion-ios-person-outline"></i>
+                    Cartão do Credenciado
+                    <i class="right-icon icon ion-chevron-right"></i>
+                </h2>
+            </a>
+
+            <a class="item" href="#/fale-conosco" ng-show="stageMap['09']">
+                <h2>
+                    <i class="icon ion-ios-email-outline"></i>
+                    {{ stageMap['09'] }}
+                    <i class="right-icon icon ion-chevron-right"></i>
+                </h2>
+            </a>
+
+            <a class="item" href="#/preferencias" ng-show="stageMap['19']">
+                <h2>
+                    <i class="icon ion-ios-cog-outline"></i>
+                    {{ stageMap['19'] }}
+                </h2>
+            </a>
+            <a class="item" ng-class="confirm" ng-click="logout()">
+                <h2>
+                    <i class="icon ion-ios-unlocked-outline"></i>
+                    Encerrar
+                </h2>
+            </a>
+       
+        </div>
+    </ion-content>
+</ion-view>

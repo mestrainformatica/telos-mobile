@@ -1,0 +1,153 @@
+<ion-view title="Extrato de Contas" ng-controller="ExtratoCtrl.emitido">
+ <ion-content class="has-header">
+    <div class="headerInfo" >
+        <div ng-include="'js/directives/userInfo.html'"></div> 
+    </div>
+
+  <div class="list" id="mainMenu">        
+    <div class="item item-divider softrow">
+      Extrato de Contas Mensal
+    </div>
+    <div class="item extratoDoMes">
+    	<div class="label smaller">
+        <h4 class="title_label">{{ extrato.detalhesExtratoDeMes[0].detalhesPerfilInvestimento[0].nome_perfil }}</h4>
+        <p ng-repeat="(key, value) in extrato.detalhesExtratoDeMes[0].detalhesPerfilInvestimento">{{value.descricao}}</p>
+      </div>
+      <div class="label smaller">
+        <h4 class="title_label">{{ extrato.detalhesExtratoDeMes[1].detalhesPercentualContribuicao[0].nome_perfil }}</h4>
+        <p ng-repeat="(key, value) in extrato.detalhesExtratoDeMes[1].detalhesPercentualContribuicao">{{value.descricao}}</p>
+      </div>
+      <div class="label smaller">
+        <h4 class="title_label">{{ extrato.detalhesExtratoDeMes[2].detalhesDistribuicaoSaldoConta[0].nome_perfil }}</h4>
+        <p ng-repeat="(key, value) in extrato.detalhesExtratoDeMes[2].detalhesDistribuicaoSaldoConta">{{value.descricao}}</p>
+      </div>
+	</div>
+	<div class="item item-divider softrow">
+		Contas de Participante
+	</div>
+	<div class="item contaParticipante">   
+    <div class="label row th">
+      <div class="col col-67">Modalidade</div>
+      <div class="col valor upper">Valor (R$)</div>
+    </div> 
+      <div ng-repeat="(key, value) in extrato.contasParticipante">
+        <p class="col">{{value.modalidade}}</p>
+        <div class="label row">
+          <div class="col col-67 softcolor upper">Saldo Anterior</div>
+          <div class="col valor">{{value.saldo_anterior}}</div>
+        </div>
+        <div class="label row">
+          <div class="col col-67 softcolor upper">Lançamentos</div>
+          <div class="col valor">{{value.lancamentos}}</div>
+        </div>
+        <div class="label row">
+          <div class="col col-67 softcolor upper">{{value.desc_saldo_em}}</div>
+          <div class="col valor">{{value.saldo_em}}</div>
+        </div>
+        <hr>
+      </div>
+
+      <div class="label row">
+        <div class="col col-67 upper">Total</div>
+        <div class="col valor upper">{{extrato.totalContaParticipante[0].total_saldo_atual}}</div>
+      </div>
+    </div>
+    
+    <div ng-show="extrato.contasPatrocinadora.length" ng-cloak>
+    <div class="item item-divider softrow">
+		  Contas da Patrocinadora
+	 </div>
+	 <div class="item contaParticipante">   
+      <div class="label row th">
+        <div class="col col-67">Modalidade</div>
+        <div class="col valor">Valor (R$)</div>
+      </div>
+      <div ng-repeat="(key, value) in extrato.contasPatrocinadora">
+        <p class="col">{{value.modalidade}}</p>
+        <div class="label row">
+          <div class="col col-67 softcolor upper">Saldo Anterior</div>
+          <div class="col valor">{{value.saldo_anterior}}</div>
+        </div>
+        <div class="label row">
+          <div class="col col-67 softcolor upper">Lançamentos</div>
+          <div class="col valor">{{value.lancamentos}}</div>
+        </div>
+        <div class="label row">
+          <div class="col col-67 softcolor upper">{{value.desc_saldo_em}}</div>
+          <div class="col valor">{{value.saldo_em}}</div>
+        </div>
+        <hr>
+      </div>
+
+      <div class="label row">
+        <div class="col col-67 upper">Total</div>
+        <div class="col valor">{{extrato.totalContaPatrocinadora[0].total_saldo_atual}}</div>
+      </div>
+
+    </div>
+    </div>
+     <div class="row item item-divider softrow" id="emitidoSaldoTotal">
+       <div class="col col-67">Saldo Total</div>
+        <div class="col valor">{{extrato.saldo_total}}</div>
+      </div>
+
+    <div class="item item-divider softrow ">
+      Movimentação
+    </div>
+    <div class="item movimentacao">   
+      <div ng-repeat="(key, value) in extrato.detalhesMovimentacao[0]">
+      <h4>{{key}}</h4>
+      <div class="inner">
+      <div class="label row th">
+        <div class="col col-67 upper">Data</div>
+        <div class="col valor">Valor (R$)</div>
+      </div>
+      <div ng-repeat="(k,v) in value">
+        <div class="label row">
+          <div class="col col-67 upper"><strong>{{v.data}}</strong> {{v.historico}}</div>
+          <div class="col valor">{{v.valor}}</div>
+        </div>
+      </div>
+      </div>
+      </div>
+    	</div>
+
+    	<div class="item item-divider softrow">
+		Rentabilidade
+	</div>
+	<div class="item contaParticipante">   
+
+  
+    <div class="label row th">
+    	 <div class="col col-60">Descrição</div>
+    	 <div class="col col-20 valor">No Mês</div>
+    	 <div class="col col-20 valor">No Ano</div>
+	 </div>
+  
+  <div ng-repeat="(key, value) in extrato.detalhesRentabilidade">
+   <div class="label row">
+        <div class="col col-60 upper quebra-texto">{{value.descricao}}</div>
+        <div class="col col-20 valor">{{value.no_mes_descricao}}</div>
+        <div class="col col-20 valor">{{value.no_ano_descricao}}</div>
+   </div>
+   <div class="label row sub_descricao" ng-show="value.sub_descricao">
+        <div class="col col-60 upper quebra-texto">{{value.sub_descricao}}</div>
+        <div class="col col-20 valor">{{value.no_mes_sub_descricao}}</div>
+        <div class="col col-20 valor">{{value.no_ano_sub_descricao}}</div>
+   </div>
+   </div>
+
+  </div>
+
+  <div class="the_error">
+    <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
+  </div>
+
+  <div class="padding">
+    <div class="button-bar">
+      <input ng-hide="loading" type="button" class="button button-positive button-block" value="Receber por email" ng-click="sendMail()" ng-disabled="hasEmail">      
+    </div>
+  </div>
+
+  </ion-content>
+</ion-view>
