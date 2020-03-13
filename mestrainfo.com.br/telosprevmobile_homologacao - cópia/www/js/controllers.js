@@ -13,16 +13,16 @@ cordova = window.cordova
 
 // URL Base para conexão aos servidor TELOS
 // TELOS Produção
-urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
-urlServidor = "https://telosmobile.fundacaotelos.com.br"
+//urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+//urlServidor = "https://telosmobile.fundacaotelos.com.br"
 // TELOS Homologação
 //urlBase = 'https://telosmobile.fundacaotelos.com.br:8446/prevmobile-ws/rest/acesso/padrao'
 //urlServidor = "https://telosmobile.fundacaotelos.com.br:8446"
 // MESTRA 
 //urlBase = 'http://sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 
-//urlServidor = "http://192.100.100.82:8080"
-//urlBase = 'http://192.100.100.82:8080/prevmobile-ws/rest/acesso/padrao'
+urlServidor = "http://192.100.100.79:8080"
+urlBase = 'http://192.100.100.79:8080/prevmobile-ws/rest/acesso/padrao'
 
 
 
@@ -4220,6 +4220,8 @@ window.controller = angular
 
     }
   ])
+
+  .controller('cartaoAssistidoCtrl', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) { }])
 
 angular
   .module('starter.Directives', [])

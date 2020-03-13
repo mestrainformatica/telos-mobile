@@ -1,0 +1,57 @@
+<ion-view title="Cartão do Credenciado" >
+    <ion-content class="has-header" ng-controller="cartaoAssistidoCtrl" >
+       <div class="headerInfo" >
+           <div ng-include="'js/directives/userInfo.html'"></div> 
+       </div>
+   
+      <div class="cartao-container">
+        <div class="cartao-container-aux">
+            <div class="cartao-item"> 
+              <div class="frente-logo borda-cartao-baixo">
+                  <div class="borda-cartao-interno">  <img src="./img/logo.png" alt="logo-telos" width="90%" height="90%">     </div>
+                  <div class="centraliza-texto">    Cartão de Acesso ao Credenciado         </div>
+              </div>
+
+              <div class="frente-fundo borda-cartao-baixo">
+                <div class="centraliza-texto">TELOS - Fundação EMBRATEL de Seguridade Social</div>
+                <div style="text-align: center">ANS 31684-9</div>
+                <div class="fundo-nomepar"><b>Nome do Assistido:</b></div>
+                <div class="fundo-valorpar">JOSÉ TESTE</div>
+                
+              </div>
+
+              <div class="frente-idplano borda-cartao-baixo">
+                  <div class="borda-cartao-interno frente-idplano-interno">
+                      <div><b>ID do Assistido:</b></div>
+                      <div class="fonte-idplano"> 002-999999-00</div>
+                  </div>
+                  <div class="borda-cartao-interno frente-idplano-interno">
+                      <div><b>Plano:</b></div>
+                      <div class="fonte-idplano"> AMAP</div></div>
+                  <div class="frente-idplano-interno">
+                      <div><b>CPF:</b></div>
+                      <div class="fonte-idplano">116689537-81</div>
+                  </div>
+              </div>
+
+              <div class="frente-validade ">
+                <p>Válido até 20/FEV/2020 <br> com documento de identificacão</p>
+              </div>
+              
+            </div>
+
+            <div class="cartao-item borda-cartao-baixo"> 
+            <div class="traseira-cartao-label borda-cartao-baixo">
+                <div class=" centraliza-texto cod-nome borda-cartao-interno"> Código - Nome do Beneficiário </div>
+                <div class=" centraliza-texto lista-benef"> Data de <br> Nasc. </div>
+            </div>
+            <div class="traseira-cartao-lista">
+                <div class="centraliza-texto cod-nome"> 002-999999-00 - José Teste   </div>
+                <div class="centraliza-texto lista-benef centraliza-texto"> 20/10/1946 </div>
+            </div>
+               
+            </div>
+        </div>
+      </div>
+     </ion-content>
+   </ion-view>""

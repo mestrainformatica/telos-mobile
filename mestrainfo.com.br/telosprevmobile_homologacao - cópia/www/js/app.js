@@ -299,6 +299,11 @@ window.app = window.angular
         url: '/lista-documentos',
         templateUrl: 'templates/lista-documentos.html'
       })
+      .state('cartao-assistido', {
+        cache: false,
+        url: '/cartao-assistido',
+        templateUrl: 'templates/cartao-assistido.html'
+      })
       // END MEUS STATES
       .state('menu', {
         cache: false,
