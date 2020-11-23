@@ -16,13 +16,13 @@ cordova = window.cordova
 //urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
 //urlServidor = "https://telosmobile.fundacaotelos.com.br"
 // TELOS Homologação
-//urlBase = 'https://telosmobile.fundacaotelos.com.br:8446/prevmobile-ws/rest/acesso/padrao'
-//urlServidor = "https://telosmobile.fundacaotelos.com.br:8446"
+urlBase = 'https://telosmobile.fundacaotelos.com.br:8446/prevmobile-ws/rest/acesso/padrao'
+urlServidor = "https://telosmobile.fundacaotelos.com.br:8446"
 // MESTRA 
 //urlBase = 'http://sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
-
-urlServidor = "http://192.100.100.79:8080"
-urlBase = 'http://192.100.100.79:8080/prevmobile-ws/rest/acesso/padrao'
+//urlServidor = 'http://sysprev.com.br'
+//urlServidor = "http://192.100.100.80:8080"
+//urlBase = 'http://192.100.100.80:8080/prevmobile-ws/rest/acesso/padrao'
 
 
 
@@ -167,7 +167,8 @@ window.controller = angular
     $rootScope.$on('$stateChangeStart', function (event, toState) {
       if (cordova && cordova.plugins.Keyboard) {
         // return to keyboard default scroll state
-        cordova.plugins.Keyboard.disableScroll(false)
+        //cordova.plugins.Keyboard.disableScroll(false)
+        //cordova.plugins.Keyboard.hide();
       }
       $scope.isNotHome = !(
         toState['name'] === 'menu' ||
@@ -181,6 +182,7 @@ window.controller = angular
       // Handle iOS-specific issue with jumpy viewport when interacting with input fields.
       if (cordova && cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.disableScroll(true)
+        cordova.plugins.Keyboard.hide();
       }
     })
     $rootScope.$on('$ionicView.beforeLeave', function () {
@@ -597,7 +599,7 @@ window.controller = angular
     '$ionicLoading',
     '$ionicModal',
     function ($scope, $state, $http, $rootScope, $timeout, $ionicLoading, $ionicModal) {
-      if (window.cordova) {
+      if (window.cordova && window.cordova.plugins.Keyboard) {
         window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
       }
       
@@ -1684,6 +1686,7 @@ window.controller = angular
       $scope.matricula = $rootScope.lastRequest.result.informacoesParticipante[0].matricula
       $rootScope.lastRequest.emprestimoSimulacaoCampos = []
       $scope.disableddates = []
+      $scope.possuiDataCredito = "NAO";
       $scope.disableCalendar = true
       $scope.dataInicial = new Date()
       $scope.update = function (codEmprestimo) {
@@ -1711,6 +1714,10 @@ window.controller = angular
               userInfo.u = resp.data.login.u
               userInfo.s = resp.data.login.s
               $ionicLoading.hide()
+
+              if (resp.data.result['possuiDataCredito'] === 'SIM') {
+                $scope.possuiDataCredito = 'SIM';
+              }
 
               $scope.dataInicial = new Date(resp.data.result['data_inicial'])
               $scope.disableCalendar = false;
@@ -1772,6 +1779,10 @@ window.controller = angular
             showDelay: 0
           })
 
+          //07/08/2020
+          if ($scope.possuiDataCredito == 'SIM' && !$scope.formData.data) {
+            $scope.errorMsg = 'Você possui uma data de crédito, por favor selecione uma data para prosseguir.'
+          }
 
           //22/01/2020
           var dataSelecionada;
@@ -3999,7 +4010,7 @@ window.controller = angular
             encodingType: Camera.EncodingType.JPEG,
             mediaType: Camera.MediaType.PICTURE,
             sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
-            allowEdit: true,
+            allowEdit: false,
             correctOrientation: true
           }
           //chamada do plugin para abrir a galerias
@@ -4017,10 +4028,10 @@ window.controller = angular
             StatusBar.show();
             console.log("Ocorreu o seguinte erro ao tentar selecionar foto da Galeria: " + error);
           }, scope.options);
-        }
+        } 
       }
 
-
+  
 
 
 
@@ -4084,7 +4095,7 @@ window.controller = angular
             encodingType: Camera.EncodingType.JPEG,
             mediaType: Camera.MediaType.PICTURE,
             sourceType: Camera.PictureSourceType.CAMERA,
-            allowEdit: true,
+            allowEdit: false,
             correctOrientation: true
           }
           //chamada do plugin para abrir a camera
@@ -4202,7 +4213,10 @@ window.controller = angular
 
                 console.log(urlAux);
 
-                window.open(urlAux, "_blank")
+                cordova.InAppBrowser.open(urlAux, "_blank")
+
+                //window.open(urlAux, "_system")
+                console.log("chegou aqui")
 
               
               },

@@ -1398,6 +1398,14 @@ p.successColor {
 			flex-grow: 1;
 		}
 		
+		.ajuste-padding {
+			padding: 1% !important;
+		}
+		
+		.ajuste-div-lista {
+			border-bottom: none !important;
+			margin-bottom: 0 !important;
+		}
 		
 			
 

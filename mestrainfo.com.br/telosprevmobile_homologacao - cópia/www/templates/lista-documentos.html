@@ -8,8 +8,8 @@
             <div class="item item-divider softrow">
                 Lista de Documentos
             </div>
-            <div class="item" ng-repeat="arquivo in listaArquivos">
-                <div class="label row th">
+            <div class="item ajuste-padding" ng-repeat="arquivo in listaArquivos">
+                <div class="label row th ajuste-div-lista">
                     <div class="col col-67 upper font-teste">{{arquivo.nome_usuario}}</div>
                     <div class="col valor font-teste" ng-click="downloadArquivo(arquivo.nome_usuario,arquivo.nome_original)"><i class="fa fa-eye"></i></div>
                 </div>
