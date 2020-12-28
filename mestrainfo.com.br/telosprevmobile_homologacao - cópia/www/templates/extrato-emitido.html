@@ -139,6 +139,10 @@
 
   </div>
 
+  <div ng-show="extrato.dataPrazoBeneficio !== 'N'" class="item item-divider item-text-wrap softrow" style="background-color: rgb(0,103,153) !important; color: white; font-weight: 500;">
+		PRAZO PREVISTO PARA RECEBIMENTO DO BENEFÍCIO, CASO O PERCENTUAL DE SAQUE NÃO SEJA ALTERADO: {{extrato.dataPrazoBeneficio}}
+	</div>
+
   <div class="the_error">
     <p ng-show="errorMsg" class="errorMsg assertive" ng-bind="errorMsg"></p>
   </div>

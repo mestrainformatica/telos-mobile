@@ -13,11 +13,11 @@ cordova = window.cordova
 
 // URL Base para conexão aos servidor TELOS
 // TELOS Produção
-//urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
-//urlServidor = "https://telosmobile.fundacaotelos.com.br"
+urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+urlServidor = "https://telosmobile.fundacaotelos.com.br"
 // TELOS Homologação
-urlBase = 'https://telosmobile.fundacaotelos.com.br:8446/prevmobile-ws/rest/acesso/padrao'
-urlServidor = "https://telosmobile.fundacaotelos.com.br:8446"
+//urlBase = 'https://telosmobile.fundacaotelos.com.br:8446/prevmobile-ws/rest/acesso/padrao'
+//urlServidor = "https://telosmobile.fundacaotelos.com.br:8446"
 // MESTRA 
 //urlBase = 'http://sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 //urlServidor = 'http://sysprev.com.br'
@@ -1128,6 +1128,7 @@ window.controller = angular
       $scope.dados.habilitarBotao = !$scope.dados['exibe_botao_editar']
       $scope.infoprev = $rootScope.lastRequest.result['informacoesPrevidenciarias']
       $scope.infobenef = $rootScope.lastRequest.result['informacoesDependentes']
+      $scope.dataUltimoCadastroBeneficiario = $rootScope.lastRequest.result.dataUltimoCadastroBeneficiario;
     }
   ])
   .controller('DadosCtrl.form', [
