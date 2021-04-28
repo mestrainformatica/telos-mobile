@@ -1260,3 +1260,154 @@ p.successColor {
 }
 
 
+
+
+		/*   Cartao de Credenciado   */
+
+		.cartao-container {
+			width: 100vh;
+			height: 100vw;
+		
+			max-width: 100%;
+			max-height: 98%;
+			transform: rotate(90deg);
+		
+			margin: 1% -5% 2% -1%
+			
+		}
+		
+		.cartao-container-aux {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			align-items: stretch;
+			justify-content: stretch;
+		
+			height: inherit;
+			width: inherit;
+		
+			max-height: inherit;
+		
+		
+		}
+		
+		.cartao-item {
+			border: 1px solid black;
+			background-color: white;
+			writing-mode: horizontal-tb;
+			
+			width: 100%;
+			height: 100%;
+			
+			display: flex;
+    		flex-direction: column;
+		}
+		.cartao-item p{
+			text-align: center;
+		}
+		
+		
+		
+		.frente-logo{
+			flex-grow: 0,5;
+			display: flex;
+			flex-wrap: nowrap;
+		}
+		.frente-logo div{
+			width: 50%;
+		}
+		
+		
+		
+		
+		.frente-fundo{
+			flex-grow: 5;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+		}
+		.fundo-nomepar{
+			margin-top: auto;
+			padding-left: 4px;
+		}
+		.fundo-valorpar{
+			padding-left: 4px;
+			margin-bottom: auto;
+		}
+		
+		
+		
+		.frente-idplano{
+			flex-grow: 1;
+			display: flex;
+			flex-wrap: nowrap;
+			flex-direction: row;
+		}
+		.frente-idplano-interno{
+			width: 34%;
+			padding-left: 4px;
+			display: flex;
+			flex-direction: column;
+			flex-wrap: nowrap;
+		}
+		.fonte-idplano{
+			font-size: 90%;
+		}
+		
+		
+		
+		
+		.frente-validade{
+			flex-grow: 0,5;
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: center;
+		}
+		
+		
+		
+		
+		.centraliza-texto{
+			text-align: center;
+			padding-top: 3%;
+		}
+		.borda-cartao{
+			border: 1px solid black;
+		}
+		.borda-cartao-interno{
+			border-right: 1px solid black;
+		}
+		.borda-cartao-baixo{
+			border-bottom: 1px solid black;
+		}
+		
+		
+		.traseira-cartao-label{
+			flex-grow: 0,5;
+			display: flex;
+			flex-direction: row;
+		}
+		.traseira-cartao-lista{
+			display: flex;
+			flex-direction: row;
+		}
+		.cod-nome{
+			flex-grow: 1;
+		}
+		.lista-benef{
+			flex-grow: 1;
+		}
+		
+		.ajuste-padding {
+			padding: 1% !important;
+		}
+		
+		.ajuste-div-lista {
+			border-bottom: none !important;
+			margin-bottom: 0 !important;
+		}
+		
+			
+
+	 
+	 

@@ -27,9 +27,9 @@ window.app = window.angular
         if (window.cordova && cordova.plugins.Keyboard) {
           // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
           // for form inputs)
-          cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false)
+          cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
           // verificar se é melhor true ou false.
-          cordova.plugins.Keyboard.disableScroll(false)
+          cordova.plugins.Keyboard.disableScroll(false);
         }
 
         if (window.StatusBar) {
@@ -298,6 +298,11 @@ window.app = window.angular
         cache: false,
         url: '/lista-documentos',
         templateUrl: 'templates/lista-documentos.html'
+      })
+      .state('cartao-assistido', {
+        cache: false,
+        url: '/cartao-assistido',
+        templateUrl: 'templates/cartao-assistido.html'
       })
       // END MEUS STATES
       .state('menu', {
