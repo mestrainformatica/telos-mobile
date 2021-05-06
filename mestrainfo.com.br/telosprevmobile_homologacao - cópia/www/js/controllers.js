@@ -13,11 +13,11 @@ cordova = window.cordova
 
 // URL Base para conexão aos servidor TELOS
 // TELOS Produção
-//urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
-//urlServidor = "https://telosmobile.fundacaotelos.com.br"
+urlBase = 'https://telosmobile.fundacaotelos.com.br/prevmobile-ws/rest/acesso/padrao'
+urlServidor = "https://telosmobile.fundacaotelos.com.br"
 // TELOS Homologação
-urlBase = 'https://telosmobile.fundacaotelos.com.br:8446/prevmobile-ws/rest/acesso/padrao'
-urlServidor = "https://telosmobile.fundacaotelos.com.br:8446"
+//urlBase = 'https://telosmobile.fundacaotelos.com.br:8446/prevmobile-ws/rest/acesso/padrao'
+//urlServidor = "https://telosmobile.fundacaotelos.com.br:8446"
 // MESTRA 
 //urlBase = 'http://sysprev.com.br/prevmobile-ws/rest/acesso/padrao'
 //urlServidor = 'http://sysprev.com.br'
@@ -182,7 +182,7 @@ window.controller = angular
       // Handle iOS-specific issue with jumpy viewport when interacting with input fields.
       if (cordova && cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.disableScroll(true)
-        cordova.plugins.Keyboard.hide();
+        //cordova.plugins.Keyboard.hide();
       }
     })
     $rootScope.$on('$ionicView.beforeLeave', function () {
@@ -602,8 +602,7 @@ window.controller = angular
       if (window.cordova && window.cordova.plugins.Keyboard) {
         window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
       }
-      
-
+  
       $scope.preferenciasLogin = []
 
       if (window.localStorage.getItem("opcao_cpf") === undefined) {
@@ -759,7 +758,9 @@ window.controller = angular
 
         //Este if verifica se o usuário digitou 11 digitos no CPF, caso sim, chamamos a biometria
         if (cpf.length === 11) {
-          window.cordova.plugins.Keyboard.close();
+          if (window.cordova && window.cordova.plugins.Keyboard) {
+            window.cordova.plugins.Keyboard.close();
+          }  
           document.getElementById("campoCpf").blur();
           console.log("vai verificar se o cpf está cadastrado no celular")
           ativarBiometria(cpf);
@@ -1128,6 +1129,7 @@ window.controller = angular
       $scope.dados.habilitarBotao = !$scope.dados['exibe_botao_editar']
       $scope.infoprev = $rootScope.lastRequest.result['informacoesPrevidenciarias']
       $scope.infobenef = $rootScope.lastRequest.result['informacoesDependentes']
+      $scope.dataUltimoCadastroBeneficiario = $rootScope.lastRequest.result.dataUltimoCadastroBeneficiario;
     }
   ])
   .controller('DadosCtrl.form', [
@@ -1780,9 +1782,9 @@ window.controller = angular
           })
 
           //07/08/2020
-          if ($scope.possuiDataCredito == 'SIM' && !$scope.formData.data) {
-            $scope.errorMsg = 'Você possui uma data de crédito, por favor selecione uma data para prosseguir.'
-          }
+          //if ($scope.possuiDataCredito == 'SIM' && !$scope.formData.data) {
+          //  $scope.errorMsg = 'Você possui uma data de crédito, por favor selecione uma data para prosseguir.'
+          //}
 
           //22/01/2020
           var dataSelecionada;
@@ -4195,6 +4197,8 @@ window.controller = angular
       })
 
       scope.downloadArquivo = function (nomeArquivoUsuario, nomeReal) {
+
+        console.log("TESTE TESTE 01363607774");
 
 
             http.post(urlBase + ';jsessionid=' + rootScope.lastRequest.login.s, {
